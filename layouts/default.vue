@@ -1,33 +1,25 @@
 <template>
-
   <div>
-    <navbar></navbar>
-    <nuxt/>
-
-</div>
-
+    <Header></Header>
+    <nuxt />
+  </div>
 </template>
 
 <script>
-  import Navbar from '../components/Navbar'
-
-  export default {
-    data() {
-      return {
-     
-      }
-    },
-    components: {
-      Navbar
-    },
-    mounted() {
-
-    }
-  }
+import Header from "../components/Header";
+export default {
+  data() {
+    return {};
+  },
+  components: {
+    Header
+  },
+  mounted() {}
+};
 </script>
 
 <style>
-  html {
-    font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
-  }
+html {
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
 </style>
