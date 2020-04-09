@@ -13,21 +13,21 @@
             </div>
         </div>
         <div class="card-content">
-            <div class="item-img text-center">
+            <div style="margin: 0 auto;">
                 <a href="app-ecommerce-details.html">
                     <img src="/app-assets/images/pages/eCommerce/9.png" alt="img-placeholder" width="55" height="55">
                 </a>
             </div>
             <div class="remove-border-right">
                 <div class="item-name"  data-toggle="tooltip" data-placement="right" title="Công ty Hachinet">
-                    <p class="item-company mb-0"><i class="fal fa-building"></i> <span class="company-name"> Hachinet</span></p>
+                    <p class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name"> Hachinet</span></p>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
-                    <p class="quantity-title mb-0"><i class="fal fa-location-arrow"></i> Nhật bản</p>
+                    <p class="quantity-title mb-0"><i class="fad fa-location-arrow"></i> Nhật bản</p>
                     <p class="delivery-date mb-0"><i class="fad fa-calendar-star"></i> 22/02/2021</p>
                 </div>
                 <div class="item-quantity ">
-                    <p class="delivery-date"><i class="far fa-funnel-dollar"></i> 1.000.000đ ~ 20.000.000d</p>
+                    <p class="delivery-date"><i class="fad fa-funnel-dollar"></i> 1.000.000đ ~ 20.000.000d</p>
                 </div>
             </div>
             <div class="item-options text-center">
