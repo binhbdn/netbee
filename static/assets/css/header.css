@@ -48,9 +48,9 @@ nav#ftco-navbar {
     margin-left: 46px;
     margin-bottom: 2px;
  }
- a.nav-link {
-    color: white !important;
-    margin-right: 5px;
+.header-nav-link {
+  color: white !important;
+  margin-right: 5px;
 }
 .dropdown-toggle::after {
        margin-left: -10px;
