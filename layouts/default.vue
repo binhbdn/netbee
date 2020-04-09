@@ -2,17 +2,24 @@
   <div>
     <Header></Header>
     <nuxt />
+    <Follow></Follow>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Header from "../components/Header";
+import Follow from '../components/Follow';
+import Footer from '../components/Footer';
+
 export default {
   data() {
     return {};
   },
   components: {
-    Header
+    Header,
+    Follow,
+    Footer
   },
   mounted() {}
 };
