@@ -7,8 +7,8 @@
                         <h2>Đăng ký nhận bản tin du học</h2>
                         <p>Hãy để lại thông tin để nhận bản tin du học hoàn toàn miễn phí.</p>
                         <div class="row d-flex justify-content-center my-3">
-                            <div class="col-md-12 col-xl-8 col-12">
-                                <form action="#" class="subscribe-form">
+                            <div class="col-md-12 col-xl-8 col-12 p-xl-0">
+                                <form action="#" class="subscribe-form d-inline-block" >
                                     <div class="form-group d-flex">
                                         <input type="text" style="border-color: #fff !important;" class="form-control" placeholder="Địa chỉ Email">
 
