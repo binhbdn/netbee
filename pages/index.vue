@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body">
-                                            <JobsList :DataList="arrayJob"></JobsList>
+                                            <JobsList2Col :DataList="arrayJob"></JobsList2Col>
                                         </div>
                                     </div>
                                 </div>
@@ -35,10 +35,10 @@
   </div>
 </template>
 <script>
-import JobsList from '~/components/Jobs/JobsList';
+import JobsList2Col from '~/components/Jobs/JobsList2Col';
 export default {
     components: {
-        JobsList
+        JobsList2Col
     },
     data() {
         return {
