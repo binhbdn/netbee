@@ -27,7 +27,7 @@ module.exports = {
       { rel: 'stylesheet', href: '/assets/css/header.css' },
       { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' },
       { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
-
+      { rel: 'stylesheet', href: '/assets/fontawesome-pro/css/all.css' },
     ],
     script: [
       { src: '/app-assets/vendors/js/vendors.min.js' },
