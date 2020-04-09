@@ -102,7 +102,7 @@
                             <div class="col-lg-12 col-12">
                                 <div class="card">
                                     <div  class="card-header">
-                                        <h4>TIN TỨC</h4>
+                                        <h4><i class="fas fa-newspaper"></i> TIN TỨC</h4>
                                     </div>
                                     <div class="card-content collapse show news">
                                         <div class="card-body">
@@ -137,7 +137,7 @@ export default {
                 {id: 4, title : 'chào cả nhà4'},
             ],
             arrayNew: [
-                {id: 1, title: 'Title tin tức 1', content: 'Content tin tức 1', time: '09/04/2020'},
+                {id: 1, title: 'Title tin tức 1', content: 'Content tin tức 1,hfiakh,vdjailh jdiosa dnsa cbsha cnsaj,vndajk vnad sậu vbajc xajbvdk chiabc adkhbsa chahbf ajk vcsaigdbsuia cqawgdbhsa cwhajfb hsajnmbduiakf dsv à afakjfhnuwjkfb fkahnfujkmsb av', time: '09/04/2020'},
                 {id: 2, title: 'Title tin tức 2', content: 'Content tin tức 2', time: '09/04/2020'},
                 {id: 3, title: 'Title tin tức 3', content: 'Content tin tức 3', time: '09/04/2020'},
                 {id: 4, title: 'Title tin tức 4', content: 'Content tin tức 4', time: '09/04/2020'},

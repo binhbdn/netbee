@@ -60,7 +60,7 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
 .block-23 ul {
     padding: 0;
 }
