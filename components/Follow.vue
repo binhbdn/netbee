@@ -1,5 +1,5 @@
 <template>
-    <div class="ftco-section-parallax container-fluid">
+    <div class="ftco-section-parallax">
         <div class="parallax-img d-flex align-items-center" id="follow">
             <div class="container">
                 <div class="row d-flex justify-content-center">
