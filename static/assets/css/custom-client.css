@@ -1,0 +1,23 @@
+.remove-border-right {
+    border-right: none !important;
+}
+.border-job-item {
+    border: 1px solid #B8C2CC !important;
+}
+.background-default {
+    background-color: #FFB701;
+    color:#000;
+}
+.job-vip {
+    top: 0;
+    width: 0;
+    border-top: 50px solid red;
+    border-left: 50px solid transparent;
+    position: absolute;
+}
+.item-vip-a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 20px;
+}

@@ -24,9 +24,14 @@ module.exports = {
       { rel: 'stylesheet', href: '/app-assets/css/plugins/forms/validation/form-validation.css' },
       { rel: 'stylesheet', href: '/assets/css/style.css' },
       { rel: 'stylesheet', href: '/assets/css/custom-client.css' },
+<<<<<<< HEAD
       { rel: 'stylesheet', href: '/assets/css/header.css' },
+=======
+      { rel: 'stylesheet', href: '/assets/fontawesome-pro/css/all.css' },
+>>>>>>> a5944de8623001d39069cbd84505f03fe5fdc278
       { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' },
       { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
+      
     ],
     script: [
       { src: '/app-assets/vendors/js/vendors.min.js' },

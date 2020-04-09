@@ -16,58 +16,13 @@
                                             <ul class="list-inline mb-0">
                                                 <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
                                                 <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
-                                                <!-- <li><a data-action="reload"><i class="feather icon-rotate-cw"></i></a></li> -->
                                                 <li><a data-action="close"><i class="feather icon-x"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="card-content collapse show">
                                         <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-bordered">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>Action</th>
-                                                                    <th>Icon</th>
-                                                                    <th>Details</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>Collapse</td>
-                                                                    <td class="text-center">
-                                                                        <i class="feather icon-chevron-down"></i>
-                                                                    </td>
-                                                                    <td> Collapse card content using collapse action.</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Expand Card</td>
-                                                                    <td class="text-center">
-                                                                        <i class="feather icon-maximize"></i>
-                                                                    </td>
-                                                                    <td>Maximize your card using expand action</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Refresh Content</td>
-                                                                    <td class="text-center">
-                                                                        <i class="feather icon-rotate-cw"></i>
-                                                                    </td>
-                                                                    <td>Refresh your card content using refresh action.</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>Remove Card</td>
-                                                                    <td class="text-center">
-                                                                        <i class="feather icon-x"></i>
-                                                                    </td>
-                                                                    <td> Remove card from page using remove card action</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <JobsList2Col :DataList="arrayJob"></JobsList2Col>
                                         </div>
                                     </div>
                                 </div>
@@ -79,3 +34,21 @@
       </div>
   </div>
 </template>
+<script>
+import JobsList2Col from '~/components/Jobs/JobsList2Col';
+export default {
+    components: {
+        JobsList2Col
+    },
+    data() {
+        return {
+            arrayJob: [
+                {id: 1, title : 'chào cả nhà1'},
+                {id: 2, title : 'chào cả nhà2'},
+                {id: 3, title : 'chào cả nhà3'},
+                {id: 4, title : 'chào cả nhà4'},
+            ]
+        }
+    },
+}
+</script>
