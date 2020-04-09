@@ -5,7 +5,7 @@
         </a>
         <div class="px-2">
             <a href="#"><h4>{{title}}</h4></a>
-            <p style="height: 100px;">{{content}}</p>
+            <p style="height: 100px;" class="el-3">{{content}}</p>
             <p><i class="fad fa-calendar-star"></i> {{time}}</p>
         </div>
     </div>
