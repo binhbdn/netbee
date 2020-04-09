@@ -1,47 +1,39 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-    id="ftco-navbar"
-  >
-    <div class="container" v-viewer>
-      <a class="navbar-brandd" href>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brandd">
         <div>
-          <img
-            src="https://netbee.vn/site/assets/images/logo.png"
-            alt="Smiley face"
-            height="50"
-            width="auto"
-          />NetBee
+          <img src="https://netbee.vn/site/assets/images/logo.png" alt="Smiley face" height="50" width="auto"/>NetBee
         </div>
       </a>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a href="/" class="nav-link">
+            <a href="/" class="nav-link header-nav-link">
               <i class="fa fa-home"></i>
               <br />Trang chủ
             </a>
           </li>
           <li class="nav-item">
-            <a href="/" class="nav-link">
+            <a href="/" class="nav-link header-nav-link">
               <i class="fa fa-server"></i>
               <br />Tin tuyển sinh
             </a>
           </li>
           <li class="nav-item">
-            <a href class="nav-link">
+            <a href class="nav-link header-nav-link">
               <i class="fa fa-table"></i>
               <br />Tin tức
             </a>
           </li>
           <li class="nav-item">
-            <a href class="nav-link">
+            <a href class="nav-link header-nav-link">
               <i class="fa fa-id-card"></i>
               <br />Về NetBee
             </a>
           </li>
           <li class="nav-item">
-            <a href class="nav-link">
+            <a href class="nav-link header-nav-link">
               <i class="fa fa-window-restore"></i>
               <br />Liên hệ
             </a>
@@ -49,7 +41,7 @@
           <li class="nav-item cta mr-md-2 dropdown">
             <a
               href="#"
-              class="nav-link dropdown-toggle"
+              class="nav-link dropdown-toggle header-nav-link"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
@@ -71,7 +63,7 @@
             </div>
           </li>
           <li class="nav-item cta cta-colored mr-md-2">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link header-nav-link">
               <i class="fa fa-user-plus"></i>
               <br />Giới thiệu học sinh
             </a>
@@ -100,7 +92,7 @@
           <li class="nav-item cta dropdown">
             <a
               href="#"
-              class="nav-link"
+              class="nav-link header-nav-link"
               style="padding-bottom: 0px;"
               role="button"
               data-toggle="dropdown"
@@ -146,8 +138,3 @@
     </div>
   </nav>
 </template>
-
-<script>
-export default {};
-</script>
-<script>

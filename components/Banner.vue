@@ -505,7 +505,7 @@
   .search ul li a{
     padding: 10px 10px !important;
     margin-bottom: 0;
-    color: #000;
+    color: #fff!important;
     font-size: 16px;
     font-weight: 400;
     font-weight: 700;
@@ -525,7 +525,7 @@
     border-radius: 3px;
     border-top-left-radius: 0;
     margin-top: -9px;
-    color: #fff;
+    color: #fff!important;
   }
   .nav.nav-tabs .nav-item .nav-link.active:after {
     content: unset!important;

@@ -1,38 +1,27 @@
 <template>
   <div>
-    <Header></Header>
-    <Banner></Banner>
-<!--    <Search></Search>-->
+
+    <HeaderClient />
+    <Banner/>
     <nuxt />
-    <Follow></Follow>
-    <Footer></Footer>
+    <Follow/>
+    <FooterClient/>
   </div>
 </template>
 
 <script>
-import Header from '../components/Header'
-import Follow from '../components/Follow'
-import Footer from '../components/Footer'
+
+import HeaderClient from '../components/HeaderClient';
+import Follow from '../components/Follow';
+import FooterClient from '../components/FooterClient';
 import Banner from '../components/Banner'
-import Search from '../components/Search'
 
 export default {
-  data() {
-    return {};
-  },
   components: {
     Banner,
-    Header,
+    HeaderClient,
     Follow,
-    Footer,
-    Search
+    FooterClient
   },
-  mounted() {}
-};
-</script>
-
-<style>
-html {
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
 }
-</style>
+</script>
