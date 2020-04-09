@@ -1,17 +1,9 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-    id="ftco-navbar"
-  >
-    <div class="container" v-viewer>
-      <a class="navbar-brandd" href>
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+      <a class="navbar-brandd">
         <div>
-          <img
-            src="https://netbee.vn/site/assets/images/logo.png"
-            alt="Smiley face"
-            height="50"
-            width="auto"
-          />NetBee
+          <img src="https://netbee.vn/site/assets/images/logo.png" alt="Smiley face" height="50" width="auto"/>NetBee
         </div>
       </a>
       <div class="collapse navbar-collapse" id="ftco-nav">
@@ -146,8 +138,3 @@
     </div>
   </nav>
 </template>
-
-<script>
-export default {};
-</script>
-<script>

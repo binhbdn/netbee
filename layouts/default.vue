@@ -1,32 +1,22 @@
 <template>
   <div>
-    <Header></Header>
+    <HeaderClient />
     <nuxt />
-    <Follow></Follow>
-    <Footer></Footer>
+    <Follow/>
+    <FooterClient/>
   </div>
 </template>
 
 <script>
-import Header from "../components/Header";
+import HeaderClient from "../components/HeaderClient";
 import Follow from '../components/Follow';
-import Footer from '../components/Footer';
+import FooterClient from '../components/FooterClient';
 
 export default {
-  data() {
-    return {};
-  },
   components: {
-    Header,
+    HeaderClient,
     Follow,
-    Footer
+    FooterClient
   },
-  mounted() {}
-};
-</script>
-
-<style>
-html {
-  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
 }
-</style>
+</script>
