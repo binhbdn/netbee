@@ -27,8 +27,8 @@
                                                 <div class="col-lg-6 col-12 list-view">
                                                    <JobItem/>
                                                 </div>
-                                                <div class="col-lg-6 col-12">
-                                                   456
+                                                <div class="col-lg-6 col-12 list-view">
+                                                   <JobItem/>
                                                 </div>
                                             </div>
                                         </div>

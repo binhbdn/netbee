@@ -1,18 +1,29 @@
 <template>
     <div class="card ecommerce-card border-job-item">
         <div class="card-content">
+            <div class="card-body remove-border-right" style="width: 60vh" data-toggle="tooltip" data-placement="top" title="Đăng ký nhận bản tin du học sad ád ád ád ád ád ád ád sa fsdfsf sdfsdfs Cộng đồng chuyên viên tuyển sinh lớn nhất">
+                <a class="item-vip-a" href="#">Đăng ký nhận bản tin du học sad ád ád ád ád ád ád ád sa fsdfsf sdfsdfs Cộng đồng chuyên viên tuyển sinh lớn nhất</a>
+            </div>
+            <div class="item-options text-center">
+                <div class="item-wrapper" style="position: unset">
+                    <div class="item-rating job-vip">
+                        <i class="fas fa-star" style="color: yellow;position: absolute;right: 10px;top: -40px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-content" style="height: 90px">
             <div class="item-img text-center">
                 <a href="app-ecommerce-details.html">
-                    <img src="/app-assets/images/pages/eCommerce/9.png" alt="img-placeholder" width="128" height="128">
+                    <img src="/app-assets/images/pages/eCommerce/9.png" alt="img-placeholder" width="80" height="80">
                 </a>
             </div>
             <div class="card-body remove-border-right">
-                <div class="item-name">
-                    <a href="#">Test</a>
-                    <p class="item-company"><i class="fal fa-building"></i> <span class="company-name"> Hachinet</span></p>
+                <div class="item-name"  data-toggle="tooltip" data-placement="right" title="Công ty Hachinet">
+                    <p class="item-company mb-0"><i class="fal fa-building"></i> <span class="company-name"> Hachinet</span></p>
                 </div>
-                <div class="item-quantity">
-                    <p class="quantity-title"><i class="fal fa-location-arrow"></i> Nhật bản</p>
+                <div class="item-quantity" data-toggle="tooltip" data-placement="right" title="Làm việc tại nhật bản">
+                    <p class="quantity-title mb-0"><i class="fal fa-location-arrow"></i> Nhật bản</p>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="delivery-date"><i class="far fa-funnel-dollar"></i> 1000$</p>
@@ -21,13 +32,8 @@
             </div>
             <div class="item-options text-center">
                 <div class="item-wrapper">
-                    <div class="item-rating">
-                        <div class="badge badge-danger badge-md">
-                            <i class="fal fa-medal"></i>
-                        </div>
-                    </div>
                     <div class="item-cost">
-                        <h6 class="item-price">
+                        <h6 class="badge background-default badge-md">
                            Xuất khẩu lao động
                         </h6>
                     </div>
