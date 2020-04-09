@@ -102,7 +102,7 @@
                             <div class="col-lg-12 col-12">
                                 <div class="card">
                                     <div  class="card-header">
-                                        <h4>TIN TỨC</h4>
+                                        <h4><i class="fas fa-newspaper"></i> TIN TỨC</h4>
                                     </div>
                                     <div class="card-content collapse show news">
                                         <div class="card-body">
