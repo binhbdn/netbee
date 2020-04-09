@@ -1,6 +1,8 @@
 <template>
   <div>
     <Header></Header>
+    <Banner></Banner>
+<!--    <Search></Search>-->
     <nuxt />
     <Follow></Follow>
     <Footer></Footer>
@@ -8,18 +10,22 @@
 </template>
 
 <script>
-import Header from "../components/Header";
-import Follow from '../components/Follow';
-import Footer from '../components/Footer';
+import Header from '../components/Header'
+import Follow from '../components/Follow'
+import Footer from '../components/Footer'
+import Banner from '../components/Banner'
+import Search from '../components/Search'
 
 export default {
   data() {
     return {};
   },
   components: {
+    Banner,
     Header,
     Follow,
-    Footer
+    Footer,
+    Search
   },
   mounted() {}
 };
