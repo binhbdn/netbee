@@ -1,0 +1,65 @@
+a.navbar-item {
+    color: yellow;
+}
+nav#ftco-navbar {
+    background-color: #ffb701 !important;
+  }
+
+  i.ionicons.ion-ios-paper {
+    font-size: 24px;
+    margin-left: 14px;
+  }
+
+  i.fa.fa-server {
+    font-size: 18px;
+    margin-left: 34px;
+    margin-bottom: 4px;
+  }
+
+  i.fa.fa-home {
+    font-size: 22px;
+    margin-left: 22px;
+  }
+
+  i.fa.fa-table {
+    font-size: 18px;
+    margin-left: 13px;
+    margin-bottom: 4px;
+  }
+
+  i.fa.fa-id-card {
+    font-size: 17px;
+    margin-left: 21px;
+    margin-bottom: 5px;
+  }
+
+  i.fa.fa-window-restore {
+    font-size: 18px;
+    margin-left: 11px;
+    margin-bottom: 4px;
+  }
+  i.fa.fa-user-circle {
+    font-size: 18px;
+    margin-left: 43px;
+    margin-bottom: 4px;
+  }
+  i.fa.fa-user-plus {
+    font-size: 20px;
+    margin-left: 46px;
+    margin-bottom: 2px;
+ }
+ a.nav-link {
+    color: white !important;
+    margin-right: 5px;
+}
+.dropdown-toggle::after {
+       margin-left: -10px;
+}
+a.navbar-brandd {
+    color: black;
+    font-size: 28px;
+   }
+   .dropdown .dropdown-menu .dropdown-item:hover {
+    background-color: #ffc107;
+    color: black;
+}
