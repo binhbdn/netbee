@@ -23,6 +23,7 @@ module.exports = {
       { rel: 'stylesheet', href: '/app-assets/css/core/colors/palette-gradient.css' },
       { rel: 'stylesheet', href: '/app-assets/css/plugins/forms/validation/form-validation.css' },
       { rel: 'stylesheet', href: '/assets/css/style.css' },
+      { rel: 'stylesheet', href: '/assets/css/custom-client.css' },
       { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' },
       { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
     ],
@@ -43,6 +44,12 @@ module.exports = {
   /*
   ** Build configuration
   */
+  vue: {
+    config: {
+      productionTip: true,
+      devtools: false
+    }
+  },
   build: {
     /*
     ** Run ESLint on save
