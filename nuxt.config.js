@@ -24,8 +24,10 @@ module.exports = {
       { rel: 'stylesheet', href: '/app-assets/css/plugins/forms/validation/form-validation.css' },
       { rel: 'stylesheet', href: '/assets/css/style.css' },
       { rel: 'stylesheet', href: '/assets/css/custom-client.css' },
+      { rel: 'stylesheet', href: '/assets/fontawesome-pro/css/all.css' },
       { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' },
       { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
+      
     ],
     script: [
       { src: '/app-assets/vendors/js/vendors.min.js' },
