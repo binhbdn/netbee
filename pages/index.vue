@@ -20,8 +20,8 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="card-content collapse show jobs">
-                                        <div class="card-body">
+                                    <div class="card-content collapse show">
+                                        <div class="card-body" style="padding-bottom: 5px;">
                                             <JobsList2Col :DataList="arrayJob"></JobsList2Col>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                     <div class="card-content collapse show">
-                                        <div class="card-body">
+                                        <div class="card-body" style="padding-bottom: 5px;">
                                             <JobsList1Col :DataList="arrayJob"></JobsList1Col>
                                         </div>
                                     </div>
