@@ -9,3 +9,32 @@ NOTE:
 ------
 PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
 WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+.NB_main_title {
+    font-size: 14px !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    /* margin-top: 14px;    */
+    margin-bottom: 10px !important;
+    text-align: left !important;
+    display: block;
+    background: #ffb701 !important;
+    padding: 5px;
+    padding-left: 10px;
+    position: relative;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.ftco-section-parallax {
+    position: relative;
+}
+
+.ftco-section-parallax .parallax-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    padding: 4em 0;
+    background: #ffb701;
+}

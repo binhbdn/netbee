@@ -3,6 +3,7 @@
   <div>
     <navbar></navbar>
     <nuxt/>
+    <Follow></Follow>
 
 </div>
 
@@ -10,6 +11,7 @@
 
 <script>
   import Navbar from '../components/Navbar'
+  import Follow from '../components/Follow'
 
   export default {
     data() {
@@ -18,7 +20,8 @@
       }
     },
     components: {
-      Navbar
+      Navbar,
+      Follow
     },
     mounted() {
 
