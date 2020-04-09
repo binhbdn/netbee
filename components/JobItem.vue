@@ -2,7 +2,7 @@
     <div class="card ecommerce-card border-job-item">
         <div class="card-content">
             <div class="card-body remove-border-right" style="width: 60vh" data-toggle="tooltip" data-placement="top" title="Đăng ký nhận bản tin du học sad ád ád ád ád ád ád ád sa fsdfsf sdfsdfs Cộng đồng chuyên viên tuyển sinh lớn nhất">
-                <a class="item-vip-a" href="#">Đăng ký nhận bản tin du học sad ád ád ád ád ád ád ád sa fsdfsf sdfsdfs Cộng đồng chuyên viên tuyển sinh lớn nhất</a>
+                <a class="item-vip-a" href="#">{{ title }}</a>
             </div>
             <div class="item-options text-center">
                 <div class="item-wrapper" style="position: unset">
@@ -22,12 +22,12 @@
                 <div class="item-name"  data-toggle="tooltip" data-placement="right" title="Công ty Hachinet">
                     <p class="item-company mb-0"><i class="fal fa-building"></i> <span class="company-name"> Hachinet</span></p>
                 </div>
-                <div class="item-quantity" data-toggle="tooltip" data-placement="right" title="Làm việc tại nhật bản">
-                    <p class="quantity-title mb-0"><i class="fal fa-location-arrow"></i> Nhật bản</p>
-                </div>
                 <div class="item-quantity d-flex justify-content-between">
-                    <p class="delivery-date"><i class="far fa-funnel-dollar"></i> 1000$</p>
-                    <p class="delivery-date"><i class="fad fa-calendar-star"></i> 22/02/2021</p>
+                    <p class="quantity-title mb-0"><i class="fal fa-location-arrow"></i> Nhật bản</p>
+                    <p class="delivery-date mb-0"><i class="fad fa-calendar-star"></i> 22/02/2021</p>
+                </div>
+                <div class="item-quantity ">
+                    <p class="delivery-date"><i class="far fa-funnel-dollar"></i> 1.000.000đ ~ 20.000.000d</p>
                 </div>
             </div>
             <div class="item-options text-center">
@@ -49,5 +49,6 @@ export default {
             { rel: 'stylesheet', href: '/app-assets/css/pages/app-ecommerce-shop.css' },
         ],
     },
+    props: ['id','title']
 }
 </script>
