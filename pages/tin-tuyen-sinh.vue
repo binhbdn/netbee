@@ -123,6 +123,9 @@
       JobsList1Col,
       JobsList1ColNotCate
     },
+    mounted() {
+      this.$axios.$get('getTinTuyenSinhHome')
+    },
     data () {
       return {
         arrayJob: [
