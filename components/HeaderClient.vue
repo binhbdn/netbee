@@ -34,14 +34,14 @@
               <br />Tin tức
             </a>
           </li>
-          <li :class="[{'active' : this.$route.name == 'about'}, 'nav-link header-nav-link']">
-            <a @click="$router.push('/about')" class="nav-linkk">
+          <li class="nav-item">
+            <a href="/ve-netbee" class="nav-link header-nav-link">
               <i class="fa fa-id-card"></i>
               <br />Về NetBee
             </a>
           </li>
-          <li :class="[{'active' : this.$route.name == 'contact'}, 'nav-link header-nav-link']">
-            <a @click="$router.push('/contact')" class="nav-linkk">
+          <li class="nav-item">
+            <a href="/lien-he" class="nav-link header-nav-link">
               <i class="fa fa-window-restore"></i>
               <br />Liên hệ
             </a>

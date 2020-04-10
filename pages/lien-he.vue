@@ -4,7 +4,6 @@
       <div class="container">
         <div class="row d-flex mb-5 contact-info">
           <br />
-
           <div class="w-100"></div>
           <div class="col-md-a">
             <p style="margin-right: 90px;">
@@ -23,15 +22,6 @@
               <a href="mailto:info@yoursite.com" class="lh" style="color: black;">info@netbee.vn</a>
             </p>
           </div>
-          <style>
-  .row.d-flex.mb-5.contact-info {
-    color: black;
-  }
-
-  a.lh:hover {
-    color: #ffb701 !important;
-  }
-          </style>
         </div>
         <div class="row block-9">
           <div class="col-md-6 order-md-last d-flex">
@@ -101,3 +91,11 @@ export default {
   }
 };
 </script>
+<style>
+.row.d-flex.mb-5.contact-info {
+  color: black;
+}
+a.lh:hover {
+  color: #ffb701 !important;
+}
+</style>

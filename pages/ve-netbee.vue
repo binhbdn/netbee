@@ -20,18 +20,18 @@
           >Netbee được ví như mạng lưới của những chú ong chăm chỉ , cần mẫn hàng ngày làm những công việc thầm lặng đưa những người con của đất Việt đi khắp muôn nơi trên thế giới .</p>
         </div>
       </div>
-      <style>
-  .one-half.imgg {
-    float: left;
-  }
-  .container-fluid {
-    padding-left: 0px !important;
-  }
-  .hero-wrap.js-fullheight.mb-2 {
-    padding-top: 20px;
-  }
-      </style>
     </div>
   </section>
 </template>
+<style>
+.one-half.imgg {
+  float: left;
+}
+.container-fluid {
+  padding-left: 0px !important;
+}
+.hero-wrap.js-fullheight.mb-2 {
+  padding-top: 20px;
+}
+</style>
 
