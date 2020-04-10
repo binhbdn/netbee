@@ -72,23 +72,6 @@
 </template>
 <script>
 export default {
-  head: {
-    title: "Contact",
-    meta: [
-      {
-        hid: "description",
-        name: "description",
-        content: "Contact-Netbee"
-      }
-    ],
-    noscript: [{ innerHTML: "Body No Scripts", body: true }],
-    script: [
-      { src: "/head.js" },
-      // Supported since 1.0
-      { src: "/body.js", body: true },
-      { src: "/defer.js", defer: "" }
-    ]
-  }
 };
 </script>
 <style>
