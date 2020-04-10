@@ -9,16 +9,16 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a href="/" class="nav-link header-nav-link">
+            <nuxt-link to="/" class="nav-link header-nav-link">
               <i class="fa fa-home"></i>
               <br />Trang chủ
-            </a>
+            </nuxt-link>
           </li>
           <li class="nav-item">
-            <a href="/" class="nav-link header-nav-link">
+            <nuxt-link to="/tin-tuyen-sinh" class="nav-link header-nav-link">
               <i class="fa fa-server"></i>
               <br />Tin tuyển sinh
-            </a>
+            </nuxt-link>
           </li>
           <li class="nav-item">
             <a href class="nav-link header-nav-link">
