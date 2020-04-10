@@ -7,29 +7,25 @@
             <p class="mb-4 mt-5 " data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></p>
             <div class="ftco-search container">
               <div class="row">
-                <div class="card-content col-md-12">
+                <div class="card-content col-md-12" style="padding-top: 100px">
                   <div class="card-body search pl-0">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                       <li class="nav-item">
                         <a class="nav-link active" id="v-pills-11-tab" data-toggle="tab" href="#v-pills-11"
-                           role="tab" aria-controls="v-pills-11" aria-selected="true"><i
-                          class="fad fa-align-center"></i>TÌM KIẾM TRƯỜNG HỌC</a>
+                           role="tab" aria-controls="v-pills-11" aria-selected="true">Tìm trường học</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="v-pills-22-tab" data-toggle="tab" href="#v-pills-22"
-                           role="tab" aria-controls="v-pills-22" aria-selected="false"><i
-                          class="fas fa-map-marker-check"></i>TÌM KIẾM ỨNG VIÊN</a>
+                           role="tab" aria-controls="v-pills-22" aria-selected="false">Tìm ứng viên</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
-                           role="tab" aria-controls="profile-fill" aria-selected="false"><i
-                          class="fas fa-map-marker-check"></i>SĂN HỌC BỔNG</a>
+                           role="tab" aria-controls="profile-fill" aria-selected="false">Săn học bổng</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="v-pills-33-tab" data-toggle="tab" href="#v-pills-33"
-                           role="tab" aria-controls="v-pills-33" aria-selected="false"><i
-                          class="fas fa-map-marker-check"></i>TÌM KIẾM VIỆC LÀM</a>
+                           role="tab" aria-controls="v-pills-33" aria-selected="false">Tìm việc làm</a>
                       </li>
                     </ul>
                     <!-- Tab panes -->
@@ -495,6 +491,7 @@
     margin-top: 7px;
     text-align: right;
     color: white!important;
+    margin-bottom: 10px;
   }
   .advanced_search_box a{
     color: white!important;
@@ -503,19 +500,26 @@
     margin-bottom: 0;
   }
   .search ul li a{
-    padding: 10px 10px !important;
-    margin-bottom: 0;
-    color: #fff!important;
-    font-size: 16px;
-    font-weight: 400;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-    border: 1px solid transparent;
-    background: #ffb701;
-    border-top-left-radius: 5px!important;
-    border-top-right-radius: 5px!important;
-    margin-right: 5px;
+     padding: 10px 30px !important;
+     margin-bottom: 0;
+     color: #000!important;
+     font-size: 16px!important;
+     font-weight: 400;
+     font-weight: 600!important;
+     position: relative;
+     height: 98%;
+     display: inline-block;
+     border: 1px solid transparent;
+     background: #ffb701;
+     border-top-left-radius: 5px!important;
+     border-top-right-radius: 5px!important;
+     margin-right: 5px;
+   }
+  .search ul li a.active{
+    color: #ffb701!important;
+  }
+  .search ul li a:hover{
+    color: #ffb701!important;
   }
   .advanced_search_box a{
     color: white!important;
@@ -533,7 +537,38 @@
   .nav.nav-tabs .nav-item .nav-link.active{
     background: hsla(0,0%,100%,.1)!important;
   }
+  .nav.nav-tabs .nav-item .nav-link:hover {
+    background: hsla(0,0%,100%,.1)!important;
+  }
   .search ul li a i {
     padding-right: 3px;
+  }
+  .no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+    height: 400px !important;
+  }
+  .hero-wrap, .img, .blog-img, .user-img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  .section-intro:before {
+    content: "";
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    background-color: rgba(42, 46, 50, 0.8);
+    position: absolute;
+  }
+  .ftco-search .nav-pills .nav-link.active, .ftco-search .nav-pills .nav-link:hover {
+    color: #ffb701;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
   }
 </style>
