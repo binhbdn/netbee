@@ -1,9 +1,6 @@
 a.navbar-item {
     color: yellow;
 }
-nav#ftco-navbar {
-    background-color: #ffb701 !important;
-  }
 
   i.ionicons.ion-ios-paper {
     font-size: 24px;
@@ -49,7 +46,7 @@ nav#ftco-navbar {
     margin-bottom: 2px;
  }
 .header-nav-link {
-  color: white !important;
+  color: black !important;
   margin-right: 5px;
 }
 .dropdown-toggle::after {
@@ -62,5 +59,48 @@ a.navbar-brandd {
    .dropdown .dropdown-menu .dropdown-item:hover {
     background-color: #ffc107;
     color: black;
-    
+
+}
+.ftco-navbar-light {
+  background: #ffb701 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+.navbar-brandd div{
+  color: black!important;
+}
+
+.ftco-navbar-light .navbar-nav>.nav-item.active>a {
+  color: white !important;
+}
+.ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover {
+  color: #fff!important;
+}
+.ftco-navbar-light .navbar-nav>.nav-item.cta>a {
+  color: #000!important;
+  /* border: 1px solid #ffb701; */
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 0px;
+  background: #ffb701;
+  border: 1px solid white;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+}
+.ftco-navbar-light.scrolled {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  margin-top: -130px;
+  background: #fff !important;
+  -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
