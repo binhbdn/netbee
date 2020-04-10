@@ -11,9 +11,8 @@
 .job-vip {
     top: 0;
     width: 0;
-    border-top: 50px solid red;
-    border-left: 50px solid transparent;
-    position: absolute;
+    border-top: 35px solid red;
+    border-left: 35px solid transparent;
 }
 .item-vip-a {
     overflow: hidden;

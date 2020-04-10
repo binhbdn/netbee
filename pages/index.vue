@@ -108,7 +108,7 @@
                 </div>
               </div>
               <div class="card-content collapse show">
-                <div class="card-body" style="padding-bottom: 5px;">
+                <div class="card-body">
                   <JobsList2Col :DataList="arrayJob"></JobsList2Col>
                 </div>
               </div>
@@ -156,7 +156,7 @@
       <!-- tin mới -->
       <section>
         <div class="row">
-          <div class="col-lg-8 col-12">
+          <div class="col-lg-8 col-12 p-r-0">
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title"><i class="fad fa-bullhorn"></i> TIN MỚI </h4>
@@ -170,7 +170,7 @@
                 </div>
               </div>
               <div class="card-content collapse show">
-                <div class="card-body" style="padding-bottom: 5px;">
+                <div class="card-body">
                   <JobsList1Col :DataList="arrayJob"></JobsList1Col>
                 </div>
               </div>
@@ -314,7 +314,6 @@
 
   .ftco-counter {
     background-color: white;
-    margin-bottom: 30px;
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
   }
 
