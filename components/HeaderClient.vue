@@ -15,7 +15,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/" class="nav-link header-nav-link">
+            <a href="/tin-tuyen-sinh" class="nav-link header-nav-link">
               <i class="fa fa-server"></i>
               <br />Tin tuyển sinh
             </a>
@@ -89,11 +89,11 @@
               <a class="dropdown-item" href>Đăng xuất</a>
             </div>
           </li>-->
-          <li class="nav-item cta dropdown">
+          <li class="nav-item cta dropdown" >
             <a
               href="#"
               class="nav-link header-nav-link"
-              style="padding-bottom: 0px;"
+              style="padding-bottom: 0px; height: 100%"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
