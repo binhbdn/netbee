@@ -2,7 +2,9 @@
   <div>
     <HeaderClient />
     <Banner/>
-    <nuxt />
+    <div class="container-fluid">
+      <nuxt />
+    </div>
     <Follow/>
     <FooterClient/>
   </div>
