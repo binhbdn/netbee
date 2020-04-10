@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--section login-->
-    <section class="ftco-section services-section bg-netbee card mt-2" style="background: #fff">
+    <section class="ftco-section services-section bg-netbee card" style="background: #fff">
       <div class="container">
         <div class="row ">
           <div class="col-md-2  align-self-stretch ftco-animate">
