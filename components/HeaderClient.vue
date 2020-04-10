@@ -1,9 +1,17 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+  <nav
+    class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+    id="ftco-navbar"
+  >
     <div class="container">
       <a class="navbar-brandd">
         <div>
-          <img src="https://netbee.vn/site/assets/images/logo.png" alt="Smiley face" height="50" width="auto"/>NetBee
+          <img
+            src="https://netbee.vn/site/assets/images/logo.png"
+            alt="Smiley face"
+            height="50"
+            width="auto"
+          />NetBee
         </div>
       </a>
       <div class="collapse navbar-collapse" id="ftco-nav">
@@ -26,18 +34,19 @@
               <br />Tin tức
             </a>
           </li>
-          <li class="nav-item">
-            <a href class="nav-link header-nav-link">
+          <li :class="[{'active' : this.$route.name == 'about'}, 'nav-link header-nav-link']">
+            <a @click="$router.push('/about')" class="nav-linkk">
               <i class="fa fa-id-card"></i>
               <br />Về NetBee
             </a>
           </li>
-          <li class="nav-item">
-            <a href class="nav-link header-nav-link">
+          <li :class="[{'active' : this.$route.name == 'contact'}, 'nav-link header-nav-link']">
+            <a @click="$router.push('/contact')" class="nav-linkk">
               <i class="fa fa-window-restore"></i>
               <br />Liên hệ
             </a>
           </li>
+
           <li class="nav-item cta mr-md-2 dropdown">
             <a
               href="#"
@@ -89,7 +98,7 @@
               <a class="dropdown-item" href>Đăng xuất</a>
             </div>
           </li>-->
-          <li class="nav-item cta dropdown" >
+          <li class="nav-item cta dropdown">
             <a
               href="#"
               class="nav-link header-nav-link"
