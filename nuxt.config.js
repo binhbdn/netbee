@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'universal',
   head: {
     title: 'NetBee - Mạng lưới du học duy nhất tại Việt Nam',
     meta: [
@@ -40,7 +41,11 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+ loading: { color: '#3B8070' },
+ modules: [
+  '@nuxtjs/axios',
+  '@nuxtjs/auth'
+  ],
   router: {
     middleware: 'stats'
   },
@@ -72,8 +77,5 @@ module.exports = {
     //   }
     // }
   },
-  modules: [
-    '@nuxtjs/axios',
-  ],
   plugins: ['~/plugins/axios.js']
 }
