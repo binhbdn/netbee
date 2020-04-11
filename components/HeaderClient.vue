@@ -29,7 +29,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href class="nav-link header-nav-link">
+            <a href="/tin-tuc" class="nav-link header-nav-link">
               <i class="fa fa-table"></i>
               <br />Tin tức
             </a>
