@@ -1,12 +1,14 @@
 <template>
+
   <div>
+    <Banner/>
     <!--section login-->
     <section class="ftco-section services-section bg-netbee card" style="background: #fff">
       <div class="container">
         <div class="row ">
           <div class="col-md-2  align-self-stretch ftco-animate">
             <div class="d_item v_block">
-              <a class="media block-6 services d-block" href="">
+              <a class="media block-6 services d-block" href="dang-ky">
                 <div class="icon text-center SB_bn">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                         id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512"
@@ -252,9 +254,11 @@
   import JobsList1Col from '~/components/Jobs/JobsList1Col'
   import JobsList2Col from '~/components/Jobs/JobsList2Col'
   import NewsList from '../components/News/NewsList'
+  import Banner from '../components/Banner'
 
   export default {
     components: {
+      Banner,
       JobsList2Col,
       NewsList,
       JobsList1Col
