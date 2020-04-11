@@ -1,9 +1,8 @@
 <template>
     <div class="row">
-        <div class="col-5">
-            <a href="#">
-                <img src="/app-assets/images/pages/card-img-overlay.jpg"  width="100%" v-if="id == 1">
-                <img src="/app-assets/images/pages/card-img-overlay.jpg"  width="130" height="70" v-if="id != 1">
+        <div class="col-5" :style="id != 1 ? 'height: 117px' : ''">
+            <a href="#" >
+                <img src="/app-assets/images/pages/card-img-overlay.jpg"  width="100%" >
             </a>
         </div>
         <div class="col-7">
