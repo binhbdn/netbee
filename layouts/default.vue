@@ -1,8 +1,8 @@
 <template>
   <div>
     <HeaderClient />
-    <Banner/>
-    <div class="container-fluid">
+    <div class="" style="width: 100%;" >
+
       <nuxt />
     </div>
     <Follow/>
