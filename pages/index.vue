@@ -294,10 +294,6 @@
     .jobs .card-body {
       max-height: 375px;
     }
-
-    .news .card-body {
-      max-height: 406px;
-    }
   }
 
   .ftco-section {
