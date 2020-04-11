@@ -2,7 +2,7 @@
   <div>
     <HeaderClient />
     <div class="" style="width: 100%;" >
-
+    <Banner/>
       <nuxt />
     </div>
     <Follow/>
