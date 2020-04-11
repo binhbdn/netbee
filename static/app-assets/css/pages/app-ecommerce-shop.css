@@ -205,9 +205,7 @@
 }
 
 .ecommerce-application .ecommerce-card:hover {
-  -webkit-transform : translateY(-5px);
-      -ms-transform : translateY(-5px);
-          transform : translateY(-5px);
+  border-color: #ffb701 !important;
   box-shadow : 0 4px 25px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -265,10 +263,6 @@
 }
 .ecommerce-application .ecommerce-card .cart .view-in-cart {
   color : #FFFFFF;
-}
-
-.ecommerce-application .grid-view, .ecommerce-application .list-view {
-  margin-top : 0.7rem;
 }
 
 .ecommerce-application .grid-view {

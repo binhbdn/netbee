@@ -24,6 +24,7 @@ module.exports = {
       { rel: 'stylesheet', href: '/app-assets/css/plugins/forms/validation/form-validation.css' },
       { rel: 'stylesheet', href: '/assets/css/style.css' },
       { rel: 'stylesheet', href: '/assets/css/custom-client.css' },
+      { rel: 'stylesheet', href: '/assets/css/bootstrap-custom.css' },
       { rel: 'stylesheet', href: '/assets/css/header.css' },
       { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' },
       { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
@@ -53,6 +54,7 @@ module.exports = {
     }
   },
   build: {
+   
     /*
     ** Run ESLint on save
     */
@@ -69,5 +71,9 @@ module.exports = {
     //     })
     //   }
     // }
-  }
+  },
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  plugins: ['~/plugins/axios.js']
 }

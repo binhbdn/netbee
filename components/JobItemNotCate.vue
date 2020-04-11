@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-content">
+        <div class="card-content" style="grid-template-columns: 3fr 6fr 1fr;">
             <div style="margin: 0 auto;">
                 <a href="app-ecommerce-details.html">
                     <img src="/app-assets/images/pages/eCommerce/9.png" alt="img-placeholder" width="55" height="55">
@@ -20,23 +20,14 @@
             </div>
             <div class="remove-border-right">
                 <div class="item-name">
-                    <p class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" title="Công ty Hachinet"> Hachinet</span></p>
+                    <p class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" title="Công ty Hachinet"> Hachinet</span></p>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="quantity-title mb-0"><i class="fad fa-location-arrow"></i> Nhật bản</p>
                     <p class="delivery-date mb-0"><i class="fad fa-calendar-star"></i> 22/02/2021</p>
                 </div>
                 <div class="item-quantity ">
-                    <p class="delivery-date"><i class="fad fa-funnel-dollar"></i> 1.000.000đ ~ 20.000.000d</p>
-                </div>
-            </div>
-            <div class="item-options text-center">
-                <div class="item-wrapper">
-                    <div class="item-cost">
-                        <h6 class="badge background-default badge-sm">
-                           Xuất khẩu lao động
-                        </h6>
-                    </div>
+                    <p class="delivery-date" style="font-size: 13px;"><i class="fad fa-funnel-dollar"></i> 1.000.000đ ~ 20.000.000d</p>
                 </div>
             </div>
         </div>

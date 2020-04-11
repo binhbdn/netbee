@@ -11,13 +11,35 @@
 .job-vip {
     top: 0;
     width: 0;
-    border-top: 50px solid red;
-    border-left: 50px solid transparent;
-    position: absolute;
+    border-top: 35px solid red;
+    border-left: 35px solid transparent;
 }
 .item-vip-a {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 16px;
+}
+.scrollbar {
+    overflow: scroll;
+    height: 690px; 
+    overflow-x: hidden;
+}
+.scrollbar::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px hsla(0,0%,62%,.5);
+    background-color: #F5F5F5;
+    border-radius: 10px;
+}
+
+.scrollbar::-webkit-scrollbar
+{
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+.scrollbar::-webkit-scrollbar-thumb
+{
+    background-color: hsla(0,0%,62%,.5);
+    border-radius: 10px;
 }
