@@ -1,7 +1,7 @@
 <template>
     <div class="card ecommerce-card border-job-item">
         <a href="#" class="text-center pt-1">
-            <img src="/app-assets/images/pages/500.png" width="220" height="160" alt="img-placeholder">
+            <img src="/app-assets/images/pages/500.png" width="100%" height="70" alt="img-placeholder">
         </a>
         <div class="px-2">
             <a href="#"><h4>{{title}}</h4></a>
