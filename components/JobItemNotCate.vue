@@ -27,7 +27,7 @@
                     <p class="delivery-date mb-0"><i class="fad fa-calendar-star"></i> 22/02/2021</p>
                 </div>
                 <div class="item-quantity ">
-                    <p class="delivery-date"><i class="fad fa-funnel-dollar"></i> 1.000.000đ ~ 20.000.000d</p>
+                    <p class="delivery-date" style="font-size: 13px;"><i class="fad fa-funnel-dollar"></i> 1.000.000đ ~ 20.000.000d</p>
                 </div>
             </div>
         </div>

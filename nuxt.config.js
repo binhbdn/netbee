@@ -54,6 +54,7 @@ module.exports = {
     }
   },
   build: {
+   
     /*
     ** Run ESLint on save
     */
@@ -70,5 +71,9 @@ module.exports = {
     //     })
     //   }
     // }
-  }
+  },
+  modules: [
+    '@nuxtjs/axios',
+  ],
+  plugins: ['~/plugins/axios.js']
 }

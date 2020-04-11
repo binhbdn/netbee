@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <!-- VIỆC LÀM HẤP DẪN -->
+    <!-- VIỆC LÀM MỚI -->
     <section>
       <div class="row">
-        <div class="col-lg-8 col-12">
+        <div class="col-lg-8 col-12 p-r-0">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title"><i class="fad fa-bullhorn"></i> VIỆC LÀM HẤP DẪN </h4>
+              <h4 class="card-title"><i class="fad fa-bullhorn"></i> VIỆC LÀM MỚI </h4>
               <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
               <div class="heading-elements">
                 <ul class="list-inline mb-0">
@@ -46,10 +46,29 @@
     <!-- VIỆC LÀM mới -->
     <section>
       <div class="row">
-        <div class="col-lg-4 col-12">
+        <div class="col-lg-4 col-12 p-r-0">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title"><i class="fad fa-bullhorn"></i> VIỆC LÀM MỚI </h4>
+              <h4 class="card-title"><i class="fad fa-bullhorn"></i> XUẤT KHẨU LAO ĐỘNG </h4>
+              <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+              <div class="heading-elements">
+                <ul class="list-inline mb-0">
+                  <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
+                  <li><a data-action="close"><i class="feather icon-x"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body scrollbar">
+                <JobsList1ColNotCate :DataList="arrayJob"></JobsList1ColNotCate>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12 p-r-0">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title"><i class="fad fa-bullhorn"></i> DU HỌC SINH  </h4>
               <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
               <div class="heading-elements">
                 <ul class="list-inline mb-0">
@@ -68,26 +87,7 @@
         <div class="col-lg-4 col-12">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title"><i class="fad fa-bullhorn"></i> VIỆC BÁN THỜI GIAN </h4>
-              <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-              <div class="heading-elements">
-                <ul class="list-inline mb-0">
-                  <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
-                  <li><a data-action="close"><i class="feather icon-x"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="card-content collapse show">
-              <div class="card-body scrollbar">
-                <JobsList1ColNotCate :DataList="arrayJob"></JobsList1ColNotCate>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title"><i class="fad fa-bullhorn"></i> THỰC TẬP SINH </h4>
+              <h4 class="card-title"><i class="fad fa-bullhorn"></i> TU NGHIỆP SINH </h4>
               <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
               <div class="heading-elements">
                 <ul class="list-inline mb-0">
@@ -122,6 +122,9 @@
     components: {
       JobsList1Col,
       JobsList1ColNotCate
+    },
+    mounted() {
+      this.$axios.$get('getTinTuyenSinhHome')
     },
     data () {
       return {
