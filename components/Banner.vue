@@ -5,7 +5,6 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-xl-12 ftco-animate mb-5 pb-5 container" data-scrollax=" properties: { translateY: '70%' }">
             <p class="mb-4 mt-5 " data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></p>
-              <Search></Search>
             <div class="ftco-search container">
               <div class="row">
                 <div class="card-content col-md-12" style="padding-top: 100px">
