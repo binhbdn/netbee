@@ -75,7 +75,7 @@
 </template>
 <script>
 export default {
-    
+    layout: 'no_banner',
 }
 </script>
 <style scoped>

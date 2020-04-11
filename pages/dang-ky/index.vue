@@ -65,6 +65,7 @@
   import Header from '../../components/HeaderAdmin'
   import FooterClient from '../../components/FooterClient'
   export default {
+    layout: 'no_banner',
     components: {Header, FooterClient}
   }
 </script>
@@ -133,6 +134,10 @@
   .uv {
     background: #9c27b0;
     color: #fff;
+}
+h4{
+  font-size: 27px;
+  font-weight: 600;
 }
 </style>
 
