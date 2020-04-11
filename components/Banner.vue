@@ -382,11 +382,7 @@
   </div>
 </template>
 <script>
-  import Search from './Search'
   export default {
-    component: {
-      Search
-    }
 
   }
 </script>
