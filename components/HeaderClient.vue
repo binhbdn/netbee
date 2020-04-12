@@ -102,7 +102,7 @@
             <a
               href="#"
               class="nav-link header-nav-link"
-              style="padding-bottom: 0px; height: 100%"
+              style="padding-bottom: 0px; height: 100%; border:unset!important;"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"

@@ -7,7 +7,7 @@
             <p class="mb-4 mt-5 " data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></p>
             <div class="ftco-search container pl-0 pr-0">
               <div class="row">
-                <div class="card-content col-md-12 pl-0 pr-0" style="padding-top: 100px">
+                <div class="card-content col-md-12 pl-0 pr-0" style="padding-top: 70px!important">
                   <div class="card-body search ">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
@@ -544,7 +544,7 @@
   .no-gutters {
     margin-right: 0;
     margin-left: 0;
-    height: 400px !important;
+    height: 300px !important;
   }
   .hero-wrap, .img, .blog-img, .user-img {
     background-size: cover;
