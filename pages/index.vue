@@ -4,8 +4,8 @@
     <!--section login-->
     <section class="ftco-section services-section bg-netbee card" style="background: #fff">
       <div class="container">
-        <div class="row ">
-          <div class="col-md-2  align-self-stretch ftco-animate">
+        <div class="row " style="padding-left:14px!important;">
+          <div style="padding-left:0!important;" class="col-md-2  align-self-stretch ftco-animate">
             <div class="d_item v_block">
               <a class="media block-6 services d-block" href="dang-ky">
                 <div class="icon text-center SB_bn">
@@ -50,7 +50,7 @@
               </a>
             </div>
           </div>
-          <div class="col-md-5  align-self-stretch ftco-animate">
+          <div style="padding: 0 10px;" class="col-md-5  align-self-stretch ftco-animate">
             <div class="d_item v_block bg__" style="background-color: #ffb701">
               <a class="media block-6 services d-block" href="">
                 <div class="icon text-center SB_bn">
@@ -71,7 +71,7 @@
               </a>
             </div>
           </div>
-          <div class="col-md-3  align-self-stretch ftco-animate">
+          <div style="padding-left: 10px!important;" class="col-md-3  align-self-stretch ftco-animate">
             <div class="d_item v_block">
               <div class="media block-6 services d-block">
                 <div class="icon text-center SB_bn">
