@@ -1,7 +1,6 @@
 <template>
 
   <div>
-    <Banner/>
     <!--section login-->
     <section class="ftco-section services-section bg-netbee card" style="background: #fff">
       <div class="container">
@@ -34,7 +33,7 @@
           </div>
           <div class="col-md-2  align-self-stretch ftco-animate">
             <div class="d_item v_block">
-              <a class="media block-6 services d-block" href="">
+              <a class="media block-6 services d-block" href="dang-nhap">
                 <div class="icon text-center SB_bn">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
                         id="Layer_1" x="0px" y="0px" viewBox="0 0 512 512"
