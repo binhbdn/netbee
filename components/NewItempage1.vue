@@ -1,12 +1,12 @@
 <template>
     <div>
-        <a href="#">
+        <a href="/tin-tuc/detail_news">
             <div :style="id == 1 ? 'height: 250px' : 'height: 120px'">
                 <img style="width: 100%;" alt="img" src="/app-assets/images/pages/content-img-3.jpg" v-if="id == 1" />
                 <img alt="img" src="/app-assets/images/pages/content-img-2.jpg" width="147" height="100" v-if="id != 1" />
             </div>
         </a>
-        <a href="#"><h2 class="NB_title text-black pt-1 el-3">{{title}}</h2></a>
+        <a href="/tin-tuc/detail_news"><h2 class="NB_title text-black pt-1 el-3">{{title}}</h2></a>
         <i class="fa fa-calendar"></i><span class="ml-1">{{time}}</span>  
         <p style="height: 100px;" class="el-3" v-if="id == 1">{{content}}</p>                                  
     </div>
