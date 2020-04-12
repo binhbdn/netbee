@@ -142,3 +142,21 @@ WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BET
     text-overflow: ellipsis;
     line-height: 30px;
 }
+
+.NB_title {
+    font-size: 16px;
+    font-weight: unset;
+}
+
+.NB_title.text-black:hover {
+    color: #ffb701;
+}
+
+.make-it-slow {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.make-it-slow:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}

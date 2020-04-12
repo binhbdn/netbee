@@ -253,11 +253,9 @@
   import JobsList1Col from '~/components/Jobs/JobsList1Col'
   import JobsList2Col from '~/components/Jobs/JobsList2Col'
   import NewsList from '../components/News/NewsList'
-  import Banner from '../components/Banner'
 
   export default {
     components: {
-      Banner,
       JobsList2Col,
       NewsList,
       JobsList1Col
@@ -283,16 +281,15 @@
         ]
       }
     },
+    mounted() {
+      console.log(this.$auth);
+    }
   }
 </script>
 <style scoped>
   @media (min-width: 1000px) {
     .jobs .card-body {
       max-height: 375px;
-    }
-
-    .news .card-body {
-      max-height: 406px;
     }
   }
 
