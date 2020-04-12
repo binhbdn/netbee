@@ -53,40 +53,38 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5 formlogin">
-                    <form method="POST" class="appointment-form" id="appointment-form" action="#">
-                        <h2 class="text-center" style="margin-bottom:15px">ĐĂNG NHẬP</h2>
-                        <p class="text-center" style="margin-bottom:25px; font-size: 14px; "><a class="hover" style="color:black!important" href="">Đăng ký tài khoản mới!</a>
-                        </p>
-                        <div class="form-group-1">
+                    <h2 class="text-center" style="margin-bottom:15px">ĐĂNG NHẬP</h2>
+                    <p class="text-center" style="margin-bottom:25px; font-size: 14px; "><a class="hover" style="color:black!important" href="">Đăng ký tài khoản mới!</a>
+                    </p>
+                    <div class="form-group-1">
+                        <div class="__email">
+                            <span class="fa fa-user-circle" style="top:25%!important; z-index:2; left:24px;"></span>
+                            <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" v-model="userForm.email" />
+                        </div>
+                        <div style="position: relative">
                             <div class="__email">
-                                <span class="fa fa-user-circle" style="top:25%!important; z-index:2; left:24px;"></span>
-                                <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" required />
+                                <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
+                                <input style="margin-bottom:15px!important" type="password" name="password" id="password" placeholder="Mật khẩu" class="border-radius input" v-model="userForm.password" />
+                                <div style="text-align:right">
+                                    <i onclick="passwordF()" class="showpass">
+                                        <i class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
+                                    </i>
+                                    <a href="" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
+                                </div>
                             </div>
-                            <div style="position: relative">
-                                <div class="__email">
-                                    <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
-                                    <input style="margin-bottom:15px!important" type="password" name="password" id="password" placeholder="Mật khẩu" class="border-radius input" required />
-                                    <div style="text-align:right">
-                                        <i onclick="passwordF()" class="showpass">
-                                            <i class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
-                                        </i>
-                                        <a href="" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
-                                    </div>
-                                </div>
-                                <div class="form-submit" style="padding-top:10px">
-                                    <input type="submit" name="submit" id="submit" class="submit" value="Đăng nhập" />
-                                </div>
-                                <hr>
-                                <div class="lopgin-c">
-                                    <a href="redirect/facebook" class="btn btn-outline-info fb" style="">Đăng nhập bằng
-                                        Facebook</a> &nbsp;&nbsp;
-                                </div>
-                                <div class="lopgin-c">
-                                    <a href="redirect/google" class="btn btn-outline-info gg">Đăng nhập bằng Google</a>
-                                </div>
+                            <div class="form-submit" style="padding-top:10px">
+                                <button @click="login()" id="submit" class="submit">ĐĂNG NHẬP</button>
+                            </div>
+                            <hr>
+                            <div class="lopgin-c">
+                                <a href="redirect/facebook" class="btn btn-outline-info fb" style="">Đăng nhập bằng
+                                    Facebook</a> &nbsp;&nbsp;
+                            </div>
+                            <div class="lopgin-c">
+                                <a href="redirect/google" class="btn btn-outline-info gg">Đăng nhập bằng Google</a>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,7 +92,37 @@
 </template>
 <script>
 export default {
-    layout: 'no_banner'
+    middleware: 'guest',
+    layout: 'no_banner',
+    data() {
+        return {
+            userForm: {
+                email: '',
+                password: ''
+            }
+        }
+    },
+    methods: {
+
+            async login() {
+            try {
+                let response = await this.$auth.loginWith('local',{ data: this.userForm });
+                window.location.href = '/';
+                this.$swal(
+                        'Lỗi!',
+                        'Tài khoản hoặc mật khẩu không đúng!',
+                        'success'
+                    )
+                console.log(response)
+            } catch (err) {
+                 this.$swal(
+                        'Lỗi!',
+                        'Tài khoản hoặc mật khẩu không đúng!',
+                        'error'
+                    )
+            }
+            }
+    }
 }
 </script>
 <style scoped>

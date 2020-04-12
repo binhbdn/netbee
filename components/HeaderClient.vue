@@ -46,8 +46,8 @@
               <br />Liên hệ
             </a>
           </li>
-
-          <li class="nav-item cta mr-md-2 dropdown">
+          
+          <li class="nav-item cta mr-md-2 dropdown" v-if="!$auth.loggedIn">
             <a
               href="#"
               class="nav-link dropdown-toggle header-nav-link"
@@ -71,13 +71,7 @@
               <a class="dropdown-item" href="/dang-nhap">Đăng nhập</a>
             </div>
           </li>
-          <li class="nav-item cta cta-colored mr-md-2">
-            <a href="#" class="nav-link header-nav-link">
-              <i class="fa fa-user-plus"></i>
-              <br />Giới thiệu học sinh
-            </a>
-          </li>
-          <!-- <li class="nav-item cta mr-md-2 dropdown">
+          <li class="nav-item cta mr-md-2 dropdown" v-else>
             <a
               href="#"
               class="nav-link dropdown-toggle"
@@ -86,7 +80,7 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <br />
+              <br />{{ this.$auth.user.name }}
             </a>
             <div
               class="dropdown-menu"
@@ -94,10 +88,16 @@
               aria-labelledby="navbarDropdown"
             >
               <div id="login-up"></div>
-              <a class="dropdown-item" href>Name</a>
-              <a class="dropdown-item" href>Đăng xuất</a>
+              <a class="dropdown-item" href>{{ this.$auth.user.name }}</a>
+              <a class="dropdown-item" @click="logout()">Đăng xuất</a>
             </div>
-          </li>-->
+          </li>
+          <li class="nav-item cta cta-colored mr-md-2">
+            <a href="#" class="nav-link header-nav-link">
+              <i class="fa fa-user-plus"></i>
+              <br />Giới thiệu học sinh
+            </a>
+          </li>
           <li class="nav-item cta dropdown">
             <a
               href="#"
@@ -147,3 +147,12 @@
     </div>
   </nav>
 </template>
+<script>
+export default {
+    methods: {
+      async logout() {
+        this.$auth.logout()
+      }
+    },
+}
+</script>

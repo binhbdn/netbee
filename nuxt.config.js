@@ -44,22 +44,39 @@ module.exports = {
  loading: { color: '#3B8070' },
  modules: [
   '@nuxtjs/axios',
-  '@nuxtjs/auth'
+  '@nuxtjs/auth',
+  'vue-sweetalert2/nuxt'
   ],
-  router: {
-    middleware: 'stats'
+  auth: {
+    redirect: false,
+    //rewriteRedirects: false,
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: 'data.token' },
+          user: { url: '/user', method: 'get', propertyName: 'data' },
+          logout: false
+        }
+      },
+      tokenRequired: true,
+      tokenType: 'Bearer',
+    },
+    watchLoggedIn: true,
   },
-  /*
-  ** Build configuration
-  */
+  router: {
+    middleware: ['auth'],
+    
+  },
+  plugins: [
+    '~/plugins/axios.js'
+  ],
   vue: {
     config: {
       productionTip: true,
-      devtools: false
+      devtools: true
     }
   },
   build: {
-   
     /*
     ** Run ESLint on save
     */
@@ -77,5 +94,4 @@ module.exports = {
     //   }
     // }
   },
-  plugins: ['~/plugins/axios.js']
 }
