@@ -5,10 +5,10 @@
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-xl-12 ftco-animate mb-5 pb-5 container" data-scrollax=" properties: { translateY: '70%' }">
             <p class="mb-4 mt-5 " data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></p>
-            <div class="ftco-search container">
+            <div class="ftco-search container pl-0 pr-0">
               <div class="row">
-                <div class="card-content col-md-12" style="padding-top: 100px">
-                  <div class="card-body search pl-0">
+                <div class="card-content col-md-12 pl-0 pr-0" style="padding-top: 100px">
+                  <div class="card-body search ">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                       <li class="nav-item">
@@ -284,7 +284,7 @@
                                   <div class="select-wrap">
                                     <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
                                     <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
-                                    <select name="" id="" class="form-control fas fa-location-arrow">
+                                    <select name="" id="" class="form-control fas fa-location-arrow" style="font-weight:400;    font-family: inherit;">
                                       <option disabled selected>-- Tất cả địa điểm--</option>
                                       <option value="">name</option>
                                     </select>

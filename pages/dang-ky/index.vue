@@ -1,15 +1,14 @@
 <template>
 <!--  <Header/>-->
-  <div class="main mt-5" style="background-image: url('../../static/assets/img/body-bg.jpg')">
-    <img src="../../static/assets/img/body-bg.jpg"/>
+  <div class="main mt-5" style="background-image: url('https://www.netbee.vn/site/assets/images/body-bg.jpg')">
 
-    <div class="container">
+    <div class="container" style="padding-top:40px">
       <div class="row">
         <div class="col-12 formlogin re">
-          <a href="#">
+          <a href="/dang-ky/chuyen-vien-tuyen-dung">
             <div class="row">
               <div class="col-4">
-                <span class="circle danger" style="margin: 0 auto;"><i class="fa fa-list-alt"></i></span>
+                <span class="circle danger" style="margin: 0 auto;"><i class="fa fa-list-alt" style="color:white"></i></span>
               </div>
               <div class="col-8">
                 <h4 class="text-danger">Đăng ký chuyển viên tuyển sinh</h4>
@@ -23,7 +22,7 @@
           </a>
         </div>
         <div class="col-12 formlogin re">
-          <a href="#">
+          <a href="/dang-ky/nha-tuyen-dung">
             <div class="row">
               <div class="col-8" style="text-align: right">
                 <h4 class="text-success rgs-between register-company-text">Đăng ký nhà tuyển dụng</h4>
@@ -34,16 +33,16 @@
                 <p style="width: 100%;height: 46px;"><button class="btn btn-success register-company pull-right"><span>Đăng ký nhà tuyển dụng</span></button></p>
               </div>
               <div class="col-4">
-                <span class="circle register-company" style="margin: 0 auto;"><i class="fa fa-list-alt"></i></span>
+                <span class="circle register-company" style="margin: 0 auto;"><i class="fa fa-list-alt" style="color:white"></i></span>
               </div>
             </div>
           </a>
         </div>
         <div class="col-12 formlogin re">
-          <a href="#">
+          <a href="/dang-ky/ung-vien">
             <div class="row">
               <div class="col-4">
-                <span class="circle uv" style="margin: 0 auto;"><i class="fa fa-list-alt"></i></span>
+                <span class="circle uv" style="margin: 0 auto;"><i class="fa fa-list-alt" style="color:white"></i></span>
               </div>
               <div class="col-8">
                 <h4 class="text-danger ulc">Đăng ký ứng viên</h4>
@@ -51,7 +50,7 @@
                 <p class="box-register_text"><i class="fa fa-check-circle"></i> Ứng tuyển nhanh chóng, dễ dàng</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i> Nhận bản tin công việc phù hợp định kỳ</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i> Nâng cao cơ hội tìm việc với chương trình ứng viên năng động</p>
-                <p style="width: 100%;height: 46px;"><button class="btn btn-success ul uv" style="background-color: #9c27b0"><span>Đăng ký ứng viên</span></button></p>
+                <p style="width: 100%;height: 46px;"><button class="btn btn-success ul uv" style="background-color: #9c27b0!important"><span>Đăng ký ứng viên</span></button></p>
               </div>
             </div>
           </a>
@@ -66,6 +65,7 @@
   import Header from '../../components/HeaderAdmin'
   import FooterClient from '../../components/FooterClient'
   export default {
+    layout: 'no_banner',
     components: {Header, FooterClient}
   }
 </script>
@@ -117,6 +117,27 @@
     -webkit-transition: all .15s ease-in-out;
     transition: all .15s ease-in-out;
   }
-
+  .formlogin p{
+    color: white;
+  }
+  .formlogin i{
+    color: #ffb701;
+  }
+  .danger {
+    background: #f44336 !important;
+    color: #fff;
+  }
+  .register-company {
+      background: #0b8408;
+      color: #fff;
+  }
+  .uv {
+    background: #9c27b0;
+    color: #fff;
+}
+h4{
+  font-size: 27px;
+  font-weight: 600;
+}
 </style>
 
