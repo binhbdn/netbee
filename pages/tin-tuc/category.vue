@@ -18,6 +18,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4><i class="fas fa-newspaper"></i> Tin mới</h4>
+                                <a data-action="collapse"><i class="feather icon-chevron-down"></i></a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -27,34 +28,15 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4><i class="fas fa-newspaper"></i> Cẩm nang</h4>
-                                <a href="/tin-tuc/category">Xem thêm >></a>
+                                <h4><i class="fas fa-newspaper"></i> Tin tức</h4>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <NewListPage2 :DataList="arrayNew"></NewListPage2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4><i class="fas fa-newspaper"></i> Du học</h4>
-                                <a href="/tin-tuc/category">Xem thêm >></a>
-                            </div>
-                            <div class="card-content collapse show">
-                                <div class="card-body">
-                                    <NewListPage1 :DataList="arrayNew"></NewListPage1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h4><i class="fas fa-newspaper"></i> Xuất khẩu lao động</h4>
-                                <a href="/tin-tuc/category">Xem thêm >></a>
-                            </div>
-                            <div class="card-content collapse show">
-                                <div class="card-body">
-                                    <NewListPage2 :DataList="arrayNew"></NewListPage2>
+                                    <div class="row">
+                                        <div class="col-12 make-it-slow pt-1" v-for="(item, index) in arrayNew" :key="index">
+                                            <NewItempage2 :id="item.id" :title="item.title" :content="item.content" :time="item.time" :type="1"></NewItempage2>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -140,14 +122,14 @@
 </template>
 <script>
 import NewListPage1 from '../../components/News/NewListPage1';
-import NewListPage2 from '../../components/News/NewListPage2';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
+import NewItempage2 from '../../components/NewItempage2';
 
 export default {
     components:{
         NewListPage1,
-        NewListPage2,
-        JobsList1ColNotCate
+        JobsList1ColNotCate,
+        NewItempage2
     },
     data() {
         return {
