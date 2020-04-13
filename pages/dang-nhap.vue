@@ -107,13 +107,7 @@ export default {
             async login() {
             try {
                 let response = await this.$auth.loginWith('local',{ data: this.userForm });
-                window.location.href = '/';
-                this.$swal(
-                        'Lỗi!',
-                        'Tài khoản hoặc mật khẩu không đúng!',
-                        'success'
-                    )
-                console.log(response)
+                // window.location.href = '/';
             } catch (err) {
                  this.$swal(
                         'Lỗi!',

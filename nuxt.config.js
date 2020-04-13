@@ -48,24 +48,22 @@ module.exports = {
   'vue-sweetalert2/nuxt'
   ],
   auth: {
-    redirect: false,
+    redirect: {
+      'home' : '/admin'
+    },
     //rewriteRedirects: false,
     strategies: {
       local: {
         endpoints: {
           login: { url: '/login', method: 'post', propertyName: 'data.token' },
           user: { url: '/user', method: 'get', propertyName: 'data' },
-          logout: false
+          logout: { url: '/logout', method: 'get', propertyName: false }
         }
       },
-      tokenRequired: true,
-      tokenType: 'Bearer',
     },
-    watchLoggedIn: true,
   },
   router: {
-    middleware: ['auth'],
-    
+    middleware: ['stats'],
   },
   plugins: [
     '~/plugins/axios.js'
