@@ -11,7 +11,7 @@
                 </div>
             </div>
         </section>
-        <section class="ftco-section bg-white" style="background-color: #f6f6f6!important;">
+        <section class="ftco-section bg-white" style="background-color: #f6f6f6!important; padding-top: 15px;">
             <div class="container">
                 <div class="row">
                     <div class="col-8">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-4 p-0">
                         <div class="card">
                             <div class="card-header">
                                 <h4>Danh mục</h4>
