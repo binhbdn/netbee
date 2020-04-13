@@ -12,6 +12,7 @@
   import HeaderAdmin from '../components/HeaderAdmin'
 
   export default {
+    middleware: 'after_login',
     data() {
       return {
 
