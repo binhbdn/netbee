@@ -168,3 +168,7 @@ a {
 a:hover {
     color: #ffb701;
 }
+
+input:focus {
+    border: #ffb701 1px solid !important;
+}
