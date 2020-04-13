@@ -1,17 +1,16 @@
 <template>
     <div>
-        <section class="ftco-section bg-white category" style="">
+        <section class="bg-white category p-1 m-b-15">
             <div class="container">
                 <div class="row d-flex bg-white ">
                     <div class="col-md-6 pd-20">
                         <a href="#"><i class="fa fa-home pr-2"></i>Trang chủ</a>
                         <a href="#"><i class="fa fa-caret-right pr-2 pl-2"></i>Tin tức</a>
-                        
                     </div>
                 </div>
             </div>
         </section>
-        <section class="ftco-section bg-white" style="background-color: #f6f6f6!important; padding-top: 15px;">
+        <section class="bg-white" style="background-color: #f6f6f6!important;">
             <div class="container">
                 <div class="row">
                     <div class="col-8">
