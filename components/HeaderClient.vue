@@ -4,7 +4,7 @@
     id="ftco-navbar"
   >
     <div class="container">
-      <a class="navbar-brandd">
+      <a class="navbar-brandd" href="/">
         <div>
           <img
             src="https://netbee.vn/site/assets/images/logo.png"
@@ -48,22 +48,11 @@
           </li>
           
           <li class="nav-item cta mr-md-2 dropdown" v-if="!$auth.loggedIn">
-            <a
-              href="#"
-              class="nav-link dropdown-toggle header-nav-link"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="true"
-            >
+            <a href="#" class="nav-link dropdown-toggle header-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  >
               <i class="fa fa-user-circle"></i>
               <br />Trở thành đối tác
             </a>
-            <div
-              class="dropdown-menu"
-              style="top: 102%!important;top: 102%!important;border-radius: 9px;box-shadow: none;"
-              aria-labelledby="navbarDropdown"
-            >
+            <div class="dropdown-menu" style="top: 102%!important;top: 102%!important;border-radius: 9px;box-shadow: none;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
               <a class="dropdown-item" href="/dang-ky/ung-vien">Đăng kí ứng viên</a>
               <a class="dropdown-item" href="/dang-ky/nha-tuyen-dung">Đăng kí nhà tuyển dụng</a>
@@ -72,21 +61,12 @@
             </div>
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-else>
-            <a
-              href="#"
-              class="nav-link dropdown-toggle"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <br />{{ this.$auth.user.name }}
+            <img src="https://netbee.vn/site/assets/images/logo.png"
+            style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; ">
+            <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
+              <br />Tài khoản
             </a>
-            <div
-              class="dropdown-menu"
-              style="top: 102%!important;"
-              aria-labelledby="navbarDropdown"
-            >
+            <div class="dropdown-menu" style="top: 102%!important;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
               <a class="dropdown-item" href>{{ this.$auth.user.name }}</a>
               <a class="dropdown-item" @click="logout()">Đăng xuất</a>
@@ -99,23 +79,10 @@
             </a>
           </li>
           <li class="nav-item cta dropdown">
-            <a
-              href="#"
-              class="nav-link header-nav-link"
-              style="padding-bottom: 0px; height: 100%; border:unset!important;"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <img
-                style="margin-left: 19px;margin-bottom: -2px;"
-                src="https://netbee.vn/site/assets/images/iconfinder_Vietnam_flat_92420.png"
-                width="25px"
-              />
+            <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img style="margin-left: 19px;margin-bottom: -2px;" src="https://netbee.vn/site/assets/images/iconfinder_Vietnam_flat_92420.png" width="25px"/>
               <br />Ngôn ngữ
             </a>
-
             <div
               class="dropdown-menu sticky text-center"
               style="top: 102%!important;"
