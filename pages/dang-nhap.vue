@@ -69,48 +69,39 @@
                     hỗ trợ (024) 629 00 388
                   </a>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5 col-lg-5 formlogin">
-          <h2 class="text-center" style="margin-bottom:15px">ĐĂNG NHẬP</h2>
-          <p class="text-center" style="margin-bottom:25px; font-size: 14px; ">
-            <a class="hover" style="color:black!important" href>Đăng ký tài khoản mới!</a>
-          </p>
-          <div class="form-group-1">
-            <div class="__email">
-              <span class="fa fa-user-circle" style="top:25%!important; z-index:2; left:24px;"></span>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                class="border-radius input"
-                placeholder="Email"
-                v-model="userForm.email"
-              />
-            </div>
-            <div style="position: relative">
-              <div class="__email">
-                <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
-                <input
-                  style="margin-bottom:15px!important"
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Mật khẩu"
-                  class="border-radius input"
-                  v-model="userForm.password"
-                />
-                <div style="text-align:right">
-                  <i onclick="passwordF()" class="showpass">
-                    <i class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
-                  </i>
-                  <a
-                    href="/quen-mat-khau"
-                    class="remember hover"
-                    style="color:black!important;"
-                  >Quên mật khẩu</a>
+                <div class="col-md-5 col-lg-5 formlogin">
+                    <h2 class="text-center" style="margin-bottom:15px">ĐĂNG NHẬP</h2>
+                    <p class="text-center" style="margin-bottom:25px; font-size: 14px; "><a class="hover" style="color:black!important" href="">Đăng ký tài khoản mới!</a>
+                    </p>
+                    <div class="form-group-1">
+                        <div class="__email">
+                            <span class="fa fa-user-circle" style="top:23%!important; z-index:2; left:22px;"></span>
+                            <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" v-model="userForm.email" />
+                        </div>
+                        <div style="position: relative">
+                            <div class="__email">
+                                <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
+                                <input style="margin-bottom:15px!important" type="password" name="password" id="password" placeholder="Mật khẩu" class="border-radius input" v-model="userForm.password" />
+                                <div style="text-align:right">
+                                    <i onclick="passwordF()" class="showpass">
+                                        <i class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
+                                    </i>
+                                    <a href="" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
+                                </div>
+                            </div>
+                            <div class="form-submit" style="padding-top:10px">
+                                <button @click="login()" id="submit" class="submit">ĐĂNG NHẬP</button>
+                            </div>
+                            <hr>
+                            <div class="lopgin-c">
+                                <a href="redirect/facebook" class="btn btn-outline-info fb" style="">Đăng nhập bằng
+                                    Facebook</a> &nbsp;&nbsp;
+                            </div>
+                            <div class="lopgin-c">
+                                <a href="redirect/google" class="btn btn-outline-info gg">Đăng nhập bằng Google</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
               </div>
               <div class="form-submit" style="padding-top:10px">

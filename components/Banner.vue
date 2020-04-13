@@ -49,7 +49,7 @@
                                     <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
                                     <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
                                     <select name="" id="" class="form-control">
-                                      <option disabled selected>--Chọn quốc gia--</option>
+                                      <option disabled selected>Chọn quốc gia</option>
                                       <option value="">name</option>
                                     </select>
                                   </div>
@@ -164,9 +164,9 @@
                                 <div class="form-field">
                                   <div class="select-wrap">
                                     <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
-                                    <div class="icon" style="left:10px !important"><span class="icon-map-marker"></span></div>
+                                    <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
                                     <select name="" id="" class="form-control">
-                                      <option disabled selected>--Chọn quốc gia--</option>
+                                      <option disabled selected>Chọn quốc gia</option>
                                       <option value="">name</option>
                                     </select>
                                   </div>
@@ -285,7 +285,7 @@
                                     <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
                                     <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
                                     <select name="" id="" class="form-control fas fa-location-arrow" style="font-weight:400;    font-family: inherit;">
-                                      <option disabled selected>-- Tất cả địa điểm--</option>
+                                      <option disabled selected>Tất cả địa điểm</option>
                                       <option value="">name</option>
                                     </select>
                                   </div>
@@ -369,7 +369,6 @@
                           </div>
                         </form>
                       </div>
-
                     </div>
                   </div>
                 </div>

@@ -43,3 +43,8 @@
     background-color: hsla(0,0%,62%,.5);
     border-radius: 10px;
 }
+::placeholder {
+    color:rgba(0, 0, 0, 0.7) !important;
+    opacity: 1; /* Firefox */
+    font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif!important;
+  }

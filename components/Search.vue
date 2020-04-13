@@ -42,8 +42,8 @@
                         <div class="select-wrap">
                           <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
                           <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
-                          <select name="" id="" class="form-control">
-                            <option disabled selected>--Chọn quốc gia--</option>
+                          <select name="" id="" class="form-control" style="color: #d9d9d9 !important;">
+                            <option disabled selected>Chọn quốc gia</option>
                             <option value="">name</option>
                           </select>
                         </div>
@@ -66,7 +66,7 @@
                             <div class="select-wrap">
                               <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                               <div class="icon" style="left:10px !important"><i class="fa fa-graduation-cap"></i></div>
-                              <select name="" id="" class="form-control" >
+                              <select name="" id="" class="form-control" style="color: #d9d9d9 !important;" >
                                 <option disabled selected>Trình độ học vấn</option>
                                 <option value="Cấp 3">Cấp 3</option>
                                 <option value="Cao Đẳng">Cao đẳng</option>
@@ -143,7 +143,7 @@
                         <div class="select-wrap">
                           <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
                           <div class="icon" style="left:10px !important"><span class="fa fa-folder-open"></span></div>
-                          <select name="cate_id" id="" class="form-control">
+                          <select name="cate_id" id="" class="form-control" style="color: #d9d9d9 !important;">
                             <option disabled selected>Loại hình</option>
                             <option value="1">Du học</option>
                             <option value="3">Tu nghiệp sinh</option>
@@ -158,9 +158,9 @@
                       <div class="form-field">
                         <div class="select-wrap">
                           <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
-                          <div class="icon" style="left:10px !important"><span class="icon-map-marker"></span></div>
+                          <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
                           <select name="" id="" class="form-control">
-                            <option disabled selected>--Chọn quốc gia--</option>
+                            <option disabled selected>Chọn quốc gia</option>
                             <option value="">name</option>
                           </select>
                         </div>
@@ -279,7 +279,7 @@
                           <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
                           <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
                           <select name="" id="" class="form-control fas fa-location-arrow">
-                            <option disabled selected>-- Tất cả địa điểm--</option>
+                            <option disabled selected>Tất cả địa điểm</option>
                             <option value="">name</option>
                           </select>
                         </div>
