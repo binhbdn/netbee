@@ -65,6 +65,7 @@
   import Header from '../../components/HeaderAdmin'
   import FooterClient from '../../components/FooterClient'
   export default {
+    middleware: 'guest',
     layout: 'no_banner',
     components: {Header, FooterClient}
   }

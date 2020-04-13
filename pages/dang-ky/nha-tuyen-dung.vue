@@ -75,6 +75,7 @@
 </template>
 <script>
 export default {
+    middleware: 'guest',
     layout: 'no_banner',
 }
 </script>
