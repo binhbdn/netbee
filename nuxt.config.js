@@ -66,7 +66,8 @@ module.exports = {
     middleware: ['stats'],
   },
   plugins: [
-    '~/plugins/axios.js'
+    '~/plugins/axios.js',
+    '~/plugins/helppers.js'
   ],
   vue: {
     config: {

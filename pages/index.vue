@@ -265,7 +265,7 @@
               </div>
               <div class="card-content collapse show news">
                 <div class="card-body">
-                  <NewsList :DataList="arrayNew"></NewsList>
+                  <NewsList :DataList="tintuc"></NewsList>
                 </div>
               </div>
             </div>
@@ -285,6 +285,15 @@
       JobsList2Col,
       NewsList,
       JobsList1Col
+    },
+    asyncData ({ $axios, error }) {
+      return $axios.$get('getTinTucNew?limit=4')
+        .then((res) => {
+          return { tintuc: res.data.tintuc, }
+        })
+        .catch((e) => {
+          error({ statusCode: 404, message: 'Post not found' })
+        })
     },
     data () {
       return {
@@ -307,9 +316,6 @@
         ]
       }
     },
-    mounted() {
-      console.log(this.$auth);
-    }
   }
 </script>
 <style scoped>

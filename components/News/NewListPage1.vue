@@ -2,10 +2,10 @@
     <div class="ecommerce-application">
         <div class="row px-1 pb-1">
             <div class="col-12 py-1 make-it-slow">
-                <NewsItem2 :id="DataList[0].id" :title="DataList[0].title" :content="DataList[0].content" :time="DataList[0].time"></NewsItem2>
+                <NewsItem2 :id="DataList[0].id" :title="DataList[0].title" :short_content="DataList[0].short_content" :created_at="DataList[0].created_at" :thuml="DataList[0].thuml"></NewsItem2>
             </div>
-            <div class="col-3 mt-1 py-1 make-it-slow"  v-for="(item, index) in DataList" :key="index" v-if="item.id != 1">
-                <NewsItem1 :id="item.id" :title="item.title" :content="item.content" :time="item.time" ></NewsItem1>
+            <div class="col-3 mt-1 py-1 make-it-slow"  v-for="(item, index) in DataList.slice(1)" :key="index">
+                <NewsItem1 :id="item.id" :title="item.title" :short_content="item.short_content" :created_at="item.created_at" :thuml="item.thuml"></NewsItem1>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@ export default {
         NewsItem1,
         NewsItem2
     },
-    props: ['DataList', 'type']
+    props: ['DataList']
 }
 </script>
 <style>
