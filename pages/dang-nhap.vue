@@ -58,7 +58,7 @@
                     </p>
                     <div class="form-group-1">
                         <div class="__email">
-                            <span class="fa fa-user-circle" style="top:25%!important; z-index:2; left:24px;"></span>
+                            <span class="fa fa-user-circle" style="top:23%!important; z-index:2; left:22px;"></span>
                             <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" v-model="userForm.email" />
                         </div>
                         <div style="position: relative">
