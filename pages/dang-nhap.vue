@@ -107,7 +107,7 @@ export default {
             async login() {
             try {
                 let response = await this.$auth.loginWith('local',{ data: this.userForm });
-                // window.location.href = '/';
+                window.location.href = '/admin';
             } catch (err) {
                  this.$swal(
                         'Lỗi!',

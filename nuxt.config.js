@@ -51,9 +51,7 @@ module.exports = {
         'vue-sweetalert2/nuxt'
     ],
     auth: {
-        redirect: {
-            'home': '/admin'
-        },
+        redirect: false,
         //rewriteRedirects: false,
         strategies: {
             local: {
