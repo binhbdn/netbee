@@ -286,17 +286,9 @@
       NewsList,
       JobsList1Col
     },
-    asyncData ({ $axios, error }) {
-      return $axios.$get('getTinTucNew?limit=4')
-        .then((res) => {
-          return { tintuc: res.data.tintuc, }
-        })
-        .catch((e) => {
-          error({ statusCode: 404, message: 'Post not found' })
-        })
-    },
     data () {
       return {
+        tintuc: [],
         arrayJob: [
           {id: 1, title: 'chào cả nhà1'},
           {id: 2, title: 'chào cả nhà2'},
@@ -316,6 +308,15 @@
         ]
       }
     },
+    methods: {
+      async fetch () {
+        let res = await this.$axios.$get('getTinTucNew?limit=4')
+        this.tintuc = res.data.tintuc
+      },
+    },
+    mounted() {
+      this.fetch();
+    }
   }
 </script>
 <style scoped>

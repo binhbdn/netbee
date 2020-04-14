@@ -88,17 +88,9 @@ export default {
         NewItempage2, 
         NewsList
     },
-    asyncData ({ route, $axios, error }) {
-      return $axios.$get(`getDetailTinTuc/${route.params.id}`)
-        .then((res) => {
-          return { tintuc: res.data, }
-        })
-        .catch((e) => {
-          error({ statusCode: 404, message: 'Post not found' })
-        })
-    },
     data() {
         return {
+            tintuc: [],
             arrayNew: [
                 {
                     id: 1,
@@ -122,6 +114,15 @@ export default {
             ],
         }
     },
+    methods: {
+        async fetch () {
+            let res = await this.$axios.$get(`getDetailTinTuc/${this.$route.params.id}`)
+            this.tintuc = res.data
+        },
+    },
+    mounted() {
+        this.fetch();
+    }
 }
 </script>
 <style>

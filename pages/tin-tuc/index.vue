@@ -130,6 +130,11 @@ export default {
     },
     data() {
         return {
+            tintucNew: [],
+            tintucCamNang: [],
+            tintucDuHoc: [],
+            tintucXKLD: [],
+            getDanhMucTinTuc: [],
             arrayNew: [
                 {
                     id: 1,
@@ -153,7 +158,24 @@ export default {
                 {id: 6, title: 'chào cả nhà6'},
             ],
         }
-    }  
+    },
+    methods: {
+        async fetch () {
+            let getTinTucNew = await this.$axios.$get('getTinTucNew?limit=5')
+            let tintucCamNang = await this.$axios.$get('getTinTucCate?category=1&limit=5')
+            let tintucDuHoc = await this.$axios.$get('getTinTucCate?category=2&limit=5')
+            let tintucXKLD = await this.$axios.$get('getTinTucCate?category=3&limit=5')
+            let getDanhMucTinTuc = await this.$axios.$get('getDanhMucTinTuc')
+            this.tintucNew = getTinTucNew.data.tintuc,
+            this.tintucCamNang = tintucCamNang.data.tintuc,
+            this.tintucDuHoc = tintucDuHoc.data.tintuc,
+            this.tintucXKLD = tintucXKLD.data.tintuc,
+            this.getDanhMucTinTuc = getDanhMucTinTuc.data
+        },
+    },
+    mounted() {
+        this.fetch();
+    }
 }
 </script>
 <style>

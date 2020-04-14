@@ -49,8 +49,13 @@
                                                     <td>{{item.id}}</td>
                                                     <td>{{item.title}}</td>
                                                     <td>{{item.time}}</td>
-                                                    <td><button class="btn w-50" :class="item.status == 1 ? 'btn-warning' : 'btn-danger'">{{ item.status == 1 ? 'kích hoạt' : 'Bỏ kích hoạt' }}</button></td>
                                                     <td>
+
+                                                        <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
+                                                        <span class="danger" v-else><i class="fas fa-circle" style="font-size: 7px"></i> Chưa kích hoạt</span>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn " :class="item.status == 1 ? 'btn-danger' : 'btn-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
                                                         <button class="btn btn-warning">Sửa</button>
                                                         <button class="btn btn-danger">Xóa</button>
                                                     </td>
@@ -59,7 +64,6 @@
                                         </table>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -70,7 +74,7 @@
 </template>
 <script>
 export default {
-    name: 'Quản lý tin tức',
+    name: 'IndexNews',
         layout: 'admin',
     head: {
         title: 'Quản lý tin tức',
