@@ -57,6 +57,7 @@ module.exports = {
             local: {
                 endpoints: {
                     login: { url: '/login', method: 'post', propertyName: 'data.token' },
+                    register: { url: '/register', method: 'get', propertyName: 'data' },
                     user: { url: '/user', method: 'get', propertyName: 'data' },
                     logout: { url: '/logout', method: 'get', propertyName: false }
                 }

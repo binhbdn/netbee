@@ -26,7 +26,7 @@
                     >   
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Họ & Tên</label>
-                        <input type="text" class="form-control" name="name" v-model="name">
+                        <input type="text" class="form-control" name="name" v-model="userForm.name">
                         <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
@@ -42,7 +42,7 @@
                     >
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Email</label>
-                        <input type="email" class="form-control" name="email" v-model="email">
+                        <input type="email" class="form-control" name="email" v-model="userForm.email">
                         <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
@@ -58,7 +58,7 @@
                     >
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Số điện thoại</label>
-                            <input type="text" class="form-control" name="phone" v-model="phone">
+                            <input type="text" class="form-control" name="phone" v-model="userForm.phone">
                             <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
@@ -74,7 +74,7 @@
                     >
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Mật khẩu</label>
-                            <input type="password" class="form-control" name="password" v-model="password">
+                            <input type="password" class="form-control" name="password" v-model="userForm.password">
                             <ul style="color:red" class="overline text-left">
                                 <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
@@ -90,7 +90,7 @@
                     >
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
-                            <input type="password" class="form-control" name="password_confirmation" v-model="password_confirmation" data-vv-as="password">
+                            <input type="password" class="form-control" name="password_confirmation" v-model="userForm.password_confirmation" data-vv-as="password">
                             <ul style="color:red" class="overline text-left">
                                 <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
@@ -104,7 +104,7 @@
                         ref="agree-term"
                     >
                         <div class="form-check" style="margin-bottom:0px;">
-                            <input disabled type="checkbox"  name="agree-term" id="agree-term" class="agree-term" v-model="checkbox"/>
+                            <input disabled type="checkbox"  name="agree-term" id="agree-term" class="agree-term" v-model="userForm.checkbox"/>
                             <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với các  <a href="" class="term-service text-dark">điều khoản</a></label>
                         </div>
                     </ValidationProvider>
@@ -175,12 +175,14 @@ export default {
   },
   data() {
     return {
-      name: "",
-      email: "",
-      phone: "",
-      password: "",
-      password_confirmation: "",
-      checkbox: true
+      userForm: {
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        password_confirmation: "",
+        checkbox: true
+      }
     };
   },
   computed: {},
@@ -189,11 +191,40 @@ export default {
     async signIn() {
       const isValid = await this.$refs.observer.validate();
       if (isValid) {
-        console.log("is valid");
-        console.log(this.name + " signed in with password " + this.password);
-        // reset fields
-        this.name = "";
-        this.password = "";
+        try {
+            let response = await this.$axios.post('register',{ 
+              email: this.userForm.email,
+              password: this.userForm.password,
+              name: this.userForm.name,
+              phone: this.userForm.phone,
+             });
+            if(response.data.status == 200) {
+              this.$swal({
+                title: 'Thành công',
+                text: response.data.message,
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'OK'
+              }).then( async (result) => {
+                if (result.value) {
+                  await this.$auth.login({ data: {email : this.userForm.email, password: this.userForm.password} });
+                  window.location.href = '/admin';
+                }
+              })
+            }else {
+              this.$swal(
+                'Lỗi!',
+                response.data.message,
+                'error'
+              )
+            }
+        } catch (err) {
+          this.$swal(
+            'Lỗi!',
+            'Đăng kí thất bại!',
+            'error'
+          )
+        }
         // reset validation
         // You should call it on the next frame
         requestAnimationFrame(() => {
