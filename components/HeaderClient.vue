@@ -8,7 +8,7 @@
         <div>
           <img
             src="https://netbee.vn/site/assets/images/logo.png"
-            alt="Smiley face"
+            alt=""
             height="50"
             width="auto"
           />NetBee
