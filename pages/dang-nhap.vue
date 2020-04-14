@@ -57,7 +57,7 @@
                     <p class="text-center" style="margin-bottom:25px; font-size: 16px; "><a class="hover" href="dang-ky">Đăng ký tài khoản mới!</a>
                     </p>
                     <div class="form-group-1 input-login">
-                        <ValidationObserver>
+                        <ValidationObserver ref="observer" v-slot="{ valid }">
                             <ValidationProvider name="Email" ref="email" rules="required|email|max:20" v-slot="{ errors }">
                                 <div class="__email">
                                     <span class="fa fa-user-circle" style="top:26%!important; z-index:2; left:22px;"></span>
@@ -125,6 +125,30 @@ extend("required", {
 extend("email", {
   message: (field, values) => "Email không đúng định dạng"
 });
+var errorMessage =
+  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+// create custom rule
+extend("customPassword", {
+  message: field =>`${field}` + errorMessage,
+  validate: value => {
+    var notTheseChars = /["'?&/<>\s]/;
+    var mustContainTheseChars = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#!@$%^*-]).{8,}$/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    var containsRequiredChars = mustContainTheseChars.test(value);
+    if (containsRequiredChars && !containsForbiddenChars) {
+      return true;
+    } else {
+      if (containsForbiddenChars) {
+        errorMessage =
+          ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
+      } else {
+        errorMessage =
+          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+      }
+      return false;
+    }
+  }
+});
 export default {
     middleware: 'guest',
     layout: 'no_banner',
@@ -141,22 +165,21 @@ export default {
         }
     },
     methods: {
-
-            async login() {
-                const isValid = await this.$refs.observer.validate();
-                if(isValid){
-                    try {
-                    let response = await this.$auth.loginWith('local',{ data: this.userForm });
-                    window.location.href = '/admin';
-                } catch (err) {
-                    this.$swal(
-                            'Lỗi!',
-                            'Tài khoản hoặc mật khẩu không đúng!',
-                            'error'
-                        )
-                    }
+        async login() {
+            const isValid = await this.$refs.observer.validate();
+            if(isValid){
+            try {
+                let response = await this.$auth.loginWith('local',{ data: this.userForm });
+                window.location.href = '/admin';
+            } catch (err) {
+                this.$swal(
+                        'Lỗi!',
+                        'Tài khoản hoặc mật khẩu không đúng!',
+                        'error'
+                    )
                 }
             }
+        }
     }
 }
 </script>
