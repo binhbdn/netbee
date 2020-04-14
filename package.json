@@ -16,6 +16,7 @@
         "@nuxtjs/auth": "^4.9.0",
         "@nuxtjs/axios": "^5.9.5",
         "body-parser": "^1.18.2",
+        "moment": "^2.24.0",
         "nuxt": "^2.12.2",
         "nuxt-sweetalert2": "^1.0.0",
         "v-viewer": "^1.5.1",

@@ -1,20 +1,31 @@
 <template>
     <div>
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
-            <div :style="id == 1 ? 'height: 250px' : 'height: 120px'">
-                <img style="width: 100%;" alt="img" src="/app-assets/images/pages/content-img-3.jpg" v-if="id == 1" />
-                <img alt="img" src="/app-assets/images/pages/content-img-2.jpg" width="147" height="100" v-if="id != 1" />
+            <div :style="type == 1 ? 'height: 250px' : 'height: 120px'">
+                <img style="width: 100%;" alt="img" src="/app-assets/images/pages/content-img-3.jpg" v-if="type == 1" />
+                <img alt="img" src="/app-assets/images/pages/content-img-2.jpg" width="147" height="100" v-if="type != 1" />
             </div>
         </a>
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`"><h2 class="NB_title text-black pt-1 el-3">{{ title }}</h2></a>
-        <i class="fa fa-calendar"></i><span class="ml-1">{{ created_at }}</span>  
-        <p style="height: 100px;" class="el-3" v-if="id == 1">{{ short_content }}</p>                                  
+         
+        <p style="height: 100px;" class="el-3" v-if="type == 1">{{ short_content }}</p>  
+        <i class="fad fa-calendar-star"></i><span class="ml-1">{{ created_at | formatDate }}</span>                                 
     </div>
 </template>
 <script>
+import moment from 'moment'
+import Vue from "vue";
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY')
+  }
+})
 
 export default {
-    props: ['id', 'title', 'short_content', 'created_at','thuml']
+    props: ['id', 'title', 'short_content', 'created_at','thuml', 'type'],
+    
+
 }
 </script>
 <style>

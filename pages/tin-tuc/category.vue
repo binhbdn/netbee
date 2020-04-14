@@ -33,7 +33,7 @@
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-12 make-it-slow pt-1" v-for="(item, index) in arrayNew" :key="index">
+                                        <div class="col-12 make-it-slow py-1" v-for="(item, index) in arrayNew" :key="index">
                                             <NewItempage2 :id="item.id" :title="item.title" :content="item.content" :time="item.time" :type="1"></NewItempage2>
                                         </div>
                                     </div>
