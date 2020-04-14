@@ -1,5 +1,4 @@
 module.exports = {
-    mode: 'universal',
     head: {
         title: 'NetBee - Mạng lưới du học duy nhất tại Việt Nam',
         meta: [
@@ -37,7 +36,8 @@ module.exports = {
             { src: '/app-assets/js/core/app-menu.js' },
             { src: '/app-assets/js/core/app.js' },
             { src: '/app-assets/js/scripts/components.js' },
-
+            { src: '/app-assets/vendors/js/forms/select/select2.full.min.js', },
+            { src: '/app-assets/js/scripts/forms/select/form-select2.js', },
 
         ]
     },

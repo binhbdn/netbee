@@ -35,13 +35,12 @@
                                                 <fieldset class="form-group">
                                                     <label for="basicInput">Ảnh tiêu đề</label>
                                                     <div class="dropbox">
-                                                        <input type="file" :name="uploadFieldName" :disabled="isSaving" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
-                                                        accept="image/*" class="input-file">
-                                                        <p v-if="isInitial">
+                                                        <input type="file"  class="input-file">
+                                                        <p>
                                                             Drag your file(s) here to begin<br> or click to browse
                                                         </p>
-                                                        <p v-if="isSaving">
-                                                            Uploading {{ fileCount }} files...
+                                                        <p>
+                                                            Uploading files...
                                                         </p>
                                                     </div>
                                                 </fieldset>
@@ -55,7 +54,7 @@
                                             <div class="col-12">
                                                 <fieldset class="form-group">
                                                     <label for="basicInput">Nội dung</label>
-                                                    <vue-editor v-model="content"></vue-editor>
+                                                    <vue-editor></vue-editor>
                                                 </fieldset>
                                             </div>
                                             <div class="col-12">
@@ -112,86 +111,70 @@ export default {
     },
     name: 'create',
         layout: 'admin',
-    head: {
-        title: 'Quản lý tin tức',
-        meta: [
-        { hid: 'description', name: 'description', content: 'Home page description' }
-        ],
-        noscript: [
-        { innerHTML: 'Body No Scripts', body: true }
-        ],
-        link: [
-        ],
-        script: [
-            { src: '/head.js' },
-            // Supported since 1.0
-            { src: '/body.js', body: true },
-            { src: '/defer.js', defer: '' },
-        ],
-        data() {
-            return {
-                uploadedFiles: [],
-                uploadError: null,
-                currentStatus: null,
-                uploadFieldName: 'photos'
-            };
-        },
-        computed: {
-      isInitial() {
-        return this.currentStatus === STATUS_INITIAL;
-      },
-      isSaving() {
-        return this.currentStatus === STATUS_SAVING;
-      },
-      isSuccess() {
-        return this.currentStatus === STATUS_SUCCESS;
-      },
-      isFailed() {
-        return this.currentStatus === STATUS_FAILED;
-      }
-    },
-    methods: {
-        reset() {
-            // reset form to initial state
-            this.currentStatus = STATUS_INITIAL;
-            this.uploadedFiles = [];
-            this.uploadError = null;
-        },
-        save(formData) {
-            debugger
-            // upload data to the server
-            this.currentStatus = STATUS_SAVING;
+    //     data() {
+    //         return {
+    //             uploadedFiles: [],
+    //             uploadError: null,
+    //             currentStatus: null,
+    //             uploadFieldName: 'photos'
+    //         };
+    //     },
+    //     computed: {
+    //   isInitial() {
+    //     return this.currentStatus === STATUS_INITIAL;
+    //   },
+    //   isSaving() {
+    //     return this.currentStatus === STATUS_SAVING;
+    //   },
+    //   isSuccess() {
+    //     return this.currentStatus === STATUS_SUCCESS;
+    //   },
+    //   isFailed() {
+    //     return this.currentStatus === STATUS_FAILED;
+    //   }
+    // },
+    // methods: {
+    //     reset() {
+    //         // reset form to initial state
+    //         this.currentStatus = STATUS_INITIAL;
+    //         this.uploadedFiles = [];
+    //         this.uploadError = null;
+    //     },
+    //     save(formData) {
+    //         debugger
+    //         // upload data to the server
+    //         this.currentStatus = STATUS_SAVING;
 
-            upload(formData)
-            .then(x => {
-                this.uploadedFiles = [].concat(x);
-                this.currentStatus = STATUS_SUCCESS;
-            })
-            .catch(err => {
-                this.uploadError = err.response;
-                this.currentStatus = STATUS_FAILED;
-            });
-        },
-        filesChange(fieldName, fileList) {
-            // handle file changes
-            const formData = new FormData();
-            if (!fileList.length) return;
+    //         upload(formData)
+    //         .then(x => {
+    //             this.uploadedFiles = [].concat(x);
+    //             this.currentStatus = STATUS_SUCCESS;
+    //         })
+    //         .catch(err => {
+    //             this.uploadError = err.response;
+    //             this.currentStatus = STATUS_FAILED;
+    //         });
+    //     },
+    //     filesChange(fieldName, fileList) {
+    //         // handle file changes
+    //         const formData = new FormData();
+    //         if (!fileList.length) return;
 
-            // append the files to FormData
-            Array
-            .from(Array(fileList.length).keys())
-            .map(x => {
-                formData.append(fieldName, fileList[x], fileList[x].name);
-            });
+    //         // append the files to FormData
+    //         Array
+    //         .from(Array(fileList.length).keys())
+    //         .map(x => {
+    //             formData.append(fieldName, fileList[x], fileList[x].name);
+    //         });
 
-            // save it
-            this.save(formData);
-        }
-        },
-        mounted() {
-            this.reset();
-        },
-    },
+    //         // save it
+    //         this.save(formData);
+    //     }
+    //     },
+    //     mounted() {
+    //         this.reset();
+    //     },
+    
 }
 </script>
 <style scoped>
