@@ -16,34 +16,102 @@
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN ỨNG VIÊN</span>
                 </div>
                 <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="">Tại đây</a></span>
-                <form method="POST" class="appointment-form" id="appointment-form" style="margin-top:10px;">
+               <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
+                    <ValidationObserver ref="observer" v-slot="{ valid }">
+                     <ValidationProvider
+                        name="Họ và tên"
+                        ref="name"
+                        rules="required|alpha|max:20"
+                        v-slot="{ errors }"
+                    >   
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Họ & Tên</label>
-                        <input type="text" class="form-control" name="name" >
+                        <input type="text" class="form-control" name="name" v-model="name">
+                        <ul style="color:red" class="overline text-left">
+                            <li v-for="(error, index) in errors" :key="index">
+                            <span>{{ error }}</span>
+                            </li>
+                        </ul>
                     </div>
+                    </ValidationProvider>
+                    <ValidationProvider
+                        name="Email"
+                        ref="email"
+                        rules="required|email|max:20"
+                        v-slot="{ errors }"
+                    >
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Email</label>
-                        <input type="email" class="form-control" name="email" >
+                        <input type="email" class="form-control" name="email" v-model="email">
+                        <ul style="color:red" class="overline text-left">
+                            <li v-for="(error, index) in errors" :key="index">
+                            <span>{{ error }}</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Số điện thoại</label>
-                        <input type="text" class="form-control" name="phone" >
+                    </ValidationProvider>
+                    <ValidationProvider
+                        rules="required|integer"
+                        ref="phone"
+                        name="Số điện thoại"
+                        v-slot="{ errors }"
+                    >
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Số điện thoại</label>
+                            <input type="text" class="form-control" name="phone" v-model="phone">
+                            <ul style="color:red" class="overline text-left">
+                            <li v-for="(error, index) in errors" :key="index">
+                            <span>{{ error }}</span>
+                            </li>
+                        </ul>
+                        </div>
+                    </ValidationProvider>
+                    <ValidationProvider
+                        name="Mật khẩu"
+                        ref="password"
+                        rules="required|customPassword|min:8"
+                        v-slot="{ errors }"
+                    >
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Mật khẩu</label>
+                            <input type="password" class="form-control" name="password" v-model="password">
+                            <ul style="color:red" class="overline text-left">
+                                <li v-for="(error, index) in errors" :key="index">
+                                <span>{{ error }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </ValidationProvider>
+                    <ValidationProvider
+                        name="Nhập lại mật khẩu"
+                        ref="password_confirmation"
+                        rules="required|"
+                        v-slot="{ errors }"
+                    >
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
+                            <input type="password" class="form-control" name="password_confirmation" v-model="password_confirmation" data-vv-as="password">
+                            <ul style="color:red" class="overline text-left">
+                                <li v-for="(error, index) in errors" :key="index">
+                                <span>{{ error }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </ValidationProvider>
+                    <ValidationProvider
+                        rules = "required"
+                        name = "Đồng ý"
+                        ref="agree-term"
+                    >
+                        <div class="form-check" style="margin-bottom:0px;">
+                            <input disabled type="checkbox"  name="agree-term" id="agree-term" class="agree-term" v-model="checkbox"/>
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với các  <a href="" class="term-service text-dark">điều khoản</a></label>
+                        </div>
+                    </ValidationProvider>
+                    <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
+                        <input @click="signIn()" type="button" name="submit" id="submit" class="btn btn-outline-warning" style="font-weight: bold;" value="Đăng ký ngay" />
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Mật khẩu</label>
-                        <input type="password" class="form-control" name="password" >
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
-                        <input type="password" class="form-control" name="password_confirmation" >
-                    </div>
-                    <div class="form-check" style="margin-bottom:0px;">
-                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                        <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với các  <a href="" class="term-service text-dark">điều khoản</a></label>
-                    </div>
-                    <div class="form-submit text-center" style="padding-bottom: 10px;margin-top:10px;">
-                        <input type="button" name="submit" id="submit" class="btn btn-outline-warning" style="font-weight: bold;" value="Đăng ký ngay"/>
-                    </div>
+                    </ValidationObserver>
                 </form>
             </div>
         </div>
@@ -51,9 +119,89 @@
 </section>
 </template>
 <script>
+import {
+  ValidationProvider,
+  extend
+} from "vee-validate/dist/vee-validate.full";
+import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+// can customize default error messages
+extend("required", {
+  message: (field, values) => `${field}` + " không được để trống.",
+});
+extend("email", {
+  message: (field, values) => "Email không đúng định dạng"
+});
+extend("integer", {
+  message: (field, values) => "Dữ liệu nhập vào phải là số"
+});
+extend("min", {
+  message: (field, values) => "Dữ liệu nhập vào ít nhất" + `${values}`
+});
+extend("alpha", {
+  message: (field, values) => "Dữ liệu nhập vào phải là chữ."
+});
+
+// create custom error message for custom rule
+var errorMessage =
+  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+// create custom rule
+extend("customPassword", {
+  message: field =>`${field}` + errorMessage,
+  validate: value => {
+    var notTheseChars = /["'?&/<>\s]/;
+    var mustContainTheseChars = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#!@$%^*-]).{8,}$/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    var containsRequiredChars = mustContainTheseChars.test(value);
+    if (containsRequiredChars && !containsForbiddenChars) {
+      return true;
+    } else {
+      if (containsForbiddenChars) {
+        errorMessage =
+          ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
+      } else {
+        errorMessage =
+          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+      }
+      return false;
+    }
+  }
+});
 export default {
     middleware: 'guest',
     layout: 'no_banner',
+    components: {
+    ValidationProvider,
+    ValidationObserver
+  },
+  data() {
+    return {
+      name: "",
+      email: "",
+      phone: "",
+      password: "",
+      password_confirmation: "",
+      checkbox: true
+    };
+  },
+  computed: {},
+  created() {},
+  methods: {
+    async signIn() {
+      const isValid = await this.$refs.observer.validate();
+      if (isValid) {
+        console.log("is valid");
+        console.log(this.name + " signed in with password " + this.password);
+        // reset fields
+        this.name = "";
+        this.password = "";
+        // reset validation
+        // You should call it on the next frame
+        requestAnimationFrame(() => {
+          this.$refs.observer.reset();
+        });
+      }
+    }
+  }
 }
 </script>
 <style scoped>
@@ -70,7 +218,7 @@ export default {
     }
     .hero-wraps {
         width: 100%;
-        height: 600px !important;
+        height: 700px !important;
         position: inherit;
         margin-top: 40px;
     }
@@ -100,5 +248,10 @@ export default {
     }
     label{
         font-size: 15px;
+    }
+    ul{
+        list-style: none;
+        padding-left: 5px;
+        padding-top: 5px;
     }
 </style>
