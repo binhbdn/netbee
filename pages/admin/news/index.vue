@@ -29,7 +29,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <form action="" method="">
-                                        <button class="btn btn-warning text-dark">Tạo bài viết mới</button>
+                                        <button class="btn btn-warning text-dark"><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
                                     </form>
                                 </div>
                                 <div class="card-body card-dashboard">
@@ -49,15 +49,15 @@
                                                     <td>{{item.id}}</td>
                                                     <td>{{item.title}}</td>
                                                     <td>{{item.time}}</td>
-                                                    <td>
+                                                    <td style="white-space: nowrap;">
 
                                                         <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
                                                         <span class="danger" v-else><i class="fas fa-circle" style="font-size: 7px"></i> Chưa kích hoạt</span>
                                                     </td>
-                                                    <td>
-                                                        <button class="btn " :class="item.status == 1 ? 'btn-danger' : 'btn-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
-                                                        <button class="btn btn-warning">Sửa</button>
-                                                        <button class="btn btn-danger">Xóa</button>
+                                                    <td style="width: 27%;">
+                                                        <button class="btn px-1" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
+                                                        <button class="btn btn-outline-warning"><i class="far fa-edit"></i> Sửa</button>
+                                                        <button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Xóa</button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -107,7 +107,7 @@ export default {
     data() {
         return {
             arrayNew: [
-                {id: 1, title: 'Title tin tức 1', time: '09/04/2020', status: 1},
+                {id: 1, title: 'Tư vấn các thủ tục cần thiết để đi Xuất khẩu lao động Nhật Bản aaaaaaa bdhfka fdbaik fdabjkfd afhbiuia fdaikbd ahfja vahfbda vha', time: '09/04/2020', status: 1},
                 {id: 2, title: 'Title tin tức 2', time: '09/04/2020', status: 0},
                 {id: 3, title: 'Title tin tức 3', time: '09/04/2020', status: 1},
                 {id: 5, title: 'Title tin tức 4', time: '09/04/2020', status: 1},
@@ -128,5 +128,7 @@ export default {
 }
 </script>
 <style scoped>
-
+.pagination .page-item.active .page-link{
+    background-color: #ffb701 !important;
+}
 </style>
