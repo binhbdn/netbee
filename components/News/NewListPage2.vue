@@ -2,7 +2,7 @@
     <div class="ecommerce-application">
         <div class="row px-1 pb-1">
             <div class="col-5 py-1 make-it-slow">
-                <NewsItem1 :id="DataList[0].id" :title="DataList[0].title" :short_content="DataList[0].short_content" :created_at="DataList[0].created_at" :thuml="DataList[0].thuml"></NewsItem1>
+                <NewsItem1 :id="DataList[0].id" :title="DataList[0].title" :short_content="DataList[0].short_content" :created_at="DataList[0].created_at" :thuml="DataList[0].thuml" :type=1></NewsItem1>
             </div>
             <div class="col-7">
                 <div class="row px-1">
