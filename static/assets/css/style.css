@@ -172,3 +172,17 @@ a:hover {
 input:focus {
     border: #ffb701 1px solid !important;
 }
+
+textarea:focus {
+    border: #ffb701 1px solid !important;
+}
+
+select:focus {
+    border: #ffb701 1px solid !important;
+}
+
+select option {
+    height: 50px;
+    /* background-color: #ffb701; */
+    color: black;
+}
