@@ -265,7 +265,7 @@
               </div>
               <div class="card-content collapse show news">
                 <div class="card-body">
-                  <NewsList :DataList="arrayNew"></NewsList>
+                  <NewsList :DataList="tintuc"></NewsList>
                 </div>
               </div>
             </div>
@@ -288,6 +288,7 @@
     },
     data () {
       return {
+        tintuc: [],
         arrayJob: [
           {id: 1, title: 'chào cả nhà1'},
           {id: 2, title: 'chào cả nhà2'},
@@ -307,8 +308,14 @@
         ]
       }
     },
+    methods: {
+      async fetch () {
+        let res = await this.$axios.$get('getTinTucNew?limit=4')
+        this.tintuc = res.data.tintuc
+      },
+    },
     mounted() {
-      console.log(this.$auth);
+      this.fetch();
     }
   }
 </script>

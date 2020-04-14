@@ -68,7 +68,7 @@
             </a>
             <div class="dropdown-menu" style="top: 102%!important;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
-              <a class="dropdown-item" href>{{ this.$auth.user.name }}</a>
+              <a class="dropdown-item" href="/admin">{{ this.$auth.user.name }}</a>
               <a class="dropdown-item" @click="logout()">Đăng xuất</a>
             </div>
           </li>

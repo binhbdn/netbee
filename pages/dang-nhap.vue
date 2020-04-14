@@ -89,7 +89,7 @@
                                     <i onclick="passwordF()" class="showpass">
                                         <i class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
                                     </i>
-                                    <a href="" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
+                                    <a href="/quen-mat-khau" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
                                 </div>
                             </div>
                             </ValidationProvider>
@@ -147,7 +147,7 @@ export default {
                 if(isValid){
                     try {
                     let response = await this.$auth.loginWith('local',{ data: this.userForm });
-                    // window.location.href = '/';
+                    window.location.href = '/admin';
                 } catch (err) {
                     this.$swal(
                             'Lỗi!',
