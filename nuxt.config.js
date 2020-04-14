@@ -70,6 +70,7 @@ module.exports = {
     },
     plugins: [
         '~/plugins/axios.js',
+        '~/plugins/helppers.js',
         { src: './plugins/vue2-editor', ssr: false }
     ],
     vue: {

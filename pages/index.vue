@@ -5,7 +5,7 @@
     <section class="ftco-section services-section bg-netbee card" style="background: #fff">
       <div class="container">
         <div class="row " style="padding-left:14px!important;">
-          <div style="padding-left:0!important;" class="col-md-2  align-self-stretch ftco-animate">
+          <div class="col-md-2  align-self-stretch ftco-animate" style="padding-left:0!important;">
             <div class="d_item v_block">
               <a class="media block-6 services d-block" href="dang-ky">
                 <div class="icon text-center SB_bn">
@@ -50,7 +50,7 @@
               </a>
             </div>
           </div>
-          <div style="padding: 0 10px;" class="col-md-5  align-self-stretch ftco-animate">
+          <div class="col-md-5  align-self-stretch ftco-animate" style="padding: 0 10px;">
             <div class="d_item v_block bg__" style="background-color: #ffb701">
               <a class="media block-6 services d-block" href="">
                 <div class="icon text-center SB_bn">
@@ -71,7 +71,7 @@
               </a>
             </div>
           </div>
-          <div style="padding-left: 10px!important;" class="col-md-3  align-self-stretch ftco-animate">
+          <div class="col-md-3  align-self-stretch ftco-animate" style="padding-left: 10px!important;">
             <div class="d_item v_block">
               <div class="media block-6 services d-block">
                 <div class="icon text-center SB_bn">
@@ -118,35 +118,61 @@
         </div>
       </section>
     </div>
-    <!-- tại sao chọn netbee -->
-    <section class="ftco-section ftco-counter card">
+    <!--section Tại sao chon netbee-->
+    <section class="ftco-section services-section bg-netbee card why" style="background: #fff; text-align:center">
       <div class="container">
-        <h2 class="text-center NB_benefit">Tại sao nên chọn NetBee</h2>
-        <div class="benefit-item">
-          <div class="row">
-            <div class="col-md-3 col-6 text-center">
-              <div class="benefit-item-icon">
-                <img src="../static/assets/img/mang-luoi.png" alt="">
-                <h3>Mạng lưới rộng lớn</h3>
-              </div>
+        <h2 class="text-center NB_benefit" style="text-transform:uppercase">Tại sao nên chọn NetBee</h2>
+        <p style="text-align:center">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
+        <div class="row " style="padding-left:14px!important;">
+          <div class="col-md-3  align-self-stretch ftco-animate " style="padding-left:0!important; padding-right:10px!important">
+            <div class="d_item v_block" style="">
+              <a class="media block-6 services d-block" href="">
+                <div class="icon text-center SB_bn">
+                  <img src="../static/assets/img/mang-luoi.png" alt="">
+                </div>
+                <div class="media-body benefit-item-icon">
+                  <h3 class="heading text-center" style="padding-top:10px">Mạng lưới rộng lớn</h3>
+                  <p style="padding: 5px 15px 20px 15px; color:black">Với hơn 1000 học viên đã sang Đức, 1.200 học viên học viên đã sang Hàn Quốc, 600 học viên đã sang Nhật Bản.</p>
+                </div>
+              </a>
             </div>
-            <div class="col-md-3 col-6 text-center">
-              <div class="benefit-item-icon">
-                <img src="../static/assets/img/CTV.png" alt="">
-                <h3>Hơn 4000</h3>
-                <h3>Cộng tác viên</h3>
-              </div>
+          </div>
+          <div class="col-md-3  align-self-stretch ftco-animate" style="padding: 0 10px">
+            <div class="d_item v_block">
+              <a class="media block-6 services d-block" href="">
+                <div class="icon text-center SB_bn">
+                  <img src="../static/assets/img/CTV.png" alt="">
+                </div>
+                <div class="media-body benefit-item-icon">
+                  <h3 class="heading text-center" style="padding-top:10px">Hơn 4000 cộng tác viên</h3>
+                  <p style="padding: 5px 15px 20px 15px; color:black">Với hơn 1000 học viên đã sang Đức, 1.200 học viên học viên đã sang Hàn Quốc, 600 học viên đã sang Nhật Bản.</p>
+                </div>
+              </a>
             </div>
-            <div class="col-md-3 col-6 text-center">
-              <div class="benefit-item-icon ">
-                <img src="../static/assets/img/ho-so.png" alt="">
-                <h3>Hơn 3000 hồ sơ</h3>
-              </div>
+          </div>
+          <div class="col-md-3  align-self-stretch ftco-animate" style="padding: 0 10px;">
+            <div class="d_item v_block bg__">
+              <a class="media block-6 services d-block" href="">
+                <div class="icon text-center SB_bn">
+                  <img src="../static/assets/img/ho-so.png" alt="">
+                </div>
+                <div class="media-body benefit-item-icon">
+                  <h3 class="text-center" style="padding-top:10px">Hơn 3000 hồ sơ</h3>
+                  <p style="padding: 5px 15px 20px 15px; color:black">Với hơn 1000 học viên đã sang Đức, 1.200 học viên học viên đã sang Hàn Quốc, 600 học viên đã sang Nhật Bản.</p>
+                </div>
+              </a>
             </div>
-            <div class="col-md-3 col-6 text-center">
-              <div class="benefit-item-icon">
-                <img src="../static/assets/img/doi-tac.png" alt="">
-                <h3>Hơn 500 đối tác</h3>
+          </div>
+          <div class="col-md-3  align-self-stretch ftco-animate" style="padding-left: 10px!important;">
+            <div class="d_item v_block">
+              <div class="media block-6 services d-block">
+                <div class="icon text-center SB_bn">
+                  <img src="../static/assets/img/doi-tac.png" alt="">
+                </div>
+                <div class="media-body benefit-item-icon">
+                  <h3 class="mb-0 text-center" style="padding-top:10px">Hơn 500 đối tác</h3>
+                  <p style="padding: 5px 15px 20px 15px; color:black">Với hơn 1000 học viên đã sang Đức, 1.200 học viên học viên đã sang Hàn Quốc, 600 học viên đã sang Nhật Bản.</p>
+                </div>
               </div>
             </div>
           </div>
@@ -239,7 +265,7 @@
               </div>
               <div class="card-content collapse show news">
                 <div class="card-body">
-                  <NewsList :DataList="arrayNew"></NewsList>
+                  <NewsList :DataList="tintuc"></NewsList>
                 </div>
               </div>
             </div>
@@ -259,6 +285,15 @@
       JobsList2Col,
       NewsList,
       JobsList1Col
+    },
+    asyncData ({ $axios, error }) {
+      return $axios.$get('getTinTucNew?limit=4')
+        .then((res) => {
+          return { tintuc: res.data.tintuc, }
+        })
+        .catch((e) => {
+          error({ statusCode: 404, message: 'Post not found' })
+        })
     },
     data () {
       return {
@@ -281,9 +316,6 @@
         ]
       }
     },
-    mounted() {
-      console.log(this.$auth);
-    }
   }
 </script>
 <style scoped>
@@ -352,7 +384,19 @@
     font-size: 16px;
   }
   .d_item.v_block:hover {
-    background: #ffb701 !important;
+    background: #ffb701;
     cursor: pointer;
+  }
+  .why .d_item.v_block:hover{
+    background-color: white!important ;
+    color:black!important;
+  }
+  .why .d_item.v_block p:hover{
+    color:black!important;
+  }
+  .why .d_item.v_block{
+    height:auto; 
+    text-align:center;
+    box-shadow: 0 1px 2px #887e7e !important;
   }
 </style>
