@@ -53,18 +53,38 @@
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5 formlogin">
-                    <h2 class="text-center" style="margin-bottom:15px">ĐĂNG NHẬP</h2>
-                    <p class="text-center" style="margin-bottom:25px; font-size: 14px; "><a class="hover" style="color:black!important" href="">Đăng ký tài khoản mới!</a>
+                    <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP</h2>
+                    <p class="text-center" style="margin-bottom:25px; font-size: 16px; "><a class="hover" href="dang-ky">Đăng ký tài khoản mới!</a>
                     </p>
-                    <div class="form-group-1">
-                        <div class="__email">
-                            <span class="fa fa-user-circle" style="top:23%!important; z-index:2; left:22px;"></span>
-                            <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" v-model="userForm.email" />
-                        </div>
+                    <div class="form-group-1 input-login">
+                        <ValidationObserver>
+                            <ValidationProvider name="Email" ref="email" rules="required|email|max:20" v-slot="{ errors }">
+                                <div class="__email">
+                                    <span class="fa fa-user-circle" style="top:26%!important; z-index:2; left:22px;"></span>
+                                    <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" v-model="userForm.email" />
+                                    <ul style="color:red" class="overline text-left">
+                                        <li v-for="(error, index) in errors" :key="index">
+                                        <span>{{ error }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </ValidationProvider>
                         <div style="position: relative">
+                            <ValidationProvider
+                                name="Mật khẩu"
+                                ref="password"
+                                rules="required|customPassword|min:8"
+                                v-slot="{ errors }"
+                            >
                             <div class="__email">
                                 <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
-                                <input style="margin-bottom:15px!important" type="password" name="password" id="password" placeholder="Mật khẩu" class="border-radius input" v-model="userForm.password" />
+                                <input style="margin-bottom:15px!important" type="password" name="password" 
+                                id="password" placeholder="Mật khẩu" class="border-radius input" v-model="userForm.password" />
+                                <ul style="color:red" class="overline text-left">
+                                    <li v-for="(error, index) in errors" :key="index">
+                                    <span style="top: 19%!important;left: 0px;">{{ error }}</span>
+                                    </li>
+                                </ul>
                                 <div style="text-align:right">
                                     <i onclick="passwordF()" class="showpass">
                                         <i class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
@@ -72,6 +92,7 @@
                                     <a href="" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
                                 </div>
                             </div>
+                            </ValidationProvider>
                             <div class="form-submit" style="padding-top:10px">
                                 <button @click="login()" id="submit" class="submit">ĐĂNG NHẬP</button>
                             </div>
@@ -84,6 +105,7 @@
                                 <a href="redirect/google" class="btn btn-outline-info gg">Đăng nhập bằng Google</a>
                             </div>
                         </div>
+                        </ValidationObserver>
                     </div>
                 </div>
             </div>
@@ -91,9 +113,25 @@
     </div>
 </template>
 <script>
+import {
+  ValidationProvider,
+  extend
+} from "vee-validate/dist/vee-validate.full";
+import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+
+extend("required", {
+  message: (field, values) => `${field}` + " không được để trống.",
+});
+extend("email", {
+  message: (field, values) => "Email không đúng định dạng"
+});
 export default {
     middleware: 'guest',
     layout: 'no_banner',
+    components: {
+    ValidationProvider,
+    ValidationObserver
+  },
     data() {
         return {
             userForm: {
@@ -105,16 +143,19 @@ export default {
     methods: {
 
             async login() {
-            try {
-                let response = await this.$auth.loginWith('local',{ data: this.userForm });
-                // window.location.href = '/';
-            } catch (err) {
-                 this.$swal(
-                        'Lỗi!',
-                        'Tài khoản hoặc mật khẩu không đúng!',
-                        'error'
-                    )
-            }
+                const isValid = await this.$refs.observer.validate();
+                if(isValid){
+                    try {
+                    let response = await this.$auth.loginWith('local',{ data: this.userForm });
+                    // window.location.href = '/';
+                } catch (err) {
+                    this.$swal(
+                            'Lỗi!',
+                            'Tài khoản hoặc mật khẩu không đúng!',
+                            'error'
+                        )
+                    }
+                }
             }
     }
 }
@@ -337,5 +378,22 @@ ul li:not(.init) {
     top: 7px;
     right: 12px;
     color: #000;
+}
+.formlogin p a:hover{
+    color:#ffb701!important;
+}
+.input-login ul{
+        list-style: none;
+        padding-left: 5px;
+        padding-top: 5px;
+    }
+.input-login ul li{
+    height: 0!important;
+}
+.input-login ul li span{
+    color:red!important;
+    font-size: 16px!important;
+    top: 33%!important;
+    padding-top: 10px;
 }
 </style>
