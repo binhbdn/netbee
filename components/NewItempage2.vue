@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-5" :style="type != 1 ? 'height: 117px' : ''">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
-                <img src="/app-assets/images/pages/card-img-overlay.jpg"  width="100%" >
+                <img :src="`~/static/uploads/news/${thuml}`"  width="100%" >
             </a>
         </div>
         <div class="col-7">

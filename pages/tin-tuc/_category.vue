@@ -1,60 +1,31 @@
 <template>
     <div>
-        <section class="bg-white category p-1 m-b-15">
+        <section class="ftco-section bg-white category" style="">
             <div class="container">
                 <div class="row d-flex bg-white ">
                     <div class="col-md-6 pd-20">
-                        <a href="/"><i class="fa fa-home pr-2"></i>Trang chủ</a>
-                        <a href="/tin-tuc"><i class="fa fa-caret-right pr-2 pl-2"></i>Tin tức</a>
+                        <a href="#"><i class="fa fa-home pr-2"></i>Trang chủ</a>
+                        <a href="#"><i class="fa fa-caret-right pr-2 pl-2"></i>Tin tức</a>
+                        
                     </div>
                 </div>
             </div>
         </section>
-        <section class="bg-white" style="background-color: #f6f6f6!important;">
+        <section class="ftco-section bg-white" style="background-color: #f6f6f6!important; padding-top: 15px;">
             <div class="container">
                 <div class="row">
                     <div class="col-8">
-                        <div class="card" v-if="tintucNew.length > 0">
+                        <div class="card">
                             <div class="card-header">
-                                <h4><i class="fas fa-newspaper"></i> Tin mới</h4>
-                                <a href="/tin-tuc/tin-moi"><i class="fad fa-plus"></i> Xem thêm</a>
+                                <h4><i class="fas fa-newspaper"></i> TIN MỚI</h4>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <NewListPage1 :DataList="tintucNew"></NewListPage1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card" v-if="tintucCamNang.length > 0">
-                            <div class="card-header">
-                                <h4><i class="fas fa-newspaper"></i> Cẩm nang</h4>
-                                <a href="/tin-tuc/cam-nang"><i class="fad fa-plus"></i> Xem thêm</a>
-                            </div>
-                            <div class="card-content collapse show">
-                                <div class="card-body">
-                                    <NewListPage2 :DataList="tintucCamNang"></NewListPage2>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card" v-if="tintucDuHoc.length > 0">
-                            <div class="card-header">
-                                <h4><i class="fas fa-newspaper"></i> Du học</h4>
-                                <a href="/tin-tuc/du-hoc"><i class="fad fa-plus"></i> Xem thêm</a>
-                            </div>
-                            <div class="card-content collapse show">
-                                <div class="card-body">
-                                    <NewListPage1 :DataList="tintucDuHoc"></NewListPage1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card" v-if="tintucXKLD.length > 0">
-                            <div class="card-header">
-                                <h4><i class="fas fa-newspaper"></i> Xuất khẩu lao động</h4>
-                                <a href="/tin-tuc/xuat-khau-lao-dong"><i class="fad fa-plus"></i> Xem thêm</a>
-                            </div>
-                            <div class="card-content collapse show">
-                                <div class="card-body">
-                                    <NewListPage2 :DataList="tintucXKLD"></NewListPage2>
+                                    <div class="row">
+                                        <div class="col-12 make-it-slow py-1" v-for="(item, index) in arrayNew" :key="index">
+                                            <NewItempage2 :id="item.id" :title="item.title" :content="item.content" :time="item.time" :type="1"></NewItempage2>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +53,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"><i class="fad fa-bullhorn"></i> Gợi ý việc làm  </h4>
+                                <h4 class="card-title"><i class="fad fa-bullhorn"></i> Gọi ý việc làm  </h4>
                                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
@@ -103,22 +74,19 @@
     </div>
 </template>
 <script>
-import NewListPage1 from '../../components/News/NewListPage1';
-import NewListPage2 from '../../components/News/NewListPage2';
+import NewListPage1 from '~/components/News/NewListPage1';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
+import NewItempage2 from '~/components/NewItempage2';
 
 export default {
     components:{
         NewListPage1,
-        NewListPage2,
-        JobsList1ColNotCate
+        JobsList1ColNotCate,
+        NewItempage2
     },
     data() {
         return {
-            tintucNew: [],
-            tintucCamNang: [],
-            tintucDuHoc: [],
-            tintucXKLD: [],
+            arrayNew: [],
             getDanhMucTinTuc: [],
             arrayJob: [
                 {id: 1, title: 'chào cả nhà1'},
@@ -132,23 +100,38 @@ export default {
             ],
         }
     },
-    methods: {
+     methods: {
         async fetch () {
-            let getTinTucNew = await this.$axios.$get('getTinTucNew?limit=5')
-            let tintucCamNang = await this.$axios.$get('getTinTucCate?category=1&limit=5')
-            let tintucDuHoc = await this.$axios.$get('getTinTucCate?category=2&limit=5')
-            let tintucXKLD = await this.$axios.$get('getTinTucCate?category=3&limit=5')
+            console.log(this.$route.params.category)
+            switch (this.$route.params.category) {
+                case "tin-moi":
+                    let arrayNew = await this.$axios.$get('getTinTucNew?limit=5');
+                    this.arrayNew = arrayNew.data.tintuc;
+                    break;
+                case "cam-nang":
+                    let arrayCamNang = await this.$axios.$get('getTinTucCate?category=1&limit=5');
+                    this.arrayNew = arrayCamNang.data.tintuc;
+                    break;
+                case "du-hoc":
+                    let arrayDuHoc = await this.$axios.$get('getTinTucCate?category=2&limit=5');
+                    this.arrayNew = arrayDuHoc.data.tintuc;
+                    break;
+                case "xuat-khau-lao-dong":
+                    let arrayXKLD = await this.$axios.$get('getTinTucCate?category=3&limit=5');
+                    this.arrayNew = arrayXKLD.data.tintuc;
+                    break;
+                default:
+                    let arrayNew1 = await this.$axios.$get('getTinTucNew?limit=5');
+                    this.arrayNew = arrayNew1.data.tintuc;
+                    break;
+            }
             let getDanhMucTinTuc = await this.$axios.$get('getDanhMucTinTuc')
-            this.tintucNew = getTinTucNew.data.tintuc,
-            this.tintucCamNang = tintucCamNang.data.tintuc,
-            this.tintucDuHoc = tintucDuHoc.data.tintuc,
-            this.tintucXKLD = tintucXKLD.data.tintuc,
             this.getDanhMucTinTuc = getDanhMucTinTuc.data
         },
     },
     mounted() {
         this.fetch();
-    }
+    }  
 }
 </script>
 <style>

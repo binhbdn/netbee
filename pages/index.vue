@@ -2,7 +2,7 @@
 
   <div>
     <!--section login-->
-    <section class="ftco-section services-section bg-netbee card" style="background: #fff">
+    <section class="ftco-section services-section bg-netbee card" style="background: #fff" v-if="!$auth.loggedIn">
       <div class="container">
         <div class="row " style="padding-left:14px!important;">
           <div class="col-md-2  align-self-stretch ftco-animate" style="padding-left:0!important;">
@@ -262,6 +262,7 @@
             <div class="card">
               <div class="card-header">
                 <h4><i class="fas fa-newspaper"></i> TIN TỨC</h4>
+                <a href="/tin-tuc"><i class="fad fa-plus"></i> Xem thêm</a>
               </div>
               <div class="card-content collapse show news">
                 <div class="card-body">
