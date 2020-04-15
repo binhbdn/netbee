@@ -19,14 +19,14 @@
                 <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
                     <ValidationObserver ref="observer" v-slot="{ valid }">
                      <ValidationProvider
-                        name="Họ và tên"
+                        name="name"
                         ref="name"
-                        rules="required|alpha|max:20"
+                        rules="required"
                         v-slot="{ errors }"
                     >   
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Họ & Tên</label>
-                        <input type="text" class="form-control" name="name" v-model="name">
+                        <input type="text" class="form-control" name="name" v-model="userForm.name">
                         <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
@@ -35,14 +35,14 @@
                     </div>
                     </ValidationProvider>
                     <ValidationProvider
-                        name="Email"
+                        name="email"
                         ref="email"
-                        rules="required|email|max:20"
+                        rules="required|email"
                         v-slot="{ errors }"
                     >
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Email</label>
-                        <input type="email" class="form-control" name="email" v-model="email">
+                        <input type="email" class="form-control" name="email" v-model="userForm.email">
                         <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
@@ -53,12 +53,12 @@
                     <ValidationProvider
                         rules="required|integer"
                         ref="phone"
-                        name="Số điện thoại"
+                        name="phone"
                         v-slot="{ errors }"
                     >
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Số điện thoại</label>
-                            <input type="text" class="form-control" name="phone" v-model="phone">
+                            <input type="text" class="form-control" name="phone" v-model="userForm.phone">
                             <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
@@ -67,14 +67,14 @@
                         </div>
                     </ValidationProvider>
                     <ValidationProvider
-                        name="Mật khẩu"
+                        name="password"
                         ref="password"
                         rules="required|customPassword|min:8"
                         v-slot="{ errors }"
                     >
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Mật khẩu</label>
-                            <input type="password" class="form-control" name="password" v-model="password">
+                            <input type="password" class="form-control" name="password" v-model="userForm.password">
                             <ul style="color:red" class="overline text-left">
                                 <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
@@ -83,14 +83,14 @@
                         </div>
                     </ValidationProvider>
                     <ValidationProvider
-                        name="Nhập lại mật khẩu"
+                        name="password_confirmation"
                         ref="password_confirmation"
-                        rules="required|"
+                        rules="required|password_confirmation:@password"
                         v-slot="{ errors }"
                     >
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
-                            <input type="password" class="form-control" name="password_confirmation" v-model="password_confirmation" data-vv-as="password">
+                            <input type="password" class="form-control" name="password_confirmation" v-model="userForm.password_confirmation" data-vv-as="password">
                             <ul style="color:red" class="overline text-left">
                                 <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
@@ -104,7 +104,7 @@
                         ref="agree-term"
                     >
                         <div class="form-check" style="margin-bottom:0px;">
-                            <input disabled type="checkbox"  name="agree-term" id="agree-term" class="agree-term" v-model="checkbox"/>
+                            <input disabled type="checkbox" checked  name="agree-term" id="agree-term" class="agree-term" v-model="userForm.checkbox"/>
                             <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với các  <a href="" class="term-service text-dark">điều khoản</a></label>
                         </div>
                     </ValidationProvider>
@@ -126,7 +126,7 @@ import {
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 // can customize default error messages
 extend("required", {
-  message: (field, values) => `${field}` + " không được để trống.",
+  message: (field, values) => "Dữ liệu nhập vào không được để trống.",
 });
 extend("email", {
   message: (field, values) => "Email không đúng định dạng"
@@ -140,16 +140,23 @@ extend("min", {
 extend("alpha", {
   message: (field, values) => "Dữ liệu nhập vào phải là chữ."
 });
+extend('password_confirmation', {
+  params: ['target'],
+  validate(value,{target}) {
+    return value === target;
+  },
+  message: 'Mật khẩu nhập vào không khớp'
+})
 
 // create custom error message for custom rule
 var errorMessage =
   " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
 // create custom rule
 extend("customPassword", {
-  message: field =>`${field}` + errorMessage,
+  message: field =>"Mật khẩu" + errorMessage,
   validate: value => {
     var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#!@$%^*-]).{8,}$/;
+    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
     if (containsRequiredChars && !containsForbiddenChars) {
@@ -160,7 +167,7 @@ extend("customPassword", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       } else {
         errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
       }
       return false;
     }
@@ -175,12 +182,15 @@ export default {
   },
   data() {
     return {
-      name: "",
-      email: "",
-      phone: "",
-      password: "",
-      password_confirmation: "",
-      checkbox: true
+     userForm: {
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        password_confirmation: "",
+        checkbox: true,
+        role: 3
+     }
     };
   },
   computed: {},
@@ -189,11 +199,40 @@ export default {
     async signIn() {
       const isValid = await this.$refs.observer.validate();
       if (isValid) {
-        console.log("is valid");
-        console.log(this.name + " signed in with password " + this.password);
-        // reset fields
-        this.name = "";
-        this.password = "";
+        try {
+          let response = await this.$axios.post('register', {
+            email: this.userForm.email,
+            password: this.userForm.password,
+            name: this.userForm.name,
+            phone: this.userForm.phone,
+            role: this.userForm.role
+          });
+          if(response.data.status == 200){
+            this.$swal({
+              titile: 'Thành công',
+              text: response.data.message,
+              icon: 'success',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'OK',
+            }).then( async (result) => {
+              if (result.value) {
+                  await this.$auth.login({ data: {email : this.userForm.email, password: this.userForm.password} });
+                  window.location.href = '/admin';
+                }
+              })
+          }
+          else{
+            this.$swal(
+              'Lỗi!',
+              response.data.message,
+              'error'
+            )
+          }
+        } catch (error) {
+          'Lỗi',
+          'Đăng nhập thất bại',
+          'Error'
+        }
         // reset validation
         // You should call it on the next frame
         requestAnimationFrame(() => {

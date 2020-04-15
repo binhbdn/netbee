@@ -120,19 +120,19 @@ import {
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 
 extend("required", {
-  message: (field, values) => `${field}` + " không được để trống.",
+  message: (field, values) => "Dữ liệu nhập vào không được để trống.",
 });
 extend("email", {
   message: (field, values) => "Email không đúng định dạng"
 });
 var errorMessage =
-  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
 // create custom rule
 extend("customPassword", {
-  message: field =>`${field}` + errorMessage,
+  message: field =>"Mật khẩu" + errorMessage,
   validate: value => {
     var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#!@$%^*-]).{8,}$/;
+    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
     if (containsRequiredChars && !containsForbiddenChars) {
@@ -143,7 +143,7 @@ extend("customPassword", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       } else {
         errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
       }
       return false;
     }
