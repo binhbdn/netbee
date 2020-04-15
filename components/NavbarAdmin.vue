@@ -7,8 +7,8 @@
                           <img src="https://netbee.vn/site/assets/images/logo.png" alt="Smiley face" height="45" width="auto">
                         </div>
                         <h2 class="brand-text mb-0">NetBee</h2>
-                    </a></li>
-                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i></a></li>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="shadow-bottom"></div>
@@ -26,7 +26,7 @@
                 </li>
                 <li class=" nav-item"><a href="app-calender.html"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">Calender</span></a>
                 </li>-->
-                <li class=" nav-item"><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
+                <li :class="[{'active' : this.$route.name == 'admin-news' || 'admin-news-create'}, 'nav-item']"><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
                     <ul class="menu-content">
                         <li><a href="/admin/news"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách bài viết</span></a>
                         </li>
