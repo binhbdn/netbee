@@ -45,10 +45,10 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="(item, index) in arrayNew" :key="index">
+                                                <tr v-for="(item, index) in tinTuc" :key="index">
                                                     <td>{{item.id}}</td>
                                                     <td>{{item.title}}</td>
-                                                    <td>{{item.time}}</td>
+                                                    <td>{{item.created_at}}</td>
                                                     <td style="white-space: nowrap;">
 
                                                         <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
@@ -106,29 +106,28 @@ export default {
     },
     data() {
         return {
-            arrayNew: [
-                {id: 1, title: 'Tư vấn các thủ tục cần thiết để đi Xuất khẩu lao động Nhật Bản aaaaaaa bdhfka fdbaik fdabjkfd afhbiuia fdaikbd ahfja vahfbda vha', time: '09/04/2020', status: 1},
-                {id: 2, title: 'Title tin tức 2', time: '09/04/2020', status: 0},
-                {id: 3, title: 'Title tin tức 3', time: '09/04/2020', status: 1},
-                {id: 5, title: 'Title tin tức 4', time: '09/04/2020', status: 1},
-                {id: 6, title: 'Title tin tức 5', time: '09/04/2020', status: 0},
-                {id: 7, title: 'Title tin tức 6', time: '09/04/2020', status: 1},
-                {id: 8, title: 'Title tin tức 7', time: '09/04/2020', status: 1},
-                {id: 9, title: 'Title tin tức 8', time: '09/04/2020', status: 0},
-                {id: 10, title: 'Title tin tức 9', time: '09/04/2020', status: 1},
-                {id: 11, title: 'Title tin tức 10', time: '09/04/2020', status: 1},
-                {id: 12, title: 'Title tin tức 11', time: '09/04/2020', status: 0},
-                {id: 13, title: 'Title tin tức 12', time: '09/04/2020', status: 0},
-                {id: 14, title: 'Title tin tức 13', time: '09/04/2020', status: 1},
-                {id: 15, title: 'Title tin tức 14', time: '09/04/2020', status: 1},
-                {id: 16, title: 'Title tin tức 15', time: '09/04/2020', status: 1},
-            ]
+            tinTuc: [],
         }
-    }
+    },
+    created() {
+        this.fetch();
+    },
+    methods: {
+        fetch() {
+            this.$axios.$get('tintuc/getTinTuc').then((response)=>{
+	             this.tinTuc=response.data;
+	            });
+
+        }
+    },
+    
 }
 </script>
 <style scoped>
 .pagination .page-item.active .page-link{
     background-color: #ffb701 !important;
+}
+.btn {
+    padding: 7px!important;
 }
 </style>
