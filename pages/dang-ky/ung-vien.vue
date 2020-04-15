@@ -21,7 +21,7 @@
                      <ValidationProvider
                         name="Họ và tên"
                         ref="name"
-                        rules="required|alpha|max:20"
+                        rules="required|max:20"
                         v-slot="{ errors }"
                     >   
                     <div class="form-group">
@@ -37,7 +37,7 @@
                     <ValidationProvider
                         name="Email"
                         ref="email"
-                        rules="required|email|max:20"
+                        rules="required|email"
                         v-slot="{ errors }"
                     >
                     <div class="form-group">
@@ -67,7 +67,7 @@
                         </div>
                     </ValidationProvider>
                     <ValidationProvider
-                        name="Mật khẩu"
+                        name="password"
                         ref="password"
                         rules="required|customPassword|min:8"
                         v-slot="{ errors }"
@@ -83,14 +83,14 @@
                         </div>
                     </ValidationProvider>
                     <ValidationProvider
-                        name="Nhập lại mật khẩu"
-                        ref="password_confirmation"
-                        rules="required|"
+                        ref="confirm"
+                        name="confirm"
+                        rules="required|confirm:@password"
                         v-slot="{ errors }"
                     >
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
-                            <input type="password" class="form-control" name="password_confirmation" v-model="userForm.password_confirmation" data-vv-as="password">
+                            <input type="password" class="form-control"  data-vv-rules="confirmed:password" v-model="userForm.password_confirmation" data-vv-as="password">
                             <ul style="color:red" class="overline text-left">
                                 <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
@@ -126,7 +126,7 @@ import {
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 // can customize default error messages
 extend("required", {
-  message: (field, values) => `${field}` + " không được để trống.",
+  message: (field, values) => "Dữ liệu nhập vào không được để trống.",
 });
 extend("email", {
   message: (field, values) => "Email không đúng định dạng"
@@ -140,16 +140,24 @@ extend("min", {
 extend("alpha", {
   message: (field, values) => "Dữ liệu nhập vào phải là chữ."
 });
+extend('confirm', {
+  params: ['target'],
+  validate(value, { target }) {
+    return value === target;
+  },
+  message: 'Mật khẩu nhập lại không khớp'
+});
 
 // create custom error message for custom rule
 var errorMessage =
-  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường và 1 số";
 // create custom rule
 extend("customPassword", {
-  message: field =>`${field}` + errorMessage,
+  // message: field =>`${field}` + errorMessage,
+  message: field =>"Mật khẩu" + errorMessage,
   validate: value => {
     var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#!@$%^*-]).{8,}$/;
+    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
     if (containsRequiredChars && !containsForbiddenChars) {
@@ -160,7 +168,7 @@ extend("customPassword", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       } else {
         errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường và 1 số";
       }
       return false;
     }
@@ -181,7 +189,8 @@ export default {
         phone: "",
         password: "",
         password_confirmation: "",
-        checkbox: true
+        checkbox: true,
+        role: 1
       }
     };
   },
@@ -197,6 +206,7 @@ export default {
               password: this.userForm.password,
               name: this.userForm.name,
               phone: this.userForm.phone,
+              role: this.userForm.role
              });
             if(response.data.status == 200) {
               this.$swal({
