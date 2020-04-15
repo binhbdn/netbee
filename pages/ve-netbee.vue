@@ -2,7 +2,7 @@
   <section class="section is-medium">
     <div class="container has-text-centered" style="height: 500px;margin-left: -14px;">
       <div class="one-half imgg">
-        <img src="/app-assets/images/logo/about.jpg" height="500" width="670" />
+        <img src="/app-assets/images/logo/about.jpg" height="430" width="670" />
       </div>
       <div class="one-half ftco-animate fadeInUp ftco-animated" style="margin-left: 750px;">
         <div class="heading-section ftco-animate fadeInUp ftco-animated">
@@ -24,14 +24,16 @@
   </section>
 </template>
 <style>
-.one-half.imgg {
-  float: left;
-}
 .container-fluid {
   padding-left: 0px !important;
 }
 .hero-wrap.js-fullheight.mb-2 {
   padding-top: 20px;
+}
+.one-half.imgg {
+    float: left;
+    margin-left: 37px;
+    margin-top: 28px;
 }
 </style>
 
