@@ -7,56 +7,20 @@
                         <div class="register_form">
                             <div><h2 class="text">Đăng ký tư vấn</h2></div>
                             <p>Hãy để lại thông tin để nhận tư vấn từ netbee.</p>
-                            <form id="app" @submit.prevent="submit" action="" method="post" novalidate="true">
-                               
+                            <form action="" method="">
                                 <div class="row">
                                     <div class="form-group col-sm-6">
-                                        <input  id="name"
-                                         v-model.trim="$v.name.$model"
-                                         :class="{ 'form-group--error': $v.name.$error,'form-group--error': $v.name.$invalid }"
-                                         type="text"                                        
-                                         placeholder="Nhập họ và tên" 
-                                         class="form-control" 
-                                         name="name" required>
-                                          <div class="aaa">
-                                             <span v-if="!$v.name.required")></span>
-                                              <span v-if="!$v.name.minLength")> chiều dài không thỏa mãn </span>
-                                         </div>
+                                        <input type="text" placeholder="Nhập họ và tên" class="form-control" name="name" required>
                                     </div>
-
                                     <div class="form-group col-sm-6">
-                                        <input
-                                        id="phone"
-                                         v-model.number.lazy="$v.phone.$model"
-                                        :class="{ 'form-group--error': $v.phone.$error }"
-                                         type="text"                                        
-                                         placeholder="Nhập số điện thoại"  
-                                         class="form-control"
-                                          name="phone" required >
-                                           <div class="aaa">
-                                             <span v-if="!$v.phone.required")></span>
-                                             <span v-if="!$v.phone.minLength")> chiều dài quá ngắn </span>
-                                             <span v-if="!$v.phone.maxLength")> chiều dài không thỏa mãn </span>
-                                         </div>
-                                        
+                                        <input type="text" placeholder="Nhập số điện thoại" class="form-control" name="phone" required>
                                     </div>
-                                      <div class="form-group col-sm-12">
-                                        <input   id="email"
-                                         v-model.trim="$v.email.$model"
-                                         :class="{ 'form-group--error': $v.email.$error,'form-group--error': $v.email.$invalid }"
-                                         type="email"                                        
-                                         placeholder="Nhập địa chỉ email" 
-                                         class="form-control"                                       
-                                         name="email" required>
-                                          <div class="aaa">
-                                             <span v-if="!$v.email.required")></span>
-                                              <span v-if="!$v.email.isUnique")> Email không hợp lệ </span>
-                                         </div>
-                                    </div>                                  
-                                     
+                                    <div class="form-group col-sm-12">
+                                        <input type="email" placeholder="Nhập địa chỉ email" class="form-control" name="email" required>
+                                    </div>
                                     <div class="col-sm-12 text-center form-group">
-                                        <button type="submit" class="btn btn-warning text-dark w-100">
-                                            <i class="far fa-paper-plane"></i> Gửi {{submitStatus}}
+                                        <button class="btn btn-warning text-dark w-100">
+                                            <i class="far fa-paper-plane"></i> Gửi
                                         </button>
                                     </div>
                                 </div>
@@ -72,63 +36,10 @@
     </div>
 </template>
 <script>
-import Vue from 'vue'
-import Vuelidate from 'vuelidate'
-Vue.use(Vuelidate)
-import { required, minLength,maxLength,between} from 'vuelidate/lib/validators'
-
 export default {
-    name: '',
-    data() {
-    return {
-      name: '',
-      phone: '',
-      email:'',
-      submitStatus: null
-    }
-  },
-  validations: {
-    name: {
-      required,
-      minLength: minLength(4)
-    },
-     phone: {
-      required,
-      minLength: minLength(9),
-      maxLength: minLength(11),
-    
-    
-    },
-     email: {
-      required,
-      isUnique(value){
-          if(value==='') return true 
-          var email_regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return new Promise((resolve)=>{
-                setTimeout(() => {
-                    resolve(email_regex.test(value))
-                }, 350 + Math.random() *380);
-            })
-            }
-    }
-
-  },
-   methods: {
-    submit() {
-      this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
-      } else {
-        this.submitStatus = 'PENDING'
-       
-      }
-    }
-  }
-  
+    name: 'News',
 }
-
 </script>
- 
 <style>
 #follow{
     background-image: url("/assets/img/pattern_bg.png");
