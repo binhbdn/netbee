@@ -29,58 +29,45 @@
                             <div class="card-header"></div>
                             <div class="card-body">
                                 <div class="row pb-2">
-                                    <form class="w-100 px-2" enctype="multipart/form-data">
+                                    <form class="w-100 px-2" method="post">
                                         <div class="row">
                                             <div class="col-12">
                                                 <fieldset class="form-group">
                                                     <label for="basicInput">Ảnh tiêu đề</label>
-                                                    <div class="dropbox">
-                                                        <input type="file"  class="input-file">
-                                                        <p>
-                                                            Drag your file(s) here to begin<br> or click to browse
-                                                        </p>
-                                                        <p>
-                                                            Uploading files...
-                                                        </p>
-                                                    </div>
+                                                    <ImgUploader :files="files"></ImgUploader>
                                                 </fieldset>
                                             </div>
                                             <div class="col-12">
                                                 <fieldset class="form-group">
                                                     <label for="basicInput">Tiêu đề</label>
-                                                    <input type="text" class="form-control" id="basicInput" placeholder="Tiêu đề">
+                                                    <input type="text" class="form-control" id="basicInput" placeholder="Tiêu đề" v-model="dataNews.title">
                                                 </fieldset>
                                             </div>
                                             <div class="col-12">
                                                 <fieldset class="form-group">
                                                     <label for="basicInput">Nội dung</label>
-                                                    <vue-editor></vue-editor>
+                                                    <vue-editor  v-model="dataNews.content"></vue-editor>
                                                 </fieldset>
                                             </div>
                                             <div class="col-12">
                                                 <fieldset class="form-group">
                                                     <label for="basicInput">Nội dung mô tả ngắn</label>
-                                                    <textarea rows="3" class="form-control"></textarea>
+                                                    <textarea rows="3" class="form-control" v-model="dataNews.short_content"></textarea>
                                                 </fieldset>
                                             </div>
                                             <div class="col-12">
                                                 <fieldset class="form-group">
-                                                    <label for="basicInput">Từ khóa</label>
-                                                    <input type="text" class="form-control" id="basicInput" placeholder="Từ khóa">
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12">
-                                                <fieldset class="form-group">
-                                                    <label for="basicInput">Từ khóa</label>
-                                                    <select class="form-control select2">
-                                                        <option>Cẩm nang</option>
-                                                        <option>Xuất khẩu lao động</option>
-                                                        <option>Du học</option>
+                                                    <label for="basicInput">Danh mục tin</label>
+                                                    <select class="form-control select2" v-model="dataNews.id_category">
+                                                        <option value="1">Cẩm nang</option>
+                                                        <option value="2">Xuất khẩu lao động</option>
+                                                        <option value="3">Du học</option>
                                                     </select>
                                                 </fieldset>
                                             </div>
                                             <div class="col-12 text-right">
-                                                <button type="submit" class="btn btn-warning">Tạo tin</button>
+                                                <button type="submit" class="btn btn-warning" @click="upload">Tạo tin</button>
+                                                
                                             </div>
                                         </div>
                                     </form>
@@ -95,6 +82,7 @@
 </template>
 <script>
 import Vue from "vue";
+import ImgUploader from '../../../components/ImgUploader';
 
 let VueEditor
 if (process.client) {
@@ -107,74 +95,64 @@ if (process.client) {
 
 export default {
     components: {
-        VueEditor
+        VueEditor,
+        ImgUploader
     },
     name: 'create',
         layout: 'admin',
-    //     data() {
-    //         return {
-    //             uploadedFiles: [],
-    //             uploadError: null,
-    //             currentStatus: null,
-    //             uploadFieldName: 'photos'
-    //         };
-    //     },
-    //     computed: {
-    //   isInitial() {
-    //     return this.currentStatus === STATUS_INITIAL;
-    //   },
-    //   isSaving() {
-    //     return this.currentStatus === STATUS_SAVING;
-    //   },
-    //   isSuccess() {
-    //     return this.currentStatus === STATUS_SUCCESS;
-    //   },
-    //   isFailed() {
-    //     return this.currentStatus === STATUS_FAILED;
-    //   }
-    // },
-    // methods: {
-    //     reset() {
-    //         // reset form to initial state
-    //         this.currentStatus = STATUS_INITIAL;
-    //         this.uploadedFiles = [];
-    //         this.uploadError = null;
-    //     },
-    //     save(formData) {
-    //         debugger
-    //         // upload data to the server
-    //         this.currentStatus = STATUS_SAVING;
+    data() {
+        return{
+            files: [],
+            response: {
+                status: 400,
+                message: ''
+            },
+            dataNews: {
+                thuml: [],
+                title: '',
+                content: '',
+                short_content: '',
+                id_category: 1,
+            }
+        }
+    },
+    methods:{
+        upload(e){
+            e.preventDefault();
+            var form = new FormData();
+            this.dataNews.thuml = this.files[0];
 
-    //         upload(formData)
-    //         .then(x => {
-    //             this.uploadedFiles = [].concat(x);
-    //             this.currentStatus = STATUS_SUCCESS;
-    //         })
-    //         .catch(err => {
-    //             this.uploadError = err.response;
-    //             this.currentStatus = STATUS_FAILED;
-    //         });
-    //     },
-    //     filesChange(fieldName, fileList) {
-    //         // handle file changes
-    //         const formData = new FormData();
-    //         if (!fileList.length) return;
+            form.append('thuml' , this.dataNews.thuml)
+            form.append('title' , this.dataNews.title)
+            form.append('content' , this.dataNews.content)
+            form.append('short_content' , this.dataNews.short_content,)
+            form.append('id_category' , this.dataNews.id_category )
+            
+                
+                  
+            this.$axios.post('tintuc/createTinTuc',form)
+            .then(response => {
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Thành công',
+                        response.data.message,
+                        'success'
+                    )
+                    window.location.href = '/admin/news';
+                }else{
+                    this.$swal(
+                        'Lỗi',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
+        }
 
-    //         // append the files to FormData
-    //         Array
-    //         .from(Array(fileList.length).keys())
-    //         .map(x => {
-    //             formData.append(fieldName, fileList[x], fileList[x].name);
-    //         });
-
-    //         // save it
-    //         this.save(formData);
-    //     }
-    //     },
-    //     mounted() {
-    //         this.reset();
-    //     },
-    
+    },
+    mounted(){
+        
+    }
 }
 </script>
 <style scoped>
