@@ -78,7 +78,7 @@
                             >
                             <div class="__email">
                                 <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
-                                <input style="margin-bottom:15px!important" type="password" name="password" 
+                                <input style="margin-bottom:15px!important" :type="show ? 'password' : 'text'" name="password" 
                                 id="password" placeholder="Mật khẩu" class="border-radius input" v-model="userForm.password" />
                                 <ul style="color:red" class="overline text-left">
                                     <li v-for="(error, index) in errors" :key="index">
@@ -86,8 +86,8 @@
                                     </li>
                                 </ul>
                                 <div style="text-align:right">
-                                    <i onclick="passwordF()" class="showpass">
-                                        <i class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
+                                    <i  class="showpass">
+                                        <i @click="showPassword()" class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
                                     </i>
                                     <a href="/quen-mat-khau" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
                                 </div>
@@ -161,7 +161,8 @@ export default {
             userForm: {
                 email: '',
                 password: ''
-            }
+            },
+            show: true
         }
     },
     methods: {
@@ -179,6 +180,9 @@ export default {
                     )
                 }
             }
+        },
+        showPassword(){
+            this.show = !this.show;
         }
     }
 }

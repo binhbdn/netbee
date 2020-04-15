@@ -71,10 +71,32 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mb-2">
+                    <div class="card" style="width:100%; margin: 0 14px">
+                        <div class="card-header">
+                                <h4 class="card-title"><i class="fa fa-briefcase" style="padding-right:4px;"></i>Bình luận</h4>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-content collapse show">
+                                <div id="fb-root"></div>
+                                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1"></script>
+                                <div class="card-body scrollbar" style="height:300px;">
+                                    <div class="fb-comments" style="height:200px; width:100%" data-width="1076" data-href="https://www.facebook.com/NetBeevn-107178937322342" data-numposts="10"></div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
 </template>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1">
+</script>
 <script>
 import NewListPage1 from '~/components/News/NewListPage1';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
