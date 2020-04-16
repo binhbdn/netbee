@@ -16,7 +16,7 @@
 
             <div class="images-preview" v-show="images.length">
                 <div class="img-wrapper" v-for="(item, index) in images" :key="index">
-                    <img :src="item" width="100%">
+                    <img :src="item" height="200px">
                 </div>
             </div>
         </div>

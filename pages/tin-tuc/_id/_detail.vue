@@ -21,7 +21,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <img src="https://netbee.vn/storage/news/banner/2020-04-09 18:06:301299608613Nhật Bản (1).png" width="100%">
+                                    <img v-lazy="`/uploads/news/${tintuc.thuml}`" width="100%" class="m-b-15" :alt="`${thuml}`">
                                     <p v-html="tintuc.content"></p>
                                     <div class="mb-2">
                                         <span>Từ khóa:</span>
@@ -84,7 +84,7 @@
                             <hr>
                             <div class="card-content collapse show">
                                 <div id="fb-root"></div>
-                                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1"></script>
+                                <script async defer crossorigin="anonymous" v-lazy="`https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1`"></script>
                                 <div class="card-body scrollbar" style="height:300px;">
                                     <div class="fb-comments" style="height:200px; width:100%" data-width="1076" data-href="https://www.facebook.com/NetBeevn-107178937322342" data-numposts="10"></div>
                                 </div>
@@ -95,7 +95,7 @@
         </section>
     </div>
 </template>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1">
+<script async defer crossorigin="anonymous" v-lazy="`https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1`">
 </script>
 <script>
 import NewListPage1 from '~/components/News/NewListPage1';
@@ -112,7 +112,6 @@ export default {
     },
     data() {
         return {
-            tintuc: [],
             arrayNew: [
                 {
                     id: 1,
@@ -136,15 +135,25 @@ export default {
             ],
         }
     },
-    methods: {
-        async fetch () {
-            let res = await this.$axios.$get(`getDetailTinTuc/${this.$route.params.id}`)
-            this.tintuc = res.data
-        },
+    asyncData({$axios, route}) {
+        return $axios.$get(`getDetailTinTuc/${route.params.id}`).then((res) => {
+            return {tintuc: res.data}
+        })
     },
-    mounted() {
-        this.fetch();
-    }
+    head() {
+        return {
+            title: this.tintuc.title,
+            meta: [
+                { hid: 'description', name: 'description', content: this.tintuc.short_content },
+                { hid: 'keywords', name: 'keywords', content: this.tintuc.title.replace(/ /g, ",")},
+                { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
+                { hid: 'og:title', name: 'og:title', content: this.tintuc.title},
+                { hid: 'og:description', name: 'og:description', content: this.tintuc.short_content},
+                { hid: 'og:image', name: 'og:image', content: this.tintuc.thuml},
+            ]
+        }
+
+    },
 }
 </script>
 <style>
@@ -160,5 +169,8 @@ export default {
     overflow: scroll;
     height: 500px;
     overflow-x: hidden;
+}
+p img{
+    width: 100%;
 }
 </style>

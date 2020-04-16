@@ -6,7 +6,7 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">NETBEE</h2>
                         <p style="line-height: 28px">Cộng đồng chuyên viên tuyển sinh lớn nhất</p>
-                        <img src="/assets/img/QR.png" alt="Smiley face" height="200" width="auto">
+                        <img v-lazy="`/assets/img/QR.png`" alt="Smiley face" height="200" width="auto">
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
                             <li class="ftco-animate"><a href="#"><span class="fab fa-twitter"></span></a></li>
                             <li class="ftco-animate"><a href="https://www.facebook.com/NetBeevn-107178937322342/"><span class="fab fa-facebook-f"></span></a></li>

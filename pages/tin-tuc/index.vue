@@ -108,6 +108,16 @@ import NewListPage2 from '../../components/News/NewListPage2';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
 
 export default {
+    head: {
+        title: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học',
+        meta: [
+            { hid: 'description', name: 'description', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học' },
+            { hid: 'keywords', name: 'keywords', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,cẩm nang du học'.replace(/ /g, ",")},
+            { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn/tin-tuc'},
+            { hid: 'og:title', name: 'og:title', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học'},
+            { hid: 'og:description', name: 'og:description', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học'},
+        ]
+    },
     components:{
         NewListPage1,
         NewListPage2,
