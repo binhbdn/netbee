@@ -1,5 +1,5 @@
 <template>
-    <div class="main" style="background-image: url('https://www.netbee.vn/site/assets/images/body-bg.jpg')">
+    <div class="main" style="background-image: url('https://www.netbee.vn/site/assets/images/body-bg.jpg')" >
         <div class="container">
             <div class="row">
                 <div class="col-md-7 hident-mobile">
@@ -52,13 +52,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5 formlogin form-control">
+                <div class="col-md-5 col-lg-5 formlogin form-control" >
                     <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP</h2>
                     <p class="text-center" style="margin-bottom:25px; font-size: 16px; "><a class="hover" href="dang-ky">Đăng ký tài khoản mới!</a>
                     </p>
-                    <div class="form-group-1 input-login">
+                    <div class="form-group-1 input-login" v-on:keyup.enter="login">
                         <ValidationObserver ref="observer" v-slot="{ valid }">
-                            <ValidationProvider name="Email" ref="email" rules="required|email|max:20" v-slot="{ errors }">
+                            <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
                                 <div class="__email">
                                     <span class="fa fa-user-circle" style="top:28%!important; z-index:2; left:17px;"></span>
                                     <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" v-model="userForm.email" />
@@ -73,12 +73,12 @@
                             <ValidationProvider
                                 name="Mật khẩu"
                                 ref="password"
-                                rules="required|customPassword|min:8"
+                                rules="required|customPassword"
                                 v-slot="{ errors }"
                             >
                             <div class="__email">
                                 <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
-                                <input style="margin-bottom:15px!important" :type="show ? 'password' : 'text'" name="password" 
+                                <input style="margin-bottom:15px!important" :keyup= "loginEnter" :type="show ? 'password' : 'text'" name="password" 
                                 id="password" placeholder="Mật khẩu" class="border-radius input" v-model="userForm.password" />
                                 <ul style="color:red" class="overline text-left">
                                     <li v-for="(error, index) in errors" :key="index">
@@ -87,7 +87,7 @@
                                 </ul>
                                 <div style="text-align:right">
                                     <i  class="showpass">
-                                        <i @click="showPassword()" class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
+                                        <i @click="showPassword()" :class="show ?'fa fa-eye':'fas fa-eye-slash'" style="top:7%!important; z-index:2; left:11px;"></i>
                                     </i>
                                     <a href="/quen-mat-khau" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
                                 </div>
@@ -170,8 +170,8 @@ export default {
             const isValid = await this.$refs.observer.validate();
             if(isValid){
             try {
-                let response = await this.$auth.loginWith('local',{ data: this.userForm });
-                window.location.href = '/admin';
+                    let response = await this.$auth.loginWith('local',{ data: this.userForm });
+                    window.location.href = '/admin';
             } catch (err) {
                 this.$swal(
                         'Lỗi!',
@@ -183,7 +183,8 @@ export default {
         },
         showPassword(){
             this.show = !this.show;
-        }
+        },
+        
     }
 }
 </script>
