@@ -112,7 +112,6 @@ export default {
     },
     data() {
         return {
-            tintuc: [],
             arrayNew: [
                 {
                     id: 1,
@@ -136,15 +135,25 @@ export default {
             ],
         }
     },
-    methods: {
-        async fetch () {
-            let res = await this.$axios.$get(`getDetailTinTuc/${this.$route.params.id}`)
-            this.tintuc = res.data
-        },
+    asyncData({$axios, route}) {
+        return $axios.$get(`getDetailTinTuc/${route.params.id}`).then((res) => {
+            return {tintuc: res.data}
+        })
     },
-    mounted() {
-        this.fetch();
-    }
+    head() {
+        return {
+            title: this.tintuc.title,
+            meta: [
+                { hid: 'description', name: 'description', content: this.tintuc.short_content },
+                { hid: 'keywords', name: 'keywords', content: title.replace(/ /g, ",")},
+                { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+route.path},
+                { hid: 'og:title', name: 'og:title', content: this.tintuc.title},
+                { hid: 'og:description', name: 'og:description', content: this.tintuc.short_content},
+                { hid: 'og:image', name: 'og:image', content: this.tintuc.thuml},
+            ]
+        }
+
+    },
 }
 </script>
 <style>

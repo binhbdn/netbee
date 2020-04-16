@@ -131,7 +131,40 @@ export default {
     },
     mounted() {
         this.fetch();
-    }  
+    },
+    asyncData({$axios, route}) {
+        switch (route.params.category) {
+                case "tin-moi":
+                    return {title: 'Tin tức mới về du học,tin tức mới về xuất khẩu lao động,tin tuyển dụng'}
+                    break;
+                case "cam-nang":
+                    return {title: 'Tin tức cẩm nang du học,tin tức mới về xuất khẩu lao động,tin tuyển dụng'}
+                    break;
+                case "du-hoc":
+                    return {title: 'Tin tức du học,tin tức mới về xuất khẩu lao động,tin tuyển dụng'}
+                    break;
+                case "xuat-khau-lao-dong":
+                    return {title: 'Tin tức xuất khẩu lao động về du học,tin tức mới về xuất khẩu lao động,tin tuyển dụng'}
+                    break;
+                default:
+                    return {title: 'Tin tức mới về du học,tin tức mới về xuất khẩu lao động,tin tuyển dụng'}
+                    break;
+            }
+    },
+    head() {
+        const title = this.title
+        return {
+            title: title,
+            meta: [
+                { hid: 'description', name: 'description', content: title },
+                { hid: 'keywords', name: 'keywords', content: title.replace(/ /g, ",")},
+                { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
+                { hid: 'og:title', name: 'og:title', content: title},
+                { hid: 'og:description', name: 'og:description', content: title},
+            ]
+        }
+
+    },
 }
 </script>
 <style>
