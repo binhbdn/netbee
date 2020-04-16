@@ -51,7 +51,7 @@
                       <div class="col-md-9">
                           <div class="card">
                               <div class="card-content">
-                                  <div class="card-body">
+                                  <div class="card-body p-t-15 p-b-15">
                                       <div class="tab-content">
                                           <div role="tabpanel" class="tab-pane active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
                                               <div class="media">
