@@ -128,7 +128,7 @@
             <div class="d_item v_block" style="">
               <a class="media block-6 services d-block" href="">
                 <div class="icon text-center SB_bn">
-                  <img src="../static/assets/img/mang-luoi.png" alt="">
+                  <img v-lazy="`../static/assets/img/mang-luoi.png`" alt="">
                 </div>
                 <div class="media-body benefit-item-icon">
                   <h3 class="heading text-center" style="padding-top:10px">Mạng lưới rộng lớn</h3>
@@ -141,7 +141,7 @@
             <div class="d_item v_block">
               <a class="media block-6 services d-block" href="">
                 <div class="icon text-center SB_bn">
-                  <img src="../static/assets/img/CTV.png" alt="">
+                  <img v-lazy="`../static/assets/img/CTV.png`" alt="">
                 </div>
                 <div class="media-body benefit-item-icon">
                   <h3 class="heading text-center" style="padding-top:10px">Hơn 4000 cộng tác viên</h3>
@@ -154,7 +154,7 @@
             <div class="d_item v_block bg__">
               <a class="media block-6 services d-block" href="">
                 <div class="icon text-center SB_bn">
-                  <img src="../static/assets/img/ho-so.png" alt="">
+                  <img v-lazy="`../static/assets/img/ho-so.png`" alt="">
                 </div>
                 <div class="media-body benefit-item-icon">
                   <h3 class="text-center" style="padding-top:10px">Hơn 3000 hồ sơ</h3>
@@ -167,7 +167,7 @@
             <div class="d_item v_block">
               <div class="media block-6 services d-block">
                 <div class="icon text-center SB_bn">
-                  <img src="../static/assets/img/doi-tac.png" alt="">
+                  <img v-lazy="`../static/assets/img/doi-tac.png`" alt="">
                 </div>
                 <div class="media-body benefit-item-icon">
                   <h3 class="mb-0 text-center" style="padding-top:10px">Hơn 500 đối tác</h3>
