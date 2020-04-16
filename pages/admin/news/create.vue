@@ -7,7 +7,7 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Danh sách tin tức</h2>
+                            <h2 class="content-header-title float-left mb-0">Tạo bài viết mới</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/">Trang chủ</a>
@@ -29,48 +29,58 @@
                             <div class="card-header"></div>
                             <div class="card-body">
                                 <div class="row pb-2">
-                                    <form class="w-100 px-2" method="post">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <fieldset class="form-group">
-                                                    <label for="basicInput">Ảnh tiêu đề</label>
-                                                    <ImgUploader :files="files"></ImgUploader>
-                                                </fieldset>
+                                    <ValidationObserver v-slot="{ invalid }">
+                                        <form class="w-100 px-2" method="post">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <fieldset class="form-group">
+                                                        <label for="basicInput">Ảnh tiêu đề</label>
+                                                        <ImgUploader :files="files"></ImgUploader>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-12">
+                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <fieldset class="form-group">
+                                                            <label for="basicInput">Tiêu đề</label>
+                                                            <input type="text" class="form-control" id="basicInput" placeholder="Tiêu đề" v-model="dataNews.title">
+                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                        </fieldset>
+                                                    </ValidationProvider>
+                                                </div>
+                                                <div class="col-12">
+                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <fieldset class="form-group">
+                                                            <label for="basicInput">Nội dung</label>
+                                                            <vue-editor  v-model="dataNews.content"></vue-editor>
+                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                        </fieldset>
+                                                    </ValidationProvider>
+                                                </div>
+                                                <div class="col-12">
+                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <fieldset class="form-group">
+                                                            <label for="basicInput">Nội dung mô tả ngắn</label>
+                                                            <textarea rows="3" class="form-control" v-model="dataNews.short_content"></textarea>
+                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                        </fieldset>
+                                                    </ValidationProvider>
+                                                </div>
+                                                <div class="col-12">
+                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <fieldset class="form-group">
+                                                            <label for="basicInput">Danh mục tin</label>
+                                                            <multiselect v-model="dataNews.id_category" :options="options" :custom-label="nameWithLang" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Chọn danh mục"></multiselect>
+                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                        </fieldset>
+                                                    </ValidationProvider>
+                                                </div>
+                                                <div class="col-12 text-right">
+                                                    <button type="submit" class="btn btn-warning" :disabled="invalid" @click="upload">Tạo tin</button>
+                                                    
+                                                </div>
                                             </div>
-                                            <div class="col-12">
-                                                <fieldset class="form-group">
-                                                    <label for="basicInput">Tiêu đề</label>
-                                                    <input type="text" class="form-control" id="basicInput" placeholder="Tiêu đề" v-model="dataNews.title">
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12">
-                                                <fieldset class="form-group">
-                                                    <label for="basicInput">Nội dung</label>
-                                                    <vue-editor  v-model="dataNews.content"></vue-editor>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12">
-                                                <fieldset class="form-group">
-                                                    <label for="basicInput">Nội dung mô tả ngắn</label>
-                                                    <textarea rows="3" class="form-control" v-model="dataNews.short_content"></textarea>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12">
-                                                <fieldset class="form-group">
-                                                    <label for="basicInput">Danh mục tin</label>
-                                                    <select class="form-control select2" v-model="dataNews.id_category">
-                                                        <option value="1">Cẩm nang</option>
-                                                        <option value="2">Xuất khẩu lao động</option>
-                                                        <option value="3">Du học</option>
-                                                    </select>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12 text-right">
-                                                <button type="submit" class="btn btn-warning" @click="upload">Tạo tin</button>
-                                                
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </ValidationObserver>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +93,10 @@
 <script>
 import Vue from "vue";
 import ImgUploader from '../../../components/ImgUploader';
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
+import { ValidationProvider, extend } from 'vee-validate/dist/vee-validate.full';
+import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 
 let VueEditor
 if (process.client) {
@@ -90,13 +104,18 @@ if (process.client) {
     Vue.use(VueEditor);
 }
 
-
+extend("required", {
+  message: (field, values) => "Dữ liệu nhập vào không được để trống.",
+});
 
 
 export default {
     components: {
         VueEditor,
-        ImgUploader
+        ImgUploader,
+        Multiselect,
+        ValidationProvider,
+        ValidationObserver
     },
     name: 'create',
         layout: 'admin',
@@ -112,21 +131,28 @@ export default {
                 title: '',
                 content: '',
                 short_content: '',
-                id_category: 1,
-            }
+                id_category: null,
+            },
+            options: [
+                {id: 1, name: 'Cẩm nang'},
+                {id: 2, name: 'Xuất khẩu lao động'},
+                {id: 3, name: 'Du học'}
+            ], id: null
         }
     },
     methods:{
+        nameWithLang ({ name, id }) {
+            return `${id} - [${name}]`
+        },
         upload(e){
             e.preventDefault();
             var form = new FormData();
-            this.dataNews.thuml = this.files[0];
-
-            form.append('thuml' , this.dataNews.thuml)
+            this.id = this.dataNews.id_category.id
+            form.append('thuml' , this.files[0])
             form.append('title' , this.dataNews.title)
             form.append('content' , this.dataNews.content)
             form.append('short_content' , this.dataNews.short_content,)
-            form.append('id_category' , this.dataNews.id_category )
+            form.append('id_category' , this.id )
             
                 
                   
