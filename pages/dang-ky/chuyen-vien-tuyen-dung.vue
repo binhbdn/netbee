@@ -16,7 +16,7 @@
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN CHUYÊN VIÊN TUYỂN SINH</span>
                 </div>
                 <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="">Tại đây</a></span>
-                <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
+                <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
                     <ValidationObserver ref="observer" v-slot="{ valid }">
                      <ValidationProvider
                         name="name"

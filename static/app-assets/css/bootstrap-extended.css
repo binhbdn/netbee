@@ -1936,10 +1936,8 @@ html [type='button'],
 }
 
 .header-navbar.floating-nav {
-    margin: 1.3rem 2.2rem 0;
-    border-radius: 0.5rem;
     position: fixed;
-    width: calc( 100vw - (100vw - 100%) - calc(2.2rem * 2) - 260px);
+    width: calc( 100vw - (100vw - 100%) - calc(2.2rem * 2) - 200px);
     z-index: 12;
     right: 0;
 }

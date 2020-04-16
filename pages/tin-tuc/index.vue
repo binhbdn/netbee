@@ -28,7 +28,7 @@
                         <div class="card" v-if="tintucCamNang.length > 0">
                             <div class="card-header">
                                 <h4><i class="fas fa-newspaper"></i> Cẩm nang</h4>
-                                <a href="/tin-tuc/category"><i class="fad fa-plus"></i> Xem thêm</a>
+                                <a href="/tin-tuc/cam-nang"><i class="fad fa-plus"></i> Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -39,7 +39,7 @@
                         <div class="card" v-if="tintucDuHoc.length > 0">
                             <div class="card-header">
                                 <h4><i class="fas fa-newspaper"></i> Du học</h4>
-                                <a href="/tin-tuc/category"><i class="fad fa-plus"></i> Xem thêm</a>
+                                <a href="/tin-tuc/du-hoc"><i class="fad fa-plus"></i> Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -50,7 +50,7 @@
                         <div class="card" v-if="tintucXKLD.length > 0">
                             <div class="card-header">
                                 <h4><i class="fas fa-newspaper"></i> Xuất khẩu lao động</h4>
-                                <a href="/tin-tuc/category"><i class="fad fa-plus"></i> Xem thêm</a>
+                                <a href="/tin-tuc/xuat-khau-lao-dong"><i class="fad fa-plus"></i> Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -70,7 +70,7 @@
                                         <div  class=" p-2 bg-white col-12" id="cate-1" style="border-bottom: 1px solid #ddd;" v-for="(danhmuc, indexDanhMuc) in getDanhMucTinTuc" :key="indexDanhMuc">
                                             <div class="col-12">
                                                 <div class="job-post-item-header d-flex align-items-center">
-                                                    <a href="#">
+                                                    <a :href="`/tin-tuc/${ChangeToSlug(danhmuc.name_cate)}`">
                                                         <h2 class="mr-3 text-black h6 NB_title" ><i class="fa fa-arrow-right"></i>{{ danhmuc.name_cate }}</h2>
                                                     </a>
                                                 </div>
@@ -108,25 +108,20 @@ import NewListPage2 from '../../components/News/NewListPage2';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
 
 export default {
+    head: {
+        title: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học',
+        meta: [
+            { hid: 'description', name: 'description', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học' },
+            { hid: 'keywords', name: 'keywords', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,cẩm nang du học'.replace(/ /g, ",")},
+            { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn/tin-tuc'},
+            { hid: 'og:title', name: 'og:title', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học'},
+            { hid: 'og:description', name: 'og:description', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học'},
+        ]
+    },
     components:{
         NewListPage1,
         NewListPage2,
         JobsList1ColNotCate
-    },
-    async  asyncData ({ $axios, error }) {
-        let getTinTucNew = await $axios.$get('getTinTucNew?limit=5')
-        let tintucCamNang = await $axios.$get('getTinTucCate?category=1&limit=5')
-        let tintucDuHoc = await $axios.$get('getTinTucCate?category=2&limit=5')
-        let tintucXKLD = await $axios.$get('getTinTucCate?category=3&limit=5')
-        let getDanhMucTinTuc = await $axios.$get('getDanhMucTinTuc')
-        return {
-        tintucNew: getTinTucNew.data.tintuc,
-        tintucCamNang: tintucCamNang.data.tintuc,
-        tintucDuHoc: tintucDuHoc.data.tintuc,
-        tintucXKLD: tintucXKLD.data.tintuc,
-        getDanhMucTinTuc: getDanhMucTinTuc.data
-        }
-
     },
     data() {
         return {
@@ -135,18 +130,6 @@ export default {
             tintucDuHoc: [],
             tintucXKLD: [],
             getDanhMucTinTuc: [],
-            arrayNew: [
-                {
-                    id: 1,
-                    title: 'Điều kiện đưa người lao động đi thực tập kỹ năng tại Nhật Bản',
-                    content: 'Content tin tức 1,hfiakh,vdjailh jdiosa dnsa cbsha cnsaj,vndajk vnad sậu vbajc xajbvdk chiabc adkhbsa chahbf ajk vcsaigdbsuia cqawgdbhsa cwhajfb hsajnmbduiakf dsv à afakjfhnuwjkfb fkahnfujkmsb av',
-                    time: '09/04/2020'
-                },
-                {id: 2, title: 'Tư vấn các thủ tục cần thiết để đi Xuất khẩu lao động Nhật Bản', content: 'Content tin tức 2', time: '09/04/2020'},
-                {id: 3, title: 'Nhật Bản tạm ngừng nhập cảnh lao động Việt Nam do dịch nCoV', content: 'Content tin tức 3', time: '09/04/2020'},
-                {id: 4, title: 'Mức lương thu nhập đi xuất khẩu lao động Nhật Bản 2020', content: 'Content tin tức 4', time: '09/04/2020'},
-                {id: 5, title: 'Hành trang du học - Những điều kiện cơ bản cần biết khi có ý định du học', content: 'Content tin tức 5', time: '09/04/2020'},
-            ],
             arrayJob: [
                 {id: 1, title: 'chào cả nhà1'},
                 {id: 2, title: 'chào cả nhà2'},

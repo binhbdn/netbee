@@ -1,7 +1,7 @@
 <template>
     <div class="card ecommerce-card border-job-item">
-        <a href="#" class="text-center pt-1 px-1" style="height: 240px">
-            <img :src="`${thuml}`" width="100%" alt="img-placeholder">
+        <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" class="text-center pt-1 px-1" style="height: 240px">
+            <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" style="max-height: 220px">
         </a>
         <div class="px-2">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" ><h4 class="title">{{ title }}</h4></a>
@@ -37,7 +37,7 @@ export default {
 h4:hover{
     color: #ffb701;
 }
-.title{
+/* .title{
     height: 65px;
-}
+} */
 </style>

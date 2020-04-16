@@ -4,7 +4,11 @@ module.exports = {
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: 'Kênh du học quốc tế - Trang kết nối du học của các trung tâm tuyển sinh.' }
+            { hid: 'description', name: 'description', content: 'Kênh du học quốc tế - Trang kết nối du học của các trung tâm tuyển sinh.' },
+            { hid: 'robots', name: 'robots', content: 'all,index,follow' },
+            { hid: 'revisit-after', name: 'revisit-after', content: '1 days' },
+            { hid: 'og:type', name: 'og:type', content: 'website'},
+            { hid: 'og:locale', name: 'og:locale', content: 'vi'},
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: 'https://netbee.vn/site/assets/images/logo.png' },
@@ -24,6 +28,7 @@ module.exports = {
             { rel: 'stylesheet', href: '/app-assets/css/plugins/forms/validation/form-validation.css' },
             { rel: 'stylesheet', href: '/assets/css/style.css' },
             { rel: 'stylesheet', href: '/assets/css/custom-client.css' },
+            { rel: 'stylesheet', href: '/assets/css/custom-admin.css' },
             { rel: 'stylesheet', href: '/assets/css/bootstrap-custom.css' },
             { rel: 'stylesheet', href: '/assets/css/header.css' },
             { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' },
@@ -70,6 +75,7 @@ module.exports = {
     plugins: [
         '~/plugins/axios.js',
         '~/plugins/helppers.js',
+        '~/plugins/vue-lazyload.js',
         { src: './plugins/vue2-editor', ssr: false }
     ],
     vue: {

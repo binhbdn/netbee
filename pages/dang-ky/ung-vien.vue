@@ -16,12 +16,12 @@
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN ỨNG VIÊN</span>
                 </div>
                 <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="">Tại đây</a></span>
-               <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
+               <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
                     <ValidationObserver ref="observer" v-slot="{ valid }">
                      <ValidationProvider
                         name="Họ và tên"
                         ref="name"
-                        rules="required|max:20"
+                        rules="required"
                         v-slot="{ errors }"
                     >   
                     <div class="form-group">
@@ -69,7 +69,7 @@
                     <ValidationProvider
                         name="password"
                         ref="password"
-                        rules="required|customPassword|min:8"
+                        rules="required|customPassword"
                         v-slot="{ errors }"
                     >
                         <div class="form-group">
