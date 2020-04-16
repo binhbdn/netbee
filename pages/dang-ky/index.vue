@@ -1,6 +1,6 @@
 <template>
 <!--  <Header/>-->
-  <div class="main mt-5" style="background-image: url('https://www.netbee.vn/site/assets/images/body-bg.jpg')">
+  <div class="main mt-5" :style="{'background-image':'url('+backgroundUrl+');'}">
 
     <div class="container" style="padding-top:40px">
       <div class="row">
@@ -67,7 +67,10 @@
   export default {
     middleware: 'guest',
     layout: 'no_banner',
-    components: {Header, FooterClient}
+    components: {Header, FooterClient},
+    data() {
+         return { backgroundUrl:require('~/static/assets/img/body-bg.jpg') }
+        },
   }
 </script>
 <style scoped>
