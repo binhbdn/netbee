@@ -26,7 +26,7 @@
                 </li>
                 <li class=" nav-item"><a href="app-calender.html"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">Calender</span></a>
                 </li>-->
-                <li :class="[{'active' : this.$route.name == 'admin-news' || 'admin-news-create'}, 'nav-item']"><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
+                <li :class="[{'active' : (this.$route.name == 'admin-news') || (this.$route.name == 'admin-news-create')}, 'nav-item']"><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
                     <ul class="menu-content">
                         <li><a href="/admin/news"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách bài viết</span></a>
                         </li>
