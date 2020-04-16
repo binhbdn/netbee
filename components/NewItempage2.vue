@@ -1,8 +1,8 @@
 <template>
     <div class="row">
-        <div class="col-5" :style="type != 1 ? 'height: 117px' : ''">
+        <div class="col-5 text-center" :style="type != 1 ? 'height: 117px' : ''">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
-                <img v-lazy="`/uploads/news/${thuml}`"  width="100%" >
+                <img v-lazy="`/uploads/news/${thuml}`" :style="type != 1 ? 'max-height: 117px' : ''">
             </a>
         </div>
         <div class="col-7 position-relative">
