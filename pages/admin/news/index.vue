@@ -28,16 +28,16 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <form action="" method="">
-                                        <button class="btn btn-warning text-dark"><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
+                                    <form action="/admin/news/create" method="">
+                                        <button class="btn-add btn btn-warning text-dark "><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
                                     </form>
                                 </div>
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive">
                                         <table class="table table-hover mb-0 zero-configuration">
-                                            <thead>
+                                            <thead class="custom-header">
                                                 <tr>
-                                                    <th>id</th>
+                                                    <th class="width-id">ID</th>
                                                     <th>Tiêu đề</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
@@ -55,9 +55,9 @@
                                                         <span class="danger" v-else><i class="fas fa-circle" style="font-size: 7px"></i> Chưa kích hoạt</span>
                                                     </td>
                                                     <td style="width: 27%;">
-                                                        <button class="btn px-1" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
-                                                        <button class="btn btn-outline-warning"><i class="far fa-edit"></i> Sửa</button>
-                                                        <button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Xóa</button>
+                                                        <button  @click="changeStatus(item.id)" class="btn-action btn px-1" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
+                                                        <button class="btn-action btn btn-outline-warning"><i class="far fa-edit"></i> Sửa</button>
+                                                        <button v-on:click="deleteNews(item.id)" class="btn-action btn btn-outline-danger"><i class="far fa-trash-alt"></i> Xóa</button>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -78,20 +78,7 @@ export default {
         layout: 'admin',
     head: {
         title: 'Quản lý tin tức',
-        meta: [
-        { hid: 'description', name: 'description', content: 'Home page description' }
-        ],
-        noscript: [
-        { innerHTML: 'Body No Scripts', body: true }
-        ],
-        link: [
-            { rel: 'stylesheet', href: '/app-assets/vendors/css/tables/datatable/datatables.min.css' },
-        ],
         script: [
-            { src: '/head.js' },
-            // Supported since 1.0
-            { src: '/body.js', body: true },
-            { src: '/defer.js', defer: '' },
             { src: '/app-assets/vendors/js/tables/datatable/pdfmake.min.js' },
             { src: '/app-assets/vendors/js/tables/datatable/vfs_fonts.js' },
             { src: '/app-assets/vendors/js/tables/datatable/datatables.min.js' },
@@ -100,8 +87,6 @@ export default {
             { src: '/app-assets/vendors/js/tables/datatable/buttons.print.min.js' },
             { src: '/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js' },
             { src: '/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js' },
-            //datatable
-            { src: '/app-assets/js/scripts/datatables/datatable.js' },
         ]
     },
     data() {
@@ -116,8 +101,69 @@ export default {
         fetch() {
             this.$axios.$get('tintuc/getTinTuc').then((response)=>{
 	             this.tinTuc=response.data;
-	            });
+	        });
 
+        },
+        async changeStatus(index){
+            try {
+                    let response = await this.$axios.post('tintuc/changeStatusTinTuc',{
+                    id: index
+                });
+                if(response.data.status == 200) {
+                    this.$swal({
+                        title: 'Thành công',
+                        text: response.data.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then( 
+                        this.fetch(),
+                    )
+                }
+                else {
+                this.$swal(
+                    'Lỗi!',
+                    response.data.message,
+                    'error'
+                    )
+                }
+            } catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi bỏ kích hoạt!',
+                    'error')
+            }
+                    
+        },
+        async deleteNews(index){
+                try {
+                    let response = await this.$axios.post('tintuc/deleteTinTuc',{
+                    id: index
+                });
+                if(response.data.status == 200) {
+                    this.$swal({
+                        title: 'Thành công',
+                        text: response.data.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then( 
+                        this.fetch(),
+                    )
+                }
+                else {
+                this.$swal(
+                    'Lỗi!',
+                    response.data.message,
+                    'error'
+                    )
+                }
+            } catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi xóa!',
+                    'error')
+            }
         }
     },
     
@@ -126,8 +172,5 @@ export default {
 <style scoped>
 .pagination .page-item.active .page-link{
     background-color: #ffb701 !important;
-}
-.btn {
-    padding: 7px!important;
 }
 </style>

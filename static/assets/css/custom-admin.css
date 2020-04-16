@@ -1,0 +1,21 @@
+/* button */
+.btn-add {
+    padding: 10px!important;
+}
+.btn-action{
+    padding: 7px !important;
+}
+/* header */
+.header-navbar.floating-nav {
+    margin-top: 0!important;
+}
+html body .content .content-wrapper{
+    margin-top: 59px;
+}
+.custom-header{
+    background-color: #f3f5f9!important;
+}
+.width-id{
+    width: 5%;
+}
+/*  */
