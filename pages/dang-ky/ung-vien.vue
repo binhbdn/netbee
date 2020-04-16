@@ -21,7 +21,7 @@
                      <ValidationProvider
                         name="Họ và tên"
                         ref="name"
-                        rules="required|max:20"
+                        rules="required"
                         v-slot="{ errors }"
                     >   
                     <div class="form-group">
@@ -69,7 +69,7 @@
                     <ValidationProvider
                         name="password"
                         ref="password"
-                        rules="required|customPassword|min:8"
+                        rules="required|customPassword"
                         v-slot="{ errors }"
                     >
                         <div class="form-group">
