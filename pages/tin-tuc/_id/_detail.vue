@@ -21,7 +21,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <img v-lazy="`https://netbee.vn/storage/news/banner/2020-04-09 18:06:301299608613Nhật Bản (1).png`" width="100%">
+                                    <img v-lazy="`/uploads/news/${tintuc.thuml}`" width="100%" class="m-b-15" :alt="`${thuml}`">
                                     <p v-html="tintuc.content"></p>
                                     <div class="mb-2">
                                         <span>Từ khóa:</span>
@@ -145,8 +145,8 @@ export default {
             title: this.tintuc.title,
             meta: [
                 { hid: 'description', name: 'description', content: this.tintuc.short_content },
-                { hid: 'keywords', name: 'keywords', content: title.replace(/ /g, ",")},
-                { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+route.path},
+                { hid: 'keywords', name: 'keywords', content: this.tintuc.title.replace(/ /g, ",")},
+                { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
                 { hid: 'og:title', name: 'og:title', content: this.tintuc.title},
                 { hid: 'og:description', name: 'og:description', content: this.tintuc.short_content},
                 { hid: 'og:image', name: 'og:image', content: this.tintuc.thuml},
