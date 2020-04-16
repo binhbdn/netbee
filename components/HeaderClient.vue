@@ -7,10 +7,10 @@
       <a class="navbar-brandd" href="/">
         <div>
           <img
-            src="https://netbee.vn/site/assets/images/logo.png"
+            src="../static/assets/img/logo.png"
             alt=""
             height="50"
-            width="auto"
+            width="50"
           />NetBee
         </div>
       </a>
