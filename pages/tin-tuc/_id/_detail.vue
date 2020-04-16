@@ -170,4 +170,7 @@ export default {
     height: 500px;
     overflow-x: hidden;
 }
+p img{
+    width: 100%;
+}
 </style>
