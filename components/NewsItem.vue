@@ -1,6 +1,6 @@
 <template>
     <div class="card ecommerce-card border-job-item">
-        <a href="#" class="text-center pt-1 px-1" style="height: 240px">
+        <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" class="text-center pt-1 px-1" style="height: 240px">
             <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" style="max-height: 220px">
         </a>
         <div class="px-2">
