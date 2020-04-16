@@ -52,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5 formlogin">
+                <div class="col-md-5 col-lg-5 formlogin form-control">
                     <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP</h2>
                     <p class="text-center" style="margin-bottom:25px; font-size: 16px; "><a class="hover" href="dang-ky">Đăng ký tài khoản mới!</a>
                     </p>
@@ -60,11 +60,11 @@
                         <ValidationObserver ref="observer" v-slot="{ valid }">
                             <ValidationProvider name="Email" ref="email" rules="required|email|max:20" v-slot="{ errors }">
                                 <div class="__email">
-                                    <span class="fa fa-user-circle" style="top:26%!important; z-index:2; left:22px;"></span>
+                                    <span class="fa fa-user-circle" style="top:28%!important; z-index:2; left:17px;"></span>
                                     <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" v-model="userForm.email" />
                                     <ul style="color:red" class="overline text-left">
                                         <li v-for="(error, index) in errors" :key="index">
-                                        <span>{{ error }}</span>
+                                        <span style="left:10px;padding-top: 14px;"><i>{{ error }}</i></span>
                                         </li>
                                     </ul>
                                 </div>
@@ -78,16 +78,16 @@
                             >
                             <div class="__email">
                                 <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
-                                <input style="margin-bottom:15px!important" type="password" name="password" 
+                                <input style="margin-bottom:15px!important" :type="show ? 'password' : 'text'" name="password" 
                                 id="password" placeholder="Mật khẩu" class="border-radius input" v-model="userForm.password" />
                                 <ul style="color:red" class="overline text-left">
                                     <li v-for="(error, index) in errors" :key="index">
-                                    <span style="top: 19%!important;left: 0px;">{{ error }}</span>
+                                    <span style="top: 16%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
                                     </li>
                                 </ul>
                                 <div style="text-align:right">
-                                    <i onclick="passwordF()" class="showpass">
-                                        <i class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
+                                    <i  class="showpass">
+                                        <i @click="showPassword()" class="fa fa-eye" style="top:7%!important; z-index:2; left:11px;"></i>
                                     </i>
                                     <a href="/quen-mat-khau" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
                                 </div>
@@ -161,7 +161,8 @@ export default {
             userForm: {
                 email: '',
                 password: ''
-            }
+            },
+            show: true
         }
     },
     methods: {
@@ -179,6 +180,9 @@ export default {
                     )
                 }
             }
+        },
+        showPassword(){
+            this.show = !this.show;
         }
     }
 }
@@ -259,6 +263,7 @@ form#appointment-form {
 }
 .form-group-1 input {
     font-size: 15px !important;
+    border-radius: 5px;
 }
 input.input {
     padding-left: 48px;
@@ -415,7 +420,7 @@ ul li:not(.init) {
 }
 .input-login ul li span{
     color:red!important;
-    font-size: 16px!important;
+    font-size: 15px!important;
     top: 33%!important;
     padding-top: 10px;
 }
