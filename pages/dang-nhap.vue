@@ -58,7 +58,7 @@
                     </p>
                     <div class="form-group-1 input-login">
                         <ValidationObserver ref="observer" v-slot="{ valid }">
-                            <ValidationProvider name="Email" ref="email" rules="required|email|max:20" v-slot="{ errors }">
+                            <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
                                 <div class="__email">
                                     <span class="fa fa-user-circle" style="top:28%!important; z-index:2; left:17px;"></span>
                                     <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" v-model="userForm.email" />
@@ -73,7 +73,7 @@
                             <ValidationProvider
                                 name="Mật khẩu"
                                 ref="password"
-                                rules="required|customPassword|min:8"
+                                rules="required|customPassword"
                                 v-slot="{ errors }"
                             >
                             <div class="__email">
