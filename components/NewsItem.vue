@@ -1,7 +1,7 @@
 <template>
     <div class="card ecommerce-card border-job-item">
         <a href="#" class="text-center pt-1 px-1" style="height: 240px">
-            <img :src="`~/static/uploads/news/${thuml}`" width="100%" alt="img-placeholder">
+            <img :src="`/uploads/news/${thuml}`" width="100%" alt="img-placeholder">
         </a>
         <div class="px-2">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" ><h4 class="title">{{ title }}</h4></a>
