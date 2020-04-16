@@ -15,7 +15,7 @@
         <div class="card-content">
             <div style="margin: 0 auto;">
                 <a href="app-ecommerce-details.html">
-                    <img src="/app-assets/images/pages/eCommerce/9.png" alt="img-placeholder" width="55" height="55">
+                    <img v-lazy="`/app-assets/images/pages/eCommerce/9.png`" alt="img-placeholder" width="55" height="55">
                 </a>
             </div>
             <div class="remove-border-right">

@@ -2,7 +2,7 @@
   <section class="section is-medium">
     <div class="container has-text-centered" style="height: 500px;margin-left: -14px;">
       <div class="one-half imgg">
-        <img src="/app-assets/images/logo/about.jpg" height="500" width="670" />
+        <img v-lazy="`/app-assets/images/logo/about.jpg`" height="500" width="670" />
       </div>
       <div class="one-half ftco-animate fadeInUp ftco-animated" style="margin-left: 750px;">
         <div class="heading-section ftco-animate fadeInUp ftco-animated">

@@ -2,7 +2,11 @@
     <div class="row">
         <div class="col-5" :style="type != 1 ? 'height: 117px' : ''">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
+<<<<<<< HEAD
                 <img :src="`/uploads/news/${thuml}`"  width="100%" style="max-height: 117px">
+=======
+                <img v-lazy="`/uploads/news/${thuml}`"  width="100%" >
+>>>>>>> 0a8b944e4dc45dfc099a309609e06d201401ff8c
             </a>
         </div>
         <div class="col-7 position-relative">

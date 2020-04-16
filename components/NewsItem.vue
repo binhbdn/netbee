@@ -1,7 +1,11 @@
 <template>
     <div class="card ecommerce-card border-job-item">
         <a href="#" class="text-center pt-1 px-1" style="height: 240px">
+<<<<<<< HEAD
             <img :src="`/uploads/news/${thuml}`" width="100%" alt="img-placeholder" style="max-height: 220px;">
+=======
+            <img v-lazy="`/uploads/news/${thuml}`" width="100%" :alt="`${thuml}`">
+>>>>>>> 0a8b944e4dc45dfc099a309609e06d201401ff8c
         </a>
         <div class="px-2">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" ><h4 class="title">{{ title }}</h4></a>
