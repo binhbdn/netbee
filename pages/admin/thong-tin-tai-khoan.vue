@@ -121,7 +121,7 @@
                                               </form>
                                           </div>
                                           <div class="tab-pane fade " id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
-                                              <form method="POST">
+                                              <form method="POST" v-on:keyup.enter="changePassword">
                                                   <ValidationObserver ref="observer" v-slot="{ valid }">
                                                   <div class="row">
                                                       <div class="col-12">
@@ -185,8 +185,7 @@
                                                           </ValidationProvider>
                                                       </div>
                                                       <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                          <button type="submit" v-on:click="changePassword()" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
-                                                          <button type="reset" class="btn btn-outline-warning">Hủy</button>
+                                                          <button type="button" v-on:click="changePassword()" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
                                                       </div>
                                                   </div>
                                                    </ValidationObserver>
@@ -351,6 +350,11 @@ export default {
                 'Đăng nhập thất bại',
                 'Error'
                 }
+                 // reset validation
+                // You should call it on the next frame
+                requestAnimationFrame(() => {
+                this.$refs.observer.reset();
+                });
             }
     }
   }

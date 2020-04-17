@@ -293,4 +293,7 @@ export default {
         padding-left: 5px;
         padding-top: 5px;
     }
+    ul li span{
+      font-style: italic;
+    }
 </style>
