@@ -61,7 +61,7 @@
             </div>
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-else>
-            <img src="https://netbee.vn/site/assets/images/logo.png"
+            <img v-lazy="`/uploads/users/avatar/${this.$auth.user.avatar}`"
             style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; ">
             <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
               <br />Tài khoản
