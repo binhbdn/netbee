@@ -541,7 +541,7 @@ class UserController extends Controller
     public function getInfoCompany(Request $request)
     {
         try {
-            $get = DB::table('nb_companies_info')->where('id', Auth::user()->id)->first();
+            $get = DB::table('nb_companies_info')->where('company_id', Auth::user()->id)->first();
             if($get)
             {
                 $data = ['status' => 200,'message' => 'Thành công', 'data' => $get];
