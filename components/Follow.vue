@@ -66,7 +66,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-5 text-center pt-4">
+                    <div class="col-lg-6 col-md-5 text-center">
                         <img v-lazy="`/assets/img/1256652.svg`" height="280">
                     </div>
                 </div>
