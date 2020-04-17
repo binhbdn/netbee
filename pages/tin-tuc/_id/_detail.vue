@@ -21,13 +21,8 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <img v-lazy="`/uploads/news/${tintuc.thuml}`" width="100%" class="m-b-15" :alt="`${thuml}`">
+                                    <img v-lazy="`/uploads/news/${tintuc.thuml}`" width="100%" class="m-b-15" :alt="`${tintuc.thuml}`">
                                     <p v-html="tintuc.content"></p>
-                                    <div class="mb-2">
-                                        <span>Từ khóa:</span>
-                                        <a href="#" class="tagnews">Nhật Bản</a>
-                                        <a href="#" class="tagnews">Tin tức Nhật Bản</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mb-2">
+                <!-- <div class="row mb-2">
                     <div class="card" style="width:100%; margin: 0 14px">
                         <div class="card-header">
                                 <h4 class="card-title"><i class="fa fa-briefcase" style="padding-right:4px;"></i>Bình luận</h4>
@@ -90,7 +85,7 @@
                                 </div>
                             </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </section>
     </div>

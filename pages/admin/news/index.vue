@@ -14,7 +14,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="/">Bài viết</a>
                                     </li>
-                                    <li class="breadcrumb-item active"> Danh sách bài viết
+                                    <li class="breadcrumb-item active" @click = "formatDate('2020-01-15 07:11:58')"> Danh sách bài viết
                                     </li>
                                 </ol>
                             </div>
@@ -48,7 +48,7 @@
                                                 <tr v-for="(item, index) in tinTuc" :key="index">
                                                     <td>{{item.id}}</td>
                                                     <td>{{item.title}}</td>
-                                                    <td>{{item.created_at}}</td>
+                                                    <td>{{formatDate(item.created_at)}}</td>
                                                     <td style="white-space: nowrap;">
 
                                                         <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
@@ -73,6 +73,8 @@
     </div>
 </template>
 <script>
+import Vue from 'vue'
+import moment from 'moment'
 export default {
     name: 'IndexNews',
         layout: 'admin',
@@ -137,37 +139,45 @@ export default {
         },
         async deleteNews(index){
                 try {
-                    let response = await this.$axios.post('tintuc/deleteTinTuc',{
-                    id: index
-                });
-                if(response.data.status == 200) {
                     this.$swal({
-                        title: 'Thành công',
-                        text: response.data.message,
-                        icon: 'success',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    }).then( 
-                        this.fetch(),
-                    )
+                    title: 'Bạn có chắc chắn?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xóa!',
+                    cancelButtonText: 'Hủy!',
+                    showCloseButton: true,
+                    showLoaderOnConfirm: true
+                    }).then(async (result) => {
+                    if(result.value) {
+                        let response = await this.$axios.post('tintuc/deleteTinTuc',{id: index});
+                        if(response.data.status == 200) {
+                            this.fetch();
+                            this.$swal('Thành công', response.data.message, 'success');
+                        }
+                        else {
+                            this.$swal(
+                                'Lỗi!',
+                                response.data.message,
+                                'error'
+                                )
+                            }
+                    } else {
+                        this.$swal('Hủy', 'Tin được giữ lại', 'info')
+                    }
+                    })
+                } catch (error) {
+                    this.$swal(
+                        'Lỗi!',
+                        'Lỗi xóa!',
+                        'error')
                 }
-                else {
-                this.$swal(
-                    'Lỗi!',
-                    response.data.message,
-                    'error'
-                    )
-                }
-            } catch (error) {
-                this.$swal(
-                    'Lỗi!',
-                    'Lỗi xóa!',
-                    'error')
-            }
         },
-        edit(id){
-            window.location.href = `/admin/mews/${item.id}/update`;
-        }
+        formatDate(value){
+                if (value) {
+                    // return moment(String(value)).format('MM/DD/YYYY');
+                return (moment(String(value)).format('MM/DD/YYYY'));
+                }
+        },
         
     },
     
