@@ -566,6 +566,7 @@ class UserController extends Controller
                 'address_detail' => 'required',
                 'phone' => 'required|numeric',
                 'avatar' => 'required|image',
+                'name' => 'required',
             ],
             [
                 'required' => 'Không được để trống',
@@ -590,6 +591,7 @@ class UserController extends Controller
                     'address_detail' => $request->address_detail,
                     'phone' => $request->phone,
                     'avatar' => $image,
+                    'name' => $request->name,
                     'updated_at' => Carbon::now()
                 ];
                 //remove file old
@@ -610,6 +612,7 @@ class UserController extends Controller
                 'birth_of_date' => 'required',
                 'address_detail' => 'required',
                 'phone' => 'required|numeric',
+                'name' => 'required',
             ],
             [
                 'required' => 'Không được để trống',
@@ -628,6 +631,7 @@ class UserController extends Controller
                     'birth_of_date' => $request->birth_of_date,
                     'address_detail' => $request->address_detail,
                     'phone' => $request->phone,
+                    'name' => $request->name,
                     'updated_at' => Carbon::now()
                 ];
                 $check = DB::table('users')->where('id', Auth::user()->id)->update($insert);
