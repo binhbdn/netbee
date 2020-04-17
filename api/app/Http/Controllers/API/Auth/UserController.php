@@ -672,6 +672,7 @@ class UserController extends Controller
             }
             try {
                 $insert = [
+                    'company_id' => Auth::user()->id,
                     'company_hotline' => $request->company_hotline,
                     'company_about' => $request->company_about,
                     'company_tax' => $request->company_tax,
