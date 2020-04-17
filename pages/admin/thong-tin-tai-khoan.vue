@@ -54,71 +54,90 @@
                                   <div class="card-body p-t-15 p-b-15">
                                       <div class="tab-content">
                                           <div role="tabpanel" class="tab-pane active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
-                                              <div class="media">
-                                                  <a href="javascript: void(0);">
-                                                      <img src="/app-assets/images/portrait/small/avatar-s-12.jpg" class="rounded mr-75" alt="profile image" height="64" width="64">
-                                                  </a>
-                                                  <div class="media-body mt-75">
-                                                      <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                          <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload">Cập nhật ảnh đại diện</label>
-                                                          <input type="file" id="account-upload" hidden>
-                                                          <button class="btn btn-sm btn-outline-warning ml-50">Reset</button>
-                                                      </div>
-                                                      <p class="text-muted ml-75 mt-50"><small>Cho phép JPG, GIF or PNG. Kích thước tối đa
-                                                              800kB</small></p>
-                                                  </div>
-                                              </div>
-                                              <hr>
-                                              <form novalidate>
-                                                  <div class="row">
-                                                      <div class="col-12">
-                                                          <div class="form-group">
-                                                              <div class="controls">
-                                                                  <label for="account-username">Username</label>
-                                                                  <input type="text" class="form-control" id="account-username" placeholder="Username" value="hermione007" required data-validation-required-message="This username field is required">
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-12">
-                                                          <div class="form-group">
-                                                              <div class="controls">
-                                                                  <label for="account-name">Name</label>
-                                                                  <input type="text" class="form-control" id="account-name" placeholder="Name" value="Hermione Granger" required data-validation-required-message="This name field is required">
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-12">
-                                                          <div class="form-group">
-                                                              <div class="controls">
-                                                                  <label for="account-e-mail">E-mail</label>
-                                                                  <input type="email" class="form-control" id="account-e-mail" placeholder="Email" value="granger007@hogward.com" required data-validation-required-message="This email field is required">
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-12">
-                                                          <div class="alert alert-warning alert-dismissible mb-2" role="alert">
-                                                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                                  <span aria-hidden="true">×</span>
-                                                              </button>
-                                                              <p class="mb-0">
-                                                                  Your email is not confirmed. Please check your inbox.
-                                                              </p>
-                                                              <a href="javascript: void(0);">Resend confirmation</a>
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-12">
-                                                          <div class="form-group">
-                                                              <label for="account-company">Company</label>
-                                                              <input type="text" class="form-control" id="account-company" placeholder="Company name">
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                          <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                              changes</button>
-                                                          <button type="reset" class="btn btn-outline-warning">Cancel</button>
-                                                      </div>
-                                                  </div>
-                                              </form>
+                                            <form method="post">
+                                                <ValidationObserver ref="InfoUser" v-slot="{ valid }">
+                                                <div class="media">
+                                                    <a href="javascript: void(0);">
+                                                        <img :src="images[0]" class="rounded mr-75" alt="profile image" height="64" width="64" v-if="images.length > 0">
+                                                        <img :src="`/uploads/news/${changeInfoUser.avatar}`" class="rounded mr-75" alt="profile image" height="64" width="64" v-else>
+                                                    </a>
+                                                    <div class="media-body mt-75">
+                                                        <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
+                                                            <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload" >Đổi ảnh đại diện</label>
+                                                            <input type="file" id="account-upload" @change="onInputChange" hidden>
+                                                            <button class="btn btn-sm btn-outline-warning ml-50" @click="resetImg">Reset</button>
+                                                        </div>
+                                                        <p class="text-muted ml-75 mt-50"><small>Cho phép JPG, GIF or PNG.</small></p>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                              
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <ValidationProvider rules="required" ref="name" name="name" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="account-username">Họ tên</label>
+                                                                    <input type="text" class="form-control" name="name" v-model="changeInfoUser.name">
+                                                                    <ul style="color:red" class="overline text-left">
+                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                        <span>{{ error }}</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="account-name">Ngày sinh</label>
+                                                                    <input type="date" class="form-control" v-model="changeInfoUser.birth">
+                                                                    <ul style="color:red" class="overline text-left">
+                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                        <span>{{ error }}</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <div class="controls">
+                                                                    <label for="account-e-mail">Số điện thoại</label>
+                                                                    <input type="number" class="form-control" v-model="changeInfoUser.phone">
+                                                                    <ul style="color:red" class="overline text-left">
+                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                        <span>{{ error }}</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="account-company">Địa chỉ</label>
+                                                                <input type="text" class="form-control" v-model="changeInfoUser.address">
+                                                                <ul style="color:red" class="overline text-left">
+                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                        <span>{{ error }}</span>
+                                                                        </li>
+                                                                    </ul>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
+                                                        <button type="button" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0" @click="actionInfoUser">Save
+                                                            changes</button>
+                                                    </div>
+                                                </div>
+                                            </ValidationObserver>
+                                            </form>
                                           </div>
                                           <div class="tab-pane fade " id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
                                               <form method="POST" v-on:keyup.enter="changePassword">
@@ -400,23 +419,104 @@ export default {
         },
     data() {
             return {
-            changePasswordForm: {
-                oldPassword: "",
-                newPassword: "",
-                retypePassword: ""
-            },
-            changeInfoCompanyForm: {
-                companyAbout: "",
-                companyHotline: "",
-                companyTax: "",
-                companyBenefit: "",
-                companyPolicy: "",
-                companyChance: "",
-                companyLink: "",
-            },
+                changePasswordForm: {
+                    oldPassword: "",
+                    newPassword: "",
+                    retypePassword: ""
+                },
+                changeInfoCompanyForm: {
+                    companyAbout: "",
+                    companyHotline: "",
+                    companyTax: "",
+                    companyBenefit: "",
+                    companyPolicy: "",
+                    companyChance: "",
+                    companyLink: "",
+                },
+                images: [],
+                changeInfoUser: {
+                    files: [],
+                    name: this.$auth.user.name,
+                    birth: this.$auth.user.birth_of_date,
+                    phone: this.$auth.user.phone,
+                    address: this.$auth.user.address_detail,
+                    avatar: this.$auth.user.avatar
+                }
             };
         },
     methods: {
+        //update avatar
+        onInputChange(e){
+            if(this.images.length > 0){
+                this.$delete(this.images, 0)
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            this.isDragging = false;
+            const files = e.target.files;
+            if(files.length >0)
+                this.addImage(files[0]);
+
+        },
+        addImage(file){
+            if( !file.type.match('image.*') ){
+                this.$swal(
+                        'Lỗi',
+                        'File không đúng định dạng',
+                        'error'
+                    )
+                return;
+            }
+            if(this.changeInfoUser.files.length >0)
+                this.$delete(this.changeInfoUser.files, 0)
+
+            this.changeInfoUser.files.push(file);
+
+            const img = new Image();
+            const reader = new FileReader();
+
+            reader.onload = (e) => this.images.push(e.target.result);
+
+            reader.readAsDataURL(file);
+        },
+
+        resetImg(){
+            this.$delete(this.changeInfoUser.files, 0)
+            this.$delete(this.images, 0)
+        },
+
+        //change Info User
+        async actionInfoUser(){
+            var form = new FormData();
+            
+            const isValid = await this.$refs.InfoUser.validate();
+            if(isValid){
+                form.append('avatar' , this.changeInfoUser.files[0])
+                form.append('name' , this.changeInfoUser.name)
+                form.append('phone' , this.changeInfoUser.phone)
+                form.append('birth_of_date' , this.changeInfoUser.birth)
+                form.append('address_detail' , this.changeInfoUser.address)
+                this.$axios.post('changeInfo',form).then(response => {
+                    if(response.data.status == 200) {
+                        this.$swal(
+                            'Thành công',
+                            response.data.message,
+                            'success'
+                        )
+                    }else{
+                        this.$swal(
+                            'Lỗi',
+                            response.data.message,
+                            'error'
+                        )
+                    }
+                })
+                
+            }
+        },
+        
+        
+        //change password
         async changePassword() {
             const isValid = await this.$refs.observer.validate();
             if(isValid){
@@ -514,7 +614,10 @@ export default {
             this.changeInfoCompanyForm.companyPolicy = dataInforCompany.data.data.company_policy;
             this.changeInfoCompanyForm.companyChance = dataInforCompany.data.data.company_chance;
             this.changeInfoCompanyForm.companyLink = dataInforCompany.data.data.company_link;
-        }
+
+            // get info user
+        },
+        
   },
   mounted() {
       this.fetch();

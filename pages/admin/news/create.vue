@@ -164,7 +164,6 @@ export default {
                         response.data.message,
                         'success'
                     )
-                    window.location.href = '/admin/news';
                 }else{
                     this.$swal(
                         'Lỗi',
