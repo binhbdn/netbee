@@ -143,7 +143,8 @@ class UserController extends Controller
         return response()->json($data);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request) 
+    {
         try {
             JWTAuth::invalidate(JWTAuth::getToken());
             $data = array(

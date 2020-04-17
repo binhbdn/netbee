@@ -39,7 +39,7 @@
                                       Thay đổi mật khẩu
                                   </a>
                               </li>
-                              <li class="nav-item">
+                              <li class="nav-item" v-if="this.$auth.user.role == 2">
                                   <a class="nav-link d-flex py-75" id="account-pill-info" data-toggle="pill" href="#account-vertical-info" aria-expanded="false">
                                       <i class="feather icon-info mr-50 font-medium-3"></i>
                                       Thông tin công ty
@@ -607,17 +607,17 @@ export default {
         },
         async fetch() {
             let dataInforCompany = await this.$axios.get('getInfoCompany');
-            this.changeInfoCompanyForm.companyAbout = dataInforCompany.data.data.company_about;
-            this.changeInfoCompanyForm.companyHotline = dataInforCompany.data.data.company_hotline;
-            this.changeInfoCompanyForm.companyTax = dataInforCompany.data.data.company_tax;
-            this.changeInfoCompanyForm.companyBenefit = dataInforCompany.data.data.company_benefit;
-            this.changeInfoCompanyForm.companyPolicy = dataInforCompany.data.data.company_policy;
-            this.changeInfoCompanyForm.companyChance = dataInforCompany.data.data.company_chance;
-            this.changeInfoCompanyForm.companyLink = dataInforCompany.data.data.company_link;
-
-            // get info user
-        },
-        
+            if(dataInforCompany.data.data !== null){
+                this.changeInfoCompanyForm.companyAbout = dataInforCompany.data.data.company_about;
+                this.changeInfoCompanyForm.companyHotline = dataInforCompany.data.data.company_hotline;
+                this.changeInfoCompanyForm.companyTax = dataInforCompany.data.data.company_tax;
+                this.changeInfoCompanyForm.companyBenefit = dataInforCompany.data.data.company_benefit;
+                this.changeInfoCompanyForm.companyPolicy = dataInforCompany.data.data.company_policy;
+                this.changeInfoCompanyForm.companyChance = dataInforCompany.data.data.company_chance;
+                this.changeInfoCompanyForm.companyLink = dataInforCompany.data.data.company_link;
+            }
+            
+        }
   },
   mounted() {
       this.fetch();
