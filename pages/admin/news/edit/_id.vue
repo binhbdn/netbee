@@ -7,7 +7,7 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Tạo bài viết mới</h2>
+                            <h2 class="content-header-title float-left mb-0">Chỉnh sửa bài viết</h2>
                             <div class="breadcrumb-wrapper col-12">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/">Trang chủ</a>
@@ -35,7 +35,7 @@
                                                 <div class="col-12">
                                                     <fieldset class="form-group">
                                                         <label for="basicInput">Ảnh tiêu đề</label>
-                                                        <ImgUploader :files="files"></ImgUploader>
+                                                        <ImgUploader :files="files" :thuml="dataNews.thuml"></ImgUploader>
                                                     </fieldset>
                                                 </div>
                                                 <div class="col-12">
@@ -65,6 +65,7 @@
                                                         </fieldset>
                                                     </ValidationProvider>
                                                 </div>
+                                                
                                                 <div class="col-12">
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
@@ -75,7 +76,7 @@
                                                     </ValidationProvider>
                                                 </div>
                                                 <div class="col-12 text-right">
-                                                    <button type="submit" class="btn btn-warning" :disabled="invalid" @click="upload">Tạo tin</button>
+                                                    <button type="submit" class="btn btn-warning" :disabled="invalid" @click="upload">Cập nhật</button>
                                                     
                                                 </div>
                                             </div>
@@ -92,11 +93,12 @@
 </template>
 <script>
 import Vue from "vue";
-import ImgUploader from '../../../components/ImgUploader';
+import ImgUploader from '../../../../components/ImgUploader';
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import { ValidationProvider, extend } from 'vee-validate/dist/vee-validate.full';
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+import VueRouter from 'vue-router'
 
 let VueEditor
 if (process.client) {
@@ -127,36 +129,57 @@ export default {
                 message: ''
             },
             dataNews: {
-                thuml: [],
+                thuml: '',
                 title: '',
                 content: '',
                 short_content: '',
                 id_category: null,
+                id: null
             },
             options: [
                 {id: 1, name: 'Cẩm nang'},
                 {id: 2, name: 'Xuất khẩu lao động'},
                 {id: 3, name: 'Du học'}
-            ], id: null
+            ], id: null,
+            
         }
     },
     methods:{
+        async fetch (route) {
+            let res = await this.$axios.$get(`getDetailTinTuc/${this.$route.params.id}`)
+            console.log(res.data)
+            this.dataNews.title = res.data.title
+            this.dataNews.content = res.data.content
+            this.dataNews.short_content = res.data.short_content
+            this.dataNews.id = res.data.id
+            if(res.data.id_category == 1)
+            {
+                this.dataNews.id_category = this.options[0]
+            } else if(res.data.id_category == 2){
+                this.dataNews.id_category = this.options[1]
+            } else{
+                this.dataNews.id_category = this.options[2]
+            }
+            this.dataNews.thuml = res.data.thuml
+        },
         nameWithLang ({ name, id }) {
             return `${id} - [${name}]`
         },
-        upload(e){
+        upload(e, route){
             e.preventDefault();
             var form = new FormData();
             this.id = this.dataNews.id_category.id
-            form.append('thuml' , this.files[0])
+            if(this.files.lenght != null){
+                form.append('thuml' , this.files[0])
+            }
             form.append('title' , this.dataNews.title)
             form.append('content' , this.dataNews.content)
             form.append('short_content' , this.dataNews.short_content,)
             form.append('id_category' , this.id )
+            form.append('id' , this.dataNews.id )
             
-                
-                  
-            this.$axios.post('tintuc/createTinTuc',form)
+
+            this.$axios.post('tintuc/updateTinTuc',form)
             .then(response => {
                 if(response.data.status == 200) {
                     this.$swal(
@@ -177,7 +200,7 @@ export default {
 
     },
     mounted(){
-        
+        this.fetch();
     }
 }
 </script>

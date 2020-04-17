@@ -56,7 +56,7 @@
                                                     </td>
                                                     <td style="width: 27%;">
                                                         <button  @click="changeStatus(item.id)" class="btn-action btn px-1" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
-                                                        <button class="btn-action btn btn-outline-warning"><i class="far fa-edit"></i> Sửa</button>
+                                                        <a :href="`/admin/news/edit/${item.id}`" class="btn-action btn btn-outline-warning"><i class="far fa-edit"></i> Sửa</a>
                                                         <button v-on:click="deleteNews(item.id)" class="btn-action btn btn-outline-danger"><i class="far fa-trash-alt"></i> Xóa</button>
                                                     </td>
                                                 </tr>
@@ -177,7 +177,8 @@ export default {
                     // return moment(String(value)).format('MM/DD/YYYY');
                 return (moment(String(value)).format('MM/DD/YYYY'));
                 }
-        }
+        },
+        
     },
     
 }
