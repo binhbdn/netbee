@@ -42,7 +42,7 @@
                               <li class="nav-item">
                                   <a class="nav-link d-flex py-75" id="account-pill-info" data-toggle="pill" href="#account-vertical-info" aria-expanded="false">
                                       <i class="feather icon-info mr-50 font-medium-3"></i>
-                                      Thông tin thêm
+                                      Thông tin công ty
                                   </a>
                               </li>
                           </ul>
@@ -192,51 +192,145 @@
                                               </form>
                                           </div>
                                           <div class="tab-pane fade" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info" aria-expanded="false">
-                                              <form novalidate>
+                                              <form method="POST" v-on:keyup.enter = "changeInfoCompany">
+                                                  <ValidationObserver ref="observerChangeInfoCompany" v-slot="{ valid }">
                                                   <div class="row">
+                                                        
                                                       <div class="col-12">
+                                                          <ValidationProvider
+                                                            name="companyAbout"
+                                                            ref="companyAbout"
+                                                            rules="required"
+                                                            v-slot="{ errors }"
+                                                        > 
                                                           <div class="form-group">
-                                                              <label for="accountTextarea">Bio</label>
-                                                              <textarea class="form-control" id="accountTextarea" rows="3" placeholder="Your Bio data here..."></textarea>
+                                                              <label for="accountTextarea1">Giới thiệu</label>
+                                                              <textarea class="form-control" id="accountTextarea1" rows="4" name="companyAbout" v-model="changeInfoCompanyForm.companyAbout" placeholder="Thông tin cơ bản của công ty..."></textarea>
+                                                              <ul style="color:red" class="overline text-left">
+                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                        <span>{{ error }}</span>
+                                                                        </li>
+                                                               </ul>
                                                           </div>
+                                                      </ValidationProvider>
                                                       </div>
                                                       <div class="col-12">
+                                                        <ValidationProvider
+                                                            name="companyAbout"
+                                                            ref="companyAbout"
+                                                            rules="required"
+                                                            v-slot="{ errors }"
+                                                        > 
                                                           <div class="form-group">
                                                               <div class="controls">
-                                                                  <label for="account-birth-date">Ngày sinh</label>
-                                                                  <input type="text" class="form-control birthdate-picker" required placeholder="Ngày sinh" id="account-birth-date" data-validation-required-message="This birthdate field is required">
+                                                                  <label for="account-phone">Đường dây nóng</label>
+                                                                  <input type="text" class="form-control" id="company-hotline" name="companyHotline" v-model="changeInfoCompanyForm.companyHotline"  required placeholder="Hotline">
+                                                                    <ul style="color:red" class="overline text-left">
+                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                        <span>{{ error }}</span>
+                                                                        </li>
+                                                                    </ul>
                                                               </div>
                                                           </div>
+                                                          </ValidationProvider>
                                                       </div>
                                                       <div class="col-12">
-                                                          <div class="form-group">
-                                                              <label for="accountSelect">Quốc gia</label>
-                                                              <select class="form-control" id="accountSelect">
-                                                                  <option>USA</option>
-                                                                  <option>India</option>
-                                                                  <option>Canada</option>
-                                                              </select>
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-12">
+                                                          <ValidationProvider
+                                                            name="companyTax"
+                                                            ref="companyTax"
+                                                            rules="required"
+                                                            v-slot="{ errors }"
+                                                        > 
                                                           <div class="form-group">
                                                               <div class="controls">
-                                                                  <label for="account-phone">Số điện thoại</label>
-                                                                  <input type="text" class="form-control" id="account-phone" required placeholder="Phone number" value="(+656) 254 2568" data-validation-required-message="This phone number field is required">
+                                                                  <label for="account-phone">Mã số thuế</label>
+                                                                  <input type="text" class="form-control" id="account-phone" name="companyTax" v-model="changeInfoCompanyForm.companyTax" required placeholder="Tax">
+                                                                    <ul style="color:red" class="overline text-left">
+                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                        <span>{{ error }}</span>
+                                                                        </li>
+                                                                    </ul>
                                                               </div>
                                                           </div>
+                                                          </ValidationProvider>
                                                       </div>
                                                       <div class="col-12">
+                                                          <ValidationProvider
+                                                            name="companyBenefit"
+                                                            ref="companyBenefit"
+                                                            rules="required"
+                                                            v-slot="{ errors }"
+                                                        > 
                                                           <div class="form-group">
-                                                              <label for="account-website">Website</label>
-                                                              <input type="text" class="form-control" id="account-website" placeholder="Website address">
+                                                              <label for="accountTextarea2">Lợi ích</label>
+                                                              <textarea class="form-control" id="accountTextarea2" rows="3" name="companyBenefit" v-model="changeInfoCompanyForm.companyBenefit" placeholder="Lợi ích khi ứng viên ứng tuyển vào công ty."></textarea>
+                                                                <ul style="color:red" class="overline text-left">
+                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                    <span>{{ error }}</span>
+                                                                    </li>
+                                                                </ul>
                                                           </div>
+                                                          </ValidationProvider>
+                                                      </div>
+                                                      <div class="col-12">
+                                                          <ValidationProvider
+                                                            name="companyPolicy"
+                                                            ref="companyPolicy"
+                                                            rules="required"
+                                                            v-slot="{ errors }"
+                                                        > 
+                                                          <div class="form-group">
+                                                              <label for="accountTextarea3">Chính sách</label>
+                                                              <textarea class="form-control" id="accountTextarea3" rows="3" name="companyPolicy" v-model="changeInfoCompanyForm.companyPolicy" placeholder="Chính sách tuyển dụng, đãi ngộ của công ty."></textarea>
+                                                                <ul style="color:red" class="overline text-left">
+                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                    <span>{{ error }}</span>
+                                                                    </li>
+                                                                </ul>
+                                                          </div>
+                                                          </ValidationProvider>
+                                                      </div>
+                                                      <div class="col-12">
+                                                          <ValidationProvider
+                                                            name="companyChance"
+                                                            ref="companyChance"
+                                                            rules="required"
+                                                            v-slot="{ errors }"
+                                                        > 
+                                                          <div class="form-group">
+                                                              <label for="accountTextarea4">Cơ hội</label>
+                                                              <textarea class="form-control" id="accountTextarea4" rows="3" name="companyChance" v-model="changeInfoCompanyForm.companyChance" placeholder="Cơ hội khi ứng viên ứng tuyển vào công ty."></textarea>
+                                                                <ul style="color:red" class="overline text-left">
+                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                    <span>{{ error }}</span>
+                                                                    </li>
+                                                                </ul>
+                                                          </div>
+                                                          </ValidationProvider>
+                                                      </div>
+                                                      <div class="col-12">
+                                                          <ValidationProvider
+                                                            name="companyLink"
+                                                            ref="companyLink"
+                                                            rules="required"
+                                                            v-slot="{ errors }"
+                                                        > 
+                                                          <div class="form-group">
+                                                              <label for="account-website">Website chính thức</label>
+                                                              <input type="text" class="form-control" id="account-website" name="companyLink" v-model="changeInfoCompanyForm.companyLink" placeholder="Địa chỉ website của công ty">
+                                                                <ul style="color:red" class="overline text-left">
+                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                    <span>{{ error }}</span>
+                                                                    </li>
+                                                                </ul>
+                                                          </div>
+                                                          </ValidationProvider>
                                                       </div>
                                                       <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                          <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
-                                                          <button type="reset" class="btn btn-outline-warning">Hủy</button>
+                                                          <button type="button" @click="changeInfoCompany()" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
                                                       </div>
                                                   </div>
+                                                  </ValidationObserver>
                                               </form>
                                           </div>
                                       </div>
@@ -301,7 +395,7 @@ export default {
     head: {
         title: 'Home page 🚀',
         script: [
-        { src: '/app-assets/js/scripts/pages/account-setting.js' },
+            { src: '/app-assets/js/scripts/pages/account-setting.js' },
         ]     
         },
     data() {
@@ -310,7 +404,16 @@ export default {
                 oldPassword: "",
                 newPassword: "",
                 retypePassword: ""
-            }
+            },
+            changeInfoCompanyForm: {
+                companyAbout: "",
+                companyHotline: "",
+                companyTax: "",
+                companyBenefit: "",
+                companyPolicy: "",
+                companyChance: "",
+                companyLink: "",
+            },
             };
         },
     methods: {
@@ -356,7 +459,65 @@ export default {
                 this.$refs.observer.reset();
                 });
             }
-    }
+        },
+        async changeInfoCompany() {
+            const isValid = await this.$refs.observerChangeInfoCompany.validate();
+            if(isValid){
+                try {
+                let response = await this.$axios.post('changeInfoCompany', {
+                    company_about: this.changeInfoCompanyForm.companyAbout,
+                    company_hotline: this.changeInfoCompanyForm.companyHotline,
+                    company_tax: this.changeInfoCompanyForm.companyTax,
+                    company_benefit: this.changeInfoCompanyForm.companyBenefit,
+                    company_policy: this.changeInfoCompanyForm.companyPolicy,
+                    company_chance: this.changeInfoCompanyForm.companyChance,
+                    company_link: this.changeInfoCompanyForm.companyLink,
+                });
+                if(response.data.status == 200){
+                    this.$swal({
+                    titile: 'Thành công',
+                    text: response.data.message,
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    }).then( async (result) => {
+                    if (result.value) {
+
+                        }
+                    })
+                }
+                else{
+                    this.$swal(
+                    'Lỗi!',
+                    response.data.message,
+                    'error'
+                    )
+                }
+                } catch (error) {
+                'Lỗi',
+                'Đăng nhập thất bại',
+                'Error'
+                }
+                 // reset validation
+                // You should call it on the next frame
+                requestAnimationFrame(() => {
+                this.$refs.observer.reset();
+                });
+            }
+        },
+        async fetch() {
+            let dataInforCompany = await this.$axios.get('getInfoCompany');
+            this.changeInfoCompanyForm.companyAbout = dataInforCompany.data.data.company_about;
+            this.changeInfoCompanyForm.companyHotline = dataInforCompany.data.data.company_hotline;
+            this.changeInfoCompanyForm.companyTax = dataInforCompany.data.data.company_tax;
+            this.changeInfoCompanyForm.companyBenefit = dataInforCompany.data.data.company_benefit;
+            this.changeInfoCompanyForm.companyPolicy = dataInforCompany.data.data.company_policy;
+            this.changeInfoCompanyForm.companyChance = dataInforCompany.data.data.company_chance;
+            this.changeInfoCompanyForm.companyLink = dataInforCompany.data.data.company_link;
+        }
+  },
+  mounted() {
+      this.fetch();
   }
 }
 </script>
