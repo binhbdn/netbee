@@ -58,7 +58,7 @@
                     >
                         <div class="form-group">
                             <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Số điện thoại</label>
-                            <input type="text" class="form-control" name="phone" v-model="userForm.phone">
+                            <input type="number" class="form-control" name="phone" v-model="userForm.phone">
                             <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
@@ -294,5 +294,8 @@ export default {
         list-style: none;
         padding-left: 5px;
         padding-top: 5px;
+    }
+    ul li span{
+      font-style: italic;
     }
 </style>
