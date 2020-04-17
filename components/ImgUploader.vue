@@ -6,7 +6,7 @@
             @dragover.prevent
             @drop="OnDrop"
             :class="{ dragging: isDragging }">
-            <div v-show="!images.length">
+            <div v-show="!images.length && thuml == null">
                 <i class="fa fa-cloud-upload" style="color: #000000c7;"></i>
                 <div class="file-input">
                     <label for="file">Chọn ảnh</label>
@@ -14,9 +14,14 @@
                 </div>
             </div>
 
-            <div class="images-preview" v-show="images.length">
-                <div class="img-wrapper" v-for="(item, index) in images" :key="index">
-                    <img :src="item" height="200px">
+            <div class="images-preview" v-show="images.length || thuml != null">
+                <div class="img-wrapper">
+                    <img :src="images[0]" height="400px" v-if="images.length > 0">
+                    <img :src="`/uploads/news/${thuml}`" height="400px" v-else>
+                </div>
+                <div class="file-input">
+                    <label for="file">Đổi ảnh</label>
+                    <input type="file" id="file" @change="onInputChange"> 
                 </div>
             </div>
         </div>
@@ -27,10 +32,13 @@ export default {
     data:() => ({
         isDragging : false,
         DragCount: 0,
-        images: []
+        images: [],
     }),
-    props: ['files'],
+    props: ['files', 'thuml'],
     methods:{
+        fetch(files){
+
+        },
         OnDragEnter(e){
             e.preventDefault();
 
@@ -49,14 +57,16 @@ export default {
             console.log(e);
         },
         onInputChange(e){
-
+            if(this.images.length > 1){
+                this.$delete(this.images, 0)
+            }
+            console.log(this.thuml)
             e.preventDefault();
             e.stopPropagation();
-
             this.isDragging = false;
             const files = e.target.files;
-            
-            this.addImage(files[0]);
+            if(files.length >0)
+                this.addImage(files[0]);
 
         },
         addImage(file){
@@ -68,6 +78,8 @@ export default {
                     )
                 return;
             }
+            if(this.files.length >1)
+                this.$delete(this.files, 0)
 
             this.files.push(file);
 
@@ -78,6 +90,8 @@ export default {
 
             reader.readAsDataURL(file);
         }
+    }, mounted() {
+
     }
 }
 </script>
