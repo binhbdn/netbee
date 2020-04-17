@@ -358,5 +358,8 @@ export default {
     label{
         font-size: 15px;
     }
+    ul li span{
+      font-style: italic;
+    }
 </style>
     
