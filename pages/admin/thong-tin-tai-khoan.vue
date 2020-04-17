@@ -218,7 +218,7 @@
                                                         <ValidationProvider
                                                             name="companyAbout"
                                                             ref="companyAbout"
-                                                            rules="required"
+                                                            rules="required|integer"
                                                             v-slot="{ errors }"
                                                         > 
                                                           <div class="form-group">
@@ -238,7 +238,7 @@
                                                           <ValidationProvider
                                                             name="companyTax"
                                                             ref="companyTax"
-                                                            rules="required"
+                                                            rules="required|integer"
                                                             v-slot="{ errors }"
                                                         > 
                                                           <div class="form-group">
@@ -360,6 +360,9 @@ extend('retypePassword', {
 })
 extend("required", {
   message: (field, values) => "Dữ liệu nhập vào không được để trống.",
+});
+extend("integer", {
+  message: (field, values) => "Dữ liệu nhập vào phải là số"
 });
 var errorMessage =
   " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
