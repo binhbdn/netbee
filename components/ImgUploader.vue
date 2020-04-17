@@ -17,7 +17,7 @@
             <div class="images-preview" v-show="images.length || thuml != null">
                 <div class="img-wrapper">
                     <img :src="images[0]" height="400px" v-if="images.length > 0">
-                    <img :src="`/uploads/news/${thuml}`" v-else>
+                    <img :src="`/uploads/news/${thuml}`" height="400px" v-else>
                 </div>
                 <div class="file-input">
                     <label for="file">Đổi ảnh</label>
