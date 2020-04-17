@@ -39,10 +39,10 @@
                                 </div>
                             </div>
                             <div class="card-content collapse show">
-                                <div class="card-body scrollbar">
+                                <div class="card-body">
                                     <div class="row">
-                                        <div class="col-12 make-it-slow pt-1" v-for="(item, index) in arrayNew" :key="index">
-                                            <NewItempage2 :id="2" :title="item.title" :content="item.content" :time="item.time" :type="2"></NewItempage2>
+                                        <div class="col-12 make-it-slow pt-1" v-for="(item, index) in tintucs" :key="index">
+                                            <NewItempage2 :id="2" :title="item.title" :content="item.content" :created_at="item.created_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
                                         </div>
                                     </div>
                                 </div>
@@ -107,17 +107,6 @@ export default {
     },
     data() {
         return {
-            arrayNew: [
-                {
-                    id: 1,
-                    title: 'Điều kiện đưa người lao động đi thực tập kỹ năng tại Nhật Bản',
-                    content: 'Content tin tức 1,hfiakh,vdjailh jdiosa dnsa cbsha cnsaj,vndajk vnad sậu vbajc xajbvdk chiabc adkhbsa chahbf ajk vcsaigdbsuia cqawgdbhsa cwhajfb hsajnmbduiakf dsv à afakjfhnuwjkfb fkahnfujkmsb av',
-                    time: '09/04/2020'
-                },
-                {id: 2, title: 'Tư vấn các thủ tục cần thiết để đi Xuất khẩu lao động Nhật Bản', content: 'Content tin tức 2', time: '09/04/2020'},
-                {id: 3, title: 'Nhật Bản tạm ngừng nhập cảnh lao động Việt Nam do dịch nCoV', content: 'Content tin tức 3', time: '09/04/2020'},
-                {id: 4, title: 'Mức lương thu nhập đi xuất khẩu lao động Nhật Bản 2020', content: 'Content tin tức 4', time: '09/04/2020'},
-            ],
             arrayJob: [
                 {id: 1, title: 'chào cả nhà1'},
                 {id: 2, title: 'chào cả nhà2'},
@@ -130,10 +119,13 @@ export default {
             ],
         }
     },
-    asyncData({$axios, route}) {
-        return $axios.$get(`getDetailTinTuc/${route.params.id}`).then((res) => {
-            return {tintuc: res.data}
-        })
+    async asyncData({$axios, route}) {
+        let detailRes = await $axios.$get(`getDetailTinTuc/${route.params.id}`)
+        let tinRes = await $axios.$get('getTinTucNew?limit=5')
+        return {
+            tintuc: detailRes.data,
+            tintucs: tinRes.data.tintuc
+        }
     },
     head() {
         return {
