@@ -78,7 +78,7 @@
                             >
                             <div class="__email">
                                 <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
-                                <input style="margin-bottom:15px!important" :keyup= "loginEnter" :type="show ? 'password' : 'text'" name="password" 
+                                <input style="margin-bottom:15px!important" :type="show ? 'password' : 'text'" name="password" 
                                 id="password" placeholder="Mật khẩu" class="border-radius input" v-model="userForm.password" />
                                 <ul style="color:red" class="overline text-left">
                                     <li v-for="(error, index) in errors" :key="index">
