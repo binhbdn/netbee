@@ -645,7 +645,7 @@ class UserController extends Controller
 
     public function changeInfoCompany(Request $request)
     {
-        $get = DB::table('nb_companies_info')->where('id', Auth::user()->id)->first();
+        $get = DB::table('nb_companies_info')->where('company_id', Auth::user()->id)->first();
         if($get)
         {
             $validator = Validator::make($request->all(),
