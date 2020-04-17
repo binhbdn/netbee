@@ -646,7 +646,7 @@ class UserController extends Controller
     public function changeInfoCompany(Request $request)
     {
         $get = DB::table('nb_companies_info')->where('company_id', Auth::user()->id)->first();
-        if($get)
+        if(!$get)
         {
             $validator = Validator::make($request->all(),
             [
@@ -723,7 +723,7 @@ class UserController extends Controller
                     'company_link' => $request->company_link,
                     'updated_at' => Carbon::now()
                 ];
-                $check = DB::table('nb_companies_info')->where('id', Auth::user()->id)->update($insert);
+                $check = DB::table('nb_companies_info')->where('company_id', Auth::user()->id)->update($insert);
                 $data = ['status' => 200,'message' => 'Cập nhật tin thành công', 'data' => null];
             } catch (\Exception $e) {
                 $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
