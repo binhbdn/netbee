@@ -7,7 +7,7 @@
                         <div class="register_form">
                             <div><h2 class="text">Đăng ký tư vấn</h2></div>
                             <p>Hãy để lại thông tin để nhận tư vấn từ netbee.</p>
-                           <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
+                           <form class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
                                     <ValidationObserver ref="observer" v-slot="{ valid }">
                                  <div class="roww"  style="width: 400px;">   
                                        <ValidationProvider 
@@ -66,7 +66,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-5 text-center pt-4">
+                    <div class="col-lg-6 col-md-5 text-center">
                         <img v-lazy="`/assets/img/1256652.svg`" height="280">
                     </div>
                 </div>
@@ -136,9 +136,6 @@ export default {
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'OK'
               }).then( async (result) => {
-                if (result.value) {
-                 window.location.href = '/';
-                }
               })
             }else {
               this.$swal(
