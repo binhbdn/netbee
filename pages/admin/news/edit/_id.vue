@@ -177,7 +177,6 @@ export default {
             form.append('short_content' , this.dataNews.short_content,)
             form.append('id_category' , this.id )
             form.append('id' , this.dataNews.id )
-            
 
             this.$axios.post('tintuc/updateTinTuc',form)
             .then(response => {
