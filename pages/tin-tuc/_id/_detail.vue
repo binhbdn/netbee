@@ -139,7 +139,21 @@ export default {
                 { hid: 'og:image', name: 'og:image', content: this.tintuc.thuml},
             ]
         }
-
+    },
+    jsonld() {
+        return {
+            "@context": "http://schema.org/",
+            "@type":"EmployerAggregateRating",
+            "itemReviewed":{
+                "@type":"Organization",
+                "name": this.tintuc.title,
+                "sameAs": 'https://netbee.vn'+this.$route.path
+                },
+            "ratingValue": "4",
+            "bestRating": "5",
+            "worstRating": "3",
+            "ratingCount": "5"
+        };
     },
 }
 </script>
