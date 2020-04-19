@@ -59,13 +59,13 @@
                                                 <div class="media">
                                                     <a href="javascript: void(0);">
                                                         <img :src="images[0]" class="rounded mr-75" alt="profile image" height="64" width="64" v-if="images.length > 0">
-                                                        <img :src="`/uploads/news/${changeInfoUser.avatar}`" class="rounded mr-75" alt="profile image" height="64" width="64" v-else>
+                                                        <img :src="`/uploads/news/avatars/${changeInfoUser.avatar}`" class="rounded mr-75" alt="profile image" height="64" width="64" v-else>
                                                     </a>
                                                     <div class="media-body mt-75">
                                                         <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
                                                             <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload" >Đổi ảnh đại diện</label>
                                                             <input type="file" id="account-upload" @change="onInputChange" hidden>
-                                                            <button class="btn btn-sm btn-outline-warning ml-50" @click="resetImg">Reset</button>
+                                                            <button type="button" class="btn btn-sm btn-outline-warning ml-50" @click="resetImg">Reset</button>
                                                         </div>
                                                         <p class="text-muted ml-75 mt-50"><small>Cho phép JPG, GIF or PNG.</small></p>
                                                     </div>
@@ -504,7 +504,7 @@ export default {
                         this.$swal(
                             'Thành công',
                             response.data.message,
-                            'success'
+                            'success',
                         )
                     }else{
                         this.$swal(
