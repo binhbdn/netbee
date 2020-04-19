@@ -57,7 +57,7 @@ export default {
             console.log(e);
         },
         onInputChange(e){
-            if(this.images.length > 1){
+            if(this.images.length > 0){
                 this.$delete(this.images, 0)
             }
             console.log(this.thuml)
@@ -78,7 +78,7 @@ export default {
                     )
                 return;
             }
-            if(this.files.length >1)
+            if(this.files.length >0)
                 this.$delete(this.files, 0)
 
             this.files.push(file);
