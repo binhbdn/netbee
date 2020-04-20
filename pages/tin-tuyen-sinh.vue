@@ -80,7 +80,7 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
-                <JobsList1ColNotCate :DataList="arrayJobNew"></JobsList1ColNotCate>
+                <JobsList1ColNotCate :DataList="arrayJobHot"></JobsList1ColNotCate>
               </div>
             </div>
           </div>
@@ -208,11 +208,13 @@ export default {
     let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=20&type=1`)
     let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=2`)
     let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=3`)
+    let getTinTuyenDungHot = await $axios.$get(`getTinTuyenDungHot?limit=10`)
     return {
         arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
         arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
         arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
         arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
+        arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
     }
   },
 };

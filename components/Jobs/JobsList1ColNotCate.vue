@@ -1,7 +1,7 @@
 <template>
 <div class="row ecommerce-application">
     <div class="col-lg-12 col-12 list-view" v-for="(item, index) in DataList" :key="index">
-        <JobItemNotCate :id="item.id" :title="item.title"/>
+        <JobItemNotCate :job="item"/>
     </div>
 </div>
 </template>
