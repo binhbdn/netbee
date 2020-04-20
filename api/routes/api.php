@@ -13,8 +13,11 @@ Route::namespace('API')->group(function () {
   Route::get('getDetailTinTuc/{id}', 'TinTucController@getDetailTinTuc');
   Route::get('getNationHome', 'HomeController@getNationHome');
   Route::get('getCategoriesJobHome', 'HomeController@getCategoriesJobHome');
-  Route::get('getTinTuyenSinhHome', 'HomeController@getTinTuyenSinhHome');
   Route::post('saveEmail', 'HomeController@saveEmail');
+  //tin tuyen dung
+  Route::get('getTinTuyenDungNew', 'TinTuyenDungController@getTinTuyenDungNew');
+  Route::get('getTinTuyenDungHot', 'TinTuyenDungController@getTinTuyenDungHot');
+  Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
