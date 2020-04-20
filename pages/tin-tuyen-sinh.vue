@@ -8,9 +8,9 @@
         </div>
         <div class="float-lerft-a">
           <h3 style="display: contents;">Gửi tôi việc tương tự</h3>
-          <a href class="btn btn-outline-primary">Nhận thông báo</a>
+          <a href="#follow" class="btn btn-outline-primary">Nhận thông báo</a>
         </div>
-        <div class="float-right-a">
+        <!-- <div class="float-right-a">
           <span style=" margin-right: 14px; color: BLACK; font-size: 17px;">Sắp xếp theo</span>
           <select id="cars" name="cars">
             <option value="1">1</option>
@@ -18,7 +18,7 @@
             <option value="3">3</option>
             <option value="4">4</option>
           </select>
-        </div>
+        </div> -->
       </div>
     </div>
     <section>
