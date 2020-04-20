@@ -76,6 +76,7 @@ module.exports = {
         '~/plugins/axios.js',
         '~/plugins/helppers.js',
         '~/plugins/vue-lazyload.js',
+        '~/plugins/jsonld.js',
         { src: './plugins/vue2-editor', ssr: false }
     ],
     vue: {

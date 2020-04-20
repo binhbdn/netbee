@@ -123,7 +123,7 @@ export default {
         layout: 'admin',
     data() {
         return{
-            files: [],
+            files: [null],
             response: {
                 status: 400,
                 message: ''
@@ -147,7 +147,6 @@ export default {
     methods:{
         async fetch (route) {
             let res = await this.$axios.$get(`getDetailTinTuc/${this.$route.params.id}`)
-            console.log(res.data)
             this.dataNews.title = res.data.title
             this.dataNews.content = res.data.content
             this.dataNews.short_content = res.data.short_content
@@ -169,7 +168,7 @@ export default {
             e.preventDefault();
             var form = new FormData();
             this.id = this.dataNews.id_category.id
-            if(this.files.lenght != null){
+            if(this.files[0]){
                 form.append('thuml' , this.files[0])
             }
             form.append('title' , this.dataNews.title)
@@ -177,7 +176,6 @@ export default {
             form.append('short_content' , this.dataNews.short_content,)
             form.append('id_category' , this.id )
             form.append('id' , this.dataNews.id )
-            
 
             this.$axios.post('tintuc/updateTinTuc',form)
             .then(response => {
