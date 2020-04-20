@@ -383,7 +383,7 @@
 <script>
   export default {
       data() {
-         return { backgroundUrl:require('~/static/assets/img/bg_2.jpg') }
+         return { backgroundUrl:require('~/static/assets/img/banner.png') }
         },
   }
 </script>

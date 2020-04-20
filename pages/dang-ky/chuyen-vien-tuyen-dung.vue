@@ -99,13 +99,19 @@
                         </div>
                     </ValidationProvider>
                     <ValidationProvider
-                        rules = "required"
-                        name = "Đồng ý"
+                        rules = "requiredCheckbox"
+                        name = "agree-term"
                         ref="agree-term"
+                        v-slot="{ errors }"
                     >
                         <div class="form-check" style="margin-bottom:0px;">
-                            <input disabled type="checkbox" checked  name="agree-term" id="agree-term" class="agree-term" v-model="userForm.checkbox"/>
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với các  <a href="" class="term-service text-dark">điều khoản</a></label>
+                            <input  type="checkbox"   name="agree-term" id="agree-term" class="agree-term" v-model="userForm.checkbox"/>
+                            <label for="agree-term" class="label-agree-term">Tôi đồng ý với các  <a href="" class="term-service text-dark">điều khoản</a></label>
+                            <ul style="color:red" class="overline text-left">
+                                <li v-for="(error, index) in errors" :key="index">
+                                <span>{{ error }}</span>
+                                </li>
+                            </ul>
                         </div>
                     </ValidationProvider>
                     <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
@@ -146,7 +152,10 @@ extend('password_confirmation', {
     return value === target;
   },
   message: 'Mật khẩu nhập vào không khớp'
-})
+});
+extend("requiredCheckbox", {
+  message: (field, values) => "Dữ liệu nhập vào phải là chữ."
+});
 
 // create custom error message for custom rule
 var errorMessage =
@@ -239,6 +248,9 @@ export default {
           this.$refs.observer.reset();
         });
       }
+    },
+    async checkbox(){
+      this.checkbox = !this.checkbox;
     }
   }
 }
