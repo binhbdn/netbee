@@ -28,6 +28,7 @@
 </template>
 <script>
 export default {};
+
 </script>
 <style>
 .group_icon {
@@ -63,5 +64,14 @@ i.fa.fa-angle-up {
   font-size: 26px;
   margin-left: 10.5px;
   margin-top: 3px;
+}
+i.fa.fa-envelope:hover {
+    color: white !important;
+}
+i.fab.fa-facebook-f:hover {
+    color: white !important;
+}
+i.fa.fa-angle-up:hover {
+    color: white !important;
 }
 </style>
