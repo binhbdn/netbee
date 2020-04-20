@@ -49,7 +49,7 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
-                <JobsList1Col :DataList="arrayJob"></JobsList1Col>
+                <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
-                <JobsList1ColNotCate :DataList="arrayJob"></JobsList1ColNotCate>
+                <JobsList1ColNotCate :DataList="arrayJobNew"></JobsList1ColNotCate>
               </div>
             </div>
           </div>
@@ -116,7 +116,7 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
-                <JobsList1ColNotCate :DataList="arrayJob"></JobsList1ColNotCate>
+                <JobsList1ColNotCate :DataList="arrayJobXKLD"></JobsList1ColNotCate>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
-                <JobsList1ColNotCate :DataList="arrayJob"></JobsList1ColNotCate>
+                <JobsList1ColNotCate :DataList="arrayJobDHS"></JobsList1ColNotCate>
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
-                <JobsList1ColNotCate :DataList="arrayJob"></JobsList1ColNotCate>
+                <JobsList1ColNotCate :DataList="arrayJobTNS"></JobsList1ColNotCate>
               </div>
             </div>
           </div>
@@ -192,34 +192,29 @@ import JobsList1Col from "~/components/Jobs/JobsList1Col";
 import JobsList1ColNotCate from "~/components/Jobs/JobsList1ColNotCate";
 export default {
   head: {
-    title: "123",
+    title: "Tin tuyển sinh mới nhất,tin tuyển dụng du học,tin xuất khẩu lao động mới nhất",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "1235" }
+      { hid: "description", name: "description", content: "Tin tuyển sinh mới nhất,tin tuyển dụng du học,tin xuất khẩu lao động mới nhất" }
     ]
   },
   components: {
     JobsList1Col,
     JobsList1ColNotCate
   },
-  mounted() {
-    this.$axios.$get("getTinTuyenSinhHome");
-  },
-  data() {
+  async asyncData({$axios, route}) {
+    let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=20&type=0`)
+    let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=20&type=1`)
+    let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=2`)
+    let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=3`)
     return {
-      arrayJob: [
-        { id: 1, title: "chào cả nhà1" },
-        { id: 2, title: "chào cả nhà2" },
-        { id: 3, title: "chào cả nhà3" },
-        { id: 4, title: "chào cả nhà4" },
-        { id: 5, title: "chào cả nhà5" },
-        { id: 6, title: "chào cả nhà6" },
-        { id: 6, title: "chào cả nhà6" },
-        { id: 6, title: "chào cả nhà6" }
-      ]
-    };
-  }
+        arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
+        arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
+        arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
+        arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
+    }
+  },
 };
 </script>
 <style >
