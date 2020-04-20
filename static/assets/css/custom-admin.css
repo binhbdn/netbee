@@ -13,9 +13,28 @@ html body .content .content-wrapper{
     margin-top: 59px;
 }
 .custom-header{
-    background-color: #f3f5f9!important;
+    background-color: #f9f9f9!important;
 }
 .width-id{
     width: 5%;
+}
+.actions-dropodown {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.14);
+    border-radius: 0.5rem;
+}
+.dropdown .dropdown-menu::before{
+    left: 141px;
+}
+.dropdown-menu .show{
+    left:-25px!important;
+}
+.vs-checkbox-con .vs-checkbox{
+    margin-top: -3px;
+}
+tbody .vs-checkbox-con .vs-checkbox{
+    margin-top: 0;
+}
+.table th{
+    font-size: 15px;
 }
 /*  */

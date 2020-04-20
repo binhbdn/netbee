@@ -22,37 +22,145 @@
                     </div>
                 </div>
             </div>
+            <!-- users filter start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Tìm kiếm</h4>
+                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
+                                    <li><a data-action=""><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
+                                    <li><a data-action="close"><i class="feather icon-x"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-content collapse show pb-2">
+                            <div class="card-body">
+                                <div class="users-list-filter">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                <input type="text" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                <input type="text" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                <fieldset class="form-group">
+                                                    <select class="form-control" id="users-list-role">
+                                                        <option value="">Trạng thái</option>
+                                                        <option value="user">Đã kích hoạt</option>
+                                                        <option value="staff">Chưa kích hoạt</option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                <fieldset class="form-group">
+                                                    <select class="form-control" id="users-list-role">
+                                                        <option value="">Thể loại</option>
+                                                        <option value="user">Du học sinh</option>
+                                                        <option value="staff">Tu nghiệp sinh</option>
+                                                        <option value="staff">Xuất khẩu lao động</option>
+                                                    </select>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- users filter end -->
             <div class="content-body">
                 <section id="News"> 
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <form action="/admin/news/create" method="">
+                                <div class="card-header col-12" style="padding-left:15px;">
+                                    <form class="col-9" action="/admin/news/create" method="">
                                         <button class="btn-add btn btn-warning text-dark "><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
                                     </form>
+                                    <div class="action-btns">
+                                        <div class="btn-dropdown ">
+                                            <div class="btn-group dropdown actions-dropodown">
+                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Sắp xếp
+                                                </button>
+                                                <div class="dropdown-menu" style="left: -25px!important;">
+                                                    <a class="dropdown-item" @click="sortAscendingID()"><i class="feather icon-trash-2"></i>ID tăng dần</a>
+                                                    <a class="dropdown-item" @click="sortDecreaseID()"><i class="feather icon-clipboard"></i>ID giảm dần</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="action-btns">
+                                        <div class="btn-dropdown ">
+                                            <div class="btn-group dropdown actions-dropodown">
+                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Hành động
+                                                </button>
+                                                <div class="dropdown-menu" style="left: -25px!important;">
+                                                    <a class="dropdown-item" ><i class="feather icon-trash-2"></i>Xóa</a>
+                                                    <a class="dropdown-item" ><i class="feather icon-clipboard"></i>Kích hoạt</a>
+                                                    <a class="dropdown-item" href="#"><i class="feather icon-printer"></i>Bỏ kích hoạt</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive">
                                         <table class="table table-hover mb-0 zero-configuration">
                                             <thead class="custom-header">
                                                 <tr>
-                                                    <th class="width-id">ID</th>
+                                                    <th class="width-id d-flex">
+                                                        <li class="d-inline-block mr-1">
+                                                            <fieldset>
+                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                    <input type="checkbox" value="false">
+                                                                    <span class="vs-checkbox vs-checkbox-sm">
+                                                                        <span class="vs-checkbox--check">
+                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+                                                        ID</th>
                                                     <th>Tiêu đề</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
+                                                    <th>Thể loại</th>
                                                     <th>Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="(item, index) in tinTuc" :key="index">
-                                                    <td>{{item.id}}</td>
+                                                <tr v-for="(item, index) in filteredList" :key="index">
+                                                    <td>
+                                                        <li class="d-inline-block mr-1">
+                                                            <fieldset>
+                                                                <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                    <input type="checkbox" value="false">
+                                                                    <span class="vs-checkbox vs-checkbox-sm">
+                                                                        <span class="vs-checkbox--check">
+                                                                            <i class="vs-icon feather icon-check"></i>
+                                                                        </span>
+                                                                    </span>
+                                                                </div>
+                                                            </fieldset>
+                                                        </li>
+                                                        {{item.id}}</td>
                                                     <td>{{item.title}}</td>
                                                     <td>{{formatDate(item.created_at)}}</td>
                                                     <td style="white-space: nowrap;">
-
                                                         <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
                                                         <span class="danger" v-else><i class="fas fa-circle" style="font-size: 7px"></i> Chưa kích hoạt</span>
+                                                    </td>
+                                                    <td style="white-space: nowrap;">
+                                                        <span v-if="item.id_category == 1">Xuất khẩu lao động</span>
+                                                        <span v-if="item.id_category == 2">Du học sinh</span>
+                                                        <span v-if="item.id_category == 3">Tu nghiệp sinh</span>
                                                     </td>
                                                     <td style="width: 27%;">
                                                         <button  @click="changeStatus(item.id)" class="btn-action btn px-1" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
@@ -94,6 +202,12 @@ export default {
     data() {
         return {
             tinTuc: [],
+            cardSearch: {
+                search: "",
+                searchID: "",
+                searchTitle: "",
+                searchCategory: ""
+            }
         }
     },
     created() {
@@ -178,8 +292,47 @@ export default {
                 return (moment(String(value)).format('MM/DD/YYYY'));
                 }
         },
+        sortAscendingID() {
+            this.tinTuc.sort((a, b) => a.id > b.id ? 1 : -1);
+            },
+        sortDecreaseID() {
+            this.tinTuc.sort((a, b) => a.id < b.id ? 1 : -1);
+        },
+        actived() {
+            sort((a, b) => a.status > b.status ? 1 : -1);
+        },
+        notActived() {
+            this.tinTuc.filter(item => {
+                return item.status.includes('0');
+            })
+        },
         
     },
+    computed: {
+    filteredList() {
+      if(this.cardSearch.search){
+          return this.tinTuc.filter(item => {
+                return item.title.toLowerCase().includes(this.cardSearch.search.toLowerCase())
+      })
+      }
+      else if(this.cardSearch.searchID){
+          return this.tinTuc.filter(item => {
+                return item.id.includes(this.cardSearch.searchID)
+      })
+      }
+      else if(this.cardSearch.searchTitle){
+          return this.tinTuc.filter(item => {
+                return item.title.toLowerCase().includes(this.cardSearch.searchTitle.toLowerCase())
+      })
+      }
+      else if(this.cardSearch.searchCategory){
+          return this.tinTuc.filter(item => {
+                return item.id_category.toLowerCase().includes(this.cardSearch.searchCategory.toLowerCase())
+      })
+      }
+      return this.tinTuc;
+    }
+  }
     
 }
 </script>

@@ -48,3 +48,7 @@
     opacity: 1; /* Firefox */
     font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif!important;
   }
+  .section-intro[data-v-673ee647]:before{
+    background-color: rgba(42, 46, 50, 0.8);
+    opacity: 0.6;
+  }
