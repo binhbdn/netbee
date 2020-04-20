@@ -110,7 +110,7 @@
               </div>
               <div class="card-content collapse show">
                 <div class="card-body">
-                  <JobsList2Col :DataList="arrayJob"></JobsList2Col>
+                  <JobsList2Col :DataList="arrayJobHot"></JobsList2Col>
                 </div>
               </div>
             </div>
@@ -122,7 +122,6 @@
     <section class="ftco-section services-section bg-netbee card why" style="background: #fff; text-align:center">
       <div class="container">
         <h2 class="text-center NB_benefit" style="text-transform:uppercase">Tại sao nên chọn NetBee</h2>
-        <p style="text-align:center">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text</p>
         <div class="row " style="padding-left:14px!important;">
           <div class="col-md-3  align-self-stretch ftco-animate " style="padding-left:0!important; padding-right:10px!important">
             <div class="d_item v_block" style="">
@@ -197,8 +196,8 @@
                 </div>
               </div>
               <div class="card-content collapse show">
-                <div class="card-body">
-                  <JobsList1Col :DataList="arrayJob"></JobsList1Col>
+                <div class="card-body scrollbar">
+                  <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
                 </div>
               </div>
             </div>
@@ -287,37 +286,16 @@
       NewsList,
       JobsList1Col
     },
-    data () {
+    async asyncData({$axios, route}) {
+      let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=20&type=0`)
+      let getTinTuyenDungHot = await $axios.$get(`getTinTuyenDungHot?limit=0`)
+      let getTinTucNew = await $axios.$get('getTinTucNew?limit=4')
       return {
-        tintuc: [],
-        arrayJob: [
-          {id: 1, title: 'chào cả nhà1'},
-          {id: 2, title: 'chào cả nhà2'},
-          {id: 3, title: 'chào cả nhà3'},
-          {id: 4, title: 'chào cả nhà4'},
-        ],
-        arrayNew: [
-          {
-            id: 1,
-            title: 'Title tin tức 1',
-            content: 'Content tin tức 1,hfiakh,vdjailh jdiosa dnsa cbsha cnsaj,vndajk vnad sậu vbajc xajbvdk chiabc adkhbsa chahbf ajk vcsaigdbsuia cqawgdbhsa cwhajfb hsajnmbduiakf dsv à afakjfhnuwjkfb fkahnfujkmsb av',
-            time: '09/04/2020'
-          },
-          {id: 2, title: 'Title tin tức 2', content: 'Content tin tức 2', time: '09/04/2020'},
-          {id: 3, title: 'Title tin tức 3', content: 'Content tin tức 3', time: '09/04/2020'},
-          {id: 4, title: 'Title tin tức 4', content: 'Content tin tức 4', time: '09/04/2020'},
-        ]
+          arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
+          arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
+          tintuc: getTinTucNew.data.tintuc
       }
     },
-    methods: {
-      async fetch () {
-        let res = await this.$axios.$get('getTinTucNew?limit=4')
-        this.tintuc = res.data.tintuc
-      },
-    },
-    mounted() {
-      this.fetch();
-    }
   }
 </script>
 <style scoped>

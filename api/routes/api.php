@@ -13,8 +13,12 @@ Route::namespace('API')->group(function () {
   Route::get('getDetailTinTuc/{id}', 'TinTucController@getDetailTinTuc');
   Route::get('getNationHome', 'HomeController@getNationHome');
   Route::get('getCategoriesJobHome', 'HomeController@getCategoriesJobHome');
-  Route::get('getTinTuyenSinhHome', 'HomeController@getTinTuyenSinhHome');
   Route::post('saveEmail', 'HomeController@saveEmail');
+  //tin tuyen dung
+  Route::get('getTinTuyenDungNew', 'TinTuyenDungController@getTinTuyenDungNew');
+  Route::get('getTinTuyenDungForCompany/{id}', 'TinTuyenDungController@getTinTuyenDungForCompany');
+  Route::get('getTinTuyenDungHot', 'TinTuyenDungController@getTinTuyenDungHot');
+  Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
@@ -33,6 +37,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('createTinTuc', 'Admin\TinTucController@createTinTuc');
         Route::post('updateTinTuc', 'Admin\TinTucController@updateTinTuc');
         Route::get('searchTinTuc', 'Admin\TinTucController@searchTinTuc');
+      });
+      Route::prefix('tintuyensinh')->group(function () {
+        Route::get('getQuocGia', 'Admin\TinTuyenController@getQuocGia');
       });
   });
 });

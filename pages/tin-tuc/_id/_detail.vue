@@ -42,7 +42,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12 make-it-slow pt-1" v-for="(item, index) in tintucs" :key="index">
-                                            <NewItempage2 :id="2" :title="item.title" :content="item.content" :created_at="item.created_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
+                                            <NewItempage2 :id="item.id" :title="item.title" :content="item.content" :created_at="item.created_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +50,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"><i class="fad fa-bullhorn"></i> Gọi ý việc làm  </h4>
+                                <h4 class="card-title"><i class="fad fa-bullhorn"></i> Gợi ý việc làm  </h4>
                                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
@@ -60,7 +60,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body scrollbar">
-                                    <JobsList1ColNotCate :DataList="arrayJob"></JobsList1ColNotCate>
+                                    <JobsList1ColNotCate :DataList="arrayJobNew"></JobsList1ColNotCate>
                                 </div>
                             </div>
                         </div>
@@ -105,26 +105,14 @@ export default {
         NewItempage2, 
         NewsList
     },
-    data() {
-        return {
-            arrayJob: [
-                {id: 1, title: 'chào cả nhà1'},
-                {id: 2, title: 'chào cả nhà2'},
-                {id: 3, title: 'chào cả nhà3'},
-                {id: 4, title: 'chào cả nhà4'},
-                {id: 5, title: 'chào cả nhà5'},
-                {id: 6, title: 'chào cả nhà6'},
-                {id: 6, title: 'chào cả nhà6'},
-                {id: 6, title: 'chào cả nhà6'},
-            ],
-        }
-    },
     async asyncData({$axios, route}) {
         let detailRes = await $axios.$get(`getDetailTinTuc/${route.params.id}`)
         let tinRes = await $axios.$get('getTinTucNew?limit=5')
+        let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=10&type=0`)
         return {
             tintuc: detailRes.data,
-            tintucs: tinRes.data.tintuc
+            tintucs: tinRes.data.tintuc,
+            arrayJobNew: getTinTuyenDungNew.data.tintuyendung
         }
     },
     head() {
@@ -139,7 +127,21 @@ export default {
                 { hid: 'og:image', name: 'og:image', content: this.tintuc.thuml},
             ]
         }
-
+    },
+    jsonld() {
+        return {
+            "@context": "http://schema.org/",
+            "@type":"EmployerAggregateRating",
+            "itemReviewed":{
+                "@type":"Organization",
+                "name": this.tintuc.title,
+                "sameAs": 'https://netbee.vn'+this.$route.path
+                },
+            "ratingValue": "4",
+            "bestRating": "5",
+            "worstRating": "3",
+            "ratingCount": "5"
+        };
     },
 }
 </script>
