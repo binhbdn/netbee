@@ -17,6 +17,7 @@ Route::namespace('API')->group(function () {
   Route::post('saveEmail', 'HomeController@saveEmail');
   //tin tuyen dung
   Route::get('getTinTuyenDungNew', 'TinTuyenDungController@getTinTuyenDungNew');
+  Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
