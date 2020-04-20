@@ -42,6 +42,17 @@ class TinTuyenDungController extends Controller
         return response()->json($data);
     }
 
+    public function getTinTuyenDungForCompany(Request $request)
+    {
+        $limit = $request->limit;
+        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$limit.')');
+        if($datas)
+            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
+        else
+            $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
+        return response()->json($data);
+    }
+
     public function getDetailTinTuyenDung(Request $request)
     {
         $tin = DB::select('CALL GetTinTuyenDungDetail('.$request->id.')');
