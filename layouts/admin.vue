@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%">
     <HeaderAdmin/>
     <NavbarAdmin/>
     <nuxt/>
@@ -28,5 +28,11 @@
 <style>
   html {
     font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  } 
+  #__nuxt{
+    height: 100% !important;
+  }
+  #__layout{
+    height: 100% !important;
   }
 </style>
