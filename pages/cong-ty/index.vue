@@ -1,161 +1,77 @@
 <template>
-  <div>
-    <div class="col-md-8">
-      <div class="card">
-       <div class="col-md-12 reset-paddingg" style="padding-left: 0px">
-                <h1 class="NB_main_titlee">
-                   Các Công Ty Tuyển Dụng Nổi Bật
-                </h1>
+  <div class="container">
+    <section>
+      <div class="row">
+        <div class="col-8 p-r-0">
+          <div class="card">
+            <div class="card-header d-flex justify-content-center align-items-center" style="background: #ffb701;padding-bottom: 21px">
+              <h4 class="card-title">CÁC CÔNG TY NỔI BẬT</h4>
             </div>
-        <div class="card-content">
-          <div class="card-body">
-            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-              <ol class="carousel-indicators">
-                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner" role="listbox">
-                <div class="carousel-item active">
-                  <img
-                    class="img-fluid"
-                    src="app-assets/images/banner/banner-2.jpg"
-                    alt="First slide"
-                  />
-                  <div class="remove-border-rightt">
-                    <div class="item-name">
-                      <p class="item-company mb-0">
-                                             
-                        <h2> <i class="fad fa-building"></i>  Hachinet</h2>
-                      </p>
-                    </div>
-                     <div class="item-quantity">
-                      <p class="delivery-date" style=""  >
-                           IT-phần mềm
-                      </p>
-                    </div>
-                    <div class="item-quantity d-flex justify-content-between">
-                      <p class="quantity-title mb-0">
-                        <i class="fad fa-location-arrow"></i> Nhật bản
-                      </p>
-                     
-                    </div>
-                     <div class="item-quantity d-flex justify-content-between">
-                      
-                      <p class="delivery-date mb-0">
-                        <i class="fad fa-calendar-star"></i> 22/02/2021
-                      </p>
-                    </div>
-                   
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <img
-                    class="img-fluid"
-                    src="app-assets/images/banner/banner-3.jpg"
-                    alt="Second slide"
-                  />
-                  <div class="remove-border-rightt">
-                    <!-- item-slide -->
-                    <div class="item-name">
-                      <p class="item-company mb-0">
-                                             
-                        <h2> <i class="fad fa-building"></i>  Hachinet</h2>
-                      </p>
-                    </div>
-                     <div class="item-quantity">
-                      <p class="delivery-date" style=""  >
-                           IT-phần mềm
-                      </p>
-                    </div>
-                    <div class="item-quantity d-flex justify-content-between">
-                      <p class="quantity-title mb-0">
-                        <i class="fad fa-location-arrow"></i> Nhật bản
-                      </p>
-                     
-                    </div>
-                     <div class="item-quantity d-flex justify-content-between">
-                      
-                      <p class="delivery-date mb-0">
-                        <i class="fad fa-calendar-star"></i> 22/02/2021
-                      </p>
+            <div class="card-content">
+              <div class="card-body">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                  <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                  </ol>
+                  <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item" :class="{'active' : indexCompanyHot == 0}" v-for="(companyHot, indexCompanyHot) in arrayCompanyHot" :key="indexCompanyHot">
+                      <img class="img-fluid" v-lazy="`/uploads/users/avatars/${companyHot.avatar}`" :alt="`${companyHot.avatar}`" />
+                      <div class="remove-border-rightt">
+                        <div class="item-name">
+                          <a :href="`/cong-ty/${companyHot.company_id}/${ChangeToSlug(companyHot.name)}`" class="item-company mb-0"> 
+                            <h2> <i class="fad fa-building"></i> {{ companyHot.name }}</h2>
+                          </a>
+                        </div>
+                        <div class="item-quantity d-flex justify-content-between">
+                          <p class="quantity-title mb-0">
+                            <i class="fad fa-location-arrow"></i> {{ companyHot.address_detail ? companyHot.address_detail : 'Đang cập nhật' }}
+                          </p>
+                        </div>
+                        <div class="item-quantity d-flex justify-content-between">
+                          <p class="delivery-date mb-0">
+                            <i class="fad fa-calendar-star"></i> {{ companyHot.birth_of_date ? ConvertDate(companyHot.birth_of_date) : 'Đang cập nhật' }}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="carousel-item">
-                  <img
-                    class="img-fluid"
-                    src="app-assets/images/banner/banner-1.jpg"
-                    alt="Third slide"
-                  />
-                  <div class="remove-border-rightt">
-                    <div class="item-name">
-                      <p class="item-company mb-0">
-                                             
-                        <h2> <i class="fad fa-building"></i>  Hachinet</h2>
-                      </p>
-                    </div>
-                     <div class="item-quantity">
-                      <p class="delivery-date" style=""  >
-                           IT-phần mềm
-                      </p>
-                    </div>
-                    <div class="item-quantity d-flex justify-content-between">
-                      <p class="quantity-title mb-0">
-                        <i class="fad fa-location-arrow"></i> Nhật bản
-                      </p>
-                     
-                    </div>
-                     <div class="item-quantity d-flex justify-content-between">
-                      
-                      <p class="delivery-date mb-0">
-                        <i class="fad fa-calendar-star"></i> 22/02/2021
-                      </p>
-                    </div>
-                  </div>
-                   <!-- end item-slide -->
                 </div>
               </div>
-              <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12">
+          <div class="card">
+            <div class="card-content collapse show">
+              <div class="card-header">
+                <h4>NHÀ TUYỂN DỤNG HÀNG ĐẦU</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4" v-for="(companyHot, indexCompanyHot) in arrayCompanyHot" :key="indexCompanyHot">
+                    <a :href="`/cong-ty/${companyHot.company_id}/${ChangeToSlug(companyHot.name)}`" data-toggle="tooltip" data-placement="top" :title="`${companyHot.name}`">
+                      <img v-lazy="`/uploads/users/avatars/${companyHot.avatar}`" :alt="`${companyHot.avatar}`" width="100%">
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
     <section>
       <div class="row">
-        <div class="col-lg-8 col-12 p-r-0">
+        <div class="col-12 p-r-0">
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">Các Công Ty Đang Tuyển Dụng</h4>
-              <a class="heading-elements-toggle">
-                <i class="fa fa-ellipsis-v font-medium-3"></i>
-              </a>
-              <div class="heading-elements">
-                <ul class="list-inline mb-0">
-                  <li>
-                    <a data-action="expand">
-                      <i class="feather icon-maximize"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a data-action="close">
-                      <i class="feather icon-x"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
-                <CompanyList1 :DataList="arrayCompa"></CompanyList1>
+                <CompanyList1 :DataList="arrayCompanyNew"></CompanyList1>
               </div>
             </div>
           </div>
@@ -170,19 +86,14 @@ export default {
   components: {
     CompanyList1
   },
-
-  data() {
+  async asyncData({$axios, route}) {
+    let getCompanyHot = await $axios.$get(`getCompanyHot`)
+    let getCompanyNew = await $axios.$get(`getCompanyNew`)
     return {
-      arrayCompa: [
-        { id: 1, title: "Tên cty 1" },
-        { id: 2, title: "Tên cty 2" },
-        { id: 3, title: "Tên cty 3" },
-        { id: 4, title: "Tên cty 4" },
-        { id: 5, title: "Tên cty 5" },
-        { id: 6, title: "Tên cty 6" }
-      ]
-    };
-  }
+        arrayCompanyHot: getCompanyHot.data,
+        arrayCompanyNew: getCompanyNew.data,
+    }
+  },
 };
 </script>
 <style>
