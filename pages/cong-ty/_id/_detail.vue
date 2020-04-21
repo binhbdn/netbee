@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="col-lg-2 count-job">
-                            <h1 style="font-size: 70px;color: #ffb701;">{{ countJob ? countJob : '0' }}</h1>
+                            <h1 style="font-size: 70px;color: #ffb701;">{{ countJob.length ? countJob.length : '0' }}</h1>
                             <h2>Việc làm</h2>
                         </div>
                     </div>
