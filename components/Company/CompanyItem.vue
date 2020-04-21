@@ -13,13 +13,13 @@
             </div>
             <div class="remove-border-right">
                 <div class="item-quantity ">
-                    <p class="delivery-date" v-html="company.company_about"></p>
+                    <p class="delivery-date" style="overflow: hidden;text-overflow: ellipsis;height: 80px;" v-html="company.company_about"></p>
                 </div>
             </div>
             <div class="item-options text-center">
                 <div class="item-quantity">
-                    <p class="delivery-date" v-html="company.company_hotline"></p>
-                    <p class="delivery-date" v-html="company.address_detail"></p>
+                    <p class="delivery-date"><i class="fad fa-phone-office"></i> {{ company.company_hotline ? company.company_hotline : '' }}</p>
+                    <p class="delivery-date"><i class="fad fa-map-marked-alt"></i> {{ company.address_detail ? company.address_detail : '' }}</p>
                 </div>
             </div>
         </div>

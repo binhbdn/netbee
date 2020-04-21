@@ -88,7 +88,7 @@ export default {
   },
   async asyncData({$axios, route}) {
     let getCompanyHot = await $axios.$get(`getCompanyHot`)
-    let getCompanyNew = await $axios.$get(`getCompanyNew`)
+    let getCompanyNew = await $axios.$get(`getCompanyNew?limit=0`)
     return {
         arrayCompanyHot: getCompanyHot.data,
         arrayCompanyNew: getCompanyNew.data,

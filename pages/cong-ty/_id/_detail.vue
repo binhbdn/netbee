@@ -130,12 +130,12 @@ export default {
         return {
             title: this.congty.name,
             meta: [
-                { hid: 'description', name: 'description', content: this.congty.name },
+                { hid: 'description', name: 'description', content: this.congty.company_about },
                 { hid: 'keywords', name: 'keywords', content: this.congty.name},
                 { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
                 { hid: 'og:title', name: 'og:title', content: this.congty.name},
                 { hid: 'og:description', name: 'og:description', content: this.congty.name},
-                { hid: 'og:image', name: 'og:image', content: this.congty.avatar},
+                { hid: 'og:image', name: 'og:image', content: 'https://netbee.vn/uploads/users/avatars/'+this.congty.avatar},
             ]
         }
     },
@@ -144,22 +144,22 @@ export default {
             this.arrayForCompany = response.data.tintuyendung
             this.countJob = response.data.count
         });
-    }
-    // jsonld() {
-    //     return {
-    //         "@context": "http://schema.org/",
-    //         "@type":"EmployerAggregateRating",
-    //         "itemReviewed":{
-    //             "@type":"Organization",
-    //             "name": this.tintuc.title,
-    //             "sameAs": 'https://netbee.vn'+this.$route.path
-    //             },
-    //         "ratingValue": "4",
-    //         "bestRating": "5",
-    //         "worstRating": "3",
-    //         "ratingCount": "5"
-    //     };
-    // },
+    },
+    jsonld() {
+        return {
+            "@context": "http://schema.org/",
+            "@type":"EmployerAggregateRating",
+            "itemReviewed":{
+                "@type":"Organization",
+                "name": this.congty.name,
+                "sameAs": 'https://netbee.vn'+this.$route.path
+                },
+            "ratingValue": "4",
+            "bestRating": "5",
+            "worstRating": "3",
+            "ratingCount": "5"
+        };
+    },
 }
 </script>
 <style scoped>
