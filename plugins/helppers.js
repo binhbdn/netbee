@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import moment from 'moment'
 Vue.mixin({
     methods:{
         ChangeToSlug(slugs)
@@ -33,6 +34,9 @@ Vue.mixin({
             slug = slug.replace(/\@\-|\-\@|\@/gi, '');
             //In slug ra textbox có id “slug”
             return slug;
+        },
+        ConvertDate(date) {
+            return moment(String(date)).format('DD/MM/YYYY')
         }
     }
 })

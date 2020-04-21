@@ -28,6 +28,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('changeInfo', 'Auth\UserController@changeInfo');
       Route::get('getInfoCompany', 'Auth\UserController@getInfoCompany');
       Route::post('changeInfoCompany', 'Auth\UserController@changeInfoCompany');
+      Route::get('getInfoCompanyById/{id}', 'Auth\UserController@getInfoCompanyById');
+      Route::get('getCompanyHot', 'Auth\UserController@getCompanyHot');
+      Route::get('getCompanyNew', 'Auth\UserController@getCompanyNew');
       Route::get('logout', 'Auth\UserController@logout');
     //admin
       Route::prefix('tintuc')->group(function () {
@@ -38,8 +41,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('updateTinTuc', 'Admin\TinTucController@updateTinTuc');
         Route::get('searchTinTuc', 'Admin\TinTucController@searchTinTuc');
       });
-      Route::prefix('tintuyensinh')->group(function () {
+      Route::prefix('tintuyendung')->group(function () {
         Route::get('getQuocGia', 'Admin\TinTuyenController@getQuocGia');
+        Route::get('getVisa', 'Admin\TinTuyenController@getVisa');
+        Route::post('createTinTuyen', 'Admin\TinTuyenController@createTinTuyen');
       });
   });
 });

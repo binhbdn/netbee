@@ -20,11 +20,11 @@
             </div>
             <div class="remove-border-right">
                 <div class="item-name">
-                    <p class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.name}`"> {{ job.name }}</span></p>
+                    <a :href="`/cong-ty/${job.id_created}/${ChangeToSlug(job.name)}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.name}`"> {{ job.name }}</span></a>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="quantity-title mb-0"><i class="fad fa-location-arrow"></i> {{ job.nation_name }}</p>
-                    <p class="delivery-date mb-0"><i class="fad fa-calendar-star"></i> {{ job.expiration_date }}</p>
+                    <p class="delivery-date mb-0"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="item-quantity ">
                     <p class="delivery-date" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ job.salary_start }}{{ job.currency }} ~ {{ job.salary_end }}{{ job.currency }}</p>

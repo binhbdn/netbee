@@ -46,6 +46,7 @@ class TinTuyenDungController extends Controller
     {
         $limit = $request->limit;
         $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$limit.')');
+        $datas['count'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.',0)');
         if($datas)
             $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
         else

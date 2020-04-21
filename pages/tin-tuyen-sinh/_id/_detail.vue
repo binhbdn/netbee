@@ -7,7 +7,7 @@
               <div class="card-content collapse show">
                 <div class="card-body">
                     <div class="row p-1">
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 d-flex align-items-center">
                             <div class="avatar-company">
                                 <img v-lazy="`/uploads/users/avatars/${tintuc.avatar}`" :alt="`${tintuc.avatar}`" width="100%">
                             </div>
@@ -19,7 +19,7 @@
                                 <p><span class="font-weight-600">Loại tin: </span><span class="badge background-default badge-md">{{ tintuc.type == 3 ? 'Tu nghiệp sinh' : tintuc.type == 2 ? 'Du học sinh' : 'Xuất khẩu lao động' }}</span></p>
                                 <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuc.nation_name }}</p>
                                 <p><span class="font-weight-600">Mức lương: </span>{{ tintuc.salary_start }}{{ tintuc.currency }} ~ {{ tintuc.salary_end }}{{ tintuc.currency }}</p>
-                                <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ tintuc.expiration_date }}</p>
+                                <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ ConvertDate(tintuc.expiration_date) }}</p>
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -51,7 +51,21 @@
             <div class="card">
               <div class="card-content collapse show">
                 <div class="card-body">
-                    tuyển dụng nhanh
+                    <div class="row p-t-10">
+                        <div class="col-12">
+                            <div class="col-5 p-l-0">
+                                <h5 class="font-weight-600 line-title">THÔNG TIN TUYỂN DỤNG NHANH</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    1
+                                </div>
+                                <div class="col-lg-6">
+                                    2
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
               </div>
             </div>
@@ -155,9 +169,12 @@ export default {
 }
 </script>
 <style scoped>
+.line-title {
+    border-bottom: 2px solid #ffb701;
+    padding-bottom: 5px;
+}
 .avatar-company {
     width: 170px;
-    height: 170px;
 }
 .btn-netbee {
     color: #ffb701 !important;

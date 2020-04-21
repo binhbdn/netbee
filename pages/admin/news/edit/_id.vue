@@ -184,8 +184,10 @@ export default {
                         'Thành công',
                         response.data.message,
                         'success'
-                    )
-                    window.location.href = '/admin/news';
+                    ).then( function (){
+                            window.location.href = '/admin/news';
+                        } )
+                    
                 }else{
                     this.$swal(
                         'Lỗi',

@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-wrap js-fullheight m-b-15" :style="{'background-image':'url('+backgroundUrl+');'}" style="position: relative; height: 100%" data-stellar-background-ratio="0.5">
+  <div class="hero-wrap js-fullheight m-b-15" style="position: relative; height: 100%;background-image: url('/assets/img/banner.png')">
     <div class="section-intro">
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
@@ -560,6 +560,7 @@
     display: inline-block;
     background-color: rgba(42, 46, 50, 0.8);
     position: absolute;
+    opacity: 0.6;
   }
   .ftco-search .nav-pills .nav-link.active, .ftco-search .nav-pills .nav-link:hover {
     color: #ffb701;
