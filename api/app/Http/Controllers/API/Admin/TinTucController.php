@@ -212,5 +212,30 @@ class TinTucController extends Controller
         }
         return response()->json($data);
     }
+    public function searchTinTuc(Request $request)
+    {
+        $searchCategory = $request->searchCategory;
+        $searchTitle = $request->searchTitle;
+        $search = $request->search;
+        $searchStatus = $request->searchStatus;
+        $datas['data'] = DB::select('CALL searchTinTuc('.$search.','.$searchTitle.','.$searchStatus.','.$searchCategory.')');
+        // if($request->has('search')){
+        //     $datas = $datas->where('title','like','%'.$search.'%');
+        // }
+        if($request->has('searchCategory')){
+            $datas = $datas->where('id_category',$searchCategory)->get();
+        }
+        // if($request->has('searchTitle')){
+        //     $datas = $datas->where('title','like','%'.$search.'%');
+        // }
+        if($request->has('searchStatus')){
+            $datas =$datas->where('status',$searchStatus)->get();
+        }
+        // if($datas)
+        //     $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
+        // else
+        //     $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
+        return response()->json($datas);
+    }
 
 }
