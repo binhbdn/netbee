@@ -577,6 +577,17 @@ class UserController extends Controller
         return response()->json($data);
     }
 
+    public function getCompanyNew(Request $request)
+    {
+        $limit = $request->limit;
+        $GetCompanyNew = DB::select('CALL GetCompanyNew('.$limit.')');
+        if($GetCompanyNew)
+            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $GetCompanyNew];
+        else
+            $data = ['status'=> 400, 'message' => 'Công ty không tồn tại', 'data' => null];
+        return response()->json($data);
+    }
+
     public function changeInfo(Request $request)
     {
         if($request->file('avatar'))
