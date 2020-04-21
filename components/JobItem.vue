@@ -24,7 +24,7 @@
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="quantity-title mb-0"><i class="fad fa-location-arrow"></i> {{ job.nation_name }}</p>
-                    <p class="delivery-date mb-0"><i class="fad fa-calendar-star"></i> {{ job.expiration_date }}</p>
+                    <p class="delivery-date mb-0"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="item-quantity ">
                     <p class="delivery-date" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ job.salary_start }}{{ job.currency }} ~ {{ job.salary_end }}{{ job.currency }}</p>

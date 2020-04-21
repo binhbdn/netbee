@@ -14,8 +14,7 @@
                         </div>
                         <div class="col-lg-7">
                             <div class="company-job-title">
-                                <h1 class="font-weight-bold">{{ tintuc.title }}</h1>
-                                <h4 class="font-weight-bold text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuc.name}`"> {{ tintuc.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4>
+                                <h2 class="font-weight-bold text-uppercase"><span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuc.name}`"> {{ tintuc.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h2>
                                 <p><span class="font-weight-600">Loại tin: </span><span class="badge background-default badge-md">{{ tintuc.type == 3 ? 'Tu nghiệp sinh' : tintuc.type == 2 ? 'Du học sinh' : 'Xuất khẩu lao động' }}</span></p>
                                 <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuc.nation_name }}</p>
                                 <p><span class="font-weight-600">Mức lương: </span>{{ tintuc.salary_start }}{{ tintuc.currency }} ~ {{ tintuc.salary_end }}{{ tintuc.currency }}</p>

@@ -28,6 +28,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('changeInfo', 'Auth\UserController@changeInfo');
       Route::get('getInfoCompany', 'Auth\UserController@getInfoCompany');
       Route::post('changeInfoCompany', 'Auth\UserController@changeInfoCompany');
+      Route::get('getInfoCompanyById/{id}', 'Auth\UserController@getInfoCompanyById');
+      Route::get('getCompanyHot', 'Auth\UserController@getCompanyHot');
       Route::get('logout', 'Auth\UserController@logout');
     //admin
       Route::prefix('tintuc')->group(function () {

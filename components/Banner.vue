@@ -560,6 +560,7 @@
     display: inline-block;
     background-color: rgba(42, 46, 50, 0.8);
     position: absolute;
+    opacity: 0.6;
   }
   .ftco-search .nav-pills .nav-link.active, .ftco-search .nav-pills .nav-link:hover {
     color: #ffb701;
