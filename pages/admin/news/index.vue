@@ -30,8 +30,6 @@
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
                                     <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
-                                    <li><a data-action=""><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
-                                    <li><a data-action="close"><i class="feather icon-x"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -48,12 +46,12 @@
                                             </div>
                                             <div class="col-12 col-sm-6 col-lg-3">
                                                 <fieldset class="form-group">
-                                                    <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
+                                                    <multiselect @input="search()" :allow-empty="false" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
                                                 </fieldset>
                                             </div>
                                             <div class="col-12 col-sm-6 col-lg-3">
                                                 <fieldset class="form-group">
-                                                    <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
+                                                    <multiselect @input="search()" :allow-empty="false" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -309,7 +307,7 @@ export default {
         },
         search(){
             this.$axios.$get(
-            'tintuc/searchTinTuc/?searchCategory=' 
+            'tintuc/searchTinTuc?searchCategory=' 
             + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id)?this.cardSearch.searchStatus.id:0) 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
