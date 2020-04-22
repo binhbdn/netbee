@@ -41,10 +41,10 @@
                                     <form>
                                         <div class="row">
                                             <div class="col-12 col-sm-6 col-lg-3">
-                                                <input type="text" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                                <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                             </div>
                                             <div class="col-12 col-sm-6 col-lg-3">
-                                                <input type="text" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
+                                                <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
                                             </div>
                                             <div class="col-12 col-sm-6 col-lg-3">
                                                 <fieldset class="form-group">
@@ -53,7 +53,7 @@
                                             </div>
                                             <div class="col-12 col-sm-6 col-lg-3">
                                                 <fieldset class="form-group">
-                                                    <multiselect v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
+                                                    <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -200,9 +200,9 @@ export default {
             tinTuc: [],
             cardSearch: {
                 search: "",
-                searchStatus: null,
+                searchStatus: "",
                 searchTitle: "",
-                searchCategory: 1
+                searchCategory: ""
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
@@ -211,7 +211,7 @@ export default {
             ],
             status: [
                 {id: 1, name: 'Đã kích hoạt'},
-                {id: 2, name: 'Chưa kích hoạt'},
+                {id: 0, name: 'Chưa kích hoạt'},
             ],
             id: null
         }
@@ -308,10 +308,14 @@ export default {
             this.tinTuc.sort((a, b) => a.id < b.id ? 1 : -1);
         },
         search(){
-            this.id= this.cardSearch.searchCategory.id;
-            // console.log(this.cardSearch.searchCategory.id);
-            this.$axios.$get('tintuc/searchTinTuc/?searchCategory='+this.cardSearch.searchCategory.id).then((response)=>{
-	             this.tinTuc=response;
+            this.$axios.$get(
+            'tintuc/searchTinTuc/?searchCategory=' 
+            + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
+            + '&searchStatus='+ ((this.cardSearch.searchStatus.id)?this.cardSearch.searchStatus.id:0) 
+            + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
+            + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
+            ).then((response)=>{
+	             this.tinTuc=response.data;
 	        });
         }
         
