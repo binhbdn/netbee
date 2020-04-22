@@ -22,7 +22,7 @@
                     </div>
                 </div>
             </div>
-            <!-- users filter start -->
+            <!-- News filter start -->
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Tìm kiếm</h4>
@@ -41,28 +41,19 @@
                                     <form>
                                         <div class="row">
                                             <div class="col-12 col-sm-6 col-lg-3">
-                                                <input type="text" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                                <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                             </div>
                                             <div class="col-12 col-sm-6 col-lg-3">
-                                                <input type="text" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
+                                                <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
                                             </div>
                                             <div class="col-12 col-sm-6 col-lg-3">
                                                 <fieldset class="form-group">
-                                                    <select class="form-control" id="users-list-role">
-                                                        <option value="">Trạng thái</option>
-                                                        <option value="user">Đã kích hoạt</option>
-                                                        <option value="staff">Chưa kích hoạt</option>
-                                                    </select>
+                                                    <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
                                                 </fieldset>
                                             </div>
                                             <div class="col-12 col-sm-6 col-lg-3">
                                                 <fieldset class="form-group">
-                                                    <select class="form-control" id="users-list-role">
-                                                        <option value="">Thể loại</option>
-                                                        <option value="user">Du học sinh</option>
-                                                        <option value="staff">Tu nghiệp sinh</option>
-                                                        <option value="staff">Xuất khẩu lao động</option>
-                                                    </select>
+                                                    <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
                                                 </fieldset>
                                             </div>
                                         </div>
@@ -71,7 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- users filter end -->
+                    <!-- News filter end -->
             <div class="content-body">
                 <section id="News"> 
                     <div class="row">
@@ -101,9 +92,9 @@
                                                     Hành động
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
-                                                    <a class="dropdown-item" ><i class="feather icon-trash-2"></i>Xóa</a>
-                                                    <a class="dropdown-item" ><i class="feather icon-clipboard"></i>Kích hoạt</a>
-                                                    <a class="dropdown-item" href="#"><i class="feather icon-printer"></i>Bỏ kích hoạt</a>
+                                                    <a class="dropdown-item"><i class="feather icon-trash-2 warning"></i>Xóa</a>
+                                                    <a class="dropdown-item"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
+                                                    <a class="dropdown-item"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -136,7 +127,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="(item, index) in filteredList" :key="index">
+                                                <tr v-for="(item, index) in tinTuc" :key="index">
                                                     <td>
                                                         <li class="d-inline-block mr-1">
                                                             <fieldset>
@@ -181,6 +172,8 @@
     </div>
 </template>
 <script>
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
 import Vue from 'vue'
 import moment from 'moment'
 export default {
@@ -199,21 +192,37 @@ export default {
             { src: '/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js' },
         ]
     },
+    components: {
+        Multiselect,
+    },
     data() {
         return {
             tinTuc: [],
             cardSearch: {
                 search: "",
-                searchID: "",
+                searchStatus: "",
                 searchTitle: "",
                 searchCategory: ""
-            }
+            },
+            categories: [
+                {id: 1, name: 'Xuất khẩu lao động'},
+                {id: 2, name: 'Du học sinh'},
+                {id: 3, name: 'Tu nghiệp sinh'}
+            ],
+            status: [
+                {id: 1, name: 'Đã kích hoạt'},
+                {id: 0, name: 'Chưa kích hoạt'},
+            ],
+            id: null
         }
     },
     created() {
         this.fetch();
     },
     methods: {
+        nameWithLang ({ name, id }) {
+            return `${name}`
+        },
         fetch() {
             this.$axios.$get('tintuc/getTinTuc').then((response)=>{
 	             this.tinTuc=response.data;
@@ -298,41 +307,44 @@ export default {
         sortDecreaseID() {
             this.tinTuc.sort((a, b) => a.id < b.id ? 1 : -1);
         },
-        actived() {
-            sort((a, b) => a.status > b.status ? 1 : -1);
-        },
-        notActived() {
-            this.tinTuc.filter(item => {
-                return item.status.includes('0');
-            })
-        },
+        search(){
+            this.$axios.$get(
+            'tintuc/searchTinTuc/?searchCategory=' 
+            + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
+            + '&searchStatus='+ ((this.cardSearch.searchStatus.id)?this.cardSearch.searchStatus.id:0) 
+            + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
+            + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
+            ).then((response)=>{
+	             this.tinTuc=response.data;
+	        });
+        }
         
     },
-    computed: {
-    filteredList() {
-      if(this.cardSearch.search){
-          return this.tinTuc.filter(item => {
-                return item.title.toLowerCase().includes(this.cardSearch.search.toLowerCase())
-      })
-      }
-      else if(this.cardSearch.searchID){
-          return this.tinTuc.filter(item => {
-                return item.id.includes(this.cardSearch.searchID)
-      })
-      }
-      else if(this.cardSearch.searchTitle){
-          return this.tinTuc.filter(item => {
-                return item.title.toLowerCase().includes(this.cardSearch.searchTitle.toLowerCase())
-      })
-      }
-      else if(this.cardSearch.searchCategory){
-          return this.tinTuc.filter(item => {
-                return item.id_category.toLowerCase().includes(this.cardSearch.searchCategory.toLowerCase())
-      })
-      }
-      return this.tinTuc;
-    }
-  }
+//     computed: {
+//     filteredList() {
+//       if(this.cardSearch.search){
+//           return this.tinTuc.filter(item => {
+//                 return item.title.toLowerCase().includes(this.cardSearch.search.toLowerCase())
+//       })
+//       }
+//       else if(this.cardSearch.searchID){
+//           return this.tinTuc.filter(item => {
+//                 return item.id.includes(this.cardSearch.searchID)
+//       })
+//       }
+//       else if(this.cardSearch.searchTitle){
+//           return this.tinTuc.filter(item => {
+//                 return item.title.toLowerCase().includes(this.cardSearch.searchTitle.toLowerCase())
+//       })
+//       }
+//       else if(this.cardSearch.searchCategory){
+//           return this.tinTuc.filter(item => {
+//                 return item.id_category.toLowerCase().includes(this.cardSearch.searchCategory.toLowerCase())
+//       })
+//       }
+//       return this.tinTuc;
+//     }
+//   }
     
 }
 </script>
