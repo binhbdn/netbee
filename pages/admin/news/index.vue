@@ -309,7 +309,7 @@ export default {
             this.$axios.$get(
             'tintuc/searchTinTuc?searchCategory=' 
             + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
-            + '&searchStatus='+ ((this.cardSearch.searchStatus.id)?this.cardSearch.searchStatus.id:'') 
+            + '&searchStatus='+ ((this.cardSearch.searchStatus.id)?this.cardSearch.searchStatus.id:0) 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
             + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
             ).then((response)=>{
@@ -318,32 +318,6 @@ export default {
         }
         
     },
-//     computed: {
-//     filteredList() {
-//       if(this.cardSearch.search){
-//           return this.tinTuc.filter(item => {
-//                 return item.title.toLowerCase().includes(this.cardSearch.search.toLowerCase())
-//       })
-//       }
-//       else if(this.cardSearch.searchID){
-//           return this.tinTuc.filter(item => {
-//                 return item.id.includes(this.cardSearch.searchID)
-//       })
-//       }
-//       else if(this.cardSearch.searchTitle){
-//           return this.tinTuc.filter(item => {
-//                 return item.title.toLowerCase().includes(this.cardSearch.searchTitle.toLowerCase())
-//       })
-//       }
-//       else if(this.cardSearch.searchCategory){
-//           return this.tinTuc.filter(item => {
-//                 return item.id_category.toLowerCase().includes(this.cardSearch.searchCategory.toLowerCase())
-//       })
-//       }
-//       return this.tinTuc;
-//     }
-//   }
-    
 }
 </script>
 <style scoped>
