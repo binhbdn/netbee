@@ -20,6 +20,57 @@ use App\Http\Controllers\NotificationController as notifi;
 
 class TinTuyenController extends Controller
 {
+    public function getTinTuyenDung(Request $request){
+        try {
+            $getTin = DB::select('CALL getAllTinTuyenDungAdmin(0,0)');
+            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
+        } catch (\Exception $e) {
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
+    public function changeStatusTinTuyenDung(Request $request)
+    {
+        try {
+            $id = $request->id;
+            $getTin = DB::table('nb_joblists')->where('id', $id)->first();
+            if($getTin) {
+                $setTin = DB::table('nb_joblists')
+                ->where('id', $id)
+                ->update([
+                    'status' => !$getTin->status,
+                    'updated_at' => Carbon::now()
+                ]);
+                $data = ['status'=> 200, 'message' => 'Thay đổi trạng thái thành công', 'data' => $setTin];
+            }else {
+                $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
+            }
+        } catch (\Exception $e) {
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
+    public function deleteTinTuyenDung(Request $request)
+    {
+        try {
+            $id = $request->id;
+            $getTin = DB::table('nb_joblists')->where('id', $id)->first();
+            if($getTin) {
+                $setTin = DB::table('nb_joblists')
+                ->where('id', $id)
+                ->update([
+                    'deleted' => 1,
+                    'updated_at' => Carbon::now()
+                ]);
+                $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => $setTin];
+            }else {
+                $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
+            }
+        } catch (\Exception $e) {
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
     public function getQuocGia() {
         try{
             $getQuocGia = DB::table('nations')->get();
