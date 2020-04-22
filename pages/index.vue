@@ -112,7 +112,7 @@
       </section>
     </div>
     <!--section Tại sao chon netbee-->
-    <section class="ftco-section services-section bg-netbee card why" style="background: #fff; text-align:center">
+    <section class="ftco-section services-section card why" style="background: #fff; text-align:center">
       <div class="container">
         <h2 class="text-center NB_benefit" style="text-transform:uppercase">Tại sao nên chọn NetBee</h2>
         <div class="row " style="padding-left:14px!important;">
