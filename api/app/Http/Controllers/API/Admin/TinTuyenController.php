@@ -254,4 +254,25 @@ class TinTuyenController extends Controller
         }
         return response()->json($data);
     }
+
+    public function report(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $insert = [
+                'id_job' => $request->id_job,
+                'id_reporter' => Auth::user()->id,
+                'content' => $request->report,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ];
+            DB::table('nb_job_reports')->insert($insert);
+            $data = ['status' => 200,'message' => 'Gửi cảnh báo thành công', 'data' => true];
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
 }

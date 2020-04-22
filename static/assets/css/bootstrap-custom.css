@@ -200,3 +200,10 @@
 .font-weight-600 {
     font-weight: 600 !important;
 }
+.bg-netbee {
+    background-color: #FFB701 !important;
+    color: #000 !important;
+}
+.bg-netbee:hover {
+    color: #fff !important;
+}

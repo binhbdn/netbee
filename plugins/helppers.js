@@ -4,7 +4,6 @@ Vue.mixin({
     methods:{
         ChangeToSlug(slugs)
         {
-         
             //Lấy text từ thẻ input title 
             let title = slugs;
          
@@ -37,6 +36,9 @@ Vue.mixin({
         },
         ConvertDate(date) {
             return moment(String(date)).format('DD/MM/YYYY')
+        },
+        FormatPrice(price) {
+            return price.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         }
     }
 })
