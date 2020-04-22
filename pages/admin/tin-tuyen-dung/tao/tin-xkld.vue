@@ -1,13 +1,32 @@
 <template>
     <div class="app-content content">
         <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-left mb-0">Danh sách tin tuyển dụng</h2>
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Trang chủ</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="/">Tin tuyển dụng</a>
+                                    </li>
+                                    <li class="breadcrumb-item active"> Tạo tin tuyển dụng xuất khẩu lao động
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="content-body">
                 <section id="dashboard-ecommerce">
                     <div class="row">
                         <div class="col-lg-9 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>tạo tin tuyển xuất khẩu lao động</h4>
+                                    
                                 </div>
                                 <div class="card-body">
                                     <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete">
@@ -271,8 +290,8 @@
                                                             </div>
                                                         </fieldset>
                                                     </div>  
-                                                    <div class="col-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" v-if="checked">
+                                                    <div class="col-4" v-if="checked">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
                                                                 <div class="form-group">
                                                                     <label for="firstName3">
                                                                         Thời gina bảo hành
@@ -283,8 +302,8 @@
                                                                 </div>
                                                             </ValidationProvider>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" v-if="checked">
+                                                    <div class="col-4"  v-if="checked">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Tiền bonus
@@ -303,12 +322,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6 pl-0">
-                                                        <div class="card option px-3 high" id="high" style="color: #000;">
+                                                        <div class="card option px-3 py-2" id="high" style="color: #000; border-radius: 10px" :class="data.highlight_job == 1 ? 'high' : 'normal'">
                                                             <div class="custom-control custom-radio ml-2">
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample2" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
                                                                 <label class="custom-control-label"
-                                                                    for="defaultGroupExample2">Tin
+                                                                    for="defaultGroupExample2" style="font-size: 20px; font-weight: 600;">Tin
                                                                     nổi bật</label>
                                                             </div>
                                                             <p>- Được ưu tiên gợi ý</p>
@@ -319,12 +338,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <div class="card option px-3 normal" id="normal" style="color: #000;">
+                                                        <div class="card option px-3 py-2" id="normal" style="color: #000; border-radius: 10px" :class="data.highlight_job != 1 ? 'high' : 'normal'">
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
                                                                 <label class="custom-control-label"
-                                                                    for="defaultGroupExample1">Tin
+                                                                    for="defaultGroupExample1" style="font-size: 20px; font-weight: 600;">Tin
                                                                     thường</label>
                                                             </div>
                                                             <p>- Được ưu tiên gợi ý</p>
@@ -526,7 +545,6 @@ export default {
             var form = new FormData();
             if(isValid){
                 form.append('title' , this.data.title)
-                form.append('school_name' , this.data.school_name)
                 form.append('company_name' , this.data.company_name)
                 form.append('address' , this.data.address)
                 form.append('nation' , this.data.nation.id)
@@ -560,7 +578,7 @@ export default {
                             response.data.message,
                             'success'
                         ).then( function (){
-                            window.location.href = '/admin';
+                            window.location.href = '/admin/tin-tuyen-dung';
                         } )
                     }else{
                         this.$swal(
@@ -626,5 +644,17 @@ export default {
 
 .vs-checkbox-con .vs-checkbox{
     border-width: 1px;
+}
+
+.option:hover {
+    background-color: #ffc108 !important;
+}
+
+.high {
+    background-color: #ffc108;
+}
+
+.normal {
+    background-color: #ffc10842;
 }
 </style>

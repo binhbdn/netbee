@@ -100,11 +100,6 @@
               <div class="card-header">
                 <h4 class="card-title"><i class="fad fa-bullhorn"></i> TIN NỔI BẬT </h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                <div class="heading-elements">
-                  <ul class="list-inline mb-0">
-                    <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
-                  </ul>
-                </div>
               </div>
               <div class="card-content collapse show">
                 <div class="card-body scrollbar">
@@ -117,7 +112,7 @@
       </section>
     </div>
     <!--section Tại sao chon netbee-->
-    <section class="ftco-section services-section bg-netbee card why" style="background: #fff; text-align:center">
+    <section class="ftco-section services-section card why" style="background: #fff; text-align:center">
       <div class="container">
         <h2 class="text-center NB_benefit" style="text-transform:uppercase">Tại sao nên chọn NetBee</h2>
         <div class="row " style="padding-left:14px!important;">
@@ -185,11 +180,6 @@
               <div class="card-header">
                 <h4 class="card-title"><i class="fad fa-bullhorn"></i> TIN MỚI </h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                <div class="heading-elements">
-                  <ul class="list-inline mb-0">
-                    <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
-                  </ul>
-                </div>
               </div>
               <div class="card-content collapse show">
                 <div class="card-body scrollbar">

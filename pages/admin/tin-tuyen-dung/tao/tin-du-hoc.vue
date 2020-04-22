@@ -1,13 +1,32 @@
 <template>
     <div class="app-content content">
         <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-left mb-0">Danh sách tin tuyển dụng</h2>
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Trang chủ</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="/">Tin tuyển dụng</a>
+                                    </li>
+                                    <li class="breadcrumb-item active"> Tạo tin tuyển dụng du học sinh
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="content-body">
                 <section id="dashboard-ecommerce">
                     <div class="row">
                         <div class="col-lg-9 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Tạo tin tuyển du học sinh</h4>
+                                    
                                 </div>
                                 <div class="card-body">
                                     <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete">
@@ -260,8 +279,8 @@
                                                             </div>
                                                         </fieldset>
                                                     </div>  
-                                                    <div class="col-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" v-if="checked">
+                                                    <div class="col-4" v-if="checked">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
                                                                 <div class="form-group">
                                                                     <label for="firstName3">
                                                                         Thời gina bảo hành
@@ -272,8 +291,8 @@
                                                                 </div>
                                                             </ValidationProvider>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" v-if="checked">
+                                                    <div class="col-4" v-if="checked">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Tiền bonus
@@ -297,7 +316,7 @@
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample2" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
                                                                 <label class="custom-control-label"
-                                                                    for="defaultGroupExample2">Tin
+                                                                    for="defaultGroupExample2" style="font-size: 20px; font-weight: 600;">Tin
                                                                     nổi bật</label>
                                                             </div>
                                                             <p>- Được ưu tiên gợi ý</p>
@@ -313,7 +332,7 @@
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
                                                                 <label class="custom-control-label"
-                                                                    for="defaultGroupExample1">Tin
+                                                                    for="defaultGroupExample1" style="font-size: 20px; font-weight: 600;">Tin
                                                                     thường</label>
                                                             </div>
                                                             <p>- Được ưu tiên gợi ý</p>
@@ -535,7 +554,7 @@ export default {
                             response.data.message,
                             'success'
                         ).then( function (){
-                            window.location.href = '/admin';
+                            window.location.href = '/admin/tin-tuyen-dung';
                         } )
                     }else{
                         this.$swal(
@@ -613,5 +632,11 @@ export default {
 
 .normal {
     background-color: #ffc10842;
+}
+
+.custom-control-label::after {
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 2px;
 }
 </style>

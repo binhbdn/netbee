@@ -1,6 +1,25 @@
 <template>
     <div class="app-content content">
         <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-left mb-0">Danh sách tin tuyển dụng</h2>
+                            <div class="breadcrumb-wrapper col-12">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Trang chủ</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="/">Tin tuyển dụng</a>
+                                    </li>
+                                    <li class="breadcrumb-item active"> Sửa tin [{{this.$route.params.id}}]
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="content-body">
                 <section id="dashboard-ecommerce">
                     <div class="row">
@@ -50,7 +69,7 @@
                                                                 <label for="firstName3">
                                                                     Quốc gia
                                                                 </label>
-                                                                <multiselect :options="options" v-model="data.nation" :custom-label="nameWithLang" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Chọn quốc gia" label="id"></multiselect>
+                                                                <multiselect :options="options" v-model="data.nation" :custom-label="nameWithLang" :searchable="false" :show-labels="false" placeholder="Chọn quốc gia" label="id"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -202,7 +221,7 @@
                                                                 <label for="firstName3">
                                                                     Ngành nghề xin visa
                                                                 </label>
-                                                                <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa" label="id"></multiselect>
+                                                                <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :searchable="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa" label="id"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -213,7 +232,7 @@
                                                                 <label for="firstName3">
                                                                     Hình thức làm việc
                                                                 </label>
-                                                                <multiselect :options="optionsFormWork" v-model="data.form_work" :custom-label="nameWithLang" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Chọn hình thức làm việc" lable="id"></multiselect>
+                                                                <multiselect :options="optionsFormWork" v-model="data.form_work" :custom-label="nameWithLang" :searchable="false" :show-labels="false" placeholder="Chọn hình thức làm việc" lable="id"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -224,8 +243,8 @@
                                                                 <label for="firstName3">
                                                                     Loại tiền
                                                                 </label>
-                                                                <multiselect :options="money" v-model="data.currency" :searchable="false" :close-on-select="false" 
-                                                                        :show-labels="false" placeholder="Chọn loại tiền" label="name"></multiselect>
+                                                                <multiselect :options="money" v-model="data.currency" :searchable="false"
+                                                                        :show-labels="false" placeholder="Chọn loại tiền"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -282,20 +301,20 @@
                                                             </div>
                                                         </fieldset>
                                                     </div>  
-                                                    <div class="col-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" v-if="checked">
+                                                    <div class="col-4" v-if="checked">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
                                                                 <div class="form-group">
                                                                     <label for="firstName3">
                                                                         Thời gina bảo hành
                                                                     </label>
-                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :close-on-select="false" 
+                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" 
                                                                         :show-labels="false" placeholder="Chọn thời gian bảo hành" :disabled="!checked"></multiselect>
                                                                     <span style="color: red">{{ errors[0] }}</span>
                                                                 </div>
                                                             </ValidationProvider>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" v-if="checked">
+                                                    <div class="col-4" v-if="checked">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Tiền bonus
@@ -314,12 +333,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6 pl-0">
-                                                        <div class="card option px-3 high" id="high" style="color: #000;">
+                                                        <div class="card option px-3 py-2" id="high" style="color: #000; border-radius: 10px" :class="data.highlight_job == 1 ? 'high' : 'normal'">
                                                             <div class="custom-control custom-radio ml-2">
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample2" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
                                                                 <label class="custom-control-label"
-                                                                    for="defaultGroupExample2">Tin
+                                                                    for="defaultGroupExample2" style="font-size: 20px; font-weight: 600;">Tin
                                                                     nổi bật</label>
                                                             </div>
                                                             <p>- Được ưu tiên gợi ý</p>
@@ -330,12 +349,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <div class="card option px-3 normal" id="normal" style="color: #000;">
+                                                        <div class="card option px-3 py-2" id="normal" style="color: #000; border-radius: 10px" :class="data.highlight_job != 1 ? 'high' : 'normal'">
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
                                                                 <label class="custom-control-label"
-                                                                    for="defaultGroupExample1">Tin
+                                                                    for="defaultGroupExample1" style="font-size: 20px; font-weight: 600;">Tin
                                                                     thường</label>
                                                             </div>
                                                             <p>- Được ưu tiên gợi ý</p>
@@ -451,7 +470,7 @@ export default {
                 {id: 2, name: 'Hoàn tất nhập cảnh *1,5'},
                 {id: 3, name: 'Sau nhập cảnh 30 ngày *2'}
             ],
-            money: [{name: '$'}, {name: 'VND'}, {name: '€'}, {name: '¥'}, {name: '₩'}],
+            money: ['$', 'VND', '€', '¥', '₩'],
             optionsVisa: [],
             optionsFormWork: [
                 {id: 1, name: 'Toàn thời gian'},
@@ -506,7 +525,7 @@ export default {
             } else {
                 this.data.form_work = {id: 3, name: 'Vừa học vừa làm'}
             }
-            this.data.currency = {name: job.data.currency}
+            this.data.currency = job.data.currency
             this.data.date_test = job.data.date_test
             this.data.expected_date = job.data.expected_date
             this.data.age_start = job.data.age_start
@@ -577,7 +596,6 @@ export default {
             if(isValid){
                 form.append('title' , this.data.title)
                 form.append('school_name' , this.data.school_name)
-                form.append('company_name' , this.data.company_name)
                 form.append('address' , this.data.address)
                 form.append('nation' , this.data.nation.id)
                 form.append('expiration_date' , this.data.expiration_date)
@@ -600,9 +618,10 @@ export default {
                 form.append('highlight_job' , this.data.highlight_job)
                 form.append('visa' , this.data.visa.id)
                 form.append('form_work' , this.data.form_work.id)
-                form.append('type' , 3)
+                form.append('type' , this.data.type)
+                form.append('id' , this.$route.params.id)
                 console.log(this.data)
-                this.$axios.post('tintuyendung/createTinTuyen',form)
+                this.$axios.post('tintuyendung/updateTinTuyen',form)
                 .then(response => {
                     if(response.data.status == 200) {
                         this.$swal(
@@ -610,7 +629,7 @@ export default {
                             response.data.message,
                             'success'
                         ).then( function (){
-                            window.location.href = '/admin';
+                            window.location.href = '/admin/tin-tuyen-dung';
                         } )
                     }else{
                         this.$swal(
@@ -676,5 +695,17 @@ export default {
 
 .vs-checkbox-con .vs-checkbox{
     border-width: 1px;
+}
+
+.option:hover {
+    background-color: #ffc108 !important;
+}
+
+.high {
+    background-color: #ffc108;
+}
+
+.normal {
+    background-color: #ffc10842;
 }
 </style>
