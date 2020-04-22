@@ -220,7 +220,7 @@ class TinTucController extends Controller
         $searchStatus = $request->searchStatus;
         if($search == '' && $searchTitle == '' && $searchStatus == '' && $searchCategory == '') 
         {
-            $data = DB::table('news')->where('deleted', 0)->orderBy('id', 'DESC')->get();
+            $data = DB::table('news')->where('deleted', 0)->orderBy('id', 'DESC')->paginate(10);
         }
         else
         {

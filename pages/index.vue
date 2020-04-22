@@ -2,7 +2,7 @@
 
   <div>
     <!--section login-->
-    <section class="ftco-section services-section bg-netbee card" style="background: #fff" v-if="!$auth.loggedIn">
+    <section class="ftco-section services-section card" style="background: #fff" v-if="!$auth.loggedIn">
       <div class="container">
         <div class="row " style="padding-left:14px!important;">
           <div class="col-md-2  align-self-stretch ftco-animate" style="padding-left:0!important;">
