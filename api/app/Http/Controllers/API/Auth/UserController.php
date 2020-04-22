@@ -230,6 +230,7 @@ class UserController extends Controller
                     'email' => $inforesult->email,
                     'password' => bcrypt('123456'),
                     'name' => $inforesult->name,
+                    'avatar' => $inforesult->picture->data->url,
                     'phone' => 0,
                     'status' => '0',
                     'role' => 1
