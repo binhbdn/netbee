@@ -27,14 +27,14 @@
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="item-quantity ">
-                    <p class="delivery-date" data-toggle="tooltip" data-placement="left" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ job.salary_start }}{{ job.currency }} ~ {{ job.salary_end }}{{ job.currency }}</p>
+                    <p class="delivery-date" data-toggle="tooltip" data-placement="left" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</p>
                 </div>
             </div>
             <div class="item-options text-center">
                 <div class="item-wrapper">
                     <div class="item-cost">
                         <h6 class="badge background-default badge-sm">
-                           {{ job.type == 1 ? 'xuất khẩu lao động' : job.type == 2 ? 'du học sinh' : 'tu nghiệp sinh' }}
+                           {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
                         </h6>
                     </div>
                 </div>

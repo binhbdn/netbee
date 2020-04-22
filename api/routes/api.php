@@ -49,6 +49,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getQuocGia', 'Admin\TinTuyenController@getQuocGia');
         Route::get('getVisa', 'Admin\TinTuyenController@getVisa');
         Route::post('createTinTuyen', 'Admin\TinTuyenController@createTinTuyen');
+        Route::post('postView', 'Admin\TinTuyenController@postView');
+        Route::post('postSave', 'Admin\TinTuyenController@postSave');
+        Route::get('getSave', 'Admin\TinTuyenController@getSave');
+        Route::post('report', 'Admin\TinTuyenController@report');
       });
   });
 });

@@ -18,7 +18,7 @@
                                 <h4 class="font-weight-bold text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuc.name}`"> {{ tintuc.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4>
                                 <p><span class="font-weight-600">Loại tin: </span><span class="badge background-default badge-md">{{ tintuc.type == 3 ? 'Tu nghiệp sinh' : tintuc.type == 2 ? 'Du học sinh' : 'Xuất khẩu lao động' }}</span></p>
                                 <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuc.nation_name }}</p>
-                                <p><span class="font-weight-600">Mức lương: </span>{{ tintuc.salary_start }}{{ tintuc.currency }} ~ {{ tintuc.salary_end }}{{ tintuc.currency }}</p>
+                                <p><span class="font-weight-600">Mức lương: </span>{{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
                                 <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ ConvertDate(tintuc.expiration_date) }}</p>
                             </div>
                         </div>
@@ -28,12 +28,12 @@
                                     <a class="btn-netbee btn" data-toggle="tooltip" data-placement="top" title="Ứng tuyển ngay"><i class="fad fa-paper-plane fa-2x p-10"></i></a>
                                 </div>
                                 <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px">
-                                    <a class="btn btn-save" data-toggle="tooltip" data-placement="top" title="Lưu việc làm"><i class="fad fa-heart fa-2x p-10"></i></a>
+                                    <a class="btn btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
                                 <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                     <a class="btn btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
                                 </div>
-                                <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" >
+                                <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
                                     <a class="btn btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                 </div>
                             </div>
@@ -104,6 +104,38 @@
           </div>
         </div>
       </section>
+        <!-- Modal -->
+        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="editTodoTask" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm" role="document">
+                <div class="modal-content">
+                    <section class="todo-form">
+                        <form id="form-edit-todo" class="todo-input">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editTodoTask">Thông báo lỗi</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body"> 
+                                <fieldset class="form-group">
+                                    <textarea class="edit-todo-item-desc form-control" v-model="report" rows="3" placeholder="Nội dung..."></textarea>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer">
+                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                    <button type="button" @click="reportJob()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
+                                        <span class="d-none d-lg-block">Gửi</span></button>
+                                </fieldset>
+                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
+                                        <span class="d-none d-lg-block">Cancel</span></button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -116,7 +148,9 @@ export default {
     },
     data() {
         return {
-            arrayForCompany: []
+            arrayForCompany: [],
+            save: false,
+            report: ''
         }
     },
     async asyncData({$axios, route}) {
@@ -146,26 +180,55 @@ export default {
             ]
         }
     },
+    methods: {
+        saveJob() {
+            this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuc.id}).then((response)=>{
+                if(response.status == 200) {
+                    this.$swal(
+                    'Thành công!',
+                        response.message,
+                    'success'
+                    );
+                    this.save = response.data
+                }else {
+                    this.$swal(
+                    'Lỗi!',
+                        response.message,
+                    'error'
+                    );
+                    this.save = response.data
+                }
+            });
+        },
+        reportJob() {
+            this.$axios.$post(`tintuyendung/report`,{id_job: this.tintuc.id,report: this.report}).then((response)=>{
+                if(response.status == 200) {
+                    this.$swal(
+                    'Thành công!',
+                        response.message,
+                    'success'
+                    );
+                }else {
+                    this.$swal(
+                    'Lỗi!',
+                        response.message,
+                    'error'
+                    );
+                }
+            });
+        }
+    },
     mounted() {
         this.$axios.$get(`getTinTuyenDungForCompany/${this.tintuc.id_created}?limit=5`).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
         });
+        if(this.$auth.loggedIn) {
+            this.$axios.$post(`tintuyendung/postView`,{id_job: this.tintuc.id}).then((response)=>{});
+            this.$axios.$get(`tintuyendung/getSave`,{id_job: this.tintuc.id}).then((response)=>{
+                this.save = response.data
+            });
+        }
     }
-    // jsonld() {
-    //     return {
-    //         "@context": "http://schema.org/",
-    //         "@type":"EmployerAggregateRating",
-    //         "itemReviewed":{
-    //             "@type":"Organization",
-    //             "name": this.tintuc.title,
-    //             "sameAs": 'https://netbee.vn'+this.$route.path
-    //             },
-    //         "ratingValue": "4",
-    //         "bestRating": "5",
-    //         "worstRating": "3",
-    //         "ratingCount": "5"
-    //     };
-    // },
 }
 </script>
 <style scoped>
