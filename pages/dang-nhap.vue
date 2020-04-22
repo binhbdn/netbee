@@ -60,13 +60,18 @@
                         <ValidationObserver ref="observer" v-slot="{ valid }">
                             <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
                                 <div class="__email">
-                                    <span class="fa fa-user-circle" style="top:28%!important; z-index:2; left:17px;"></span>
-                                    <input type="email" name="email" id="email" class="border-radius input" placeholder="Email" v-model="userForm.email" />
-                                    <ul style="color:red" class="overline text-left">
+                                    <fieldset class="form-label-group form-group position-relative has-icon-left mb-0">
+                                        <input type="text" class="form-control mb-0" id="email" placeholder="Email" v-model="userForm.email" style="margin-bottom:20px !important; margin-top:2px">
+                                        <div class="form-control-position">
+                                            <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                        </div>
+                                        <label for="email">Email</label>
+                                        <ul style="color:red" class="overline text-left">
                                         <li v-for="(error, index) in errors" :key="index">
-                                        <span style="left:10px;padding-top: 14px;"><i>{{ error }}</i></span>
+                                        <span style="left:0; padding-top: 14px;"><i>{{ error }}</i></span>
                                         </li>
                                     </ul>
+                                    </fieldset>
                                 </div>
                             </ValidationProvider>
                         <div style="position: relative">
@@ -77,31 +82,38 @@
                                 v-slot="{ errors }"
                             >
                             <div class="__email">
-                                <span class="fa fa-lock" style="top:7%!important; z-index:2; left:11px;"></span>
-                                <input style="margin-bottom:15px!important" :type="show ? 'password' : 'text'" name="password" 
-                                id="password" placeholder="Mật khẩu" class="border-radius input" v-model="userForm.password" />
-                                <ul style="color:red" class="overline text-left">
-                                    <li v-for="(error, index) in errors" :key="index">
-                                    <span style="top: 16%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
-                                    </li>
-                                </ul>
                                 <div style="text-align:right">
                                     <i  class="showpass">
-                                        <i @click="showPassword()" :class="show ?'fa fa-eye':'fas fa-eye-slash'" style="top:7%!important; z-index:2; left:11px;"></i>
+                                        <i @click="showPassword()" :class="show ?'fa fa-eye':'fas fa-eye-slash'"></i>
                                     </i>
-                                    <a href="/quen-mat-khau" class="remember hover" style="color:black!important;">Quên mật khẩu</a>
+                                    
                                 </div>
+                                <fieldset class="form-label-group position-relative has-icon-left mb-0">
+                                    <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom:0px !important; margin-top:2px">
+                                    <div class="form-control-position">
+                                        <i class="feather icon-lock" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                    </div>
+                                    <label for="password">Mật khẩu</label>
+                                    <ul style="color:red" class="overline text-left">
+                                        <li v-for="(error, index) in errors" :key="index">
+                                        <span style="top: 53%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
+                                        </li>
+                                    </ul>
+                                    <p class="text-right mb-0"><a href="/quen-mat-khau" class="remember hover" style="font-size: 15px;color:black!important;">Quên mật khẩu?</a></p>
+                                </fieldset>
                             </div>
                             </ValidationProvider>
-                            <div class="form-submit" style="padding-top:10px">
-                                <button @click="login()" id="submit" class="submit">ĐĂNG NHẬP</button>
+                            <div class="lopgin-c" style="padding-top:10px">
+                                <button @click="login()" id="submit" class="submit btn">ĐĂNG NHẬP</button>
                             </div>
                             <hr>
-                            <div class="lopgin-c">
+                            <div class="lopgin-c" style="position:relative">
+                                <i class="fab fa-facebook" style="position: absolute; left: 106px; top: 9px; color: white; font-size: 18px; z-index:5"></i>
                                 <a href="redirect/facebook" class="btn btn-outline-info fb" style="">Đăng nhập bằng
                                     Facebook</a> &nbsp;&nbsp;
                             </div>
-                            <div class="lopgin-c">
+                            <div class="lopgin-c" style="position:relative">
+                                <img src="assets/img/logo-google.png" style="height:15px;position: absolute; left: 106px; top: 11px; color: blue; font-size: 18px;">
                                 <a href="redirect/google" class="btn btn-outline-info gg">Đăng nhập bằng Google</a>
                             </div>
                         </div>
@@ -193,6 +205,14 @@ export default {
     {
         height: 460px;
         width: 300px !important;
+    }
+    .form-label-group>input:not(:focus):not(:placeholder-shown)~label, .form-label-group textarea:not(:focus):not(:placeholder-shown)~label{
+        color:black!important;
+        font-size: 14px;
+    }
+    .form-label-group>input:focus:not(:placeholder-shown)~label, .form-label-group>input:not(:active):not(:placeholder-shown)~label, .form-label-group textarea:focus:not(:placeholder-shown)~label, .form-label-group textarea:not(:active):not(:placeholder-shown)~label {
+        color: black!important;
+        font-size: 14px;
     }
     form#appointment-form {
         padding-bottom: 13px !important;
@@ -346,16 +366,16 @@ input, select {
     border: 1px solid !important;
     border-radius: 3px !important;
     padding: 8px !important;
-    background: #286090 !important;
+    background: #4267b2 !important;
     font-size: 15px !important;
 }
 .gg {
     text-decoration: none !important;
-    color: #fff !important;
+    color: black !important;
     border: 1px solid !important;
     border-radius: 3px !important;
     padding: 8px !important;
-    background: red !important;
+    background: #e0e0e0!important;
     font-size: 15px !important;
 }
 .col-md-6 {
@@ -397,16 +417,20 @@ ul li:not(.init) {
     background: #fff !important;
     color: #286090 !important;
 }
+.lopgin-c:hover i {
+    color: #286090 !important;
+}
 .gg:hover {
-    background-color: #fff !important;
-    color: red !important;
+    background-color: #eee !important;
+    color: black !important;
 }
 .showpass {
     width: 30px;
     position: absolute;
-    top: 7px;
+    top: 14px;
     right: 12px;
     color: #000;
+    z-index: 9;
 }
 .formlogin p a:hover{
     color:#ffb701!important;
@@ -422,7 +446,7 @@ ul li:not(.init) {
 .input-login ul li span{
     color:red!important;
     font-size: 15px!important;
-    top: 33%!important;
+    top: 52%!important;
     padding-top: 10px;
 }
 </style>
