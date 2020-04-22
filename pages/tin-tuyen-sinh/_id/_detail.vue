@@ -198,6 +198,12 @@ export default {
                     );
                     this.save = response.data
                 }
+            }).catch((e) => {
+                this.$swal(
+                'Cảnh báo!',
+                'Bạn cần đăng nhập để thực hiện chức năng này',
+                'warning'
+                );
             });
         },
         reportJob() {
@@ -215,6 +221,12 @@ export default {
                     'error'
                     );
                 }
+            }).catch((e) => {
+                this.$swal(
+                'Cảnh báo!',
+                'Bạn cần đăng nhập để thực hiện chức năng này',
+                'warning'
+                );
             });
         }
     },
