@@ -70,8 +70,8 @@
                                         <div  class=" p-2 bg-white col-12" id="cate-1" style="border-bottom: 1px solid #ddd;" v-for="(danhmuc, indexDanhMuc) in getDanhMucTinTuc" :key="indexDanhMuc">
                                             <div class="col-12">
                                                 <div class="job-post-item-header d-flex align-items-center">
-                                                    <a :href="`/tin-tuc/${ChangeToSlug(danhmuc.name_cate)}`">
-                                                        <h2 class="mr-3 text-black h6 NB_title" ><i class="fa fa-arrow-right"></i>{{ danhmuc.name_cate }}</h2>
+                                                    <a :href="`/tin-tuc/${ChangeToSlug(danhmuc.name)}`">
+                                                        <h2 class="mr-3 text-black h6 NB_title" ><i class="fa fa-arrow-right"></i>{{ danhmuc.name }}</h2>
                                                     </a>
                                                 </div>
                                             </div>
@@ -91,8 +91,8 @@
                                 </div>
                             </div>
                             <div class="card-content collapse show">
-                                <div class="card-body scrollbar">
-                                    <JobsList1ColNotCate :DataList="arrayJob"></JobsList1ColNotCate>
+                                <div class="card-body">
+                                    <JobsList1ColNotCate :DataList="arrayJobNew" />
                                 </div>
                             </div>
                         </div>
@@ -103,8 +103,8 @@
     </div>
 </template>
 <script>
-import NewListPage1 from '../../components/News/NewListPage1';
-import NewListPage2 from '../../components/News/NewListPage2';
+import NewListPage1 from '~/components/News/NewListPage1';
+import NewListPage2 from '~/components/News/NewListPage2';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
 
 export default {
@@ -129,17 +129,12 @@ export default {
             tintucCamNang: [],
             tintucDuHoc: [],
             tintucXKLD: [],
-            getDanhMucTinTuc: [],
-            arrayJob: [
-                {id: 1, title: 'chào cả nhà1'},
-                {id: 2, title: 'chào cả nhà2'},
-                {id: 3, title: 'chào cả nhà3'},
-                {id: 4, title: 'chào cả nhà4'},
-                {id: 5, title: 'chào cả nhà5'},
-                {id: 6, title: 'chào cả nhà6'},
-                {id: 6, title: 'chào cả nhà6'},
-                {id: 6, title: 'chào cả nhà6'},
+            getDanhMucTinTuc: [
+                { id: 1, name: 'Xuất khẩu lao động'},
+                { id: 2, name: 'Du học'},
+                { id: 3, name: 'Cẩm nang'},
             ],
+            arrayJobNew: [],
         }
     },
     methods: {
@@ -148,12 +143,12 @@ export default {
             let tintucCamNang = await this.$axios.$get('getTinTucCate?category=1&limit=5')
             let tintucDuHoc = await this.$axios.$get('getTinTucCate?category=2&limit=5')
             let tintucXKLD = await this.$axios.$get('getTinTucCate?category=3&limit=5')
-            let getDanhMucTinTuc = await this.$axios.$get('getDanhMucTinTuc')
+            let getTinTuyenDungNew = await this.$axios.$get(`getTinTuyenDungNew?limit=5&type=0`)
             this.tintucNew = getTinTucNew.data.tintuc,
             this.tintucCamNang = tintucCamNang.data.tintuc,
             this.tintucDuHoc = tintucDuHoc.data.tintuc,
             this.tintucXKLD = tintucXKLD.data.tintuc,
-            this.getDanhMucTinTuc = getDanhMucTinTuc.data
+            this.arrayJobNew = getTinTuyenDungNew.data.tintuyendung
         },
     },
     mounted() {

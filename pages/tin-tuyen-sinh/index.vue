@@ -29,23 +29,6 @@
               <h4 class="card-title">
                 <i class="fad fa-bullhorn"></i> VIỆC LÀM MỚI
               </h4>
-              <a class="heading-elements-toggle">
-                <i class="fa fa-ellipsis-v font-medium-3"></i>
-              </a>
-              <div class="heading-elements">
-                <ul class="list-inline mb-0">
-                  <li>
-                    <a data-action="expand">
-                      <i class="feather icon-maximize"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a data-action="close">
-                      <i class="feather icon-x"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
@@ -60,23 +43,6 @@
               <h4 class="card-title">
                 <i class="fad fa-bullhorn"></i> VIỆC LÀM HOT NHẤT
               </h4>
-              <a class="heading-elements-toggle">
-                <i class="fa fa-ellipsis-v font-medium-3"></i>
-              </a>
-              <div class="heading-elements">
-                <ul class="list-inline mb-0">
-                  <li>
-                    <a data-action="expand">
-                      <i class="feather icon-maximize"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a data-action="close">
-                      <i class="feather icon-x"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
@@ -96,23 +62,6 @@
               <h4 class="card-title">
                 <i class="fad fa-bullhorn"></i> XUẤT KHẨU LAO ĐỘNG
               </h4>
-              <a class="heading-elements-toggle">
-                <i class="fa fa-ellipsis-v font-medium-3"></i>
-              </a>
-              <div class="heading-elements">
-                <ul class="list-inline mb-0">
-                  <li>
-                    <a data-action="expand">
-                      <i class="feather icon-maximize"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a data-action="close">
-                      <i class="feather icon-x"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
@@ -127,23 +76,6 @@
               <h4 class="card-title">
                 <i class="fad fa-bullhorn"></i> DU HỌC SINH
               </h4>
-              <a class="heading-elements-toggle">
-                <i class="fa fa-ellipsis-v font-medium-3"></i>
-              </a>
-              <div class="heading-elements">
-                <ul class="list-inline mb-0">
-                  <li>
-                    <a data-action="expand">
-                      <i class="feather icon-maximize"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a data-action="close">
-                      <i class="feather icon-x"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
@@ -158,23 +90,6 @@
               <h4 class="card-title">
                 <i class="fad fa-bullhorn"></i> TU NGHIỆP SINH
               </h4>
-              <a class="heading-elements-toggle">
-                <i class="fa fa-ellipsis-v font-medium-3"></i>
-              </a>
-              <div class="heading-elements">
-                <ul class="list-inline mb-0">
-                  <li>
-                    <a data-action="expand">
-                      <i class="feather icon-maximize"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a data-action="close">
-                      <i class="feather icon-x"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
