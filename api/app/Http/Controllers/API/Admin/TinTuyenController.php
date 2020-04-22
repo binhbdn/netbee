@@ -40,6 +40,16 @@ class TinTuyenController extends Controller
         return response()->json($data);
     }
 
+    public function getDetailTinTuyen(Request $request){
+        try{
+            $tin = DB::table('nb_joblists')->where('id', $request->id)->first();
+            $data = ['status'=> 200, 'message' => 'thành công', 'data' => $tin];
+        } catch (\Exception $e){
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
+
     public function createTinTuyen(Request $request){
         if($request->get('type') == 2){
             $validator = Validator::make($request->all(),[

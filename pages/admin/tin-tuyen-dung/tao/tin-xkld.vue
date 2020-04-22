@@ -7,11 +7,11 @@
                         <div class="col-lg-9 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    
+                                    <h4>tạo tin tuyển xuất khẩu lao động</h4>
                                 </div>
                                 <div class="card-body">
                                     <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete">
-                                        <tab-content :before-change="checkValidateStep1">
+                                        <tab-content :before-change="checkValidateStep1" title="Tổng quan">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -62,7 +62,7 @@
                                                 </div>
                                             </ValidationObserver>   
                                         </tab-content>
-                                        <tab-content :before-change="checkValidateStep2">
+                                        <tab-content :before-change="checkValidateStep2" title="Chi tiết">
                                             <ValidationObserver ref="step2" v-slot="{ valid2 }">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -112,7 +112,7 @@
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content :before-change="checkValidateStep3">
+                                        <tab-content :before-change="checkValidateStep3" title="Yêu cầu">
                                             <ValidationObserver ref="step3" v-slot="{ valid3 }">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -255,7 +255,7 @@
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content>
+                                        <tab-content title="Hoàn thành">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
                                                     <div class="col-12">

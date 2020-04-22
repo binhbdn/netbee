@@ -7,11 +7,11 @@
                         <div class="col-lg-9 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    
+                                    <h4>Tạo tin tuyển du học sinh</h4>
                                 </div>
                                 <div class="card-body">
                                     <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete">
-                                        <tab-content :before-change="checkValidateStep1">
+                                        <tab-content :before-change="checkValidateStep1" title="Tổng quan">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -73,7 +73,7 @@
                                                 </div>
                                             </ValidationObserver>   
                                         </tab-content>
-                                        <tab-content :before-change="checkValidateStep2">
+                                        <tab-content :before-change="checkValidateStep2" title="Chi tiết">
                                             <ValidationObserver ref="step2" v-slot="{ valid2 }">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -123,7 +123,7 @@
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content :before-change="checkValidateStep3">
+                                        <tab-content :before-change="checkValidateStep3" title="Yêu cầu">
                                             <ValidationObserver ref="step3" v-slot="{ valid3 }">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -244,7 +244,7 @@
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content>
+                                        <tab-content title="Hoàn thành">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -292,7 +292,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6 pl-0">
-                                                        <div class="card option px-3 high" id="high" style="color: #000;">
+                                                        <div class="card option px-3 py-2" id="high" style="color: #000; border-radius: 10px" :class="data.highlight_job == 1 ? 'high' : 'normal'">
                                                             <div class="custom-control custom-radio ml-2">
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample2" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
@@ -308,7 +308,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <div class="card option px-3 normal" id="normal" style="color: #000;">
+                                                        <div class="card option px-3 py-2" id="normal" style="color: #000; border-radius: 10px" :class="data.highlight_job == 0 ? 'high' : 'normal'">
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
@@ -434,7 +434,7 @@ export default {
                 bonus: 0,
                 highlight_job: 1
             },
-            checked: false,
+            checked: true,
             guarantee: [
                 {id: 1, name: '30 ngày *1'},
                 {id: 2, name: 'Hoàn tất nhập cảnh *1,5'},
@@ -601,5 +601,17 @@ export default {
 
 .vs-checkbox-con .vs-checkbox{
     border-width: 1px;
+}
+
+.option:hover {
+    background-color: #ffc108 !important;
+}
+
+.high {
+    background-color: #ffc108;
+}
+
+.normal {
+    background-color: #ffc10842;
 }
 </style>

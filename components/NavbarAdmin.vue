@@ -18,7 +18,7 @@
                 </li>
                 <li class=" navigation-header"><span>Apps</span>
                 </li>
-                <li :class="[{'active' : this.$route.name == 'admin-tin-tuyen-dung-danh-sach'}, 'nav-item']"><a @click="$router.push('/admin/tin-tuyen-dung/danh-sach')"><i class="feather icon-grid"></i><span class="menu-title" data-i18n="Email">Tin tuyển dụng</span></a>
+                <li :class="[{'active' : this.$route.name == 'admin-tin-tuyen-dung-danh-sach'}, 'nav-item']"><a @click="$router.push('/admin/tin-tuyen-dung')"><i class="feather icon-grid"></i><span class="menu-title" data-i18n="Email">Tin tuyển dụng</span></a>
                 </li>
                 <!-- <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
