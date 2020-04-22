@@ -218,7 +218,7 @@ class TinTucController extends Controller
         $searchTitle = $request->searchTitle;
         $searchCategory = $request->searchCategory;
         $searchStatus = $request->searchStatus;
-        if($search == '' && $searchTitle == '' && $searchStatus == null && $searchCategory == null) 
+        if($search == '' && $searchTitle == '' && $searchStatus == '' && $searchCategory == '') 
         {
             $data = DB::table('news')->where('deleted', 0)->orderBy('id', 'DESC')->get();
         }
@@ -237,12 +237,12 @@ class TinTucController extends Controller
                 }
             })
             ->where(function($query) use ($searchStatus){
-                if($searchStatus != null){
+                if($searchStatus != ''){
                     $query->where('status', $searchStatus);
                 }
             })
             ->where(function($query) use ($searchCategory){
-                if($searchCategory != null){
+                if($searchCategory != ''){
                     $query->where('id_category', $searchCategory);
                 }
             })
