@@ -45,6 +45,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getTinTuyenDung', 'Admin\TinTuyenController@getTinTuyenDung');
         Route::post('changeStatusTinTuyenDung', 'Admin\TinTuyenController@changeStatusTinTuyenDung');
         Route::post('deleteTinTuyenDung', 'Admin\TinTuyenController@deleteTinTuyenDung');
+        Route::get('searchTinTuyenDung', 'Admin\TinTuyenController@searchTinTuyenDung');
         Route::get('getQuocGia', 'Admin\TinTuyenController@getQuocGia');
         Route::get('getVisa', 'Admin\TinTuyenController@getVisa');
         Route::post('createTinTuyen', 'Admin\TinTuyenController@createTinTuyen');

@@ -309,13 +309,13 @@ export default {
         },
         search(){
             this.$axios.$get(
-            'tintuc/searchTinTuc/?searchCategory=' 
+            'tintuyendung/searchTinTuyenDung/?searchCategory=' 
             + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id)?this.cardSearch.searchStatus.id:0) 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
             + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
             ).then((response)=>{
-	             this.tinTuc=response.data;
+	             this.tinTuyenDung=response.data;
 	        });
         }
         

@@ -71,6 +71,46 @@ class TinTuyenController extends Controller
         }
         return response()->json($data);
     }
+    public function searchTinTuyenDung(Request $request)
+    {
+        $search = $request->search;
+        $searchTitle = $request->searchTitle;
+        $searchCategory = $request->searchCategory;
+        $searchStatus = $request->searchStatus;
+        if($search == '' && $searchTitle == '' && $searchStatus == null && $searchCategory == null) 
+        {
+            $data = DB::table('nb_joblists')->where('deleted', 0)->orderBy('id', 'DESC')->get();
+        }
+        else
+        {
+            $data = DB::table('nb_joblists')->select('*')
+            ->where(function($query) use ($search){
+                if($search != ''){
+                    $query->where('title', 'LIKE', '%'.$search.'%')
+                    ->orwhere('id','LIKE', '%'.$search.'%');
+                }
+            })
+            ->where(function($query) use ($searchTitle){
+                if($searchTitle != ''){
+                    $query->where('title', 'LIKE', '%'.$searchTitle.'%');
+                }
+            })
+            ->where(function($query) use ($searchStatus){
+                if($searchStatus != null){
+                    $query->where('status', $searchStatus);
+                }
+            })
+            ->where(function($query) use ($searchCategory){
+                if($searchCategory != null){
+                    $query->where('type', $searchCategory);
+                }
+            })
+            ->where('deleted', 0)
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+        }
+        return response()->json($data);
+    }
     public function getQuocGia() {
         try{
             $getQuocGia = DB::table('nations')->get();
