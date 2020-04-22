@@ -34,7 +34,7 @@
                 <div class="item-wrapper">
                     <div class="item-cost">
                         <h6 class="badge background-default badge-sm">
-                           {{ job.type == 1 ? 'xuất khẩu lao động' : job.type == 2 ? 'du học sinh' : 'tu nghiệp sinh' }}
+                           {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
                         </h6>
                     </div>
                 </div>

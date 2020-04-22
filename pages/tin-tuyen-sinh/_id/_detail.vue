@@ -28,7 +28,7 @@
                                     <a class="btn-netbee btn" data-toggle="tooltip" data-placement="top" title="Ứng tuyển ngay"><i class="fad fa-paper-plane fa-2x p-10"></i></a>
                                 </div>
                                 <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px">
-                                    <a class="btn btn-save" data-toggle="tooltip" data-placement="top" title="Lưu việc làm"><i class="fad fa-heart fa-2x p-10"></i></a>
+                                    <a class="btn btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
                                 <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                     <a class="btn btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
@@ -116,7 +116,8 @@ export default {
     },
     data() {
         return {
-            arrayForCompany: []
+            arrayForCompany: [],
+            save: false
         }
     },
     async asyncData({$axios, route}) {
@@ -146,26 +147,38 @@ export default {
             ]
         }
     },
+    methods: {
+        saveJob() {
+            this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuc.id}).then((response)=>{
+                if(response.data.status == 200) {
+                    this.$swal(
+                    'Thành công!',
+                        response.data.message,
+                    'success'
+                    );
+                    this.save = response.data.data
+                }else {
+                    this.$swal(
+                    'Lỗi!',
+                        response.data.message,
+                    'error'
+                    );
+                    this.save = response.data.data
+                }
+            });
+        }
+    },
     mounted() {
         this.$axios.$get(`getTinTuyenDungForCompany/${this.tintuc.id_created}?limit=5`).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
         });
+        if(this.$auth.loggedIn) {
+            this.$axios.$post(`tintuyendung/postView`,{id_job: this.tintuc.id}).then((response)=>{});
+            this.$axios.$get(`tintuyendung/getSave`,{id_job: this.tintuc.id}).then((response)=>{
+                this.save = response.data.data
+            });
+        }
     }
-    // jsonld() {
-    //     return {
-    //         "@context": "http://schema.org/",
-    //         "@type":"EmployerAggregateRating",
-    //         "itemReviewed":{
-    //             "@type":"Organization",
-    //             "name": this.tintuc.title,
-    //             "sameAs": 'https://netbee.vn'+this.$route.path
-    //             },
-    //         "ratingValue": "4",
-    //         "bestRating": "5",
-    //         "worstRating": "3",
-    //         "ratingCount": "5"
-    //     };
-    // },
 }
 </script>
 <style scoped>

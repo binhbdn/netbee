@@ -179,4 +179,79 @@ class TinTuyenController extends Controller
             return response()->json($data);
         }
     }
+
+    public function postView(Request $request)
+    {
+        $check = DB::table('nb_job_views')->where('id_job', $request->id_job)->where('id_viewer', Auth::user()->id)->first();
+        if($check)
+        {
+            $data = ['status' => 200,'message' => 'View thành công', 'data' => null];
+        } else
+        {
+            DB::beginTransaction();
+            try {
+                $insert = [
+                    'id_job' => $request->id_job,
+                    'id_viewer' => Auth::user()->id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ];
+                DB::table('nb_job_views')->insert($insert);
+                $data = ['status' => 200,'message' => 'View thành công', 'data' => null];
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
+                $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+            }
+        }
+        return response()->json($data);
+    }
+
+    public function getSave(Request $request)
+    {
+        $check = DB::table('nb_job_saves')->where('id_job', $request->id_job)->where('id_saver', Auth::user()->id)->first();
+        if($check)
+        {
+            $data = ['status' => 200,'message' => 'thành công', 'data' => true];
+        }
+        $data = ['status' => 200,'message' => 'thành công', 'data' => false];
+        return response()->json($data);
+    }
+
+    public function postSave(Request $request)
+    {
+        if( Auth::user()->role == 4 ||  Auth::user()->role == 2)
+            return response()->json(['status'=> 400, 'message' => 'Chức năng này chỉ dành cho ứng viên', 'data' => null]);
+        $check = DB::table('nb_job_saves')->where('id_job', $request->id_job)->where('id_saver', Auth::user()->id)->first();
+        if($check)
+        {
+            DB::beginTransaction();
+            try {
+                DB::table('nb_job_saves')->where('id_job', $request->id_job)->where('id_saver', Auth::user()->id)->delete();
+                $data = ['status' => 200,'message' => 'Bỏ lưu thành công', 'data' => false];
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
+                $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+            }
+        } else
+        {
+            DB::beginTransaction();
+            try {
+                $insert = [
+                    'id_job' => $request->id_job,
+                    'id_saver' => Auth::user()->id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ];
+                DB::table('nb_job_saves')->insert($insert);
+                $data = ['status' => 200,'message' => 'Lưu thành công', 'data' => true];
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
+                $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+            }
+        }
+        return response()->json($data);
+    }
 }
