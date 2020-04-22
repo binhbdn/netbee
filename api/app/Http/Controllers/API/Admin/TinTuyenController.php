@@ -21,9 +21,23 @@ use App\Http\Controllers\NotificationController as notifi;
 class TinTuyenController extends Controller
 {
     public function getTinTuyenDung(Request $request){
+        $role_user = Auth::user()->role;
+        $id_user = Auth::user()->id;
         try {
-            $getTin = DB::select('CALL getAllTinTuyenDungAdmin(0,0)');
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
+            if($role_user != 4){
+                $getTin = DB::table('nb_joblists')
+                ->where('id_created',$id_user)
+                ->where('deleted',0)
+                ->orderBy('id', 'DESC')
+                ->get();
+                $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
+            }
+            else{
+                $getTin = DB::table('nb_joblists')->where('deleted',0)
+                ->orderBy('id', 'DESC')->get();
+                $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
+            }
+            
         } catch (\Exception $e) {
             $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
         }
