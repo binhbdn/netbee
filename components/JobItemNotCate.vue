@@ -23,11 +23,11 @@
                     <a :href="`/cong-ty/${job.id_created}/${ChangeToSlug(job.name)}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${job.name}`"> {{ job.name }}</span></a>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
-                    <p class="quantity-title mb-0"><i class="fad fa-location-arrow"></i> {{ job.nation_name }}</p>
-                    <p class="delivery-date mb-0"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
+                    <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-location-arrow"></i> {{ job.nation_name }}</p>
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="item-quantity ">
-                    <p class="delivery-date" :style="['font-size: 13px',job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ job.salary_start }}{{ job.currency }} ~ {{ job.salary_end }}{{ job.currency }}</p>
+                    <p class="delivery-date" data-toggle="tooltip" data-placement="top" title="mức lương" :style="['font-size: 13px',job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ job.salary_start }}{{ job.currency }} ~ {{ job.salary_end }}{{ job.currency }}</p>
                 </div>
             </div>
         </div>

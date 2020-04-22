@@ -41,8 +41,8 @@
                                         <div  class=" p-2 bg-white col-12" id="cate-1" style="border-bottom: 1px solid #ddd;" v-for="(danhmuc, indexDanhMuc) in getDanhMucTinTuc" :key="indexDanhMuc">
                                             <div class="col-12">
                                                 <div class="job-post-item-header d-flex align-items-center">
-                                                    <a :href="`/tin-tuc/${ChangeToSlug(danhmuc.name_cate)}`">
-                                                        <h2 class="mr-3 text-black h6 NB_title" ><i class="fa fa-arrow-right"></i>{{ danhmuc.name_cate }}</h2>
+                                                    <a :href="`/tin-tuc/${ChangeToSlug(danhmuc.name)}`">
+                                                        <h2 class="mr-3 text-black h6 NB_title" ><i class="fa fa-arrow-right"></i>{{ danhmuc.name }}</h2>
                                                     </a>
                                                 </div>
                                             </div>
@@ -53,7 +53,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title"><i class="fad fa-bullhorn"></i> Gọi ý việc làm  </h4>
+                                <h4 class="card-title"><i class="fad fa-bullhorn"></i> Gợi ý việc làm  </h4>
                                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <ul class="list-inline mb-0">
@@ -62,8 +62,8 @@
                                 </div>
                             </div>
                             <div class="card-content collapse show">
-                                <div class="card-body scrollbar">
-                                    <JobsList1ColNotCate :DataList="arrayJob"></JobsList1ColNotCate>
+                                <div class="card-body">
+                                    <JobsList1ColNotCate :DataList="arrayJobNew"></JobsList1ColNotCate>
                                 </div>
                             </div>
                         </div>
@@ -87,17 +87,12 @@ export default {
     data() {
         return {
             arrayNew: [],
-            getDanhMucTinTuc: [],
-            arrayJob: [
-                {id: 1, title: 'chào cả nhà1'},
-                {id: 2, title: 'chào cả nhà2'},
-                {id: 3, title: 'chào cả nhà3'},
-                {id: 4, title: 'chào cả nhà4'},
-                {id: 5, title: 'chào cả nhà5'},
-                {id: 6, title: 'chào cả nhà6'},
-                {id: 6, title: 'chào cả nhà6'},
-                {id: 6, title: 'chào cả nhà6'},
+            getDanhMucTinTuc: [
+                { id: 1, name: 'Xuất khẩu lao động'},
+                { id: 2, name: 'Du học'},
+                { id: 3, name: 'Cẩm nang'},
             ],
+            arrayJobNew: [],
         }
     },
      methods: {
@@ -125,8 +120,8 @@ export default {
                     this.arrayNew = arrayNew1.data.tintuc;
                     break;
             }
-            let getDanhMucTinTuc = await this.$axios.$get('getDanhMucTinTuc')
-            this.getDanhMucTinTuc = getDanhMucTinTuc.data
+            let getTinTuyenDungNew = await this.$axios.$get(`getTinTuyenDungNew?limit=5&type=0`)
+            this.arrayJobNew = getTinTuyenDungNew.data.tintuyendung
         },
     },
     mounted() {
