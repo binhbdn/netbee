@@ -505,7 +505,9 @@ export default {
                             'Thành công',
                             response.data.message,
                             'success',
-                        )
+                        ).then(function(){
+                            window.location.reload()
+                        })
                     }else{
                         this.$swal(
                             'Lỗi',
