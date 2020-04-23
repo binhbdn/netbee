@@ -75,7 +75,8 @@ module.exports = {
             },
             google: {
                 client_id: '867087688208-tevlsbe2csk6hhlb9sh77kom9mjq6brs.apps.googleusercontent.com',
-                redirect_uri:'http://en-el.devwork.vn/callbackgg'
+                redirect_uri:'http://en-el.devwork.vn/callbackgg',
+                scope: ['openid', 'profile', 'email','picture']
             },
         },
     },
