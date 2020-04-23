@@ -44,6 +44,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::prefix('tintuyendung')->group(function () {
         Route::get('getTinTuyenDung', 'Admin\TinTuyenController@getTinTuyenDung');
         Route::post('changeStatusTinTuyenDung', 'Admin\TinTuyenController@changeStatusTinTuyenDung');
+        Route::post('changeAllStatusTinTuyenDung', 'Admin\TinTuyenController@changeAllStatusTinTuyenDung');
         Route::post('deleteTinTuyenDung', 'Admin\TinTuyenController@deleteTinTuyenDung');
         Route::get('searchTinTuyenDung', 'Admin\TinTuyenController@searchTinTuyenDung');
         Route::get('getQuocGia', 'Admin\TinTuyenController@getQuocGia');

@@ -64,6 +64,27 @@ class TinTuyenController extends Controller
         }
         return response()->json($data);
     }
+    public function changeAllStatusTinTuyenDung(Request $request)
+    {
+        try {
+            $id = $request->id[0];
+            $getTin = DB::table('nb_joblists')->where('id', $id)->first();
+            $getStatus = $getTin->status;
+            if($getTin) {
+                foreach($request->id as $key =>$value) {
+                    $tin = DB::table('nb_joblists')->find($request->id[$key]);
+                    $tin->status = $getStatus;
+                    $tin->updated_at = Carbon::now();
+                }
+                $data = ['status'=> 200, 'message' => 'Thay đổi trạng thái thành công', 'data' => $setTin];
+            }else {
+                $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
+            }
+        } catch (\Exception $e) {
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
     public function deleteTinTuyenDung(Request $request)
     {
         try {

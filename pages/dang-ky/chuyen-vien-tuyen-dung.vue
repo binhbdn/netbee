@@ -15,7 +15,7 @@
                 <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN CHUYÊN VIÊN TUYỂN SINH</span>
                 </div>
-                <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="">Tại đây</a></span>
+                <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap">Tại đây</a></span>
                 <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
                     <ValidationObserver ref="observer" v-slot="{ valid }">
                      <ValidationProvider
@@ -99,7 +99,7 @@
                         </div>
                     </ValidationProvider>
                     <ValidationProvider
-                        rules = "requiredCheckbox"
+                        rules = "required"
                         name = "agree-term"
                         ref="agree-term"
                         v-slot="{ errors }"
@@ -152,9 +152,6 @@ extend('password_confirmation', {
     return value === target;
   },
   message: 'Mật khẩu nhập vào không khớp'
-});
-extend("requiredCheckbox", {
-  message: (field, values) => "Dữ liệu nhập vào phải là chữ."
 });
 
 // create custom error message for custom rule

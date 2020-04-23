@@ -91,7 +91,7 @@
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
                                                     <a class="dropdown-item"><i class="feather icon-trash-2 warning"></i>Xóa</a>
-                                                    <a class="dropdown-item"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
+                                                    <a class="dropdown-item" @click="changeAllStatusTinTuyenDung()"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
                                                     <a class="dropdown-item"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
                                                         <li class="d-inline-block mr-1">
                                                             <fieldset>
                                                                 <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                    <input type="checkbox" value="false">
+                                                                    <input type="checkbox" v-model="selectAll">
                                                                     <span class="vs-checkbox vs-checkbox-sm">
                                                                         <span class="vs-checkbox--check">
                                                                             <i class="vs-icon feather icon-check"></i>
@@ -117,7 +117,7 @@
                                                             </fieldset>
                                                         </li>
                                                         ID</th>
-                                                    <th>Tiêu đề</th>
+                                                    <th>Tiêu đề{{selected}}</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
@@ -130,7 +130,7 @@
                                                         <li class="d-inline-block mr-1">
                                                             <fieldset>
                                                                 <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                    <input type="checkbox" value="false">
+                                                                    <input type="checkbox" v-model="selected" :value="item.id">
                                                                     <span class="vs-checkbox vs-checkbox-sm">
                                                                         <span class="vs-checkbox--check">
                                                                             <i class="vs-icon feather icon-check"></i>
@@ -211,11 +211,14 @@ export default {
                 {id: 1, name: 'Đã kích hoạt'},
                 {id: 0, name: 'Chưa kích hoạt'},
             ],
-            id: null
+            id: null,
+            selected: []
+
         }
     },
     created() {
         this.fetch();
+        console.log(this.selected)
     },
     methods: {
         nameWithLang ({ name, id }) {
@@ -256,7 +259,6 @@ export default {
                     'Lỗi bỏ kích hoạt!',
                     'error')
             }
-                    
         },
         async deleteNews(index){
                 try {
@@ -309,15 +311,78 @@ export default {
             this.$axios.$get(
             'tintuc/searchTinTuc?searchCategory=' 
             + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
-            + '&searchStatus='+ ((this.cardSearch.searchStatus.id)?this.cardSearch.searchStatus.id:0) 
+            + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
             + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
             ).then((response)=>{
 	             this.tinTuc=response.data;
 	        });
-        }
-        
+        },
+        async changeAllStatusTinTuyenDung(){
+            console.log(this.selected)
+            try {
+                    let response = await this.$axios.post('tintuyendung/changeAllStatusTinTuc',{
+                    id: this.selected
+                });
+                if(response.data.status == 200) {
+                    this.$swal({
+                        title: 'Thành công',
+                        text: response.data.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then( 
+                        this.fetch(),
+                    )
+                }
+                else {
+                this.$swal(
+                    'Lỗi!',
+                    response.data.message,
+                    'error'
+                    )
+                }
+            } catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi bỏ kích hoạt!',
+                    'error')
+            }
+        },
     },
+    computed: {
+    selectAll: {
+      get() {
+        if (this.tinTuc && this.tinTuc.length > 0) { // A users array exists with at least one item
+          let allChecked = true;
+
+          this.tinTuc.forEach((item) => {
+            if (!this.selected.includes(item.id)) {
+              allChecked = false; // If even one is not included in array
+            }
+            
+            // Break out of loop if mismatch already found
+            if(!allChecked) return;
+          });
+
+          return allChecked;
+        }
+
+        return false;
+      },
+      set(value) {
+        const checked = [];
+
+        if (value) {
+          this.tinTuc.forEach((item) => {
+            checked.push(item.id);
+          });
+        }
+
+        this.selected = checked;
+      }
+    },
+  }
 }
 </script>
 <style scoped>
