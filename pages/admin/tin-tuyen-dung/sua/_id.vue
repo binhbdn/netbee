@@ -302,7 +302,7 @@
                                                         </fieldset>
                                                     </div>  
                                                     <div class="col-4" v-if="checked">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
+                                                        <ValidationProvider rules="checkSelect" v-slot="{ errors }" >
                                                                 <div class="form-group">
                                                                     <label for="firstName3">
                                                                         Thời gina bảo hành
@@ -431,6 +431,18 @@ extend("ssdate", {
     }
 })
 
+var errorMessage
+extend('checkSelect', {
+    message: field => errorMessage,
+    validate: value => {
+        console.log(value)
+        if(value.id == null || value.id == 0) {
+            errorMessage = "Dữ liệu không được bỏ trống"
+            return false
+        } else return true
+    }
+})
+
 export default {
     name: 'CreateIndexJob',
     layout: 'admin',
@@ -546,7 +558,7 @@ export default {
             } else {
                 this.data.time_bonus = {id: 3, name: 'Sau nhập cảnh 30 ngày *2'}
             }
-            this.data.bonus = job.data.bonus
+            job.data.bonus == 0 ? this.data.bonus = null : this.data.bonus = job.data.bonus
             if(job.data.bonus){
                 this.checked = true
             }
