@@ -16,8 +16,8 @@
                     <div class="col-8">
                         <div class="card">
                             <div class="card-header">
-                                <h2>{{ tintuc.title }}</h2>
-                                <span><i class="fa fa-calendar mr-1"></i>{{ tintuc.created_at }}</span>
+                                <h2>{{ tintuc.title }}</h2><br>
+                                <span><i class="fa fa-calendar mr-1"></i>{{ ConvertDate(tintuc.updated_at) }}</span>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -42,7 +42,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12 make-it-slow pt-1" v-for="(item, index) in tintucs" :key="index">
-                                            <NewItempage2 :id="item.id" :title="item.title" :content="item.content" :created_at="item.created_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
+                                            <NewItempage2 :id="item.id" :title="item.title" :content="item.content" :created_at="item.updated_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
                                         </div>
                                     </div>
                                 </div>

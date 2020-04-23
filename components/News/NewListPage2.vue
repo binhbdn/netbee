@@ -7,7 +7,7 @@
             <div class="col-7">
                 <div class="row px-1">
                     <div class="col-12 make-it-slow py-1" v-for="(item, index) in DataList.slice(1)" :key="index">
-                        <NewsItem2 :id="item.id" :title="item.title" :short_content="item.short_content" :created_at="item.created_at" :thuml="item.thuml"></NewsItem2>
+                        <NewsItem2 :id="item.id" :title="item.title" :short_content="item.short_content" :created_at="item.updated_at" :thuml="item.thuml"></NewsItem2>
                     </div>
                 </div>
                 

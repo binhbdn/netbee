@@ -1,42 +1,75 @@
 /* button */
+
 .btn-add {
     padding: 10px!important;
 }
-.btn-action{
+
+.btn-action {
     padding: 7px !important;
 }
+
+
 /* header */
+
 .header-navbar.floating-nav {
     margin-top: 0!important;
 }
-html body .content .content-wrapper{
+
+html body .content .content-wrapper {
     margin-top: 59px;
 }
-.custom-header{
+
+.custom-header {
     background-color: #f9f9f9!important;
 }
-.width-id{
+
+.width-id {
     width: 5%;
 }
+
 .actions-dropodown {
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.14);
     border-radius: 0.5rem;
 }
-.dropdown-menu .show{
-    left:-25px!important;
+
+.dropdown-menu .show {
+    left: -25px!important;
 }
-.vs-checkbox-con .vs-checkbox{
+
+.vs-checkbox-con .vs-checkbox {
     margin-top: -3px;
 }
-tbody .vs-checkbox-con .vs-checkbox{
+
+tbody .vs-checkbox-con .vs-checkbox {
     margin-top: 0;
 }
-.table th{
+
+.table th {
     font-size: 15px;
 }
 
+
 /* important multiselect */
+
 .multiselect__tags {
     padding: 5px 40px 0px 8px !important;
     min-height: 38px !important;
+}
+
+@media (min-width: 1280px) and (max-width: 1345) {
+    .vue-form-wizard.md .wizard-icon-circle {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 24px;
+    }
+    .vue-form-wizard.md .wizard-navigation .wizard-progress-with-circle {
+        position: relative;
+        top: 20px;
+        height: 3px;
+    }
+}
+
+.__title {
+    font-weight: bold;
+    font-size: 15px;
 }

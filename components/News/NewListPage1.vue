@@ -5,7 +5,7 @@
                 <NewsItem2 :id="DataList[0].id" :title="DataList[0].title" :short_content="DataList[0].short_content" :created_at="DataList[0].created_at" :thuml="DataList[0].thuml" :type=1></NewsItem2>
             </div>
             <div class="col-3 mt-1 py-1 make-it-slow"  v-for="(item, index) in DataList.slice(1)" :key="index">
-                <NewsItem1 :id="item.id" :title="item.title" :short_content="item.short_content" :created_at="item.created_at" :thuml="item.thuml"></NewsItem1>
+                <NewsItem1 :id="item.id" :title="item.title" :short_content="item.short_content" :created_at="item.updated_at" :thuml="item.thuml"></NewsItem1>
             </div>
         </div>
     </div>
