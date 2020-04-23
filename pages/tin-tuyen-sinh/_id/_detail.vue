@@ -53,28 +53,11 @@
                 <div class="card-body">
                     <div class="row p-t-10">
                         <div class="col-12">
-                            <div class="col-5 p-l-0">
+                            <div class="col-12 p-l-0">
                                 <h5 class="font-weight-600 line-title">THÔNG TIN TUYỂN DỤNG NHANH</h5>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <h5 class="border-bottom mt-1 title">Mô tả công việc</h5>
-                                    <p class="px-1" v-html="tintuc.description" style="white-space: pre-line;"></p>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h5 class="border-bottom mt-1 title" >Yêu cầu</h5>
-                                    <p class="px-1" v-html="tintuc.request" style="white-space: pre-line;"></p>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h5 class="border-bottom mt-1 title">Quyền lợi</h5>
-                                    <p class="px-1" v-html="tintuc.benefit" style="white-space: pre-line;"></p>
-                                </div>
-                                <div class="col-lg-12">
-                                    <h5 class="border-bottom mt-1 title">Hồ sơ cần chuẩn bị</h5>
-                                    <p class="px-1" v-html="tintuc.cv_content" style="white-space: pre-line;"></p>
-                                </div>
                                 <div class="col-xl-12">
-                                    <h5 class="border-bottom mt-1 title">Thông tin thêm</h5>
                                     <div class="px-1">
                                         <p><span class="font-weight-600">Địa điểm:</span> {{ tintuc.workplace }}</p>
                                         <p v-if="tintuc.type == 2"><span class="font-weight-600">Trường:</span> {{ tintuc.school_name }}</p>
@@ -88,17 +71,90 @@
                                         <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuc.expected_date) }}</p>
                                     </div>
                                 </div>
-                                <div class="col-xl-12 pb-2">
-                                    <h5 class="border-bottom mt-1 title">Cách thức ứng tuyển</h5>
+                                
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 p-l-0">
+                                <h5 class="font-weight-600 line-title">MÔ TẢ CÔNG VIỆC</h5>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="px-1" v-html="tintuc.description" style="white-space: pre-line;"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 p-l-0">
+                                <h5 class="font-weight-600 line-title">YÊU CẦU</h5>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="px-1" v-html="tintuc.request" style="white-space: pre-line;"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 p-l-0">
+                                <h5 class="font-weight-600 line-title">QUYỀN LỢI</h5>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="px-1" v-html="tintuc.benefit" style="white-space: pre-line;"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 p-l-0">
+                                <h5 class="font-weight-600 line-title">HỒ SƠ CẦN CHUẨN BỊ</h5>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p class="px-1" v-html="tintuc.cv_content" style="white-space: pre-line;"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 p-l-0">
+                                <h5 class="font-weight-600 line-title">THÔNG TIN TUYỂN DỤNG NHANH</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="px-1">
+                                        <p><span class="font-weight-600">Địa điểm:</span> {{ tintuc.workplace }}</p>
+                                        <p v-if="tintuc.type == 2"><span class="font-weight-600">Trường:</span> {{ tintuc.school_name }}</p>
+                                        <p><span class="font-weight-600">Tuổi:</span> {{ tintuc.age_start }} {{ tintuc.age_end? ' - '+tintuc.age_end+' tuổi' : ' tuổi trở lên' }}</p>
+                                        <p v-if="tintuc.type != 2"><span class="font-weight-600">Lương:</span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
+                                        <p v-if="tintuc.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
+                                        <p v-if="tintuc.type != 2"><span class="font-weight-600">Hình thức làm việc:</span> {{ tintuc.form_work == 1 ? 'Toàn thời gian' : tintuc.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
+                                        <p v-if="tintuc.time_bonus"><span class="font-weight-600">Bonus:</span> {{ tintuc.time_bonus == 1 ? tintuc.bonus : tintuc.time_bonus == 2 ? tintuc.bonus * 1.5 : tintuc.bonus * 3 }}{{ tintuc.currency }}</p>
+                                        <p><span class="font-weight-600">Chi phí xuất cảnh:</span> {{ tintuc.subsidy }}{{ tintuc.currency }}</p>
+                                        <p><span class="font-weight-600">Ngày bắt đầu nhận hồ sơ:</span> {{ ConvertDate(tintuc.date_start) }}</p>
+                                        <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuc.expected_date) }}</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-12 pb-2">
+                            <div class="col-12 p-l-0">
+                                <h5 class="font-weight-600 line-title">CÁCH THỨC ỨNG TUYỂN</h5>
+                                
+                            </div>
+                            <div class="row">
+                                
+                                <div class="col-lg-12">
                                     Ứng viên nộp hồ sơ trực tiếp tại văn phòng công ty hoặc nộp trực tuyến bằng cách bấm vào nút <b>Nộp hồ sơ</b>.<br>
                                     <div class="text-center">
                                         <div>
                                             <button class="btn  btn-warning w-75" style="width: 214px !important; color: #000; border-color: #ffb701 !important; background-color: #ffb701 !important;"><i class="fad fa-paper-plane"></i> Nộp hồ sơ</button>
                                         </div>
                                         <i>Hạn nộp hồ sơ: {{ConvertDate(tintuc.expiration_date)}}</i><br>
-                                        <a href="#">Phản ánh tin tuyển dụng không chính xác</a>
                                     </div>
-                                    
                                 </div>
                             </div>
                         </div>
