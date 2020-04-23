@@ -67,6 +67,15 @@ module.exports = {
                     logout: { url: '/logout', method: 'get', propertyName: false }
                 }
             },
+            facebook: {
+                client_id: '1459241224260897',
+                userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email,birthday',
+                scope: ['public_profile', 'email', 'user_birthday'],
+                redirect_uri:'http://localhost:3000/callback'
+            },
+            google: {
+                client_id: '...'
+            },
         },
     },
     router: {
