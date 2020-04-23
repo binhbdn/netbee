@@ -364,13 +364,17 @@
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2">
-                                        <div class="avatar bg-rgba-info p-50 m-0 mb-1">
-                                            <div class="avatar-content">
-                                                <i class="feather icon-heart text-info font-medium-5"></i>
-                                            </div>
+                                        <div class="text-center">
+                                            <img src="../../../../static/assets/img/logo.png" width="70px">
+                                            <p class="__title">Quy trình tuyển dụng tại Netbee</p>
                                         </div>
-                                        <h2 class="text-bold-700">Cập nhật thông tin</h2>
-                                        <p class="mb-0 line-ellipsis">Cập nhật các thông tin, kỹ năng, học vấn, kinh nghiệm... mà bạn yêu cầu</p>
+                                        <div>
+                                            <p>1. Tạo tin tuyển dụng</p>
+                                            <p>2. Chờ admin xét duyệt tin(Thông báo qua email)</p>
+                                            <p>3. Nhận hồ sơ giới thiệu từ chuyên viên tuyển sinh(Thông báo khi có lượt ứng tuyển)</p>
+                                            <p>4. Xét duyệt hồ sơ và book lịch phỏng vấn(Lượt ứng tuyển chỉ trong trạng thái chờ tối đa 3 ngày)</p>
+                                            <p>5. Xác nhận thanh toán phần bonus giới thiệu cho Chuyên viên tuyển sinh</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
