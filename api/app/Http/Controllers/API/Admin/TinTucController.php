@@ -53,6 +53,52 @@ class TinTucController extends Controller
         }
         return response()->json($data);
     }
+    public function changeAllStatusTinTuc(Request $request)
+    {   
+        if(empty($request->id)){
+            $data = ['status'=> 400, 'message' => 'Bạn chưa chọn tin!', 'data' => null];
+            return response()->json($data);
+        }
+        $id = json_decode($request->id);
+        $length= count($id);
+        $status = $request->status;
+        DB::beginTransaction();
+        try {
+            if($length == 1 ){
+                DB::table('news')->where('id', $id)->update([
+                    'status' => $status,
+                    'updated_at' =>  Carbon::now()
+                ]);
+                DB::commit();
+                $tin = DB::table('news')->where('id',$id)->get();
+                if($status == 1){
+                    $data = ['status'=> 200, 'message' => 'Kích hoạt thành công', 'data' => null];
+                }
+                else{
+                    $data = ['status'=> 200, 'message' => 'Bỏ kích hoạt thành công', 'data' => null];
+                }
+            }
+            else{
+                foreach($id as $key =>$value) {
+                    DB::table('news')->where('id', $value)->update([
+                        'status' => $status,
+                        'updated_at' =>  Carbon::now()
+                    ]);
+                }
+                DB::commit();
+                if($status == 1){
+                    $data = ['status'=> 200, 'message' => 'Kích hoạt thành công', 'data' => null];
+                }
+                else{
+                    $data = ['status'=> 200, 'message' => 'Bỏ kích hoạt thành công', 'data' => null];
+                }
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
 
     public function deleteTinTuc(Request $request)
     {
