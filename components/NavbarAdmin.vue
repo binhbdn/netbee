@@ -18,7 +18,7 @@
                 </li>
                 <li class=" navigation-header"><span>Apps</span>
                 </li>
-                <li :class="[{'active' : (this.$route.name == 'admin-news') || (this.$route.name == 'admin-news-create')}, 'nav-item']"><a href="#"><i class="far fa-copy"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
+                <li :class="[{'active' : (this.$route.name == 'admin-news') || (this.$route.name == 'admin-news-create')}, 'nav-item']" v-if="$auth.user.role == 4"><a href="#"><i class="far fa-copy"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
                     <ul class="menu-content">
                         <li><a href="/admin/news"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách bài viết</span></a>
                         </li>
@@ -26,7 +26,7 @@
                         </li>
                     </ul>
                 </li>
-                <li :class="[{'active' : (this.$route.name == 'admin-tin-tuyen-dung-danh-sach') || (this.$route.name == 'admin-tin-tuyen-dung-tao')}, 'nav-item']"><a href="#"><i class="fas fa-briefcase"></i><span class="menu-title" data-i18n="Ecommerce">Tin tuyển dụng</span></a>
+                <li :class="[{'active' : (this.$route.name == 'admin-tin-tuyen-dung-danh-sach') || (this.$route.name == 'admin-tin-tuyen-dung-tao')}, 'nav-item']" v-if="$auth.user.role == 2 || $auth.user.role == 4"><a href="#"><i class="fas fa-briefcase"></i><span class="menu-title" data-i18n="Ecommerce">Tin tuyển dụng</span></a>
                     <ul class="menu-content">
                         <li><a href="/admin/tin-tuyen-dung"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
                         </li>
