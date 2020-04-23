@@ -91,8 +91,8 @@
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
                                                     <a class="dropdown-item"><i class="feather icon-trash-2 warning"></i>Xóa</a>
-                                                    <a class="dropdown-item" @click="changeAllStatusTinTuyenDung()"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
-                                                    <a class="dropdown-item"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
+                                                    <a class="dropdown-item" @click="changeAllStatusTinTuc(1)"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
+                                                    <a class="dropdown-item" @click="changeAllStatusTinTuc(0)"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,7 +117,7 @@
                                                             </fieldset>
                                                         </li>
                                                         ID</th>
-                                                    <th>Tiêu đề{{selected}}</th>
+                                                    <th>Tiêu đề</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
@@ -318,16 +318,26 @@ export default {
 	             this.tinTuc=response.data;
 	        });
         },
-        async changeAllStatusTinTuyenDung(){
-            console.log(this.selected)
+        async changeAllStatusTinTuc(statusTinTuc){
             try {
-                    let response = await this.$axios.post('tintuyendung/changeAllStatusTinTuc',{
-                    id: this.selected
-                });
-                if(response.data.status == 200) {
+                this.$axios.$post('http://127.0.0.1:8000/api/tintuc/changeAllStatusTinTuc',{id:JSON.stringify(this.selected), status: statusTinTuc}).then((res) => {
+                console.log(res);
+                console.log(JSON.stringify(this.selected));
+                if(res.status == 400){
+                    this.$swal({
+                        title: 'Lỗi',
+                        text: res.message,
+                        icon: 'warning',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then( 
+                        this.fetch(),
+                    )
+                }
+                if(res.status == 200){
                     this.$swal({
                         title: 'Thành công',
-                        text: response.data.message,
+                        text: res.message,
                         icon: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
@@ -338,15 +348,18 @@ export default {
                 else {
                 this.$swal(
                     'Lỗi!',
-                    response.data.message,
+                    res.message,
                     'error'
                     )
                 }
+                }
+            );
             } catch (error) {
                 this.$swal(
                     'Lỗi!',
                     'Lỗi bỏ kích hoạt!',
-                    'error')
+                    'error'
+                )
             }
         },
     },
