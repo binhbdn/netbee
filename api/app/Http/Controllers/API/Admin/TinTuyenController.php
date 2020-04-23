@@ -477,7 +477,7 @@ class TinTuyenController extends Controller
                         'updated_at' => Carbon::now()
                     ];
                     $check = DB::table('nb_joblists')->where('id', $request->get('id'))->update($insert);
-                    $data = ['status' => 200,'message' => 'Tạo tin thành công', 'data' => null];
+                    $data = ['status' => 200,'message' => 'Cập nhật thành công', 'data' => null];
                 } catch (\Exception $e) {
                     $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
                 }
@@ -546,7 +546,7 @@ class TinTuyenController extends Controller
                         'updated_at' => Carbon::now()
                     ];
                     $check = DB::table('nb_joblists')->where('id', $request->get('id'))->update($insert);
-                    $data = ['status' => 200,'message' => 'Tạo tin thành công', 'data' => null];
+                    $data = ['status' => 200,'message' => 'Cập nhật thành công', 'data' => null];
                 } catch (\Exception $e) {
                     $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
                 }
