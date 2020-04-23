@@ -74,7 +74,7 @@ module.exports = {
                 redirect_uri:'http://localhost:3000/callback'
             },
             google: {
-                client_id: '...'
+                client_id: '867087688208-tevlsbe2csk6hhlb9sh77kom9mjq6brs.apps.googleusercontent.com'
             },
         },
     },

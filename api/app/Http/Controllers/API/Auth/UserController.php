@@ -277,24 +277,8 @@ class UserController extends Controller
         $checkProvider = DB::table('social_accounts')->where('provider_user_id', $id_provider)->orderby('created_at', 'desc')->first();
         if($checkProvider) {
             $info = Admin::where('id', $checkProvider->user_id)->first();
-            $customClaims = [
-                'id' => $info->id,
-                'level' => $info->level
-            ];
-            if($jwt_token = JWTAuth::fromUser($info, $customClaims)) {
+            if($jwt_token = JWTAuth::fromUser($info)) {
                 if($info){
-                    if($info->avatar != null){
-                        $info->avatar = $info->avatar;
-                    }
-                    try {
-                        $input = [
-                            'firebase_token' => $request->firebase_token,
-                            'time_login' => Carbon::now()
-                        ];
-                        DB::table('admins')->where('email', $info->email)->update($input);
-                        $user->firebase_token = $request->firebase_token;
-                    } catch (\Throwable $th) {
-                    }
                     $data = array(
                         'status'  => 200,
                         'message' => 'Đăng nhập thành công',
@@ -374,47 +358,21 @@ class UserController extends Controller
                         'updated_at' => date('Y-m-d')
                     ]);
                     if ($jwt_token = JWTAuth::fromUser($info)) {
-                        $list_user = DB::table('admins')->where('level',0)->where('authen',1)->orWhere('level', 4)->get();
-                        $user = [];
-                        foreach ($list_user as $key => $value) {
-                        $user[] = ['user_id' => $value->id];
+                        try {
+                            $input = [
+                                'firebase_token' => $request->firebase_token,
+                                'time_login' => Carbon::now()
+                            ];
+                            DB::table('admins')->where('email', $email)->update($input);
+                            $info->firebase_token = $request->firebase_token;
+                        } catch (\Throwable $th) {
                         }
-                        $id_user_action = $users;
-                        $description = 'Vừa có tài khoản hr freelancer mới (chưa xác nhận) được tạo trên hệ thống';
-                        $id_user_info = $user;
-                        $url = 'https://www.devwork.vn/admin/index#/user/list-hr';
-                        $notifi = notifi::create_notification($id_user_action, $description, $url, $id_user_info);
-
-
-                        // $data = ['status'=> 200, 'message' => 'Vui lòng check mail để kích hoạt tài khoản. Nếu trong hộp thư không có vui lòng kiểm tra Tin Quảng Cáo hoặc Spam.'];
-                        if($info->avatar != null){
-                                    $info->avatar = $info->avatar;
-                                }
-                                try {
-                                    $input = [
-                                        'firebase_token' => $request->firebase_token,
-                                        'time_login' => Carbon::now()
-                                    ];
-                                    DB::table('admins')->where('email', $email)->update($input);
-                                    $info->firebase_token = $request->firebase_token;
-                                } catch (\Throwable $th) {
-                                }
-                                $data = array(
-                                    'status'  => 200,
-                                    'message' => 'Đăng kí thành công',
-                                    'user' => $info,
-                                    'token' => $jwt_token
-                                );
-                        $mail = $email;
-                        $url = 'https://www.devwork.vn/confirm-account/'.$users;
-                        $dataemail = (object)[
-                            'title' => 'Xác nhận tài khoản mới đăng ký',
-                            'content' => 'Cảm ơn '.$name.' đã đăng ký tài khoản tại <a href="https://www.devwork.vn" style="color: #ffb701;">DEVWORK.VN</a>',
-                            'body' => 'Để truy cập vào <a href="https://www.devwork.vn" style="color: #ffb701;">DEVWORK.VN</a> vui lòng kích hoạt tài khoản vừa tạo:',
-                            'confirm' => 1,
-                            'url' => $url,
-                        ];
-                        Mail::to($mail)->queue(new Sendmail($dataemail));
+                        $data = array(
+                            'status'  => 200,
+                            'message' => 'Đăng kí thành công',
+                            'user' => $info,
+                            'token' => $jwt_token
+                        );
                     }
                 }
                 else

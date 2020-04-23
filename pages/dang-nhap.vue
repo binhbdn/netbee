@@ -109,12 +109,12 @@
                             <hr>
                             <div class="lopgin-c" style="position:relative">
                                 <i class="fab fa-facebook" style="position: absolute; left: 106px; top: 9px; color: white; font-size: 18px; z-index:5"></i>
-                                <a href="redirect/facebook" class="btn btn-outline-info fb" style="">Đăng nhập bằng
+                                <a @click="loginfb()" class="btn btn-outline-info fb" style="">Đăng nhập bằng
                                     Facebook</a> &nbsp;&nbsp;
                             </div>
                             <div class="lopgin-c" style="position:relative">
                                 <img src="assets/img/logo-google.png" style="height:15px;position: absolute; left: 106px; top: 11px; color: blue; font-size: 18px;">
-                                <a href="redirect/google" class="btn btn-outline-info gg">Đăng nhập bằng Google</a>
+                                <a @click="logingg()" class="btn btn-outline-info gg">Đăng nhập bằng Google</a>
                             </div>
                         </div>
                         </ValidationObserver>
@@ -197,7 +197,12 @@ export default {
         showPassword(){
             this.show = !this.show;
         },
-        
+        loginfb() {
+            this.$auth.loginWith('facebook')
+        },
+        logingg() {
+            this.$auth.loginWith('google')
+        }
     }
 }
 </script>

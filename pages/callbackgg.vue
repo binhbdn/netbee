@@ -26,7 +26,7 @@ export default {
     layout: 'no_layout',
     async mounted() {
         if(this.$route.query.token) {
-            this.$axios.$post(`loginfb`,{token: this.$route.query.token}).then((response)=>{
+            this.$axios.$post(`logingg`,{token: this.$route.query.token}).then((response)=>{
                 if(response.status == 200) {
                     this.$auth.setToken('local', 'Bearer ' +response.data.token);
                     this.$auth.setStrategy('local');
