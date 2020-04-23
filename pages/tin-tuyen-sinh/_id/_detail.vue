@@ -76,16 +76,16 @@
                                 <div class="col-xl-12">
                                     <h5 class="border-bottom mt-1 title">Thông tin thêm</h5>
                                     <div class="px-1">
-                                        <p>Địa điểm: {{ tintuc.workplace }}</p>
-                                        <p v-if="tintuc.type == 2">Trường: {{ tintuc.school_name }}</p>
-                                        <p>Tuổi: {{ tintuc.age_start }} {{ tintuc.age_end? ' - '+tintuc.age_end+' tuổi' : ' tuổi trở lên' }}</p>
-                                        <p v-if="tintuc.type != 2">Lương: {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
-                                        <p v-if="tintuc.type == 2">Học phí: {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
-                                        <p v-if="tintuc.type != 2">Hình thức làm việc: {{ tintuc.form_work == 1 ? 'Toàn thời gian' : tintuc.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
-                                        <p v-if="tintuc.time_bonus">Bonus: {{ tintuc.time_bonus == 1 ? tintuc.bonus : tintuc.time_bonus == 2 ? tintuc.bonus * 1.5 : tintuc.bonus * 3 }}{{ tintuc.currency }}</p>
-                                        <p>Chi phí xuất cảnh: {{ tintuc.subsidy }}{{ tintuc.currency }}</p>
-                                        <p>Ngày bắt đầu nhận hồ sơ: {{ formatDate(tintuc.date_start) }}</p>
-                                        <p>Ngày dự kiến nhập cảnh: {{ formatDate(tintuc.expected_date) }}</p>
+                                        <p><span class="font-weight-600">Địa điểm:</span> {{ tintuc.workplace }}</p>
+                                        <p v-if="tintuc.type == 2"><span class="font-weight-600">Trường:</span> {{ tintuc.school_name }}</p>
+                                        <p><span class="font-weight-600">Tuổi:</span> {{ tintuc.age_start }} {{ tintuc.age_end? ' - '+tintuc.age_end+' tuổi' : ' tuổi trở lên' }}</p>
+                                        <p v-if="tintuc.type != 2"><span class="font-weight-600">Lương:</span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
+                                        <p v-if="tintuc.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
+                                        <p v-if="tintuc.type != 2"><span class="font-weight-600">Hình thức làm việc:</span> {{ tintuc.form_work == 1 ? 'Toàn thời gian' : tintuc.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
+                                        <p v-if="tintuc.time_bonus"><span class="font-weight-600">Bonus:</span> {{ tintuc.time_bonus == 1 ? tintuc.bonus : tintuc.time_bonus == 2 ? tintuc.bonus * 1.5 : tintuc.bonus * 3 }}{{ tintuc.currency }}</p>
+                                        <p><span class="font-weight-600">Chi phí xuất cảnh:</span> {{ tintuc.subsidy }}{{ tintuc.currency }}</p>
+                                        <p><span class="font-weight-600">Ngày bắt đầu nhận hồ sơ:</span> {{ ConvertDate(tintuc.date_start) }}</p>
+                                        <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuc.expected_date) }}</p>
                                     </div>
                                 </div>
                                 <div class="col-xl-12 pb-2">
@@ -95,7 +95,7 @@
                                         <div>
                                             <button class="btn  btn-warning w-75" style="width: 214px !important; color: #000; border-color: #ffb701 !important; background-color: #ffb701 !important;"><i class="fad fa-paper-plane"></i> Nộp hồ sơ</button>
                                         </div>
-                                        <i>Hạn nộp hồ sơ: {{formatDate(tintuc.expiration_date)}}</i><br>
+                                        <i>Hạn nộp hồ sơ: {{ConvertDate(tintuc.expiration_date)}}</i><br>
                                         <a href="#">Phản ánh tin tuyển dụng không chính xác</a>
                                     </div>
                                     
@@ -179,7 +179,6 @@
 <script>
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate'
 import JobsList1Col from '~/components/Jobs/JobsList1Col'
-import moment from 'moment'
 export default {
     components: {
         JobsList1ColNotCate,
@@ -198,7 +197,6 @@ export default {
         let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=5&type=1`)
         let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=2`)
         let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
-        console.log(detailRes.data[0])
         return {
             tintuc: detailRes.data[0],
             arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
@@ -221,12 +219,6 @@ export default {
         }
     },
     methods: {
-        formatDate(value){
-                if (value) {
-                    // return moment(String(value)).format('MM/DD/YYYY');
-                return (moment(String(value)).format('MM/DD/YYYY'));
-                }
-        },
         saveJob() {
             this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuc.id}).then((response)=>{
                 if(response.status == 200) {

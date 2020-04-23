@@ -9,7 +9,7 @@
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
                 <h2 class="NB_title text-black el-3">{{ title }}</h2>
             </a>
-            <p style="height: 100px;" class="el-3" v-if="type == 1">{{ short_content }}</p>
+            <p style="height: 100px;" class="el-3" v-if="type == 1 || type == 2">{{ short_content }}</p>
             <div class="position-absolute" style="bottom: 0px">
                 <i class="fad fa-calendar-star"></i><span class="ml-1">{{ created_at | formatDate }}</span>
             </div>
