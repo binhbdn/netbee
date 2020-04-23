@@ -270,114 +270,103 @@ class UserController extends Controller
 
     public function logingg(Request $request)
     {
-        $id_provider = $request->id;
-        $email = $request->email;
-        $name = $request->name;
-        $avt = $request->avatar;
-        $checkProvider = DB::table('social_accounts')->where('provider_user_id', $id_provider)->orderby('created_at', 'desc')->first();
+        $token = $request->token;
+        //check account fb
+        $headers = array('Content-type: application/json');
+        $url = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=".$token;
+        $http = curl_init($url);
+        curl_setopt($http, CURLOPT_HEADER, false);
+        curl_setopt($http, CURLOPT_CUSTOMREQUEST, "GET");
+        curl_setopt($http, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt($http, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($http, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($http, CURLOPT_VERBOSE, 0);
+        curl_setopt($http, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($http, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($http, CURLOPT_HTTPHEADER, $headers);
+        $result = curl_exec($http);
+        curl_close($http);
+        $inforesult = json_decode($result);
+        $checkProvider = DB::table('social_accounts')->where('provider_user_id', $inforesult->id)->orderby('created_at', 'desc')->first();
         if($checkProvider) {
-            $info = Admin::where('id', $checkProvider->user_id)->first();
+            $info = User::where('id', $checkProvider->user_id)->where('block', 0)->first();
             if($jwt_token = JWTAuth::fromUser($info)) {
                 if($info){
                     $data = array(
                         'status'  => 200,
                         'message' => 'Đăng nhập thành công',
-                        'user' => $info,
-                        'token' => $jwt_token
+                        'data' => ['user' => Auth::user(), 'token' => $jwt_token],
                     );
                 }
                 else{
                     $data = array(
-                        'status'  =>  400,
-                        'message' => 'Tài khoản của bạn đã bị khóa'
+                        'status'  => 400,
+                        'message' => 'Tài khoản của bạn đã bị khóa',
+                        'data' => null,
                     );
                 }
             }
             else
             {
                 $data = array(
-                    'status'  =>  400,
-                    'message' => 'Sai tên đăng nhập hoặc mật khẩu.'
+                    'status'  => 400,
+                    'message' => 'Lỗi',
+                    'data' => null,
                 );
             }
         } else {
             //check unique email,phone
-            $checkemail = DB::table('admins')->where('email',$email)->count();
+            $checkemail = DB::table('users')->where('email',$inforesult->email)->count();
             $jwt_token = null;
             if($checkemail != 0)
             {
-                $info = Admin::where('email', $email)->first();
+                $info = User::where('email', $inforesult->email)->first();
                 if ($jwt_token = JWTAuth::fromUser($info)) {
-                    if($info->avatar != null){
-                        $info->avatar = $info->avatar;
-                    }
-                    try {
-                        $input = [
-                            'firebase_token' => $request->firebase_token,
-                            'time_login' => Carbon::now()
-                        ];
-                        DB::table('admins')->where('email', $inforesult->email)->update($input);
-                        $info->firebase_token = $request->firebase_token;
-                    } catch (\Throwable $th) {
-                    }
                     $data = array(
                         'status'  => 200,
                         'message' => 'Đăng nhập thành công',
-                        'user' => $info,
-                        'token' => $jwt_token
+                        'data' => ['user' => Auth::user(), 'token' => $jwt_token],
                     );
                 }
             }
             else
             {
                 $creatuser = array(
-                        'email' => $email,
-                        'password' => bcrypt($email),
-                        'fullname' => $name,
-                        'username' => $name,
-                        'phone' => '',
-                        'avatar' => $avt,
-                        'authen' => '2',
-                        'status' => '0',
-                        'country' => '2',
-                        'level' => '3',
-                        'victory_email' => 1,
-                        'token_email' => md5('devwork'),
-                        'created_at' => date('Y-m-d'),
-                );
+                    'email' => $inforesult->email,
+                    'password' => bcrypt('123456'),
+                    'name' => $inforesult->name,
+                    'avatar' => $inforesult->picture,
+                    'phone' => 0,
+                    'status' => '0',
+                    'role' => 1
+                    );
 
-                $users = DB::table('admins')->insertGetId($creatuser);
-                $info = Admin::where('id', $users)->first();
+                $users = DB::table('users')->insertGetId($creatuser);
+                $info = User::where('id', $users)->first();
                 if($users)
                 {
                     DB::table('social_accounts')->insertGetId([
                         'user_id' => $users,
-                        'provider_user_id' => $id_provider,
-                        'provider' => 'facebook',
-                        'created_at' => date('Y-m-d'),
-                        'updated_at' => date('Y-m-d')
+                        'provider_user_id' => $inforesult->id,
+                        'provider' => 'google',
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
                     ]);
                     if ($jwt_token = JWTAuth::fromUser($info)) {
-                        try {
-                            $input = [
-                                'firebase_token' => $request->firebase_token,
-                                'time_login' => Carbon::now()
-                            ];
-                            DB::table('admins')->where('email', $email)->update($input);
-                            $info->firebase_token = $request->firebase_token;
-                        } catch (\Throwable $th) {
-                        }
                         $data = array(
                             'status'  => 200,
-                            'message' => 'Đăng kí thành công',
-                            'user' => $info,
-                            'token' => $jwt_token
+                            'message' => 'Đăng nhập thành công',
+                            'data' => ['user' => Auth::user(), 'token' => $jwt_token],
                         );
                     }
                 }
                 else
                 {
-                    $data = ['status'=> 400, 'message' => 'Đăng ký thất bại'];
+                    $data = array(
+                        'status'  => 400,
+                        'message' => 'Lỗi',
+                        'data' => null,
+                    );
                 }
             }
         }
