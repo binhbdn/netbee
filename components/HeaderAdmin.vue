@@ -89,7 +89,7 @@
                       <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                               <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{ $auth.user.name }}</span><span class="user-status">
                                 {{ $auth.user.role == 4 ? 'Admin' : $auth.user.role == 1 ? 'Ứng viên' : $auth.user.role == 2 ? 'Nhà tuyển dụng' : 'Chuyên viên tuyển sinh'}}
-                                </span></div><span><img class="round" v-lazy="`/uploads/users/avatar/${$auth.user.avatar}`" alt="avatar" height="40" width="40"></span>
+                                </span></div><span><img class="round" v-lazy="`/uploads/users/avatars/${$auth.user.avatar}`" alt="avatar" height="40" width="40" style="object-fit: cover;"></span>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="/admin/thong-tin-tai-khoan"><i class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a><a class="dropdown-item" href="app-todo.html"><i class="feather icon-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="feather icon-message-square"></i> Chats</a>
                               <div class="dropdown-divider"></div><a class="dropdown-item" @click="logout()"><i class="feather icon-power"></i> Logout</a>
