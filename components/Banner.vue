@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-wrap js-fullheight m-b-15" style="position: relative; height: 100%;background-image: url('/assets/img/banner.png')">
+  <div class="hero-wrap js-fullheight m-b-15" :style="{'background-image':'url('+backgroundUrl+');position: relative; height: 100%;'}" >
     <div class="section-intro">
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">

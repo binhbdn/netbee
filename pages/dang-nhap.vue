@@ -1,5 +1,5 @@
 <template>
-    <div class="main" style="background-image: url('https://www.netbee.vn/site/assets/images/body-bg.jpg')" >
+    <div class="main" :style="{'background-image':'url('+backgroundUrl+');'}" >
         <div class="container">
             <div class="row">
                 <div class="col-md-7 hident-mobile">
@@ -174,7 +174,8 @@ export default {
                 email: '',
                 password: ''
             },
-            show: true
+            show: true,
+            backgroundUrl: require('~/static/assets/img/body-bg.jpg')
         }
     },
     methods: {
