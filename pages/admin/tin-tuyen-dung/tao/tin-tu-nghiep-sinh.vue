@@ -2,7 +2,7 @@
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-header row">
-                <div class="content-header-left col-md-9 col-12 mb-2">
+                <div class="content-header-left col-md-12 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
                             <h2 class="content-header-title float-left mb-0">Danh sách tin tuyển dụng</h2>
@@ -12,7 +12,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="/">Tin tuyển dụng</a>
                                     </li>
-                                    <li class="breadcrumb-item active"> Tạo tin tuyển dụng tu nhgieepj sinh
+                                    <li class="breadcrumb-item active"> Tạo tin tuyển dụng tu nghiệp sinh
                                     </li>
                                 </ol>
                             </div>
@@ -29,7 +29,7 @@
                                     
                                 </div>
                                 <div class="card-body">
-                                    <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete">
+                                    <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
                                         <tab-content :before-change="checkValidateStep1" title="Tổng quan">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
@@ -56,12 +56,12 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-12">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider rules="checkSelect" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Quốc gia
                                                                 </label>
-                                                                <multiselect :options="options" v-model="data.nation" :custom-label="nameWithLang" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
+                                                                <multiselect :options="options" v-model="data.nation" :allow-empty="false" :custom-label="nameWithLang" :searchable="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -205,23 +205,23 @@
                                                         </ValidationProvider>
                                                     </div>
                                                      <div class="col-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider rules="checkSelect" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Ngành nghề xin visa
                                                                 </label>
-                                                                <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa"></multiselect>
+                                                                <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
                                                      <div class="col-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider rules="checkSelect" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Hình thức làm việc
                                                                 </label>
-                                                                <multiselect :options="optionsFormWork" v-model="data.form_work" :custom-label="nameWithLang" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Chọn hình thức làm việc"></multiselect>
+                                                                <multiselect :options="optionsFormWork" v-model="data.form_work" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn hình thức làm việc"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -232,7 +232,7 @@
                                                                 <label for="firstName3">
                                                                     Loại tiền
                                                                 </label>
-                                                                <multiselect :options="money" v-model="data.currency" :searchable="false" :close-on-select="false" 
+                                                                <multiselect :options="money" v-model="data.currency" :searchable="false" :allow-empty="false"
                                                                         :show-labels="false" placeholder="Chọn loại tiền"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -291,12 +291,12 @@
                                                         </fieldset>
                                                     </div>  
                                                     <div class="col-4" v-if="checked">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
+                                                        <ValidationProvider rules="checkSelect" v-slot="{ errors }" >
                                                                 <div class="form-group">
                                                                     <label for="firstName3">
                                                                         Thời gina bảo hành
                                                                     </label>
-                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :close-on-select="false" 
+                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" 
                                                                         :show-labels="false" placeholder="Chọn thời gian bảo hành" :disabled="!checked"></multiselect>
                                                                     <span style="color: red">{{ errors[0] }}</span>
                                                                 </div>
@@ -364,13 +364,17 @@
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2">
-                                        <div class="avatar bg-rgba-info p-50 m-0 mb-1">
-                                            <div class="avatar-content">
-                                                <i class="feather icon-heart text-info font-medium-5"></i>
-                                            </div>
+                                        <div class="text-center">
+                                            <img src="../../../../static/assets/img/logo.png" width="70px">
+                                            <p class="__title">Quy trình tuyển dụng tại Netbee</p>
                                         </div>
-                                        <h2 class="text-bold-700">Cập nhật thông tin</h2>
-                                        <p class="mb-0 line-ellipsis">Cập nhật các thông tin, kỹ năng, học vấn, kinh nghiệm... mà bạn yêu cầu</p>
+                                        <div>
+                                            <p>1. Tạo tin tuyển dụng</p>
+                                            <p>2. Chờ admin xét duyệt tin(Thông báo qua email)</p>
+                                            <p>3. Nhận hồ sơ giới thiệu từ chuyên viên tuyển sinh(Thông báo khi có lượt ứng tuyển)</p>
+                                            <p>4. Xét duyệt hồ sơ và book lịch phỏng vấn(Lượt ứng tuyển chỉ trong trạng thái chờ tối đa 3 ngày)</p>
+                                            <p>5. Xác nhận thanh toán phần bonus giới thiệu cho Chuyên viên tuyển sinh</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -411,18 +415,17 @@ extend("ssdate", {
     }
 })
 
-// extend('checkage', {
-//     message: field => errorMessage,
-//     validate: value => {
-//         if(value < '18') {
-//             errorMessage = "Tuổi không được nhỏ hơn 18"
-//             return false
-//         } else if(value > '60') {
-//             errorMessage = "Tuổi không được lớn hơn 60"
-//             return false
-//         }else return true
-//     }
-// })
+var errorMessage
+extend('checkSelect', {
+    message: field => errorMessage,
+    validate: value => {
+        console.log(value)
+        if(value.id == null || value.id == 0) {
+            errorMessage = "Dữ liệu không được bỏ trống"
+            return false
+        } else return true
+    }
+})
 
 export default {
     name: 'CreateIndexJob',
@@ -459,7 +462,7 @@ export default {
                 date_test: '',
                 expected_date: '',
                 time_bonus: {id: 0, name: ''},
-                bonus: 0,
+                bonus: null,
                 highlight_job: 1,
                 visa: {id: null, profession: ''},
                 form_work: {id: null, name: ''}
@@ -563,8 +566,13 @@ export default {
                 form.append('date_start' , this.data.date_start)
                 form.append('date_test' , this.data.date_test)
                 form.append('expected_date' , this.data.expected_date)
-                form.append('time_bonus' , this.data.time_bonus.id)
-                form.append('bonus' , this.data.bonus)
+                if(this.checked){
+                    form.append('time_bonus' , this.data.time_bonus.id)
+                    form.append('bonus' , this.data.bonus)
+                }else{
+                    form.append('time_bonus' , 0)
+                    form.append('bonus' , 0)
+                }
                 form.append('highlight_job' , this.data.highlight_job)
                 form.append('visa' , this.data.visa.id)
                 form.append('form_work' , this.data.form_work.id)
@@ -602,13 +610,13 @@ export default {
 <style>
 .vue-form-wizard.md .wizard-navigation .wizard-progress-with-circle {
     position: relative;
-    top: 25px;
+    top: 25px !important;
     height: 3px;
 }
 
 .vue-form-wizard.md .wizard-icon-circle {
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
     font-size: 24px;
 } 
 
@@ -657,4 +665,25 @@ export default {
 .normal {
     background-color: #ffc10842;
 }
+
+.custom-control-label::after {
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 2px;
+}
+
+.vue-form-wizard .wizard-nav-pills>li.active>a .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:focus .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:hover .wizard-icon{
+    color: #000000ab;
+}
+
+.wizard-btn{
+    color: #000 !important;
+}
+
+.multiselect__option--highlight {
+    background: #ffb701;
+    color: #000;
+}
+
+
 </style>

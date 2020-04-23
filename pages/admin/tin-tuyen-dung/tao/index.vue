@@ -70,7 +70,7 @@
                                                     <h2 class="text-white">Tin Du Học</h2>
                                                     <p class="card-text">Đăng tuyển miễn phí</p>
                                                     <p class="card-text">Nhận ứng viên miễn phí</p>
-                                                    <a href="/admin/tin-tuyen-dung/tao/tin-du-hoc" class="btn btn-danger waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
+                                                    <a href="/admin/tin-tuyen-dung/tao/tin-du-hoc" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                                     <h2 class="text-white">Tin Xuất Khẩu</h2>
                                                     <p class="card-text">Đăng tuyển miễn phí</p>
                                                     <p class="card-text">Nhận ứng viên miễn phí</p>
-                                                    <a href="/admin/tin-tuyen-dung/tao/tin-xkld" class="btn btn-danger waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
+                                                    <a href="/admin/tin-tuyen-dung/tao/tin-xkld" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -94,7 +94,7 @@
                                                     <h2 class="text-white">Tin Tu Nghiệp Sinh</h2>
                                                     <p class="card-text">Đăng tuyển miễn phí</p>
                                                     <p class="card-text">Nhận ứng viên miễn phí</p>
-                                                    <a href="/admin/tin-tuyen-dung/tao/tin-tu-nghiep-sinh" class="btn btn-danger waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
+                                                    <a href="/admin/tin-tuyen-dung/tao/tin-tu-nghiep-sinh" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -137,4 +137,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+.bg-gradient-success{
+    background: #ec36d6;
+    background-image: -webkit-linear-gradient(60deg, #28C76F, rgba(40, 199, 111, 0.5));
+}
 </style>
