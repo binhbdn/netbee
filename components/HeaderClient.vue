@@ -80,8 +80,9 @@
           </li>
           <li class="nav-item cta dropdown">
             <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img style="margin-left: 19px;margin-bottom: -2px;" src="https://netbee.vn/site/assets/images/iconfinder_Vietnam_flat_92420.png" width="25px"/>
+              <img style="margin-left: 19px;margin-bottom: -2px;" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="25px"/>
               <br />Ngôn ngữ
+              <i class="fas fa-caret-down" style="padding-left:2px"></i>
             </a>
             <div
               class="dropdown-menu sticky text-center"
@@ -91,19 +92,19 @@
               <div id="login-up"></div>
               <a class="dropdown-item">
                 <img
-                  src="https://netbee.vn/site/assets/images/iconfinder_United-Kingdom.png"
+                  src="assets/img/iconfinder_United-Kingdom.png"
                   width="25px"
                 />
               </a>
               <a class="dropdown-item">
                 <img
-                  src="https://netbee.vn/site/assets/images/iconfinder_Japan_92149.png"
+                  src="assets/img/iconfinder_Japan_92149.png"
                   width="25px"
                 />
               </a>
               <a class="dropdown-item">
                 <img
-                  src="https://netbee.vn/site/assets/images/iconfinder_South-Korea_92351.png"
+                  src="assets/img/iconfinder_South-Korea_92351.png"
                   width="25px"
                 />
               </a>
