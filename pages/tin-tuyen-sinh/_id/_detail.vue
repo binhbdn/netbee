@@ -198,7 +198,6 @@ export default {
         let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=5&type=1`)
         let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=2`)
         let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
-        console.log(detailRes.data[0])
         return {
             tintuc: detailRes.data[0],
             arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
