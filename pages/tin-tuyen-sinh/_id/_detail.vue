@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" id="fb-root">
       <section>
         <div class="row">
           <div class="col-lg-12 col-12">
@@ -31,7 +31,7 @@
                                     <a class="btn btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
                                 <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
-                                    <a class="btn btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
+                                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/tin-tuyen-sinh/99/xuat-khau-lao-dong&amp;src=sdkpreparse" class="btn btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
                                 </div>
                                 <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
                                     <a class="btn btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
@@ -138,6 +138,7 @@
         </div>
     </div>
 </template>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=1459241224260897&autoLogAppEvents=1"></script>
 <script>
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate'
 import JobsList1Col from '~/components/Jobs/JobsList1Col'
