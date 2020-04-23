@@ -36,6 +36,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::prefix('tintuc')->group(function () {
         Route::get('getTinTuc', 'Admin\TinTucController@getTinTuc');
         Route::post('changeStatusTinTuc', 'Admin\TinTucController@changeStatusTinTuc');
+        Route::post('changeAllStatusTinTuc', 'Admin\TinTucController@changeAllStatusTinTuc');
         Route::post('deleteTinTuc', 'Admin\TinTucController@deleteTinTuc');
         Route::post('createTinTuc', 'Admin\TinTucController@createTinTuc');
         Route::post('updateTinTuc', 'Admin\TinTucController@updateTinTuc');
