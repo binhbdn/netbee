@@ -71,10 +71,11 @@ module.exports = {
                 client_id: '1459241224260897',
                 userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email,birthday',
                 scope: ['public_profile', 'email', 'user_birthday'],
-                redirect_uri:'http://localhost:3000/callback'
+                redirect_uri:'http://en-el.devwork.vn/callback'
             },
             google: {
-                client_id: '867087688208-tevlsbe2csk6hhlb9sh77kom9mjq6brs.apps.googleusercontent.com'
+                client_id: '867087688208-tevlsbe2csk6hhlb9sh77kom9mjq6brs.apps.googleusercontent.com',
+                redirect_uri:'http://en-el.devwork.vn/callbackgg'
             },
         },
     },
