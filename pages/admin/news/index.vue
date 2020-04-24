@@ -90,9 +90,9 @@
                                                     Hành động
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
-                                                    <a class="dropdown-item"><i class="feather icon-trash-2 warning"></i>Xóa</a>
-                                                    <a class="dropdown-item" @click="changeAllStatusTinTuc(1)"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
-                                                    <a class="dropdown-item" @click="changeAllStatusTinTuc(0)"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
+                                                    <a class="dropdown-item" @click="deleteMultipleTinTuc()"><i class="feather icon-trash-2 warning"></i>Xóa</a>
+                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuc(1)"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
+                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuc(0)"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,13 +118,14 @@
                                                         </li>
                                                         ID</th>
                                                     <th>Tiêu đề</th>
+                                                    <th>Thống kê</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
                                                     <th>Thao tác</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody v-if="tinTuc.length > 0">
                                                 <tr v-for="(item, index) in tinTuc" :key="index">
                                                     <td>
                                                         <li class="d-inline-block mr-1">
@@ -141,6 +142,7 @@
                                                         </li>
                                                         {{item.id}}</td>
                                                     <td>{{item.title}}</td>
+                                                    <td>{{item.title}}</td>
                                                     <td>{{formatDate(item.created_at)}}</td>
                                                     <td style="white-space: nowrap;">
                                                         <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
@@ -152,13 +154,14 @@
                                                         <span v-if="item.id_category == 3">Tu nghiệp sinh</span>
                                                     </td>
                                                     <td style="width: 27%;">
-                                                        <button  @click="changeStatus(item.id)" class="btn-action btn px-1" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
-                                                        <a :href="`/admin/news/edit/${item.id}`" class="btn-action btn btn-outline-warning"><i class="far fa-edit"></i> Sửa</a>
-                                                        <button v-on:click="deleteNews(item.id)" class="btn-action btn btn-outline-danger"><i class="far fa-trash-alt"></i> Xóa</button>
+                                                        <button v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="btn-action btn" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</button>
+                                                        <a :href="`/admin/news/edit/${item.id}`" class="btn-action btn btn-outline-warning" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
+                                                        <button v-on:click="deleteNews(item.id)" class="btn-action btn btn-outline-danger" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</button>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <p class="mb-0 text-center p-1 font-italic" v-if="tinTuc.length == 0">Không có dữ liệu nào.</p>
                                     </div>
                                 </div>
                             </div>
@@ -212,8 +215,7 @@ export default {
                 {id: 0, name: 'Chưa kích hoạt'},
             ],
             id: null,
-            selected: []
-
+            selected: [],
         }
     },
     created() {
@@ -318,15 +320,12 @@ export default {
 	             this.tinTuc=response.data;
 	        });
         },
-        async changeAllStatusTinTuc(statusTinTuc){
+        async changeMultipleStatusTinTuc(statusTinTuc){
             try {
-                this.$axios.$post('http://127.0.0.1:8000/api/tintuc/changeAllStatusTinTuc',{id:JSON.stringify(this.selected), status: statusTinTuc}).then((res) => {
-                console.log(res);
-                console.log(JSON.stringify(this.selected));
-                if(res.status == 400){
+                this.$axios.$post('tintuc/changeMultipleStatusTinTuc',{id:JSON.stringify(this.selected), status: statusTinTuc}).then((res) => {
+                if(JSON.stringify(this.selected).length == 2){
                     this.$swal({
-                        title: 'Lỗi',
-                        text: res.message,
+                        title: 'Bạn chưa chọn tin!',
                         icon: 'warning',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
@@ -334,7 +333,7 @@ export default {
                         this.fetch(),
                     )
                 }
-                if(res.status == 200){
+                else if(res.status == 200){
                     this.$swal({
                         title: 'Thành công',
                         text: res.message,
@@ -362,11 +361,88 @@ export default {
                 )
             }
         },
+        async deleteMultipleTinTuc(){
+            if(JSON.stringify(this.selected).length == 2){
+                this.$swal({
+                    title: 'Lỗi',
+                    icon: 'warning',
+                    title: 'Bạn chưa chọn tin!'
+                })
+            }
+            else{
+                try {
+                    this.$swal({
+                        title: 'Bạn có chắc chắn?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Xóa!',
+                        cancelButtonText: 'Hủy!',
+                        showCloseButton: true,
+                        showLoaderOnConfirm: true
+                        }).then(async (result) => {
+                        if(result.value) {
+                            let response = await this.$axios.post('tintuc/deleteMultipleTinTuc',{id: JSON.stringify(this.selected)});
+                            if(response.data.status == 200) {
+                                this.fetch();
+                                this.$swal('Thành công', response.data.message, 'success');
+                            }
+                            else {
+                                this.$swal(
+                                    'Lỗi!',
+                                    response.data.message,
+                                    'error'
+                                    )
+                                }
+                        } else {
+                            this.$swal('Hủy', 'Tin được giữ lại', 'info')
+                        }
+                        })
+                } catch (error) {
+                    this.$swal(
+                        'Lỗi!',
+                        'Lỗi bỏ kích hoạt!',
+                        'error'
+                    )
+                }
+                }
+            
+        },
+        async changePublic(index){
+            try {
+                    let response = await this.$axios.post('tintuyendung/changePublic',{
+                    id: index
+                });
+                if(response.data.status == 200) {
+                    this.$swal({
+                        title: 'Thành công',
+                        text: response.data.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then( 
+                        this.fetch(),
+                    )
+                }
+                else {
+                this.$swal(
+                    'Lỗi!',
+                    response.data.message,
+                    'error'
+                    )
+                }
+            } catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi bỏ kích hoạt!',
+                    'error')
+            }
+        }
+
     },
     computed: {
     selectAll: {
       get() {
-        if (this.tinTuc && this.tinTuc.length > 0) { // A users array exists with at least one item
+        if (this.tinTuc && this.tinTuc.length > 0) { // A news array exists with at least one item
           let allChecked = true;
 
           this.tinTuc.forEach((item) => {
