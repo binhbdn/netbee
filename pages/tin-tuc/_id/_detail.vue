@@ -105,6 +105,11 @@ export default {
         NewItempage2, 
         NewsList
     },
+    data () {
+        return {
+            tintuc: {}
+        }
+    },
     async asyncData({$axios, route}) {
         let detailRes = await $axios.$get(`getDetailTinTuc/${route.params.id}`)
         let tinRes = await $axios.$get('getTinTucNew?limit=5')

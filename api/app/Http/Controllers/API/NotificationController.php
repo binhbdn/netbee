@@ -19,7 +19,7 @@ class NotificationController extends Controller
 
     public function getNotification(Request $request)
     {
-        $noti['notifications'] = DB::table('nb_notifications')->where('id_recever', Auth::user()->id)->orderBy('status_notification', 'ASC')->orderBy('created_at', 'DESC')->paginate(20);
+        $noti['notifications'] = DB::table('nb_notifications')->where('id_recever', Auth::user()->id)->orderBy('status_notification', 'ASC')->orderBy('created_at', 'DESC')->paginate(5);
         $noti['countNotRead'] = DB::table('nb_notifications')->where('status_notification', 0)->count();
         if($noti)
             $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $noti];
@@ -58,6 +58,24 @@ class NotificationController extends Controller
                 'updated_at' => Carbon::now()
             ];
             DB::table('nb_notifications')->where('id_notification', $request->id_notification)->update($update);
+            $data = ['status' => 200,'message' => 'View thành công', 'data' => null];
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
+
+    public function readNotificationAll(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $update = [
+                'status_notification' => 1,
+                'updated_at' => Carbon::now()
+            ];
+            DB::table('nb_notifications')->where('id_recever', Auth::user()->id)->update($update);
             $data = ['status' => 200,'message' => 'View thành công', 'data' => null];
             DB::commit();
         } catch (\Exception $e) {

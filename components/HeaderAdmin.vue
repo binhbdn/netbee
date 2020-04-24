@@ -42,7 +42,7 @@
                                         <h3 class="white">{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
                                     </div>
                                 </li>
-                                <li class="scrollable-container media-list">
+                                <li class="scrollable-container media-list scrollbar">
                                     <a :style="notification.status_notification ? '' : 'background: #e0e0e0'" class="d-flex justify-content-between" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
                                       <div class="media d-flex align-items-start">
                                           <div class="media-left">
@@ -55,7 +55,7 @@
                                       </div>
                                     </a>
                                 </li>
-                                <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center">View all notifications</a></li>
+                                <li class="dropdown-menu-footer" @click="updateStatusAll()"><a class="dropdown-item p-1 text-center">Xem tất cả</a></li>
                           </ul>
                       </li>
                       <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
@@ -84,23 +84,28 @@ export default {
     }
   },
   methods:  {
-    async logout() {
-        this.$auth.logout();
-        window.location.href = '/';
+        async logout() {
+            this.$auth.logout();
+            window.location.href = '/';
+        },
+        revertTime(time) {
+            return moment(time).fromNow(true);
+        },
+        updateStatus(id) {
+            this.$axios.$post('readNotification',{id_notification: id}).then((response) => {
+            })
+        },
+        updateStatusAll() {
+            this.$axios.$post('readNotificationAll').then((response) => {
+                this.countNoti = 0;
+            })
+        },
     },
-    revertTime(time) {
-        return moment(time).fromNow(true);
-    },
-    updateStatus(id) {
-        this.$axios.$post('readNotification',{id_notification: id}).then((response) => {
+    mounted() {
+        this.$axios.$get('getNotification').then((response) => {
+            this.notifications = response.data.notifications.data,
+            this.countNoti = response.data.countNotRead
         })
-    }
-  },
-  mounted() {
-    this.$axios.$get('getNotification').then((response) => {
-        this.notifications = response.data.notifications.data,
-        this.countNoti = response.data.countNotRead
-    })
-  }
+    },
 }
 </script>
