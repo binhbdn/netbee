@@ -35,55 +35,27 @@
                       <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
                           <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item" href="#" data-language="fr"><i class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="#" data-language="de"><i class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="#" data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
                       </li>
-                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span class="badge badge-pill badge-primary badge-up">{{ countNoti }}</span></a>
+                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
-                              <li class="dropdown-menu-header">
-                                  <div class="dropdown-header m-0 p-2">
-                                      <h3 class="white">5 New</h3><span class="notification-title">App Notifications</span>
-                                  </div>
-                              </li>
-                              <li class="scrollable-container media-list"><a class="d-flex justify-content-between" href="javascript:void(0)">
+                                <li class="dropdown-menu-header">
+                                    <div class="dropdown-header m-0 p-2">
+                                        <h3 class="white">{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
+                                    </div>
+                                </li>
+                                <li class="scrollable-container media-list">
+                                    <a :style="notification.status_notification ? '' : 'background: #e0e0e0'" class="d-flex justify-content-between" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
                                       <div class="media d-flex align-items-start">
-                                          <div class="media-left"><i class="feather icon-plus-square font-medium-5 primary"></i></div>
+                                          <div class="media-left">
+                                              <img src="/assets/img/logo.png" width="30">
+                                          </div>
                                           <div class="media-body">
-                                              <h6 class="primary media-heading">You have new order!</h6><small class="notification-text"> Are your going to meet me tonight?</small>
+                                            <small class="notification-text">{{ notification.content }}</small>
                                           </div><small>
-                                              <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">9 hours ago</time></small>
+                                              <time class="media-meta">{{ revertTime(notification.created_at) }}</time></small>
                                       </div>
-                                  </a><a class="d-flex justify-content-between" href="javascript:void(0)">
-                                      <div class="media d-flex align-items-start">
-                                          <div class="media-left"><i class="feather icon-download-cloud font-medium-5 success"></i></div>
-                                          <div class="media-body">
-                                              <h6 class="success media-heading red darken-1">99% Server load</h6><small class="notification-text">You got new order of goods.</small>
-                                          </div><small>
-                                              <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">5 hour ago</time></small>
-                                      </div>
-                                  </a><a class="d-flex justify-content-between" href="javascript:void(0)">
-                                      <div class="media d-flex align-items-start">
-                                          <div class="media-left"><i class="feather icon-alert-triangle font-medium-5 danger"></i></div>
-                                          <div class="media-body">
-                                              <h6 class="danger media-heading yellow darken-3">Warning notifixation</h6><small class="notification-text">Server have 99% CPU usage.</small>
-                                          </div><small>
-                                              <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">Today</time></small>
-                                      </div>
-                                  </a><a class="d-flex justify-content-between" href="javascript:void(0)">
-                                      <div class="media d-flex align-items-start">
-                                          <div class="media-left"><i class="feather icon-check-circle font-medium-5 info"></i></div>
-                                          <div class="media-body">
-                                              <h6 class="info media-heading">Complete the task</h6><small class="notification-text">Cake sesame snaps cupcake</small>
-                                          </div><small>
-                                              <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">Last week</time></small>
-                                      </div>
-                                  </a><a class="d-flex justify-content-between" href="javascript:void(0)">
-                                      <div class="media d-flex align-items-start">
-                                          <div class="media-left"><i class="feather icon-file font-medium-5 warning"></i></div>
-                                          <div class="media-body">
-                                              <h6 class="warning media-heading">Generate monthly report</h6><small class="notification-text">Chocolate cake oat cake tiramisu marzipan</small>
-                                          </div><small>
-                                              <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">Last month</time></small>
-                                      </div>
-                                  </a></li>
-                              <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" href="javascript:void(0)">View all notifications</a></li>
+                                    </a>
+                                </li>
+                                <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center">View all notifications</a></li>
                           </ul>
                       </li>
                       <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
@@ -102,7 +74,7 @@
   </nav>
 </template>
 <script>
-
+import moment from 'moment'
 export default {
   name: 'Header',
   data () {
@@ -112,17 +84,23 @@ export default {
     }
   },
   methods:  {
-      async logout() {
+    async logout() {
         this.$auth.logout();
         window.location.href = '/';
-      }
+    },
+    revertTime(time) {
+        return moment(time).fromNow(true);
+    },
+    updateStatus(id) {
+        this.$axios.$post('readNotification',{id_notification: id}).then((response) => {
+        })
+    }
   },
   mounted() {
-      this.$axios.$get('getNotification').then((response) => {
-          console.log(response)
-          this.notifications = response.data.data,
-          this.countNoti = response.data.total
-      })
+    this.$axios.$get('getNotification').then((response) => {
+        this.notifications = response.data.notifications.data,
+        this.countNoti = response.data.countNotRead
+    })
   }
 }
 </script>
