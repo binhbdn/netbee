@@ -107,18 +107,33 @@ export default {
     },
     data () {
         return {
-            tintuc: {}
+            tintuc: {},
+            tintucs: [],
+            arrayJobNew: []
         }
     },
-    async asyncData({$axios, route}) {
-        let detailRes = await $axios.$get(`getDetailTinTuc/${route.params.id}`)
-        let tinRes = await $axios.$get('getTinTucNew?limit=5')
-        let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=10&type=0`)
-        return {
-            tintuc: detailRes.data,
-            tintucs: tinRes.data.tintuc,
-            arrayJobNew: getTinTuyenDungNew.data.tintuyendung
-        }
+    asyncData({$axios, route}) {
+        return $axios
+        .$get(`getDetailTinTuc/${route.params.id}`)
+        .then((res) => {
+            return { tintuc: res.data }
+        })
+        // let detailRes = await $axios.$get(`getDetailTinTuc/${route.params.id}`)
+        // let tinRes = await $axios.$get('getTinTucNew?limit=5')
+        // let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=10&type=0`)
+        // return {
+        //     tintuc: detailRes.data,
+        //     tintucs: tinRes.data.tintuc,
+        //     arrayJobNew: getTinTuyenDungNew.data.tintuyendung
+        // }
+    },
+    mounted() {
+        this.$axios.$get(`getDetailTinTuc/${this.$route.params.id}`).then((res) => {
+            this.tintucs = res.data.tintuc
+        })
+        this.$axios.$get(`getTinTuyenDungNew?limit=10&type=0`).then((res) => {
+            this.arrayJobNew = res.data.tintuyendung
+        })
     },
     head() {
         return {
