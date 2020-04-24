@@ -38,7 +38,7 @@
                               <div class="form-group">
                                 <div class="form-field">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input type="text" class="form-control" placeholder="Từ khóa" name="keyword" value="">
+                                  <input type="text" class="form-control" placeholder="Từ khóa" name="keyword" value="" v-model="keysearch">
                                 </div>
                               </div>
                             </div>
@@ -59,11 +59,11 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
-                                  <input type="submit" value="Tìm ngay" class="form-control btn btn-primary">
+                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" @click="searchCompany">
                                 </div>
                               </div>
                             </div>
-
+        
                             <div class="col-md-12 d-none" id="detail_search" style="padding-left: 15px; padding-top: 10px;">
                               <div class="row">
                                 <div class="col-md-3">
@@ -176,7 +176,7 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
-                                  <input type="submit" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
+                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
                                 </div>
                               </div>
                             </div>
@@ -295,7 +295,7 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
-                                  <input type="submit" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
+                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
                                 </div>
                               </div>
                             </div>
@@ -381,6 +381,19 @@
   </div>
 </template>
 <script>
+export default {
+   name: 'Header',
+    data () {
+      return {
+        keysearch: ''
+      }
+    },
+    methods: {
+      searchCompany(e){
+        window.location.href = `/tim-cong-ty?keyword=${this.keysearch}`;
+      }
+    },
+}
 </script>
 <style scoped>
   .ftco-search .nav-pills .nav-link.active, .ftco-search .nav-pills .nav-link:hover {

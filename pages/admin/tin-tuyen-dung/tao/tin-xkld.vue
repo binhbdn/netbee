@@ -674,7 +674,8 @@ export default {
 .custom-control-label::after {
     width: 1.5rem;
     height: 1.5rem;
-    top: 2px;
+    top: -1px;
+    left: -24px;
 }
 
 .vue-form-wizard .wizard-nav-pills>li.active>a .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:focus .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:hover .wizard-icon{

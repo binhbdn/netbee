@@ -20,6 +20,8 @@ Route::namespace('API')->group(function () {
   Route::get('getTinTuyenDungHot', 'TinTuyenDungController@getTinTuyenDungHot');
   Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
   Route::get('getInfoCompanyById/{id}', 'Auth\UserController@getInfoCompanyById');
+  //tìm kiếm
+  Route::get('searchCompany', 'TimKiemController@searchCompany');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
