@@ -112,41 +112,29 @@ export default {
             arrayJobNew: []
         }
     },
-    asyncData({$axios, route}) {
-        return $axios
-        .$get(`getDetailTinTuc/${route.params.id}`)
-        .then((res) => {
-            return { tintuc: res.data }
-        })
-        // let detailRes = await $axios.$get(`getDetailTinTuc/${route.params.id}`)
-        // let tinRes = await $axios.$get('getTinTucNew?limit=5')
-        // let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=10&type=0`)
-        // return {
-        //     tintuc: detailRes.data,
-        //     tintucs: tinRes.data.tintuc,
-        //     arrayJobNew: getTinTuyenDungNew.data.tintuyendung
-        // }
+    async asyncData (context) {
+        let detailRes = await context.app.$axios.$get(`getDetailTinTuc/${context.app.router.currentRoute.params.id}`)
+        context.seo({
+                name: detailRes.data.title,
+                title: detailRes.data.title,
+                keywords: detailRes.data.title.replace(/ /g, ","),
+                description: detailRes.data.short_content,
+                openGraph: {
+                    title: detailRes.data.title,
+                    url: `https://netbee.vn${context.app.router.currentRoute.path}`,
+                    description: detailRes.data.short_content,
+                    image: `https://netbee.vn/uploads/news${detailRes.data.thuml}`
+				}
+            })
+        return { tintuc: detailRes.data }
     },
     mounted() {
-        this.$axios.$get(`getDetailTinTuc/${this.$route.params.id}`).then((res) => {
+        this.$axios.$get(`getTinTucNew?limit=5`).then((res) => {
             this.tintucs = res.data.tintuc
         })
         this.$axios.$get(`getTinTuyenDungNew?limit=10&type=0`).then((res) => {
             this.arrayJobNew = res.data.tintuyendung
         })
-    },
-    head() {
-        return {
-            title: this.tintuc.title,
-            meta: [
-                { hid: 'description', name: 'description', content: this.tintuc.short_content },
-                { hid: 'keywords', name: 'keywords', content: this.tintuc.title.replace(/ /g, ",")},
-                { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
-                { hid: 'og:title', name: 'og:title', content: this.tintuc.title},
-                { hid: 'og:description', name: 'og:description', content: this.tintuc.short_content},
-                { hid: 'og:image', name: 'og:image', content: this.tintuc.thuml},
-            ]
-        }
     },
     jsonld() {
         return {

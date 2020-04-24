@@ -11,7 +11,7 @@ module.exports = {
             { hid: 'og:locale', name: 'og:locale', content: 'vi'},
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: 'https://netbee.vn/site/assets/images/logo.png' },
+            { rel: 'icon', type: 'image/x-icon', href: '/assets/img/logo.png' },
             { rel: 'stylesheet', href: '/app-assets/vendors/css/vendors.min.css' },
             { rel: 'stylesheet', href: '/app-assets/vendors/css/charts/apexcharts.css' },
             { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether-theme-arrows.css' },
@@ -46,14 +46,12 @@ module.exports = {
 
         ]
     },
-    /*
-     ** Customize the progress bar color
-     */
     loading: { color: '#3B8070' },
     modules: [
         '@nuxtjs/axios',
         '@nuxtjs/auth',
-        'vue-sweetalert2/nuxt'
+        'vue-sweetalert2/nuxt',
+        'nuxt-seo'
     ],
     auth: {
         redirect: false,
@@ -71,11 +69,11 @@ module.exports = {
                 client_id: '1459241224260897',
                 userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email,birthday',
                 scope: ['public_profile', 'email', 'user_birthday'],
-                redirect_uri:'http://en-el.devwork.vn/callback'
+                redirect_uri:'https://netbee.vn/callback'
             },
             google: {
                 client_id: '867087688208-tevlsbe2csk6hhlb9sh77kom9mjq6brs.apps.googleusercontent.com',
-                redirect_uri:'http://en-el.devwork.vn/callbackgg'
+                redirect_uri:'https://netbee.vn/callbackgg'
             },
         },
     },
