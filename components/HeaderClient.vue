@@ -92,19 +92,19 @@
               <div id="login-up"></div>
               <a class="dropdown-item">
                 <img
-                  src="assets/img/iconfinder_United-Kingdom.png"
+                  src="/assets/img/iconfinder_United-Kingdom.png"
                   width="25px"
                 />
               </a>
               <a class="dropdown-item">
                 <img
-                  src="assets/img/iconfinder_Japan_92149.png"
+                  src="/assets/img/iconfinder_Japan_92149.png"
                   width="25px"
                 />
               </a>
               <a class="dropdown-item">
                 <img
-                  src="assets/img/iconfinder_South-Korea_92351.png"
+                  src="/assets/img/iconfinder_South-Korea_92351.png"
                   width="25px"
                 />
               </a>
