@@ -16,31 +16,31 @@
       </a>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active" style="padding-top:3px">
+          <li class="nav-item " style="padding-top:3px" :class="{active : this.$route.path == '/'}">
             <a href="/" class="nav-link header-nav-link">
               <i class="fa fa-home"></i>
               <br />Trang chủ
             </a>
           </li>
-          <li class="nav-item" style="padding-top:3px">
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuyen-sinh'}">
             <a href="/tin-tuyen-sinh" class="nav-link header-nav-link">
               <i class="fa fa-server"></i>
               <br />Tin tuyển sinh
             </a>
           </li>
-          <li class="nav-item" style="padding-top:3px">
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
             <a href="/tin-tuc" class="nav-link header-nav-link">
               <i class="fa fa-table"></i>
               <br />Tin tức
             </a>
           </li>
-          <li class="nav-item" style="padding-top:3px">
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ve-netbee'} " >
             <a href="/ve-netbee" class="nav-link header-nav-link">
               <i class="fa fa-id-card"></i>
               <br />Về NetBee
             </a>
           </li>
-          <li class="nav-item" style="padding-top:3px">
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/lien-he'} " >
             <a href="/lien-he" class="nav-link header-nav-link">
               <i class="fa fa-window-restore"></i>
               <br />Liên hệ
@@ -116,7 +116,7 @@
 </template>
 <script>
 export default {
-    methods: {
+      methods: {
       async logout() {
         this.$auth.logout()
       }
