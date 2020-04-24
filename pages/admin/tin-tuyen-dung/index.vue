@@ -92,9 +92,9 @@
                                                     Hành động
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
-                                                    <a class="dropdown-item"><i class="feather icon-trash-2 warning"></i>Xóa</a>
-                                                    <a class="dropdown-item"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
-                                                    <a class="dropdown-item"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
+                                                    <a class="dropdown-item" @click="deleteMultipleTinTuyenDung()"><i class="feather icon-trash-2 warning"></i>Xóa</a>
+                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(1)"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
+                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(0)"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +109,7 @@
                                                         <li class="d-inline-block mr-1">
                                                             <fieldset>
                                                                 <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                    <input type="checkbox" value="false">
+                                                                    <input type="checkbox" v-model="selectAll">
                                                                     <span class="vs-checkbox vs-checkbox-sm">
                                                                         <span class="vs-checkbox--check">
                                                                             <i class="vs-icon feather icon-check"></i>
@@ -120,19 +120,20 @@
                                                         </li>
                                                         ID</th>
                                                     <th>Tiêu đề</th>
+                                                    <th>Thống kê</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
                                                     <th>Thao tác</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody v-if="tinTuyenDung.length > 0">
                                                 <tr v-for="(item, index) in tinTuyenDung" :key="index">
-                                                    <td>
+                                                    <td style="display: flex;padding-top: 35px;">
                                                         <li class="d-inline-block mr-1">
                                                             <fieldset>
                                                                 <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                    <input type="checkbox" value="false">
+                                                                    <input type="checkbox" v-model="selected" :value="item.id">
                                                                     <span class="vs-checkbox vs-checkbox-sm">
                                                                         <span class="vs-checkbox--check">
                                                                             <i class="vs-icon feather icon-check"></i>
@@ -142,6 +143,7 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
+                                                    <td>{{item.title}}</td>
                                                     <td>{{item.title}}</td>
                                                     <td>{{formatDate(item.created_at)}}</td>
                                                     <td style="white-space: nowrap;">
@@ -153,14 +155,17 @@
                                                         <span v-if="item.type == 2">Du học sinh</span>
                                                         <span v-if="item.type == 3">Tu nghiệp sinh</span>
                                                     </td>
-                                                    <td style="width: 27%;">
-                                                        <button  @click="changeStatus(item.id)" class="btn-action btn px-1" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
-                                                        <a :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="btn-action btn btn-outline-warning"><i class="far fa-edit"></i> Sửa</a>
-                                                        <button v-on:click="deleteNews(item.id)" class="btn-action btn btn-outline-danger"><i class="far fa-trash-alt"></i> Xóa</button>
+                                                    <td style="width: 25%;" >
+                                                        <button v-if="$auth.user.role == 4" @click="changeStatus(item.id)" class="btn-action btn" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
+                                                        <button  @click="changePublic(item.id)" class="btn-action btn" :class="item.isPublic == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.isPublic == 1 ? 'Hiện tin' : 'Ẩn tin' }}</button>
+                                                        <a :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="btn-action btn btn-outline-warning" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
+                                                        <button v-on:click="deleteNews(item.id)" class="btn-action btn btn-outline-danger" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</button>
                                                     </td>
                                                 </tr>
                                             </tbody>
+                                            
                                         </table>
+                                        <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
                                     </div>
                                 </div>
                             </div>
@@ -213,11 +218,13 @@ export default {
                 {id: 1, name: 'Đã kích hoạt'},
                 {id: 0, name: 'Chưa kích hoạt'},
             ],
-            id: null
+            id: null,
+            selected: []
         }
     },
     created() {
         this.fetch();
+        console.log(this.selected)
     },
     methods: {
         nameWithLang ({ name, id }) {
@@ -317,10 +324,156 @@ export default {
             ).then((response)=>{
 	             this.tinTuyenDung=response.data;
 	        });
+        },
+                async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){
+            try {
+                this.$axios.$post('tintuyendung/changeMultipleStatusTinTuyenDung',{id:JSON.stringify(this.selected), status: statusTinTuyenDung}).then((res) => {
+                if(JSON.stringify(this.selected).length == 2){
+                    this.$swal({
+                        title: 'Bạn chưa chọn tin!',
+                        icon: 'warning',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then( 
+                        this.fetch(),
+                    )
+                }
+                else if(res.status == 200){
+                    this.$swal({
+                        title: 'Thành công',
+                        text: res.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then( 
+                        this.fetch(),
+                    )
+                }
+                else {
+                this.$swal(
+                    'Lỗi!',
+                    res.message,
+                    'error'
+                    )
+                }
+                }
+            );
+            } catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi bỏ kích hoạt!',
+                    'error'
+                )
+            }
+        },
+        async deleteMultipleTinTuyenDung(){
+            if(JSON.stringify(this.selected).length == 2){
+                this.$swal({
+                    title: 'Lỗi',
+                    icon: 'warning',
+                    title: 'Bạn chưa chọn tin!'
+                })
+            }
+            else{
+                try {
+                    this.$swal({
+                        title: 'Bạn có chắc chắn?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Xóa!',
+                        cancelButtonText: 'Hủy!',
+                        showCloseButton: true,
+                        showLoaderOnConfirm: true
+                        }).then(async (result) => {
+                        if(result.value) {
+                            let response = await this.$axios.post('tintuyendung/deleteMultipleTinTuyenDung',{id: JSON.stringify(this.selected)});
+                            if(response.data.status == 200) {
+                                this.fetch();
+                                this.$swal('Thành công', response.data.message, 'success');
+                            }
+                            else {
+                                this.$swal(
+                                    'Lỗi!',
+                                    response.data.message,
+                                    'error'
+                                    )
+                                }
+                        } else {
+                            this.$swal('Hủy', 'Tin được giữ lại', 'info')
+                        }
+                        })
+                } catch (error) {
+                    this.$swal(
+                        'Lỗi!',
+                        'Lỗi bỏ kích hoạt!',
+                        'error'
+                    )
+                }
+                }
+            
+        },
+        async changePublic(index){
+            try {
+                    let response = await this.$axios.post('tintuyendung/changePublic',{
+                    id: index
+                });
+                if(response.data.status == 200) {
+                    this.$swal({
+                        title: 'Thành công',
+                        text: response.data.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then( 
+                        this.fetch(),
+                    )
+                }
+                else {
+                this.$swal(
+                    'Lỗi!',
+                    response.data.message,
+                    'error'
+                    )
+                }
+            } catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi bỏ kích hoạt!',
+                    'error')
+            }
         }
-        
     },
-    
+    computed: {
+        selectAll: {
+            get() {
+                if(this.tinTuyenDung && this.tinTuyenDung.length > 0) {
+                    //A new array exists with at least with one item
+                    let allChecked = true;
+
+                    this.tinTuyenDung.forEach((item)=>{
+                        if(!this.selected.includes(item.id)) {
+                            allChecked = false; 
+                            //  If even one is not included in array
+                        }
+
+                        //Breack out of loop if mismatch already found
+                        if(!allChecked) return;
+                    });
+                    return allChecked;
+                }
+                return false
+            },
+            set(value) {
+                const checked = [];
+                if(value) {
+                    this.tinTuyenDung.forEach((item) => {
+                        checked.push(item.id);
+                    });
+                }
+                this.selected = checked;
+            }
+        },
+    }
 }
 </script>
 <style scoped>

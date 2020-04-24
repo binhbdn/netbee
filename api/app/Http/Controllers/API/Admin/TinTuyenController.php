@@ -64,20 +64,48 @@ class TinTuyenController extends Controller
         }
         return response()->json($data);
     }
-    public function changeAllStatusTinTuyenDung(Request $request)
+    public function changeMultipleStatusTinTuyenDung(Request $request)
     {   
+        if(empty($request->id)){
+            $data = ['status'=> 400, 'message' => 'Bạn chưa chọn tin!', 'data' => null];
+            return response()->json($data);
+        }
         $id = json_decode($request->id);
+        $length= count($id);
         $status = $request->status;
+        DB::beginTransaction();
         try {
-            foreach($id as $key =>$value) {
-                DB::table('nb_joblists')->where('id', 60)->update([
-                    'status' => 1,
+            if($length == 1 ){
+                DB::table('nb_joblists')->where('id', $id)->update([
+                    'status' => $status,
                     'updated_at' =>  Carbon::now()
                 ]);
+                DB::commit();
+                $tin = DB::table('nb_joblists')->where('id',$id)->get();
+                if($status == 1){
+                    $data = ['status'=> 200, 'message' => 'Kích hoạt thành công', 'data' => null];
+                }
+                else{
+                    $data = ['status'=> 200, 'message' => 'Bỏ kích hoạt thành công', 'data' => null];
+                }
             }
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => null];
-
+            else{
+                foreach($id as $key =>$value) {
+                    DB::table('nb_joblists')->where('id', $value)->update([
+                        'status' => $status,
+                        'updated_at' =>  Carbon::now()
+                    ]);
+                }
+                DB::commit();
+                if($status == 1){
+                    $data = ['status'=> 200, 'message' => 'Kích hoạt thành công', 'data' => null];
+                }
+                else{
+                    $data = ['status'=> 200, 'message' => 'Bỏ kích hoạt thành công', 'data' => null];
+                }
+            }
         } catch (\Exception $e) {
+            DB::rollBack();
             $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
         }
         return response()->json($data);
@@ -100,6 +128,67 @@ class TinTuyenController extends Controller
             }
         } catch (\Exception $e) {
             $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
+    public function deleteMultipleTinTuyenDung(Request $request)
+    {   
+        if(empty($request->id)){
+            $data = ['status'=> 400, 'message' => 'Bạn chưa chọn tin!', 'data' => null];
+            return response()->json($data);
+        }
+        $id = json_decode($request->id);
+        $length= count($id);
+        DB::beginTransaction();
+        try {
+            if($length == 1 ){
+                DB::table('nb_joblists')->where('id', $id)->update([
+                    'deleted' => 1,
+                    'updated_at' =>  Carbon::now()
+                ]);
+                DB::commit();
+                $tin = DB::table('nb_joblists')->where('id',$id)->get();
+                    $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => null];
+            }
+            else{
+                foreach($id as $key =>$value) {
+                    DB::table('nb_joblists')->where('id', $value)->update([
+                        'deleted' => 1,
+                        'updated_at' =>  Carbon::now()
+                    ]);
+                }
+                DB::commit();
+                    $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => null];
+                
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
+    public function changePublic(Request $request){
+        try{
+            $id = $request->id;
+            $getTin = DB::table('nb_joblists')->where('id',$id)->first();
+            if($getTin){
+                DB::table('nb_joblists')->where('id',$id)->update([
+                    'isPublic' => !$getTin->isPublic,
+                    'updated_at' => Carbon::now()
+                ]);
+                if($getTin->isPublic == 1){
+                    $data = ['status'=> 200, 'message' => 'Hiện tin thành công', 'data' => null];
+                }
+                else{
+                    $data = ['status'=> 200, 'message' => 'Ẩn tin thành công', 'data' => null];
+                }
+            }
+            else{
+                $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
+            }
+        }
+        catch (\Exception $e) {
+            $data = ['status' => 400, 'message' => 'Có lỗi xảy ra', 'data'=>$e->getMessage()];
         }
         return response()->json($data);
     }
