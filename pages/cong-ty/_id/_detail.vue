@@ -114,29 +114,24 @@ export default {
             countJob: ''
         }
     },
-    async asyncData({$axios, route}) {
+    async asyncData (context) {
         try {
-            let detailRes = await $axios.$get(`getInfoCompanyById/${route.params.id}`)
-            return {
-                congty: detailRes.data[0],
-            }
-        } catch (error) {
+        let detailRes = await context.app.$axios.$get(`getInfoCompanyById/${context.app.router.currentRoute.params.id}`)
+        context.seo({
+                name: detailRes.data[0].name,
+                title: detailRes.data[0].name,
+                keywords: detailRes.data[0].name.replace(/ /g, ","),
+                description: detailRes.data[0].company_about,
+                openGraph: {
+                    title: detailRes.data[0].name,
+                    url: `https://netbee.vn${context.app.router.currentRoute.path}`,
+                    description: detailRes.data[0].company_about,
+                    image: `https://netbee.vn/uploads/users/avatars${detailRes.data[0].avatar}`
+				}
+            })
+        return { congty: detailRes.data[0] }
+        }catch (er) {
             return {congty : []}
-
-        }
-
-    },
-    head() {
-        return {
-            title: this.congty.name,
-            meta: [
-                { hid: 'description', name: 'description', content: this.congty.company_about },
-                { hid: 'keywords', name: 'keywords', content: this.congty.name},
-                { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
-                { hid: 'og:title', name: 'og:title', content: this.congty.name},
-                { hid: 'og:description', name: 'og:description', content: this.congty.name},
-                { hid: 'og:image', name: 'og:image', content: 'https://netbee.vn/uploads/users/avatars/'+this.congty.avatar},
-            ]
         }
     },
     mounted() {

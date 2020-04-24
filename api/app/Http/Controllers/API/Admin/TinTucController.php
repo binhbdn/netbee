@@ -53,7 +53,7 @@ class TinTucController extends Controller
         }
         return response()->json($data);
     }
-    public function changeAllStatusTinTuc(Request $request)
+    public function changeMultipleStatusTinTuc(Request $request)
     {   
         if(empty($request->id)){
             $data = ['status'=> 400, 'message' => 'Bạn chưa chọn tin!', 'data' => null];
@@ -117,6 +117,42 @@ class TinTucController extends Controller
                 $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
             }
         } catch (\Exception $e) {
+            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+        }
+        return response()->json($data);
+    }
+    public function deleteMultipleTinTuc(Request $request)
+    {   
+        if(empty($request->id)){
+            $data = ['status'=> 400, 'message' => 'Bạn chưa chọn tin!', 'data' => null];
+            return response()->json($data);
+        }
+        $id = json_decode($request->id);
+        $length= count($id);
+        DB::beginTransaction();
+        try {
+            if($length == 1 ){
+                DB::table('news')->where('id', $id)->update([
+                    'deleted' => 1,
+                    'updated_at' =>  Carbon::now()
+                ]);
+                DB::commit();
+                $tin = DB::table('news')->where('id',$id)->get();
+                    $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => null];
+            }
+            else{
+                foreach($id as $key =>$value) {
+                    DB::table('news')->where('id', $value)->update([
+                        'deleted' => 1,
+                        'updated_at' =>  Carbon::now()
+                    ]);
+                }
+                DB::commit();
+                    $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => null];
+                
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
             $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
         }
         return response()->json($data);
