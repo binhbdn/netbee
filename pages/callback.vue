@@ -25,8 +25,8 @@
 export default {
     layout: 'no_layout',
     async mounted() {
-        const urlParams = new URLSearchParams(this.$route.fullPath);
-        let token = urlParams.get('access_token');
+        const urlParams = (this.$route.hash);
+        let token = urlParams.split('=')[1]
         if(token) {
             this.$axios.$post(`loginfb`,{token: token}).then((response)=>{
                 if(response.status == 200) {
