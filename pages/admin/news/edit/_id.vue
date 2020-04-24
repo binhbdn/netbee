@@ -70,7 +70,7 @@
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
                                                             <label for="basicInput">Danh mục tin</label>
-                                                            <multiselect v-model="dataNews.id_category" :options="options" :custom-label="nameWithLang" :searchable="false" :close-on-select="false" :show-labels="false" placeholder="Chọn danh mục"></multiselect>
+                                                            <multiselect v-model="dataNews.id_category" :options="options" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn danh mục"></multiselect>
                                                             <span style="color: red">{{ errors[0] }}</span>
                                                         </fieldset>
                                                     </ValidationProvider>
@@ -234,4 +234,9 @@ export default {
     text-align: center;
     padding: 50px 0;
   }
+
+  .multiselect__option--highlight {
+    background: #ffb701;
+    color: #000;
+}
 </style>

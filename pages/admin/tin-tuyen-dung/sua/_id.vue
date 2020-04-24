@@ -556,7 +556,7 @@ export default {
                 this.data.time_bonus = {id: 1, name: '30 ngày *1'}
             }else if(job.data.time_bonus == 2){
                 this.data.time_bonus = {id: 2, name: 'Hoàn tất nhập cảnh *1,5'}
-            } else {
+            } else if(job.data.time_bonus == 3) {
                 this.data.time_bonus = {id: 3, name: 'Sau nhập cảnh 30 ngày *2'}
             }
             job.data.bonus == 0 ? this.data.bonus = null : this.data.bonus = job.data.bonus
@@ -739,7 +739,8 @@ export default {
 .custom-control-label::after {
     width: 1.5rem;
     height: 1.5rem;
-    top: 2px;
+    top: -1px;
+    left: -24px;
 }
 
 .vue-form-wizard .wizard-nav-pills>li.active>a .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:focus .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:hover .wizard-icon{
