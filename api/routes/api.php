@@ -36,8 +36,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::prefix('tintuc')->group(function () {
         Route::get('getTinTuc', 'Admin\TinTucController@getTinTuc');
         Route::post('changeStatusTinTuc', 'Admin\TinTucController@changeStatusTinTuc');
-        Route::post('changeAllStatusTinTuc', 'Admin\TinTucController@changeAllStatusTinTuc');
+        Route::post('changeMultipleStatusTinTuc', 'Admin\TinTucController@changeMultipleStatusTinTuc');
         Route::post('deleteTinTuc', 'Admin\TinTucController@deleteTinTuc');
+        Route::post('deleteMultipleTinTuc', 'Admin\TinTucController@deleteMultipleTinTuc');
         Route::post('createTinTuc', 'Admin\TinTucController@createTinTuc');
         Route::post('updateTinTuc', 'Admin\TinTucController@updateTinTuc');
         Route::get('searchTinTuc', 'Admin\TinTucController@searchTinTuc');
@@ -45,8 +46,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::prefix('tintuyendung')->group(function () {
         Route::get('getTinTuyenDung', 'Admin\TinTuyenController@getTinTuyenDung');
         Route::post('changeStatusTinTuyenDung', 'Admin\TinTuyenController@changeStatusTinTuyenDung');
-        Route::post('changeAllStatusTinTuyenDung', 'Admin\TinTuyenController@changeAllStatusTinTuyenDung');
+        Route::post('changeMultipleStatusTinTuyenDung', 'Admin\TinTuyenController@changeMultipleStatusTinTuyenDung');
         Route::post('deleteTinTuyenDung', 'Admin\TinTuyenController@deleteTinTuyenDung');
+        Route::post('deleteMultipleTinTuyenDung', 'Admin\TinTuyenController@deleteMultipleTinTuyenDung');
+        Route::post('changePublic', 'Admin\TinTuyenController@changePublic');
         Route::get('searchTinTuyenDung', 'Admin\TinTuyenController@searchTinTuyenDung');
         Route::get('getQuocGia', 'Admin\TinTuyenController@getQuocGia');
         Route::get('getVisa', 'Admin\TinTuyenController@getVisa');
