@@ -15,7 +15,7 @@
         <div class="card-content">
             <div style="margin: 0 auto;">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="`/uploads/users/avatars/${job.avatar}`" :alt="`${job.avatar}`" width="55" height="55" style="object-fit: cover;">
+                    <img v-lazy="job.avatar != null && job.avatar.startsWith('https') ? job.avatar : `/uploads/users/avatars/${job.avatar}`" :alt="`${job.avatar}`" width="55" height="55" style="object-fit: cover;">
                 </a>
             </div>
             <div class="remove-border-right">

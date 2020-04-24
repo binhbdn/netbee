@@ -3,7 +3,7 @@
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
             <div class="text-center" :style="type == 1 ? 'height: 250px' : 'height: 120px'">
                 <img style="width: 100%; max-height: 250px" :alt="`${thuml}`" v-lazy="`/uploads/news/${thuml}`" v-if="type == 1" />
-                <img alt="img" v-lazy="`/uploads/news/${thuml}`" style="max-height: 100px" v-if="type != 1" />
+                <img alt="img" v-lazy="`/uploads/news/${thuml}`" style="max-height: 100px; max-width: 100%;" v-if="type != 1" />
             </div>
         </a>
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`"><h2 class="NB_title text-black pt-1 el-3">{{ title }}</h2></a>
