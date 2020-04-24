@@ -15,7 +15,7 @@
         <div class="card-content" style="grid-template-columns: 3fr 6fr 1fr;">
             <div style="margin: 0 auto;">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="`/uploads/users/avatars/${job.avatar}`" :alt="`${job.avatar}`" width="55" height="55">
+                    <img v-lazy="`/uploads/users/avatars/${job.avatar}`" :alt="`${job.avatar}`" style="object-fit: cover;" width="55" height="55">
                 </a>
             </div>
             <div class="remove-border-right">

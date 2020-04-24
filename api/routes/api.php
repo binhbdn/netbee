@@ -19,6 +19,7 @@ Route::namespace('API')->group(function () {
   Route::get('getTinTuyenDungForCompany/{id}', 'TinTuyenDungController@getTinTuyenDungForCompany');
   Route::get('getTinTuyenDungHot', 'TinTuyenDungController@getTinTuyenDungHot');
   Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
+  Route::get('getInfoCompanyById/{id}', 'Auth\UserController@getInfoCompanyById');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
@@ -28,9 +29,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('changeInfo', 'Auth\UserController@changeInfo');
       Route::get('getInfoCompany', 'Auth\UserController@getInfoCompany');
       Route::post('changeInfoCompany', 'Auth\UserController@changeInfoCompany');
-      Route::get('getInfoCompanyById/{id}', 'Auth\UserController@getInfoCompanyById');
       Route::get('getCompanyHot', 'Auth\UserController@getCompanyHot');
       Route::get('getCompanyNew', 'Auth\UserController@getCompanyNew');
+      Route::get('getNotification', 'NotificationController@getNotification');
       Route::get('logout', 'Auth\UserController@logout');
     //admin
       Route::prefix('tintuc')->group(function () {

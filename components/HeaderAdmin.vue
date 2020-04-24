@@ -35,7 +35,7 @@
                       <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
                           <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item" href="#" data-language="fr"><i class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="#" data-language="de"><i class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="#" data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
                       </li>
-                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span class="badge badge-pill badge-primary badge-up">5</span></a>
+                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span class="badge badge-pill badge-primary badge-up">{{ countNoti }}</span></a>
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                               <li class="dropdown-menu-header">
                                   <div class="dropdown-header m-0 p-2">
@@ -89,7 +89,7 @@
                       <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                               <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{ $auth.user.name }}</span><span class="user-status">
                                 {{ $auth.user.role == 4 ? 'Admin' : $auth.user.role == 1 ? 'Ứng viên' : $auth.user.role == 2 ? 'Nhà tuyển dụng' : 'Chuyên viên tuyển sinh'}}
-                                </span></div><span><img class="round" v-lazy="`/uploads/users/avatar/${$auth.user.avatar}`" alt="avatar" height="40" width="40"></span>
+                                </span></div><span><img class="round" v-lazy="`/uploads/users/avatars/${$auth.user.avatar}`" alt="avatar" height="40" width="40" style="object-fit: cover;"></span>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="/admin/thong-tin-tai-khoan"><i class="feather icon-user"></i> Edit Profile</a><a class="dropdown-item" href="app-email.html"><i class="feather icon-mail"></i> My Inbox</a><a class="dropdown-item" href="app-todo.html"><i class="feather icon-check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="feather icon-message-square"></i> Chats</a>
                               <div class="dropdown-divider"></div><a class="dropdown-item" @click="logout()"><i class="feather icon-power"></i> Logout</a>
@@ -107,7 +107,8 @@ export default {
   name: 'Header',
   data () {
     return {
-
+        notifications: [],
+        countNoti: 0
     }
   },
   methods:  {
@@ -116,5 +117,12 @@ export default {
         window.location.href = '/';
       }
   },
+  mounted() {
+      this.$axios.$get('getNotification').then((response) => {
+          console.log(response)
+          this.notifications = response.data.data,
+          this.countNoti = response.data.total
+      })
+  }
 }
 </script>
