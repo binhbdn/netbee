@@ -25,6 +25,7 @@
                     <div class="row">
                         <div class="col-lg-9 col-sm-6 col-12">
                             <div class="card">
+                                <div class="card-header"></div>
                                 <div class="card-body">
                                     <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
                                         <tab-content :before-change="checkValidateStep1" title="Tổng quan">
@@ -733,5 +734,24 @@ export default {
 
 .normal {
     background-color: #ffc10842;
+}
+
+.custom-control-label::after {
+    width: 1.5rem;
+    height: 1.5rem;
+    top: 2px;
+}
+
+.vue-form-wizard .wizard-nav-pills>li.active>a .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:focus .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:hover .wizard-icon{
+    color: #000000ab;
+}
+
+.wizard-btn{
+    color: #000 !important;
+}
+
+.multiselect__option--highlight {
+    background: #ffb701;
+    color: #000;
 }
 </style>
