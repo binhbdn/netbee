@@ -19,7 +19,8 @@ class NotificationController extends Controller
 
     public function getNotification(Request $request)
     {
-        $noti = DB::table('nb_notifications')->where('id_recever', Auth::user()->id)->orderBy('created_at', 'DESC')->paginate(20);
+        $noti['notifications'] = DB::table('nb_notifications')->where('id_recever', Auth::user()->id)->orderBy('status_notification', 'ASC')->orderBy('created_at', 'DESC')->paginate(20);
+        $noti['countNotRead'] = DB::table('nb_notifications')->where('status_notification', 0)->count();
         if($noti)
             $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $noti];
         else
