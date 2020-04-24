@@ -62,7 +62,7 @@
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-else>
             <img v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`"
-            style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; object-fit: cover;">
+            style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; object-fit: cover; border-radius: 50%;">
             <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
               <br />Tài khoản
             </a>
