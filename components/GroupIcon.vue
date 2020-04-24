@@ -15,14 +15,13 @@
         <i class="fab fa-facebook-f" style="color: black;"></i>
       </a>
     </div>
-    <div class="icon-m" style="position: absolute; top: 67%;margin-left: 6px; ">
-      <button
-        class="btn btn-warning"
-        id="mail_contact"
-        style="border-radius: 20%; width: 37px; height: 37px; font-size: 25px; line-height: 28px; padding-left: 9px; padding-top: 5px;"
+    <div class="icon-m" id="#follow" style="position: absolute; top: 67%;margin-left: 6px; ">
+      <a href="#follow"  class="btn btn-warning"  id="mail_contact"  style="border-radius: 20%; width: 37px; height: 37px; font-size: 25px; line-height: 28px; padding-left: 9px; padding-top: 5px;"
       >
+      
         <i class="fa fa-envelope" style="margin-left: -3px;color: black;"></i>
       </button>
+      </a>
     </div>
   </div>
 </template>
