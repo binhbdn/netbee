@@ -275,7 +275,7 @@
     async asyncData({$axios, route}) {
       let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=20&type=0`)
       let getTinTuyenDungHot = await $axios.$get(`getTinTuyenDungHot?limit=0`)
-      let getTinTucNew = await $axios.$get('getTinTucNew?limit=4')
+      let getTinTucNew = await $axios.$get('getTinTucNew?limit=3')
       return {
           arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
           arrayJobHot: getTinTuyenDungHot.data.tintuyendung,

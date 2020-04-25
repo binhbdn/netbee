@@ -41,8 +41,8 @@
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-12 make-it-slow pt-1" v-for="(item, index) in tintucs" :key="index">
-                                            <NewItempage2 :id="item.id" :title="item.title" :content="item.content" :created_at="item.updated_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
+                                        <div class="col-12 make-it-slow" v-for="(item, index) in tintucs" :key="index">
+                                            <NewItempage2 :id="item.id" :title="item.title" :created_at="item.updated_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
                                         </div>
                                     </div>
                                 </div>
