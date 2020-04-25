@@ -25,16 +25,20 @@ class TinTuyenController extends Controller
         $id_user = Auth::user()->id;
         try {
             if($role_user != 4){
-                $getTin = DB::table('nb_joblists')
-                ->where('id_created',$id_user)
-                ->where('deleted',0)
-                ->orderBy('id', 'DESC')
+                $getTin = DB::table('nb_joblists')->join('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
+                //
+                ->where('nb_joblists.id_created',$id_user)
+                ->where('nb_joblists.deleted',0)
+                ->orderBy('nb_joblists.id', 'DESC')
+                ->select('nb_joblists.*','nb_job_views.id_viewer')
                 ->get();
                 $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
             }
             else{
-                $getTin = DB::table('nb_joblists')->where('deleted',0)
-                ->orderBy('id', 'DESC')->get();
+                $getTin = DB::table('nb_joblists')->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
+                ->orderBy('nb_joblists.id', 'DESC')
+                ->select('nb_joblists.*','nb_job_views.id_viewer')
+                ->get();
                 $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
             }
             

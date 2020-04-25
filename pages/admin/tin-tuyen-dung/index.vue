@@ -120,7 +120,7 @@
                                                         </li>
                                                         ID</th>
                                                     <th>Tiêu đề</th>
-                                                    <th>Thống kê</th>
+                                                    <th style="width:20%">Thống kê</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
@@ -144,7 +144,18 @@
                                                         </li>
                                                         {{item.id}}</td>
                                                     <td>{{item.title}}</td>
-                                                    <td>{{item.title}}</td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-6 pr-0 pl-0">
+                                                                <h3 class="text-center">{{(item.id)}}</h3>
+                                                                <p style="font-size:12px; text-align:center">Lượt xem</p>
+                                                            </div>
+                                                            <div class="col-6 pr-0 pl-0">
+                                                                <h3 class="text-center">0</h3>
+                                                                <p style="font-size:12px; text-align:center">Ứng tuyển</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td>{{formatDate(item.created_at)}}</td>
                                                     <td style="white-space: nowrap;">
                                                         <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
@@ -181,6 +192,14 @@ import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import Vue from 'vue'
 import moment from 'moment'
+import VueLazyload from 'vue-lazyload'
+
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: 'dist/error.png',
+  loading: 'dist/loading.gif',
+  attempt: 1
+})
 export default {
     name: 'IndexNews',
         layout: 'admin',
