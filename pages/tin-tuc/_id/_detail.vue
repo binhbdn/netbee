@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row mb-2">
+                <div class="row mb-2">
                     <div class="card" style="width:100%; margin: 0 14px">
                         <div class="card-header">
                                 <h4 class="card-title"><i class="fa fa-briefcase" style="padding-right:4px;"></i>Bình luận</h4>
@@ -76,21 +76,17 @@
                                     </ul>
                                 </div>
                             </div>
-                            <hr>
                             <div class="card-content collapse show">
                                 <div id="fb-root"></div>
-                                <script async defer crossorigin="anonymous" v-lazy="`https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1`"></script>
-                                <div class="card-body scrollbar" style="height:300px;">
-                                    <div class="fb-comments" style="height:200px; width:100%" data-width="1076" data-href="https://www.facebook.com/NetBeevn-107178937322342" data-numposts="10"></div>
-                                </div>
+                                <div class="fb-comments" data-numposts="5" data-colorscheme="light" data-width="280px"></div>
                             </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </section>
     </div>
 </template>
-<script async defer crossorigin="anonymous" v-lazy="`https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1`">
+<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 </script>
 <script>
 import NewListPage1 from '~/components/News/NewListPage1';
@@ -135,6 +131,14 @@ export default {
         this.$axios.$get(`getTinTuyenDungNew?limit=10&type=0`).then((res) => {
             this.arrayJobNew = res.data.tintuyendung
         })
+        if (window.FB) {
+            window.FB.init({
+                appId      : '1459241224260897',
+                status     : true,
+                xfbml      : true,
+                version    : 'v3.3'
+            })
+        }
     },
     jsonld() {
         return {
