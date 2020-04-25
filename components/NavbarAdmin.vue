@@ -19,7 +19,7 @@
                 </li>
                 <li :class="[{'active' : (this.$route.name == 'admin-news') || (this.$route.name == 'admin-news-create')}, 'nav-item']" v-if="$auth.user.role == 4"><a href="#"><i class="far fa-copy"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
                     <ul class="menu-content">
-                        <li><a href="/admin/news"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách bài viết</span></a>
+                        <li><a href="/admin/news"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
                         </li>
                         <li><a href="/admin/news/create"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Tạo bài viết mới</span></a>
                         </li>
