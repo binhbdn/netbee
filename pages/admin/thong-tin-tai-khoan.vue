@@ -59,7 +59,7 @@
                                                 <div class="media">
                                                     <a href="javascript: void(0);">
                                                         <img :src="images[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="images.length > 0">
-                                                        <img :src="`/uploads/users/avatars/${changeInfoUser.avatar}`" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-else>
+                                                        <img :src="changeInfoUser.avatar != null && changeInfoUser.avatar.startsWith('https') ? changeInfoUser.avatar : `/uploads/users/avatars/${changeInfoUser.avatar}`" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-else>
                                                     </a>
                                                     <div class="media-body mt-75">
                                                         <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">

@@ -1,32 +1,23 @@
 <template>
     <div class="row">
-        <div class="col-5 text-center" :style="type != 1 ? 'height: 117px' : ''">
+        <div class="col-5 text-center d-flex align-items-center">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
-                <img v-lazy="`/uploads/news/${thuml}`" :style="type != 1 ? 'max-height: 117px' : 'max-height: 190px'">
+                <img v-lazy="`/uploads/news/${thuml}`" :style="type != 1 ? 'max-height: 117px' : 'max-height: 190px'" style="max-width: 100%;width: 100%;object-fit: fill;">
             </a>
         </div>
         <div class="col-7 position-relative">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
-                <h2 class="NB_title text-black el-3">{{ title }}</h2>
+                <h2 class="NB_title text-black el-3 font-weight-600">{{ title }}</h2>
             </a>
-            <p style="height: 100px;" class="el-3" v-if="type == 1 || type == 2">{{ short_content }}</p>
-            <div class="position-absolute" style="bottom: 0px">
-                <i class="fad fa-calendar-star"></i><span class="ml-1">{{ created_at | formatDate }}</span>
+            <p style="height: 97px;" class="el-3" v-if="type == 1 || type == 2">{{ short_content }}</p>
+            <div class="position-absolute" style="bottom: 10px">
+                <i class="fad fa-calendar-star"></i><span class="ml-1">{{ ConvertDate(created_at) }}</span>
             </div>
             
         </div>
     </div>
 </template>
 <script>
-import moment from 'moment'
-import Vue from "vue";
-
-Vue.filter('formatDate', function(value) {
-  if (value) {
-    return moment(String(value)).format('DD/MM/YYYY')
-  }
-})
-
 export default {
      props: ['id', 'title', 'short_content', 'created_at','thuml', 'type']
 }

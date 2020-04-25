@@ -16,31 +16,31 @@
       </a>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active" style="padding-top:3px">
+          <li class="nav-item " style="padding-top:3px" :class="{active : this.$route.path == '/'}">
             <a href="/" class="nav-link header-nav-link">
               <i class="fa fa-home"></i>
               <br />Trang chủ
             </a>
           </li>
-          <li class="nav-item" style="padding-top:3px">
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuyen-sinh'}">
             <a href="/tin-tuyen-sinh" class="nav-link header-nav-link">
               <i class="fa fa-server"></i>
               <br />Tin tuyển sinh
             </a>
           </li>
-          <li class="nav-item" style="padding-top:3px">
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
             <a href="/tin-tuc" class="nav-link header-nav-link">
               <i class="fa fa-table"></i>
               <br />Tin tức
             </a>
           </li>
-          <li class="nav-item" style="padding-top:3px">
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ve-netbee'} " >
             <a href="/ve-netbee" class="nav-link header-nav-link">
               <i class="fa fa-id-card"></i>
               <br />Về NetBee
             </a>
           </li>
-          <li class="nav-item" style="padding-top:3px">
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/lien-he'} " >
             <a href="/lien-he" class="nav-link header-nav-link">
               <i class="fa fa-window-restore"></i>
               <br />Liên hệ
@@ -61,8 +61,8 @@
             </div>
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-else>
-            <img v-lazy="`/uploads/users/avatars/${this.$auth.user.avatar}`"
-            style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; object-fit: cover;">
+            <img v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`"
+            style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; object-fit: cover; border-radius: 50%;">
             <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
               <br />Tài khoản
             </a>
@@ -92,19 +92,19 @@
               <div id="login-up"></div>
               <a class="dropdown-item">
                 <img
-                  src="assets/img/iconfinder_United-Kingdom.png"
+                  src="/assets/img/iconfinder_United-Kingdom.png"
                   width="25px"
                 />
               </a>
               <a class="dropdown-item">
                 <img
-                  src="assets/img/iconfinder_Japan_92149.png"
+                  src="/assets/img/iconfinder_Japan_92149.png"
                   width="25px"
                 />
               </a>
               <a class="dropdown-item">
                 <img
-                  src="assets/img/iconfinder_South-Korea_92351.png"
+                  src="/assets/img/iconfinder_South-Korea_92351.png"
                   width="25px"
                 />
               </a>
@@ -117,7 +117,7 @@
 </template>
 <script>
 export default {
-    methods: {
+      methods: {
       async logout() {
         this.$auth.logout()
       }

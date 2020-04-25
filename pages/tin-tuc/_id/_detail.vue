@@ -41,8 +41,8 @@
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-12 make-it-slow pt-1" v-for="(item, index) in tintucs" :key="index">
-                                            <NewItempage2 :id="item.id" :title="item.title" :content="item.content" :created_at="item.updated_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
+                                        <div class="col-12 make-it-slow" v-for="(item, index) in tintucs" :key="index">
+                                            <NewItempage2 :id="item.id" :title="item.title" :created_at="item.updated_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row mb-2">
+                <div class="row mb-2">
                     <div class="card" style="width:100%; margin: 0 14px">
                         <div class="card-header">
                                 <h4 class="card-title"><i class="fa fa-briefcase" style="padding-right:4px;"></i>Bình luận</h4>
@@ -76,21 +76,17 @@
                                     </ul>
                                 </div>
                             </div>
-                            <hr>
                             <div class="card-content collapse show">
                                 <div id="fb-root"></div>
-                                <script async defer crossorigin="anonymous" v-lazy="`https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1`"></script>
-                                <div class="card-body scrollbar" style="height:300px;">
-                                    <div class="fb-comments" style="height:200px; width:100%" data-width="1076" data-href="https://www.facebook.com/NetBeevn-107178937322342" data-numposts="10"></div>
-                                </div>
+                                <div class="fb-comments" data-numposts="5" data-colorscheme="light" data-width="280px"></div>
                             </div>
                     </div>
-                </div> -->
+                </div>
             </div>
         </section>
     </div>
 </template>
-<script async defer crossorigin="anonymous" v-lazy="`https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=500768507540632&autoLogAppEvents=1`">
+<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 </script>
 <script>
 import NewListPage1 from '~/components/News/NewListPage1';
@@ -105,27 +101,43 @@ export default {
         NewItempage2, 
         NewsList
     },
-    async asyncData({$axios, route}) {
-        let detailRes = await $axios.$get(`getDetailTinTuc/${route.params.id}`)
-        let tinRes = await $axios.$get('getTinTucNew?limit=5')
-        let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=10&type=0`)
+    data () {
         return {
-            tintuc: detailRes.data,
-            tintucs: tinRes.data.tintuc,
-            arrayJobNew: getTinTuyenDungNew.data.tintuyendung
+            tintuc: {},
+            tintucs: [],
+            arrayJobNew: []
         }
     },
-    head() {
-        return {
-            title: this.tintuc.title,
-            meta: [
-                { hid: 'description', name: 'description', content: this.tintuc.short_content },
-                { hid: 'keywords', name: 'keywords', content: this.tintuc.title.replace(/ /g, ",")},
-                { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
-                { hid: 'og:title', name: 'og:title', content: this.tintuc.title},
-                { hid: 'og:description', name: 'og:description', content: this.tintuc.short_content},
-                { hid: 'og:image', name: 'og:image', content: this.tintuc.thuml},
-            ]
+    async asyncData (context) {
+        let detailRes = await context.app.$axios.$get(`getDetailTinTuc/${context.app.router.currentRoute.params.id}`)
+        context.seo({
+                name: detailRes.data.title,
+                title: detailRes.data.title,
+                keywords: detailRes.data.title.replace(/ /g, ","),
+                description: detailRes.data.short_content,
+                openGraph: {
+                    title: detailRes.data.title,
+                    url: `https://netbee.vn${context.app.router.currentRoute.path}`,
+                    description: detailRes.data.short_content,
+                    image: `https://netbee.vn/uploads/news${detailRes.data.thuml}`
+				}
+            })
+        return { tintuc: detailRes.data }
+    },
+    mounted() {
+        this.$axios.$get(`getTinTucNew?limit=5`).then((res) => {
+            this.tintucs = res.data.tintuc
+        })
+        this.$axios.$get(`getTinTuyenDungNew?limit=10&type=0`).then((res) => {
+            this.arrayJobNew = res.data.tintuyendung
+        })
+        if (window.FB) {
+            window.FB.init({
+                appId      : '1459241224260897',
+                status     : true,
+                xfbml      : true,
+                version    : 'v3.3'
+            })
         }
     },
     jsonld() {

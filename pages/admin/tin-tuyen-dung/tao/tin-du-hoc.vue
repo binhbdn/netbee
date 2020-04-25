@@ -285,7 +285,7 @@
                                                                     <label for="firstName3">
                                                                         Thời gina bảo hành
                                                                     </label>
-                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :close-on-select="false" 
+                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" 
                                                                         :allow-empty="false" :show-labels="false" placeholder="Chọn thời gian bảo hành" :disabled="!checked"></multiselect>
                                                                     <span style="color: red">{{ errors[0] }}</span>
                                                                 </div>
@@ -645,7 +645,8 @@ export default {
 .custom-control-label::after {
     width: 1.5rem;
     height: 1.5rem;
-    top: 2px;
+    top: -1px;
+    left: -24px;
 }
 
 .vue-form-wizard .wizard-nav-pills>li.active>a .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:focus .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:hover .wizard-icon{

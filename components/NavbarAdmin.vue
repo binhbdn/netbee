@@ -4,9 +4,8 @@
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="/">
                         <div>
-                          <img src="../static/assets/img/logo.png" alt="Smiley face" height="50" width="50">
+                          <img src="/assets/img/logo-full.png" alt="Smiley face" height="40" width="150">
                         </div>
-                        <h2 class="brand-text mb-0">NetBee</h2>
                     </a>
                 </li>
             </ul>
