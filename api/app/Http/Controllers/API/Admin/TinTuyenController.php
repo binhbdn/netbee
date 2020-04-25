@@ -31,14 +31,14 @@ class TinTuyenController extends Controller
                 ->where('nb_joblists.deleted',0)
                 ->orderBy('nb_joblists.id', 'DESC')
                 ->select('nb_joblists.*','nb_job_views.id_viewer')
-                ->get();
+                ->paginate(6);
                 $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
             }
             else{
                 $getTin = DB::table('nb_joblists')->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
                 ->orderBy('nb_joblists.id', 'DESC')
                 ->select('nb_joblists.*','nb_job_views.id_viewer')
-                ->get();
+                ->paginate(6);
                 $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
             }
             
