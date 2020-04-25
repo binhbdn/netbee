@@ -1,9 +1,9 @@
 <template>
     <div class="card border-job-item" style="border-radius: 5px">
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" class="text-center" style="height: 220px">
-            <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" style="max-height: 100%;width: 100%;object-fit: fill;">
+            <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" style="max-height: 100%;width: 100%;height: 100%;object-fit: fill;">
         </a>
-        <div class="px-2">
+        <div class="px-2 p-t-15">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" ><h4 class="title font-weight-600">{{ title }}</h4></a>
             <p style="height: 100px;" class="el-3">{{ short_content }}</p>
             <p><i class="fad fa-calendar-star"></i> {{ ConvertDate(created_at) }}</p>
