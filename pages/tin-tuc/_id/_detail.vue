@@ -1,11 +1,12 @@
 <template>
     <div>
-        <section class="bg-white category p-1 m-b-15">
+        <section class="category p-b-15">
             <div class="container">
-                <div class="row d-flex bg-white ">
+                <div class="row d-flex">
                     <div class="col-md-6 pd-20">
-                        <a href="#"><i class="fa fa-home pr-2"></i>Trang chủ</a>
-                        <a href="#"><i class="fa fa-caret-right pr-2 pl-2"></i>Tin tức</a>
+                        <a href="/"><i class="fa fa-home"></i> Trang chủ </a>
+                        <a href="/tin-tuc"><i class="fa fa-caret-right"></i> Tin tức</a>
+                        <a><i class="fa fa-caret-right"></i> {{ tintuc.title }}</a>
                     </div>
                 </div>
             </div>
