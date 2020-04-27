@@ -70,7 +70,7 @@
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
                                     <form class="col-9" action="/admin/tin-tuyen-dung/tao" method="">
-                                        <button class="btn-add btn btn-warning text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyện dụng</button>
+                                        <button class="btn-add btn background-default text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyện dụng</button>
                                     </form>
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
@@ -92,16 +92,16 @@
                                                     Hành động
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
-                                                    <a class="dropdown-item" @click="deleteMultipleTinTuyenDung()"><i class="feather icon-trash-2 warning"></i>Xóa</a>
-                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(1)"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
-                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(0)"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
+                                                    <a class="dropdown-item" @click="deleteMultipleTinTuyenDung()"><i class="feather icon-trash-2"></i>Xóa</a>
+                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(1)"><i class="far fa-check-circle"></i>Kích hoạt</a>
+                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(0)"><i class="far fa-times-circle"></i>Bỏ kích hoạt</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body card-dashboard">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive list-data">
                                         <table class="table table-hover mb-0 zero-configuration">
                                             <thead class="custom-header">
                                                 <tr>
@@ -120,7 +120,7 @@
                                                         </li>
                                                         ID</th>
                                                     <th>Tiêu đề</th>
-                                                    <th style="width:20%">Thống kê</th>
+                                                    <th style="width:14%; text-align:center">Thống kê</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
@@ -143,11 +143,11 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td>{{item.title}}</td>
+                                                    <td><a class="title-records" title="Xem chi tiết" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-6 pr-0 pl-0">
-                                                                <h3 class="text-center">{{(item.id)}}</h3>
+                                                                <h3 class="text-center">{{(item.viewers)}}</h3>
                                                                 <p style="font-size:12px; text-align:center">Lượt xem</p>
                                                             </div>
                                                             <div class="col-6 pr-0 pl-0">
@@ -157,34 +157,47 @@
                                                         </div>
                                                     </td>
                                                     <td>{{formatDate(item.created_at)}}</td>
-                                                    <td style="white-space: nowrap;">
-                                                        <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
-                                                        <span class="danger" v-else><i class="fas fa-circle" style="font-size: 7px"></i> Chưa kích hoạt</span>
+                                                    <td v-if="item.status == 1">
+                                                        <div class="chip chip-danger">
+                                                            <div class="chip-body">
+                                                                <div class="chip-text">Chưa kích hoạt</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td v-if="item.status == 0">
+                                                        <div class="chip chip-success">
+                                                            <div class="chip-body">
+                                                                <div class="chip-text">Đã kích hoạt</div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                     <td style="white-space: nowrap;">
                                                         <span v-if="item.type == 1">Xuất khẩu lao động</span>
                                                         <span v-if="item.type == 2">Du học sinh</span>
                                                         <span v-if="item.type == 3">Tu nghiệp sinh</span>
                                                     </td>
-                                                    <td style="width: 25%;" >
-                                                        <button v-if="$auth.user.role == 4" @click="changeStatus(item.id)" class="btn-action btn" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
-                                                        <button  @click="changePublic(item.id)" class="btn-action btn" :class="item.isPublic == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.isPublic == 1 ? 'Hiện tin' : 'Ẩn tin' }}</button>
-                                                        <a :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="btn-action btn btn-outline-warning" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
-                                                        <button v-on:click="deleteNews(item.id)" class="btn-action btn btn-outline-danger" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</button>
+                                                    <td>
+                                                        <div class="action-btns">
+                                                            <div class="btn-dropdown ">
+                                                                <div class="btn-group dropdown actions-dropodown">
+                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        Chọn thao tác
+                                                                    </button>
+                                                                    <div class="dropdown-menu" style="left: -25px!important;">
+                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-check-circle' : 'far fa-times-circle'"></i>{{ item.status == 1 ? 'Kích hoạt' : "Bỏ kích hoạt" }}</a>
+                                                                        <a  @click="changePublic(item.id)" class="dropdown-item"><i :class="item.isPublic == 1 ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{ item.isPublic == 1 ? 'Ẩn tin' : 'Hiện tin' }}</a>
+                                                                        <a :href="`/admin/news/edit/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
+                                                                        <a v-on:click="deleteNews(item.id)" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
-                                        <infinite-loading
-                                            v-if="tinTuyenDung.length"
-                                            spinner="waveDots"
-                                            @infinite="infiniteScroll"
-                                        >
-                                        <div slot="spinner" class="mb-2" style="font-size:15px; font-style: italic">Đang tải...</div>
-                                        <div slot="no-more">No more message</div>
-                                        <div slot="no-results">No results message</div>
-                                        </infinite-loading>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -193,6 +206,14 @@
                 </section>
             </div>
         </div>
+        <infinite-loading
+                spinner="bubbles"
+                @infinite="infiniteScroll" style="padding:20px"
+                direction="down"
+            >
+            <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
+            <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+        </infinite-loading>
     </div>
 </template>
 <script>
@@ -246,7 +267,6 @@ export default {
     },
     created() {
         this.fetch();
-        console.log(this.selected)
     },
     methods: {
         nameWithLang ({ name, id }) {
@@ -260,7 +280,7 @@ export default {
         },
         async changeStatus(index){
             try {
-                    let response = await this.$axios.post('tintuyendung/changeStatusTinTuyenDung',{
+                    let response = await this.$axios.post('tintuyendung/changeStatusTinTuyenDung/',{
                     id: index
                 });
                 if(response.data.status == 200) {
@@ -481,7 +501,7 @@ export default {
                 .catch((err) => {
                     console.log(err)
                 })
-            }, 2000)
+            }, 500)
         },
     },
     computed: {
