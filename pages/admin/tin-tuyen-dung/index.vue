@@ -379,7 +379,21 @@ export default {
     },
     created() {
         this.fetch();
-        console.log(this.selected)
+    },
+    mounted() {
+        if(typeof this.$route.query.errorCode !== 'undefined' && this.$route.query.errorCode == 0) {
+            this.$swal(
+                'Thành công!',
+                'Thanh toán thành công',
+                'success'
+            )
+        }else {
+            this.$swal(
+                'Thất bại!',
+                'Thanh toán thất bại',
+                'error'
+            ) 
+        }
     },
     methods: {
         checkDiscount() {
@@ -399,7 +413,23 @@ export default {
         pay() {
             if(this.bank) {
                 this.$axios.$post('/pricing_momo_bank',{code: this.discount,idJob: this.selectPay.id,bank: this.bank}).then((response)=>{
-                    console.log(response);
+                    if(response.status == 200) {
+                        if(response.data != null) {
+                            window.location.href = response.data;
+                        }else {
+                            this.$swal(
+                                'Thành công!',
+                                'Thanh toán thành công',
+                                'success'
+                            )
+                        }
+                    }else {
+                        this.$swal(
+                            'Lỗi!',
+                            response.message,
+                            'error'
+                        )
+                    }
                 });
             }else {
                 this.$swal(

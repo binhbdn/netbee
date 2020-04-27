@@ -21,6 +21,7 @@ Route::namespace('API')->group(function () {
   Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
   Route::get('getInfoCompanyById/{id}', 'Auth\UserController@getInfoCompanyById');
   Route::post('pricing_momo_bank', 'MomoController@pricing_momo_bank');
+  Route::post('pricing_momo_bank_checking', 'MomoController@pricing_momo_bank_checking');
   Route::get('checkDiscountCode', 'MomoController@checkDiscountCode');
   //tìm kiếm
   Route::get('searchCompany', 'TimKiemController@searchCompany');
