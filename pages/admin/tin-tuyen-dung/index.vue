@@ -219,11 +219,12 @@
                                         <div class="input-group-prepend">
                                             <button class="btn btn-info waves-effect waves-light" type="button"><i class="feather icon-search"></i></button>
                                         </div>
-                                        <input type="text" class="form-control is-valid" placeholder="Nhập mã giảm giá" v-model="discount">
+                                        <input type="text" class="form-control" id="discount" placeholder="Nhập mã giảm giá" v-model="discount">
                                         <div class="input-group-append">
                                             <button class="btn btn-info waves-effect waves-light" @click="checkDiscount()" type="button">Kiểm tra</button>
                                         </div>
                                     </div>
+                                    <div id="valid-feedback" style="color: #28C76F"></div>
                                 </fieldset>
                                 <label style="font-size: 20px">Chọn ngân hàng: </label>
                                 <fieldset>
@@ -382,14 +383,32 @@ export default {
     },
     methods: {
         checkDiscount() {
-            this.$axios.$get('/checkDiscountCode').then((response)=>{
-	            console.log(response);
+            this.$axios.$get('/checkDiscountCode?code='+this.discount).then((response)=>{
+	            if(response.status == 200) {
+                    var element = document.getElementById("discount");
+                    var elementText = document.getElementById("valid-feedback");
+                    element.classList.add("is-valid");
+                    elementText.innerHTML += "Bạn được giảm "+response.data+"%"
+                    
+                }else {
+                    var element = document.getElementById("discount");
+                    element.classList.add("is-invalid");
+                }
 	        });
         },
         pay() {
-            this.$axios.$get('/pricing_momo_bank').then((response)=>{
-	            console.log(response);
-	        });
+            if(this.bank) {
+                this.$axios.$post('/pricing_momo_bank',{code: this.discount,idJob: selectPay.id,bank: this.bank}).then((response)=>{
+                    console.log(response);
+                });
+            }else {
+                this.$swal(
+                    'Lỗi!',
+                    'Bạn chưa chọn ngân hàng',
+                    'error'
+                )
+            }
+
         },
         nameWithLang ({ name, id }) {
             return `${name}`

@@ -30,7 +30,6 @@ class MomoController extends Controller
     }
 
     public function pricing_momo_bank(Request $request){
-        
         function execPostRequest($url, $data)
         {
             $ch = curl_init($url);
@@ -49,40 +48,60 @@ class MomoController extends Controller
             curl_close($ch);
             return $result;
         }
-        $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-        $partnerCode = "MOMOD0QE20190401";
-        $accessKey = "Ve9eHuGowBUYbZho";
-        $serectkey = "8iMg1lTmz3lN3t0xJBrGIYxMACGQaiEC";
-        $orderInfo = "pay with MoMo";
-        $returnUrl = "https://devwork.vn/admin/index#/pricing/1";
-        $notifyurl = "https://devwork.vn/admin/index#/pricing/1";
-        $orderid = time()."";
-        $requestId = time()."";
-        $requestType = "payWithMoMoATM";
-        $extraData = "merchantName=Devwork";
-        $amount = "10000";
-        $bankCode = "VCB";
+            $code = $request->code;
+            $check = DB::table('nb_discount_code')->where('code', $code)->where('status', 0)->first();
+            if($check) {
+                if($check->discount == "100") {
+                    DB::table('nb_joblists')->where('id', $request->idJob)->update(['status' => 1]);
+                    DB::table('nb_discount_code')->where('code', $code)->update(['status' => 1]);
+                    $data = ['status' => 200, 'message' => 'Thanh toán thành công', 'data' => null];
+                    return response()->json($data);
+                }else {
+                    $amount = 10000-(10000*int($check->discount)/100);
+                }
+            }else {
+                $getJob = DB::table('nb_joblists')->where('id', $request->idJob)->first();
+                if($getJob) {
+                    $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
+                    $partnerCode = "MOMOD0QE20190401";
+                    $accessKey = "Ve9eHuGowBUYbZho";
+                    $serectkey = "8iMg1lTmz3lN3t0xJBrGIYxMACGQaiEC";
+                    $orderInfo = "pay with MoMo";
+                    $returnUrl = "https://devwork.vn/admin/index#/pricing/1";
+                    $notifyurl = "https://devwork.vn/admin/index#/pricing/1";
+                    $orderid = time()."";
+                    $requestId = time()."";
+                    $requestType = "payWithMoMoATM";
+                    $extraData = "merchantName=Devwork";
+                    $amount = "10000";
+                    $bankCode = $request->bank;
 
-        //before sign HMAC SHA256 signature
-        $rawHash = "partnerCode=".$partnerCode."&accessKey=".$accessKey."&requestId=".$requestId."&bankCode=".$bankCode."&amount=".$amount."&orderId=".$orderid."&orderInfo=".$orderInfo."&returnUrl=".$returnUrl."&notifyUrl=".$notifyurl."&extraData=".$extraData."&requestType=".$requestType;
-        // echo "Raw signature: ".$rawHash."\n";
-        $signature = hash_hmac("sha256", $rawHash, $serectkey);
-        $data =  array('partnerCode' => $partnerCode,
-                        'accessKey' => $accessKey,
-                        'requestId' => $requestId,
-                        'amount' => $amount,
-                        'orderId' => $orderid,
-                        'orderInfo' => $orderInfo,
-                        'returnUrl' => $returnUrl,
-                        'notifyUrl' => $notifyurl,
-                        'extraData' => $extraData,
-                        'bankCode' => $bankCode,
-                        'requestType' => $requestType,
-                        'signature' => $signature);
-        //print_r(json_encode($data));
-        $result = execPostRequest($endpoint, json_encode($data));
-        $jsonResult =json_decode($result,true);  // decode json
-        return response()->json($jsonResult['payUrl']);
+                    //before sign HMAC SHA256 signature
+                    $rawHash = "partnerCode=".$partnerCode."&accessKey=".$accessKey."&requestId=".$requestId."&bankCode=".$bankCode."&amount=".$amount."&orderId=".$orderid."&orderInfo=".$orderInfo."&returnUrl=".$returnUrl."&notifyUrl=".$notifyurl."&extraData=".$extraData."&requestType=".$requestType;
+                    // echo "Raw signature: ".$rawHash."\n";
+                    $signature = hash_hmac("sha256", $rawHash, $serectkey);
+                    $data =  array('partnerCode' => $partnerCode,
+                                    'accessKey' => $accessKey,
+                                    'requestId' => $requestId,
+                                    'amount' => $amount,
+                                    'orderId' => $orderid,
+                                    'orderInfo' => $orderInfo,
+                                    'returnUrl' => $returnUrl,
+                                    'notifyUrl' => $notifyurl,
+                                    'extraData' => $extraData,
+                                    'bankCode' => $bankCode,
+                                    'requestType' => $requestType,
+                                    'signature' => $signature);
+                    $result = execPostRequest($endpoint, json_encode($data));
+                    $jsonResult =json_decode($result,true);
+                    $data = ['status' => 200, 'message' => 'Thanh toán thành công', 'data' => $jsonResult['payUrl']];
+                    return response()->json($data);
+                } else {
+                    $data = ['status' => 200, 'message' => 'Việc làm không còn tồn tại', 'data' => null];
+                    return response()->json($data);
+                }
+            }
+
     }
 
 }
