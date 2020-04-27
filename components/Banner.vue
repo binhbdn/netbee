@@ -1,6 +1,6 @@
 <template>
   <div class="hero-wrap js-fullheight m-b-15"  style="position: relative; height: 100%;background-image: url('/assets/img/banner.png')" >
-    <div class="section-intro">
+    <div class="section-intro" :class="show ? 'section-intro-active' : ''">
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-xl-12 ftco-animate mb-5 pb-5 container" data-scrollax=" properties: { translateY: '70%' }">
@@ -34,7 +34,7 @@
                            aria-labelledby="v-pills-11-tab">
                         <form action="" class="search-job">
                           <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-9">
                               <div class="form-group">
                                 <div class="form-field">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
@@ -42,89 +42,10 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-group">
-                                <div class="form-field">
-                                  <div class="select-wrap">
-                                    <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
-                                    <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
-                                    <select name="" id="" class="form-control">
-                                      <option disabled selected>Chọn quốc gia</option>
-                                      <option value="">name</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
                                   <input type="button" value="Tìm ngay" class="form-control btn btn-primary" @click="searchCompany">
-                                </div>
-                              </div>
-                            </div>
-        
-                            <div class="col-md-12 d-none" id="detail_search" style="padding-left: 15px; padding-top: 10px;">
-                              <div class="row">
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-graduation-cap"></i></div>
-                                        <select name="" id="" class="form-control" >
-                                          <option disabled selected>Trình độ học vấn</option>
-                                          <option value="Cấp 3">Cấp 3</option>
-                                          <option value="Cao Đẳng">Cao đẳng</option>
-                                          <option value="Đại học">Đại học</option>
-                                          <option value="Sau đại học">Sau đại học</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-credit-card"></i></div>
-                                        <select name="" id="" class="form-control">
-                                          <option disabled selected>Mức lương</option>
-
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-tags"></i></div>
-                                        <select name="" id="" class="form-control" >
-                                          <option disabled selected>Tay nghề</option>
-
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-transgender-alt"></i></div>
-                                        <select name="" id="" class="form-control">
-                                          <option disabled selected>Giới tính</option>
-                                          <option value="1">Nam</option>
-                                          <option value="2">Nữ</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -295,77 +216,68 @@
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
-                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
+                                  <input type="submit" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-12 advanced_search_box" id="advanced_search_box">
-                              <a href="javascript:void();" id="advanced_search"> <b>Tìm kiếm nâng cao</b> </a>
+                              <a href="javascript:void();" id="advanced_search" @click="show = !show"> <b>Tìm kiếm nâng cao</b> </a>
                             </div>
-                            <div class="col-md-12 d-none" id="detail_search" style="padding-left: 15px; padding-top: 10px;">
-                              <div class="row">
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-graduation-cap"></i></div>
-                                        <select name="" id="" class="form-control" >
-                                          <option disabled selected>Trình độ học vấn</option>
-                                          <option value="Cấp 3">Cấp 3</option>
-                                          <option value="Cao Đẳng">Cao đẳng</option>
-                                          <option value="Đại học">Đại học</option>
-                                          <option value="Sau đại học">Sau đại học</option>
-                                        </select>
+                            <transition>
+                              <div class="col-md-12" id="detail_search" style="padding-left: 15px; padding-top: 10px;" v-if="show">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <div class="form-field">
+                                        <div class="select-wrap">
+                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
+                                          <input name="salary_start" type="text" class="form-control" placeholder="Mức lương tối thiểu....VND">
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-credit-card"></i></div>
-                                        <select name="" id="" class="form-control">
-                                          <option disabled selected>Mức lương</option>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <div class="form-field">
+                                        <div class="select-wrap">
+                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
+                                          <input name="salary_end" type="text" class="form-control" placeholder="Mức lương tối đa....VND">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <div class="form-field">
+                                        <div class="select-wrap">
+                                          <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                          <div class="icon" style="left:10px !important"><i class="fa fa-tags"></i></div>
+                                          <select name="" id="" class="form-control" >
+                                            <option disabled selected>Tay nghề</option>
 
-                                        </select>
+                                          </select>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-tags"></i></div>
-                                        <select name="" id="" class="form-control" >
-                                          <option disabled selected>Tay nghề</option>
-
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-transgender-alt"></i></div>
-                                        <select name="" id="" class="form-control">
-                                          <option disabled selected>Giới tính</option>
-                                          <option value="1">Nam</option>
-                                          <option value="2">Nữ</option>
-                                        </select>
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <div class="form-field">
+                                        <div class="select-wrap">
+                                          <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                          <div class="icon" style="left:10px !important"><i class="fa fa-transgender-alt"></i></div>
+                                          <select name="" id="" class="form-control">
+                                            <option disabled selected>Giới tính</option>
+                                            <option value="1">Nam</option>
+                                            <option value="2">Nữ</option>
+                                          </select>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            </transition>
                           </div>
                         </form>
                       </div>
@@ -385,13 +297,14 @@ export default {
    name: 'Header',
     data () {
       return {
-        keysearch: ''
+        keysearch: '',
+        show: false
       }
     },
     methods: {
       searchCompany(e){
         window.location.href = `/tim-cong-ty?keyword=${this.keysearch}`;
-      }
+      },
     },
 }
 </script>
@@ -578,5 +491,24 @@ export default {
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.1);
+  }
+
+  .section-intro-active{
+    height: 400px;
+    transition: opacity .75s;
+  }
+
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+
+  .slide-fade-leave-active {
+      transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to
+  /* .slide-fade-leave-active below version 2.1.8 */ {
+      transform: translateX(10px);
+      opacity: 0;
   }
 </style>

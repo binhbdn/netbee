@@ -28,9 +28,15 @@
               <br />Tin tuyển sinh
             </a>
           </li>
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/cong-ty'}">
+            <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center">
+              <i class="fa fa-building" style="font-size: 21px"></i>
+              <br />Công ty
+            </a>
+          </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
-            <a href="/tin-tuc" class="nav-link header-nav-link">
-              <i class="fa fa-table"></i>
+            <a href="/tin-tuc" class="nav-link header-nav-link" >
+              <i class="fa fa-table" style="font-size"></i>
               <br />Tin tức
             </a>
           </li>
@@ -72,12 +78,12 @@
               <a class="dropdown-item" @click="logout()">Đăng xuất</a>
             </div>
           </li>
-          <li class="nav-item cta cta-colored mr-md-2">
+          <!-- <li class="nav-item cta cta-colored mr-md-2">
             <a href="#" class="nav-link header-nav-link">
               <i class="fa fa-user-plus"></i>
               <br />Giới thiệu học sinh
             </a>
-          </li>
+          </li> -->
           <li class="nav-item cta dropdown">
             <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img style="margin-left: 19px;margin-bottom: -2px;" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="25px"/>
