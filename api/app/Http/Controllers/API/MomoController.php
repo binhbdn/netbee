@@ -17,6 +17,18 @@ use App\Mail\Sendmail;
 class MomoController extends Controller
 {
 
+    public function checkDiscountCode(Request $request)
+    {
+        $code = $request->code;
+        $check = DB::table('nb_discount_code')->where('code', $code)->where('status', 0)->first();
+        if($check) {
+            $data = ['status' => 200, 'message' => 'Mã hợp lệ', 'data' => $check->discount];
+        }else {
+            $data = ['status' => 400, 'message' => 'Mã code không tồn tại hoặc đã được sử dụng', 'data' => null];
+        }
+        return response()->json($data);
+    }
+
     public function pricing_momo_bank(Request $request){
         
         function execPostRequest($url, $data)
@@ -44,12 +56,12 @@ class MomoController extends Controller
         $orderInfo = "pay with MoMo";
         $returnUrl = "https://devwork.vn/admin/index#/pricing/1";
         $notifyurl = "https://devwork.vn/admin/index#/pricing/1";
-        $orderid = time();
+        $orderid = time()."";
         $requestId = time()."";
         $requestType = "payWithMoMoATM";
         $extraData = "merchantName=Devwork";
         $amount = "10000";
-        $bankCode = "SML";
+        $bankCode = "VCB";
 
         //before sign HMAC SHA256 signature
         $rawHash = "partnerCode=".$partnerCode."&accessKey=".$accessKey."&requestId=".$requestId."&bankCode=".$bankCode."&amount=".$amount."&orderId=".$orderid."&orderInfo=".$orderInfo."&returnUrl=".$returnUrl."&notifyUrl=".$notifyurl."&extraData=".$extraData."&requestType=".$requestType;
