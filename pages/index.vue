@@ -247,7 +247,7 @@
             <div class="card">
               <div class="card-header">
                 <h4><i class="fas fa-newspaper"></i> TIN TỨC</h4>
-                <a href="/tin-tuc"><i class="fad fa-plus"></i> Xem thêm</a>
+                <a href="/tin-tuc" class="btn bg-netbee">Xem thêm</a>
               </div>
               <div class="card-content collapse show news">
                 <div class="card-body">

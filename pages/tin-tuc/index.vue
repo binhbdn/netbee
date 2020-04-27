@@ -1,11 +1,11 @@
 <template>
     <div>
-        <section class="bg-white category p-1 m-b-15">
+        <section class="category p-b-15">
             <div class="container">
-                <div class="row d-flex bg-white ">
+                <div class="row d-flex">
                     <div class="col-md-6 pd-20">
-                        <a href="/"><i class="fa fa-home pr-2"></i>Trang chủ</a>
-                        <a href="/tin-tuc"><i class="fa fa-caret-right pr-2 pl-2"></i>Tin tức</a>
+                        <a href="/"><i class="fa fa-home"></i> Trang chủ </a>
+                        <a href="/tin-tuc"><i class="fa fa-caret-right"></i> Tin tức</a>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                         <div class="card" v-if="tintucNew.length > 0">
                             <div class="card-header">
                                 <h4><i class="fas fa-newspaper"></i> Tin mới</h4>
-                                <a href="/tin-tuc/tin-moi"><i class="fad fa-plus"></i> Xem thêm</a>
+                                <a href="/tin-tuc/tin-moi" class="btn bg-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -28,18 +28,18 @@
                         <div class="card" v-if="tintucCamNang.length > 0">
                             <div class="card-header">
                                 <h4><i class="fas fa-newspaper"></i> Cẩm nang</h4>
-                                <a href="/tin-tuc/cam-nang"><i class="fad fa-plus"></i> Xem thêm</a>
+                                <a href="/tin-tuc/cam-nang" class="btn bg-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <NewListPage2 :DataList="tintucCamNang"></NewListPage2>
+                                    <NewListPage1 :DataList="tintucCamNang"></NewListPage1>
                                 </div>
                             </div>
                         </div>
                         <div class="card" v-if="tintucDuHoc.length > 0">
                             <div class="card-header">
                                 <h4><i class="fas fa-newspaper"></i> Du học</h4>
-                                <a href="/tin-tuc/du-hoc"><i class="fad fa-plus"></i> Xem thêm</a>
+                                <a href="/tin-tuc/du-hoc" class="btn bg-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -50,7 +50,7 @@
                         <div class="card" v-if="tintucXKLD.length > 0">
                             <div class="card-header">
                                 <h4><i class="fas fa-newspaper"></i> Xuất khẩu lao động</h4>
-                                <a href="/tin-tuc/xuat-khau-lao-dong"><i class="fad fa-plus"></i> Xem thêm</a>
+                                <a href="/tin-tuc/xuat-khau-lao-dong" class="btn bg-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">

@@ -70,7 +70,7 @@
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
                                     <form class="col-9" action="/admin/tin-tuyen-dung/tao" method="">
-                                        <button class="btn-add btn btn-warning text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyện dụng</button>
+                                        <button class="btn-add btn btn-warning text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
                                     </form>
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
@@ -120,10 +120,11 @@
                                                         </li>
                                                         ID</th>
                                                     <th>Tiêu đề</th>
-                                                    <th>Thống kê</th>
+                                                    <th style="width:20%">Thống kê</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
+                                                    <th>Loại tin</th>
                                                     <th>Thao tác</th>
                                                 </tr>
                                             </thead>
@@ -144,7 +145,18 @@
                                                         </li>
                                                         {{item.id}}</td>
                                                     <td>{{item.title}}</td>
-                                                    <td>{{item.title}}</td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-6 pr-0 pl-0">
+                                                                <h3 class="text-center">{{(item.id)}}</h3>
+                                                                <p style="font-size:12px; text-align:center">Lượt xem</p>
+                                                            </div>
+                                                            <div class="col-6 pr-0 pl-0">
+                                                                <h3 class="text-center">0</h3>
+                                                                <p style="font-size:12px; text-align:center">Ứng tuyển</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td>{{formatDate(item.created_at)}}</td>
                                                     <td style="white-space: nowrap;">
                                                         <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
@@ -155,6 +167,13 @@
                                                         <span v-if="item.type == 2">Du học sinh</span>
                                                         <span v-if="item.type == 3">Tu nghiệp sinh</span>
                                                     </td>
+                                                    <td style="white-space: nowrap;">
+                                                        <span v-if="item.highlight_job == 1">TIN NỔI BẬT</span>
+                                                        <span v-if="item.highlight_job == 2">TIN VIP</span>
+                                                        <span v-if="item.highlight_job == 0">TIN THƯỜNG</span>
+                                                        <br>
+                                                        <a v-if="!item.status" @click="selectPay = {id: item.id, highlight_job: item.highlight_job}" style="color: #2f80ed" data-toggle="modal" data-target="#reportModal">Thanh toán ngay >></a>
+                                                    </td>
                                                     <td style="width: 25%;" >
                                                         <button v-if="$auth.user.role == 4" @click="changeStatus(item.id)" class="btn-action btn" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
                                                         <button  @click="changePublic(item.id)" class="btn-action btn" :class="item.isPublic == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.isPublic == 1 ? 'Hiện tin' : 'Ẩn tin' }}</button>
@@ -163,15 +182,144 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                            
                                         </table>
                                         <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
+                                        <infinite-loading
+                                            v-if="tinTuyenDung.length"
+                                            spinner="waveDots"
+                                            @infinite="infiniteScroll"
+                                        >
+                                        <div slot="spinner" class="mb-2" style="font-size:15px; font-style: italic">Đang tải...</div>
+                                        <div slot="no-more">No more message</div>
+                                        <div slot="no-results">No results message</div>
+                                        </infinite-loading>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+            </div>
+        </div>
+        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="editTodoTask" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <section class="todo-form">
+                        <form id="form-edit-todo" class="todo-input">
+                            <div class="modal-header  bg-info white">
+                                <h5 class="modal-title" id="editTodoTask">Thông tin đơn hàng - Gói {{ selectPay.highlight_job == 0 ? 'TIN THƯỜNG' : selectPay.highlight_job == 1 ? 'TIN NỔI BẬT' : 'TIN VIP'}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <label style="font-size: 20px">Mã giảm giá: </label>
+                                <fieldset>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-info waves-effect waves-light" type="button"><i class="feather icon-search"></i></button>
+                                        </div>
+                                        <input type="text" class="form-control is-valid" placeholder="Nhập mã giảm giá" v-model="discount">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-info waves-effect waves-light" @click="checkDiscount()" type="button">Kiểm tra</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <label style="font-size: 20px">Chọn ngân hàng: </label>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="ABBank">
+                                            <input type="radio"  id="ABB" value="ABB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_ABBank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="ACB">
+                                            <input type="radio" id="ACB" value="ACB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_ACB_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="AgriBank">
+                                            <input type="radio" id="VARB" value="VARB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Agribank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="BacABank">
+                                            <input type="radio" id="NASB" value="NASB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_BacaBank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Techcombank">
+                                            <input type="radio" id="TCB" value="TCB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Techcombank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="BIDV">
+                                            <input type="radio" id="BIDV" value="BIDV" v-model="bank">
+                                            <img src="/assets/img/bank/ic_BIDV_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="DongABank">
+                                            <input type="radio" id="DAB" value="DAB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_dongabank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Eximbank">
+                                            <input type="radio" id="EIB" value="EIB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Eximbank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="GPBank">
+                                            <input type="radio" id="GPB" value="GPB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_GPBank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="HDBank">
+                                            <input type="radio" id="HDB" value="HDB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_HDBank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="LienVietPostBank">
+                                            <input type="radio" id="LPB" value="LPB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_Lienvietpost_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Maritime Bank">
+                                            <input type="radio" id="MSB" value="MSB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_maritimeBank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="MBBank">
+                                            <input type="radio" id="MB" value="MB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_MBBank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="OceanBank">
+                                            <input type="radio" id="OJB" value="OJB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_oceanbank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Sacombank">
+                                            <input type="radio" id="STB" value="STB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Sacombank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="VIB Bank">
+                                            <input type="radio" id="VIB" value="VIB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_VIBank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="VietcomBank">
+                                            <input type="radio" id="VCB" value="VCB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Vietcombank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Vietinbank">
+                                            <input type="radio" id="CTG" value="CTG" v-model="bank">
+                                            <img src="/assets/img/bank/ic_Viettinban_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="VPBank">
+                                            <input type="radio" id="VPB" value="VPB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_VPbank_4@2x.png">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Seabank">
+                                            <input type="radio" id="SEAB" value="SEAB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_seabank_4@2x.png">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer">
+                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                    <button type="button" @click="pay()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
+                                        <span class="d-none d-lg-block">Thanh toán</span></button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
@@ -181,6 +329,8 @@ import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import Vue from 'vue'
 import moment from 'moment'
+
+
 export default {
     name: 'IndexNews',
         layout: 'admin',
@@ -198,10 +348,13 @@ export default {
         ]
     },
     components: {
-        Multiselect,
+        Multiselect
     },
     data() {
         return {
+            bank: '',
+            selectPay: '',
+            discount: '',
             tinTuyenDung: [],
             cardSearch: {
                 search: "",
@@ -219,7 +372,8 @@ export default {
                 {id: 0, name: 'Chưa kích hoạt'},
             ],
             id: null,
-            selected: []
+            selected: [],
+            page: 1
         }
     },
     created() {
@@ -227,12 +381,22 @@ export default {
         console.log(this.selected)
     },
     methods: {
+        checkDiscount() {
+            this.$axios.$get('/checkDiscountCode').then((response)=>{
+	            console.log(response);
+	        });
+        },
+        pay() {
+            this.$axios.$get('/pricing_momo_bank').then((response)=>{
+	            console.log(response);
+	        });
+        },
         nameWithLang ({ name, id }) {
             return `${name}`
         },
         fetch() {
-            this.$axios.$get('/tintuyendung/getTinTuyenDung').then((response)=>{
-	             this.tinTuyenDung=response.data;
+            this.$axios.$get('/tintuyendung/getTinTuyenDung?page='+ this.page).then((response)=>{
+	             this.tinTuyenDung=response.data.data;
 	        });
 
         },
@@ -441,7 +605,26 @@ export default {
                     'Lỗi bỏ kích hoạt!',
                     'error')
             }
-        }
+        },
+        infiniteScroll($state) {
+            setTimeout(() => {
+                this.page++
+                this.$axios
+                .get('/tintuyendung/getTinTuyenDung?page='+ this.page)
+                .then((response) => {
+                    console.log(response.data.data.data.length)
+                    if (response.data.data.data.length > 1) {
+                        response.data.data.data.forEach((item) => this.tinTuyenDung.push(item))
+                        $state.loaded()
+                    } else {
+                        $state.complete()
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }, 2000)
+        },
     },
     computed: {
         selectAll: {
@@ -479,5 +662,21 @@ export default {
 <style scoped>
 .pagination .page-item.active .page-link{
     background-color: #ffb701 !important;
+}
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 100px;
+  height: 100px;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+  background: #ffb701;
 }
 </style>

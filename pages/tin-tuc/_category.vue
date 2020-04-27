@@ -1,11 +1,11 @@
 <template>
     <div>
-        <section class="ftco-section bg-white category" style="">
+        <section class="ftco-sectioncategory">
             <div class="container">
-                <div class="row d-flex bg-white ">
-                    <div class="col-md-6 pd-20">
-                        <a href="#"><i class="fa fa-home pr-2"></i>Trang chủ</a>
-                        <a href="#"><i class="fa fa-caret-right pr-2 pl-2"></i>Tin tức</a>
+                <div class="row d-flex">
+                    <div class="col-md-6">
+                        <a href="/"><i class="fa fa-home"></i> Trang chủ </a>
+                        <a href="/tin-tuc"><i class="fa fa-caret-right"></i> Tin tức </a>
                         
                     </div>
                 </div>
@@ -17,13 +17,13 @@
                     <div class="col-8">
                         <div class="card">
                             <div class="card-header">
-                                <h4><i class="fas fa-newspaper"></i> TIN MỚI</h4>
+                                <h4><i class="fas fa-newspaper"></i> TIN TỨC</h4>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12 make-it-slow py-1" v-for="(item, index) in arrayNew" :key="index">
-                                            <NewItempage2 :id="item.id" :title="item.title" :content="item.content" :time="item.time" :type="1" :thuml="item.thuml" :created_at="item.created_at"></NewItempage2>
+                                            <NewItempage2 :id="item.id" :title="item.title" :short_content="item.short_content" :time="item.time" :type="1" :thuml="item.thuml" :created_at="item.created_at"></NewItempage2>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +97,6 @@ export default {
     },
      methods: {
         async fetch () {
-            console.log(this.$route.params.category)
             switch (this.$route.params.category) {
                 case "tin-moi":
                     let arrayNew = await this.$axios.$get('getTinTucNew?limit=5');

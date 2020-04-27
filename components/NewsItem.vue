@@ -1,25 +1,16 @@
 <template>
-    <div class="card ecommerce-card border-job-item">
-        <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" class="text-center pt-1 px-1" style="height: 240px">
-            <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" style="max-height: 220px; max-width: 100%;">
+    <div class="card border-job-item" style="border-radius: 5px">
+        <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" class="text-center" style="height: 220px">
+            <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" style="max-height: 100%;width: 100%;height: 100%;object-fit: fill;">
         </a>
-        <div class="px-2">
-            <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" ><h4 class="title">{{ title }}</h4></a>
+        <div class="px-2 p-t-15">
+            <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" ><h4 class="title font-weight-600">{{ title }}</h4></a>
             <p style="height: 100px;" class="el-3">{{ short_content }}</p>
-            <p><i class="fad fa-calendar-star"></i> {{ created_at | formatDate }}</p>
+            <p><i class="fad fa-calendar-star"></i> {{ ConvertDate(created_at) }}</p>
         </div>
     </div>
 </template>
 <script>
-import moment from 'moment'
-import Vue from "vue";
-
-Vue.filter('formatDate', function(value) {
-  if (value) {
-    return moment(String(value)).format('DD/MM/YYYY')
-  }
-})
-
 export default {
     props: ['id', 'title', 'short_content', 'created_at','thuml']
 }

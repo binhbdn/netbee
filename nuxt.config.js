@@ -68,7 +68,6 @@ module.exports = {
             facebook: {
                 client_id: '1459241224260897',
                 userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email,birthday',
-                scope: ['public_profile', 'email', 'user_birthday'],
                 redirect_uri:'https://netbee.vn/callback'
             },
             google: {
@@ -85,7 +84,9 @@ module.exports = {
         '~/plugins/helppers.js',
         '~/plugins/vue-lazyload.js',
         '~/plugins/jsonld.js',
-        { src: './plugins/vue2-editor', ssr: false }
+        { src: './plugins/vue2-editor', ssr: false },
+        { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
+        { src: '~/plugins/infiniteloading', ssr: false }
     ],
     vue: {
         config: {
