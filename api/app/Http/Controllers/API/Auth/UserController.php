@@ -497,7 +497,7 @@ class UserController extends Controller
                 $file = $request->file('avatar');
                 $fileinfo = pathinfo($file->getClientOriginalName());
                 $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
-                $uploadPath = '/home/en-el.devwork.vn/public_html/static/uploads/users/avatars';
+                $uploadPath = '/home/netbee.vn/html/static/uploads/users/avatars';
                 $insert = [
                     'birth_of_date' => $request->birth_of_date,
                     'address_detail' => $request->address_detail,

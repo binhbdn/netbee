@@ -184,7 +184,7 @@ class TinTucController extends Controller
             $file = $request->file('thuml');
             $fileinfo = pathinfo($file->getClientOriginalName());
             $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
-            $uploadPath = '/home/en-el.devwork.vn/public_html/static/uploads/news/';
+            $uploadPath = '/home/netbee.vn/html/static/uploads/news/';
             $insert = [
                 'title' => $request->title,
                 'short_content' => $request->short_content,
@@ -235,7 +235,7 @@ class TinTucController extends Controller
                     $file = $request->file('thuml');
                     $fileinfo = pathinfo($file->getClientOriginalName());
                     $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
-                    $uploadPath = '/home/en-el.devwork.vn/public_html/static/uploads/news/';
+                    $uploadPath = '/home/netbee.vn/html/static/uploads/news/';
                     $insert = [
                         'title' => $request->title,
                         'short_content' => $request->short_content,
