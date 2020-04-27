@@ -120,7 +120,7 @@
                                                         </li>
                                                         ID</th>
                                                     <th>Tiêu đề</th>
-                                                    <th>Thống kê</th>
+                                                    <th style="width:20%">Thống kê</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
@@ -144,7 +144,18 @@
                                                         </li>
                                                         {{item.id}}</td>
                                                     <td>{{item.title}}</td>
-                                                    <td>{{item.title}}</td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-6 pr-0 pl-0">
+                                                                <h3 class="text-center">{{(item.id)}}</h3>
+                                                                <p style="font-size:12px; text-align:center">Lượt xem</p>
+                                                            </div>
+                                                            <div class="col-6 pr-0 pl-0">
+                                                                <h3 class="text-center">0</h3>
+                                                                <p style="font-size:12px; text-align:center">Ứng tuyển</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td>{{formatDate(item.created_at)}}</td>
                                                     <td style="white-space: nowrap;">
                                                         <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
@@ -163,9 +174,17 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                            
                                         </table>
                                         <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
+                                        <infinite-loading
+                                            v-if="tinTuyenDung.length"
+                                            spinner="waveDots"
+                                            @infinite="infiniteScroll"
+                                        >
+                                        <div slot="spinner" class="mb-2" style="font-size:15px; font-style: italic">Đang tải...</div>
+                                        <div slot="no-more">No more message</div>
+                                        <div slot="no-results">No results message</div>
+                                        </infinite-loading>
                                     </div>
                                 </div>
                             </div>
@@ -181,6 +200,8 @@ import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import Vue from 'vue'
 import moment from 'moment'
+
+
 export default {
     name: 'IndexNews',
         layout: 'admin',
@@ -198,7 +219,7 @@ export default {
         ]
     },
     components: {
-        Multiselect,
+        Multiselect
     },
     data() {
         return {
@@ -219,7 +240,8 @@ export default {
                 {id: 0, name: 'Chưa kích hoạt'},
             ],
             id: null,
-            selected: []
+            selected: [],
+            page: 1
         }
     },
     created() {
@@ -231,8 +253,8 @@ export default {
             return `${name}`
         },
         fetch() {
-            this.$axios.$get('/tintuyendung/getTinTuyenDung').then((response)=>{
-	             this.tinTuyenDung=response.data;
+            this.$axios.$get('/tintuyendung/getTinTuyenDung?page='+ this.page).then((response)=>{
+	             this.tinTuyenDung=response.data.data;
 	        });
 
         },
@@ -441,7 +463,26 @@ export default {
                     'Lỗi bỏ kích hoạt!',
                     'error')
             }
-        }
+        },
+        infiniteScroll($state) {
+            setTimeout(() => {
+                this.page++
+                this.$axios
+                .get('/tintuyendung/getTinTuyenDung?page='+ this.page)
+                .then((response) => {
+                    console.log(response.data.data.data.length)
+                    if (response.data.data.data.length > 1) {
+                        response.data.data.data.forEach((item) => this.tinTuyenDung.push(item))
+                        $state.loaded()
+                    } else {
+                        $state.complete()
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }, 2000)
+        },
     },
     computed: {
         selectAll: {

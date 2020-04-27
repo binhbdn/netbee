@@ -85,7 +85,8 @@ module.exports = {
         '~/plugins/vue-lazyload.js',
         '~/plugins/jsonld.js',
         { src: './plugins/vue2-editor', ssr: false },
-        { src: '~/plugins/vue-fb-customer-chat.js', ssr: false }
+        { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
+        { src: '~/plugins/infiniteloading', ssr: false }
     ],
     vue: {
         config: {
