@@ -398,7 +398,7 @@ export default {
         },
         pay() {
             if(this.bank) {
-                this.$axios.$post('/pricing_momo_bank',{code: this.discount,idJob: selectPay.id,bank: this.bank}).then((response)=>{
+                this.$axios.$post('/pricing_momo_bank',{code: this.discount,idJob: this.selectPay.id,bank: this.bank}).then((response)=>{
                     console.log(response);
                 });
             }else {

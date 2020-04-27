@@ -62,10 +62,10 @@ class MomoController extends Controller
             }else {
                 $getJob = DB::table('nb_joblists')->where('id', $request->idJob)->first();
                 if($getJob) {
-                    $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-                    $partnerCode = "MOMOD0QE20190401";
-                    $accessKey = "Ve9eHuGowBUYbZho";
-                    $serectkey = "8iMg1lTmz3lN3t0xJBrGIYxMACGQaiEC";
+                    $endpoint = "https://payment.momo.vn/gw_payment/transactionProcessor";
+                    $partnerCode = "MOMOOMRU20191003";
+                    $accessKey = "ndQI1iiCLFR3EhIZ";
+                    $serectkey = "TR5EkmDsdECTZNms1SkoF2Ix4sWNw52u";
                     $orderInfo = "pay with MoMo";
                     $returnUrl = "https://devwork.vn/admin/index#/pricing/1";
                     $notifyurl = "https://devwork.vn/admin/index#/pricing/1";
@@ -75,10 +75,7 @@ class MomoController extends Controller
                     $extraData = "merchantName=Devwork";
                     $amount = "10000";
                     $bankCode = $request->bank;
-
-                    //before sign HMAC SHA256 signature
                     $rawHash = "partnerCode=".$partnerCode."&accessKey=".$accessKey."&requestId=".$requestId."&bankCode=".$bankCode."&amount=".$amount."&orderId=".$orderid."&orderInfo=".$orderInfo."&returnUrl=".$returnUrl."&notifyUrl=".$notifyurl."&extraData=".$extraData."&requestType=".$requestType;
-                    // echo "Raw signature: ".$rawHash."\n";
                     $signature = hash_hmac("sha256", $rawHash, $serectkey);
                     $data =  array('partnerCode' => $partnerCode,
                                     'accessKey' => $accessKey,
