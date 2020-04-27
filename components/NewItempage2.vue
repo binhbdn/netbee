@@ -7,13 +7,12 @@
         </div>
         <div class="col-7 position-relative">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
-                <h2 class="NB_title text-black el-3 font-weight-600">{{ title }}</h2>
+                <h2 class="NB_title text-black el-3 font-weight-600 p-t-5">{{ title }}</h2>
             </a>
-            <p style="height: 97px;" class="el-3" v-if="type == 1 || type == 2">{{ short_content }}</p>
-            <div class="position-absolute" style="bottom: 10px">
+            <p style="height: 85px;" class="el-3" v-if="type == 1 || type == 2">{{ short_content }}</p>
+            <div style="bottom: 10px">
                 <i class="fad fa-calendar-star"></i><span class="ml-1">{{ ConvertDate(created_at) }}</span>
             </div>
-            
         </div>
     </div>
 </template>

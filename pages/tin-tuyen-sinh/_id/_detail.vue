@@ -1,5 +1,5 @@
 <template>
-    <div class="container" id="fb-root">
+    <div class="container">
       <section>
         <div class="row">
           <div class="col-lg-12 col-12">
@@ -53,7 +53,7 @@
                 <div class="card-body">
                     <div class="row p-t-10">
                         <div class="col-12">
-                            <div class="col-12 p-l-0">
+                            <div class="col-12 p-l-0 p-t-5">
                                 <h5 class="font-weight-600 line-title">THÔNG TIN TUYỂN DỤNG NHANH</h5>
                             </div>
                             <div class="row">
@@ -71,7 +71,6 @@
                                         <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuc.expected_date) }}</p>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                         <div class="col-12">
@@ -116,28 +115,6 @@
                                 <div class="col-lg-12">
                                     <p class="px-1" v-html="tintuc.cv_content" style="white-space: pre-line;"></p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title">THÔNG TIN TUYỂN DỤNG NHANH</h5>
-                            </div>
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <div class="px-1">
-                                        <p><span class="font-weight-600">Địa điểm:</span> {{ tintuc.workplace }}</p>
-                                        <p v-if="tintuc.type == 2"><span class="font-weight-600">Trường:</span> {{ tintuc.school_name }}</p>
-                                        <p><span class="font-weight-600">Tuổi:</span> {{ tintuc.age_start }} {{ tintuc.age_end? ' - '+tintuc.age_end+' tuổi' : ' tuổi trở lên' }}</p>
-                                        <p v-if="tintuc.type != 2"><span class="font-weight-600">Lương:</span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
-                                        <p v-if="tintuc.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
-                                        <p v-if="tintuc.type != 2"><span class="font-weight-600">Hình thức làm việc:</span> {{ tintuc.form_work == 1 ? 'Toàn thời gian' : tintuc.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
-                                        <p v-if="tintuc.time_bonus"><span class="font-weight-600">Bonus:</span> {{ tintuc.time_bonus == 1 ? tintuc.bonus : tintuc.time_bonus == 2 ? tintuc.bonus * 1.5 : tintuc.bonus * 3 }}{{ tintuc.currency }}</p>
-                                        <p><span class="font-weight-600">Chi phí xuất cảnh:</span> {{ tintuc.subsidy }}{{ tintuc.currency }}</p>
-                                        <p><span class="font-weight-600">Ngày bắt đầu nhận hồ sơ:</span> {{ ConvertDate(tintuc.date_start) }}</p>
-                                        <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuc.expected_date) }}</p>
-                                    </div>
-                                </div>
-                                
                             </div>
                         </div>
                         <div class="col-12 pb-2">
@@ -229,6 +206,7 @@
                 </div>
             </div>
         </div>
+        <div id="fb-root"></div>
     </div>
 </template>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=1459241224260897&autoLogAppEvents=1"></script>

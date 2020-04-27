@@ -13,7 +13,7 @@
                                        <ValidationProvider 
                                           name="Họ và tên"
                                           ref="name"
-                                          rules="required|max:20"
+                                          rules="required"
                                            v-slot="{ errors }"
                                            > 
                               <div class="form-group col-sm-12" style="height: 47px;">

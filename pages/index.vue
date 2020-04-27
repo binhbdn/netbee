@@ -247,7 +247,7 @@
             <div class="card">
               <div class="card-header">
                 <h4><i class="fas fa-newspaper"></i> TIN TỨC</h4>
-                <a href="/tin-tuc"><i class="fad fa-plus"></i> Xem thêm</a>
+                <a href="/tin-tuc" class="btn bg-netbee">Xem thêm</a>
               </div>
               <div class="card-content collapse show news">
                 <div class="card-body">
@@ -275,7 +275,7 @@
     async asyncData({$axios, route}) {
       let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=20&type=0`)
       let getTinTuyenDungHot = await $axios.$get(`getTinTuyenDungHot?limit=0`)
-      let getTinTucNew = await $axios.$get('getTinTucNew?limit=3')
+      let getTinTucNew = await $axios.$get('getTinTucNew?limit=4')
       return {
           arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
           arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
