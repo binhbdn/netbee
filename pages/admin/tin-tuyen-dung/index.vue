@@ -70,7 +70,7 @@
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
                                     <form class="col-9" action="/admin/tin-tuyen-dung/tao" method="">
-                                        <button class="btn-add btn btn-warning text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyện dụng</button>
+                                        <button class="btn-add btn btn-warning text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
                                     </form>
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
@@ -124,6 +124,7 @@
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
+                                                    <th>Loại tin</th>
                                                     <th>Thao tác</th>
                                                 </tr>
                                             </thead>
@@ -166,6 +167,13 @@
                                                         <span v-if="item.type == 2">Du học sinh</span>
                                                         <span v-if="item.type == 3">Tu nghiệp sinh</span>
                                                     </td>
+                                                    <td style="white-space: nowrap;">
+                                                        <span v-if="item.highlight_job == 1">TIN NỔI BẬT</span>
+                                                        <span v-if="item.highlight_job == 2">TIN VIP</span>
+                                                        <span v-if="item.highlight_job == 0">TIN THƯỜNG</span>
+                                                        <br>
+                                                        <a v-if="!item.status" @click="selectPay = {id: item.id, highlight_job: item.highlight_job}" style="color: #2f80ed" data-toggle="modal" data-target="#reportModal">Thanh toán ngay >></a>
+                                                    </td>
                                                     <td style="width: 25%;" >
                                                         <button v-if="$auth.user.role == 4" @click="changeStatus(item.id)" class="btn-action btn" style="width: 110px" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt' }}</button>
                                                         <button  @click="changePublic(item.id)" class="btn-action btn" :class="item.isPublic == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.isPublic == 1 ? 'Hiện tin' : 'Ẩn tin' }}</button>
@@ -191,6 +199,42 @@
                         </div>
                     </div>
                 </section>
+            </div>
+        </div>
+        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="editTodoTask" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <section class="todo-form">
+                        <form id="form-edit-todo" class="todo-input">
+                            <div class="modal-header  bg-info white">
+                                <h5 class="modal-title" id="editTodoTask">Thông tin đơn hàng - Gói {{ selectPay.highlight_job == 0 ? 'TIN THƯỜNG' : selectPay.highlight_job == 1 ? 'TIN NỔI BẬT' : 'TIN VIP'}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <label style="font-size: 16px">Mã giảm giá: </label>
+                                <fieldset>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-info waves-effect waves-light" type="button"><i class="feather icon-search"></i></button>
+                                        </div>
+                                        <input type="text" class="form-control is-valid" placeholder="Nhập mã giảm giá">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-info waves-effect waves-light" type="button">Xác nhận</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer">
+                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                    <button type="button" @click="pay()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
+                                        <span class="d-none d-lg-block">Thanh toán</span></button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
@@ -223,6 +267,7 @@ export default {
     },
     data() {
         return {
+            selectPay: '',
             tinTuyenDung: [],
             cardSearch: {
                 search: "",
@@ -249,6 +294,11 @@ export default {
         console.log(this.selected)
     },
     methods: {
+        pay() {
+            this.$axios.$get('/pricing_momo_bank').then((response)=>{
+	            console.log(response);
+	        });
+        },
         nameWithLang ({ name, id }) {
             return `${name}`
         },

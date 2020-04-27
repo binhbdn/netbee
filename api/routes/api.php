@@ -20,6 +20,7 @@ Route::namespace('API')->group(function () {
   Route::get('getTinTuyenDungHot', 'TinTuyenDungController@getTinTuyenDungHot');
   Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
   Route::get('getInfoCompanyById/{id}', 'Auth\UserController@getInfoCompanyById');
+  Route::get('pricing_momo_bank', 'MomoController@pricing_momo_bank');
   //tìm kiếm
   Route::get('searchCompany', 'TimKiemController@searchCompany');
 });
@@ -37,6 +38,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('readNotification', 'NotificationController@readNotification');
       Route::post('readNotificationAll', 'NotificationController@readNotificationAll');
       Route::get('logout', 'Auth\UserController@logout');
+      
     //admin
       Route::prefix('tintuc')->group(function () {
         Route::get('getTinTuc', 'Admin\TinTucController@getTinTuc');
