@@ -56,7 +56,9 @@ class TinTucController extends Controller
     public function getDetailTinTuc(Request $request)
     {
         $tin = DB::table('news')
-        ->where('id', $request->id)
+        ->leftJoin('users', 'news.user_created', '=','users.id')
+        ->select('news.*','users.name as user_created_name')
+        ->where('news.id', $request->id)
         ->first();
         if($tin)
             $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $tin];

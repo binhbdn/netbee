@@ -42,6 +42,7 @@
                                         <h3 class="white">{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
                                     </div>
                                 </li>
+                                
                                 <li class="scrollable-container media-list scrollbar">
                                     <a :style="notification.status_notification ? '' : 'background: #e0e0e0'" class="d-flex justify-content-between" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
                                       <div class="media d-flex align-items-start">
@@ -54,9 +55,19 @@
                                               <time class="media-meta">{{ revertTime(notification.created_at) }}</time></small>
                                       </div>
                                     </a>
+                                        <infinite-loading
+                                            v-if="notifications.length"
+                                            spinner="bubbles"
+                                            @infinite="infiniteScroll" style=" width:100%"
+                                        >
+                                        <div slot="no-more" style="font-size:12px; font-style: italic">Bạn không còn thông báo mới</div>
+                                        <div slot="no-results" style="font-size:12px; font-style: italic">Không còn kết quả.</div>
+                                    </infinite-loading>
                                 </li>
+                                
                                 <li class="dropdown-menu-footer" @click="updateStatusAll()"><a class="dropdown-item p-1 text-center">Xem tất cả</a></li>
                           </ul>
+                          
                       </li>
                       <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                               <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{ $auth.user.name }}</span><span class="user-status">
@@ -80,7 +91,8 @@ export default {
   data () {
     return {
         notifications: [],
-        countNoti: 0
+        countNoti: 0,
+        page:1
     }
   },
   methods:  {
@@ -100,12 +112,39 @@ export default {
                 this.countNoti = 0;
             })
         },
+        infiniteScroll($state) {
+            setTimeout(() => {
+                this.page++
+                this.$axios
+                .get('/getNotification?page='+ this.page)
+                .then((response) => {
+                    console.log('hello')
+                    console.log(response.data.data.notifications.data)
+                    if (response.data.data.notifications.data.length > 1) {
+                        response.data.data.notifications.data.forEach((item) => this.notifications.push(item))
+                        $state.loaded()
+                    } else {
+                        $state.complete()
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }, 500)
+        },
     },
     mounted() {
-        this.$axios.$get('getNotification').then((response) => {
+        this.$axios.$get('getNotification?page='+this.page).then((response) => {
             this.notifications = response.data.notifications.data,
-            this.countNoti = response.data.countNotRead
+            this.countNoti = response.data.countNotRead,
+            console.log(response.data.notifications)
         })
+        
     },
 }
 </script>
+<style scoped>
+.scrollable-container::-webkit-scrollbar {
+  display: none;
+}
+</style>

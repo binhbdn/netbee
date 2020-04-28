@@ -30,15 +30,16 @@ class TinTuyenController extends Controller
                 ->where('nb_joblists.id_created',$id_user)
                 ->where('nb_joblists.deleted',0)
                 ->orderBy('nb_joblists.id', 'DESC')
-                ->select('nb_joblists.*','nb_job_views.id_viewer')
+                ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers'))
+                ->groupBy('nb_joblists.id')
                 ->paginate(6);
                 $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
             }
             else{
                 $getTin = DB::table('nb_joblists')
+                ->where('nb_joblists.deleted',0)
                 ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
                 ->orderBy('nb_joblists.id', 'DESC')
-                // ->select(array('nb_joblists.*', DB::raw('COUNT(nb_joblists.id) as viewers'))) 
                 ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers'))
                 ->groupBy('nb_joblists.id')
                 ->paginate(6);

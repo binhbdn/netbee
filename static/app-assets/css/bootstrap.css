@@ -7223,7 +7223,7 @@ a.close.disabled {
     -ms-flex-pack: center;
     justify-content: center;
     width: 15%;
-    color: #FFFFFF;
+    color: #FFC107;
     text-align: center;
     opacity: 0.5;
     -webkit-transition: opacity 0.15s ease;
@@ -7304,7 +7304,7 @@ a.close.disabled {
     margin-left: 3px;
     text-indent: -999px;
     cursor: pointer;
-    background-color: #FFFFFF;
+    background-color: #ffc107;
     background-clip: padding-box;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
