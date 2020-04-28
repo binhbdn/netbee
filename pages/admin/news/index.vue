@@ -90,9 +90,9 @@
                                                     Hành động
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
-                                                    <a class="dropdown-item" @click="deleteMultipleTinTuc()"><i class="feather icon-trash-2 warning"></i>Xóa</a>
-                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuc(1)"><i class="fas fa-circle success" style="font-size: 7px"></i>Kích hoạt</a>
-                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuc(0)"><i class="fas fa-circle danger" style="font-size: 7px"></i>Bỏ kích hoạt</a>
+                                                    <a class="dropdown-item" @click="deleteMultipleTinTuc()"><i class="feather icon-trash-2"></i>Xóa</a>
+                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuc(1)"><i class="far fa-check-circle"></i>Kích hoạt</a>
+                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuc(0)"><i class="far fa-times-circle"></i>Bỏ kích hoạt</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                                                         </li>
                                                         ID</th>
                                                     <th>Tiêu đề</th>
-                                                    <th style="width:14%; text-align:center">Thống kê</th>
+                                                    <th style="width:14%;">Thống kê</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
@@ -141,11 +141,11 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td><a title="Xem chi tiết" :href="`/tin-tuc/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
+                                                    <td><a class="title-records" title="Xem chi tiết" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-6 pr-0 pl-0">
-                                                                <h3 class="text-center">{{(item.id)}}</h3>
+                                                                <h3 class="text-center">{{(item.viewers)}}</h3>
                                                                 <p style="font-size:12px; text-align:center">Lượt xem</p>
                                                             </div>
                                                             <div class="col-6 pr-0 pl-0">
@@ -155,14 +155,14 @@
                                                         </div>
                                                     </td>
                                                     <td>{{formatDate(item.created_at)}}</td>
-                                                    <td v-if="item.status == 1">
+                                                    <td v-if="item.status == 0">
                                                         <div class="chip chip-danger">
                                                             <div class="chip-body">
                                                                 <div class="chip-text">Chưa kích hoạt</div>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td v-if="item.status == 0">
+                                                    <td v-if="item.status == 1">
                                                         <div class="chip chip-success">
                                                             <div class="chip-body">
                                                                 <div class="chip-text">Đã kích hoạt</div>
@@ -182,7 +182,7 @@
                                                                         Chọn thao tác
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i style="font-size: 7px" :class="item.status == 1 ? 'fas fa-circle success' : 'fas fa-circle danger'"></i>{{ item.status == 1 ? 'Kích hoạt' : "Bỏ kích hoạt" }}</a>
+                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-check-circle' : 'far fa-times-circle'"></i>{{ item.status == 1 ? 'Kích hoạt' : "Bỏ kích hoạt" }}</a>
                                                                         <a :href="`/admin/news/edit/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
                                                                         <a v-on:click="deleteNews(item.id)" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
                                                                     </div>
@@ -201,7 +201,7 @@
                         <infinite-loading
                                 v-if="tinTuc.length"
                                 spinner="bubbles"
-                                @infinite="infiniteScroll" style="padding:20px"
+                                @infinite="infiniteScroll" style="padding:20px; width:100%"
                             >
                             <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
                             <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>

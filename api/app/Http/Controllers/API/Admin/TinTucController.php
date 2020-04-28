@@ -28,18 +28,20 @@ class TinTucController extends Controller
         try {
             if($role_user != 4){
                 $getTin = DB::table('news')->join('log_view_news','log_view_news.news_id','=','news.id')
-                //
                 ->where('news.id_created',$id_user)
                 ->where('news.deleted',0)
                 ->orderBy('news.id', 'DESC')
-                ->select('news.*','log_view_news.news_id')
+                ->select('news.*',DB::raw('count(log_view_news.news_id) as viewers'))
+                ->groupBy('news.id')
                 ->paginate(6);
                 $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
             }
             else{
-                $getTin = DB::table('news')->leftJoin('log_view_news','log_view_news.news_id','=','news.id')
+                $getTin = DB::table('news')
+                ->leftJoin('log_view_news','log_view_news.news_id','=','news.id')
                 ->orderBy('news.id', 'DESC')
-                ->select('news.*','log_view_news.news_id')
+                ->select('news.*',DB::raw('count(log_view_news.news_id) as viewers'))
+                ->groupBy('news.id')
                 ->paginate(6);
                 $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
             }
