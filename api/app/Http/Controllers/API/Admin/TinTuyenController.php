@@ -236,25 +236,6 @@ class TinTuyenController extends Controller
         }
         return response()->json($data);
     }
-    public function getQuocGia() {
-        try{
-            $getQuocGia = DB::table('nations')->get();
-            $data = ['status'=> 200, 'message' => 'thành công', 'data' => $getQuocGia];
-        } catch (\Exception $e){
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
-    }
-
-    public function getVisa() {
-        try{
-            $getQuocGia = DB::table('visa_profession')->get();
-            $data = ['status'=> 200, 'message' => 'thành công', 'data' => $getQuocGia];
-        } catch (\Exception $e){
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
-    }
 
     public function getDetailTinTuyen(Request $request){
         try{

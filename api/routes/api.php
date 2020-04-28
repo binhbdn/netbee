@@ -24,6 +24,9 @@ Route::namespace('API')->group(function () {
   Route::get('checkDiscountCode', 'MomoController@checkDiscountCode');
   //tìm kiếm
   Route::get('searchCompany', 'TimKiemController@searchCompany');
+  Route::get('searchJobs', 'TimKiemController@searchJobs');
+  Route::get('getQuocGia', 'TimKiemController@getQuocGia');
+  Route::get('getVisa', 'TimKiemController@getVisa');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
@@ -59,8 +62,6 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('deleteMultipleTinTuyenDung', 'Admin\TinTuyenController@deleteMultipleTinTuyenDung');
         Route::post('changePublic', 'Admin\TinTuyenController@changePublic');
         Route::get('searchTinTuyenDung', 'Admin\TinTuyenController@searchTinTuyenDung');
-        Route::get('getQuocGia', 'Admin\TinTuyenController@getQuocGia');
-        Route::get('getVisa', 'Admin\TinTuyenController@getVisa');
         Route::post('createTinTuyen', 'Admin\TinTuyenController@createTinTuyen');
         Route::post('postView', 'Admin\TinTuyenController@postView');
         Route::post('postSave', 'Admin\TinTuyenController@postSave');
