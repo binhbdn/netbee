@@ -401,18 +401,20 @@ export default {
         this.fetch();
     },
     mounted() {
-        if(typeof this.$route.query.errorCode !== 'undefined' && this.$route.query.errorCode == 0) {
-            this.$swal(
-                'Thành công!',
-                'Thanh toán thành công',
-                'success'
-            )
-        }else {
-            this.$swal(
-                'Thất bại!',
-                'Thanh toán thất bại',
-                'error'
-            ) 
+        if(typeof this.$route.query.errorCode !== 'undefined' ) {
+            if(this.$route.query.errorCode == 0) {
+                this.$swal(
+                    'Thành công!',
+                    'Thanh toán thành công',
+                    'success'
+                )
+            }else {
+                this.$swal(
+                    'Thất bại!',
+                    'Thanh toán thất bại',
+                    'error'
+                ) 
+            }
         }
     },
     methods: {
