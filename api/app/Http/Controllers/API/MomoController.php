@@ -84,7 +84,7 @@ class MomoController extends Controller
                 $orderInfo = Auth::user()->id;
                 $returnUrl = "https://netbee.vn/admin/tin-tuyen-dung";
                 $notifyurl = "https://netbee.vn/api/pricing_momo_bank_checking";
-                $orderid = $request->idJob;
+                $orderid = $request->idJob."";
                 $requestId = $code ?? '0';
                 $requestType = "payWithMoMoATM";
                 $extraData = "merchantName=Netbee";

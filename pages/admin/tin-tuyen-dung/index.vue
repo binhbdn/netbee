@@ -174,7 +174,7 @@
                                                         <span v-if="item.highlight_job == 2">TIN VIP</span>
                                                         <span v-if="item.highlight_job == 0">TIN THƯỜNG</span>
                                                         <br>
-                                                        <a v-if="!item.status" @click="selectPay = {id: item.id, highlight_job: item.highlight_job}" style="color: #2f80ed" data-toggle="modal" data-target="#reportModal" ><span data-toggle="tooltip"  data-placement="top" :title="`Thanh toán để kích hoạt tin`"> Thanh toán ngay >></span></a>
+                                                        <a v-if="!item.status" @click="selectPay = {id: item.id, highlight_job: item.highlight_job}" style="color: #2f80ed" data-toggle="modal" data-target="#reportModal" data-placement="right" :title="`Thanh toán để kích hoạt tin`">Thanh toán ngay</a>
                                                     </td>
                                                     <td>
                                                         <div class="action-btns">
