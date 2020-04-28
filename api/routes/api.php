@@ -20,7 +20,8 @@ Route::namespace('API')->group(function () {
   Route::get('getTinTuyenDungHot', 'TinTuyenDungController@getTinTuyenDungHot');
   Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
   Route::get('getInfoCompanyById/{id}', 'Auth\UserController@getInfoCompanyById');
-  
+  Route::get('getCompanyHot', 'Auth\UserController@getCompanyHot');
+  Route::get('getCompanyNew', 'Auth\UserController@getCompanyNew');
   Route::post('pricing_momo_bank_checking', 'MomoController@pricing_momo_bank_checking');
   Route::get('checkDiscountCode', 'MomoController@checkDiscountCode');
   //tìm kiếm
@@ -34,8 +35,6 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('changeInfo', 'Auth\UserController@changeInfo');
       Route::get('getInfoCompany', 'Auth\UserController@getInfoCompany');
       Route::post('changeInfoCompany', 'Auth\UserController@changeInfoCompany');
-      Route::get('getCompanyHot', 'Auth\UserController@getCompanyHot');
-      Route::get('getCompanyNew', 'Auth\UserController@getCompanyNew');
       Route::get('getNotification', 'NotificationController@getNotification');
       Route::post('readNotification', 'NotificationController@readNotification');
       Route::post('readNotificationAll', 'NotificationController@readNotificationAll');

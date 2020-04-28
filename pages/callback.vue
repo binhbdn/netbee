@@ -38,6 +38,8 @@ export default {
                         this.$auth.logout();
                         window.location.href = '/';
                     })
+                }else if(response.status == 201){
+                    alert('123');
                 }
             }).catch(()=> {
                 this.$swal(
