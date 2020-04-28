@@ -118,7 +118,7 @@
                                                         </li>
                                                         ID</th>
                                                     <th>Tiêu đề</th>
-                                                    <th style="width:14%;">Thống kê</th>
+                                                    <th style="width:14%;">Avatar</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
@@ -143,16 +143,7 @@
                                                         {{item.id}}</td>
                                                     <td><a class="title-records" title="Xem chi tiết" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
                                                     <td>
-                                                        <div class="row">
-                                                            <div class="col-6 pr-0 pl-0">
-                                                                <h3 class="text-center">{{(item.viewers)}}</h3>
-                                                                <p style="font-size:12px; text-align:center">Lượt xem</p>
-                                                            </div>
-                                                            <div class="col-6 pr-0 pl-0">
-                                                                <h3 class="text-center">0</h3>
-                                                                <p style="font-size:12px; text-align:center">Ứng tuyển</p>
-                                                            </div>
-                                                        </div>
+                                                        <span><img v-lazy="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>
                                                     </td>
                                                     <td>{{formatDate(item.created_at)}}</td>
                                                     <td v-if="item.status == 0">

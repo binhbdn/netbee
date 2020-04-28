@@ -366,24 +366,7 @@ input, select {
     line-height: 1.5;
     border-radius: 0.25rem;
 }
-.fb {
-    text-decoration: none !important;
-    color: #fff !important;
-    border: 1px solid !important;
-    border-radius: 3px !important;
-    padding: 8px !important;
-    background: #4267b2 !important;
-    font-size: 15px !important;
-}
-.gg {
-    text-decoration: none !important;
-    color: black !important;
-    border: 1px solid !important;
-    border-radius: 3px !important;
-    padding: 8px !important;
-    background: #e0e0e0!important;
-    font-size: 15px !important;
-}
+
 .col-md-6 {
     height: 250px;
     width: 260px !important;
@@ -413,46 +396,5 @@ ul li:not(.init) {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.lopgin-c a {
-    width: 100% !important;
-}
-.btn.btn-outline-info {
-    border: none !important;
-}
-.fb:hover {
-    background: #fff !important;
-    color: #286090 !important;
-}
-.lopgin-c:hover i {
-    color: #286090 !important;
-}
-.gg:hover {
-    background-color: #eee !important;
-    color: black !important;
-}
-.showpass {
-    width: 30px;
-    position: absolute;
-    top: 14px;
-    right: 12px;
-    color: #000;
-    z-index: 9;
-}
-.formlogin p a:hover{
-    color:#ffb701!important;
-}
-.input-login ul{
-        list-style: none;
-        padding-left: 5px;
-        padding-top: 5px;
-    }
-.input-login ul li{
-    height: 0!important;
-}
-.input-login ul li span{
-    color:red!important;
-    font-size: 15px!important;
-    top: 52%!important;
-    padding-top: 10px;
-}
+
 </style>
