@@ -20,7 +20,7 @@ Route::namespace('API')->group(function () {
   Route::get('getTinTuyenDungHot', 'TinTuyenDungController@getTinTuyenDungHot');
   Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
   Route::get('getInfoCompanyById/{id}', 'Auth\UserController@getInfoCompanyById');
-  Route::post('pricing_momo_bank', 'MomoController@pricing_momo_bank');
+  
   Route::post('pricing_momo_bank_checking', 'MomoController@pricing_momo_bank_checking');
   Route::get('checkDiscountCode', 'MomoController@checkDiscountCode');
   //tìm kiếm
@@ -40,6 +40,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('readNotification', 'NotificationController@readNotification');
       Route::post('readNotificationAll', 'NotificationController@readNotificationAll');
       Route::get('logout', 'Auth\UserController@logout');
+      Route::post('pricing_momo_bank', 'MomoController@pricing_momo_bank');
       
     //admin
       Route::prefix('tintuc')->group(function () {

@@ -52,10 +52,25 @@ class MomoController extends Controller
         $check = DB::table('nb_discount_code')->where('code', $code)->where('status', 0)->first();
         if($check) {
             if($check->discount == "100") {
-                DB::table('nb_joblists')->where('id', $request->idJob)->update(['status' => 1]);
-                DB::table('nb_discount_code')->where('code', $code)->update(['status' => 1]);
-                $data = ['status' => 200, 'message' => 'Thanh toán thành công', 'data' => null];
-                return response()->json($data);
+                DB::beginTransaction();
+                try {
+                    DB::table('nb_joblists')->where('id', $request->idJob)->update(['status' => 1]);
+                    DB::table('nb_discount_code')->where('code', $code)->update(['status' => 1]);
+                    DB::table('nb_history_transactions')->insert([
+                        'id_user_payment' => Auth::user()->id,
+                        'content' => 'thanh toán gói đăng tin cho id việc: '.$request->idJob,
+                        'using_discount' => $code,
+                        'price' => 0,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now()
+                    ]);
+                    $data = ['status' => 200, 'message' => 'Thanh toán thành công', 'data' => null];
+                    return response()->json($data);
+                    DB::commit();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
+                }
             }else {
                 $amount = 10000-(10000*int($check->discount)/100);
             }
@@ -66,11 +81,11 @@ class MomoController extends Controller
                 $partnerCode = "MOMOOMRU20191003";
                 $accessKey = "ndQI1iiCLFR3EhIZ";
                 $serectkey = "TR5EkmDsdECTZNms1SkoF2Ix4sWNw52u";
-                $orderInfo = "netbeePayment";
+                $orderInfo = Auth::user()->id;
                 $returnUrl = "https://netbee.vn/admin/tin-tuyen-dung";
                 $notifyurl = "https://netbee.vn/api/pricing_momo_bank_checking";
                 $orderid = $request->idJob;
-                $requestId = time()."";
+                $requestId = $code ?? '0';
                 $requestType = "payWithMoMoATM";
                 $extraData = "merchantName=Netbee";
                 $amount = "10000";
@@ -137,7 +152,15 @@ class MomoController extends Controller
         $result = execPostRequestCheck($endpoint, json_encode($data));
         $jsonResult =json_decode($result,true);  // decode json
         if($jsonResult['errorCode'] == 0 ){
-            DB::table('nb_joblists')->where('id', $request->orderId)->update(['status' => 1]);
+            DB::table('nb_joblists')->where('id', $orderid)->update(['status' => 1]);
+            DB::table('nb_history_transactions')->insert([
+                'id_user_payment' => $requestId,
+                'content' => 'thanh toán gói đăng tin cho id việc: '.$orderid,
+                'using_discount' => $request->orderInfo,
+                'price' => $jsonResult['amount'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
         }else{
             $msg = $jsonResult;
         }
