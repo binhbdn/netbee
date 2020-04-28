@@ -37,6 +37,7 @@ class TinTuyenController extends Controller
             }
             else{
                 $getTin = DB::table('nb_joblists')
+                ->where('nb_joblists.deleted',0)
                 ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
                 ->orderBy('nb_joblists.id', 'DESC')
                 ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers'))

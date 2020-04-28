@@ -39,6 +39,7 @@ class TinTucController extends Controller
             else{
                 $getTin = DB::table('news')
                 ->orderBy('news.id', 'DESC')
+                ->where('news.deleted',0)
                 ->select('news.*')
                 ->groupBy('news.id')
                 ->paginate(6);
