@@ -58,7 +58,7 @@ class TinTucController extends Controller
         $tin = DB::table('news')
         ->leftJoin('users', 'news.user_created', '=','users.id')
         ->select('news.*','users.name as user_created_name')
-        ->where('id', $request->id)
+        ->where('news.id', $request->id)
         ->first();
         if($tin)
             $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $tin];

@@ -232,6 +232,10 @@
                                 </fieldset>
                                 <fieldset>
                                     <div class="row">
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="MOMO">
+                                            <input type="radio" id="MOMO" @click="payWithMomo()">
+                                            <img src="/assets/img/bank/logo-momo.jfif" style="width: 60px;height: 60px">
+                                        </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="ABBank">
                                             <input type="radio"  id="ABB" value="ABB" v-model="bank">
                                             <img src="/assets/img/bank/Ic_ABBank_4@2x.png" style="width: 60px;height: 60px">
@@ -263,10 +267,6 @@
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Eximbank">
                                             <input type="radio" id="EIB" value="EIB" v-model="bank">
                                             <img src="/assets/img/bank/Ic_Eximbank_4@2x.png" style="width: 60px;height: 60px">
-                                        </div>
-                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="GPBank">
-                                            <input type="radio" id="GPB" value="GPB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_GPBank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="HDBank">
                                             <input type="radio" id="HDB" value="HDB" v-model="bank">
@@ -410,6 +410,9 @@ export default {
         }
     },
     methods: {
+        payWithMomo() {
+            alert('ok')
+        },
         checkDiscount() {
             this.$axios.$get('/checkDiscountCode?code='+this.discount).then((response)=>{
 	            if(response.status == 200) {
