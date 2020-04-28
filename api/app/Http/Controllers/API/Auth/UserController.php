@@ -337,43 +337,26 @@ class UserController extends Controller
                 );
             }
         } else {
-            //check unique email,phone
-            $checkemail = DB::table('users')->where('email',$inforesult->email)->count();
-            $jwt_token = null;
-            if($checkemail != 0)
-            {
-                $info = User::where('email', $inforesult->email)->first();
-                if ($jwt_token = JWTAuth::fromUser($info)) {
-                    $data = array(
-                        'status'  => 200,
-                        'message' => 'Đăng nhập thành công',
-                        'data' => ['user' => Auth::user(), 'token' => $jwt_token],
-                    );
+            if(isset($request->role)) {
+                switch ($request->role) {
+                    case '1':
+                        $role = 1;
+                    break;
+                    case '2':
+                        $role = 2;
+                    break;
+                    case '3':
+                        $role = 3;
+                    break;
+                    default:
+                        $role = 1;
+                        break;
                 }
-            }
-            else
-            {
-                $creatuser = array(
-                    'email' => $inforesult->email,
-                    'password' => bcrypt('123456'),
-                    'name' => $inforesult->name,
-                    'avatar' => $inforesult->picture,
-                    'phone' => 0,
-                    'status' => '0',
-                    'role' => 1
-                    );
-
-                $users = DB::table('users')->insertGetId($creatuser);
-                $info = User::where('id', $users)->first();
-                if($users)
-                {
-                    DB::table('social_accounts')->insertGetId([
-                        'user_id' => $users,
-                        'provider_user_id' => $inforesult->id,
-                        'provider' => 'google',
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now()
-                    ]);
+                //check unique email,phone
+                $checkemail = DB::table('users')->where('email',$inforesult->email)->count();
+                $jwt_token = null;
+                if($checkemail != 0){
+                    $info = User::where('email', $inforesult->email)->first();
                     if ($jwt_token = JWTAuth::fromUser($info)) {
                         $data = array(
                             'status'  => 200,
@@ -384,12 +367,50 @@ class UserController extends Controller
                 }
                 else
                 {
-                    $data = array(
-                        'status'  => 400,
-                        'message' => 'Lỗi',
-                        'data' => null,
-                    );
+                    $creatuser = array(
+                        'email' => $inforesult->email,
+                        'password' => bcrypt('123456'),
+                        'name' => $inforesult->name,
+                        'avatar' => $inforesult->picture,
+                        'phone' => 0,
+                        'status' => '0',
+                        'role' => $role
+                        );
+
+                    $users = DB::table('users')->insertGetId($creatuser);
+                    $info = User::where('id', $users)->first();
+                    if($users)
+                    {
+                        DB::table('social_accounts')->insertGetId([
+                            'user_id' => $users,
+                            'provider_user_id' => $inforesult->id,
+                            'provider' => 'google',
+                            'created_at' => Carbon::now(),
+                            'updated_at' => Carbon::now()
+                        ]);
+                        if ($jwt_token = JWTAuth::fromUser($info)) {
+                            $data = array(
+                                'status'  => 200,
+                                'message' => 'Đăng nhập thành công',
+                                'data' => ['user' => Auth::user(), 'token' => $jwt_token],
+                            );
+                        }
+                    }
+                    else
+                    {
+                        $data = array(
+                            'status'  => 400,
+                            'message' => 'Lỗi',
+                            'data' => null,
+                        );
+                    }
                 }
+            }else {
+                $data = array(
+                    'status'  => 201,
+                    'message' => 'Chưa chọn role',
+                    'data' => null,
+                );
             }
         }
         return response()->json($data);

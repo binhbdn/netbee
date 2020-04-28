@@ -60,6 +60,7 @@ export default {
                             window.location.href = '/';
                         })
                     }else if(response.status == 201){
+                        this.$auth.logout();
                         $('#chooseRole').modal({backdrop: 'static', keyboard: false});
                     }
                 }).catch(()=> {
@@ -87,6 +88,7 @@ export default {
                         window.location.href = '/';
                     })
                 }else if(response.status == 201){
+                    this.$auth.logout();
                     $('#chooseRole').modal({backdrop: 'static', keyboard: false});
                 }
             }).catch(()=> {
