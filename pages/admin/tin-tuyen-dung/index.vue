@@ -411,7 +411,25 @@ export default {
     },
     methods: {
         payWithMomo() {
-            alert('ok')
+            this.$axios.$post('/pricing_momo',{code: this.discount,idJob: this.selectPay.id}).then((response)=>{
+                if(response.status == 200) {
+                    if(response.data != null) {
+                        window.location.href = response.data;
+                    }else {
+                        this.$swal(
+                            'Thành công!',
+                            'Thanh toán thành công',
+                            'success'
+                        )
+                    }
+                }else {
+                    this.$swal(
+                        'Lỗi!',
+                        response.message,
+                        'error'
+                    )
+                }
+            });
         },
         checkDiscount() {
             this.$axios.$get('/checkDiscountCode?code='+this.discount).then((response)=>{
