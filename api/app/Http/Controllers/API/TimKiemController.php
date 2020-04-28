@@ -46,13 +46,13 @@ class TimKiemController extends Controller
         $salary_end = $request->salary_end;
         $currency = $request->currency;
         $work_form = $request->work_form;
+        $id_visa = $request->id_visa;
         $bonus = $request->bonus;
 
         $search = DB::table('nb_joblists')
         ->where(function($query) use ($keyword){
             if($keyword != ''){
                 $query->where('title', 'like', '%'. $keyword . '%')
-                ->orwhere('description', 'like', '%'. $keyword . '%');
             }
         })
         ->where(function($query) use ($type){
@@ -79,12 +79,12 @@ class TimKiemController extends Controller
         })
         ->where(function($query) use ($salary_end){
             if($salary_end != ''){
-                $query->where('salary_start', '<=', $salary_end);
+                $query->where('salary_end', '<=', $salary_end);
             }
         })
-        ->where(function($query) use ($work_form){
-            if($work_form != ''){
-                $query->where('salary_start', '<=', $work_form);
+        ->where(function($query) use ($id_visa){
+            if($id_visa != ''){
+                $query->where('id_visa', $id_visa);
             }
         })
         ->where(function($query) use ($work_form){
@@ -94,7 +94,8 @@ class TimKiemController extends Controller
         })
         ->where('deleted', 0)
         ->where('isPublic',1)
-        ->where('status', 1)
+        ->where('nb_joblists.status', 1)
+        ->join('users', 'users.id','=','id_created')
         ->get();
 
         if($search)

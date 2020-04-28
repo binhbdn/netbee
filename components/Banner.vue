@@ -179,105 +179,73 @@
                               <div class="form-group">
                                 <div class="form-field">
                                   <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input type="text" class="form-control" placeholder="Tiêu đề công việc, vị trí, địa điểm làm việc..." name="keyword" value="">
+                                  <input type="text" class="form-control" placeholder="Tiêu đề công việc, vị trí, địa điểm làm việc..." name="keyword" v-model="keyJobs">
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
-                                <div class="form-field">
-                                  <div class="select-wrap">
-                                    <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
-                                    <div class="icon" style="left:10px !important"><span class="fa fa-folder-open"></span></div>
-                                    <select name="cate_id" id="" class="form-control">
-                                      <option disabled selected>Tất cả ngành nghề</option>
-                                      <option value="1" >Du học</option>
-                                      <option value="3">Tu nghiệp sinh</option>
-                                      <option value="2">Lao động</option>
-                                    </select>
-                                  </div>
-                                </div>
+                                <Multiselect :options="jobs" v-model="type_job" :custom-label="nameWithLang" placeholder="Ngành nghề" :show-labels="false" :searchable="false">
+                                </Multiselect>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" placeholder="Chọn quốc gia" :show-labels="false" :searchable="false">
+                                </Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
-                                  <div class="select-wrap">
-                                    <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
-                                    <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
-                                    <select name="" id="" class="form-control fas fa-location-arrow" style="font-weight:400;    font-family: inherit;">
-                                      <option disabled selected>Tất cả địa điểm</option>
-                                      <option value="">name</option>
-                                    </select>
-                                  </div>
+                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;" @click="searchJobs">
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
-                                <div class="form-field">
-                                  <input type="submit" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-12 advanced_search_box" id="advanced_search_box">
+                            <!-- <div class="col-md-12 advanced_search_box" id="advanced_search_box">
                               <a href="javascript:void();" id="advanced_search" @click="show = !show"> <b>Tìm kiếm nâng cao</b> </a>
                             </div>
                             <transition>
                               <div class="col-md-12" id="detail_search" style="padding-left: 15px; padding-top: 10px;" v-if="show">
                                 <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-2">
+                                    <div class="form-group">
+                                      <Multiselect :options="money" v-model="currency" placeholder="Chọn loại tiền" :show-labels="false" :searchable="false" name="money"></Multiselect>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-5">
                                     <div class="form-group">
                                       <div class="form-field">
                                         <div class="select-wrap">
                                           <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
-                                          <input name="salary_start" type="text" class="form-control" placeholder="Mức lương tối thiểu....VND">
+                                          <input name="salary_start" v-model="salary_start" type="text" class="form-control" placeholder="Mức lương tối thiểu....">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-5">
+                                    <div class="form-group">
+                                      <div class="form-field">
+                                        <div class="select-wrap">
+                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
+                                          <input name="salary_end" v-model="salary_end" type="text" class="form-control" placeholder="Mức lương tối đa....">
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                   <div class="col-md-6">
                                     <div class="form-group">
-                                      <div class="form-field">
-                                        <div class="select-wrap">
-                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
-                                          <input name="salary_end" type="text" class="form-control" placeholder="Mức lương tối đa....VND">
-                                        </div>
-                                      </div>
+                                      <Multiselect :options="visa" v-model="chooseVisa" placeholder="Chọn lĩnh vực" :show-labels="false" :searchable="false" :custom-label="nameWithLang1"></Multiselect>
                                     </div>
                                   </div>
-                                  <div class="col-md-3">
+                                  <div class="col-md-6">
                                     <div class="form-group">
-                                      <div class="form-field">
-                                        <div class="select-wrap">
-                                          <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                          <div class="icon" style="left:10px !important"><i class="fa fa-tags"></i></div>
-                                          <select name="" id="" class="form-control" >
-                                            <option disabled selected>Tay nghề</option>
-
-                                          </select>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                    <div class="form-group">
-                                      <div class="form-field">
-                                        <div class="select-wrap">
-                                          <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                          <div class="icon" style="left:10px !important"><i class="fa fa-transgender-alt"></i></div>
-                                          <select name="" id="" class="form-control">
-                                            <option disabled selected>Giới tính</option>
-                                            <option value="1">Nam</option>
-                                            <option value="2">Nữ</option>
-                                          </select>
-                                        </div>
-                                      </div>
+                                      <Multiselect :options="work_form" v-model="chooseWork" :custom-label="nameWithLang" placeholder="Hình thức làm việc" :show-labels="false" :searchable="false"></Multiselect>
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                            </transition>
+                            </transition> -->
                           </div>
                         </form>
                       </div>
@@ -293,19 +261,58 @@
   </div>
 </template>
 <script>
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
+
 export default {
    name: 'Header',
     data () {
       return {
         keysearch: '',
+        keyJobs: '',
+        type_job: '',
+        chooseNation: '',
+        
+        nation: [],
+        money: ['$', 'VND', '€', '¥', '₩'],
+        jobs: [
+          {id: 1, name: 'Xuất khẩu lao động'},
+          {id: 2, name: 'Du học sinh'},
+          {id: 3, name: 'Tu nghiệp sinh'}
+        ],
         show: false
       }
     },
+    components:{
+      Multiselect,
+    },
     methods: {
+      async fetch (route) {
+        let res = await this.$axios.$get(`getQuocGia`)
+        this.nation = res.data
+      },
+      nameWithLang ({ name, id }) {
+            return `${name}`
+        },
+        nameWithLang1 ({ profession, id }) {
+            return `${profession}`
+        },
       searchCompany(e){
         window.location.href = `/tim-cong-ty?keyword=${this.keysearch}`;
       },
+      nameWithLang ({ name, id }) {
+        return `${name}`
+      },
+      searchJobs(){
+        window.location.href = '/tin-tuyen-sinh/tim-kiem?keyword='
+        +(this.keyJobs != '' ? this.keyJobs : "")
+        +(this.type_job != '' ? '&type='+this.type_job.id : '')
+        +(this.chooseNation != '' ? '&nation_id='+this.chooseNation.id : '')
+      }
     },
+    mounted(){
+      this.fetch()
+    }
 }
 </script>
 <style scoped>
@@ -494,7 +501,7 @@ export default {
   }
 
   .section-intro-active{
-    height: 400px;
+    height: 450px;
     transition: opacity .75s;
   }
 
@@ -511,4 +518,19 @@ export default {
       transform: translateX(10px);
       opacity: 0;
   }
+
+  .multiselect__option--highlight {
+    background: #ffb701;
+    color: #000;
+}
+
+.multiselect,
+.multiselect__input,
+.multiselect__single {
+    font-size: 12px !important;
+}
+
+.multiselect__select:before {
+    top: 54%;
+}
 </style>
