@@ -141,24 +141,16 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td><a class="title-records" title="Xem chi tiết" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
+                                                    <td class="text-left"><a title="Xem chi tiết" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
                                                     <td>
                                                         <span><img v-lazy="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>
                                                     </td>
                                                     <td>{{formatDate(item.created_at)}}</td>
                                                     <td v-if="item.status == 0">
-                                                        <div class="chip chip-danger">
-                                                            <div class="chip-body">
-                                                                <div class="chip-text">Chưa kích hoạt</div>
-                                                            </div>
-                                                        </div>
+                                                        <div class="chip-text"><i style="font-size: 20px;" class="far fa-times-circle danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
                                                     <td v-if="item.status == 1">
-                                                        <div class="chip chip-success">
-                                                            <div class="chip-body">
-                                                                <div class="chip-text">Đã kích hoạt</div>
-                                                            </div>
-                                                        </div>
+                                                        <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
                                                     </td>
                                                     <td style="white-space: nowrap;">
                                                         <span v-if="item.id_category == 1">Xuất khẩu lao động</span>

@@ -122,7 +122,7 @@
                                                     <th>Tiêu đề</th>
                                                     <th style="width:14%;">Thống kê</th>
                                                     <th>Ngày tạo</th>
-                                                    <th style="width: 14%">Trạng thái</th>
+                                                    <th>Trạng thái</th>
                                                     <th>Thể loại</th>
                                                     <th>Loại tin</th>
                                                     <th>Thao tác</th>
@@ -144,7 +144,7 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td><a class="title-records" title="Xem chi tiết" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
+                                                    <td class="text-left"><a title="Xem chi tiết" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-6 pr-0 pl-0">
@@ -158,19 +158,11 @@
                                                         </div>
                                                     </td>
                                                     <td>{{formatDate(item.created_at)}}</td>
-                                                    <td v-if="item.status == 1">
-                                                        <div class="chip chip-danger">
-                                                            <div class="chip-body">
-                                                                <div class="chip-text">Chưa kích hoạt</div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
                                                     <td v-if="item.status == 0">
-                                                        <div class="chip chip-success">
-                                                            <div class="chip-body">
-                                                                <div class="chip-text">Đã kích hoạt</div>
-                                                            </div>
-                                                        </div>
+                                                        <div class="chip-text"><i style="font-size: 20px;" class="far fa-times-circle danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
+                                                    </td>
+                                                    <td v-if="item.status == 1">
+                                                        <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
                                                     </td>
                                                     <td style="white-space: nowrap;">
                                                         <span v-if="item.type == 1">Xuất khẩu lao động</span>
@@ -182,7 +174,7 @@
                                                         <span v-if="item.highlight_job == 2">TIN VIP</span>
                                                         <span v-if="item.highlight_job == 0">TIN THƯỜNG</span>
                                                         <br>
-                                                        <a v-if="!item.status" @click="selectPay = {id: item.id, highlight_job: item.highlight_job}" style="color: #2f80ed" data-toggle="modal" data-target="#reportModal">Thanh toán ngay >></a>
+                                                        <a v-if="!item.status" @click="selectPay = {id: item.id, highlight_job: item.highlight_job}" style="color: #2f80ed" data-toggle="modal" data-target="#reportModal" ><span data-toggle="tooltip"  data-placement="top" :title="`Thanh toán để kích hoạt tin`"> Thanh toán ngay >></span></a>
                                                     </td>
                                                     <td>
                                                         <div class="action-btns">
@@ -192,7 +184,7 @@
                                                                         Chọn thao tác
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-check-circle' : 'far fa-times-circle'"></i>{{ item.status == 1 ? 'Kích hoạt' : "Bỏ kích hoạt" }}</a>
+                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
                                                                         <a  @click="changePublic(item.id)" class="dropdown-item"><i :class="item.isPublic == 1 ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{ item.isPublic == 1 ? 'Ẩn tin' : 'Hiện tin' }}</a>
                                                                         <a :href="`/admin/news/edit/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
                                                                         <a v-on:click="deleteNews(item.id)" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
@@ -336,13 +328,13 @@
             </div>
         </div>
         <infinite-loading
-                                v-if="tinTuyenDung.length"
-                                spinner="bubbles"
-                                @infinite="infiniteScroll" style="padding:20px; width:100%"
-                            >
-                            <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
-                            <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-                        </infinite-loading>
+                v-if="tinTuyenDung.length"
+                spinner="bubbles"
+                @infinite="infiniteScroll" style="padding:20px; width:100%"
+            >
+            <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
+            <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+        </infinite-loading>
     </div>
 </template>
 <script>
