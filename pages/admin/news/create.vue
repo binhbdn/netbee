@@ -51,7 +51,9 @@
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
                                                             <label for="basicInput">Nội dung</label>
-                                                            <vue-editor  v-model="dataNews.content"></vue-editor>
+                                                            <vue-editor  v-model="dataNews.content" style="overfollow: scroll">
+
+                                                            </vue-editor>
                                                             <span style="color: red">{{ errors[0] }}</span>
                                                         </fieldset>
                                                     </ValidationProvider>
