@@ -27,8 +27,11 @@
                                 <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px;border-bottom:#dee2e6 solid 1px;">
                                     <a class="btn-netbee btn" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i></a>
                                 </div>
-                                <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px">
+                                <div v-if="$auth.loggedIn" class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px">
                                     <a class="btn btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                </div>
+                                <div v-if="!$auth.loggedIn" class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
+                                    <a class="btn btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
                                 <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                     <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/tin-tuyen-sinh/99/xuat-khau-lao-dong&amp;src=sdkpreparse" class="btn btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
@@ -206,6 +209,85 @@
                 </div>
             </div>
         </div>
+        <!-- Modal Login-->
+        <!-- Modal -->
+        <div class="modal fade text-left" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="col-md-12 col-lg-12 formlogin form-control" >
+                    <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP ỨNG VIÊN</h2>
+                    <p class="text-center" style="margin-bottom:20px; font-size: 16px; "><a class="hover" href="dang-ky">Đăng ký tài khoản mới!</a>
+                    </p>
+                    <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px">
+                        <ValidationObserver ref="observer" v-slot="{ valid }">
+                            <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
+                                <div class="__email">
+                                    <fieldset class="form-label-group form-group position-relative has-icon-left mb-0">
+                                        <input type="text" class="form-control mb-0" id="email" placeholder="Email" v-model="userForm.email" style="margin-bottom:37px !important; margin-top:2px">
+                                        <div class="form-control-position">
+                                            <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                        </div>
+                                        <label for="email">Email</label>
+                                        <ul style="color:red" class="overline text-left">
+                                        <li v-for="(error, index) in errors" :key="index">
+                                        <span style="left:2px; position:absolute;top:42%!important; font-size:13px"><i>{{ error }}</i></span>
+                                        </li>
+                                    </ul>
+                                    </fieldset>
+                                </div>
+                            </ValidationProvider>
+                        <div style="position: relative">
+                            <ValidationProvider
+                                name="Mật khẩu"
+                                ref="password"
+                                rules="required|customPassword"
+                                v-slot="{ errors }"
+                            >
+                            <div class="__email">
+                                <div style="text-align:right">
+                                    <i  class="showpass">
+                                        <i @click="showPassword()" :class="show ?'fa fa-eye':'fas fa-eye-slash'"></i>
+                                    </i>
+                                    
+                                </div>
+                                <fieldset class="form-label-group position-relative has-icon-left mb-0">
+                                    <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom:0px !important; margin-top:2px">
+                                    <div class="form-control-position">
+                                        <i class="feather icon-lock" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                    </div>
+                                    <label for="password">Mật khẩu</label>
+                                    <ul style="color:red" class="overline text-left">
+                                        <li v-for="(error, index) in errors" :key="index">
+                                        <span style="top: 53%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
+                                        </li>
+                                    </ul>
+                                    <p class="text-right mb-0 mt-2"><a href="/quen-mat-khau" class="remember hover" style="font-size: 15px;color:black!important;">Quên mật khẩu?</a></p>
+                                </fieldset>
+                            </div>
+                            </ValidationProvider>
+                            <div class="lopgin-c" style="padding-top:10px">
+                                <button @click="login()" id="submit" class="submit btn" style="height:100%; line-height: unset; padding:10px!important">ĐĂNG NHẬP</button>
+                            </div>
+                            <div class="or-box">
+                                <hr>
+                                <span>Hoặc</span>
+                            </div>
+                            <div class="lopgin-c" style="position:relative">
+                                <i class="fab fa-facebook" style="position: absolute; left: 106px; top: 10px; color: white; font-size: 18px; z-index:5"></i>
+                                <a @click="loginfb()" class="btn btn-outline-info fb" style="padding: 10px!important" >Đăng nhập bằng
+                                    Facebook</a> &nbsp;&nbsp;
+                            </div>
+                            <div class="lopgin-c" style="position:relative">
+                                <img src="../../../static/assets/img/logo-google.png" style="height:15px;position: absolute; left: 106px; top: 11px; color: blue; font-size: 18px;">
+                                <a @click="logingg()" class="btn btn-outline-info gg" style="padding: 10px!important">Đăng nhập bằng Google</a>
+                            </div>
+                        </div>
+                        </ValidationObserver>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
         <div id="fb-root"></div>
     </div>
 </template>
@@ -213,16 +295,59 @@
 <script>
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate'
 import JobsList1Col from '~/components/Jobs/JobsList1Col'
+import {
+  ValidationProvider,
+  extend
+} from "vee-validate/dist/vee-validate.full";
+import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+
+extend("required", {
+  message: (field, values) => "Dữ liệu nhập vào không được để trống.",
+});
+extend("email", {
+  message: (field, values) => "Email không đúng định dạng"
+});
+var errorMessage =
+  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+// create custom rule
+extend("customPassword", {
+  message: field =>"Mật khẩu" + errorMessage,
+  validate: value => {
+    var notTheseChars = /["'?&/<>\s]/;
+    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    var containsRequiredChars = mustContainTheseChars.test(value);
+    if (containsRequiredChars && !containsForbiddenChars) {
+      return true;
+    } else {
+      if (containsForbiddenChars) {
+        errorMessage =
+          ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
+      } else {
+        errorMessage =
+          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+      }
+      return false;
+    }
+  }
+});
 export default {
     components: {
         JobsList1ColNotCate,
-        JobsList1Col
+        JobsList1Col,
+        ValidationProvider,
+        ValidationObserver
     },
     data() {
         return {
             arrayForCompany: [],
             save: false,
-            report: ''
+            report: '',
+            userForm: {
+                email: '',
+                password: ''
+            },
+            show: true,
         }
     },
     async asyncData({$axios, route}) {
@@ -277,6 +402,30 @@ export default {
                 'warning'
                 );
             });
+        },
+        async login() {
+            const isValid = await this.$refs.observer.validate();
+            if(isValid){
+            try {
+                    let response = await this.$auth.loginWith('local',{ data: this.userForm });
+                    window.location.href = '/admin';
+            } catch (err) {
+                this.$swal(
+                        'Lỗi!',
+                        'Tài khoản hoặc mật khẩu không đúng!',
+                        'error'
+                    )
+                }
+            }
+        },
+        showPassword(){
+            this.show = !this.show;
+        },
+        loginfb() {
+            this.$auth.loginWith('facebook')
+        },
+        logingg() {
+            this.$auth.loginWith('google')
         },
         reportJob() {
             this.$axios.$post(`tintuyendung/report`,{id_job: this.tintuc.id,report: this.report}).then((response)=>{
