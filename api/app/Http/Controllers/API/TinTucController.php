@@ -56,6 +56,8 @@ class TinTucController extends Controller
     public function getDetailTinTuc(Request $request)
     {
         $tin = DB::table('news')
+        ->leftJoin('users', 'news.user_created', '=','users.id')
+        ->select('news.*','users.name as user_created_name')
         ->where('id', $request->id)
         ->first();
         if($tin)

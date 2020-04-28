@@ -18,12 +18,16 @@
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="font-weight-600">{{ tintuc.title }}</h2><br>
-                                <span><i class="fa fa-calendar mr-1"></i>{{ ConvertDate(tintuc.updated_at) }}</span>
+                                <span>
+                                    <i class="fad fa-user-tag m-r-5"></i>{{ tintuc.user_created_name }} 
+                                    <i class="fa fa-calendar mr-1"></i>{{ ConvertDate(tintuc.updated_at) }}
+                                </span>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                     <img v-lazy="`/uploads/news/${tintuc.thuml}`" width="100%" class="m-b-15" :alt="`${tintuc.thuml}`">
                                     <p v-html="tintuc.content"></p>
+                                    <iframe :src="`https://www.facebook.com/plugins/share_button.php?href=https://netbee.vn${this.$route.path}&layout=button&size=small&appId=1459241224260897&width=76&height=20`" width="76" height="30" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                                 </div>
                             </div>
                         </div>
