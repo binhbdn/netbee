@@ -17,7 +17,7 @@
                     <div class="col-8">
                         <div class="card">
                             <div class="card-header">
-                                <h4><i class="fas fa-newspaper"></i> TIN TỨC</h4>
+                                <h4><i class="fad fa-newspaper"></i> TIN TỨC</h4>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
