@@ -49,17 +49,17 @@
                   type="submit"
                   value="Gửi cho Netbee"
                   class="btn btn-primary"
-                  style="background-color: #ffc107 !important;"
+                  style="background-color: #ffc107 !important; color: black !important"
                 />
               </div>
             </form>
           </div>
 
-          <div class="col-md-6 d-flex" style="padding:0px 0px 40px 40px;">
+          <div class="col-md-5 d-flex" style="padding:0px 0px 40px 40px;">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.494656172276!2d105.7778146153898!3d21.052896792328728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab4b54698fad%3A0xdc6d73d2030fac0d!2sHachinet!5e0!3m2!1svi!2s!4v1580379940334!5m2!1svi!2s"
               width="570"
-              height="570"
+              height="470"
               frameborder="0"
               style="border:0;"
               allowfullscreen
