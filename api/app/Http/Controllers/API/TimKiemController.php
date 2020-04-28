@@ -52,7 +52,7 @@ class TimKiemController extends Controller
         $search = DB::table('nb_joblists')
         ->where(function($query) use ($keyword){
             if($keyword != ''){
-                $query->where('title', 'like', '%'. $keyword . '%')
+                $query->where('title', 'like', '%'. $keyword . '%');
             }
         })
         ->where(function($query) use ($type){
