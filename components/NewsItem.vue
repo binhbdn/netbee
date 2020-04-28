@@ -4,7 +4,13 @@
             <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" style="max-height: 100%;width: 100%;height: 100%;object-fit: fill;">
         </a>
         <div class="px-2 p-t-15" style="height: 190px;">
-            <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" ><h4 class="title font-weight-600">{{ title }}</h4></a>
+            <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" 
+            style="display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 45px;"><h4 class="title font-weight-600">{{ title }}</h4></a>
             <p class="el-3">{{ short_content }}</p>
             <p style="bottom: 0px;position: absolute;"><i class="fad fa-calendar-star"></i> {{ ConvertDate(created_at) }}</p>
         </div>
