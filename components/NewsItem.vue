@@ -5,8 +5,8 @@
         </a>
         <div class="px-2 p-t-15">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" ><h4 class="title font-weight-600">{{ title }}</h4></a>
-            <p style="height: 100px;" class="el-3">{{ short_content }}</p>
-            <p><i class="fad fa-calendar-star"></i> {{ ConvertDate(created_at) }}</p>
+            <p style="height: 150px;" class="el-3">{{ short_content }}</p>
+            <p style="bottom: 0px;position: absolute;"><i class="fad fa-calendar-star"></i> {{ ConvertDate(created_at) }}</p>
         </div>
     </div>
 </template>

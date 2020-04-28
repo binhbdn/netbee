@@ -3,7 +3,7 @@
         <section class="category p-b-15">
             <div class="container">
                 <div class="row d-flex">
-                    <div class="col-md-6 pd-20">
+                    <div class="col-md-12 pd-20">
                         <a href="/"><i class="fa fa-home"></i> Trang chủ </a>
                         <a href="/tin-tuc"><i class="fa fa-caret-right"></i> Tin tức</a>
                         <a><i class="fa fa-caret-right"></i> {{ tintuc.title }}</a>
@@ -17,7 +17,7 @@
                     <div class="col-8">
                         <div class="card">
                             <div class="card-header">
-                                <h2>{{ tintuc.title }}</h2><br>
+                                <h2 class="font-weight-600">{{ tintuc.title }}</h2><br>
                                 <span><i class="fa fa-calendar mr-1"></i>{{ ConvertDate(tintuc.updated_at) }}</span>
                             </div>
                             <div class="card-content collapse show">
@@ -120,7 +120,7 @@ export default {
                     title: detailRes.data.title,
                     url: `https://netbee.vn${context.app.router.currentRoute.path}`,
                     description: detailRes.data.short_content,
-                    image: `https://netbee.vn/uploads/news${detailRes.data.thuml}`
+                    image: `https://netbee.vn/uploads/news/${detailRes.data.thuml}`
 				}
             })
         return { tintuc: detailRes.data }

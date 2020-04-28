@@ -9,6 +9,7 @@ module.exports = {
             { hid: 'revisit-after', name: 'revisit-after', content: '1 days' },
             { hid: 'og:type', name: 'og:type', content: 'website'},
             { hid: 'og:locale', name: 'og:locale', content: 'vi'},
+            { hid: 'fb:app_id', name: 'fb:app_id', content: '1459241224260897'},
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/assets/img/logo.png' },
