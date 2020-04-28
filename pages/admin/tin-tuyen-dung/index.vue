@@ -122,7 +122,7 @@
                                                     <th>Tiêu đề</th>
                                                     <th style="width:14%;">Thống kê</th>
                                                     <th>Ngày tạo</th>
-                                                    <th>Trạng thái</th>
+                                                    <th style="width: 14%">Trạng thái</th>
                                                     <th>Thể loại</th>
                                                     <th>Loại tin</th>
                                                     <th>Thao tác</th>
@@ -213,14 +213,7 @@
                 </section>
             </div>
         </div>
-        <infinite-loading
-                spinner="bubbles"
-                @infinite="infiniteScroll" style="padding:20px; width:100%"
-                direction="down"
-            >
-            <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
-            <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-        </infinite-loading>
+
         <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="editTodoTask" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
                 <div class="modal-content">
@@ -343,6 +336,14 @@
                 </div>
             </div>
         </div>
+        <infinite-loading
+                                v-if="tinTuyenDung.length"
+                                spinner="bubbles"
+                                @infinite="infiniteScroll" style="padding:20px; width:100%"
+                            >
+                            <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
+                            <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+                        </infinite-loading>
     </div>
 </template>
 <script>
