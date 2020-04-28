@@ -214,8 +214,8 @@
             </div>
         </div>
         <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="editTodoTask" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
-                <div class="modal-content">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content" style="background-image: url(/assets/img/bg_city_full.png);">
                     <section class="todo-form">
                         <form id="form-edit-todo" class="todo-input">
                             <div class="modal-header  bg-info white">
@@ -224,9 +224,8 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
-                                <label style="font-size: 20px">Mã giảm giá: </label>
-                                <fieldset>
+                            <div class="modal-body" >
+                                <fieldset class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <button class="btn btn-info waves-effect waves-light" type="button"><i class="feather icon-search"></i></button>
@@ -238,96 +237,96 @@
                                     </div>
                                     <div id="valid-feedback" style="color: #28C76F"></div>
                                 </fieldset>
-                                <label style="font-size: 20px">Chọn ngân hàng: </label>
                                 <fieldset>
                                     <div class="row">
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="ABBank">
                                             <input type="radio"  id="ABB" value="ABB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_ABBank_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_ABBank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="ACB">
                                             <input type="radio" id="ACB" value="ACB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_ACB_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_ACB_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="AgriBank">
                                             <input type="radio" id="VARB" value="VARB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_Agribank_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_Agribank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="BacABank">
                                             <input type="radio" id="NASB" value="NASB" v-model="bank">
-                                            <img src="/assets/img/bank/ic_BacaBank_4@2x.png">
+                                            <img src="/assets/img/bank/ic_BacaBank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Techcombank">
                                             <input type="radio" id="TCB" value="TCB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_Techcombank_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_Techcombank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="BIDV">
                                             <input type="radio" id="BIDV" value="BIDV" v-model="bank">
-                                            <img src="/assets/img/bank/ic_BIDV_4@2x.png">
+                                            <img src="/assets/img/bank/ic_BIDV_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="DongABank">
                                             <input type="radio" id="DAB" value="DAB" v-model="bank">
-                                            <img src="/assets/img/bank/ic_dongabank_4@2x.png">
+                                            <img src="/assets/img/bank/ic_dongabank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Eximbank">
                                             <input type="radio" id="EIB" value="EIB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_Eximbank_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_Eximbank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="GPBank">
                                             <input type="radio" id="GPB" value="GPB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_GPBank_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_GPBank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="HDBank">
                                             <input type="radio" id="HDB" value="HDB" v-model="bank">
-                                            <img src="/assets/img/bank/ic_HDBank_4@2x.png">
+                                            <img src="/assets/img/bank/ic_HDBank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="LienVietPostBank">
                                             <input type="radio" id="LPB" value="LPB" v-model="bank">
-                                            <img src="/assets/img/bank/ic_Lienvietpost_4@2x.png">
+                                            <img src="/assets/img/bank/ic_Lienvietpost_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Maritime Bank">
                                             <input type="radio" id="MSB" value="MSB" v-model="bank">
-                                            <img src="/assets/img/bank/ic_maritimeBank_4@2x.png">
+                                            <img src="/assets/img/bank/ic_maritimeBank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="MBBank">
                                             <input type="radio" id="MB" value="MB" v-model="bank">
-                                            <img src="/assets/img/bank/ic_MBBank_4@2x.png">
+                                            <img src="/assets/img/bank/ic_MBBank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="OceanBank">
                                             <input type="radio" id="OJB" value="OJB" v-model="bank">
-                                            <img src="/assets/img/bank/ic_oceanbank_4@2x.png">
+                                            <img src="/assets/img/bank/ic_oceanbank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Sacombank">
                                             <input type="radio" id="STB" value="STB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_Sacombank_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_Sacombank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="VIB Bank">
                                             <input type="radio" id="VIB" value="VIB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_VIBank_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_VIBank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="VietcomBank">
                                             <input type="radio" id="VCB" value="VCB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_Vietcombank_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_Vietcombank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Vietinbank">
                                             <input type="radio" id="CTG" value="CTG" v-model="bank">
-                                            <img src="/assets/img/bank/ic_Viettinban_4@2x.png">
+                                            <img src="/assets/img/bank/ic_Viettinban_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="VPBank">
                                             <input type="radio" id="VPB" value="VPB" v-model="bank">
-                                            <img src="/assets/img/bank/Ic_VPbank_4@2x.png">
+                                            <img src="/assets/img/bank/Ic_VPbank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                         <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Seabank">
                                             <input type="radio" id="SEAB" value="SEAB" v-model="bank">
-                                            <img src="/assets/img/bank/ic_seabank_4@2x.png">
+                                            <img src="/assets/img/bank/ic_seabank_4@2x.png" style="width: 60px;height: 60px">
                                         </div>
                                     </div>
                                 </fieldset>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer justify-content-center" style="background-image: url(/assets/img/bg_park_full.png);background-size: cover;">
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
                                     <button type="button" @click="pay()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
-                                        <span class="d-none d-lg-block">Thanh toán</span></button>
+                                        <span class="d-none d-lg-block">Thanh toán</span>
+                                    </button>
                                 </fieldset>
                             </div>
                         </form>
@@ -749,5 +748,8 @@ export default {
 /* CHECKED STYLES */
 [type=radio]:checked + img {
   background: #ffb701;
+}
+.modal .modal-footer {
+    border-color: rgb(179, 229, 252) !important;
 }
 </style>
