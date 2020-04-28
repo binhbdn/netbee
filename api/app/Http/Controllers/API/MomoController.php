@@ -81,7 +81,7 @@ class MomoController extends Controller
                 $partnerCode = "MOMOOMRU20191003";
                 $accessKey = "ndQI1iiCLFR3EhIZ";
                 $serectkey = "TR5EkmDsdECTZNms1SkoF2Ix4sWNw52u";
-                $orderInfo = Auth::user()->id;
+                $orderInfo = Auth::user()->id."";
                 $returnUrl = "https://netbee.vn/admin/tin-tuyen-dung";
                 $notifyurl = "https://netbee.vn/api/pricing_momo_bank_checking";
                 $orderid = $request->idJob."";
