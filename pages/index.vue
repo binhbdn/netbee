@@ -98,7 +98,7 @@
           <div class="col-lg-12 col-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"><i class="fad fa-bullhorn"></i> TIN NỔI BẬT </h4>
+                <h4 class="card-title"><i class="fad fa-business-time"></i> TIN NỔI BẬT </h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
               </div>
               <div class="card-content collapse show">
@@ -178,7 +178,7 @@
           <div class="col-lg-8 col-12 p-r-0">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"><i class="fad fa-bullhorn"></i> TIN MỚI </h4>
+                <h4 class="card-title"><i class="fad fa-business-time"></i> TIN MỚI </h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
               </div>
               <div class="card-content collapse show">
@@ -246,7 +246,7 @@
           <div class="col-lg-12 col-12">
             <div class="card">
               <div class="card-header">
-                <h4><i class="fas fa-newspaper"></i> TIN TỨC</h4>
+                <h4><i class="fad fa-newspaper"></i> TIN TỨC</h4>
                 <a href="/tin-tuc" class="btn bg-netbee">Xem thêm</a>
               </div>
               <div class="card-content collapse show news">
