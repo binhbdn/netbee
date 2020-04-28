@@ -54,7 +54,7 @@
                     <div class="row p-t-10">
                         <div class="col-12">
                             <div class="col-12 p-l-0 p-t-5">
-                                <h5 class="font-weight-600 line-title">THÔNG TIN TUYỂN DỤNG NHANH</h5>
+                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> THÔNG TIN TUYỂN DỤNG NHANH</h5>
                             </div>
                             <div class="row">
                                 <div class="col-xl-12">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title">MÔ TẢ CÔNG VIỆC</h5>
+                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> MÔ TẢ CÔNG VIỆC</h5>
                                 
                             </div>
                             <div class="row">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title">YÊU CẦU</h5>
+                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> YÊU CẦU</h5>
                                 
                             </div>
                             <div class="row">
@@ -97,7 +97,7 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title">QUYỀN LỢI</h5>
+                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> QUYỀN LỢI</h5>
                                 
                             </div>
                             <div class="row">
@@ -108,7 +108,7 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title">HỒ SƠ CẦN CHUẨN BỊ</h5>
+                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> HỒ SƠ CẦN CHUẨN BỊ</h5>
                                 
                             </div>
                             <div class="row">
@@ -119,7 +119,7 @@
                         </div>
                         <div class="col-12 pb-2">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title">CÁCH THỨC ỨNG TUYỂN</h5>
+                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> CÁCH THỨC ỨNG TUYỂN</h5>
                                 
                             </div>
                             <div class="row">
@@ -144,7 +144,7 @@
             <div class="card">
                 <div class="card-header">
                 <h4 class="card-title">
-                    <i class="fad fa-bullhorn"></i> VIỆC LÀM CÙNG CÔNG TY
+                    <i class="fad fa-business-time"></i> VIỆC LÀM CÙNG CÔNG TY
                 </h4>
                 </div>
                 <div class="card-content collapse show">
@@ -162,7 +162,7 @@
             <div class="card">
                 <div class="card-header">
                 <h4 class="card-title">
-                    <i class="fad fa-bullhorn"></i> VIỆC LÀM TƯƠNG TỰ
+                    <i class="fad fa-business-time"></i> VIỆC LÀM TƯƠNG TỰ
                 </h4>
                 </div>
                 <div class="card-content collapse show">
