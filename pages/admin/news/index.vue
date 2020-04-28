@@ -68,7 +68,7 @@
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
                                     <form class="col-9" action="/admin/news/create" method="">
-                                        <button class="btn-add btn btn-warning text-dark "><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
+                                        <button class="btn-add btn background-default text-dark "><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
                                     </form>
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body card-dashboard">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive list-data">
                                         <table class="table table-hover mb-0 zero-configuration">
                                             <thead class="custom-header">
                                                 <tr>
@@ -118,7 +118,7 @@
                                                         </li>
                                                         ID</th>
                                                     <th>Tiêu đề</th>
-                                                    <th>Thống kê</th>
+                                                    <th style="width:14%; text-align:center">Thống kê</th>
                                                     <th>Ngày tạo</th>
                                                     <th>Trạng thái</th>
                                                     <th>Thể loại</th>
@@ -127,7 +127,7 @@
                                             </thead>
                                             <tbody v-if="tinTuc.length > 0">
                                                 <tr v-for="(item, index) in tinTuc" :key="index">
-                                                    <td>
+                                                    <td class="d-flex" style="padding-top:34px">
                                                         <li class="d-inline-block mr-1">
                                                             <fieldset>
                                                                 <div class="vs-checkbox-con vs-checkbox-primary">
@@ -141,22 +141,54 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td>{{item.title}}</td>
-                                                    <td>{{item.title}}</td>
+                                                    <td><a title="Xem chi tiết" :href="`/tin-tuc/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
+                                                    <td>
+                                                        <div class="row">
+                                                            <div class="col-6 pr-0 pl-0">
+                                                                <h3 class="text-center">{{(item.id)}}</h3>
+                                                                <p style="font-size:12px; text-align:center">Lượt xem</p>
+                                                            </div>
+                                                            <div class="col-6 pr-0 pl-0">
+                                                                <h3 class="text-center">0</h3>
+                                                                <p style="font-size:12px; text-align:center">Ứng tuyển</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                     <td>{{formatDate(item.created_at)}}</td>
-                                                    <td style="white-space: nowrap;">
-                                                        <span class="success" v-if="item.status == 1"><i class="fas fa-circle" style="font-size: 7px"></i> Đã kích hoạt</span>
-                                                        <span class="danger" v-else><i class="fas fa-circle" style="font-size: 7px"></i> Chưa kích hoạt</span>
+                                                    <td v-if="item.status == 1">
+                                                        <div class="chip chip-danger">
+                                                            <div class="chip-body">
+                                                                <div class="chip-text">Chưa kích hoạt</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td v-if="item.status == 0">
+                                                        <div class="chip chip-success">
+                                                            <div class="chip-body">
+                                                                <div class="chip-text">Đã kích hoạt</div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                     <td style="white-space: nowrap;">
                                                         <span v-if="item.id_category == 1">Xuất khẩu lao động</span>
                                                         <span v-if="item.id_category == 2">Du học sinh</span>
                                                         <span v-if="item.id_category == 3">Tu nghiệp sinh</span>
                                                     </td>
-                                                    <td style="width: 27%;">
-                                                        <button v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="btn-action btn" :class="item.status == 1 ? 'btn-outline-danger' : 'btn-outline-warning'">{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</button>
-                                                        <a :href="`/admin/news/edit/${item.id}`" class="btn-action btn btn-outline-warning" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
-                                                        <button v-on:click="deleteNews(item.id)" class="btn-action btn btn-outline-danger" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</button>
+                                                    <td>
+                                                        <div class="action-btns">
+                                                            <div class="btn-dropdown ">
+                                                                <div class="btn-group dropdown actions-dropodown">
+                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        Chọn thao tác
+                                                                    </button>
+                                                                    <div class="dropdown-menu" style="left: -25px!important;">
+                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i style="font-size: 7px" :class="item.status == 1 ? 'fas fa-circle success' : 'fas fa-circle danger'"></i>{{ item.status == 1 ? 'Kích hoạt' : "Bỏ kích hoạt" }}</a>
+                                                                        <a :href="`/admin/news/edit/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
+                                                                        <a v-on:click="deleteNews(item.id)" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -166,6 +198,14 @@
                                 </div>
                             </div>
                         </div>
+                        <infinite-loading
+                                v-if="tinTuc.length"
+                                spinner="bubbles"
+                                @infinite="infiniteScroll" style="padding:20px"
+                            >
+                            <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
+                            <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+                        </infinite-loading>
                     </div>
                 </section>
             </div>
@@ -216,6 +256,7 @@ export default {
             ],
             id: null,
             selected: [],
+            page: 1
         }
     },
     created() {
@@ -227,8 +268,8 @@ export default {
             return `${name}`
         },
         fetch() {
-            this.$axios.$get('tintuc/getTinTuc').then((response)=>{
-	             this.tinTuc=response.data;
+            this.$axios.$get('tintuc/getTinTuc?page='+ this.page).then((response)=>{
+	             this.tinTuc=response.data.data;
 	        });
 
         },
@@ -436,7 +477,26 @@ export default {
                     'Lỗi bỏ kích hoạt!',
                     'error')
             }
-        }
+        },
+        infiniteScroll($state) {
+            setTimeout(() => {
+                this.page++
+                this.$axios
+                .get('/tintuc/getTinTuc?page='+ this.page)
+                .then((response) => {
+                    console.log(response.data.data.data.length)
+                    if (response.data.data.data.length > 1) {
+                        response.data.data.data.forEach((item) => this.tinTuc.push(item))
+                        $state.loaded()
+                    } else {
+                        $state.complete()
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }, 500)
+        },
 
     },
     computed: {

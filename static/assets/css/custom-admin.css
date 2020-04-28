@@ -73,3 +73,20 @@ tbody .vs-checkbox-con .vs-checkbox {
     font-weight: bold;
     font-size: 15px;
 }
+.title-records{
+    text-decoration: dashed;
+    color: #0d0596!important;
+}
+.title-records:hover{
+    text-decoration: underline!important;
+    color: #0d0596!important;
+}
+.list-data tr th{
+    text-align: center;
+}
+.list-data tr td{
+    text-align: center;
+}
+.list-data .dropdown-menu.show{
+    width: 138px!important;
+}
