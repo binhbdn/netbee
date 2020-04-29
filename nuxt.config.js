@@ -86,7 +86,10 @@ module.exports = {
         '@nuxtjs/auth',
         'vue-sweetalert2/nuxt',
         'nuxt-seo',
-        '@nuxtjs/sitemap'
+        '@nuxtjs/sitemap',
+        ['@nuxtjs/google-analytics', {
+            id: 'UA-164963357-1'
+        }]
     ],
     //map sitemap
     sitemap: {
