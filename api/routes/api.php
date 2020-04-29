@@ -8,6 +8,8 @@ Route::namespace('API')->group(function () {
   Route::post('loginfb', 'Auth\UserController@loginfb');
   Route::post('logingg', 'Auth\UserController@logingg');
   Route::get('getTinTucNew', 'TinTucController@getTinTucNew');
+  Route::get('getTinTucNewLoading', 'TinTucController@getTinTucNewLoading');
+  Route::get('getTinTucSiteMap', 'TinTucController@getTinTucSiteMap');
   Route::get('getTinTucCate', 'TinTucController@getTinTucCate');
   Route::get('getDanhMucTinTuc', 'TinTucController@getDanhMucTinTuc');
   Route::get('getDetailTinTuc/{id}', 'TinTucController@getDetailTinTuc');

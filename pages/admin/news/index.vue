@@ -14,7 +14,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="/">Bài viết</a>
                                     </li>
-                                    <li class="breadcrumb-item active" @click = "formatDate('2020-01-15 07:11:58')"> Danh sách bài viết
+                                    <li class="breadcrumb-item active"> Danh sách bài viết
                                     </li>
                                 </ol>
                             </div>
@@ -68,7 +68,7 @@
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
                                     <form class="col-9" action="/admin/news/create" method="">
-                                        <button class="btn-add btn background-default text-dark "><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
+                                        <button class="btn-add btn bg-netbee text-dark "><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
                                     </form>
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
@@ -141,11 +141,12 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td class="text-left"><a title="Xem chi tiết" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
+                                                    <td class="text-left" v-if="item.status==1"><a data-toggle="tooltip"  data-placement="top" :title="`Xem chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
+                                                    <td class="text-left" v-else><a data-toggle="tooltip"  data-placement="top" :title="`Kích hoạt tin để xem chi tiết`">{{item.title}}</a></td>
                                                     <td>
                                                         <span><img v-lazy="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>
                                                     </td>
-                                                    <td>{{formatDate(item.created_at)}}</td>
+                                                    <td>{{ConvertDate(item.created_at)}}</td>
                                                     <td v-if="item.status == 0">
                                                         <div class="chip-text"><i style="font-size: 20px;" class="far fa-times-circle danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
@@ -319,12 +320,6 @@ export default {
                         'Lỗi!',
                         'Lỗi xóa!',
                         'error')
-                }
-        },
-        formatDate(value){
-                if (value) {
-                    // return moment(String(value)).format('MM/DD/YYYY');
-                return (moment(String(value)).format('MM/DD/YYYY'));
                 }
         },
         sortAscendingID() {

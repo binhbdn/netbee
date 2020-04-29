@@ -180,7 +180,20 @@ export default {
 
     },
     mounted(){
-        
+        $(document).ready(function() {
+            $(window).scroll(function(event) {
+                var pos_body = $('#quill-container').scrollTop();               
+                if(pos_body > 700){
+                    $('.ql-toolbar').addClass('fixedmenu');
+                    var wid =  $('#quill-container').width();                        
+                    document.getElementsByClassName("fixedmenu")[0].style.width = wid + "px";                       
+                    // console.log(wid);
+                }
+                else {
+                    $('.ql-toolbar').removeClass('fixedmenu');
+                }                   
+            });              
+        });
     }
 }
 </script>
