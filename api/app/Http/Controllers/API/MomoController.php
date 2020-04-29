@@ -78,10 +78,10 @@ class MomoController extends Controller
         }else {
             $getJob = DB::table('nb_joblists')->where('id', $request->idJob)->first();
             if($getJob) {
-                $endpoint = "https://payment.momo.vn/gw_payment/transactionProcessor";
+                $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
                 $partnerCode = "MOMOOMRU20191003";
-                $accessKey = "ndQI1iiCLFR3EhIZ";
-                $serectkey = "TR5EkmDsdECTZNms1SkoF2Ix4sWNw52u";
+                $accessKey = "xr8520Q9U3dulFZA";
+                $serectkey = "xHzJtYhI5xnJeESfwdtc0LKjsedLMUmZ";
                 $orderInfo = Auth::user()->id."";
                 $returnUrl = "https://netbee.vn/admin/tin-tuyen-dung";
                 $notifyurl = "https://netbee.vn/api/pricing_momo_bank_checking";
@@ -223,11 +223,11 @@ class MomoController extends Controller
             curl_close($ch);
             return $result;
         }
-        $endpoint = "https://payment.momo.vn/gw_payment/transactionProcessor";
+        $endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
         $partnerCode = $request->partnerCode;
         $accessKey = $request->accessKey;
         $orderid = $request->orderId;
-        $serectkey = "TR5EkmDsdECTZNms1SkoF2Ix4sWNw52u";
+        $serectkey = "xHzJtYhI5xnJeESfwdtc0LKjsedLMUmZ";
         $requestId = $request->requestId;
         $requestType = "transactionStatus";
         $rawHash = "partnerCode=".$partnerCode."&accessKey=".$accessKey."&requestId=".$requestId."&orderId=".$orderid."&requestType=".$requestType;
