@@ -180,3 +180,27 @@ textarea:focus {
 select:focus {
     border: #ffb701 1px solid !important;
 }
+
+.multiselect__option--highlight {
+    background: #ffb701 !important;
+    color: #000 !important;
+}
+
+.multiselect,
+.multiselect__input,
+.multiselect__single {
+    font-size: 12px !important;
+}
+
+.multiselect__single {
+    margin-bottom: 0px !important;
+    line-height: 28px !important;
+}
+
+.multiselect__select:before {
+    top: 55% !important;
+}
+
+.multiselect--active .icon {
+    transform: rotate(180deg) !important;
+}

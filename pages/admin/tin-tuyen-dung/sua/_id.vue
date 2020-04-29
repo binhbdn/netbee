@@ -530,9 +530,9 @@ export default {
         async fetch (route) {
             // this.data.expiration_date = moment(Date.now()).add(30, 'days').format("YYYY-MM-DD"); 
             this.data.date_start = moment(Date.now()).format("YYYY-MM-DD"); 
-            let res = await this.$axios.$get(`tintuyendung/getQuocGia`)
+            let res = await this.$axios.$get(`getQuocGia`)
             this.options = res.data
-            let visa = await this.$axios.$get(`tintuyendung/getVisa`)
+            let visa = await this.$axios.$get(`getVisa`)
             this.optionsVisa = visa.data
             let job = await this.$axios.$get(`tintuyendung/getDetailTinTuyen/${this.$route.params.id}`)
             console.log(job.data)

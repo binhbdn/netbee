@@ -201,6 +201,20 @@ export default {
     },
     mounted(){
         this.fetch();
+        $(document).ready(function() {
+            $(window).scroll(function(event) {
+                var pos_body = $('html,body').scrollTop();                
+                if(pos_body > 300){
+                    $('.ql-toolbar').addClass('fixedmenu');
+                    var wid =  $('.quillWrapper').width();                        
+                    document.getElementsByClassName("fixedmenu")[0].style.width = wid + "px";                       
+                    // console.log(wid);
+                }
+                else {
+                    $('.ql-toolbar').removeClass('fixedmenu');
+                }                   
+            });              
+        });
     }
 }
 </script>

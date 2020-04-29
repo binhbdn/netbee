@@ -88,4 +88,18 @@ class TinTucController extends Controller
         return response()->json($data);
     }
 
+    public function getTinTucSiteMap(Request $request)
+    {
+
+        $datas['tintuc'] = DB::table('news')
+        ->where('status',1)
+        ->where('deleted',0)
+        ->get();
+        if($datas)
+            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
+        else
+            $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
+        return response()->json($data);
+    }
+
 }
