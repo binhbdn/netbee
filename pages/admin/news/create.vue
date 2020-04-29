@@ -32,13 +32,13 @@
                                     <ValidationObserver v-slot="{ invalid }">
                                         <form class="w-100 px-2" method="post">
                                             <div class="row">
-                                                <div class="col-12">
+                                                <div class="col-12" id="hegimg">
                                                     <fieldset class="form-group">
                                                         <label for="basicInput">Ảnh tiêu đề</label>
                                                         <ImgUploader :files="files"></ImgUploader>
                                                     </fieldset>
                                                 </div>
-                                                <div class="col-12">
+                                                <div class="col-12" id="hegtitle">
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
                                                             <label for="basicInput">Tiêu đề</label>
@@ -182,8 +182,11 @@ export default {
     mounted(){
         $(document).ready(function() {
             $(window).scroll(function(event) {
-                var pos_body = $('html,body').scrollTop();                
-                if(pos_body > 300){
+                var pos_body = $('html,body').scrollTop();     
+                var hegimg =  $('#hegimg').height();                            
+                var hegtitle =  $('#hegtitle').height();                         
+                var hh = hegimg + hegtitle + 100; 
+                if(pos_body > hh){
                     $('.ql-toolbar').addClass('fixedmenu');
                     var wid =  $('.quillWrapper').width();                        
                     document.getElementsByClassName("fixedmenu")[0].style.width = wid + "px";                       
