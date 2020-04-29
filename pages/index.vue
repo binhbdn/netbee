@@ -232,15 +232,13 @@
                                 <div class="tab-pane active" id="home-fill" role="tabpanel"
                                       aria-labelledby="home-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item"><i class="fad fa-location-arrow"></i> 1</li>
-                                    <li class="nav-item"><i class="fad fa-location-arrow"></i> 1</li>
+                                    <li class="nav-item" v-for="(item, index) in linhvuc" :key="index"><i class="fad fa-location-arrow"></i> {{item.profession}}</li>
                                   </ul>
                                 </div>
                                 <div class="tab-pane" id="profile-fill" role="tabpanel"
                                       aria-labelledby="profile-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item"><i class="fad fa-location-arrow"></i> 2</li>
-                                    <li class="nav-item"><i class="fad fa-location-arrow"></i> 2</li>
+                                    <li class="nav-item" v-for="(item, index) in quocgia" :key="index"><i class="fad fa-location-arrow"></i> {{item.name}}</li>
                                   </ul>
                                 </div>
                               </div>
@@ -290,6 +288,8 @@
             arrayJobHot: [],
             pageLoadingHot: 1,
             pageLoadingNew: 1,
+            linhvuc: [],
+            quocgia: []
         }
     },
     components: {
@@ -308,6 +308,12 @@
 
         this.$axios.$get(`getTinTucNew?limit=4`).then((ress) => {
           this.tintuc = ress.data.tintuc
+        })
+        this.$axios.$get(`getVisa`).then((ress) => {
+          this.linhvuc = ress.data
+        })
+        this.$axios.$get(`getQuocGia`).then((ress) => {
+          this.quocgia = ress.data
         })
       },
       infiniteScrollHot($state) {

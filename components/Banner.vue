@@ -305,7 +305,7 @@ export default {
       },
       searchJobs(){
         window.location.href = '/tin-tuyen-sinh/tim-kiem?keyword='
-        +(this.keyJobs != '' ? this.keyJobs : "")
+        +(this.keyJobs != '' ? this.ChangeToSlug(this.keyJobs) : "")
         +(this.type_job != '' ? '&type='+this.type_job.id : '')
         +(this.chooseNation != '' ? '&nation_id='+this.chooseNation.id : '')
       }

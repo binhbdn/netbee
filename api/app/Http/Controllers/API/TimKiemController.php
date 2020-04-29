@@ -48,7 +48,6 @@ class TimKiemController extends Controller
         $work_form = $request->work_form;
         $id_visa = $request->id_visa;
         $bonus = $request->bonus;
-
         $search = DB::table('nb_joblists')
         ->where(function($query) use ($keyword){
             if($keyword != ''){
