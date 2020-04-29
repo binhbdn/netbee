@@ -408,7 +408,7 @@ export default {
             if(isValid){
             try {
                     let response = await this.$auth.loginWith('local',{ data: this.userForm });
-                    window.location.href = '/admin';
+                    window.location.reload();
             } catch (err) {
                 this.$swal(
                         'Lỗi!',

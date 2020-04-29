@@ -41,6 +41,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('readNotificationAll', 'NotificationController@readNotificationAll');
       Route::get('logout', 'Auth\UserController@logout');
       Route::post('pricing_momo_bank', 'MomoController@pricing_momo_bank');
+      Route::post('pricing_momo', 'MomoController@pricing_momo');
       
     //admin
       Route::prefix('tintuc')->group(function () {
