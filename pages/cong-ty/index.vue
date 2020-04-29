@@ -10,7 +10,7 @@
             <h4 class="card-title">CÁC CÔNG TY NỔI BẬT</h4>
           </div>
           <div class="row">
-            <div class="col-6">
+            <div class="col-12">
               <div class="card-content">
                 <div class="card-body">
                   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -66,80 +66,6 @@
                           <a
                             class="carousel-control-next"
                             href="#carousel-example-generic"
-                            role="button"
-                            data-slide="next"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="carousel-control-next-icon"
-                              style="background-color: yellow !important;"
-                            ></span>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6">
-              <div class="card-content">
-                <div class="card-body">
-                  <div id="carousel-ex" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                      <div
-                        class="carousel-item"
-                        :class="{'active' : indexCompanyHot == 0}"
-                        v-for="(companyHot, indexCompanyHot) in arrayCompanyHot"
-                        :key="indexCompanyHot"
-                      >
-                        <img
-                          class="img-fluid"
-                          v-lazy="`/uploads/users/avatars/${companyHot.avatar}`"
-                          :alt="`${companyHot.avatar}`"
-                        />
-                        <div class="remove-border-rightt">
-                          <div class="item-name">
-                            <a
-                              :href="`/cong-ty/${companyHot.company_id}/${ChangeToSlug(companyHot.name)}`"
-                              class="item-company mb-0"
-                            >
-                              <h2>
-                                <i class="fad fa-building"></i>
-                                {{ companyHot.name }}
-                              </h2>
-                            </a>
-                          </div>
-
-                          <div class="item-quantity d-flex justify-content-between">
-                            <p class="quantity-title mb-0">
-                              <i class="fad fa-location-arrow"></i>
-                              {{ companyHot.address_detail ? companyHot.address_detail : 'Đang cập nhật' }}
-                            </p>
-                          </div>
-                          <div class="item-quantity d-flex justify-content-between">
-                            <p class="delivery-date mb-0">
-                              <i class="fad fa-calendar-star"></i>
-                              {{ companyHot.birth_of_date ? ConvertDate(companyHot.birth_of_date) : 'Đang cập nhật' }}
-                            </p>
-                          </div>
-
-                          <a
-                            class="carousel-control-prev"
-                            href="#carousel-ex"
-                            role="button"
-                            data-slide="prev"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="carousel-control-prev-icon"
-                              style="background-color: yellow !important;"
-                            ></span>
-                          </a>
-                          <a
-                            class="carousel-control-next"
-                            href="#carousel-ex"
                             role="button"
                             data-slide="next"
                           >
