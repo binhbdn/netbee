@@ -47,11 +47,11 @@ module.exports = {
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/assets/img/logo.png' },
             { rel: 'stylesheet', href: '/app-assets/vendors/css/vendors.min.css' },
-            { rel: 'stylesheet', href: '/app-assets/vendors/css/charts/apexcharts.css' },
+            // { rel: 'stylesheet', href: '/app-assets/vendors/css/charts/apexcharts.css' },
             { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether-theme-arrows.css' },
             { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether.min.css' },
-            { rel: 'stylesheet', href: '/app-assets/vendors/css/forms/select/select2.min.css' },
-            { rel: 'stylesheet', href: '/app-assets/vendors/css/pickers/pickadate/pickadate.css' },
+            // { rel: 'stylesheet', href: '/app-assets/vendors/css/forms/select/select2.min.css' },
+            // { rel: 'stylesheet', href: '/app-assets/vendors/css/pickers/pickadate/pickadate.css' },
             { rel: 'stylesheet', href: '/app-assets/css/bootstrap.css' },
             { rel: 'stylesheet', href: '/app-assets/css/bootstrap-extended.css' },
             { rel: 'stylesheet', href: '/app-assets/css/colors.css' },
@@ -66,7 +66,7 @@ module.exports = {
             { rel: 'stylesheet', href: '/assets/css/bootstrap-custom.css' },
             { rel: 'stylesheet', href: '/assets/css/header.css' },
             { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' },
-            { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
+            // { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
             { rel: 'stylesheet', href: '/assets/fontawesome-pro/css/all.css' },
 
         ],
@@ -75,8 +75,8 @@ module.exports = {
             { src: '/app-assets/js/core/app-menu.js' },
             { src: '/app-assets/js/core/app.js' },
             { src: '/app-assets/js/scripts/components.js' },
-            { src: '/app-assets/vendors/js/forms/select/select2.full.min.js', },
-            { src: '/app-assets/js/scripts/forms/select/form-select2.js', },
+            // { src: '/app-assets/vendors/js/forms/select/select2.full.min.js', },
+            // { src: '/app-assets/js/scripts/forms/select/form-select2.js', },
 
         ]
     },
