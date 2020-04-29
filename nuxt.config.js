@@ -108,7 +108,29 @@ module.exports = {
             //     changefreq: 'daily',
             //     priority: 1,
             // }))
-            return [...arrayTinTuc]
+            return [
+                {
+                    url: `tin-tuc/tin-moi`,
+                    changefreq: 'daily',
+                    priority: 1,
+                },
+                {
+                    url: `tin-tuc/du-hoc`,
+                    changefreq: 'daily',
+                    priority: 1,
+                },
+                {
+                    url: `tin-tuc/cam-nang`,
+                    changefreq: 'daily',
+                    priority: 1,
+                },
+                {
+                    url: `tin-tuc/xuat-khau-lao-dong`,
+                    changefreq: 'daily',
+                    priority: 1,
+                },
+                ...arrayTinTuc
+            ]
           }
     },
     auth: {
