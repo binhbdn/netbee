@@ -189,8 +189,7 @@ export default {
                 if(pos_body > hh){
                     $('.ql-toolbar').addClass('fixedmenu');
                     var wid =  $('.quillWrapper').width();                        
-                    document.getElementsByClassName("fixedmenu")[0].style.width = wid + "px";                       
-                    // console.log(wid);
+                    document.getElementsByClassName("fixedmenu")[0].style.width = wid + "px";                                          
                 }
                 else {
                     $('.ql-toolbar').removeClass('fixedmenu');
