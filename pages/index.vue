@@ -216,15 +216,13 @@
                                 <div class="tab-pane active" id="home-fill" role="tabpanel"
                                       aria-labelledby="home-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item"><i class="fad fa-location-arrow"></i> 1</li>
-                                    <li class="nav-item"><i class="fad fa-location-arrow"></i> 1</li>
+                                    <li class="nav-item" v-for="(item, index) in linhvuc" :key="index"><i class="fad fa-location-arrow"></i> {{item.profession}}</li>
                                   </ul>
                                 </div>
                                 <div class="tab-pane" id="profile-fill" role="tabpanel"
                                       aria-labelledby="profile-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item"><i class="fad fa-location-arrow"></i> 2</li>
-                                    <li class="nav-item"><i class="fad fa-location-arrow"></i> 2</li>
+                                    <li class="nav-item" v-for="(item, index) in quocgia" :key="index"><i class="fad fa-location-arrow"></i> {{item.name}}</li>
                                   </ul>
                                 </div>
                               </div>
@@ -276,10 +274,14 @@
       let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=20&type=0`)
       let getTinTuyenDungHot = await $axios.$get(`getTinTuyenDungHot?limit=0`)
       let getTinTucNew = await $axios.$get('getTinTucNew?limit=4')
+      let getVisa = await $axios.$get(`getVisa`)
+      let getQuocGia = await $axios.$get(`getQuocGia`)
       return {
           arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
           arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
-          tintuc: getTinTucNew.data.tintuc
+          tintuc: getTinTucNew.data.tintuc,
+          linhvuc: getVisa.data,
+          quocgia: getQuocGia.data
       }
     },
   }
