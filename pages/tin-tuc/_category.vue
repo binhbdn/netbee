@@ -26,6 +26,14 @@
                                             <NewItempage2 :id="item.id" :title="item.title" :short_content="item.short_content" :time="item.time" :type="1" :thuml="item.thuml" :created_at="item.created_at"></NewItempage2>
                                         </div>
                                     </div>
+                                    <infinite-loading
+                                            v-if="arrayNew.length"
+                                            spinner="bubbles"
+                                            @infinite="infiniteScroll" style="padding:20px; width:100%"
+                                        >
+                                        <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
+                                        <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+                                    </infinite-loading>
                                 </div>
                             </div>
                         </div>
@@ -93,34 +101,67 @@ export default {
                 { id: 3, name: 'Cẩm nang'},
             ],
             arrayJobNew: [],
+            page:1
         }
     },
      methods: {
         async fetch () {
             switch (this.$route.params.category) {
                 case "tin-moi":
-                    let arrayNew = await this.$axios.$get('getTinTucNew?limit=5');
-                    this.arrayNew = arrayNew.data.tintuc;
+                    let arrayNew = await this.$axios.$get('getTinTucNewLoading?page='+this.page);
+                    this.arrayNew = arrayNew.data.tintuc.data;
                     break;
                 case "cam-nang":
-                    let arrayCamNang = await this.$axios.$get('getTinTucCate?category=1&limit=5');
-                    this.arrayNew = arrayCamNang.data.tintuc;
+                    let arrayCamNang = await this.$axios.$get('getTinTucNewLoading?category=3&page='+this.page);
+                    this.arrayNew = arrayCamNang.data.tintuc.data;
                     break;
                 case "du-hoc":
-                    let arrayDuHoc = await this.$axios.$get('getTinTucCate?category=2&limit=5');
-                    this.arrayNew = arrayDuHoc.data.tintuc;
+                    let arrayDuHoc = await this.$axios.$get('getTinTucCate?category=2&page='+this.page);
+                    this.arrayNew = arrayDuHoc.data.tintuc.data;
                     break;
                 case "xuat-khau-lao-dong":
-                    let arrayXKLD = await this.$axios.$get('getTinTucCate?category=3&limit=5');
-                    this.arrayNew = arrayXKLD.data.tintuc;
+                    let arrayXKLD = await this.$axios.$get('getTinTucCate?category=1&page='+this.page);
+                    this.arrayNew = arrayXKLD.data.tintuc.data;
                     break;
                 default:
-                    let arrayNew1 = await this.$axios.$get('getTinTucNew?limit=5');
-                    this.arrayNew = arrayNew1.data.tintuc;
+                    let arrayNew1 = await this.$axios.$get('getTinTucNewLoading?page='+this.page);
+                    this.arrayNew = arrayNew1.data.tintuc.data;
                     break;
             }
             let getTinTuyenDungNew = await this.$axios.$get(`getTinTuyenDungNew?limit=5&type=0`)
             this.arrayJobNew = getTinTuyenDungNew.data.tintuyendung
+        },
+        infiniteScroll($state) {
+            console.log(this.$route.params.category);
+            if(this.$route.params.category == 'tin-moi'){
+                var $category = '';
+            }
+            else if(this.$route.params.category == 'cam-nang'){
+                var $category = 3;
+            }
+            else if(this.$route.params.category == 'du-hoc'){
+                let $category = 2;
+            }
+            else if(this.$route.params.category == 'xuat-khau-lao-dong'){
+                let $category = 1;
+            }
+            setTimeout(() => {
+                this.page++
+                this.$axios
+                .get('/getTinTucNewLoading?page='+ this.page + '&category=' + $category)
+                .then((response) => {
+                    console.log(response.data.data.tintuc.data)
+                    if (response.data.data.tintuc.data.length > 1) {
+                        response.data.data.tintuc.data.forEach((item) => this.arrayNew.push(item))
+                        $state.loaded()
+                    } else {
+                        $state.complete()
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }, 500)
         },
     },
     mounted() {

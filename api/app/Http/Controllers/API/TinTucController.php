@@ -29,6 +29,27 @@ class TinTucController extends Controller
             $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
         return response()->json($data);
     }
+    public function getTinTucNewLoading(Request $request)
+    {
+        $category = $request->category;
+        if($category){
+            $datas['tintuc'] = DB::table('news')
+            ->where('id_category',$category)
+            ->where('status',1)
+            ->where('deleted',0)
+            ->paginate(5);
+        }else{
+            $datas['tintuc'] = DB::table('news')
+            ->where('status',1)
+            ->where('deleted',0)
+            ->paginate(5);
+        }
+        if($datas)
+            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
+        else
+            $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
+        return response()->json($data);
+    }
 
     public function getDanhMucTinTuc(Request $request)
     {
