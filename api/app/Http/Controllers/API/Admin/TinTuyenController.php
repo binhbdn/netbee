@@ -24,7 +24,7 @@ class TinTuyenController extends Controller
         $role_user = Auth::user()->role;
         $id_user = Auth::user()->id;
         try {
-            if($role_user != 4){
+            if($role_user == 2){
                 $getTin = DB::table('nb_joblists')->join('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
                 //
                 ->where('nb_joblists.id_created',$id_user)
@@ -35,7 +35,7 @@ class TinTuyenController extends Controller
                 ->paginate(6);
                 $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
             }
-            else{
+            else if($role_user == 4){
                 $getTin = DB::table('nb_joblists')
                 ->where('nb_joblists.deleted',0)
                 ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
@@ -44,6 +44,17 @@ class TinTuyenController extends Controller
                 ->groupBy('nb_joblists.id')
                 ->paginate(6);
                 $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
+            } else {
+                $getTin = DB::table('nb_joblists')->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
+                ->where('nb_joblists.deleted',0)
+                ->where('nb_joblists.status', 1)
+                ->Join('users','users.id','=','nb_joblists.id_created')
+                ->join('nations', 'nb_joblists.nation_id', '=', 'nations.id')
+                ->orderBy('nb_joblists.highlight_job', 'nb_joblists.created_at', 'DESC')
+                
+                ->groupBy('nb_joblists.id')
+                ->paginate(6);
+                $data = ['status'=> 200, 'message' => 'hr', 'data' => $getTin];
             }
             
         } catch (\Exception $e) {

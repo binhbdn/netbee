@@ -132,6 +132,7 @@ export default {
     Multiselect
   },
   async asyncData({$axios, route}) {
+    console.log(route.query.keyword)
     let getTinTuyenDungNew = await $axios.$get('searchJobs?keyword='+route.query.keyword
                                                 +(route.query.type != null ? '&type='+ route.query.type : '')
                                                 +(route.query.nation_id != null ? '&nation_id='+route.query.nation_id : ''))
