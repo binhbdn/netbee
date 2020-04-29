@@ -12,12 +12,11 @@
         </div>
         <div style="width: 400px;">
           <p style="line-height: 2.1;">
-            Netbee kết nối đến hàng ngàn du học sinh và cộng tác viên tuyển dụng ở khắp mọi nơi , Netbee trở thành mạng lưới giới thiệu và giải đáp thắc mắc lớn nhất Việt Nam . Netbee trở thành nơi tuyển dụng ưu việt , nhanh chóng , hiệu quả nhất
-            cho các trung tâm tư vấn và môi giới du học trên khắp cả nước
+            Netbee kết nối đến hàng ngàn du học sinh và cộng tác viên tuyển dụng ở khắp mọi nơi , Netbee trở thành mạng lưới giới thiệu và giải đáp thắc mắc lớn nhất Việt Nam. Netbee trở thành nơi tuyển dụng ưu việt, nhanh chóng, hiệu quả nhất cho các trung tâm tư vấn và môi giới du học trên khắp cả nước.
           </p>
           <p
             style="line-height: 2.1;"
-          >Netbee được ví như mạng lưới của những chú ong chăm chỉ , cần mẫn hàng ngày làm những công việc thầm lặng đưa những người con của đất Việt đi khắp muôn nơi trên thế giới .</p>
+          >Netbee được ví như mạng lưới của những chú ong chăm chỉ, cần mẫn hàng ngày làm những công việc thầm lặng đưa những người con của đất Việt đi khắp muôn nơi trên thế giới.</p>
         </div>
       </div>
     </div>

@@ -104,6 +104,14 @@
               <div class="card-content collapse show">
                 <div class="card-body scrollbar">
                   <JobsList2Col :DataList="arrayJobHot"></JobsList2Col>
+                <infinite-loading
+                      v-if="arrayJobHot.length"
+                      spinner="waveDots"
+                      @infinite="infiniteScrollHot" style="padding:20px; width:100%"
+                  >
+                  <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin nổi bật</div>
+                  <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+                </infinite-loading>
                 </div>
               </div>
             </div>
@@ -184,6 +192,14 @@
               <div class="card-content collapse show">
                 <div class="card-body scrollbar">
                   <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
+                  <infinite-loading
+                      v-if="arrayJobNew.length"
+                      spinner="waveDots"
+                      @infinite="infiniteScrollNew" style="padding:20px; width:100%"
+                  >
+                  <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin nổi bật</div>
+                  <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+                </infinite-loading>
                 </div>
               </div>
             </div>
@@ -265,25 +281,83 @@
   import NewsList from '../components/News/NewsList'
 
   export default {
+    data() {
+        return {
+            arrayJobNew: [],
+            tintuc: [],
+            arrayJobHot: [],
+            pageLoadingHot: 1,
+            pageLoadingNew: 1,
+            linhvuc: [],
+            quocgia: []
+        }
+    },
     components: {
       JobsList2Col,
       NewsList,
       JobsList1Col
     },
-    async asyncData({$axios, route}) {
-      let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=20&type=0`)
-      let getTinTuyenDungHot = await $axios.$get(`getTinTuyenDungHot?limit=0`)
-      let getTinTucNew = await $axios.$get('getTinTucNew?limit=4')
-      let getVisa = await $axios.$get(`getVisa`)
-      let getQuocGia = await $axios.$get(`getQuocGia`)
-      return {
-          arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
-          arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
-          tintuc: getTinTucNew.data.tintuc,
-          linhvuc: getVisa.data,
-          quocgia: getQuocGia.data
-      }
+    methods: {
+      fetch() {
+        this.$axios.$get(`getTinTuyenDungNewLoading`).then((ress) => {
+          this.arrayJobNew = ress.data.tintuyendung.data
+        })
+        this.$axios.$get(`getTinTuyenDungHotLoading`).then((ress) => {
+          this.arrayJobHot = ress.data.tintuyendung.data
+        })
+
+        this.$axios.$get(`getTinTucNew?limit=4`).then((ress) => {
+          this.tintuc = ress.data.tintuc
+        })
+        this.$axios.$get(`getVisa`).then((ress) => {
+          this.linhvuc = ress.data
+        })
+        this.$axios.$get(`getQuocGia`).then((ress) => {
+          this.quocgia = ress.data
+        })
+      },
+      infiniteScrollHot($state) {
+              setTimeout(() => {
+                  this.pageLoadingHot++
+                  this.$axios
+                  .get('getTinTuyenDungHotLoading?page='+ this.pageLoadingHot)
+                  .then((response) => {
+                      console.log(response.data.data.tintuyendung.data.length)
+                      if (response.data.data.tintuyendung.data.length > 1) {
+                          response.data.data.tintuyendung.data.forEach((item) => this.arrayJobHot.push(item))
+                          $state.loaded()
+                      } else {
+                          $state.complete()
+                      }
+                  })
+                  .catch((err) => {
+                      console.log(err)
+                  })
+              }, 500)
+          },
+          infiniteScrollNew($state) {
+              setTimeout(() => {
+                  this.pageLoadingNew++
+                  this.$axios
+                  .get('getTinTuyenDungNewLoading?page='+ this.pageLoadingNew)
+                  .then((response) => {
+                      console.log(response.data.data.tintuyendung.data.length)
+                      if (response.data.data.tintuyendung.data.length > 1) {
+                          response.data.data.tintuyendung.data.forEach((item) => this.arrayJobNew.push(item))
+                          $state.loaded()
+                      } else {
+                          $state.complete()
+                      }
+                  })
+                  .catch((err) => {
+                      console.log(err)
+                  })
+              }, 500)
+          },
     },
+    mounted() {
+        this.fetch();
+    }
   }
 </script>
 <style scoped>
