@@ -90,3 +90,9 @@ tbody .vs-checkbox-con .vs-checkbox {
 .list-data .dropdown-menu.show{
     width: 138px!important;
 }
+.fixedmenu{
+    position: fixed;
+    top: 63px;
+    background-color: aliceblue;
+    z-index: 1;
+}

@@ -14,7 +14,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="/">Tin tuyển dụng</a>
                                     </li>
-                                    <li class="breadcrumb-item active" @click = "formatDate('2020-01-15 07:11:58')"> Danh sách tin tuyển dụng
+                                    <li class="breadcrumb-item active"> Danh sách tin tuyển dụng
                                     </li>
                                 </ol>
                             </div>
@@ -158,7 +158,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>{{formatDate(item.created_at)}}</td>
+                                                    <td>{{ConvertDate(item.created_at)}}</td>
                                                     <td v-if="item.status == 0">
                                                         <div class="chip-text"><i style="font-size: 20px;" class="far fa-times-circle danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
@@ -549,12 +549,6 @@ export default {
                         'Lỗi!',
                         'Lỗi xóa!',
                         'error')
-                }
-        },
-        formatDate(value){
-                if (value) {
-                    // return moment(String(value)).format('MM/DD/YYYY');
-                return (moment(String(value)).format('MM/DD/YYYY'));
                 }
         },
         sortAscendingID() {

@@ -14,7 +14,7 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="/">Bài viết</a>
                                     </li>
-                                    <li class="breadcrumb-item active" @click = "formatDate('2020-01-15 07:11:58')"> Danh sách bài viết
+                                    <li class="breadcrumb-item active"> Danh sách bài viết
                                     </li>
                                 </ol>
                             </div>
@@ -146,7 +146,7 @@
                                                     <td>
                                                         <span><img v-lazy="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>
                                                     </td>
-                                                    <td>{{formatDate(item.created_at)}}</td>
+                                                    <td>{{ConvertDate(item.created_at)}}</td>
                                                     <td v-if="item.status == 0">
                                                         <div class="chip-text"><i style="font-size: 20px;" class="far fa-times-circle danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
@@ -320,12 +320,6 @@ export default {
                         'Lỗi!',
                         'Lỗi xóa!',
                         'error')
-                }
-        },
-        formatDate(value){
-                if (value) {
-                    // return moment(String(value)).format('MM/DD/YYYY');
-                return (moment(String(value)).format('MM/DD/YYYY'));
                 }
         },
         sortAscendingID() {
