@@ -68,7 +68,7 @@
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
                                     <form class="col-9" action="/admin/news/create" method="">
-                                        <button class="btn-add btn background-default text-dark "><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
+                                        <button class="btn-add btn bg-netbee text-dark "><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
                                     </form>
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
@@ -141,7 +141,7 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td class="text-left" v-if="item.status==1"><a data-toggle="tooltip"  data-placement="top" :title="`Xem chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
+                                                    <td class="text-left" v-if="item.status==1"><a data-toggle="tooltip"  data-placement="top" :title="`Xem chi tiết tin`" :href="`/tin-tuc/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
                                                     <td class="text-left" v-else><a data-toggle="tooltip"  data-placement="top" :title="`Kích hoạt tin để xem chi tiết`">{{item.title}}</a></td>
                                                     <td>
                                                         <span><img v-lazy="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>

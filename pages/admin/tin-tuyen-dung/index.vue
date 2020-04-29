@@ -70,7 +70,7 @@
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
                                     <form class="col-9" action="/admin/tin-tuyen-dung/tao" method="">
-                                        <button class="btn-add btn background-default text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyện dụng</button>
+                                        <button class="btn-add btn bg-netbee text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
                                     </form>
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
@@ -564,6 +564,7 @@ export default {
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
             + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
+            + '&page=' + this.page
             ).then((response)=>{
 	             this.tinTuyenDung=response.data;
 	        });

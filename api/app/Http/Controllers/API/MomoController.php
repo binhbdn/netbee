@@ -85,11 +85,11 @@ class MomoController extends Controller
                 $orderInfo = Auth::user()->id."";
                 $returnUrl = "https://netbee.vn/admin/tin-tuyen-dung";
                 $notifyurl = "https://netbee.vn/api/pricing_momo_bank_checking";
-                $orderid = $request->idJob."";
+                $orderid = time()."";
                 $requestId = $code ?? '0';
                 $amount = "10000";
                 $requestType = "captureMoMoWallet";
-                $extraData = "merchantName=Netbee";
+                $extraData = $request->idJob."";
                 //before sign HMAC SHA256 signature
                 $rawHash = "partnerCode=".$partnerCode."&accessKey=".$accessKey."&requestId=".$requestId."&amount=".$amount."&orderId=".$orderid."&orderInfo=".$orderInfo."&returnUrl=".$returnUrl."&notifyUrl=".$notifyurl."&extraData=".$extraData;
                 // echo "Raw signature: ".$rawHash."\n";
@@ -172,10 +172,10 @@ class MomoController extends Controller
                 $orderInfo = Auth::user()->id."";
                 $returnUrl = "https://netbee.vn/admin/tin-tuyen-dung";
                 $notifyurl = "https://netbee.vn/api/pricing_momo_bank_checking";
-                $orderid = $request->idJob."";
+                $orderid = time()."";
                 $requestId = $code ?? '0';
                 $requestType = "payWithMoMoATM";
-                $extraData = "merchantName=Netbee";
+                $extraData = $request->idJob."";
                 $amount = "10000";
                 $bankCode = $request->bank;
                 $rawHash = "partnerCode=".$partnerCode."&accessKey=".$accessKey."&requestId=".$requestId."&bankCode=".$bankCode."&amount=".$amount."&orderId=".$orderid."&orderInfo=".$orderInfo."&returnUrl=".$returnUrl."&notifyUrl=".$notifyurl."&extraData=".$extraData."&requestType=".$requestType;
@@ -241,10 +241,10 @@ class MomoController extends Controller
         $result = execPostRequestCheck($endpoint, json_encode($data));
         $jsonResult =json_decode($result,true);  // decode json
         if($jsonResult['errorCode'] == 0 ){
-            DB::table('nb_joblists')->where('id', $orderid)->update(['status' => 1]);
+            DB::table('nb_joblists')->where('id', $request->extraData)->update(['status' => 1]);
             DB::table('nb_history_transactions')->insert([
                 'id_user_payment' => $requestId,
-                'content' => 'thanh toán gói đăng tin cho id việc: '.$orderid,
+                'content' => 'thanh toán gói đăng tin cho id việc: '.$request->extraData,
                 'using_discount' => $request->orderInfo,
                 'price' => $jsonResult['amount'],
                 'created_at' => Carbon::now(),
