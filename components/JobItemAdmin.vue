@@ -1,12 +1,12 @@
 <template>
-    <div class="card ecommerce-card border-job-item" style="height:140px;margin-bottom: 15px;">
+    <div class="card ecommerce-card border-job-item make-it-slow" style="height:140px;margin-bottom: 15px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content">
             <div class="remove-border-right" style="width: 60vh;padding: 5px 25px;">
                 <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">{{ job.title }}</a>
             </div>
             <div class="item-options text-center">
                 <div class="item-wrapper" style="position: unset">
-                    <div class="item-rating job-vip" v-if="job.highlight_job">
+                    <div class="item-rating job-vip" v-if="job.highlight_job == 2">
                         <i class="fas fa-star" style="color: yellow;position: absolute;right: 2px;top: -30px;"></i>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                     <div class="item-cost" v-if="job.bonus != 0 && job.bonus != null">
                         <p>Tiền thưởng</p>
                         <h3>
-                            <span style="color: #fc205c">{{job.bonus}}{{ job.currency }} / người </span>
+                            <span style="color: #fc205c">{{job.bonus}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                         </h3>
                     </div>
                 </div>
@@ -62,3 +62,16 @@ export default {
     props: ['job']
 }
 </script>
+<style scoped>
+.item-vip-a{
+    font-weight: 600;
+    font-size: 20px;
+}
+.highlight{
+    border-left: 4px solid #ffb701 !important;
+}
+
+.border-job-item:hover{
+    background-color: #ffb7012b;
+}
+</style>

@@ -73,26 +73,41 @@ tbody .vs-checkbox-con .vs-checkbox {
     font-weight: bold;
     font-size: 15px;
 }
-.title-records{
+
+.title-records {
     text-decoration: dashed;
     color: #0d0596!important;
 }
-.title-records:hover{
+
+.title-records:hover {
     text-decoration: underline!important;
     color: #0d0596!important;
 }
-.list-data tr th{
+
+.list-data tr th {
     text-align: center;
 }
-.list-data tr td{
+
+.list-data tr td {
     text-align: center;
 }
-.list-data .dropdown-menu.show{
+
+.list-data .dropdown-menu.show {
     width: 138px!important;
 }
-.fixedmenu{
+
+.fixedmenu {
     position: fixed;
     top: 63px;
     background-color: aliceblue;
     z-index: 1;
+}
+
+.make-it-slow {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
+    transition: box-shadow 0.1s ease-in-out !important;
+}
+
+.make-it-slow:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
 }

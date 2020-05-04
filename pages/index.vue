@@ -218,13 +218,13 @@
                                 <div class="tab-pane active" id="home-fill" role="tabpanel"
                                       aria-labelledby="home-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item" v-for="(item, index) in linhvuc" :key="index"><i class="fad fa-location-arrow"></i> {{item.profession}}</li>
+                                    <li class="nav-item" v-for="(item, index) in linhvuc" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?id_visa=${item.id}`"><i class="fad fa-location-arrow"></i> {{item.profession}}</a></li>
                                   </ul>
                                 </div>
                                 <div class="tab-pane" id="profile-fill" role="tabpanel"
                                       aria-labelledby="profile-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item" v-for="(item, index) in quocgia" :key="index"><i class="fad fa-location-arrow"></i> {{item.name}}</li>
+                                    <li class="nav-item" v-for="(item, index) in quocgia" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?nation_id=${item.id}`"><i class="fad fa-location-arrow"></i> {{item.name}}</a></li>
                                   </ul>
                                 </div>
                               </div>
