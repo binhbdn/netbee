@@ -92,7 +92,7 @@ export default {
                 search: "",
                 searchStatus: "",
                 searchTitle: "",
-                searchCategory: ""
+                searchCategory: null
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
@@ -118,10 +118,11 @@ export default {
             this.tinTuyenDung = getTin.data.data
         },
         search(){
+            console.log(this.cardSearch.searchCategory)
             this.$axios.$get(
             'tintuyendung/searchTinTuyenDung?searchCategory=' 
-            + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
-            + ((this.cardSearch.searchStatus.id !=null)? '&searchStatus='+this.cardSearch.searchStatus.id:'') 
+            + ((this.cardSearch.searchCategory != null && this.cardSearch.searchCategory.id != null)?this.cardSearch.searchCategory.id:'') 
+            + ((this.cardSearch.searchStatus != null && this.cardSearch.searchStatus.id !=null)? '&searchStatus='+this.cardSearch.searchStatus.id:'') 
             + ((this.cardSearch.search)? '&search='+ this.cardSearch.search:'')
             + ((this.cardSearch.searchTitle)? '&searchTitle='+ this.cardSearch.searchTitle:'')
             ).then((response)=>{
