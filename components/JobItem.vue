@@ -1,21 +1,9 @@
 <template>
     <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px;" :class="job.highlight_job ? 'highlight' : ''">
-        <!-- <div class="card-content">
-            <div class="remove-border-right" style="width: 60vh;padding: 5px 25px;">
-                <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">{{ job.title }}</a>
-            </div>
-            <div class="item-options text-center">
-                <div class="item-wrapper" style="position: unset">
-                    <div class="item-rating job-vip" v-if="job.highlight_job == 2">
-                        <i class="fas fa-star" style="color: yellow;position: absolute;right: 2px;top: -30px;"></i>
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="card-content h-100">
-            <div class="text-center">
+            <div class="text-center p-1">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="job.avatar != null && job.avatar.startsWith('https') ? job.avatar : `/uploads/users/avatars/${job.avatar}`" height="100%" :alt="`${job.avatar}`" style="object-fit: cover; max-height: 100%;">
+                    <img v-lazy="job.avatar != null && job.avatar.startsWith('https') ? job.avatar : `/uploads/users/avatars/${job.avatar}`" height="100%" :alt="`${job.avatar}`" style="object-fit: scale-down; max-height: 100%; max-width: 100%;">
                 </a>
             </div>
             <div class="remove-border-right">
