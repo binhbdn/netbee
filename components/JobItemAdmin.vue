@@ -1,6 +1,6 @@
 <template>
-    <div class="card ecommerce-card border-job-item make-it-slow" style="height:140px;margin-bottom: 15px;" :class="job.highlight_job ? 'highlight' : ''">
-        <div class="card-content">
+    <div class="ecommerce-card border-job-item make-it-sl" style="height:140px;margin-bottom: 15px;" :class="job.highlight_job ? 'highlight' : ''">
+        <!-- <div class="card-content">
             <div class="remove-border-right" style="width: 60vh;padding: 5px 25px;">
                 <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">{{ job.title }}</a>
             </div>
@@ -11,14 +11,18 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card-content">
-            <div style="margin: 0 auto;">
+        </div> -->
+        <div class="card-content h-100">
+            <div class="text-center">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="job.avatar != null && job.avatar.startsWith('https') ? job.avatar : `/uploads/users/avatars/${job.avatar}`" :alt="`${job.avatar}`" width="100" height="100" style="object-fit: cover;">
+                    <img v-lazy="job.avatar != null && job.avatar.startsWith('https') ? job.avatar : `/uploads/users/avatars/${job.avatar}`" height="100%" :alt="`${job.avatar}`" style="object-fit: cover; max-height: 100%;">
                 </a>
             </div>
             <div class="remove-border-right">
+                <div class="remove-border-right" style="padding: 5px 0px;">
+                    
+                    <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
+                </div>
                 <div class="item-name">
                     <a :href="`/cong-ty/${job.id_created}/${ChangeToSlug(job.name)}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.name}`"> {{ job.name }}</span></a>
                 </div>
@@ -39,9 +43,10 @@
                 </div>
             </div>
             <div class="item-options text-center" >
-                <div class="item-wrapper">
-                    <div class="item-cost" v-if="job.bonus != 0 && job.bonus != null">
-                        <p>Tiền thưởng</p>
+                <div class="item-wrapper mt-1">
+                    <span class="item-hot" v-if="job.highlight_job == 2"><i class="fas fa-star" style="color: gold; "></i> Hot</span>
+                    <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null">
+                        <p class="m-0">Tiền thưởng</p>
                         <h3>
                             <span style="color: #fc205c">{{job.bonus}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                         </h3>

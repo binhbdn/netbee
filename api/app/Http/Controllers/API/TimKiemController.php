@@ -48,7 +48,7 @@ class TimKiemController extends Controller
         $work_form = $request->work_form;
         $id_visa = $request->id_visa;
         $bonus = $request->bonus;
-        $search = DB::table('nb_joblists')
+        $search = DB::table('nb_joblists')->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
         ->where(function($query) use ($keyword){
             if($keyword == 'tin-noi-bat'){
                 $query->where('highlight_job', 1);
@@ -98,6 +98,9 @@ class TimKiemController extends Controller
         ->where('isPublic',1)
         ->where('nb_joblists.status', 1)
         ->join('users', 'users.id','=','id_created')
+        ->join('nations', 'nb_joblists.nation_id', '=', 'nations.id')
+        ->orderBy('nb_joblists.highlight_job', 'nb_joblists.created_at', 'DESC')
+        ->groupBy('nb_joblists.id')
         ->get();
 
         if($search)
