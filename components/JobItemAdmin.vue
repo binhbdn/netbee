@@ -13,9 +13,9 @@
             </div>
         </div> -->
         <div class="card-content h-100">
-            <div class="text-center">
+            <div class="text-center p-1">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="job.avatar != null && job.avatar.startsWith('https') ? job.avatar : `/uploads/users/avatars/${job.avatar}`" height="100%" :alt="`${job.avatar}`" style="object-fit: cover; max-height: 100%;">
+                    <img v-lazy="job.avatar != null && job.avatar.startsWith('https') ? job.avatar : `/uploads/users/avatars/${job.avatar}`" height="100%" :alt="`${job.avatar}`" style="object-fit: scale-down; max-height: 100%; max-width: 100%;">
                 </a>
             </div>
             <div class="remove-border-right">
@@ -79,4 +79,6 @@ export default {
 .border-job-item:hover{
     background-color: #ffb7012b;
 }
+
+
 </style>

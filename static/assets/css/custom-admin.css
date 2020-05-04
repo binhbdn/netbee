@@ -104,7 +104,7 @@ tbody .vs-checkbox-con .vs-checkbox {
 }
 
 .make-it-sl {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15) !important;
     transition: box-shadow 0.3s ease-in-out !important;
 }
 
