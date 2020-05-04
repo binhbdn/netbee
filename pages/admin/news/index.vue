@@ -29,7 +29,9 @@
                             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
+                                    <li><a data-action="collapse" data-toggle="tooltip"  data-placement="top" :title="`Thu gọn tìm kiếm`"><i class="feather icon-chevron-down"></i></a></li>
+                                    <li><a @click="resetForm()" data-toggle="tooltip"  data-placement="top" :title="`Làm mới tìm kiếm`"><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
+                                    <li><a data-action="close" data-toggle="tooltip"  data-placement="top" :title="`Đóng tìm kiếm`"><i class="feather icon-x"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -166,7 +168,7 @@
                                                                         Chọn thao tác
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-check-circle' : 'far fa-times-circle'"></i>{{ item.status == 1 ? 'Kích hoạt' : "Bỏ kích hoạt" }}</a>
+                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
                                                                         <a :href="`/admin/news/edit/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
                                                                         <a v-on:click="deleteNews(item.id)" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
                                                                     </div>
@@ -245,14 +247,13 @@ export default {
     },
     created() {
         this.fetch();
-        console.log(this.selected)
     },
     methods: {
         nameWithLang ({ name, id }) {
             return `${name}`
         },
         fetch() {
-            this.$axios.$get('tintuc/getTinTuc?page='+ this.page).then((response)=>{
+            this.$axios.$get('tintuc/getTinTuc').then((response)=>{
 	             this.tinTuc=response.data.data;
 	        });
 
@@ -460,11 +461,17 @@ export default {
             setTimeout(() => {
                 this.page++
                 this.$axios
-                .get('/tintuc/getTinTuc?page='+ this.page)
+                .get(
+            'tintuc/searchTinTuc?searchCategory=' 
+            + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
+            + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
+            + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
+            + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
+            + '&page='+this.page
+            )
                 .then((response) => {
-                    console.log(response.data.data.data.length)
-                    if (response.data.data.data.length > 1) {
-                        response.data.data.data.forEach((item) => this.tinTuc.push(item))
+                    if (response.data.data.length > 1) {
+                        response.data.data.forEach((item) => this.tinTuc.push(item))
                         $state.loaded()
                     } else {
                         $state.complete()
@@ -475,6 +482,12 @@ export default {
                 })
             }, 500)
         },
+        resetForm(){
+                this.cardSearch.search = "",
+                this.cardSearch.searchStatus = "",
+                this.cardSearch.searchTitle = "",
+                this.cardSearch.searchCategory = ""
+        }
 
     },
     computed: {

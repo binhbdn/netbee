@@ -316,41 +316,93 @@ class TinTucController extends Controller
     }
     public function searchTinTuc(Request $request)
     {
+        $role_user = Auth::user()->role;
+        $id_user = Auth::user()->id;
         $search = $request->search;
         $searchTitle = $request->searchTitle;
         $searchCategory = $request->searchCategory;
         $searchStatus = $request->searchStatus;
         if($search == '' && $searchTitle == '' && $searchStatus == '' && $searchCategory == '') 
         {
-            $data = DB::table('news')->where('deleted', 0)->orderBy('id', 'DESC')->paginate(10);
+            if($role_user != 4){
+                $data = DB::table('news')
+                ->where('news.id_created',$id_user)
+                ->where('news.deleted',0)
+                ->orderBy('news.id', 'DESC')
+                ->select('news.*')
+                ->groupBy('news.id')
+                ->paginate(6);
+            }
+            else{
+                $data = DB::table('news')
+                ->orderBy('news.id', 'DESC')
+                ->where('news.deleted',0)
+                ->select('news.*')
+                ->groupBy('news.id')
+                ->paginate(6);
+            }
         }
         else
         {
-            $data = DB::table('news')->select('*')
-            ->where(function($query) use ($search){
-                if($search != ''){
-                    $query->where('title', 'LIKE', '%'.$search.'%')
-                    ->orwhere('id','LIKE', '%'.$search.'%');
-                }
-            })
-            ->where(function($query) use ($searchTitle){
-                if($searchTitle != ''){
-                    $query->where('title', 'LIKE', '%'.$searchTitle.'%');
-                }
-            })
-            ->where(function($query) use ($searchStatus){
-                if($searchStatus != ''){
-                    $query->where('status', $searchStatus);
-                }
-            })
-            ->where(function($query) use ($searchCategory){
-                if($searchCategory != ''){
-                    $query->where('id_category', $searchCategory);
-                }
-            })
-            ->where('deleted', 0)
-            ->orderBy('id', 'DESC')
-            ->paginate(10);
+            if($role_user != 4){
+                $data = DB::table('news')
+                ->where('news.id_created',$id_user)
+                ->where('news.deleted',0)
+                ->orderBy('news.id', 'DESC')
+                ->select('news.*')
+                ->groupBy('news.id')
+                ->where(function($query) use ($search){
+                    if($search != ''){
+                        $query->where('title', 'LIKE', '%'.$search.'%')
+                        ->orwhere('id','LIKE', '%'.$search.'%');
+                    }
+                })
+                ->where(function($query) use ($searchTitle){
+                    if($searchTitle != ''){
+                        $query->where('title', 'LIKE', '%'.$searchTitle.'%');
+                    }
+                })
+                ->where(function($query) use ($searchStatus){
+                    if($searchStatus != ''){
+                        $query->where('status', $searchStatus);
+                    }
+                })
+                ->where(function($query) use ($searchCategory){
+                    if($searchCategory != ''){
+                        $query->where('id_category', $searchCategory);
+                    }
+                })
+                ->paginate(6);
+            }
+            else{
+                $data = DB::table('news')
+                ->orderBy('news.id', 'DESC')
+                ->where('news.deleted',0)
+                ->select('news.*')
+                ->groupBy('news.id')
+                ->where(function($query) use ($search){
+                    if($search != ''){
+                        $query->where('title', 'LIKE', '%'.$search.'%')
+                        ->orwhere('id','LIKE', '%'.$search.'%');
+                    }
+                })
+                ->where(function($query) use ($searchTitle){
+                    if($searchTitle != ''){
+                        $query->where('title', 'LIKE', '%'.$searchTitle.'%');
+                    }
+                })
+                ->where(function($query) use ($searchStatus){
+                    if($searchStatus != ''){
+                        $query->where('status', $searchStatus);
+                    }
+                })
+                ->where(function($query) use ($searchCategory){
+                    if($searchCategory != ''){
+                        $query->where('id_category', $searchCategory);
+                    }
+                })
+                ->paginate(6);
+            }
         }
         return response()->json($data);
     }

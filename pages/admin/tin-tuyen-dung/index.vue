@@ -29,9 +29,9 @@
                             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
                                 <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
-                                    <li><a data-action=""><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
-                                    <li><a data-action="close"><i class="feather icon-x"></i></a></li>
+                                    <li><a data-action="collapse" data-toggle="tooltip"  data-placement="top" :title="`Thu gọn tìm kiếm`"><i class="feather icon-chevron-down"></i></a></li>
+                                    <li><a @click="resetForm()" data-toggle="tooltip"  data-placement="top" :title="`Làm mới tìm kiếm`"><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
+                                    <li><a data-action="close" data-toggle="tooltip"  data-placement="top" :title="`Đóng tìm kiếm`"><i class="feather icon-x"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -350,16 +350,6 @@ export default {
         layout: 'admin',
     head: {
         title: 'Quản lý tin tuyển dụng',
-        script: [
-            { src: '/app-assets/vendors/js/tables/datatable/pdfmake.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/vfs_fonts.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/datatables.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/buttons.html5.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/buttons.print.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js' },
-        ]
     },
     components: {
         Multiselect
@@ -564,12 +554,11 @@ export default {
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
             + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
-            + '&page=' + this.page
             ).then((response)=>{
 	             this.tinTuyenDung=response.data;
 	        });
         },
-                async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){
+        async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){
             try {
                 this.$axios.$post('tintuyendung/changeMultipleStatusTinTuyenDung',{id:JSON.stringify(this.selected), status: statusTinTuyenDung}).then((res) => {
                 if(JSON.stringify(this.selected).length == 2){
@@ -690,11 +679,17 @@ export default {
             setTimeout(() => {
                 this.page++
                 this.$axios
-                .get('/tintuyendung/getTinTuyenDung?page='+ this.page)
+                .get(
+            'tintuyendung/searchTinTuyenDung?searchCategory=' 
+            + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
+            + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
+            + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
+            + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
+            + '&page='+this.page
+            )
                 .then((response) => {
-                    console.log(response.data.data.data.length)
-                    if (response.data.data.data.length > 1) {
-                        response.data.data.data.forEach((item) => this.tinTuyenDung.push(item))
+                    if (response.data.data.length > 1) {
+                        response.data.data.forEach((item) => this.tinTuyenDung.push(item))
                         $state.loaded()
                     } else {
                         $state.complete()
@@ -705,6 +700,12 @@ export default {
                 })
             }, 500)
         },
+        resetForm(){
+                this.cardSearch.search = "",
+                this.cardSearch.searchStatus = "",
+                this.cardSearch.searchTitle = "",
+                this.cardSearch.searchCategory = ""
+        }
     },
     computed: {
         selectAll: {

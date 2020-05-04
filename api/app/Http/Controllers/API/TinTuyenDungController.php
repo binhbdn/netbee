@@ -30,26 +30,6 @@ class TinTuyenDungController extends Controller
             $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
         return response()->json($data);
     }
-    public function getTinTuyenDungNewLoading(Request $request)
-    {
-        $datas['tintuyendung'] = DB::table('nb_joblists')
-        ->select('nb_joblists.*','users.name','users.avatar','nations.name as nation_name')
-        ->join('users', 'nb_joblists.id_created','=','users.id')
-        ->join('nations', 'nb_joblists.nation_id','=','nations.id')
-        ->where('nb_joblists.status',1)
-        ->where('nb_joblists.deleted',0)
-        ->where('nb_joblists.isPublic',1)
-        ->where('users.status',1)
-        ->where('users.block',0)
-        ->orderBy('id','DESC')
-        ->paginate(8);
-        if($datas)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
-        else
-            $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
-        return response()->json($data);
-    }
-
     public function getTinTuyenDungHot(Request $request)
     {
         $limit = $request->limit;
@@ -60,27 +40,6 @@ class TinTuyenDungController extends Controller
             $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
         return response()->json($data);
     }
-    public function getTinTuyenDungHotLoading(Request $request)
-    {
-        $datas['tintuyendung'] = DB::table('nb_joblists')
-        ->select('nb_joblists.*','users.name','users.avatar','nations.name as nation_name')
-        ->join('users', 'nb_joblists.id_created','=','users.id')
-        ->join('nations', 'nb_joblists.nation_id','=','nations.id')
-        ->where('nb_joblists.status',1)
-        ->where('nb_joblists.deleted',0)
-        ->where('nb_joblists.isPublic',1)
-        ->where('nb_joblists.highlight_job',1)
-        ->where('users.status',1)
-        ->where('users.block',0)
-        ->orderBy('id','DESC')
-        ->paginate(8);
-        if($datas)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
-        else
-            $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
-        return response()->json($data);
-    }
-
     public function getTinTuyenDungForCompany(Request $request)
     {
         $limit = $request->limit;
