@@ -204,3 +204,14 @@ select:focus {
 .multiselect--active .icon {
     transform: rotate(180deg) !important;
 }
+
+.item-hot {
+    background-color: red;
+    border-radius: 5px;
+    padding: .2em .6em .3em;
+    color: #fff;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    font-size: 1.51rem;
+}
