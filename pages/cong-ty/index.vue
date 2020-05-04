@@ -1,138 +1,152 @@
 <template>
   <div class="container">
     <section>
-      <div class="row carousel-1">
-        <div class="col-8 p-r-0">
-          <div
-            class="card-header d-flex justify-content-center align-items-center"
-            style="background: #ffb701;padding: 5px"
-          >
-            <h4 class="card-title">CÁC CÔNG TY NỔI BẬT</h4>
+      <div class="row">
+          <div class="col-8">
+          <h1>Vietnam Best IT Companies 2020</h1>
+          <p style="font-size: 16px">The employees have spoken! Here are the Top 15 Vietnam Best IT Companies 2020 to work for based on 11,000+ reviews submitted by IT people.</p>
+        </div>
+        <div class="col-4">
+          <img style="width: 250px" src="https://itviec.com/assets/2020_best_company_badge-f38d668d87ad0f4a24e39be359afe7d821fb44625a710cd440fd88cfc7d11d4c.svg">
+        </div>
+      </div>
+      <div class="row" style="padding:0 14px">
+        <p style="font-size: 16px">Based on Vietnamese employees feedback from 1/1/19 to 12/31/19</p>
+      </div>
+    </section>
+    <section class="list-company" style="background-color:#fff; padding: 15px">
+      <div class="list-company-item" >
+        <div class="row">
+          <div class="col-12">
+            <h4>#1 Grab (Vietnam) Ltd.</h4>
+            </div>  
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <div style="border: 1px solid #ddd; padding: 5px"><img src="https://netbee.vn/_nuxt/img/377bc00.png"></div>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <div class="card-content">
-                <div class="card-body">
-                  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner" role="listbox">
-                      <div
-                        class="carousel-item"
-                        :class="{'active' : indexCompanyHot == 0}"
-                        v-for="(companyHot, indexCompanyHot) in arrayCompanyHot"
-                        :key="indexCompanyHot"
-                      >
-                        <img
-                          class="img-fluid"
-                          v-lazy="`/uploads/users/avatars/${companyHot.avatar}`"
-                          :alt="`${companyHot.avatar}`"
-                        />
-                        <div class="remove-border-rightt">
-                          <div class="item-name">
-                            <a
-                              :href="`/cong-ty/${companyHot.company_id}/${ChangeToSlug(companyHot.name)}`"
-                              class="item-company mb-0"
-                            >
-                              <h2>
-                                <i class="fad fa-building"></i>
-                                {{ companyHot.name }}
-                              </h2>
-                            </a>
-                          </div>
-
-                          <div class="item-quantity d-flex justify-content-between">
-                            <p class="quantity-title mb-0">
-                              <i class="fad fa-location-arrow"></i>
-                              {{ companyHot.address_detail ? companyHot.address_detail : 'Đang cập nhật' }}
-                            </p>
-                          </div>
-                          <div class="item-quantity d-flex justify-content-between">
-                            <p class="delivery-date mb-0">
-                              <i class="fad fa-calendar-star"></i>
-                              {{ companyHot.birth_of_date ? ConvertDate(companyHot.birth_of_date) : 'Đang cập nhật' }}
-                            </p>
-                          </div>
-                          <a
-                            class="carousel-control-prev"
-                            href="#carousel-example-generic"
-                            role="button"
-                            data-slide="prev"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="carousel-control-prev-icon"
-                              style="background-color: yellow !important;"
-                            ></span>
-                          </a>
-                          <a
-                            class="carousel-control-next"
-                            href="#carousel-example-generic"
-                            role="button"
-                            data-slide="next"
-                          >
-                            <span
-                              aria-hidden="true"
-                              class="carousel-control-next-icon"
-                              style="background-color: yellow !important;"
-                            ></span>
-                          </a>
-                        </div>
-                      </div>
+          <div class="col-9">
+            <div class="row">
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="star-rating">
+                      <span class="fas fa-star" data-rating="1"></span>
+                      <span class="fas fa-star" data-rating="2"></span>
+                      <span class="fas fa-star" data-rating="3"></span>
+                      <span class="far fa-star" data-rating="4"></span>
+                      <span class="far fa-star" data-rating="5"></span>
+                      <span class="" data-rating="5">3.0</span>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div>  
+              <div class="col-6">
+                <p>recommend working here!</p>  
+              </div>  
+            </div> 
+            <div class="row">
+            <p><i class="fas fa-quote-left"></i> If you want to work with people who are the best, just come here. Grab encourages people to be open, 
+                  helpful and transparent, and you will feel welcome day 1 here. Code you are writing WILL make impact on Grab, 
+                  and by proxy Southest Asia...</p>
+            </div> 
+            <div class="row text-right">
+              <p style="width:100%; padding-right: 20px">
+                <span class="action-link"><a href="">See reviews</a></span>|
+                <span class="action-link"><a href="">See jobs</a></span></p>
           </div>
+          </div>  
+             
+      </div> 
+      </div>
+      <div class="list-company-item" >
+        <div class="row">
+          <div class="col-12">
+            <h3>#2 Grab (Vietnam) Ltd.</h3>
+            </div>  
         </div>
-
-        <div class="col-lg-4 col-12">
-          <div class="card">
-            <div class="card-content collapse show">
-              <div class="card-header">
-                <h4>NHÀ TUYỂN DỤNG HÀNG ĐẦU</h4>
-              </div>
-              <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <div style="border: 1px solid #ddd; padding: 5px"><img src="https://netbee.vn/_nuxt/img/377bc00.png"></div>
+          </div>
+          <div class="col-9">
+            <div class="row">
+              <div class="col-6">
                 <div class="row">
-                  <div
-                    class="col-4"
-                    v-for="(companyHot, indexCompanyHot) in arrayCompanyHot"
-                    :key="indexCompanyHot"
-                  >
-                    <a
-                      :href="`/cong-ty/${companyHot.company_id}/${ChangeToSlug(companyHot.name)}`"
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      :title="`${companyHot.name}`"
-                    >
-                      <img
-                        v-lazy="`/uploads/users/avatars/${companyHot.avatar}`"
-                        :alt="`${companyHot.avatar}`"
-                        width="100%"
-                      />
-                    </a>
+                  <div class="col-lg-12">
+                    <div class="star-rating">
+                      <span class="fas fa-star" data-rating="1"></span>
+                      <span class="fas fa-star" data-rating="2"></span>
+                      <span class="fas fa-star" data-rating="3"></span>
+                      <span class="far fa-star" data-rating="4"></span>
+                      <span class="far fa-star" data-rating="5"></span>
+                      <span class="" data-rating="5">3.0</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div>  
+              <div class="col-6">
+                <p>recommend working here!</p>  
+              </div>  
+            </div> 
+            <div class="row">
+            <p><i class="fas fa-quote-left"></i> If you want to work with people who are the best, just come here. Grab encourages people to be open, 
+                  helpful and transparent, and you will feel welcome day 1 here. Code you are writing WILL make impact on Grab, 
+                  and by proxy Southest Asia...</p>
+            </div> 
+            <div class="row text-right">
+              <p style="width:100%; padding-right: 20px">
+                <span class="action-link"><a href="">See reviews</a></span>|
+                <span class="action-link"><a href="">See jobs</a></span></p>
           </div>
-        </div>
+          </div>  
+             
+      </div> 
       </div>
-    </section>
-    <section>
-      <div class="row">
-        <div class="col-12 p-r-0">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">Các Công Ty Đang Tuyển Dụng</h4>
-            </div>
-            <div class="card-content collapse show">
-              <div class="card-body scrollbar">
-                <CompanyList1 :DataList="arrayCompanyNew"></CompanyList1>
-              </div>
-            </div>
+      <div class="list-company-item" >
+        <div class="row">
+          <div class="col-12">
+            <h3>#3 Grab (Vietnam) Ltd.</h3>
+            </div>  
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <div style="border: 1px solid #ddd; padding: 5px"><img src="https://netbee.vn/_nuxt/img/377bc00.png"></div>
           </div>
-        </div>
-      </div>
+          <div class="col-9">
+            <div class="row">
+              <div class="col-6">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="star-rating">
+                      <span class="fas fa-star" data-rating="1"></span>
+                      <span class="fas fa-star" data-rating="2"></span>
+                      <span class="fas fa-star" data-rating="3"></span>
+                      <span class="far fa-star" data-rating="4"></span>
+                      <span class="far fa-star" data-rating="5"></span>
+                      <span class="" data-rating="5">3.0</span>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+              <div class="col-6">
+                <p>recommend working here!</p>  
+              </div>  
+            </div> 
+            <div class="row">
+            <p><i class="fas fa-quote-left"></i> If you want to work with people who are the best, just come here. Grab encourages people to be open, 
+                  helpful and transparent, and you will feel welcome day 1 here. Code you are writing WILL make impact on Grab, 
+                  and by proxy Southest Asia...</p>
+            </div> 
+            <div class="row text-right">
+              <p style="width:100%; padding-right: 20px">
+                <span class="action-link"><a href="">See reviews</a></span>|
+                <span class="action-link"><a href="">See jobs</a></span></p>
+          </div>
+          </div>  
+             
+      </div> 
+      </div>     
     </section>
   </div>
 </template>
@@ -211,5 +225,44 @@ a.carousel-control-next {
 }
 ol.carousel-indicators {
   margin-bottom: -4px;
+}
+ tbody tr {
+    background-color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 4px 20px 0;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+}
+ tbody tr:hover {
+    -webkit-transform: translateY(-4px);
+    -ms-transform: translateY(-4px);
+    transform: translateY(-4px);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.action-link a {
+    border-bottom: 1px dotted #ea2635;
+    color: #EA2635;
+    text-decoration: none;
+}
+.list-company .list-company-item:nth-child(odd) {
+    background: #f9f9f9;
+}
+.list-company .list-company-item:hover {
+    background: white;
+    border-color: transparent;
+    box-shadow: 0 0 5px 1px #bcbcbc;
+}
+.list-company .list-company-item {
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    padding: 10px;
+    margin-bottom: -2px;
+    border-top: 1px solid #e7e7e7;
+    position: relative;
+}
+.list-company-item p{
+  font-size: 15px;
 }
 </style>
