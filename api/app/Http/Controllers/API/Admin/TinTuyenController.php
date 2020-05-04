@@ -219,35 +219,76 @@ class TinTuyenController extends Controller
         $searchStatus = $request->searchStatus;
         if($search == '' && $searchTitle == '' && $searchStatus == null && $searchCategory == null) 
         {
-            $data = DB::table('nb_joblists')->where('deleted', 0)->orderBy('id', 'DESC')->get();
+            if(Auth::user()->role == 2 && Auth::user()->role == 4)
+                $data = DB::table('nb_joblists')->where('deleted', 0)->orderBy('id', 'DESC')->get();
+            else {
+                $data = DB::table('nb_joblists')->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
+                ->where('nb_joblists.deleted',0)
+                ->where('nb_joblists.status', 1)
+                ->Join('users','users.id','=','nb_joblists.id_created')
+                ->join('nations', 'nb_joblists.nation_id', '=', 'nations.id')
+                ->orderBy('nb_joblists.highlight_job', 'nb_joblists.created_at', 'DESC')
+                ->groupBy('nb_joblists.id')
+                ->paginate(6);
+            }
         }
         else
         {
-            $data = DB::table('nb_joblists')->select('*')
-            ->where(function($query) use ($search){
-                if($search != ''){
-                    $query->where('title', 'LIKE', '%'.$search.'%')
-                    ->orwhere('id','LIKE', '%'.$search.'%');
-                }
-            })
-            ->where(function($query) use ($searchTitle){
-                if($searchTitle != ''){
-                    $query->where('title', 'LIKE', '%'.$searchTitle.'%');
-                }
-            })
-            ->where(function($query) use ($searchStatus){
-                if($searchStatus != null){
-                    $query->where('status', $searchStatus);
-                }
-            })
-            ->where(function($query) use ($searchCategory){
-                if($searchCategory != null){
-                    $query->where('type', $searchCategory);
-                }
-            })
-            ->where('deleted', 0)
-            ->orderBy('id', 'DESC')
-            ->paginate(10);
+            if(Auth::user()->role == 2 && Auth::user()->role == 4){
+                $data = DB::table('nb_joblists')->select('*')
+                ->where(function($query) use ($search){
+                    if($search != ''){
+                        $query->where('title', 'LIKE', '%'.$search.'%')
+                        ->orwhere('id','LIKE', '%'.$search.'%');
+                    }
+                })
+                ->where(function($query) use ($searchTitle){
+                    if($searchTitle != ''){
+                        $query->where('title', 'LIKE', '%'.$searchTitle.'%');
+                    }
+                })
+                ->where(function($query) use ($searchStatus){
+                    if($searchStatus != null){
+                        $query->where('status', $searchStatus);
+                    }
+                })
+                ->where(function($query) use ($searchCategory){
+                    if($searchCategory != null){
+                        $query->where('type', $searchCategory);
+                    }
+                })
+                ->where('deleted', 0)
+                ->orderBy('id', 'DESC')
+                ->paginate(10);
+            }else{
+                $data = DB::table('nb_joblists')->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
+                ->Join('users','users.id','=','nb_joblists.id_created')
+                ->join('nations', 'nb_joblists.nation_id', '=', 'nations.id')
+                ->where(function($query) use ($search){
+                    if($search != ''){
+                        $query->where('title', 'LIKE', '%'.$search.'%')
+                        ->orwhere('nb_joblists.id','LIKE', '%'.$search.'%');
+                    }
+                })
+                ->where(function($query) use ($searchTitle){
+                    if($searchTitle != ''){
+                        $query->where('title', 'LIKE', '%'.$searchTitle.'%');
+                    }
+                })
+                ->where(function($query) use ($searchStatus){
+                    if($searchStatus != null){
+                        $query->where('status', $searchStatus);
+                    }
+                })
+                ->where(function($query) use ($searchCategory){
+                    if($searchCategory != null){
+                        $query->where('type', $searchCategory);
+                    }
+                })
+                ->where('deleted', 0)
+                ->orderBy('nb_joblists.highlight_job', 'nb_joblists.created_at', 'DESC')
+                ->paginate(6);
+            }
         }
         return response()->json($data);
     }
