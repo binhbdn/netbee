@@ -54,9 +54,10 @@
           </li>
           
           <li class="nav-item cta mr-md-2 dropdown" v-if="!$auth.loggedIn">
-            <a href="#" class="nav-link dropdown-toggle header-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  >
+            <a href="#" class="nav-link header-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  >
               <i class="fa fa-user-circle"></i>
               <br />Trở thành đối tác
+              <i class="fas fa-caret-down" style="padding-left:2px"></i>
             </a>
             <div class="dropdown-menu" style="top: 102%!important;top: 102%!important;border-radius: 9px;box-shadow: none;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
@@ -69,8 +70,9 @@
           <li class="nav-item cta mr-md-2 dropdown" v-else>
             <img v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`"
             style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; object-fit: cover; border-radius: 50%;">
-            <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
+            <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
               <br />Tài khoản
+              <i class="fas fa-caret-down" style="padding-left:2px"></i>
             </a>
             <div class="dropdown-menu" style="top: 102%!important;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>

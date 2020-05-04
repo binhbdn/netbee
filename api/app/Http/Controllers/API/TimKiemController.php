@@ -50,7 +50,10 @@ class TimKiemController extends Controller
         $bonus = $request->bonus;
         $search = DB::table('nb_joblists')
         ->where(function($query) use ($keyword){
-            if($keyword != ''){
+            if($keyword == 'tin-noi-bat'){
+                $query->where('highlight_job', 1);
+            }
+            else if($keyword != 'tin-noi-bat'){
                 $query->where('title', 'like', '%'. $keyword . '%');
             }
         })

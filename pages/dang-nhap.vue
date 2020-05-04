@@ -37,10 +37,10 @@
                         </div>
                         <div class="col-md-6">
                             <ul class=" " style="margin-top: 50px;font-size: 15px;padding: 0px; list-style: none;">
-                                <li><i class="fa fa-check-circle"></i> Tiếp cận 10K CTV tuyển dụng toàn quốc</li>
-                                <li><i class="fa fa-check-circle"></i> Chỉ thanh toán khi ứng viên đóng tiền</li>
-                                <li><i class="fa fa-check-circle"></i> Đơn giản và thân thiện người dùng</li>
-                                <li><i class="fa fa-check-circle"></i> Tối ưu chi phí và nguồn lực</li>
+                                <li><i class="fad fa-check-circle"></i> Tiếp cận 10K CTV tuyển dụng toàn quốc</li>
+                                <li><i class="fad fa-check-circle"></i> Chỉ thanh toán khi ứng viên đóng tiền</li>
+                                <li><i class="fad fa-check-circle"></i> Đơn giản và thân thiện người dùng</li>
+                                <li><i class="fad fa-check-circle"></i> Tối ưu chi phí và nguồn lực</li>
                             </ul>
                         </div>
                         <div class="col-md-12">
@@ -84,14 +84,14 @@
                             <div class="__email">
                                 <div style="text-align:right">
                                     <i  class="showpass">
-                                        <i @click="showPassword()" :class="show ?'fa fa-eye':'fas fa-eye-slash'"></i>
+                                        <i @click="showPassword()" :class="show ?'fad fa-eye':'fas fa-eye-slash'"></i>
                                     </i>
                                     
                                 </div>
                                 <fieldset class="form-label-group position-relative has-icon-left mb-0">
                                     <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom:0px !important; margin-top:2px">
                                     <div class="form-control-position">
-                                        <i class="feather icon-lock" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                        <i class="fad fa-key" style="color: rgba(34, 41, 47, 0.4)!important"></i>
                                     </div>
                                     <label for="password">Mật khẩu</label>
                                     <ul style="color:red" class="overline text-left">
