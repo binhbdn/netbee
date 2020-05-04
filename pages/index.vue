@@ -100,18 +100,11 @@
               <div class="card-header">
                 <h4 class="card-title"><i class="fad fa-business-time"></i> TIN NỔI BẬT </h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn bg-netbee">Xem thêm</a>
               </div>
               <div class="card-content collapse show">
                 <div class="card-body scrollbar">
                   <JobsList2Col :DataList="arrayJobHot"></JobsList2Col>
-                <infinite-loading
-                      v-if="arrayJobHot.length"
-                      spinner="waveDots"
-                      @infinite="infiniteScrollHot" style="padding:20px; width:100%"
-                  >
-                  <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin nổi bật</div>
-                  <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-                </infinite-loading>
                 </div>
               </div>
             </div>
@@ -188,18 +181,11 @@
               <div class="card-header">
                 <h4 class="card-title"><i class="fad fa-business-time"></i> TIN MỚI </h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn bg-netbee">Xem thêm</a>
               </div>
               <div class="card-content collapse show">
                 <div class="card-body scrollbar">
                   <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
-                  <infinite-loading
-                      v-if="arrayJobNew.length"
-                      spinner="waveDots"
-                      @infinite="infiniteScrollNew" style="padding:20px; width:100%"
-                  >
-                  <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin nổi bật</div>
-                  <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-                </infinite-loading>
                 </div>
               </div>
             </div>
@@ -299,11 +285,11 @@
     },
     methods: {
       fetch() {
-        this.$axios.$get(`getTinTuyenDungNewLoading`).then((ress) => {
-          this.arrayJobNew = ress.data.tintuyendung.data
+        this.$axios.$get(`getTinTuyenDungNew?limit=15&type=0`).then((ress) => {
+          this.arrayJobNew = ress.data.tintuyendung
         })
-        this.$axios.$get(`getTinTuyenDungHotLoading`).then((ress) => {
-          this.arrayJobHot = ress.data.tintuyendung.data
+        this.$axios.$get(`getTinTuyenDungHot?limit=18`).then((ress) => {
+          this.arrayJobHot = ress.data.tintuyendung
         })
 
         this.$axios.$get(`getTinTucNew?limit=4`).then((ress) => {
@@ -316,44 +302,6 @@
           this.quocgia = ress.data
         })
       },
-      infiniteScrollHot($state) {
-              setTimeout(() => {
-                  this.pageLoadingHot++
-                  this.$axios
-                  .get('getTinTuyenDungHotLoading?page='+ this.pageLoadingHot)
-                  .then((response) => {
-                      console.log(response.data.data.tintuyendung.data.length)
-                      if (response.data.data.tintuyendung.data.length > 1) {
-                          response.data.data.tintuyendung.data.forEach((item) => this.arrayJobHot.push(item))
-                          $state.loaded()
-                      } else {
-                          $state.complete()
-                      }
-                  })
-                  .catch((err) => {
-                      console.log(err)
-                  })
-              }, 500)
-          },
-          infiniteScrollNew($state) {
-              setTimeout(() => {
-                  this.pageLoadingNew++
-                  this.$axios
-                  .get('getTinTuyenDungNewLoading?page='+ this.pageLoadingNew)
-                  .then((response) => {
-                      console.log(response.data.data.tintuyendung.data.length)
-                      if (response.data.data.tintuyendung.data.length > 1) {
-                          response.data.data.tintuyendung.data.forEach((item) => this.arrayJobNew.push(item))
-                          $state.loaded()
-                      } else {
-                          $state.complete()
-                      }
-                  })
-                  .catch((err) => {
-                      console.log(err)
-                  })
-              }, 500)
-          },
     },
     mounted() {
         this.fetch();

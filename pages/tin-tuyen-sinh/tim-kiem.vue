@@ -139,6 +139,7 @@ export default {
                                                 +(route.query.nation_id != null ? '&nation_id='+route.query.nation_id : '')
                                                 +(route.query.id_visa != null ?  '&id_visa='+route.query.id_visa : ''))
     let getVisa = await $axios.$get(`getVisa`)
+    console.log(getTinTuyenDungNew.data)
     return {
         arrayJobNew: getTinTuyenDungNew.data,
         visa: getVisa.data
