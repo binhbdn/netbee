@@ -59,7 +59,6 @@ module.exports = {
             // { rel: 'stylesheet', href: '/app-assets/css/plugins/forms/validation/form-validation.css', defer: true },
             { rel: 'stylesheet', href: '/assets/css/style.css', defer: true },
             { rel: 'stylesheet', href: '/assets/css/custom-client.css' , defer: true},
-            { rel: 'stylesheet', href: '/assets/css/custom-admin.css' , defer: true},
             { rel: 'stylesheet', href: '/assets/css/bootstrap-custom.css' , defer: true},
             { rel: 'stylesheet', href: '/assets/css/header.css', defer: true },
             // { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' , defer: true},
