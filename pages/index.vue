@@ -103,7 +103,7 @@
                 <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn bg-netbee">Xem thêm</a>
               </div>
               <div class="card-content collapse show">
-                <div class="card-body scrollbar">
+                <div class="card-body">
                   <JobsList2Col :DataList="arrayJobHot"></JobsList2Col>
                 </div>
               </div>
@@ -184,7 +184,7 @@
                 <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn bg-netbee">Xem thêm</a>
               </div>
               <div class="card-content collapse show">
-                <div class="card-body scrollbar">
+                <div class="card-body">
                   <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
                 </div>
               </div>
@@ -285,10 +285,10 @@
     },
     methods: {
       fetch() {
-        this.$axios.$get(`getTinTuyenDungNew?limit=15&type=0`).then((ress) => {
+        this.$axios.$get(`getTinTuyenDungNew?limit=10&type=0`).then((ress) => {
           this.arrayJobNew = ress.data.tintuyendung
         })
-        this.$axios.$get(`getTinTuyenDungHot?limit=18`).then((ress) => {
+        this.$axios.$get(`getTinTuyenDungHot?limit=8`).then((ress) => {
           this.arrayJobHot = ress.data.tintuyendung
         })
 
