@@ -5,8 +5,8 @@ use Illuminate\Http\Request;
 Route::namespace('API')->group(function () {
   Route::post('register', 'Auth\UserController@register');
   Route::post('login', 'Auth\UserController@login');
-  Route::post('loginfb', 'Auth\UserController@loginfb');
-  Route::post('logingg', 'Auth\UserController@logingg');
+  Route::post('loginfb', 'Auth\UserController@loginWithFacebook');
+  Route::post('logingg', 'Auth\UserController@loginWithGoogle');
   Route::get('getTinTucNew', 'TinTucController@getTinTucNew');
   Route::get('getTinTucNewLoading', 'TinTucController@getTinTucNewLoading');
   Route::get('getTinTucSiteMap', 'TinTucController@getTinTucSiteMap');
@@ -40,8 +40,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::get('user', 'Auth\UserController@user');
       Route::post('changePassword', 'Auth\UserController@changePassword');
       Route::post('changeInfo', 'Auth\UserController@changeInfo');
-      Route::get('getInfoCompany', 'Auth\UserController@getInfoCompany');
-      Route::post('changeInfoCompany', 'Auth\UserController@changeInfoCompany');
+      Route::get('getInfoCompany', 'Auth\CompanyController@getInfoCompany');
+      Route::post('changeInfoCompany', 'Auth\CompanyController@changeInfoCompany');
       Route::get('getNotification', 'NotificationController@getNotification');
       Route::post('readNotification', 'NotificationController@readNotification');
       Route::post('readNotificationAll', 'NotificationController@readNotificationAll');
