@@ -37,11 +37,13 @@ class TinTucController extends Controller
             ->where('id_category',$category)
             ->where('status',1)
             ->where('deleted',0)
+            ->orderBy('id','desc')
             ->paginate(5);
         }else{
             $datas['tintuc'] = DB::table('news')
             ->where('status',1)
             ->where('deleted',0)
+            ->orderBy('id','desc')
             ->paginate(5);
         }
         if($datas)
