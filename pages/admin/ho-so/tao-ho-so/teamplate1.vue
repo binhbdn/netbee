@@ -32,7 +32,7 @@
                                         <div class="target-Short-term-cv" >
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <h6>MỤC TIÊU NGẮN HẠN</h6>
+                                                    <h6>MỤC TIÊU CỦA BẠN</h6>
                                                 </div>
                                                 <div class="col-md-6" style="text-align: right;">
                                                     <span>12/10/1997</span>
@@ -47,28 +47,71 @@
                                         <div class="target-Short-term-note-cv">
                                             <textarea @click="text()" class="main-text textarea" placeholder="VD: Mong muốn làm việc trong một môi trường năng động, vui vẻ, thỏa sức đưa ra các ý tưởng, sự sáng tạo và đặc biệt là được theo đuổi ngành nghề yêu thích của mình. Đưa bản thân vào một môi trường làm việc có kỷ luật, nâng cao tinh thần trách nhiệm và khả năng chịu áp lực, giải quyết vấn đề một cách sáng tạo và hiệu quả ở một vị trí đầy thách thức."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="5"></textarea>        
                                         </div>
-                                    </div>
-                                    <div class="target-dai">
-                                        <div class="target-Short-term-cv" style="margin-top: 25px;">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <h6>MỤC TIÊU DÀI HẠN</h6>
-                                                </div>
-                                                <div class="col-md-6" style="text-align: right;">
-                                                    <span>12/10/1997</span>
-                                                        <span> - </span>
-                                                    <span>12/10/1997</span>
-                                                </div>
-                                            </div>                        
-                                        </div>
-                                        <div class="target-company-cv">
-                                            <textarea @click="text()" class="main-text textarea" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY HACHINET"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                    
-                                        </div>
-                                        <div class="target-Short-term-note-cv">
-                                            <textarea @click="text()" class="main-text textarea" placeholder="VD: Được làm việc trong một công ty lớn, vận dụng hết kiến thức chuyên môn đã học ở trường lớp và có cơ hội trau dồi thêm những kỹ năng kinh nghiệm mới ở nơi làm việc. Đóng góp công sức, trí tuệ và nhiệt huyết của mình vào sự phát triển của công ty, đảm đương thật tốt vị trí làm việc và có cơ hội thăng tiến lên vị trí cao hơn."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="5"></textarea>                                                                                       
-                                        </div>
-                                    </div>
+                                    </div>                                  
                                 </div>
+                                <div class="skill-cv">
+                                    <!--Học vấn-->
+                                    <div class="skill-mn-cv" style="padding-left:10px;">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <h5>KỸ NĂNG</h5>
+                                            </div>
+                                            
+                                        </div>                                                   
+                                    </div>                                    
+                                    <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
+                                        <div class="communication">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <p>Giao tiếp:</p>
+                                                </div>
+                                                <div class="col-md-10">
+                                                  <textarea @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                </div>
+                                            </div>            
+                                        </div>
+                                        <div class="Information">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <p>Tin học văn phòng(Word, Excel, Power Point):</p>
+                                                </div>
+                                                <div class="col-md-5">
+                                                  <textarea @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                </div>
+                                            </div>                                            
+                                        </div>     
+                                        <div class="logic">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <p>Tư duy logic:</p>
+                                                </div>
+                                                <div class="col-md-9">
+                                                  <textarea @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                </div>
+                                            </div>                                            
+                                        </div>                                                                                                                                                
+                                    </div>
+                                </div> 
+                                <div class="skill-cv">
+                                    <!--Học vấn-->
+                                    <div class="skill-mn-cv" style="padding-left:10px;">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <h5>CHỨNG CHỈ</h5>
+                                            </div>
+                                            
+                                        </div>                                                   
+                                    </div>                                    
+                                    <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
+                                        <div class="communication">
+                                            <div class="row">                                             
+                                                <div class="col-md-12">
+                                                  <textarea @click="text()" class="main-text textarea" placeholder="VD: - MS Office Khóa học (2018)"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                </div>
+                                            </div>            
+                                        </div>                                                                                                                                                                                      
+                                    </div>
+                                </div> 
                                 <div class="edu-cv">
                                     <!--Học vấn-->
                                     <div class="education-cv" style="padding-left:10px;">
@@ -123,6 +166,16 @@
                                             </div>                            
                                         </div>                                             
                                     </div> 
+                                    <div class="gioitinh-cv">
+                                        <div class="row">
+                                            <div class="col-md-2 icon-cv-profile">
+                                                <i class="fa fa-venus-mars"></i>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <textarea @click="text()" class="main-text textarea" placeholder="VD: Nam/Nữ"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                            </div>                            
+                                        </div>                                             
+                                    </div> 
                                     <div class="address-cv">
                                         <div class="row">
                                             <div class="col-md-2 icon-cv-profile">
@@ -150,6 +203,16 @@
                                             </div>
                                             <div class="col-md-10">
                                                 <textarea @click="text()" class="main-text textarea" placeholder="VD: leuleu@gmail.com"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                            </div>                            
+                                        </div>                           
+                                    </div>
+                                    <div class="Cmnd-cv">
+                                        <div class="row">
+                                            <div class="col-md-2 icon-cv-profile">
+                                                <i class="fa fa-address-card"></i>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <textarea @click="text()" class="main-text textarea" placeholder="VD: 173721***"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                             </div>                            
                                         </div>                           
                                     </div>
@@ -242,6 +305,12 @@
            margin-bottom: 5px;
            margin-top: 24px;
    }
+   .skill-mn-cv h5 {
+       font-size: 20px;
+       font-weight: 550;
+           margin-bottom: 5px;
+           margin-top: 24px;
+   }
    .target-Short-term-cv h6{
        font-size: 17px;
         font-weight: 600;
@@ -255,16 +324,30 @@
         width: 100%;
         border-color: #fff;
    }
+   .communication .main-text, .Information .main-text, .logic .main-text{
+       width: 100%;
+        border-color: #fff;
+   }
    .target-Short-term-note-cv .main-text {
         margin-top: 15px;
         font-size: 15px;
         width: 100%;
         border-color: #fff;
    }
+   .communication {
+       margin-top: 20px;
+   }
     .main-cv {
         padding-left: 20px;
     }
     .education-cv .main-text {
+        font-size: 17px;
+        font-weight: 500;
+        width: 100%;
+        border-color: #fff;
+    }
+
+    .skill-mn-cv .main-text {
         font-size: 17px;
         font-weight: 500;
         width: 100%;
@@ -295,9 +378,9 @@
         margin-bottom: 50px;
         border-radius: 50%;
     }    
-    .briday-cv ,.address-cv, .phone-cv, .email-cv, .note-cv {
+    .briday-cv ,.gioitinh-cv, .Cmnd-cv,.address-cv, .phone-cv, .email-cv, .note-cv {
         color: #fff;
-        margin-top: 20px;
+        margin-top: 10px;
     }
     .icon-cv-profile {
         text-align: center;
@@ -310,22 +393,26 @@
         border-radius: 50%;
         margin-left: 5px;
     }
-    .briday-cv  .main-text,.address-cv .main-text, .phone-cv .main-text, .email-cv .main-text, .note-cv .main-text {
+    .briday-cv  .main-text,.gioitinh-cv .main-text,.Cmnd-cv .main-text,.address-cv .main-text, .phone-cv .main-text, .email-cv .main-text, .note-cv .main-text {
         font-size: 17px;
-    padding-top: 5px;
-    width: 100%;
-    border-color: #28bb9c;
-    background-color: #28bb9c;
-    color: #fff;
+        padding-top: 5px;
+        width: 100%;
+        border-color: #28bb9c;
+        background-color: #28bb9c;
+        color: #fff;
     }    
-    .briday-cv  textarea::placeholder,.address-cv textarea::placeholder, .phone-cv textarea::placeholder, .email-cv textarea::placeholder, .note-cv textarea::placeholder {
-        color:#fff;
+    .briday-cv  textarea::placeholder,.gioitinh-cv textarea::placeholder,.Cmnd-cv .main-text::placeholder,.address-cv textarea::placeholder, .phone-cv textarea::placeholder, .email-cv textarea::placeholder, .note-cv textarea::placeholder {
+        color:#fff !important;
+
     }  
-    .briday-cv  .main-text:hover,.address-cv .main-text:hover, .phone-cv .main-text:hover, .email-cv .main-text:hover, .note-cv .main-text:hover {
+    .briday-cv  .main-text:hover,.address-cv .main-text:hover,.gioitinh-cv .main-text:hover,.Cmnd-cv .main-text:hover, .phone-cv .main-text:hover, .email-cv .main-text:hover, .note-cv .main-text:hover {
         border-color: #4B6A78;
         border-style: dotted;
     }
     .edu-cv {
+        border: 1px solid #fff;
+    }
+    .skill-cv {
         border: 1px solid #fff;
     }
     .main-edu-cv {
@@ -346,6 +433,13 @@
     .target-main-cv:hover {
         border: 1px solid #029c7c;
     }
+   
+    .main-skill-cv:hover {
+         border: 1px solid #029c7c;
+    }
+    .main-skill-cv {
+         border: 1px solid #fff;
+    }
     .target-ngan {
         padding-left: 10px;
         border: 1px solid #fff;
@@ -363,6 +457,9 @@
         border: 1px solid #029c7c;
     }
     .edu-cv:hover {
+        border: 1px solid #029c7c;
+    }
+    .skill-cv:hover {
         border: 1px solid #029c7c;
     }
     .fieldset1{
