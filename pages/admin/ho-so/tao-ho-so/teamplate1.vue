@@ -33,12 +33,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <h6>MỤC TIÊU CỦA BẠN</h6>
-                                                </div>
-                                                <div class="col-md-6" style="text-align: right;">
-                                                    <span>12/10/1997</span>
-                                                    <span> - </span>
-                                                    <span>12/10/1997</span>
-                                                </div>
+                                                </div>                                              
                                             </div>                        
                                         </div>
                                         <div class="target-company-cv">
@@ -121,31 +116,12 @@
                                             </div>
                                             
                                         </div>                                                   
-                                    </div>                                    
-                                    <div style="padding-left:10px;padding-right:10px;" class="main-edu-cv">  
-                                        <div class="icon-01-01 fieldset1" >  
-                                            <button class="btn-cv-01 btn-cv-add">Thêm</button>
-                                            <button class="btn-cv-01 btn-cv-delete">Xóa</button>                                                                
-                                        </div>                                           
-                                        <div class="education-cv">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <textarea @click="text()" class="main-text textarea" placeholder="VD: TRƯỜNG ĐẠI HỌC BÔN BA"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                                   
-                                                </div>
-                                                <div class="col-md-4" style="text-align: right;">
-                                                    <span>12/10/1997</span>
-                                                        <span> - </span>
-                                                    <span>12/10/1997</span>
-                                                </div>
-                                            </div>                                
-                                        </div>                  
-                                        <div class="education-khoa">
-                                            <textarea @click="text()" class="main-text textarea" placeholder="VD: KHOA CÔNG NGHỆ THÔNG TIN"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
-                                        </div>                  
-                                        <div class="education-cap">
-                                            <textarea @click="text()" class="main-text textarea" placeholder="VD: BẰNG CẤP KHÁ"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
-                                        </div>                                                                                             
-                                    </div>
+                                    </div>   
+                                    <template> 
+                                        <div>
+                                            <cv-main-education v-for="(education,k) in data.education_user" :education="education" :key="k"></cv-main-education>
+                                        </div> 
+                                    </template>                                                                  
                                 </div>                                
                             </div>
                             <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
@@ -238,7 +214,7 @@
 </template>
 
 <script>           
-    var Vue = require('vue');
+    import Vue from 'vue/dist/vue.js';
     
     export default {
         name: 'Teamplate1',
@@ -246,11 +222,82 @@
         
         data(){
             return {
-                
+                data: {
+                    info_frofile_user: {    
+                        id:'',                           
+                        id_user: '',
+                        fullname_profile: '', 
+                        birthday_profile: '',
+                        maleFemale: '',             
+                        address_profile:'',
+                        phone_profile:'',                       
+                        email_profile: '',
+                        cmnd_profile: '',
+                        note_profile: '',                                         
+                        title_target_profile: '',     
+                        note_target_profile:'',
+                        skill_communication_profile:'',
+                        skill_information_profile:'',
+                        skill_logic_profile:'',
+                        certificate_profile:'',
+                    },
+                    education_user: [],
+                }
             }
         },        
         components:{
-                     
+             'cv-main-education': {  
+                 name: 'education',
+                 props: {
+                     education: Object
+                },                            
+                data(){
+                    return{ 
+                                                 
+                    }
+                },
+                template: `
+                 <div style="padding-left:10px;padding-right:10px;" class="main-edu-cv">  
+                    <div class="icon-01-01 fieldset1" >  
+                        <button class="btn-cv-01 btn-cv-add">Thêm</button>
+                        <button class="btn-cv-01 btn-cv-delete">Xóa</button>                                                                
+                    </div>                                           
+                    <div class="education-cv">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <textarea @click="text()" class="main-text textarea" placeholder="VD: TRƯỜNG ĐẠI HỌC BÔN BA"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                                   
+                            </div>
+                            <div class="col-md-4" style="text-align: right;">
+                                <span>12/10/1997</span>
+                                    <span> - </span>
+                                <span>12/10/1997</span>
+                            </div>
+                        </div>                                
+                    </div>                  
+                    <div class="education-khoa">
+                        <textarea @click="text()" class="main-text textarea" placeholder="VD: KHOA CÔNG NGHỆ THÔNG TIN"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                    </div>                  
+                    <div class="education-cap">
+                        <textarea @click="text()" class="main-text textarea" placeholder="VD: BẰNG CẤP KHÁ"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                    </div>                                                                                             
+                </div>
+                `,
+                 methods:{
+                     mixin_autoResize_resize(event) {
+                        event.target.style.height = "auto";
+                        event.target.style.height = `${event.target.scrollHeight}px`;
+                    },
+                    text(){
+                                    
+                    },
+                 },
+                 mounted(){
+                    this.$nextTick(() => {
+                        this.$el.setAttribute("style", "height",
+                        `${this.$el.scrollHeight}px`);      
+                    });  
+                }                  
+             }
         },
         
         methods: {
@@ -260,9 +307,13 @@
             },
             text(){
                             
+            },
+            fetchdata(){
+
             }
         },        
-        mounted() {             
+        mounted() {    
+            this.fetchdata();         
             this.$nextTick(() => {
                 this.$el.setAttribute("style", "height",
                 `${this.$el.scrollHeight}px`);      
