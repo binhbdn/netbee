@@ -155,7 +155,6 @@ class TinTuyenController extends Controller
                 ->paginate(6);
             }
         }
-        dd($data);
         return response()->json($data);
     }
 
