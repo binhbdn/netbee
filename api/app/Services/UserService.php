@@ -197,4 +197,13 @@ class UserService {
             'data' => null
         ];
     }
+    public function countUser($data)
+    {
+        $users = $this->user->whereRole($data)->count();
+        return [
+            'status' => 200,
+            'message' => 'Thành công', 
+            'data' => $users
+        ];
+    }
 } 

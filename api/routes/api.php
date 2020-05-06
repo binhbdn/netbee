@@ -33,6 +33,7 @@ Route::namespace('API')->group(function () {
   Route::get('searchJobs', 'TimKiemController@searchJobs');
   Route::get('getQuocGia', 'TimKiemController@getQuocGia');
   Route::get('getVisa', 'TimKiemController@getVisa');
+  Route::get('getAnalytic', 'Admin\DashboardController@getAnalytic');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
