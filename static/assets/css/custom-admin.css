@@ -103,11 +103,11 @@ tbody .vs-checkbox-con .vs-checkbox {
     z-index: 1;
 }
 
-.make-it-slow {
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15) !important;
-    transition: box-shadow 0.1s ease-in-out !important;
+.make-it-sl {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15) !important;
+    transition: box-shadow 0.3s ease-in-out !important;
 }
 
-.make-it-slow:hover {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+.make-it-sl:hover {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3) !important;
 }
