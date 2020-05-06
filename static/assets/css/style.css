@@ -215,3 +215,22 @@ select:focus {
     line-height: 1;
     font-size: 1.51rem;
 }
+
+.btn-warning {
+    border: #ffb701 !important;
+    background-color: #ffb701 !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.btn-warning:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+
+
+/* @media (min-width: 850px) {
+    .modal-dialog {
+        max-width: 800px;
+    }
+} */

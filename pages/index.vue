@@ -97,16 +97,49 @@
         <div class="row">
           <div class="col-lg-12 col-12">
             <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"><i class="fad fa-business-time"></i> TIN NỔI BẬT </h4>
-                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn bg-netbee">Xem thêm</a>
-              </div>
-              <div class="card-content collapse show">
-                <div class="card-body">
-                  <JobsList2Col :DataList="arrayJobHot"></JobsList2Col>
-                </div>
-              </div>
+              <!-- Carousel Options start -->
+                <section id="carousel-options">
+                    <div class="row match-height">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                  <h4 class="card-title"><i class="fad fa-business-time"></i> TIN NỔI BẬT </h4>
+                                  <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn bg-netbee">Xem thêm</a>
+                                </div>
+                                <div class="card-content" style="position:relative">
+                                    <div class="card-body">
+                                        <div id="carousel-interval" class="carousel slide" data-ride="carousel" data-interval="3000">
+                                            <ol class="carousel-indicators">
+                                                <li data-target="#carousel-interval" data-slide-to="0" class="active"></li>
+                                                <li data-target="#carousel-interval" data-slide-to="1"></li>
+                                            </ol>
+                                            <div class="carousel-inner" role="listbox">
+                                                <div class="carousel-item active">
+                                                    <JobsList2Col :DataList="arrayJobHot"></JobsList2Col>
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <JobsList2Col :DataList="arrayJobHot2"></JobsList2Col>
+                                                </div>
+                                            </div>
+                                            <a class="carousel-control-prev" href="#carousel-interval" role="button" data-slide="prev">
+                                                <button class="el-carousel__arrow el-carousel__arrow--left">
+                                                  <i class="fas fa-angle-left"></i>
+                                                </button>
+                                            </a>
+                                            <a class="carousel-control-next" href="#carousel-interval" role="button" data-slide="next">
+                                                <button class="el-carousel__arrow el-carousel__arrow--right">
+                                                  <i class="fas fa-angle-right"></i>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Carousel Options end -->
             </div>
           </div>
         </div>
@@ -183,9 +216,30 @@
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                 <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn bg-netbee">Xem thêm</a>
               </div>
-              <div class="card-content collapse show">
-                <div class="card-body">
-                  <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
+              <div class="card-content collapse show" style="padding: 13px">
+                <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" data-interval="300000">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-interval-new" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-interval-new" data-slide-to="1"></li>
+                    </ol>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
+                        </div>
+                        <div class="carousel-item">
+                            <JobsList1Col :DataList="arrayJobNew2"></JobsList1Col>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
+                        <button class="el-carousel__arrow el-carousel__arrow--left">
+                          <i class="fas fa-angle-left"></i>
+                        </button>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
+                        <button class="el-carousel__arrow el-carousel__arrow--right">
+                          <i class="fas fa-angle-right"></i>
+                        </button>
+                    </a>
                 </div>
               </div>
             </div>
@@ -270,8 +324,10 @@
     data() {
         return {
             arrayJobNew: [],
+            arrayJobNew2: [],
             tintuc: [],
             arrayJobHot: [],
+            arrayJobHot2: [],
             pageLoadingHot: 1,
             pageLoadingNew: 1,
             linhvuc: [],
@@ -285,11 +341,20 @@
     },
     methods: {
       fetch() {
-        this.$axios.$get(`getTinTuyenDungNew?limit=10&type=0`).then((ress) => {
-          this.arrayJobNew = ress.data.tintuyendung
+        this.$axios.$get(`getTinTuyenDungNewCarousel?page=1`).then((ress) => {
+          this.arrayJobNew = ress.data.tintuyendung.data
         })
-        this.$axios.$get(`getTinTuyenDungHot?limit=8`).then((ress) => {
-          this.arrayJobHot = ress.data.tintuyendung
+        this.$axios.$get(`getTinTuyenDungNewCarousel?page=2`).then((ress) => {
+          console.log(ress)
+          this.arrayJobNew2 = ress.data.tintuyendung.data
+        })
+        this.$axios.$get(`getTinTuyenDungHotCarousel?page=1`).then((ress) => {
+           console.log(ress)
+          this.arrayJobHot = ress.data.tintuyendung.data
+          
+        })
+        this.$axios.$get(`getTinTuyenDungHotCarousel?page=2`).then((ress) => {
+          this.arrayJobHot2 = ress.data.tintuyendung.data
         })
 
         this.$axios.$get(`getTinTucNew?limit=4`).then((ress) => {

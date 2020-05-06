@@ -2,215 +2,62 @@
 
 namespace App\Http\Controllers\API\Admin;
 
+use App\Services\TinTuyenService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Response;
 use JWTAuth;
 use Auth;
-use App\User;
 use Validator;
 use Hash;
 use Carbon\Carbon;
-use App\Mail\Sendmail;
 use App\Services\PayUService\Exception;
 use App\Helpers\AppHelpers;
 
-use App\Http\Controllers\NotificationController as notifi;
-
 class TinTuyenController extends Controller
 {
-    public function getTinTuyenDung(Request $request){
-        $role_user = Auth::user()->role;
-        $id_user = Auth::user()->id;
-        try {
-            if($role_user == 2){
-                $getTin = DB::table('nb_joblists')->join('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
-                //
-                ->where('nb_joblists.id_created',$id_user)
-                ->where('nb_joblists.deleted',0)
-                ->orderBy('nb_joblists.id', 'DESC')
-                ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers'))
-                ->groupBy('nb_joblists.id')
-                ->paginate(6);
-                $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
-            }
-            else if($role_user == 4){
-                $getTin = DB::table('nb_joblists')
-                ->where('nb_joblists.deleted',0)
-                ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
-                ->orderBy('nb_joblists.id', 'DESC')
-                ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers'))
-                ->groupBy('nb_joblists.id')
-                ->paginate(6);
-                $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
-            } else {
-                $getTin = DB::table('nb_joblists')->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
-                ->where('nb_joblists.deleted',0)
-                ->where('nb_joblists.status', 1)
-                ->Join('users','users.id','=','nb_joblists.id_created')
-                ->join('nations', 'nb_joblists.nation_id', '=', 'nations.id')
-                ->orderBy('nb_joblists.highlight_job', 'nb_joblists.created_at', 'DESC')
-                
-                ->groupBy('nb_joblists.id')
-                ->paginate(6);
-                $data = ['status'=> 200, 'message' => 'hr', 'data' => $getTin];
-            }
-            
-        } catch (\Exception $e) {
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+    protected $tinTuyenService;
+
+    public function __construct(TinTuyenService $tinTuyenService)
+    {
+        $this->tinTuyenService = $tinTuyenService;
     }
+
+    public function getTinTuyenDung(){
+        $response = $this->tinTuyenService->getJobs();
+        return response()->json($response);
+    }
+
     public function changeStatusTinTuyenDung(Request $request)
     {
-        try {
-            $id = $request->id;
-            $getTin = DB::table('nb_joblists')->where('id', $id)->first();
-            if($getTin) {
-                $setTin = DB::table('nb_joblists')
-                ->where('id', $id)
-                ->update([
-                    'status' => !$getTin->status,
-                    'updated_at' => Carbon::now()
-                ]);
-                $data = ['status'=> 200, 'message' => 'Thay đổi trạng thái thành công', 'data' => $setTin];
-            }else {
-                $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
-            }
-        } catch (\Exception $e) {
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+        $response = $this->tinTuyenService->changeStatusJob($request->id);
+        return response()->json($response);
     }
+
     public function changeMultipleStatusTinTuyenDung(Request $request)
-    {   
-        if(empty($request->id)){
-            $data = ['status'=> 400, 'message' => 'Bạn chưa chọn tin!', 'data' => null];
-            return response()->json($data);
-        }
-        $id = json_decode($request->id);
-        $length= count($id);
-        $status = $request->status;
-        DB::beginTransaction();
-        try {
-            if($length == 1 ){
-                DB::table('nb_joblists')->where('id', $id)->update([
-                    'status' => $status,
-                    'updated_at' =>  Carbon::now()
-                ]);
-                DB::commit();
-                $tin = DB::table('nb_joblists')->where('id',$id)->get();
-                if($status == 1){
-                    $data = ['status'=> 200, 'message' => 'Kích hoạt thành công', 'data' => null];
-                }
-                else{
-                    $data = ['status'=> 200, 'message' => 'Bỏ kích hoạt thành công', 'data' => null];
-                }
-            }
-            else{
-                foreach($id as $key =>$value) {
-                    DB::table('nb_joblists')->where('id', $value)->update([
-                        'status' => $status,
-                        'updated_at' =>  Carbon::now()
-                    ]);
-                }
-                DB::commit();
-                if($status == 1){
-                    $data = ['status'=> 200, 'message' => 'Kích hoạt thành công', 'data' => null];
-                }
-                else{
-                    $data = ['status'=> 200, 'message' => 'Bỏ kích hoạt thành công', 'data' => null];
-                }
-            }
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+    {
+        $response = $this->tinTuyenService->changeStatusJobs($request);
+        return response()->json($response);
     }
+
     public function deleteTinTuyenDung(Request $request)
     {
-        try {
-            $id = $request->id;
-            $getTin = DB::table('nb_joblists')->where('id', $id)->first();
-            if($getTin) {
-                $setTin = DB::table('nb_joblists')
-                ->where('id', $id)
-                ->update([
-                    'deleted' => 1,
-                    'updated_at' => Carbon::now()
-                ]);
-                $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => $setTin];
-            }else {
-                $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
-            }
-        } catch (\Exception $e) {
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+        $response = $this->tinTuyenService->destroy($request->id);
+        return response()->json($response);
     }
+
     public function deleteMultipleTinTuyenDung(Request $request)
-    {   
-        if(empty($request->id)){
-            $data = ['status'=> 400, 'message' => 'Bạn chưa chọn tin!', 'data' => null];
-            return response()->json($data);
-        }
-        $id = json_decode($request->id);
-        $length= count($id);
-        DB::beginTransaction();
-        try {
-            if($length == 1 ){
-                DB::table('nb_joblists')->where('id', $id)->update([
-                    'deleted' => 1,
-                    'updated_at' =>  Carbon::now()
-                ]);
-                DB::commit();
-                $tin = DB::table('nb_joblists')->where('id',$id)->get();
-                    $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => null];
-            }
-            else{
-                foreach($id as $key =>$value) {
-                    DB::table('nb_joblists')->where('id', $value)->update([
-                        'deleted' => 1,
-                        'updated_at' =>  Carbon::now()
-                    ]);
-                }
-                DB::commit();
-                    $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => null];
-                
-            }
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+    {
+        $response = $this->tinTuyenService->destroyJobs($request->id);
+        return response()->json($response);
     }
+
     public function changePublic(Request $request){
-        try{
-            $id = $request->id;
-            $getTin = DB::table('nb_joblists')->where('id',$id)->first();
-            if($getTin){
-                DB::table('nb_joblists')->where('id',$id)->update([
-                    'isPublic' => !$getTin->isPublic,
-                    'updated_at' => Carbon::now()
-                ]);
-                if($getTin->isPublic == 1){
-                    $data = ['status'=> 200, 'message' => 'Hiện tin thành công', 'data' => null];
-                }
-                else{
-                    $data = ['status'=> 200, 'message' => 'Ẩn tin thành công', 'data' => null];
-                }
-            }
-            else{
-                $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
-            }
-        }
-        catch (\Exception $e) {
-            $data = ['status' => 400, 'message' => 'Có lỗi xảy ra', 'data'=>$e->getMessage()];
-        }
-        return response()->json($data);
+        $response = $this->tinTuyenService->changePublic($request->id);
+        return response()->json($response);
     }
+
     public function searchTinTuyenDung(Request $request)
     {
         $role_user = Auth::user()->role;
@@ -219,7 +66,7 @@ class TinTuyenController extends Controller
         $searchTitle = $request->searchTitle;
         $searchCategory = $request->searchCategory;
         $searchStatus = $request->searchStatus;
-        if($search == '' && $searchTitle == '' && $searchStatus == null && $searchCategory == null) 
+        if($search == '' && $searchTitle == '' && $searchStatus == null && $searchCategory == null)
         {
             if($role_user == 2){
                 $data = DB::table('nb_joblists')->join('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
@@ -256,7 +103,7 @@ class TinTuyenController extends Controller
                 ->where('nb_joblists.id_created',$id_user)
                 ->where('nb_joblists.deleted',0)
                 ->orderBy('nb_joblists.id', 'DESC')
-                ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers'))
+                ->select('nb_joblists.*', DB::raw('count(nb_job_views.id_job) as viewers'))
                 ->groupBy('nb_joblists.id')
                 ->where(function($query) use ($search){
                     if($search != ''){
@@ -279,8 +126,6 @@ class TinTuyenController extends Controller
                         $query->where('type', $searchCategory);
                     }
                 })
-                ->where('deleted', 0)
-                ->orderBy('id', 'DESC')
                 ->paginate(10);
             }else{
                 $data = DB::table('nb_joblists')->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
@@ -345,7 +190,7 @@ class TinTuyenController extends Controller
                 'expected_date' => 'required',
                 'salary_start' => 'required',
                 'salary_end' => 'required',
-    
+
             ],[
                 'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
             ]);
@@ -413,7 +258,7 @@ class TinTuyenController extends Controller
                 'salary_end' => 'required',
                 'visa' => 'required',
                 'form_work' => 'required'
-    
+
             ],[
                 'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
             ]);
@@ -583,7 +428,7 @@ class TinTuyenController extends Controller
                     'expected_date' => 'required',
                     'salary_start' => 'required',
                     'salary_end' => 'required',
-        
+
                 ],[
                     'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
                 ]);
@@ -651,7 +496,7 @@ class TinTuyenController extends Controller
                     'salary_end' => 'required',
                     'visa' => 'required',
                     'form_work' => 'required'
-        
+
                 ],[
                     'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
                 ]);

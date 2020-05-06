@@ -2,7 +2,7 @@
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper" v-if="$auth.user.role == 2 || $auth.user.role == 4">
+        <div class="content-wrapper" v-if="$auth.user.role == 2 || $auth.user.role == 1">
             <div class="content-header row">
             </div>
             <div class="content-body">
@@ -66,14 +66,29 @@
                 <!-- Dashboard Ecommerce ends -->
             </div>
         </div>
-        <DashboardHr v-else/>
+        <DashboardHr v-else-if="$auth.user.role == 3"/>
+        <DashboardAdmin v-else/>
     </div>
 </template>
 
 <script>
-import DashboardHr from '../../components/dashboard/hr'
+import DashboardHr from '~/components/dashboard/hr'
+import DashboardAdmin from '~/components/dashboard/admin'
 
 export default {
+     data() {
+    return {
+      datasets: [
+        {
+          data: [10, 20, 40],
+          backgroundColor: ["#f36e60", "#ffdb3b", "#185190"],
+          hoverBackgroundColor: ["#fbd2cd", "#fef5c9", "#d1e3f7"]
+        }
+      ],
+      labels: ["Foo", "Bar", "Baz"],
+      option: {}
+    };
+  },
     name: 'Dashboard',
         layout: 'admin',
     head: {
@@ -81,18 +96,14 @@ export default {
         meta: [
         { hid: 'description', name: 'description', content: 'Home page description' }
         ],
-        noscript: [
-        { innerHTML: 'Body No Scripts', body: true }
-        ],
         script: [
-        { src: '/head.js' },
-        // Supported since 1.0
-        { src: '/body.js', body: true },
-        { src: '/defer.js', defer: '' }
-        ]
+
+        ],
+
     },
     components:{
-        DashboardHr
+        DashboardHr,
+        DashboardAdmin
     }
 }
 </script>

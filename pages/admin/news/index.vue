@@ -143,8 +143,7 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td class="text-left" v-if="item.status==1"><a data-toggle="tooltip"  data-placement="top" :title="`Xem chi tiết tin`" :href="`/tin-tuc/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
-                                                    <td class="text-left" v-else><a data-toggle="tooltip"  data-placement="top" :title="`Kích hoạt tin để xem chi tiết`">{{item.title}}</a></td>
+                                                    <td class="text-left"><a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuc/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
                                                     <td>
                                                         <span><img v-lazy="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>
                                                     </td>
