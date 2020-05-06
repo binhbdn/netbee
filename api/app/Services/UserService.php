@@ -199,7 +199,7 @@ class UserService {
     }
     public function countUser($data)
     {
-        $users = $this->user->whereRole($data)->count();
+        $users = $this->user->whereRole($data)->whereBlock(self::UN_BLOCK)->count();
         return [
             'status' => 200,
             'message' => 'Thành công', 
