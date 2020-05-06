@@ -313,54 +313,72 @@
                         </ul>
                         <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
                             <div class="tab-pane active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-11-tab">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="form-field">
-                                                <div class="file-input"> 
-                                                    <label for="file" v-if="file_cv.length == 0"><i class="fas fa-file-upload" style="color: #000000c7;"></i> Chọn file</label>
-                                                    <label for="file" v-else><i class="fas fa-file-upload" style="color: #000000c7;"></i> {{file_cv[0].name}}</label>
-                                                    <input type="file" id="file" @change="onInputChange" > 
+                                <ValidationObserver ref="applyJob" v-slot="{ valid }">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <ValidationProvider
+                                            rules="required"
+                                            v-slot="{ errors }">
+                                                <div class="form-group">
+                                                    <div class="form-field">
+                                                        <div class="file-input"> 
+                                                            <label for="file" v-if="file_cv.length == 0"><i class="fas fa-file-upload" style="color: #000000c7;"></i> Chọn file</label>
+                                                            <label for="file" v-else><i class="fas fa-file-upload" style="color: #000000c7;"></i> {{file_cv[0].name}}</label>
+                                                            <input type="file" id="file" @change="onInputChange" > 
+                                                        </div>
+                                                        <p class="text-center" style="font-size: 12px">Định dạng file: *.doc, *.docx, *.xls, *.xlsx, *.pdf, *.txt, *.rtf</p>
+                                                        <span style="color: red">{{errors[0]}}</span>
+                                                    </div>
                                                 </div>
-                                                <p class="text-center" style="font-size: 12px">Định dạng file: *.doc, *.docx, *.xls, *.xlsx, *.pdf, *.txt, *.rtf</p>
+                                            </ValidationProvider>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <ValidationProvider
+                                            rules="required"
+                                            v-slot="{ errors }">
+                                                <div class="form-group">
+                                                    <div class="form-field">
+                                                        <label for="name">Họ tên</label>
+                                                        <input type="text" id="name" class="form-control" v-model="name">
+                                                        <span style="color: red">{{errors[0]}}</span>
+                                                    </div>
+                                                </div>
+                                            </ValidationProvider>
+                                        </div>
+                                        <div class="col-12">
+                                            <ValidationProvider
+                                            rules="required"
+                                            v-slot="{ errors }">
+                                                <div class="form-group">
+                                                    <div class="form-field">
+                                                        <label for="name">Số điện thoại</label>
+                                                        <input type="text" id="name" class="form-control" v-model="phone">
+                                                        <span style="color: red">{{errors[0]}}</span>
+                                                    </div>
+                                                </div>
+                                            </ValidationProvider>
+                                        </div>
+                                        <!-- <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="form-field">
+                                                    <label for="name">Ngành nghề dự định</label>
+                                                    <multiselect v-model="value" :options="visa" :multiple="true" :custom-label="nameWithLang"
+                                                        placeholder="Chọn ngành nghề" ></multiselect>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="form-field">
+                                                    <label for="name">Quốc gia</label>
+                                                    <Multiselect :options="nation" v-model="chooseNation" placeholder="Chọn quốc gia" :multiple="true"
+                                                    :searchable="false" :custom-label="nameWithLang1"></Multiselect>
+                                                </div>
+                                            </div>
+                                        </div> -->
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="form-field">
-                                                <label for="name">Họ tên</label>
-                                                <input type="text" id="name" class="form-control" v-model="name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="form-field">
-                                                <label for="name">Số điện thoại</label>
-                                                <input type="text" id="name" class="form-control" v-model="phone">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="form-field">
-                                                <label for="name">Ngành nghề dự định</label>
-                                                <multiselect v-model="value" :options="visa" :multiple="true" :custom-label="nameWithLang"
-                                                    placeholder="Chọn ngành nghề" ></multiselect>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="form-field">
-                                                <label for="name">Quốc gia</label>
-                                                <Multiselect :options="nation" v-model="chooseNation" placeholder="Chọn quốc gia" :multiple="true"
-                                                :searchable="false" :custom-label="nameWithLang1"></Multiselect>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                </div>
+                                </ValidationObserver>
                             </div>
                             <div class="tab-pane" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-22-tab">
                                 b
@@ -586,31 +604,34 @@ export default {
             this.value = []
             this.chooseNation = []
         },
-        applyJob(){
+        async applyJob(){
             console.log(this.$route.params.id)
             var data = new FormData()
             data.append('file_cv', this.file_cv[0])
             data.append('name', this.name)
             data.append('phone', this.phone)
             data.append('job_id', this.$route.params.id)
-
-            this.$axios.post('userApplyJob',data).then(response => {
-                if(response.data.status == 200) {
-                    this.$swal(
-                        'Thành công',
-                        response.data.message,
-                        'success'
-                    ).then( function (){
-                            window.location.href = '/admin/news';
-                        } )
-                }else{
-                    this.$swal(
-                        'Lỗi',
-                        response.data.message,
-                        'error'
-                    )
-                }
-            })
+            const isValid = await this.$refs.applyJob.validate();
+            if(isValid) {
+                this.$axios.post('userApplyJob',data).then(response => {
+                    if(response.data.status == 200) {
+                        this.$swal(
+                            'Thành công',
+                            response.data.message,
+                            'success'
+                        ).then( function (){
+                                window.location.href = '/admin/news';
+                            } )
+                    }else{
+                        this.$swal(
+                            'Lỗi',
+                            response.data.message,
+                            'error'
+                        )
+                    }
+                })
+            }
+            
         }
     },
     mounted() {
