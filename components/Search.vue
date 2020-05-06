@@ -24,8 +24,7 @@
           </ul>
           <!-- Tab panes -->
           <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
-            <div class="tab-pane active" id="v-pills-11" role="tabpanel"
-                 aria-labelledby="v-pills-11-tab">
+            <div class="tab-pane active" id="v-pills-11" role="tabpanel" aria-labelledby="v-pills-11-tab">
               <form action="" class="search-job">
                 <div class="row">
                   <div class="col-md-5">
