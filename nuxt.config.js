@@ -99,7 +99,7 @@ module.exports = {
         routes: async () => {
             const tintuc = await axios.get('https://netbee.vn/api/getTinTucSiteMap')
             const arrayTinTuc = tintuc.data.data.tintuc.map((user) => ({
-                url: `http://netbee.vn/tin-tuc/${user.id}/${ChangeToSlug(user.title)}`,
+                url: `https://netbee.vn/tin-tuc/${user.id}/${ChangeToSlug(user.title)}`,
                 changefreq: 'daily',
                 priority: 1,
             }))
