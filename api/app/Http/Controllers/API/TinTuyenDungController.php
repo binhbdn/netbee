@@ -40,6 +40,48 @@ class TinTuyenDungController extends Controller
             $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
         return response()->json($data);
     }
+
+    public function getTinTuyenDungNewCarousel(Request $request)
+    {
+        $datas['tintuyendung'] = DB::table('nb_joblists')
+        ->leftJoin('users','users.id','=','nb_joblists.id_created')
+        ->leftJoin('nations','nations.id','=','nb_joblists.nation_id')
+        ->where('nb_joblists.status',1)
+        ->where('nb_joblists.deleted',0)
+        ->where('nb_joblists.isPublic',1)
+        ->where('users.status',1)
+        ->where('users.block',0)
+        ->orderBy('nb_joblists.id','desc')
+        ->select('nb_joblists.*','users.name','users.avatar','nations.name as nation_name')
+        ->paginate(5);
+        if($datas)
+            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
+        else
+            $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
+        return response()->json($data);
+    }
+    public function getTinTuyenDungHotCarousel(Request $request)
+    {
+        $type = $request->type;
+        $datas['tintuyendung'] = DB::table('nb_joblists')
+        ->leftJoin('users','users.id','=','nb_joblists.id_created')
+        ->leftJoin('nations','nations.id','=','nb_joblists.nation_id')
+        ->where('nb_joblists.status',1)
+        ->where('nb_joblists.deleted',0)
+        ->where('nb_joblists.highlight_job',2)
+        ->orWhere('nb_joblists.highlight_job',1)
+        ->where('nb_joblists.isPublic',1)
+        ->where('users.status',1)
+        ->where('users.block',0)
+        ->orderBy('nb_joblists.id','desc')
+        ->select('nb_joblists.*','users.name','users.avatar','nations.name as nation_name')
+        ->paginate(10);
+        if($datas)
+            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
+        else
+            $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
+        return response()->json($data);
+    }
     public function getTinTuyenDungForCompany(Request $request)
     {
         $limit = $request->limit;

@@ -166,3 +166,55 @@
     color: black!important;
     font-size: 14px;
 }
+
+
+/* caserol */
+.el-carousel__arrow {
+    border: none;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(31,45,61,.11);
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+    font-size: 12px;
+}
+.el-carousel__arrow, .el-carousel__button {
+    margin: 0;
+    -webkit-transition: .3s;
+    transition: .7s;
+    cursor: pointer;
+    outline: 0;
+}
+.el-carousel__arrow {
+    background-color: rgba(31,45,61,.4)!important;
+}
+.el-carousel__arrow--left {
+    left: 3px!important;
+}
+.el-carousel__arrow--right {
+    right: 3px!important;
+}
+.carousel-interval i{
+    color: #fff;
+}
+.carousel-indicators {
+    bottom: -30px!important;
+}
+.carousel-item {
+    -webkit-transition: -webkit-transform .4s ease-in-out;
+    transition: -webkit-transform .4s ease-in-out;
+    transition: transform .4s ease-in-out;
+    transition: transform .4s ease-in-out,-webkit-transform .4s ease-in-out;
+}
+.carousel-indicators li{
+    width: 10px !important;
+    height: 10px!important;
+    border-radius: 50%;
+}

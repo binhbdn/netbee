@@ -66,7 +66,7 @@
                 <!-- Dashboard Ecommerce ends -->
             </div>
         </div>
-        <DashboardHr/>
+        <DashboardHr v-else/>
     </div>
 </template>
 
