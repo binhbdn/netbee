@@ -78,6 +78,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('report', 'Admin\TinTuyenController@report');
         Route::post('updateTinTuyen', 'Admin\TinTuyenController@updateTinTuyen');
       });
+      Route::prefix('apply')->group(function() {
+        Route::get('getApplyChoDuyet', 'Admin\ApplyManageController@getApplyChoDuyet');
+      });
   });
 });
 

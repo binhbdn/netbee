@@ -196,7 +196,7 @@
                 <div class="card-body">
                   <section id="nav-filled">
                     <div class="row">
-                      <div class="col-sm-12">
+                      <div class="col-sm-12 p-0">
                         <div class="card overflow-hidden">
                           <div class="card-content">
                             <div class="card-body">
@@ -215,16 +215,16 @@
                               </ul>
                               <!-- Tab panes -->
                               <div class="tab-content pt-1">
-                                <div class="tab-pane active" id="home-fill" role="tabpanel"
+                                <div class="tab-pane active list-item" id="home-fill" role="tabpanel"
                                       aria-labelledby="home-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item" v-for="(item, index) in linhvuc" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?id_visa=${item.id}`"><i class="fad fa-location-arrow"></i> {{item.profession}}</a></li>
+                                    <li class="nav-item item" v-for="(item, index) in linhvuc" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?id_visa=${item.id}`"><i class="fad fa-location-arrow"></i> {{item.profession}}</a></li>
                                   </ul>
                                 </div>
                                 <div class="tab-pane" id="profile-fill" role="tabpanel"
                                       aria-labelledby="profile-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item" v-for="(item, index) in quocgia" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?nation_id=${item.id}`"><i class="fad fa-location-arrow"></i> {{item.name}}</a></li>
+                                    <li class="nav-item item" v-for="(item, index) in quocgia" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?nation_id=${item.id}`"><i class="fad fa-location-arrow"></i> {{item.name}}</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -389,4 +389,36 @@
     text-align:center;
     box-shadow: 0 1px 2px #887e7e !important;
   }
+
+  .item{
+    padding: 8px 0;
+    border-bottom: 1px dotted #ddd;
+  }
+
+  .list-item{
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  /* width */
+  .list-item::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  /* Track */
+  .list-item::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.192); 
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  .list-item::-webkit-scrollbar-thumb {
+    background: rgba(78, 78, 78, 0.507); 
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  .list-item::-webkit-scrollbar-thumb:hover {
+    background: rgba(78, 78, 78, 0.404); 
+  }
+
 </style>
