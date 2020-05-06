@@ -186,6 +186,7 @@ export default {
     overflow-x: hidden;
 }
 p img{
-    width: 100%;
+    width: 100% !important;
+    object-fit: scale-down;
 }
 </style>

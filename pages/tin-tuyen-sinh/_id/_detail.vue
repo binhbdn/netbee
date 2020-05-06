@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="row" style="border:#dee2e6 solid 1px;height: 100%">
-                                <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px;border-bottom:#dee2e6 solid 1px;">
+                                <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px;border-bottom:#dee2e6 solid 1px;" data-toggle="modal" :data-target="!$auth.loggedIn?'#loginModal':'#ApplyModal'">
                                     <a class="btn-netbee btn" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i></a>
                                 </div>
                                 <div v-if="$auth.loggedIn" class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px">
@@ -288,6 +288,94 @@
                 </div>
             </div>
         </div>
+        <!-- end Modal login -->
+        <!-- modal apply -->
+
+        <div class="modal fade text-left" id="ApplyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nộp hồ sơ ứng tuyển</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
+                            <li class="nav-item">
+                            <a class="nav-link active" id="v-pills-1-tab" data-toggle="tab" href="#v-pills-1"
+                                role="tab" aria-controls="v-pills-1" aria-selected="true">Hồ sơ đính kèm</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                            <a class="nav-link" id="v-pills-2-tab" data-toggle="tab" href="#v-pills-2"
+                                role="tab" aria-controls="v-pills-2" aria-selected="false">Danh sách hồ sơ</a>
+                            </li> -->
+                        </ul>
+                        <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
+                            <div class="tab-pane active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-11-tab">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="form-field">
+                                                <div class="file-input"> 
+                                                    <label for="file" v-if="file_cv.length == 0"><i class="fas fa-file-upload" style="color: #000000c7;"></i> Chọn file</label>
+                                                    <label for="file" v-else><i class="fas fa-file-upload" style="color: #000000c7;"></i> {{file_cv[0].name}}</label>
+                                                    <input type="file" id="file" @change="onInputChange" > 
+                                                </div>
+                                                <p class="text-center" style="font-size: 12px">Định dạng file: *.doc, *.docx, *.xls, *.xlsx, *.pdf, *.txt, *.rtf</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="form-field">
+                                                <label for="name">Họ tên</label>
+                                                <input type="text" id="name" class="form-control" v-model="name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="form-field">
+                                                <label for="name">Số điện thoại</label>
+                                                <input type="text" id="name" class="form-control" v-model="phone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="form-field">
+                                                <label for="name">Ngành nghề dự định</label>
+                                                <multiselect v-model="value" :options="visa" :multiple="true" :custom-label="nameWithLang"
+                                                    placeholder="Chọn ngành nghề" ></multiselect>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <div class="form-field">
+                                                <label for="name">Quốc gia</label>
+                                                <Multiselect :options="nation" v-model="chooseNation" placeholder="Chọn quốc gia" :multiple="true"
+                                                :searchable="false" :custom-label="nameWithLang1"></Multiselect>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-22-tab">
+                                b
+                            </div>
+                        </div>
+                        <div class="text-right mt-1">
+                            <button type="button" class="btn btn-warning" @click="resetData">reset</button>
+                            <button type="button" class="btn btn-warning" @click="applyJob">Ứng tuyển</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- end modal apply -->
         <div id="fb-root"></div>
     </div>
 </template>
@@ -295,11 +383,15 @@
 <script>
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate'
 import JobsList1Col from '~/components/Jobs/JobsList1Col'
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
 import {
   ValidationProvider,
   extend
 } from "vee-validate/dist/vee-validate.full";
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+
+
 
 extend("required", {
   message: (field, values) => "Dữ liệu nhập vào không được để trống.",
@@ -336,7 +428,8 @@ export default {
         JobsList1ColNotCate,
         JobsList1Col,
         ValidationProvider,
-        ValidationObserver
+        ValidationObserver,
+        Multiselect
     },
     data() {
         return {
@@ -347,7 +440,12 @@ export default {
                 email: '',
                 password: ''
             },
+            file_cv: [],
             show: true,
+            value: [],
+            chooseNation: [],
+            name: '',
+            phone: '',
         }
     },
     async asyncData({$axios, route}) {
@@ -356,12 +454,16 @@ export default {
         let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=5&type=1`)
         let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=2`)
         let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
+        // let getvisa = await $axios.$get(`getVisa`)
+        // let getNation = await $axios.$get(`getQuocGia`)
         return {
             tintuc: detailRes.data[0],
             arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
             arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
             arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
             arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
+            // visa: getvisa.data,
+            // nation: getNation.data
         }
     },
     head() {
@@ -449,6 +551,66 @@ export default {
                 'warning'
                 );
             });
+        },
+        onInputChange(e){
+            if(this.file_cv != null && this.file_cv.length > 0){
+                this.file_cv = []
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            const file = e.target.files[0]
+            this.addfile(file)
+        },
+        addfile(file){
+            console.log(file.type)
+            if( file.type == 'application/pdf' ){
+                this.$swal(
+                        'Lỗi',
+                        'File không đúng định dạng',
+                        'error'
+                    )
+                return;
+            }
+            this.file_cv.push(file)
+        },
+        nameWithLang ({ profession, id }) {
+            return `${profession}`
+        },
+        nameWithLang1 ({ name, id }) {
+            return `${name}`
+        },
+        resetData(){
+            this.file_cv = []
+            this.name = ''
+            this.phone = ''
+            this.value = []
+            this.chooseNation = []
+        },
+        applyJob(){
+            console.log(this.$route.params.id)
+            var data = new FormData()
+            data.append('file_cv', this.file_cv[0])
+            data.append('name', this.name)
+            data.append('phone', this.phone)
+            data.append('job_id', this.$route.params.id)
+
+            this.$axios.post('userApplyJob',data).then(response => {
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Thành công',
+                        response.data.message,
+                        'success'
+                    ).then( function (){
+                            window.location.href = '/admin/news';
+                        } )
+                }else{
+                    this.$swal(
+                        'Lỗi',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
         }
     },
     mounted() {
@@ -514,4 +676,42 @@ export default {
     font-weight: bold;
     color: #4e4d4d;
 }
+
+.modal-header{
+    background-color: #ffb701;
+    color: #000;
+}
+
+.modal-title{
+    font-weight: 600;
+}
+
+.file-input label,
+.file-input input{
+    width: 100%;
+    position: absolute;
+    left: 11px;
+    top: 7%;
+
+    border-radius: 4px;
+    margin-top: 7px;
+    cursor: pointer;
+}
+
+.file-input input{
+    opacity: 0;
+    z-index: -2;
+}
+
+.file-input{
+    width: auto;
+    margin: auto;
+    height: 35px;
+    position: relative;
+    background: #ffb701;
+    text-align: center;
+    border-radius: 10px;
+}
+
+
 </style>
