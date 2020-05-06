@@ -167,7 +167,9 @@ module.exports = {
         '~/plugins/jsonld.js',
         { src: './plugins/vue2-editor', ssr: false },
         { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
-        { src: '~/plugins/infiniteloading', ssr: false }
+        { src: '~/plugins/infiniteloading', ssr: false },
+        { src: '~/plugins/chart', ssr: false },
+        { src: '~/plugins/hchs-vue-charts', ssr: false }
     ],
     vue: {
         config: {
