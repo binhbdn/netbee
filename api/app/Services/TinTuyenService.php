@@ -5,12 +5,9 @@ use App\Models\NbJoblist;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Validator;
 
-class TinTuyenService {
-
-    const
-        ACTIVE = 1,
-        INACTIVE = 0;
+class TinTuyenService extends BaseService {
 
     protected $nbJobList;
 
@@ -27,6 +24,162 @@ class TinTuyenService {
     public function update($data, $id)
     {
         return $this->getJobById($id)->update($data);
+    }
+
+    public function store($request)
+    {
+        $validate = $this->jobRequest($request);
+        if ($validate) {
+            return $validate;
+        }
+        $data = $this->getOnlyRequest($request);
+        try {
+            $this->nbJobList->insert($data);
+            return [
+                'status' => 200,
+                'message' => 'Tạo tin thành công',
+                'data' => null
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function updateJob($request)
+    {
+        $jobExists = $this->getJobById($request->id)->whereDeleted(self::ACTIVE)->exists();
+        if ($jobExists) {
+            return [
+                'status'=> 400,
+                'message' => 'Tin đã bị xóa',
+                'data' => null
+            ];
+        }
+        $validate = $this->jobRequest($request);
+        if ($validate) {
+            return $validate;
+        }
+        $data = $this->getOnlyRequest($request);
+        try {
+            $this->getJobById($request->id)->update($data);
+            return [
+                'status' => 200,
+                'message' => 'Cập nhật tin thành công',
+                'data' => null
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
+    private function jobRequest($request)
+    {
+        $rules = [
+            'title' => 'required',
+            'address' => 'required',
+            'nation' => 'required',
+            'expiration_date' => 'required',
+            'description' => 'required',
+            'request' => 'required',
+            'cv_content' => 'required',
+            'benefit' => 'required',
+            'age_start' => 'required',
+            'age_late' => 'required',
+            'quantity' => 'required',
+            'subsidy' => 'required',
+            'currency' => "required",
+            'date_start' => 'required',
+            'date_test' => 'required',
+            'expected_date' => 'required',
+            'salary_start' => 'required',
+            'salary_end' => 'required',
+        ];
+        $messages = [
+            'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
+        ];
+
+        if ($request->type == self::JOB_OVERSEAS_STUDENT) {
+            $rules['school_name'] = 'required';
+        } else {
+            $rules['visa'] = 'required';
+            $rules['form_work'] = 'required';
+        }
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return [
+                'status' => 400,
+                'message' => $validator->messages()->first(),
+                'data' => null
+            ];
+        }
+        return false;
+    }
+
+    private function getOnlyRequest($request)
+    {
+        $response = [
+            'title' => $request->title,
+            'workplace' => $request->address,
+            'nation_id' => $request->nation,
+            'expiration_date' => $request->expiration_date,
+            'description' => $request->description,
+            'request' => $request->get('request'),
+            'cv_content' => $request->cv_content,
+            'benefit' => $request->benefit,
+            'age_start' => $request->age_start,
+            'age_late' => $request->age_late,
+            'quantity' => $request->quantity,
+            'salary_start' => $request->salary_start,
+            'salary_end' => $request->salary_end,
+            'subsidy' => $request->subsidy,
+            'currency' => $request->currency,
+            'date_start' => $request->date_start,
+            'date_test' => $request->date_test,
+            'expected_date' => $request->expected_date,
+            'time_bonus' => $request->time_bonus,
+            'bonus' => $request->bonus,
+            'highlight_job' => $request->highlight_job,
+            'type' => $request->type,
+            'id_created' => Auth::user()->id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ];
+
+        if ($request->type == self::JOB_OVERSEAS_STUDENT) {
+            $response['school_name'] = $request->school_name;
+        } else {
+            $response['work_form'] = $request->work_form;
+            $response['id_visa'] = $request->id_visa;
+        }
+
+        return $response;
+    }
+
+    public function show($id)
+    {
+        try{
+            $job = $this->getJobById($id)->first();
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $job
+            ];
+        } catch (\Exception $e){
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
     }
 
     public function destroy($id)
@@ -66,16 +219,16 @@ class TinTuyenService {
         $perPage = 6;
         try {
             if ($userRole == UserService::ROLE_COMPANY) {
-                $jobs = $this->getJobByRoleCompany($perPage);
+                $query = $this->getJobByRoleCompany();
             } else if ($userRole == UserService::ROLE_ADMIN) {
-                $jobs = $this->getJobByRoleAdmin($perPage);
+                $query = $this->getJobByRoleAdmin();
             } else {
-                $jobs = $this->getJobByRoleOther($perPage);
+                $query = $this->getJobByRoleOther();
             }
             $data = [
                 'status'=> 200,
                 'message' => 'Thành công',
-                'data' => $jobs
+                'data' => $query->paginate($perPage)
             ];
         } catch (\Exception $e) {
             $data = [
@@ -87,37 +240,41 @@ class TinTuyenService {
         return $data;
     }
 
-    private function getJobByRoleCompany($perPage)
+    private function getJobByRoleCompany()
     {
         return $this->nbJobList->join('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
             ->where('nb_joblists.id_created', Auth::user()->id)
             ->where('nb_joblists.deleted', self::INACTIVE)
             ->orderBy('nb_joblists.id', 'DESC')
             ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers'))
-            ->groupBy('nb_joblists.id')
-            ->paginate($perPage);
+            ->groupBy('nb_joblists.id');
     }
 
-    private function getJobByRoleAdmin($perPage)
+    private function getJobByRoleAdmin()
     {
         return $this->nbJobList->where('nb_joblists.deleted', self::INACTIVE)
             ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
             ->orderBy('nb_joblists.id', 'DESC')
             ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers'))
-            ->groupBy('nb_joblists.id')
-            ->paginate($perPage);
+            ->groupBy('nb_joblists.id');
     }
 
-    private function getJobByRoleOther($perPage)
+    private function getJobByRoleOther()
     {
         return $this->nbJobList->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
             ->where('nb_joblists.deleted', self::INACTIVE)
-            ->where('nb_joblists.status', 1)
+            ->where('nb_joblists.status', self::ACTIVE)
             ->Join('users','users.id','=','nb_joblists.id_created')
             ->join('nations', 'nb_joblists.nation_id', '=', 'nations.id')
             ->orderBy('nb_joblists.highlight_job', 'nb_joblists.created_at', 'DESC')
-            ->groupBy('nb_joblists.id')
-            ->paginate($perPage);
+            ->groupBy('nb_joblists.id');
+    }
+
+    private function getJobWithConditionAndNotRoleCompany()
+    {
+        return $this->nbJobList->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
+            ->Join('users','users.id','=','nb_joblists.id_created')
+            ->join('nations', 'nb_joblists.nation_id', '=', 'nations.id');
     }
 
     public function changeStatusJob($id)
@@ -245,6 +402,63 @@ class TinTuyenService {
 
     public function searchJob($data)
     {
+        $userRole = Auth::user()->role;
+        $conditions = [];
+        $search = $data->search;
+        $searchTitle = $data->searchTitle;
+        $searchCategory = $data->searchCategory;
+        $searchStatus = $data->searchStatus;
 
+        if ($searchTitle != '') {
+            $conditions[] = [
+                'nb_joblists.title',
+                'LIKE',
+                '%'.$searchTitle.'%'
+            ];
+        }
+
+        if($searchStatus != null){
+            $conditions[] = [
+                'nb_joblists.title' => $searchStatus
+            ];
+        }
+
+        if($searchCategory != null){
+            $conditions[] = [
+                'nb_joblists.type' => $searchCategory
+            ];
+        }
+
+        if (empty($conditions) && $search == '') {
+            $perPage = 6;
+            if ($userRole == UserService::ROLE_COMPANY) {
+                $query = $this->getJobByRoleCompany();
+            } else if ($userRole == UserService::ROLE_ADMIN) {
+                $query = $this->getJobByRoleAdmin();
+            } else {
+                $query = $this->getJobByRoleOther();
+            }
+            return $query->paginate($perPage);
+        }
+
+        if ($userRole == UserService::ROLE_COMPANY) {
+            $perPage = 10;
+            $query = $this->getJobByRoleCompany();
+        } else {
+            $perPage = 6;
+            $query = $this->getJobWithConditionAndNotRoleCompany();
+        }
+
+        if (!empty($conditions)) {
+            $query->where($conditions);
+        }
+
+        if ($search != '') {
+            $query->where(function($q) use ($search){
+                $q->where('nb_joblists.title', 'LIKE', '%'.$search.'%')
+                    ->orwhere('nb_joblists.id','LIKE', '%'.$search.'%');
+            });
+        }
+        return $query->paginate($perPage);
     }
 }

@@ -3,7 +3,7 @@ namespace App\Services;
 
 use App\Models\SocialAccount;
 
-class SocialAccountService {
+class SocialAccountService extends BaseService {
 
     protected $socialAccount;
 

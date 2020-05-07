@@ -1,18 +1,18 @@
-<?php 
+<?php
 namespace App\Services;
 
 use App\Models\NbCompanyInfo;
 use JWTAuth;
 
-class NbCompanyInfoService {
-   
+class NbCompanyInfoService extends BaseService {
+
     protected $nbCompanyInfo;
-    
+
     public function __construct(NbCompanyInfo $nbCompanyInfo)
     {
         $this->nbCompanyInfo = $nbCompanyInfo;
     }
-    
+
     public function getInfoByUserId($userId)
     {
         return $this->nbCompanyInfo->whereCompanyId($userId);
@@ -27,4 +27,4 @@ class NbCompanyInfoService {
     {
         return $this->nbCompanyInfo->whereCompanyId($userId)->update($data);
     }
-} 
+}
