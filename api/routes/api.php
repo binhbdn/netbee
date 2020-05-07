@@ -79,6 +79,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getSave', 'Admin\SaveController@getSave');
         Route::post('report', 'Admin\ReportController@report');
       });
+      Route::prefix('hoso')->group(function () {
+        Route::post('getProfileUser', 'Admin\TeamplateCvController@getProfileUser');
+        Route::post('getEducationUser', 'Admin\TeamplateCvController@getEducationUser');
+      });
   });
 });
 

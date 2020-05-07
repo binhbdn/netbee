@@ -4,7 +4,7 @@
         <div class="header-navbar-shadow"></div>
         <br><br><br><br>
         <div class="container" >   
-            <div class="main-cv">     
+            <div class="main-cv">                 
                 <div class="row">
                     <div class="col-md-10" style="background-color: #fff;">                                
                         <div class="row">
@@ -119,7 +119,7 @@
                                     </div>   
                                     <template> 
                                         <div>
-                                            <cv-main-education v-for="(education,k) in data.education_user" :education="education" :key="k"></cv-main-education>
+                                            <cv-main-education v-for="(edu,k) in education_user" :edu="edu" :key="k"></cv-main-education>
                                         </div> 
                                     </template>                                                                  
                                 </div>                                
@@ -214,15 +214,14 @@
 </template>
 
 <script>           
-    import Vue from 'vue/dist/vue.js';
+    import Vue from "vue";
     
     export default {
         name: 'Teamplate1',
         layout: 'admin',
         
         data(){
-            return {
-                data: {
+            return {               
                     info_frofile_user: {    
                         id:'',                           
                         id_user: '',
@@ -242,14 +241,12 @@
                         certificate_profile:'',
                     },
                     education_user: [],
-                }
-            }
+                }         
         },        
         components:{
-             'cv-main-education': {  
-                 name: 'education',
+             'cv-main-education': {                   
                  props: {
-                     education: Object
+                     edu: Object
                 },                            
                 data(){
                     return{ 
@@ -291,11 +288,8 @@
                                     
                     },
                  },
-                 mounted(){
-                    this.$nextTick(() => {
-                        this.$el.setAttribute("style", "height",
-                        `${this.$el.scrollHeight}px`);      
-                    });  
+                 mounted(){                    
+                                    
                 }                  
              }
         },
@@ -309,11 +303,31 @@
                             
             },
             fetchdata(){
+                console.log(this.$route.query.id);
+                this.$axios.post('hoso/getProfileUser',{'id': this.$route.query.id})
+                .then(response => {                    
+                    this.info_frofile_user = response.data;
+                    console.log(this.info_frofile_user);
+                 })
+                 .catch(error => {
+                    console.log(error.response);
+                });
+            },
+            fetchdataEducation(){               
+                this.$axios.post('hoso/getEducationUser',{'id': this.$route.query.id})
+                .then(response => {                    
+                    this.education_user = response.data;
+                    console.log(this.education_user);
+                 })
+                 .catch(error => {
+                    console.log(error.response);
+                });
+            },
 
-            }
         },        
         mounted() {    
-            this.fetchdata();         
+            this.fetchdata();    
+            this.fetchdataEducation();     
             this.$nextTick(() => {
                 this.$el.setAttribute("style", "height",
                 `${this.$el.scrollHeight}px`);      
