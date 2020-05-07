@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Services;
 
 use JWTAuth;
@@ -6,8 +6,8 @@ use Analytics;
 use Spatie\Analytics\Period;
 use Carbon\Carbon;
 
-class DashboardService {
-   
+class DashboardService extends BaseService {
+
     public function fetchTopReferrers()
     {
         $startDate = Carbon::now()->subYear(10);
@@ -38,4 +38,4 @@ class DashboardService {
         $endDate = Carbon::now();
         return Analytics::performQuery(Period::create($startDate, $endDate),'ga:pageviews');
     }
-} 
+}

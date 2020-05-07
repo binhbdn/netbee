@@ -10,15 +10,11 @@ use Response;
 use JWTAuth;
 use JWTFactory;
 use Auth;
-use App\User;
 use App\Mail\Contacs;
 use Mail;
 use Validator;
 use Hash;
 use Carbon\Carbon;
-use App\Mail\Sendmail;
-
-use App\Http\Controllers\NotificationController as notifi;
 
 class UserController extends Controller
 {
