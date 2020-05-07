@@ -79,6 +79,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('report', 'Admin\TinTuyenController@report');
         Route::post('updateTinTuyen', 'Admin\TinTuyenController@updateTinTuyen');
       });
+      Route::prefix('hoso')->group(function () {
+        Route::post('getProfileUser', 'Admin\TeamplateCvController@getProfileUser');
+        Route::post('getEducationUser', 'Admin\TeamplateCvController@getEducationUser');
+      });
   });
 });
 
