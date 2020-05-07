@@ -51,7 +51,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('pricing_momo', 'MomoController@pricing_momo');
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');
-      
+
     //admin
       Route::prefix('tintuc')->group(function () {
         Route::get('getTinTuc', 'Admin\TinTucController@getTinTuc');
@@ -72,12 +72,12 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changePublic', 'Admin\TinTuyenController@changePublic');
         Route::get('searchTinTuyenDung', 'Admin\TinTuyenController@searchTinTuyenDung');
         Route::post('createTinTuyen', 'Admin\TinTuyenController@createTinTuyen');
-        Route::post('postView', 'Admin\TinTuyenController@postView');
-        Route::post('postSave', 'Admin\TinTuyenController@postSave');
-        Route::get('getSave', 'Admin\TinTuyenController@getSave');
         Route::get('getDetailTinTuyen/{id}','Admin\TinTuyenController@getDetailTinTuyen');
-        Route::post('report', 'Admin\TinTuyenController@report');
         Route::post('updateTinTuyen', 'Admin\TinTuyenController@updateTinTuyen');
+        Route::post('postView', 'Admin\ViewController@postView');
+        Route::post('postSave', 'Admin\SaveController@postSave');
+        Route::get('getSave', 'Admin\SaveController@getSave');
+        Route::post('report', 'Admin\ReportController@report');
       });
   });
 });
