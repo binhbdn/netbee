@@ -174,7 +174,8 @@ module.exports = {
     vue: {
         config: {
             productionTip: true,
-            devtools: true
+            devtools: true,
+            silent : true
         }
     },
 
