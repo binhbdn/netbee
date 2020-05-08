@@ -14,14 +14,16 @@ class NbCompanyInfoService extends BaseService {
         $this->nbCompanyInfo = $nbCompanyInfo;
     }
     public function getInfoAll(){
-        $data = $this->nbCompanyInfo
-            ->with(['companyFeedback'])
-            ->with(['user' => function($q) {
-                $q->select('name');
-            }])
+        $datas = $this->nbCompanyInfo
+            ->with(['companyFeedback','user'])
+            ->whereHas('user',function($query){
+                $query->select('name');
+            })
             ->paginate(6);
-        dd($data);
-        return response()->json($data);
+        if($datas){
+            $data = ['status' => 200, 'message' => 'Thành công', 'data' => $datas];
+        }
+        return $data;
     }
     public function getInfoByUserId($userId)
     {
