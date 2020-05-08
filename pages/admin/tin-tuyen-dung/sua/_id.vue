@@ -339,9 +339,9 @@
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
                                                                 <label class="custom-control-label"
-                                                                    for="defaultGroupExample0" style="font-size: 20px; font-weight: 600;">Tin
+                                                                    for="defaultGroupExample0" style="font-size: 16px; font-weight: 600;">Tin
                                                                     nổi bật </label>
-                                                                    <i class="far fa-check fa-3x" v-if="data.highlight_job == 1" style="padding-left: 70px;color: green"></i>
+                                                                    <i class="far fa-check" v-if="data.highlight_job == 1" style="color: green"></i>
                                                             </div>
                                                         </div>
                                                         <div class="detail-active high p-10">
@@ -358,9 +358,9 @@
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
                                                                 <label class="custom-control-label"
-                                                                    for="defaultGroupExample1" style="font-size: 20px; font-weight: 600;">Tin
+                                                                    for="defaultGroupExample1" style="font-size: 16px; font-weight: 600;">Tin
                                                                     thường</label>
-                                                                    <i class="far fa-check fa-3x" v-if="data.highlight_job == 0" style="padding-left: 70px;color: green"></i>
+                                                                    <i class="far fa-check" v-if="data.highlight_job == 0" style="color: green"></i>
                                                             </div>
                                                         </div>
                                                         <div class="detail-active high p-10">
@@ -377,9 +377,9 @@
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
                                                                 <label class="custom-control-label"
-                                                                    for="defaultGroupExample2" style="font-size: 20px; font-weight: 600;">Tin
+                                                                    for="defaultGroupExample2" style="font-size: 16px; font-weight: 600;">Tin
                                                                     VIP</label>
-                                                                    <i class="far fa-check fa-3x" v-if="data.highlight_job == 2" style="padding-left: 70px;color: green"></i>
+                                                                    <i class="far fa-check" v-if="data.highlight_job == 2" style="color: green"></i>
                                                             </div>
                                                         </div>
                                                         <div class="detail-active high p-10">
@@ -770,7 +770,11 @@ export default {
 }
 .detail-active {
     display: none;
-    position: relative;
+    position: absolute;
+    border-radius: 5px;
+}
+.detail-active p{
+    font-weight: 600;
 }
 .detail-active::before {
     content: '';
