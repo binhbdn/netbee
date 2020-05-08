@@ -40,4 +40,14 @@ class NbJoblist extends Model
         'isPublic',
         'isDraft',
     ];
+
+    public function Apply()
+    {
+        return $this->hasMany('App\Models\Apply', 'id');
+    }
+
+    public function Users()
+    {
+        return $this->belongsTo('App\User', 'id_created');
+    }
 }

@@ -83,6 +83,14 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('getProfileUser', 'Admin\TeamplateCvController@getProfileUser');
         Route::post('getEducationUser', 'Admin\TeamplateCvController@getEducationUser');
       });
+      Route::prefix('apply')->group(function () {
+        Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');
+        Route::get('getApplyApproved', 'Admin\ApplyManageController@getApplyApproved');
+        Route::get('getRefuseApply', 'Admin\ApplyManageController@getRefuseApply');
+        Route::get('getAllApply', 'Admin\ApplyManageController@getAllApply');
+        Route::get('ApproveApply/{id}', 'Admin\ApplyManageController@ApproveApply');
+        Route::get('RefuseApply/{id}', 'Admin\ApplyManageController@RefuseApply');
+      });
   });
 });
 

@@ -38,4 +38,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function Jobs() {
+        return $this->hasMany('App\Models\NbJoblist');
+    }
 }
