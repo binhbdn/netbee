@@ -46,7 +46,11 @@ class NbJoblist extends Model
         return $this->hasMany('App\Models\Apply', 'id');
     }
 
-    public function Users()
+    public  function nation()
+    {
+        return $this->belongsTo('App\Models\Nation');
+    }
+    public  function user()
     {
         return $this->belongsTo('App\User', 'id_created');
     }

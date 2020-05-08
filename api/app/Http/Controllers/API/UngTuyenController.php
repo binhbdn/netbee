@@ -43,7 +43,7 @@ class UngTuyenController extends Controller
         $insert = [
             'name' => $request->name,
             'phone'=> $request->phone,
-            'file_cv' => $file_cv,
+            'cv' => $file_cv,
             'job_id' => $request->job_id,
             'user_create' => Auth::user()->id,
             'created_at' => Carbon::now(),

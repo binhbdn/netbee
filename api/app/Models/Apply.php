@@ -17,4 +17,8 @@ class Apply extends Model
         'phone',
         'status',
     ];
+
+    public function Jobs(){
+        return $this->belongsTo('App\Models\NbJoblist', 'job_id')->with('nbJobs');
+    }
 }

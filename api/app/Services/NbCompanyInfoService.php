@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\NbCompanyInfo;
 use JWTAuth;
+use function foo\func;
 
 class NbCompanyInfoService extends BaseService {
 
@@ -12,7 +13,16 @@ class NbCompanyInfoService extends BaseService {
     {
         $this->nbCompanyInfo = $nbCompanyInfo;
     }
-
+    public function getInfoAll(){
+        $data = $this->nbCompanyInfo
+            ->with(['companyFeedback'])
+            ->with(['user' => function($q) {
+                $q->select('name');
+            }])
+            ->paginate(6);
+        dd($data);
+        return response()->json($data);
+    }
     public function getInfoByUserId($userId)
     {
         return $this->nbCompanyInfo->whereCompanyId($userId);

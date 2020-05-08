@@ -128,7 +128,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody v-if="tinTuc.length > 0">
-                                                <tr v-for="(item, index) in tinTuc" :key="index">
+                                                <tr v-for="(item, indexTinTuc) in tinTuc" :key="indexTinTuc">
                                                     <td class="d-flex" style="padding-top:34px">
                                                         <li class="d-inline-block mr-1">
                                                             <fieldset>
@@ -167,7 +167,7 @@
                                                                         Chọn thao tác
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
+                                                                        <a v-if="$auth.user.role == 4"  v-on:click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
                                                                         <a :href="`/admin/news/edit/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
                                                                         <a v-on:click="deleteNews(item.id)" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
                                                                     </div>
@@ -210,12 +210,6 @@ export default {
         script: [
             { src: '/app-assets/vendors/js/tables/datatable/pdfmake.min.js' },
             { src: '/app-assets/vendors/js/tables/datatable/vfs_fonts.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/datatables.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/buttons.html5.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/buttons.print.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js' },
-            { src: '/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js' },
         ]
     },
     components: {
@@ -245,40 +239,32 @@ export default {
         }
     },
     created() {
-        this.fetch();
+        this.search();
     },
     methods: {
         nameWithLang ({ name, id }) {
             return `${name}`
         },
-        fetch() {
-            this.$axios.$get('tintuc/getTinTuc').then((response)=>{
-	             this.tinTuc=response.data.data;
-	        });
-
-        },
-        async changeStatus(index){
+        async changeStatus(id){
             try {
                     let response = await this.$axios.post('tintuc/changeStatusTinTuc',{
-                    id: index
+                    id: id
                 });
                 if(response.data.status == 200) {
-                    this.$swal({
-                        title: 'Thành công',
-                        text: response.data.message,
-                        icon: 'success',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    }).then( 
-                        this.fetch(),
-                    )
+                    this.$swal(
+                        'Thành công!',
+                        response.data.message,
+                        'success'
+                        )
+                    this.search()
+                    
                 }
                 else {
-                this.$swal(
-                    'Lỗi!',
-                    response.data.message,
-                    'error'
-                    )
+                    this.$swal(
+                        'Lỗi!',
+                        response.data.message,
+                        'error'
+                        )
                 }
             } catch (error) {
                 this.$swal(
@@ -287,7 +273,7 @@ export default {
                     'error')
             }
         },
-        async deleteNews(index){
+        async deleteNews(id){
                 try {
                     this.$swal({
                     title: 'Bạn có chắc chắn?',
@@ -299,10 +285,10 @@ export default {
                     showLoaderOnConfirm: true
                     }).then(async (result) => {
                     if(result.value) {
-                        let response = await this.$axios.post('tintuc/deleteTinTuc',{id: index});
+                        let response = await this.$axios.post('tintuc/deleteTinTuc',{id: id});
                         if(response.data.status == 200) {
-                            this.fetch();
                             this.$swal('Thành công', response.data.message, 'success');
+                            this.tinTuc = this.tinTuc.filter((e)=>e.id !== id )
                         }
                         else {
                             this.$swal(
@@ -349,7 +335,7 @@ export default {
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     }).then( 
-                        this.fetch(),
+                        this.search(),
                     )
                 }
                 else if(res.status == 200){
@@ -360,7 +346,7 @@ export default {
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     }).then( 
-                        this.fetch(),
+                        this.search(),
                     )
                 }
                 else {
@@ -402,7 +388,7 @@ export default {
                         if(result.value) {
                             let response = await this.$axios.post('tintuc/deleteMultipleTinTuc',{id: JSON.stringify(this.selected)});
                             if(response.data.status == 200) {
-                                this.fetch();
+                                this.search();
                                 this.$swal('Thành công', response.data.message, 'success');
                             }
                             else {
@@ -439,7 +425,7 @@ export default {
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     }).then( 
-                        this.fetch(),
+                        this.search(),
                     )
                 }
                 else {

@@ -3,15 +3,16 @@
     <section>
       <div class="row">
           <div class="col-8">
-          <h1>Vietnam Best IT Companies 2020</h1>
-          <p style="font-size: 16px">The employees have spoken! Here are the Top 15 Vietnam Best IT Companies 2020 to work for based on 11,000+ reviews submitted by IT people.</p>
+          <h1>Công ty CNTT tốt nhất Việt Nam 2020</h1>
+          <p style="font-size: 16px">
+Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt nhất Việt Nam 2020 hoạt động dựa trên hơn 11.000 đánh giá được gửi bởi những người làm CNTT.</p>
         </div>
         <div class="col-4">
           <img style="width: 250px" src="https://itviec.com/assets/2020_best_company_badge-f38d668d87ad0f4a24e39be359afe7d821fb44625a710cd440fd88cfc7d11d4c.svg">
         </div>
       </div>
       <div class="row" style="padding:0 14px">
-        <p style="font-size: 16px">Based on Vietnamese employees feedback from 1/1/19 to 12/31/19</p>
+        <p style="font-size: 16px">Dựa trên phản hồi của nhân viên Việt Nam từ 1/1/19 đến 12/12/19</p>
       </div>
     </section>
     <section class="list-company" style="background-color:#fff; padding: 15px">
@@ -31,12 +32,12 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="star-rating">
-                      <span class="fas fa-star" data-rating="1"></span>
-                      <span class="fas fa-star" data-rating="2"></span>
-                      <span class="fas fa-star" data-rating="3"></span>
-                      <span class="far fa-star" data-rating="4"></span>
-                      <span class="far fa-star" data-rating="5"></span>
-                      <span class="" data-rating="5">3.0</span>
+                      <star-rating v-model="rating" 
+                      :increment="0.1"
+                      :star-size="30"
+                      :inline="inline"
+                      :read-only="true"
+                      ></star-rating>
                     </div>
                   </div>
                 </div>
@@ -52,109 +53,27 @@
             </div> 
             <div class="row text-right">
               <p style="width:100%; padding-right: 20px">
-                <span class="action-link"><a href="">See reviews</a></span>|
-                <span class="action-link"><a href="">See jobs</a></span></p>
+                <span class="action-link"><a href="">Xem công việc</a></span>|
+                <span class="action-link"><a href="">Xem phản hồi</a></span></p>
           </div>
           </div>  
              
       </div> 
       </div>
-      <div class="list-company-item" >
-        <div class="row">
-          <div class="col-12">
-            <h3>#2 Grab (Vietnam) Ltd.</h3>
-            </div>  
-        </div>
-        <div class="row">
-          <div class="col-3">
-            <div style="border: 1px solid #ddd; padding: 5px"><img src="https://netbee.vn/_nuxt/img/377bc00.png"></div>
-          </div>
-          <div class="col-9">
-            <div class="row">
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="star-rating">
-                      <span class="fas fa-star" data-rating="1"></span>
-                      <span class="fas fa-star" data-rating="2"></span>
-                      <span class="fas fa-star" data-rating="3"></span>
-                      <span class="far fa-star" data-rating="4"></span>
-                      <span class="far fa-star" data-rating="5"></span>
-                      <span class="" data-rating="5">3.0</span>
-                    </div>
-                  </div>
-                </div>
-              </div>  
-              <div class="col-6">
-                <p>recommend working here!</p>  
-              </div>  
-            </div> 
-            <div class="row">
-            <p><i class="fas fa-quote-left"></i> If you want to work with people who are the best, just come here. Grab encourages people to be open, 
-                  helpful and transparent, and you will feel welcome day 1 here. Code you are writing WILL make impact on Grab, 
-                  and by proxy Southest Asia...</p>
-            </div> 
-            <div class="row text-right">
-              <p style="width:100%; padding-right: 20px">
-                <span class="action-link"><a href="">See reviews</a></span>|
-                <span class="action-link"><a href="">See jobs</a></span></p>
-          </div>
-          </div>  
-             
-      </div> 
-      </div>
-      <div class="list-company-item" >
-        <div class="row">
-          <div class="col-12">
-            <h3>#3 Grab (Vietnam) Ltd.</h3>
-            </div>  
-        </div>
-        <div class="row">
-          <div class="col-3">
-            <div style="border: 1px solid #ddd; padding: 5px"><img src="https://netbee.vn/_nuxt/img/377bc00.png"></div>
-          </div>
-          <div class="col-9">
-            <div class="row">
-              <div class="col-6">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="star-rating">
-                      <span class="fas fa-star" data-rating="1"></span>
-                      <span class="fas fa-star" data-rating="2"></span>
-                      <span class="fas fa-star" data-rating="3"></span>
-                      <span class="far fa-star" data-rating="4"></span>
-                      <span class="far fa-star" data-rating="5"></span>
-                      <span class="" data-rating="5">3.0</span>
-                    </div>
-                  </div>
-                </div>
-              </div>  
-              <div class="col-6">
-                <p>recommend working here!</p>  
-              </div>  
-            </div> 
-            <div class="row">
-            <p><i class="fas fa-quote-left"></i> If you want to work with people who are the best, just come here. Grab encourages people to be open, 
-                  helpful and transparent, and you will feel welcome day 1 here. Code you are writing WILL make impact on Grab, 
-                  and by proxy Southest Asia...</p>
-            </div> 
-            <div class="row text-right">
-              <p style="width:100%; padding-right: 20px">
-                <span class="action-link"><a href="">See reviews</a></span>|
-                <span class="action-link"><a href="">See jobs</a></span></p>
-          </div>
-          </div>  
-             
-      </div> 
-      </div>     
     </section>
   </div>
 </template>
 <script>
 import CompanyList1 from "~/components/Company/CompanyList1";
+import StarRating from 'vue-star-rating'
 export default {
+  data() {
+    return {
+      rating:3
+    }
+  },
   components: {
-    CompanyList1
+    CompanyList1,StarRating
   },
   created() {
     console.log(this.arrayCompanyHot[0].name);
