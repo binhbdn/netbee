@@ -50,8 +50,5 @@
         "eslint-plugin-node": "^5.1.1",
         "eslint-plugin-promise": "^3.5.0",
         "eslint-plugin-standard": "^3.0.1"
-    },
-    "browser": {
-        "vue": "vue/dist/vue.common.js"
     }
 }
