@@ -83,4 +83,34 @@ class ApplyManageController extends Controller
         }
         return response()->json($data);
     }
+
+    public function HideApply(Request $request){
+        $check = $this->applyJobService->isPublic($request->id, $this->applyJobService::AN);
+        if($check){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function ShowApply(Request $request){
+        $check = $this->applyJobService->isPublic($request->id, $this->applyJobService::HIEN);
+        if($check){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function DraftApply(Request $request) {
+        $check = $this->applyJobService->draftApply($request->id);
+        if($check){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
 }

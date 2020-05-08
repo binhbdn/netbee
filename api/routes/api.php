@@ -92,6 +92,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getAllApply', 'Admin\ApplyManageController@getAllApply');
         Route::get('ApproveApply/{id}', 'Admin\ApplyManageController@ApproveApply');
         Route::get('RefuseApply/{id}', 'Admin\ApplyManageController@RefuseApply');
+        Route::get('HideApply/{id}', 'Admin\ApplyManageController@HideApply');
+        Route::get('ShowApply/{id}', 'Admin\ApplyManageController@ShowApply');
+        Route::get('DraftApply/{id}', 'Admin\ApplyManageController@DraftApply');
       });
   });
 });

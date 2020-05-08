@@ -14,6 +14,12 @@ class ApplyJobService extends BaseService {
 
     const All = 0;
 
+    const AN = 0,
+          HIEN = 1;
+
+    const XOA = 1;
+
+
 
     public function create($data){
         return Apply::insert($data);
@@ -21,11 +27,12 @@ class ApplyJobService extends BaseService {
 
     public function getApply($status)
     {
-        $query = Apply::with('Jobs');
+        
+        $query = Apply::with('Jobs')->where('isDraft', 0)->orderby('id','desc');
         if($status){
-            $data = $query->whereStatus($status)->orderby('id','desc')->get();
+            $data = $query->whereStatus($status)->get();
         } else {
-            $data = $query->orderby('id','desc')->get();     
+            $data = $query->get();     
         }
         return $data;
     }
@@ -36,5 +43,13 @@ class ApplyJobService extends BaseService {
 
     public function getDetailApply($id) {
         return Apply::with('Jobs')->where('id', $id)->first();
+    }
+
+    public function isPublic($id, $isPublic){
+        return Apply::where('id',$id)->update(['isPublic'=>$isPublic]);
+    }
+
+    public function draftApply($id){
+        return Apply::where('id',$id)->update(['isDraft'=>1]);
     }
 }

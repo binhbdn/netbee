@@ -1,0 +1,432 @@
+<template>
+    <div class="content-wrapper">    
+            <!-- News filter start -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Tìm kiếm</h4>
+                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                            <div class="heading-elements">
+                                <ul class="list-inline mb-0">
+                                    <li><a data-action="collapse" data-toggle="tooltip"  data-placement="top" :title="`Thu gọn tìm kiếm`"><i class="feather icon-chevron-down"></i></a></li>
+                                    <li><a @click="resetForm()" data-toggle="tooltip"  data-placement="top" :title="`Làm mới tìm kiếm`"><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
+                                    <li><a data-action="close" data-toggle="tooltip"  data-placement="top" :title="`Đóng tìm kiếm`"><i class="feather icon-x"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-content collapse show pb-2">
+                            <div class="card-body">
+                                <div class="users-list-filter">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-12 col-sm-4 col-lg-4">
+                                                <input type="text"  class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                            </div>
+                                            <div class="col-12 col-sm-4 col-lg-4">
+                                                <input type="text"  class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên công ty..." />
+                                            </div>
+                                            <div class="col-12 col-sm-4 col-lg-4">
+                                                <fieldset class="form-group">
+                                                    <multiselect v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News filter end -->
+            <div class="content-body">
+                <section id="News"> 
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card ">
+                                <div class="card-header">
+                                    
+                                </div>
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link  active" id="home-tab" data-toggle="tab" href="#home" aria-controls="home" role="tab" aria-selected="true" @click="fetch">Chờ duyệt</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" aria-controls="profile" role="tab" aria-selected="false" @click="getApplyApproved">Đã duyệt</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false" @click="getRefuseApply">Từ chối</a>
+                                            </li>
+                                            <!-- <li class="nav-item">
+                                                <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false">Đã tuyển</a>
+                                            </li> -->
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" aria-controls="about" role="tab" aria-selected="false" @click="getAllApply">Tất cả</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="home" aria-labelledby="home-tab" role="tabpanel">
+                                                <table class="table table-hover mb-0 zero-configuration">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Tên công việc</th>
+                                                            <th>Tên ứng viên</th>
+                                                            <th>Nhà tuyển dụng</th>
+                                                            <th>Thời gian nộp</th>
+                                                            <th>Hành động</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr v-for="(item, index) in ApplyWait" :key="index">
+                                                        <td>{{item.id}}</td>
+                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.name}}</td>
+                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{ConvertDate(item.created_at)}}</td>
+                                                        <td>
+                                                            <div class="action-btns">
+                                                                <div class="btn-dropdown ">
+                                                                    <div class="btn-group dropdown actions-dropodown">
+                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            Chọn thao tác
+                                                                        </button>
+                                                                        <div class="dropdown-menu" style="left: -25px!important;">
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)"><i class="far fa-check-circle"></i> Duyệt</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="RefuseApply(item.id)"><i class="far fa-times-circle"></i> Từ chối</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane " id="profile" aria-labelledby="profile-tab" role="tabpanel">
+                                                <table class="table table-hover mb-0 zero-configuration">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Tên công việc</th>
+                                                            <th>Tên ứng viên</th>
+                                                            <th>Nhà tuyển dụng</th>
+                                                            <th>Thời gian nộp</th>
+                                                            <th>Hành động</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr v-for="(item, index) in ApplyApproved" :key="index">
+                                                        <td>{{item.id}}</td>
+                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.name}}</td>
+                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{ConvertDate(item.created_at)}}</td>
+                                                        <td>
+                                                            <div class="action-btns">
+                                                                <div class="btn-dropdown ">
+                                                                    <div class="btn-group dropdown actions-dropodown">
+                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            Chọn thao tác
+                                                                        </button>
+                                                                        <div class="dropdown-menu" style="left: -25px!important;">
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="RefuseApply(item.id)"><i class="far fa-times-circle"></i> Từ chối</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane" id="about" aria-labelledby="about-tab" role="tabpanel">
+                                                <table class="table table-hover mb-0 zero-configuration">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Tên công việc</th>
+                                                            <th>Tên ứng viên</th>
+                                                            <th>Nhà tuyển dụng</th>
+                                                            <th>Thời gian nộp</th>
+                                                            <th>Hành động</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr v-for="(item, index) in ApplyRefuse" :key="index">
+                                                        <td>{{item.id}}</td>
+                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.name}}</td>
+                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{ConvertDate(item.created_at)}}</td>
+                                                        <td>
+                                                            <div class="action-btns">
+                                                                <div class="btn-dropdown ">
+                                                                    <div class="btn-group dropdown actions-dropodown">
+                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            Chọn thao tác
+                                                                        </button>
+                                                                        <div class="dropdown-menu" style="left: -25px!important;">
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)"><i class="far fa-check-circle"></i> Duyệt lại</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="DraftApply(item.id)"><i class="fad fa-trash"></i> Xóa</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane" id="all" aria-labelledby="all-tab" role="tabpanel">
+                                                <table class="table table-hover mb-0 zero-configuration">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Tên công việc</th>
+                                                            <th>Tên ứng viên</th>
+                                                            <th>Trạng thái</th>
+                                                            <th>Nhà tuyển dụng</th>
+                                                            <th>Thời gian nộp</th>
+                                                            <th>Hành động</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tr v-for="(item, index) in AllApply" :key="index">
+                                                        <td>{{item.id}}</td>
+                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.name}}</td>
+                                                        <td></td>
+                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{ConvertDate(item.created_at)}}</td>
+                                                        <td>
+                                                            <div class="action-btns">
+                                                                <div class="btn-dropdown ">
+                                                                    <div class="btn-group dropdown actions-dropodown">
+                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            Chọn thao tác
+                                                                        </button>
+                                                                        <div class="dropdown-menu" style="left: -25px!important;">
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 1"><i class="far fa-check-circle"></i> Duyệt</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="RefuseApply(item.id)" v-if="item.status != 4"><i class="far fa-times-circle"></i> Từ chối</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.status == 2 && item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.status == 2 && item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 4"><i class="far fa-check-circle"></i> Duyệt lại</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="DraftApply(item.id)" v-if="item.status == 4"><i class="fad fa-trash"></i> Xóa</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+</template>
+
+<script>
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
+import Vue from 'vue'
+import moment from 'moment'
+
+export default {
+    data() {
+        return {
+            ApplyWait: [],
+            ApplyApproved: [],
+            ApplyRefuse: [],
+            AllApply: [],
+            cardSearch: {
+                search: "",
+                searchStatus: "",
+                searchTitle: "",
+                searchCategory: ""
+            },
+            categories: [
+                {id: 1, name: 'Ứng viên'},
+                {id: 2, name: 'Chuyên viên tuyển sinh'},
+            ],
+            id: null,
+            page: 1,
+            active: 1,
+        }
+    },
+    created() {
+        this.fetch();
+    },
+    methods: {
+        nameWithLang ({ name, id }) {
+            return `${name}`
+        },
+        fetch() {
+            this.$axios.$get('apply/getApplyWait').then((response)=>{
+                this.ApplyWait=response.data;
+	        });
+
+        },
+        getApplyApproved(){
+            this.$axios.$get('apply/getApplyApproved').then((response)=>{
+                this.ApplyApproved=response.data;
+	        });
+        },
+        getRefuseApply(){
+            this.$axios.$get('apply/getRefuseApply').then((response)=>{
+                this.ApplyRefuse=response.data;
+	        });
+        },
+        getAllApply(){
+            this.$axios.$get('apply/getAllApply').then((response)=>{
+                this.AllApply=response.data;
+	        });
+        },
+        ApprovedApply(id){
+            this.$axios.$get(`apply/ApproveApply/${id}`).then((response)=>{
+                if(response.status == 200){
+                    this.$swal(
+                        'Thành công',
+                        response.message,
+                        'success'
+                    ).then( function (){
+                        location.reload()
+                    } )
+                }
+	        });
+        },
+        RefuseApply(id){
+            try{
+                this.$swal({
+                    title: 'Bạn có chắc chắn?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Từ chối!',
+                    cancelButtonText: 'Hủy!',
+                    showCloseButton: true,
+                    showLoaderOnConfirm: true
+                }).then((result) =>{
+                    this.$axios.$get(`apply/RefuseApply/${id}`).then((response)=>{
+                        if(response.status == 200){
+                            this.$swal('Thành công', response.message, 'success');
+                            location.reload()
+                        }else{
+                            this.$swal(
+                                'Lỗi!',
+                                response.message,
+                                'error'
+                            )
+                        }
+                    });
+                } )
+            } catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi xóa!',
+                    'error')
+            }
+        },
+        HideApply(id){
+            this.$axios.$get(`apply/HideApply/${id}`).then((response)=>{
+                if(response.status == 200){
+                    this.$swal(
+                        'Thành công',
+                        response.message,
+                        'success'
+                    ).then( function (){
+                        location.reload()
+                    } )
+                }
+	        });
+        },
+        ShowApply(id){
+            this.$axios.$get(`apply/ShowApply/${id}`).then((response)=>{
+                if(response.status == 200){
+                    this.$swal(
+                        'Thành công',
+                        response.message,
+                        'success'
+                    ).then( function (){
+                        location.reload()
+                    } )
+                }
+	        });
+        },
+        DraftApply(id){
+            try{
+                this.$swal({
+                    title: 'Bạn có chắc chắn?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xác nhận',
+                    cancelButtonText: 'Hủy!',
+                    showCloseButton: true,
+                    showLoaderOnConfirm: true
+                }).then((result) =>{
+                    this.$axios.$get(`apply/DraftApply/${id}`).then((response)=>{
+                        if(response.status == 200){
+                            this.$swal('Thành công', response.message, 'success');
+                            location.reload()
+                        }else{
+                            this.$swal(
+                                'Lỗi!',
+                                response.message,
+                                'error'
+                            )
+                        }
+                    });
+                } )
+            } catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi xóa!',
+                    'error')
+            }
+        },
+        // search(){
+        //     this.$axios.$get(
+        //     'tintuyendung/searchTinTuyenDung?searchCategory=' 
+        //     + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
+        //     + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
+        //     + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
+        //     + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
+        //     ).then((response)=>{
+	    //          this.tinTuyenDung=response.data;
+	    //     });
+        // },
+        // infiniteScroll($state) {
+        //     setTimeout(() => {
+        //         this.page++
+        //         this.$axios
+        //         .get(
+        //     'tintuyendung/searchTinTuyenDung?searchCategory=' 
+        //     + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
+        //     + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
+        //     + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
+        //     + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
+        //     + '&page='+this.page
+        //     )
+        //         .then((response) => {
+        //             if (response.data.data.length > 1) {
+        //                 response.data.data.forEach((item) => this.tinTuyenDung.push(item))
+        //                 $state.loaded()
+        //             } else {
+        //                 $state.complete()
+        //             }
+        //         })
+        //         .catch((err) => {
+
+        //         })
+        //     }, 500)
+        // },
+        // resetForm(){
+        //         this.cardSearch.search = "",
+        //         this.cardSearch.searchStatus = "",
+        //         this.cardSearch.searchTitle = "",
+        //         this.cardSearch.searchCategory = ""
+        // }
+    },
+    computed: {
+    }
+}
+</script>
