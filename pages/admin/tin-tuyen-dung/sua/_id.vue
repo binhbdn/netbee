@@ -143,6 +143,29 @@
                                         <tab-content :before-change="checkValidateStep3" title="Yêu cầu">
                                             <ValidationObserver ref="step3" v-slot="{ valid3 }">
                                                 <div class="row">
+                                                    <div class="col-6">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">
+                                                                    Loại tiền
+                                                                </label>
+                                                                <multiselect :options="money" v-model="data.currency" :searchable="false" :allow-empty="false"
+                                                                        :show-labels="false" placeholder="Chọn loại tiền"></multiselect>
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">
+                                                                    Ngày bắt đầu nhận hồ sơ
+                                                                </label>
+                                                                <input type="date" class="form-control" v-model="data.date_start">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">
@@ -239,29 +262,6 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">
-                                                                    Loại tiền
-                                                                </label>
-                                                                <multiselect :options="money" v-model="data.currency" :searchable="false" :allow-empty="false"
-                                                                        :show-labels="false" placeholder="Chọn loại tiền"></multiselect>
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">
-                                                                    Ngày bắt đầu nhận hồ sơ
-                                                                </label>
-                                                                <input type="date" class="form-control" v-model="data.date_start">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-6">
                                                         <ValidationProvider rules="required|ssdate" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -333,8 +333,8 @@
                                                             <input type="number" class="form-control" disabled :value=" data.time_bonus.id == 1 ? data.bonus : data.time_bonus.id == 2 ? data.bonus * 1.5 : data.bonus * 2">
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <div class="card option px-3 py-2" id="high" style="color: #000; border-radius: 10px" :class="data.highlight_job == 1 ? 'high' : 'normal'">
+                                                    <div class="col-4" id="goi1">
+                                                        <div class="card option p-l-10 py-2" id="high" style="color: #000; border-radius: 10px" :class="data.highlight_job == 1 ? 'high' : 'normal'">
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
@@ -343,6 +343,8 @@
                                                                     nổi bật </label>
                                                                     <i class="far fa-check fa-3x" v-if="data.highlight_job == 1" style="padding-left: 70px;color: green"></i>
                                                             </div>
+                                                        </div>
+                                                        <div class="detail-active high p-10">
                                                             <p>- Được ưu tiên gợi ý</p>
                                                             <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
                                                             <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
@@ -350,8 +352,8 @@
                                                             <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <div class="card option px-3 py-2" id="normal" style="color: #000; border-radius: 10px" :class="data.highlight_job == 0 ? 'high' : 'normal'">
+                                                    <div class="col-4" id="goi2">
+                                                        <div class="card option p-l-10 py-2" id="normal" style="color: #000; border-radius: 10px" :class="data.highlight_job == 0 ? 'high' : 'normal'">
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
@@ -360,6 +362,8 @@
                                                                     thường</label>
                                                                     <i class="far fa-check fa-3x" v-if="data.highlight_job == 0" style="padding-left: 70px;color: green"></i>
                                                             </div>
+                                                        </div>
+                                                        <div class="detail-active high p-10">
                                                             <p>- Được ưu tiên gợi ý</p>
                                                             <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
                                                             <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
@@ -367,8 +371,8 @@
                                                             <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <div class="card option px-3 py-2" id="normal" style="color: #000; border-radius: 10px" :class="data.highlight_job == 2 ? 'high' : 'normal'">
+                                                    <div class="col-4" id="goi3">
+                                                        <div class="card option p-l-10 py-2" id="normal" style="color: #000; border-radius: 10px" :class="data.highlight_job == 2 ? 'high' : 'normal'">
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
@@ -377,6 +381,8 @@
                                                                     VIP</label>
                                                                     <i class="far fa-check fa-3x" v-if="data.highlight_job == 2" style="padding-left: 70px;color: green"></i>
                                                             </div>
+                                                        </div>
+                                                        <div class="detail-active high p-10">
                                                             <p>- Được ưu tiên gợi ý</p>
                                                             <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
                                                             <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
@@ -455,7 +461,6 @@ var errorMessage
 extend('checkSelect', {
     message: field => errorMessage,
     validate: value => {
-        console.log(value)
         if(value.id == null || value.id == 0) {
             errorMessage = "Dữ liệu không được bỏ trống"
             return false
@@ -466,15 +471,6 @@ extend('checkSelect', {
 export default {
     name: 'CreateIndexJob',
     layout: 'admin',
-    head: {
-        title: 'Home page 🚀',
-        link: [
-            { rel: 'stylesheet', href: '/app-assets/css/plugins/forms/wizard.css' },
-        ],
-        script: [
-            { src: '/app-assets/js/scripts/forms/wizard-steps.js'}
-        ]
-    },
     data () {
         return {
             options: [],
@@ -535,7 +531,6 @@ export default {
             let visa = await this.$axios.$get(`getVisa`)
             this.optionsVisa = visa.data
             let job = await this.$axios.$get(`tintuyendung/getDetailTinTuyen/${this.$route.params.id}`)
-            console.log(job.data)
             this.data.title = job.data.title
             this.data.school_name = job.data.school_name
             this.data.address = job.data.workplace
@@ -666,7 +661,6 @@ export default {
                 form.append('form_work' , this.data.form_work.id)
                 form.append('type' , this.data.type)
                 form.append('id' , this.$route.params.id)
-                console.log(this.data)
                 this.$axios.post('tintuyendung/updateTinTuyen',form)
                 .then(response => {
                     if(response.data.status == 200) {
@@ -773,5 +767,33 @@ export default {
 .multiselect__option--highlight {
     background: #ffb701;
     color: #000;
+}
+.detail-active {
+    display: none;
+    position: relative;
+}
+.detail-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 0.75rem;
+    right: 15px;
+    height: 0.75rem;
+    display: block;
+    background: #ffc108;
+    transform: rotate(45deg) translate(-7px);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    box-sizing: border-box;
+}
+#goi1:hover .detail-active{
+display: block;
+}
+#goi2:hover .detail-active{
+display: block;
+}
+#goi3:hover .detail-active{
+display: block;
 }
 </style>

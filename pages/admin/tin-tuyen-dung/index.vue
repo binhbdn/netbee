@@ -186,7 +186,7 @@
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
                                                                         <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
                                                                         <a  @click="changePublic(item.id)" class="dropdown-item"><i :class="item.isPublic == 1 ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{ item.isPublic == 1 ? 'Ẩn tin' : 'Hiện tin' }}</a>
-                                                                        <a :href="`/admin/tin-tuyen-dung/edit/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
+                                                                        <a :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
                                                                         <a v-on:click="deleteNews(item.id)" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
                                                                     </div>
                                                                 </div>
@@ -380,7 +380,7 @@ export default {
         }
     },
     created() {
-        this.fetch();
+        this.search();
     },
     mounted() {
         if(typeof this.$route.query.errorCode !== 'undefined' ) {
@@ -468,12 +468,6 @@ export default {
         nameWithLang ({ name, id }) {
             return `${name}`
         },
-        fetch() {
-            this.$axios.$get('/tintuyendung/getTinTuyenDung?page='+ this.page).then((response)=>{
-	             this.tinTuyenDung=response.data.data;
-	        });
-
-        },
         async changeStatus(index){
             try {
                     let response = await this.$axios.post('tintuyendung/changeStatusTinTuyenDung/',{
@@ -487,7 +481,7 @@ export default {
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     }).then( 
-                        this.fetch(),
+                        this.search(),
                     )
                 }
                 else {
@@ -505,7 +499,7 @@ export default {
             }
                     
         },
-        async deleteNews(index){
+        async deleteNews(id){
                 try {
                     this.$swal({
                     title: 'Bạn có chắc chắn?',
@@ -517,9 +511,9 @@ export default {
                     showLoaderOnConfirm: true
                     }).then(async (result) => {
                     if(result.value) {
-                        let response = await this.$axios.post('tintuyendung/deleteTinTuyenDung',{id: index});
+                        let response = await this.$axios.post('tintuyendung/deleteTinTuyenDung',{id: id});
                         if(response.data.status == 200) {
-                            this.fetch();
+                            this.tinTuyenDung = this.tinTuyenDung.filter((e)=>e.id !== id )
                             this.$swal('Thành công', response.data.message, 'success');
                         }
                         else {
@@ -567,7 +561,7 @@ export default {
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     }).then( 
-                        this.fetch(),
+                        this.search(),
                     )
                 }
                 else if(res.status == 200){
@@ -578,7 +572,7 @@ export default {
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     }).then( 
-                        this.fetch(),
+                        this.search(),
                     )
                 }
                 else {
@@ -620,7 +614,7 @@ export default {
                         if(result.value) {
                             let response = await this.$axios.post('tintuyendung/deleteMultipleTinTuyenDung',{id: JSON.stringify(this.selected)});
                             if(response.data.status == 200) {
-                                this.fetch();
+                                this.search();
                                 this.$swal('Thành công', response.data.message, 'success');
                             }
                             else {
@@ -657,7 +651,7 @@ export default {
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     }).then( 
-                        this.fetch(),
+                        this.search(),
                     )
                 }
                 else {
