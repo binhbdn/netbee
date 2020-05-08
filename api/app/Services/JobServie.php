@@ -25,7 +25,7 @@ class JobServie {
         return $this->getJobByID($id)->update($data);
     }
 
-    public function getTinTuyenDungNews($type,$limit){
+    public function getTinTuyenDungNews($type, $limit){
         $datas = $this->nbJobList
             ->with(['user', 'nation'])
             ->whereHas('user', function ($query) {
@@ -37,15 +37,14 @@ class JobServie {
             ->where('deleted',self::INACTIVE)
             ->where('status',1)
             ->where('isPublic',1)
-//            ->where('type',$type)
+            ->where('type',$type)
             ->orderBy('id','desc')
             ->limit($limit)
             ->get();
-        dd($datas);
-        if($datas)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
-        else
-            $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
-        return response()->json($data);
+        return [
+            'status'=> 200,
+            'message' => 'Thành công',
+            'data' => $datas
+        ];
     }
 }

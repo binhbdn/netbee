@@ -2,35 +2,31 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Services\JobServie;
 use App\Services\TinTuyenDungService;
+use App\Services\TinTuyenService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Response;
 use JWTAuth;
 use Auth;
-use App\User;
 use Validator;
 use Hash;
-use Carbon\Carbon;
-use App\Mail\Sendmail;
-
-use App\Http\Controllers\NotificationController as notifi;
 
 class TinTuyenDungController extends Controller
 {
-    protected $jobServie;
-    public function __construct(JobServie $jobServie)
+    protected $tinTuyenService;
+    public function __construct(TinTuyenService $tinTuyenService)
     {
-        $this->jobServie = $jobServie;
+        $this->tinTuyenService = $tinTuyenService;
     }
 
     public function getTinTuyenDungNew(Request $request)
     {
-        $response = $this->jobServie->getTinTuyenDungNews($request->type,$request->limit);
+        $response = $this->tinTuyenService->getTinTuyenDungNews($request->type, $request->limit);
         return response()->json($response);
     }
+
     public function getTinTuyenDungHot(Request $request)
     {
         $limit = $request->limit;

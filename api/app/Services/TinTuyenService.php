@@ -461,4 +461,33 @@ class TinTuyenService extends BaseService {
         }
         return $query->paginate($perPage);
     }
+
+    public function getTinTuyenDungNews($type, $limit){
+        $query = $this->nbJobList->with(['user', 'nation'])
+            ->whereHas('user', function ($query) {
+                $query->where([
+                    'block' => self::UN_BLOCK,
+                    'status' => self::ACTIVE
+                ]);
+            })
+            ->where('deleted',self::INACTIVE)
+            ->where('status',self::ACTIVE)
+            ->where('isPublic',self::ACTIVE);
+
+        if (!empty($type)) {
+            $query->where('type', $type);
+        }
+        if (!empty($limit)) {
+            $query->limit($limit);
+        }
+
+        $news = $query->orderBy('id', 'desc')->get();
+        return [
+            'status'=> 200,
+            'message' => 'Thành công',
+            'data' => [
+                'tintuyendung' => $news
+            ]
+        ];
+    }
 }
