@@ -40,4 +40,13 @@ class NbJoblist extends Model
         'isPublic',
         'isDraft',
     ];
+
+    public  function nation()
+    {
+        return $this->belongsTo('App\Models\Nation');
+    }
+    public  function user()
+    {
+        return $this->belongsTo('App\User', 'id_created');
+    }
 }

@@ -12,4 +12,8 @@ class Nation extends Model
         'name',
         'description'
     ];
+    public function nbJobs()
+    {
+        return $this->hasMany('App\Models\NbJoblist');
+    }
 }

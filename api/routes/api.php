@@ -16,6 +16,8 @@ Route::namespace('API')->group(function () {
   Route::get('getNationHome', 'HomeController@getNationHome');
   Route::get('getCategoriesJobHome', 'HomeController@getCategoriesJobHome');
   Route::post('saveEmail', 'HomeController@saveEmail');
+  //Company
+  Route::get('getInfoAll','Customer\CompanyController@getInfoAll');
   //tin tuyen dung
   Route::get('getTinTuyenDungNew', 'TinTuyenDungController@getTinTuyenDungNew');
   Route::get('getTinTuyenDungNewCarousel', 'TinTuyenDungController@getTinTuyenDungNewCarousel');
