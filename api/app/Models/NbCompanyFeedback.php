@@ -17,4 +17,7 @@ class NbCompanyFeedback extends Model
         'user_id',
         'approve_feed'
     ];
+    public function nbCompany(){
+        return $this->belongsTo('App\Models\NbCompanyInfo','company_id');
+    }
 }

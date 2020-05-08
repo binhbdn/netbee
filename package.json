@@ -36,6 +36,7 @@
         "vue-infinite-loading": "^2.4.5",
         "vue-lazyload": "^1.3.3",
         "vue-multiselect": "^2.1.6",
+        "vue-star-rating": "^1.6.1",
         "vue-sweetalert2": "^3.0.3",
         "vue2-editor": "^2.10.2",
         "weekstart": "^1.0.1"

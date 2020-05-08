@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Services\JobServie;
+use App\Services\TinTuyenDungService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -18,17 +20,16 @@ use App\Http\Controllers\NotificationController as notifi;
 
 class TinTuyenDungController extends Controller
 {
+    protected $jobServie;
+    public function __construct(JobServie $jobServie)
+    {
+        $this->jobServie = $jobServie;
+    }
 
     public function getTinTuyenDungNew(Request $request)
     {
-        $limit = $request->limit;
-        $type = $request->type;
-        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDung('.$type.','.$limit.')');
-        if($datas)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $datas];
-        else
-            $data = ['status'=> 400, 'message' => 'Lỗi get tin', 'data' => null];
-        return response()->json($data);
+        $response = $this->jobServie->getTinTuyenDungNews($request->type,$request->limit);
+        return response()->json($response);
     }
     public function getTinTuyenDungHot(Request $request)
     {
