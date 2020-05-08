@@ -242,7 +242,7 @@ class TinTuyenService extends BaseService {
 
     private function getJobByRoleCompany()
     {
-        return $this->nbJobList->join('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
+        return $this->nbJobList->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
             ->where('nb_joblists.id_created', Auth::user()->id)
             ->where('nb_joblists.deleted', self::INACTIVE)
             ->orderBy('nb_joblists.id', 'DESC')
@@ -488,6 +488,109 @@ class TinTuyenService extends BaseService {
             'data' => [
                 'tintuyendung' => $news
             ]
+        ];
+    }
+
+    public function getNewsHot($limit)
+    {
+        $query = $this->nbJobList->with(['user', 'nation'])
+            ->whereHas('user', function ($query) {
+                $query->where([
+                    'block' => self::UN_BLOCK,
+                    'status' => self::ACTIVE
+                ]);
+            })
+            ->where('deleted',self::INACTIVE)
+            ->where('status',self::ACTIVE)
+            ->where('isPublic',self::ACTIVE)
+            ->where('highlight_job',self::ACTIVE);
+
+        if (!empty($limit)) {
+            $query->limit($limit);
+        }
+
+        $news = $query->orderBy('id', 'desc')->get();
+        return [
+            'status'=> 200,
+            'message' => 'Thành công',
+            'data' => [
+                'tintuyendung' => $news
+            ]
+        ];
+    }
+
+    public function getTinTuyenDungNewCarousel($isHot = false)
+    {
+        $perPage = $isHot ? 10 : 5;
+        $query = $this->nbJobList->with(['user', 'nation'])
+            ->whereHas('user', function ($query) {
+                $query->where([
+                    'block' => self::UN_BLOCK,
+                    'status' => self::ACTIVE
+                ]);
+            })
+            ->where('status',1)
+            ->where('deleted',0)
+            ->where('isPublic',1);
+        if ($isHot) {
+            $query->whereIn('highlight_job', [self::NEW_HOT, self::NEW_VIP]);
+        }
+        $response = $query->orderBy('id','desc')->paginate($perPage);
+        return [
+            'status'=> 200,
+            'message' => 'Thành công',
+            'data' => [
+                'tintuyendung' => $response
+            ]
+        ];
+    }
+
+    public function getTinTuyenDungForCompany($request)
+    {
+        $id = $request->id;
+        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$limit.')');
+        $datas['count'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.',0)');
+        return
+            [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => [
+                    'tintuyendung' => $this->getForCompany($id, $request->limit),
+                    'count' => $this->getForCompany($id, 0),
+                ]
+            ];
+    }
+
+    private function getForCompany($id, $limit)
+    {
+        $query = $this->nbJobList->with(['user', 'nation'])
+            ->whereHas('user', function ($query) {
+                $query->where([
+                    'block' => self::UN_BLOCK,
+                    'status' => self::ACTIVE
+                ]);
+            })
+            ->where('status',1)
+            ->where('deleted',0)
+            ->where('isPublic',1)
+            ->where('id_created', $id);
+        if (!empty($limit)) {
+            $query->limit($limit);
+        }
+        return $query->orderBy('id','desc')->get();
+    }
+
+    public function getDetailNew($id)
+    {
+        $response = $this->nbJobList->with(['user', 'nation'])
+            ->where('status',1)
+            ->where('deleted',0)
+            ->where('isPublic',1)
+            ->where('id', $id);
+        return [
+            'status'=> 200,
+            'message' => 'Thành công',
+            'data' => $response
         ];
     }
 }
