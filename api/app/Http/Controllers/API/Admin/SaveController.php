@@ -18,12 +18,7 @@ class SaveController extends Controller
 
     public function getSave(Request $request)
     {
-//        $response = $this->saveService->getSave($request->id_job);
-        $response = [
-            'status' => 200,
-            'message' => 'Thành công',
-            'data' => false
-        ];
+        $response = $this->saveService->getSave($request->id_job);
         return response()->json($response);
     }
 

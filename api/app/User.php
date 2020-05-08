@@ -46,6 +46,11 @@ class User extends Authenticatable implements JWTSubject
 
     public function nbCompany()
     {
-        return $this->hasOne('App\Models\NbCompanyInfo','company_id','id');
+        return $this->hasOne('App\Models\NbCompanyInfo', 'company_id', 'id');
+    }
+
+    public function news()
+    {
+        return $this->hasMany('App\Models\News', 'user_created', 'id');
     }
 }

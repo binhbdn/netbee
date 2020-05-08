@@ -7,11 +7,12 @@ Route::namespace('API')->group(function () {
   Route::post('login', 'Auth\UserController@login');
   Route::post('loginfb', 'Auth\UserController@loginWithFacebook');
   Route::post('logingg', 'Auth\UserController@loginWithGoogle');
-  Route::get('getTinTucNew', 'TinTucController@getTinTucNew');
   Route::get('getTinTucNewLoading', 'TinTucController@getTinTucNewLoading');
-  Route::get('getTinTucSiteMap', 'TinTucController@getTinTucSiteMap');
-  Route::get('getTinTucCate', 'TinTucController@getTinTucCate');
-  Route::get('getDanhMucTinTuc', 'TinTucController@getDanhMucTinTuc');
+
+  Route::get('getTinTucNew', 'TinTucController@getTinTucNew');
+  Route::get('getTinTucSiteMap', 'TinTucController@getTinTucNew');
+  Route::get('getTinTucCate', 'TinTucController@getTinTucNew');
+
   Route::get('getDetailTinTuc/{id}', 'TinTucController@getDetailTinTuc');
   Route::get('getNationHome', 'HomeController@getNationHome');
   Route::get('getCategoriesJobHome', 'HomeController@getCategoriesJobHome');
