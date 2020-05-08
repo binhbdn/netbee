@@ -22,23 +22,23 @@ class SaveService extends BaseService {
         return $this->nbJobSave->whereIdJob($jobId)->whereIdSaver($userId);
     }
 
-//    public function getSave($jobId)
-//    {
-//        $saveExists = $this->getSaveByJobId($jobId)->exists();
-//        if($saveExists)
-//        {
-//            return [
-//                'status' => 200,
-//                'message' => 'Thành công',
-//                'data' => true
-//            ];
-//        }
-//        return [
-//            'status' => 200,
-//            'message' => 'Thành công',
-//            'data' => false
-//        ];
-//    }
+    public function getSave($jobId)
+    {
+        $saveExists = $this->getSaveByJobId($jobId)->exists();
+        if($saveExists)
+        {
+            return [
+                'status' => 200,
+                'message' => 'Thành công',
+                'data' => true
+            ];
+        }
+        return [
+            'status' => 200,
+            'message' => 'Thành công',
+            'data' => false
+        ];
+    }
 
     public function postSave($jobId)
     {

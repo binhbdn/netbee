@@ -18,4 +18,9 @@ class News extends Model
         'deleted',
         'id_category',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_created', 'id');
+    }
 }

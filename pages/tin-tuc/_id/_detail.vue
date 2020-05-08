@@ -19,7 +19,7 @@
                             <div class="card-header">
                                 <h2 class="font-weight-600">{{ tintuc.title }}</h2><br>
                                 <span>
-                                    <i class="fad fa-user-tag m-r-5"></i>{{ tintuc.user_created_name }} 
+                                    <i class="fad fa-user-tag m-r-5"></i>{{ tintuc.user.name }}
                                     <i class="fa fa-calendar mr-1"></i>{{ ConvertDate(tintuc.updated_at) }}
                                 </span>
                             </div>
@@ -101,7 +101,6 @@
     </div>
 </template>
 <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
-</script>
 <script>
 import NewListPage1 from '~/components/News/NewListPage1';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
@@ -112,7 +111,7 @@ export default {
     components:{
         NewListPage1,
         JobsList1ColNotCate,
-        NewItempage2, 
+        NewItempage2,
         NewsList
     },
     data () {
@@ -143,7 +142,7 @@ export default {
             this.tintucs = res.data.tintuc
         })
         this.$axios.$get(`getTinTuyenDungNew?limit=10&type=0`).then((res) => {
-            this.arrayJobNew = res.data.tintuyendung
+            this.arrayJobNew = res.data.tintuyendung;
         })
         if (window.FB) {
             window.FB.init({

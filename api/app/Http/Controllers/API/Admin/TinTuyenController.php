@@ -80,16 +80,4 @@ class TinTuyenController extends Controller
         $response = $this->tinTuyenService->updateJob($request);
         return response()->json($response);
     }
-
-//    public function getSave(Request $request)
-//    {
-//        $check = DB::table('nb_job_saves')->where('id_job', $request->id_job)->where('id_saver', Auth::user()->id)->first();
-//        if($check)
-//        {
-//            $data = ['status' => 200,'message' => 'thành công', 'data' => true];
-//        }
-//        $data = ['status' => 200,'message' => 'thành công', 'data' => false];
-//        return response()->json($data);
-//    }
-
 }

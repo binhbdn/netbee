@@ -351,7 +351,7 @@
         this.$axios.$get(`getTinTuyenDungHotCarousel?page=1`).then((ress) => {
            console.log(ress)
           this.arrayJobHot = ress.data.tintuyendung.data
-          
+
         })
         this.$axios.$get(`getTinTuyenDungHotCarousel?page=2`).then((ress) => {
           this.arrayJobHot2 = ress.data.tintuyendung.data
@@ -450,7 +450,7 @@
     color:black!important;
   }
   .why .d_item.v_block{
-    height:auto; 
+    height:auto;
     text-align:center;
     box-shadow: 0 1px 2px #887e7e !important;
   }
@@ -471,19 +471,19 @@
 
   /* Track */
   .list-item::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.192); 
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.192);
     border-radius: 10px;
   }
-  
+
   /* Handle */
   .list-item::-webkit-scrollbar-thumb {
-    background: rgba(78, 78, 78, 0.507); 
+    background: rgba(78, 78, 78, 0.507);
     border-radius: 10px;
   }
 
   /* Handle on hover */
   .list-item::-webkit-scrollbar-thumb:hover {
-    background: rgba(78, 78, 78, 0.404); 
+    background: rgba(78, 78, 78, 0.404);
   }
 
 </style>
