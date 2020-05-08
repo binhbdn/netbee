@@ -16,10 +16,11 @@ Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt
       </div>
     </section>
     <section class="list-company" style="background-color:#fff; padding: 15px">
-      <div class="list-company-item" >
+      <div class="list-company-item" v-for="(companyInfo,index) in companyInfos" :key="`companyInfo-${index}`">
         <div class="row">
           <div class="col-12">
-            <h4>#1 Grab (Vietnam) Ltd.</h4>
+            <a :href="`cong-ty/${companyInfo.id}/${ChangeToSlug(companyInfo.user.name)}`"><h4>#{{companyInfo.id}} {{companyInfo.user.name}}.</h4>
+            </a>
             </div>  
         </div>
         <div class="row">
@@ -32,10 +33,10 @@ Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="star-rating">
-                      <star-rating v-model="rating" 
+                      <star-rating 
+                      :rating="5" 
                       :increment="0.1"
                       :star-size="30"
-                      :inline="inline"
                       :read-only="true"
                       ></star-rating>
                     </div>
@@ -47,9 +48,7 @@ Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt
               </div>  
             </div> 
             <div class="row">
-            <p><i class="fas fa-quote-left"></i> If you want to work with people who are the best, just come here. Grab encourages people to be open, 
-                  helpful and transparent, and you will feel welcome day 1 here. Code you are writing WILL make impact on Grab, 
-                  and by proxy Southest Asia...</p>
+            <p><i class="fas fa-quote-left"></i> {{companyInfo.company_about}}</p>
             </div> 
             <div class="row text-right">
               <p style="width:100%; padding-right: 20px">
@@ -69,24 +68,35 @@ import StarRating from 'vue-star-rating'
 export default {
   data() {
     return {
-      rating:3
+      rating:3,
+      companyInfos: []
     }
   },
   components: {
     CompanyList1,StarRating
   },
   created() {
-    console.log(this.arrayCompanyHot[0].name);
+    this.fetch();
   },
-
-  async asyncData({ $axios, route }) {
-    let getCompanyHot = await $axios.$get(`getCompanyHot`);
-    let getCompanyNew = await $axios.$get(`getCompanyNew?limit=0`);
-    return {
-      arrayCompanyHot: getCompanyHot.data,
-      arrayCompanyNew: getCompanyNew.data
-    };
-  }
+  methods: {
+    async fetch(){
+      let companyInfos = await this.$axios.get('getInfoAll?page=1');
+      this.companyInfos = companyInfos.data.data.data
+      console.log(this.companyInfos.length);
+      console.log(this.companyInfos.company_feedback.length);
+      ;
+      if(companyInfos){
+        for(let i =0; i < this.companyInfos.length; i++)
+        {
+          for(let j=0 ; j< this.companyInfos.company_feedback.length; j++){
+            var totalStar = this.companyInfos.company_feedback.rate_feed;
+          }
+          let star_average = totalStar/(this.companyInfos.company_feedback.length);
+          this.companyInfos.push('star_average', $star_average);
+        }
+      }
+    }
+  },
 };
 </script>
 <style>
