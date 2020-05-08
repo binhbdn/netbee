@@ -41,6 +41,11 @@ class NbJoblist extends Model
         'isDraft',
     ];
 
+    public function Apply()
+    {
+        return $this->hasMany('App\Models\Apply', 'id');
+    }
+
     public  function nation()
     {
         return $this->belongsTo('App\Models\Nation');

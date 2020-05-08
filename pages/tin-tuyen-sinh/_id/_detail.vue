@@ -289,7 +289,7 @@
             </div>
         </div>
         <!-- end Modal login -->
-        <!-- modal apply -->
+                <!-- modal apply -->
 
         <div class="modal fade text-left" id="ApplyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered " role="document">
@@ -394,6 +394,7 @@
         </div>
 
         <!-- end modal apply -->
+
         <div id="fb-root"></div>
     </div>
 </template>
@@ -462,8 +463,8 @@ export default {
             show: true,
             value: [],
             chooseNation: [],
-            name: '',
-            phone: '',
+            name: null,
+            phone: null,
         }
     },
     async asyncData({$axios, route}) {
@@ -474,6 +475,7 @@ export default {
         let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
         // let getvisa = await $axios.$get(`getVisa`)
         // let getNation = await $axios.$get(`getQuocGia`)
+        console.log(detailRes)
         return {
             tintuc: detailRes.data[0],
             arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
@@ -581,14 +583,14 @@ export default {
         },
         addfile(file){
             console.log(file.type)
-            if( file.type == 'application/pdf' ){
-                this.$swal(
-                        'Lỗi',
-                        'File không đúng định dạng',
-                        'error'
-                    )
-                return;
-            }
+            // if( file.type == 'application/pdf' ){
+            //     this.$swal(
+            //             'Lỗi',
+            //             'File không đúng định dạng',
+            //             'error'
+            //         )
+            //     return;
+            // }
             this.file_cv.push(file)
         },
         nameWithLang ({ profession, id }) {
@@ -620,7 +622,7 @@ export default {
                             response.data.message,
                             'success'
                         ).then( function (){
-                                window.location.href = '/admin/news';
+                                location.reload()
                             } )
                     }else{
                         this.$swal(
@@ -631,7 +633,7 @@ export default {
                     }
                 })
             }
-            
+  
         }
     },
     mounted() {

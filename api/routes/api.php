@@ -89,6 +89,17 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('insertEducationUserOne', 'Admin\TeamplateCvController@insertEducationUserOne');
         Route::post('deleteDataEducation', 'Admin\TeamplateCvController@deleteDataEducation');
       });
+      Route::prefix('apply')->group(function () {
+        Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');
+        Route::get('getApplyApproved', 'Admin\ApplyManageController@getApplyApproved');
+        Route::get('getRefuseApply', 'Admin\ApplyManageController@getRefuseApply');
+        Route::get('getAllApply', 'Admin\ApplyManageController@getAllApply');
+        Route::get('ApproveApply/{id}', 'Admin\ApplyManageController@ApproveApply');
+        Route::get('RefuseApply/{id}', 'Admin\ApplyManageController@RefuseApply');
+        Route::get('HideApply/{id}', 'Admin\ApplyManageController@HideApply');
+        Route::get('ShowApply/{id}', 'Admin\ApplyManageController@ShowApply');
+        Route::get('DraftApply/{id}', 'Admin\ApplyManageController@DraftApply');
+      });
   });
 });
 
