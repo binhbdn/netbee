@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="card-content" style="position:relative">
                                     <div class="card-body">
-                                        <div id="carousel-interval" class="carousel slide" data-ride="carousel" data-interval="3000">
+                                        <div id="carousel-interval" class="carousel slide" data-ride="carousel" data-interval="10000">
                                             <ol class="carousel-indicators">
                                                 <li data-target="#carousel-interval" data-slide-to="0" class="active"></li>
                                                 <li data-target="#carousel-interval" data-slide-to="1"></li>
@@ -217,7 +217,7 @@
                 <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn bg-netbee">Xem thêm</a>
               </div>
               <div class="card-content collapse show" style="padding: 13px">
-                <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" data-interval="300000">
+                <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" data-interval="10000">
                     <ol class="carousel-indicators">
                         <li data-target="#carousel-interval-new" data-slide-to="0" class="active"></li>
                         <li data-target="#carousel-interval-new" data-slide-to="1"></li>

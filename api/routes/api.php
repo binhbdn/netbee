@@ -16,6 +16,8 @@ Route::namespace('API')->group(function () {
   Route::get('getNationHome', 'HomeController@getNationHome');
   Route::get('getCategoriesJobHome', 'HomeController@getCategoriesJobHome');
   Route::post('saveEmail', 'HomeController@saveEmail');
+  //Company
+  Route::get('getInfoAll','Customer\CompanyController@getInfoAll');
   //tin tuyen dung
   Route::get('getTinTuyenDungNew', 'TinTuyenDungController@getTinTuyenDungNew');
   Route::get('getTinTuyenDungNewCarousel', 'TinTuyenDungController@getTinTuyenDungNewCarousel');
@@ -50,7 +52,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('pricing_momo', 'MomoController@pricing_momo');
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');
-      
+
     //admin
       Route::prefix('tintuc')->group(function () {
         Route::get('getTinTuc', 'Admin\TinTucController@getTinTuc');
