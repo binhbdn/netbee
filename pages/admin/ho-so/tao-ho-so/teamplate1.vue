@@ -14,7 +14,7 @@
                                 </div>
                                 <hr>
                                 <div class="title-h3-cv">                                    
-                                    <textarea @click="text()" class="main-text textarea" placeholder="VD: NGUYỄN VĂN A"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                    <textarea @click="text()" v-model="info_frofile_user.fullname_profile" class="main-text textarea" placeholder="VD: NGUYỄN VĂN A"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                 </div>
                                 <div class="title-h4-cv">
                                     <h4>NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG</h4>
@@ -37,10 +37,10 @@
                                             </div>                        
                                         </div>
                                         <div class="target-company-cv">
-                                            <textarea @click="text()" class="main-text textarea" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY PROVIP123"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                    
+                                            <textarea v-model="info_frofile_user.title_target_profile"  @click="text()" class="main-text textarea" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY PROVIP123"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                    
                                         </div>
                                         <div class="target-Short-term-note-cv">
-                                            <textarea @click="text()" class="main-text textarea" placeholder="VD: Mong muốn làm việc trong một môi trường năng động, vui vẻ, thỏa sức đưa ra các ý tưởng, sự sáng tạo và đặc biệt là được theo đuổi ngành nghề yêu thích của mình. Đưa bản thân vào một môi trường làm việc có kỷ luật, nâng cao tinh thần trách nhiệm và khả năng chịu áp lực, giải quyết vấn đề một cách sáng tạo và hiệu quả ở một vị trí đầy thách thức."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="5"></textarea>        
+                                            <textarea v-model="info_frofile_user.note_target_profile" @click="text()" class="main-text textarea" placeholder="VD: Mong muốn làm việc trong một môi trường năng động, vui vẻ, thỏa sức đưa ra các ý tưởng, sự sáng tạo và đặc biệt là được theo đuổi ngành nghề yêu thích của mình. Đưa bản thân vào một môi trường làm việc có kỷ luật, nâng cao tinh thần trách nhiệm và khả năng chịu áp lực, giải quyết vấn đề một cách sáng tạo và hiệu quả ở một vị trí đầy thách thức."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="5"></textarea>        
                                         </div>
                                     </div>                                  
                                 </div>
@@ -61,7 +61,7 @@
                                                     <p>Giao tiếp:</p>
                                                 </div>
                                                 <div class="col-md-10">
-                                                  <textarea @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                  <textarea v-model="info_frofile_user.skill_communication_profile" @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                                 </div>
                                             </div>            
                                         </div>
@@ -71,7 +71,7 @@
                                                     <p>Tin học văn phòng(Word, Excel, Power Point):</p>
                                                 </div>
                                                 <div class="col-md-5">
-                                                  <textarea @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                  <textarea v-model="info_frofile_user.skill_information_profile" @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                                 </div>
                                             </div>                                            
                                         </div>     
@@ -81,7 +81,7 @@
                                                     <p>Tư duy logic:</p>
                                                 </div>
                                                 <div class="col-md-9">
-                                                  <textarea @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                  <textarea v-model="info_frofile_user.skill_logic_profile" @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                                 </div>
                                             </div>                                            
                                         </div>                                                                                                                                                
@@ -101,7 +101,7 @@
                                         <div class="communication">
                                             <div class="row">                                             
                                                 <div class="col-md-12">
-                                                  <textarea @click="text()" class="main-text textarea" placeholder="VD: - MS Office Khóa học (2018)"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                  <textarea v-model="info_frofile_user.certificate_profile"  @click="text()" class="main-text textarea" placeholder="VD: - MS Office Khóa học (2018)"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                                 </div>
                                             </div>            
                                         </div>                                                                                                                                                                                      
@@ -117,11 +117,9 @@
                                             
                                         </div>                                                   
                                     </div>   
-                                    <template> 
-                                        <div>
-                                            <cv-main-education v-for="(edu,k) in education_user" :edu="edu" :key="k"></cv-main-education>
-                                        </div> 
-                                    </template>                                                                  
+                                   
+                                    <EducationUser v-for="(edu,k) in education_user" :edu="edu" :key="k" v-on:add="insertDataEducationOne" v-on:deletee="DeleteDataEducation"></EducationUser>
+                                                                                                     
                                 </div>                                
                             </div>
                             <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
@@ -138,7 +136,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea @click="text()" class="main-text textarea" placeholder="VD: 12/10/1997"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                                <textarea v-model="info_frofile_user.birthday_profile" @click="text()" class="main-text textarea" placeholder="VD: 12/10/1997"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -148,7 +146,7 @@
                                                 <i class="fa fa-venus-mars"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea @click="text()" class="main-text textarea" placeholder="VD: Nam/Nữ"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                                <textarea v-model="info_frofile_user.maleFemale" @click="text()" class="main-text textarea" placeholder="VD: Nam/Nữ"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -158,7 +156,7 @@
                                                 <i class="fa fa-location-arrow"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea @click="text()" class="main-text textarea" placeholder="VD: Ngõ 2, đường Bạch Liêu, phường Trường Thi, thành phố Vinh."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="3"></textarea>
+                                                <textarea v-model="info_frofile_user.address_profile" @click="text()" class="main-text textarea" placeholder="VD: Ngõ 2, đường Bạch Liêu, phường Trường Thi, thành phố Vinh."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="3"></textarea>
                                             </div>                            
                                         </div>                                             
                                     </div>                 
@@ -168,7 +166,7 @@
                                                 <i class="fa fa-phone"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea @click="text()" class="main-text textarea" placeholder="VD: +84 985372698"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                
+                                                <textarea v-model="info_frofile_user.phone_profile" @click="text()" class="main-text textarea" placeholder="VD: +84 985372698"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                
                                             </div>                            
                                         </div>                                             
                                     </div>
@@ -178,7 +176,7 @@
                                                 <i class="fa fa-envelope-o"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea @click="text()" class="main-text textarea" placeholder="VD: leuleu@gmail.com"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                                <textarea v-model="info_frofile_user.email_profile" @click="text()" class="main-text textarea" placeholder="VD: leuleu@gmail.com"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                             </div>                            
                                         </div>                           
                                     </div>
@@ -188,17 +186,17 @@
                                                 <i class="fa fa-address-card"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea @click="text()" class="main-text textarea" placeholder="VD: 173721***"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                                <textarea v-model="info_frofile_user.cmnd_profile" @click="text()" class="main-text textarea" placeholder="VD: 173721***"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                             </div>                            
                                         </div>                           
                                     </div>
-                                    <div class="note-cv">
+                                    <div class="note-cv" style="margin-bottom: 16px;">
                                         <div class="row">
                                             <div class="col-md-2 icon-cv-profile">
                                                 <i class="fas fa-briefcase"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea @click="text()" class="main-text textarea" placeholder="VD: Chà, thực ra thì mình không giỏi nấu ăn lắm. Chắc các bạn không tin đâu, nhưng mình suýt nữa đã làm cháy cái tạp dề yêu thích nhất của mẹ mình trong lúc cố rán mấy quả trứng. Mong là vẫn có một số bạn trong lớp nấu tử tế hơn mình."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="7"></textarea>
+                                                <textarea v-model="info_frofile_user.note_profile" @click="text()" class="main-text textarea" placeholder="VD: Chà, thực ra thì mình không giỏi nấu ăn lắm. Chắc các bạn không tin đâu, nhưng mình suýt nữa đã làm cháy cái tạp dề yêu thích nhất của mẹ mình trong lúc cố rán mấy quả trứng. Mong là vẫn có một số bạn trong lớp nấu tử tế hơn mình."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="7"></textarea>
                                             </div>                            
                                         </div>                         
                                     </div>
@@ -207,91 +205,239 @@
                         </div>
                     </div>
                 </div>
+                <br>
+                <button class="btn btn-primary" @click="update">Cập nhật</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Xem trước pdf</button>
             </div>   
         </div>  
         <br>
+
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">  
+                    <div class="row" id="cv">
+                        <div class="col-md-8" style="padding-left:30px;">
+                            <div class="title-h2-cv">
+                                <h2>RESUME</h2>
+                            </div>
+                            <hr>
+                            <div class="title-h3-cv">        
+                                <span class="a">{{info_frofile_user.fullname_profile}}</span>                                                              
+                            </div>
+                            <div class="title-h4-cv">
+                                <h4>NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG</h4>
+                            </div>
+                            <br><br>
+                            <div class="target-main-cv">
+                                <div class="target-cv">
+                                    <div class="row">
+                                        <div class="col-md-12" >
+                                            <h5>MỤC TIÊU NGHỀ NGHIỆP</h5>
+                                        </div>
+                                    </div>                                                                        
+                                </div>
+                                <div class="target-ngan">                                
+                                    <div class="target-Short-term-cv" >
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6>MỤC TIÊU CỦA BẠN</h6>
+                                            </div>                                              
+                                        </div>                        
+                                    </div>
+                                    <div class="target-company-cv">
+                                        <span class="a">{{info_frofile_user.title_target_profile}}</span>                                        
+                                    </div>
+                                    <div class="target-Short-term-note-cv">
+                                        <span class="a">{{info_frofile_user.note_target_profile}}</span>                                       
+                                    </div>
+                                </div>                                  
+                            </div>
+                            <div class="skill-cv">
+                                <!--Học vấn-->
+                                <div class="skill-mn-cv" style="padding-left:10px;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h5>KỸ NĂNG</h5>
+                                        </div>
+                                        
+                                    </div>                                                   
+                                </div>                                    
+                                <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
+                                    <div class="communication">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p>Giao tiếp:</p>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <span class="a">{{info_frofile_user.skill_communication_profile}}</span>                                               
+                                            </div>
+                                        </div>            
+                                    </div>
+                                    <div class="Information">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p>Tin học văn phòng(Word, Excel, Power Point):</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <span class="a">{{info_frofile_user.skill_information_profile}}</span>                                                
+                                            </div>
+                                        </div>                                            
+                                    </div>     
+                                    <div class="logic">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <p>Tư duy logic:</p>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <span class="a">{{info_frofile_user.skill_logic_profile}}</span>                                                 
+                                            </div>
+                                        </div>                                            
+                                    </div>                                                                                                                                                
+                                </div>
+                            </div> 
+                            <div class="skill-cv">
+                                <!--Học vấn-->
+                                <div class="skill-mn-cv" style="padding-left:10px;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h5>CHỨNG CHỈ</h5>
+                                        </div>
+                                        
+                                    </div>                                                   
+                                </div>                                    
+                                <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
+                                    <div class="communication">
+                                        <div class="row">                                             
+                                            <div class="col-md-12">
+                                                <span class="a">{{info_frofile_user.certificate_profile}}</span>                                                
+                                            </div>
+                                        </div>            
+                                    </div>                                                                                                                                                                                      
+                                </div>
+                            </div> 
+                            <div class="edu-cv">
+                                <!--Học vấn-->
+                                <div class="education-cv" style="padding-left:10px;">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h5>HỌC VẤN</h5>
+                                        </div>
+                                        
+                                    </div>                                                   
+                                </div>   
+                                
+                                <EducationUserPdf v-for="(edu,k) in education_user" :edu="edu" :key="k"></EducationUserPdf>
+                                                                                                    
+                            </div>                                
+                        </div>
+                        <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
+                            <center>
+                                <div style="background-color: #029c7c;" class="img-cv">
+                                    <img src="https://www.topcv.vn/upload/images/avatars/no_avatar.jpg">
+                                </div>                        
+                            </center>     
+                            <br> 
+                            <div style="padding-left:25px;padding-right: 10px;">                                
+                                <div class="briday-cv">
+                                    <div class="row">
+                                        <div class="col-md-2 icon-cv-profile">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <span class="a">{{info_frofile_user.birthday_profile}}</span>                                                                      
+                                        </div>                            
+                                    </div>                                             
+                                </div> 
+                                <div class="gioitinh-cv">
+                                    <div class="row">
+                                        <div class="col-md-2 icon-cv-profile">
+                                            <i class="fa fa-venus-mars"></i>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <span class="a">{{info_frofile_user.maleFemale}}</span>                                                                           
+                                        </div>                            
+                                    </div>                                             
+                                </div> 
+                                <div class="address-cv">
+                                    <div class="row">
+                                        <div class="col-md-2 icon-cv-profile">
+                                            <i class="fa fa-location-arrow"></i>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <span class="a">{{info_frofile_user.address_profile}}</span>                                                                       
+                                        </div>                            
+                                    </div>                                             
+                                </div>                 
+                                <div class="phone-cv">
+                                    <div class="row">
+                                        <div class="col-md-2 icon-cv-profile">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <span class="a">{{info_frofile_user.phone_profile}}</span>                                                                           
+                                        </div>                            
+                                    </div>                                             
+                                </div>
+                                <div class="email-cv">
+                                    <div class="row">
+                                        <div class="col-md-2 icon-cv-profile">
+                                            <i class="fa fa-envelope-o"></i>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <span class="a">{{info_frofile_user.email_profile}}</span>                                                                         
+                                        </div>                            
+                                    </div>                           
+                                </div>
+                                <div class="Cmnd-cv">
+                                    <div class="row">
+                                        <div class="col-md-2 icon-cv-profile">
+                                            <i class="fa fa-address-card"></i>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <span class="a">{{info_frofile_user.cmnd_profile}}</span>                                                                         
+                                        </div>                            
+                                    </div>                           
+                                </div>
+                                <div class="note-cv" style="margin-bottom: 16px;">
+                                    <div class="row">
+                                        <div class="col-md-2 icon-cv-profile">
+                                            <i class="fas fa-briefcase"></i>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <span class="a">{{info_frofile_user.note_profile}}</span>                                                                          
+                                        </div>                            
+                                    </div>                         
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>   
+                    <div id="pdf"></div>                                   
+                    <!-- <button @click="download()">
+                        Xuất pdf
+                    </button>   -->
+                </div>
+            </div>
+        </div>                                     
     </div>
 </template>
 
-<script>           
-    import Vue from "vue";
-    
+<script>                    
+    import EducationUser from '~/components/cvProfileUser/EducationUser'
+    import EducationUserPdf from '~/components/cvProfileUser/EducationUserPdf'
     export default {
         name: 'Teamplate1',
         layout: 'admin',
         
         data(){
             return {               
-                    info_frofile_user: {    
-                        id:'',                           
-                        id_user: '',
-                        fullname_profile: '', 
-                        birthday_profile: '',
-                        maleFemale: '',             
-                        address_profile:'',
-                        phone_profile:'',                       
-                        email_profile: '',
-                        cmnd_profile: '',
-                        note_profile: '',                                         
-                        title_target_profile: '',     
-                        note_target_profile:'',
-                        skill_communication_profile:'',
-                        skill_information_profile:'',
-                        skill_logic_profile:'',
-                        certificate_profile:'',
-                    },
+                    info_frofile_user: {},
                     education_user: [],
                 }         
         },        
         components:{
-             'cv-main-education': {                   
-                 props: {
-                     edu: Object
-                },                            
-                data(){
-                    return{ 
-                                                 
-                    }
-                },
-                template: `
-                 <div style="padding-left:10px;padding-right:10px;" class="main-edu-cv">  
-                    <div class="icon-01-01 fieldset1" >  
-                        <button class="btn-cv-01 btn-cv-add">Thêm</button>
-                        <button class="btn-cv-01 btn-cv-delete">Xóa</button>                                                                
-                    </div>                                           
-                    <div class="education-cv">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <textarea @click="text()" class="main-text textarea" placeholder="VD: TRƯỜNG ĐẠI HỌC BÔN BA"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                                   
-                            </div>
-                            <div class="col-md-4" style="text-align: right;">
-                                <span>12/10/1997</span>
-                                    <span> - </span>
-                                <span>12/10/1997</span>
-                            </div>
-                        </div>                                
-                    </div>                  
-                    <div class="education-khoa">
-                        <textarea @click="text()" class="main-text textarea" placeholder="VD: KHOA CÔNG NGHỆ THÔNG TIN"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
-                    </div>                  
-                    <div class="education-cap">
-                        <textarea @click="text()" class="main-text textarea" placeholder="VD: BẰNG CẤP KHÁ"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
-                    </div>                                                                                             
-                </div>
-                `,
-                 methods:{
-                     mixin_autoResize_resize(event) {
-                        event.target.style.height = "auto";
-                        event.target.style.height = `${event.target.scrollHeight}px`;
-                    },
-                    text(){
-                                    
-                    },
-                 },
-                 mounted(){                    
-                                    
-                }                  
-             }
+             EducationUser,
+             EducationUserPdf
         },
         
         methods: {
@@ -317,17 +463,122 @@
                 this.$axios.post('hoso/getEducationUser',{'id': this.$route.query.id})
                 .then(response => {                    
                     this.education_user = response.data;
+                    if(this.education_user.length == 0){               
+                        this.insertDataEducationOne();
+                    }
                     console.log(this.education_user);
                  })
                  .catch(error => {
                     console.log(error.response);
                 });
             },
+            insertDataEducationOne(){
+                this.$axios.post('hoso/insertEducationUserOne',{'id_profile': this.$route.query.id})
+                .then(response => {                    
+                    this.fetchdataEducation();
+                })
+                .catch(error => {
+                    console.log(error.response);
+                });
+            },
+            DeleteDataEducation(id){                
+                if(this.education_user.length == 1){
+                    this.$swal(
+                        'Bắt buộc',
+                        'Bạn phải nhập thông tin Học vấn',
+                        'error'
+                    ) 
+                }else{
+                    this.$axios.post('hoso/deleteDataEducation',{'id': id})
+                    .then(response => {                    
+                        this.fetchdataEducation();
+                    })
+                    .catch(error => {
+                        console.log(error.response);
+                    });
+                }                
+            },
+            updateEducation(e,route){
+                var i;
+                var n = this.education_user.length;
+                for(i=0;i<n;i++){
+                    e.preventDefault();
+                    var form = new FormData();
+                    form.append('id' , this.education_user[i].id)
+                    form.append('id_profile_user' , this.education_user[i].id_profile_user)
+                    form.append('name_education' , this.education_user[i].name_education)
+                    form.append('learning_education' , this.education_user[i].learning_education)
+                    form.append('business_education' , this.education_user[i].business_education)
+                    form.append('from_datetime_education' , this.education_user[i].from_datetime_education)
+                    form.append('to_datetime_education' , this.education_user[i].to_datetime_education)
+
+                    this.$axios.post('hoso/updateEducationUser',form)
+                    .then(response => {   
+                        console.log(response);                                     
+                        if(response.data.status != 200) {
+                            this.$swal(
+                                'Lỗi',
+                                response.data.message,
+                                'error'
+                            )                                                
+                        }else{                          
+                            this.$swal(
+                            'Cập nhật thành công',
+                            response.data.message,
+                            'success'
+                            )                                                    
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response);
+                    });
+                }
+            },            
+            update(e, route){                         
+                e.preventDefault();
+                var form = new FormData();
+                form.append('id' , this.info_frofile_user.id)                
+                form.append('id_user' , this.info_frofile_user.id_user)
+                form.append('fullname_profile' , this.info_frofile_user.fullname_profile)
+                form.append('birthday_profile' , this.info_frofile_user.birthday_profile)
+                form.append('maleFemale' , this.info_frofile_user.maleFemale)
+                form.append('address_profile' , this.info_frofile_user.address_profile)
+                form.append('phone_profile' , this.info_frofile_user.phone_profile)
+                form.append('email_profile' , this.info_frofile_user.email_profile)
+                form.append('cmnd_profile' , this.info_frofile_user.cmnd_profile)
+                form.append('note_profile' , this.info_frofile_user.note_profile)
+                form.append('title_target_profile' , this.info_frofile_user.title_target_profile)
+                form.append('note_target_profile' , this.info_frofile_user.note_target_profile)
+                form.append('skill_communication_profile' , this.info_frofile_user.skill_communication_profile)
+                form.append('skill_information_profile' , this.info_frofile_user.skill_information_profile)
+                form.append('skill_logic_profile' , this.info_frofile_user.skill_logic_profile)
+                form.append('certificate_profile' , this.info_frofile_user.certificate_profile)
+
+                this.$axios.post('hoso/updateProfileUser',form)
+                .then(response => {   
+                    console.log(response);                                     
+                    if(response.data.status == 200) {
+                        this.updateEducation(e,route);            
+                    }else{
+                        this.$swal(
+                            'Lỗi',
+                            response.data.message,
+                            'error'
+                        )
+                    }
+                 })
+                 .catch(error => {
+                    console.log(error.response);
+                });                
+            },
+            download(){                                      
+                      
+            },  
 
         },        
         mounted() {    
             this.fetchdata();    
-            this.fetchdataEducation();     
+            this.fetchdataEducation();  
             this.$nextTick(() => {
                 this.$el.setAttribute("style", "height",
                 `${this.$el.scrollHeight}px`);      
@@ -347,13 +598,14 @@
         margin-left: 0;
         border-top: 2px solid rgba(34, 41, 47, 0.1);
    }
-   .title-h3-cv .main-text{
+   .title-h3-cv .main-text ,.title-h3-cv .a{
        margin-top: 20px;
         font-size: 30px;
         font-weight: 600;
         width: 100%;
         border-color: #fff;
    }
+
    .title-h4-cv h4{
         margin-top: 16px;
         font-size: 21px;
@@ -383,47 +635,53 @@
    .target-Short-term-cv {
        margin-top: 20px;
    }
-   .target-company-cv .main-text{
+   .target-company-cv .main-text ,.target-company-cv .a{
        font-size: 17px;
         font-weight: 500;
         width: 100%;
         border-color: #fff;
    }
-   .communication .main-text, .Information .main-text, .logic .main-text{
+  
+   .communication .main-text, .Information .main-text, .logic .main-text ,.communication .a, .Information .a, .logic .a{
        width: 100%;
         border-color: #fff;
    }
-   .target-Short-term-note-cv .main-text {
+  
+   .target-Short-term-note-cv .main-text , .target-Short-term-note-cv .a{
         margin-top: 15px;
         font-size: 15px;
         width: 100%;
         border-color: #fff;
    }
+
    .communication {
        margin-top: 20px;
    }
     .main-cv {
         padding-left: 20px;
     }
-    .education-cv .main-text {
+    .education-cv .main-text, .education-cv .a {
         font-size: 17px;
         font-weight: 500;
         width: 100%;
         border-color: #fff;
     }
 
-    .skill-mn-cv .main-text {
+
+    .skill-mn-cv .main-text, .skill-mn-cv .a {
         font-size: 17px;
         font-weight: 500;
         width: 100%;
         border-color: #fff;
     }
-    .education-khoa .main-text {        
+    
+    .education-khoa .main-text, .education-khoa .a {        
         font-size: 13px;
         width: 100%;
         border-color: #fff;
     }
-    .education-cap .main-text {
+
+    .education-cap .main-text ,.education-cap .a{
         font-size: 13px;        
         width: 100%;
         border-color: #fff;
@@ -445,7 +703,7 @@
     }    
     .briday-cv ,.gioitinh-cv, .Cmnd-cv,.address-cv, .phone-cv, .email-cv, .note-cv {
         color: #fff;
-        margin-top: 10px;
+        margin-top: 30px;
     }
     .icon-cv-profile {
         text-align: center;
@@ -458,7 +716,7 @@
         border-radius: 50%;
         margin-left: 5px;
     }
-    .briday-cv  .main-text,.gioitinh-cv .main-text,.Cmnd-cv .main-text,.address-cv .main-text, .phone-cv .main-text, .email-cv .main-text, .note-cv .main-text {
+    .briday-cv  .main-text,.gioitinh-cv .main-text,.Cmnd-cv .main-text,.address-cv .main-text, .phone-cv .main-text, .email-cv .main-text, .note-cv .main-text ,.briday-cv  .a,.gioitinh-cv .a,.Cmnd-cv .a,.address-cv .a, .phone-cv .a, .email-cv .a, .note-cv .a{
         font-size: 17px;
         padding-top: 5px;
         width: 100%;
@@ -467,9 +725,12 @@
         color: #fff;
     }    
     .briday-cv  textarea::placeholder,.gioitinh-cv textarea::placeholder,.Cmnd-cv .main-text::placeholder,.address-cv textarea::placeholder, .phone-cv textarea::placeholder, .email-cv textarea::placeholder, .note-cv textarea::placeholder {
-        color:#fff !important;
+        color:crimson !important;
 
     }  
+    textarea::placeholder{
+        color:crimson !important;
+    }
     .briday-cv  .main-text:hover,.address-cv .main-text:hover,.gioitinh-cv .main-text:hover,.Cmnd-cv .main-text:hover, .phone-cv .main-text:hover, .email-cv .main-text:hover, .note-cv .main-text:hover {
         border-color: #4B6A78;
         border-style: dotted;
