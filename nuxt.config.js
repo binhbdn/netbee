@@ -99,7 +99,7 @@ module.exports = {
         routes: async () => {
             const tintuc = await axios.get('https://netbee.vn/api/getTinTucSiteMap')
             const arrayTinTuc = tintuc.data.data.tintuc.map((user) => ({
-                url: `http://netbee.vn/tin-tuc/${user.id}/${ChangeToSlug(user.title)}`,
+                url: `https://netbee.vn/tin-tuc/${user.id}/${ChangeToSlug(user.title)}`,
                 changefreq: 'daily',
                 priority: 1,
             }))
@@ -167,7 +167,9 @@ module.exports = {
         '~/plugins/jsonld.js',
         { src: './plugins/vue2-editor', ssr: false },
         { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
-        { src: '~/plugins/infiniteloading', ssr: false }
+        { src: '~/plugins/infiniteloading', ssr: false },
+        { src: '~/plugins/chart', ssr: false },
+        { src: '~/plugins/hchs-vue-charts', ssr: false }
     ],
     vue: {
         config: {

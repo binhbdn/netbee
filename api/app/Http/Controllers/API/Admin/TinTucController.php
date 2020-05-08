@@ -2,180 +2,56 @@
 
 namespace App\Http\Controllers\API\Admin;
 
+use App\Services\NewsService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Response;
 use JWTAuth;
 use Auth;
-use App\User;
 use Validator;
 use Hash;
 use Carbon\Carbon;
-use App\Mail\Sendmail;
 use App\Services\PayUService\Exception;
 use App\Helpers\AppHelpers;
 
-use App\Http\Controllers\NotificationController as notifi;
-
 class TinTucController extends Controller
 {
+    protected $newsService;
 
-    public function getTinTuc(Request $request)
+    public function __construct(NewsService $newsService)
     {
-        $role_user = Auth::user()->role;
-        $id_user = Auth::user()->id;
-        try {
-            if($role_user != 4){
-                $getTin = DB::table('news')
-                ->where('news.id_created',$id_user)
-                ->where('news.deleted',0)
-                ->orderBy('news.id', 'DESC')
-                ->select('news.*')
-                ->groupBy('news.id')
-                ->paginate(6);
-                $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
-            }
-            else{
-                $getTin = DB::table('news')
-                ->orderBy('news.id', 'DESC')
-                ->where('news.deleted',0)
-                ->select('news.*')
-                ->groupBy('news.id')
-                ->paginate(6);
-                $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $getTin];
-            }
-            
-        } catch (\Exception $e) {
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+        $this->newsService = $newsService;
+    }
+
+    public function getTinTuc()
+    {
+        $response = $this->newsService->getNews();
+        return response()->json($response);
     }
 
     public function changeStatusTinTuc(Request $request)
     {
-        try {
-            $id = $request->id;
-            $getTin = DB::table('news')->where('id', $id)->first();
-            if($getTin) {
-                $setTin = DB::table('news')
-                ->where('id', $id)
-                ->update([
-                    'status' => !$getTin->status,
-                    'updated_at' => Carbon::now()
-                ]);
-                $data = ['status'=> 200, 'message' => 'Thay đổi trạng thái thành công', 'data' => $setTin];
-            }else {
-                $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
-            }
-        } catch (\Exception $e) {
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+        $response = $this->newsService->changeStatus($request->id);
+        return response()->json($response);
     }
+
     public function changeMultipleStatusTinTuc(Request $request)
-    {   
-        if(empty($request->id)){
-            $data = ['status'=> 400, 'message' => 'Bạn chưa chọn tin!', 'data' => null];
-            return response()->json($data);
-        }
-        $id = json_decode($request->id);
-        $length= count($id);
-        $status = $request->status;
-        DB::beginTransaction();
-        try {
-            if($length == 1 ){
-                DB::table('news')->where('id', $id)->update([
-                    'status' => $status,
-                    'updated_at' =>  Carbon::now()
-                ]);
-                DB::commit();
-                $tin = DB::table('news')->where('id',$id)->get();
-                if($status == 1){
-                    $data = ['status'=> 200, 'message' => 'Kích hoạt thành công', 'data' => null];
-                }
-                else{
-                    $data = ['status'=> 200, 'message' => 'Bỏ kích hoạt thành công', 'data' => null];
-                }
-            }
-            else{
-                foreach($id as $key =>$value) {
-                    DB::table('news')->where('id', $value)->update([
-                        'status' => $status,
-                        'updated_at' =>  Carbon::now()
-                    ]);
-                }
-                DB::commit();
-                if($status == 1){
-                    $data = ['status'=> 200, 'message' => 'Kích hoạt thành công', 'data' => null];
-                }
-                else{
-                    $data = ['status'=> 200, 'message' => 'Bỏ kích hoạt thành công', 'data' => null];
-                }
-            }
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+    {
+        $response = $this->newsService->changeMultiStatus($request);
+        return response()->json($response);
     }
 
     public function deleteTinTuc(Request $request)
     {
-        try {
-            $id = $request->id;
-            $getTin = DB::table('news')->where('id', $id)->first();
-            if($getTin) {
-                $setTin = DB::table('news')
-                ->where('id', $id)
-                ->update([
-                    'deleted' => 1,
-                    'updated_at' => Carbon::now()
-                ]);
-                $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => $setTin];
-            }else {
-                $data = ['status'=> 400, 'message' => 'Tin không tồn tại', 'data' => null];
-            }
-        } catch (\Exception $e) {
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+        $response = $this->newsService->destroy($request->id);
+        return response()->json($response);
     }
+
     public function deleteMultipleTinTuc(Request $request)
-    {   
-        if(empty($request->id)){
-            $data = ['status'=> 400, 'message' => 'Bạn chưa chọn tin!', 'data' => null];
-            return response()->json($data);
-        }
-        $id = json_decode($request->id);
-        $length= count($id);
-        DB::beginTransaction();
-        try {
-            if($length == 1 ){
-                DB::table('news')->where('id', $id)->update([
-                    'deleted' => 1,
-                    'updated_at' =>  Carbon::now()
-                ]);
-                DB::commit();
-                $tin = DB::table('news')->where('id',$id)->get();
-                    $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => null];
-            }
-            else{
-                foreach($id as $key =>$value) {
-                    DB::table('news')->where('id', $value)->update([
-                        'deleted' => 1,
-                        'updated_at' =>  Carbon::now()
-                    ]);
-                }
-                DB::commit();
-                    $data = ['status'=> 200, 'message' => 'Xóa tin thành công', 'data' => null];
-                
-            }
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
-        }
-        return response()->json($data);
+    {
+        $response = $this->newsService->multiDestroy($request);
+        return response()->json($response);
     }
 
     public function createTinTuc(Request $request)
@@ -192,7 +68,7 @@ class TinTucController extends Controller
             'required' => 'Không được để trống',
             'image' => 'Định dạng ảnh không phù hợp',
         ]);
-         
+
         if ($validator->fails()) {
              return response()->json([
                  'status' => 400,
@@ -227,7 +103,7 @@ class TinTucController extends Controller
     public function updateTinTuc(Request $request)
     {
         $getTin = DB::table('news')->where('id', $request->id)->where('deleted',0)->first();
-        if($getTin) 
+        if($getTin)
         {
             if($request->file('thuml'))
             {
@@ -243,7 +119,7 @@ class TinTucController extends Controller
                     'required' => 'Không được để trống',
                     'image' => 'Định dạng ảnh không phù hợp',
                 ]);
-                 
+
                 if ($validator->fails()) {
                      return response()->json([
                          'status' => 400,
@@ -274,7 +150,7 @@ class TinTucController extends Controller
                 } catch (\Exception $e) {
                     $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
                 }
-            }else 
+            }else
             {
                 $validator = Validator::make($request->all(),
                 [
@@ -286,7 +162,7 @@ class TinTucController extends Controller
                 [
                     'required' => 'Không được để trống',
                 ]);
-                
+
                 if ($validator->fails()) {
                     return response()->json([
                         'status' => 400,
@@ -322,7 +198,7 @@ class TinTucController extends Controller
         $searchTitle = $request->searchTitle;
         $searchCategory = $request->searchCategory;
         $searchStatus = $request->searchStatus;
-        if($search == '' && $searchTitle == '' && $searchStatus == '' && $searchCategory == '') 
+        if($search == '' && $searchTitle == '' && $searchStatus == '' && $searchCategory == '')
         {
             if($role_user != 4){
                 $data = DB::table('news')
@@ -406,5 +282,5 @@ class TinTucController extends Controller
         }
         return response()->json($data);
     }
-    
+
 }

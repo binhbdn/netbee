@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Services;
 
 use App\User;
@@ -7,20 +7,7 @@ use Auth;
 use DB;
 use Hash;
 
-class UserService {
-    const 
-        ROLE_ADMIN = 4,
-        ROLE_HR = 3,
-        ROLE_COMPANY = 2,
-        ROLE_STAFF = 1;
-    
-    const 
-        BLOCK = 1,
-        UN_BLOCK = 0;
-
-    const 
-        FACEBOOK = 'facebook',
-        GOOGLE = 'google';
+class UserService extends BaseService {
 
     protected $user;
     protected $socialAccountService;
@@ -38,7 +25,7 @@ class UserService {
     {
         return $this->user->whereId($userId)->update($data);
     }
-    
+
     public function store($data)
     {
         return $this->user->insert($data);
@@ -64,10 +51,10 @@ class UserService {
         $token = $request->token;
         //check account fb
         $headers = array('Content-type: application/json');
-        $url = $typeOAuth == self::FACEBOOK ? 
-        "https://graph.facebook.com/me?fields=id,name,email,picture.type(large)&access_token=".$token : 
+        $url = $typeOAuth == self::FACEBOOK ?
+        "https://graph.facebook.com/me?fields=id,name,email,picture.type(large)&access_token=".$token :
         "https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=".$token;
-    
+
         $http = curl_init($url);
         curl_setopt($http, CURLOPT_HEADER, false);
         curl_setopt($http, CURLOPT_CUSTOMREQUEST, "GET");
@@ -111,19 +98,19 @@ class UserService {
                 'data' => null,
             ];
         }
-    
+
         if (isset($request->role)) {
             $role = !in_array($request->role, [self::ROLE_HR, self::ROLE_COMPANY]) ? self::ROLE_STAFF : $request->role;
             //check unique email,phone
             $queryEmail = $this->user->whereEmail($infoResult->email);
             $jwtToken = JWTAuth::fromUser($queryEmail->first());
-            
+
             if ($queryEmail->exists() && $jwtToken) {
                 return [
                     'status'  => 200,
                     'message' => 'Đăng nhập thành công',
                     'data' => [
-                        'user' => Auth::user(), 
+                        'user' => Auth::user(),
                         'token' => $jwtToken
                     ],
                 ];
@@ -181,20 +168,29 @@ class UserService {
             if ($update) {
                 return [
                     'status' => 200,
-                    'message' => 'Cập nhật mật khẩu thành công', 
+                    'message' => 'Cập nhật mật khẩu thành công',
                     'data' => null
                 ];
             }
             return [
                 'status' => 400,
-                'message' => 'Có lỗi xảy ra', 
+                'message' => 'Có lỗi xảy ra',
                 'data' => null
             ];
         }
         return [
-            'status'=> 400, 
-            'message' => 'Mật khẩu cũ không đúng', 
+            'status'=> 400,
+            'message' => 'Mật khẩu cũ không đúng',
             'data' => null
         ];
     }
-} 
+    public function countUser($data)
+    {
+        $users = $this->user->whereRole($data)->whereBlock(self::UN_BLOCK)->count();
+        return [
+            'status' => 200,
+            'message' => 'Thành công',
+            'data' => $users
+        ];
+    }
+}

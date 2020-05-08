@@ -5,7 +5,7 @@ use App\Models\NbCompanyInfo;
 use JWTAuth;
 use function foo\func;
 
-class NbCompanyInfoService {
+class NbCompanyInfoService extends BaseService {
 
     protected $nbCompanyInfo;
 

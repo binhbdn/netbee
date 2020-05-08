@@ -35,6 +35,7 @@ Route::namespace('API')->group(function () {
   Route::get('searchJobs', 'TimKiemController@searchJobs');
   Route::get('getQuocGia', 'TimKiemController@getQuocGia');
   Route::get('getVisa', 'TimKiemController@getVisa');
+  Route::get('getAnalytic', 'Admin\DashboardController@getAnalytic');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
@@ -73,12 +74,16 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changePublic', 'Admin\TinTuyenController@changePublic');
         Route::get('searchTinTuyenDung', 'Admin\TinTuyenController@searchTinTuyenDung');
         Route::post('createTinTuyen', 'Admin\TinTuyenController@createTinTuyen');
-        Route::post('postView', 'Admin\TinTuyenController@postView');
-        Route::post('postSave', 'Admin\TinTuyenController@postSave');
-        Route::get('getSave', 'Admin\TinTuyenController@getSave');
         Route::get('getDetailTinTuyen/{id}','Admin\TinTuyenController@getDetailTinTuyen');
-        Route::post('report', 'Admin\TinTuyenController@report');
         Route::post('updateTinTuyen', 'Admin\TinTuyenController@updateTinTuyen');
+        Route::post('postView', 'Admin\ViewController@postView');
+        Route::post('postSave', 'Admin\SaveController@postSave');
+        Route::get('getSave', 'Admin\SaveController@getSave');
+        Route::post('report', 'Admin\ReportController@report');
+      });
+      Route::prefix('hoso')->group(function () {
+        Route::post('getProfileUser', 'Admin\TeamplateCvController@getProfileUser');
+        Route::post('getEducationUser', 'Admin\TeamplateCvController@getEducationUser');
       });
   });
 });

@@ -19,6 +19,8 @@
         "@nuxtjs/google-analytics": "^2.2.3",
         "@nuxtjs/sitemap": "^2.2.1",
         "body-parser": "^1.18.2",
+        "chart.js": "^2.9.3",
+        "hchs-vue-charts": "^1.2.8",
         "luxon": "^1.23.0",
         "moment": "^2.24.0",
         "nuxt": "^2.12.2",
@@ -49,5 +51,8 @@
         "eslint-plugin-node": "^5.1.1",
         "eslint-plugin-promise": "^3.5.0",
         "eslint-plugin-standard": "^3.0.1"
+    },
+    "browser": {
+        "vue": "vue/dist/vue.common.js"
     }
 }
