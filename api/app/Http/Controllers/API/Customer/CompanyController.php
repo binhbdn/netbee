@@ -15,8 +15,20 @@ class CompanyController extends Controller
     {
         $this->nbCompanyInfoService = $nbCompanyInfoService;
     }
-    public function getInfoAll(){
-        $response = $this->nbCompanyInfoService->getInfoAll();
+    public function getListCompany(){
+        $response = $this->nbCompanyInfoService->getListCompany();
+
+        return response()->json($response);
+    }
+    public function getDetailCompanyByID(Request $request)
+    {
+        $response = $this->nbCompanyInfoService->getDetailCompanyById($request->id);
+
+        return response()->json($response);
+    }
+    public function postCompanyFeedback(Request $request)
+    {
+        $response = $this->nbCompanyInfoService->postCompanyFeedback($request);
 
         return response()->json($response);
     }

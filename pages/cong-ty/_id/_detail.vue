@@ -176,6 +176,9 @@
                 <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
                     <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
                 </div>
+                <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
+                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
+                </div>
             </div>
           </div>
         </div>
@@ -185,7 +188,7 @@
             <div class="modal-dialog modal-dialog-centered " role="document">
                 <div class="modal-content">
                     <div class="col-md-12 col-lg-12 formlogin form-control" >
-                    <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP ỨNG VIÊN</h2>
+                    <h2 class="text-center mt-1" style="margin-bottom:15px">Vui lòng đăng nhập</h2>
                     <p class="text-center" style="margin-bottom:20px; font-size: 16px; "><a class="hover" href="dang-ky">Đăng ký tài khoản mới!</a>
                     </p>
                     <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px">
@@ -223,7 +226,7 @@
                                 <fieldset class="form-label-group position-relative has-icon-left mb-0">
                                     <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom:0px !important; margin-top:2px">
                                     <div class="form-control-position">
-                                        <i class="feather icon-lock" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                        <i class="fas fa-lock" style="color: rgba(34, 41, 47, 0.4)!important"></i>
                                     </div>
                                     <label for="password">Mật khẩu</label>
                                     <ul style="color:red" class="overline text-left">
@@ -259,6 +262,52 @@
             </div>
         </div>
         <!-- end Modal login -->
+        <!-- Modal feedback -->
+        <div class="modal fade text-left" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="col-md-12 col-lg-12 formlogin form-control" >
+                    <h2 class="text-center mt-1" style="margin-bottom:15px">Viết phản hồi</h2>
+                    <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px">
+                        <div class="star-rating pb-1">
+                        <star-rating 
+                            :rating="4.3" 
+                            :increment="0.1"
+                            :star-size="30"
+                        ></star-rating>
+                        </div>
+                        <ValidationObserver ref="observer" v-slot="{ valid }">
+                        <div style="position: relative">
+                            <ValidationProvider
+                                name="content"
+                                ref="content"
+                                rules="required"
+                                v-slot="{ errors }"
+                            >
+                            <div class="__email">
+                                <fieldset class="form-label-group position-relative has-icon-left mb-0">
+                                    <textarea class="form-control mb-0" id="content" placeholder="Nội dung phản hồi" v-model="userForm.content" style="padding-left:10px;margin-bottom:0px !important; margin-top:2px"></textarea>
+                                    <label for="content">Nội dung</label>
+                                    <ul style="color:red" class="overline text-left">
+                                        <li v-for="(error, index) in errors" :key="index">
+                                        <span style="top: 53%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
+                                        </li>
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            </ValidationProvider>
+                            <div class="lopgin-c" style="padding-top:20px">
+                                <button @click="sendFeedback()" id="submit" class="submit btn" style="height:100%; line-height: unset; padding:10px!important">Gửi phản hồi</button>
+                            </div>
+                            
+                        </div>
+                        </ValidationObserver>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Modal Feedback -->
     </div>
 </template>
 <script>
@@ -315,8 +364,10 @@ export default {
             countJob: '',
             userForm: {
                 email: '',
-                password: ''
+                password: '',
+                content: ''
             },
+            show: true,
         }
     },
     methods: {
@@ -369,6 +420,9 @@ export default {
         logingg() {
             this.$auth.loginWith('google')
         },
+        sendFeedback(){
+            console.log(1);
+        }
     },  
     async asyncData (context) {
         try {
