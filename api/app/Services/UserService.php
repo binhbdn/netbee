@@ -193,4 +193,9 @@ class UserService extends BaseService {
             'data' => $users
         ];
     }
+
+    public function getIdAdmin()
+    {
+        return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_ADMIN)->get();
+    }
 }

@@ -31,7 +31,7 @@ class ApplyManageController extends Controller
     }
 
     public function getApplyApproved() {
-        $applys = $this->applyJobService->getApply($this->applyJobService::DA_DUYET);
+        $applys = $this->applyJobService->getApply($this->applyJobService::ADMIN_DUYET_CV);
         if($applys){
             $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 
         } else {
@@ -61,7 +61,7 @@ class ApplyManageController extends Controller
     }
 
     public function ApproveApply(Request $request){
-        $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::DA_DUYET);
+        $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::ADMIN_DUYET_CV);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($approve){
             NotificationController::postNotification('Có 1 yêu cầu ứng tuyển vào tin '.$detail->Jobs['id_created'].' của bạn', $detail->user_create, 'https://netbee.vn/');
@@ -73,10 +73,10 @@ class ApplyManageController extends Controller
     }
 
     public function RefuseApply(Request $request){
-        $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::TU_CHOI);
+        $approve = $this->applyJobService->refuse($request->id, $this->applyJobService::TU_CHOI, $request->reason_for_rejection);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($approve){
-            NotificationController::postNotification('Yêu cầu ứng tuyển công việc '.$detail->job_id.' đã bị từ chối', $detail->user_create, 'https://netbee.vn/');
+            NotificationController::postNotification('Yêu cầu ứng tuyển công việc '.$detail->job_id.' đã bị từ chối', $detail->user_id, 'https://netbee.vn/');
             $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
         }else {
             $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 

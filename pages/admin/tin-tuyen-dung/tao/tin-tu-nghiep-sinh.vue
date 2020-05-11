@@ -48,6 +48,17 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
+                                                                    Tên công ty
+                                                                </label>
+                                                                <input type="text" class="form-control" v-model="data.school_name">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">
                                                                     Địa điểm
                                                                 </label>
                                                                 <input type="text" class="form-control required" v-model="data.address">
@@ -490,7 +501,8 @@ export default {
                 bonus: null,
                 highlight_job: 1,
                 visa: {id: null, profession: ''},
-                form_work: {id: null, name: ''}
+                form_work: {id: null, name: ''},
+                school_name
             },
             checked: false,
             guarantee: [
@@ -591,6 +603,7 @@ export default {
                 form.append('date_start' , this.data.date_start)
                 form.append('date_test' , this.data.date_test)
                 form.append('expected_date' , this.data.expected_date)
+                form.append('expected_date' , this.data.school_name)
                 if(this.checked){
                     form.append('time_bonus' , this.data.time_bonus.id)
                     form.append('bonus' , this.data.bonus)

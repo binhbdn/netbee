@@ -10,14 +10,14 @@ class Apply extends Model
 
     public $fillable = [
         'job_id',
-        'user_create',
-        'cv',
+        'user_id',
+        'cv_file',
+        'cv_id',
         'name',
-        'email',
-        'phone',
+        'bonus',
+        'interview_schedules',
         'status',
-        'isPublic',
-        'isDraft'
+        'reason_for_rejection',
     ];
 
     public function Jobs(){
