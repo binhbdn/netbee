@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Services\HomeService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -18,22 +19,22 @@ use App\Http\Controllers\NotificationController as notifi;
 
 class HomeController extends Controller
 {
+    protected $homeService;
+
+    public function __construct(HomeService $homeService)
+    {
+        $this->homeService = $homeService;
+    }
 
     public function getNationHome(Request $request)
     {
-        $nations = DB::table('nations')
-        ->get();
-        if($tin)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $nations];
-        else
-            $data = ['status'=> 400, 'message' => 'Lỗi get nations', 'data' => null];
-        return response()->json($data);
+        $response = $this->homeService->getNation();
+        return response()->json($response);
     }
 
     public function getCategoriesJobHome(Request $request)
     {
-        $nations = DB::table('nb_job_categories')
-        ->get();
+        $nations = DB::table('nb_job_categories')->get();
         if($tin)
             $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $nations];
         else
@@ -94,7 +95,7 @@ class HomeController extends Controller
             'numeric' => 'Số điện thoại không được chứa kí tự',
             'unique' => 'Địa chỉ email đã tồn tại trên hệ thống'
         ]);
-         
+
         if ($validator->fails()) {
              return response()->json([
                  'status' => 400,
