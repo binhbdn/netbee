@@ -20,11 +20,23 @@ class NbCompanyInfoService extends BaseService {
                 $query->select('name');
             })
             ->paginate(6);
+        foreach($datas as $key=>$data){
+            $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
+        }
         if($datas){
             $data = ['status' => 200, 'message' => 'Thành công', 'data' => $datas];
         }
         return $data;
     }
+    private function getRate($feedBacks)
+    {
+        $rates = $feedBacks->pluck('rate_feed')->toArray();
+        if (empty($rates)) {
+            return 0;
+        }
+        return array_sum($rates)/count($rates);
+    }
+
     public function getInfoByUserId($userId)
     {
         return $this->nbCompanyInfo->whereCompanyId($userId);

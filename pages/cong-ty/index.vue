@@ -83,6 +83,7 @@ export default {
       let companyInfos = await this.$axios.get('getInfoAll?page=1');
       this.companyInfos = companyInfos.data.data.data
       console.log(this.companyInfos.length);
+      console.log(this.companyInfos);
       console.log(this.companyInfos.company_feedback.length);
       ;
       if(companyInfos){
