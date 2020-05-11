@@ -8,7 +8,7 @@
 Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt nhất Việt Nam 2020 hoạt động dựa trên hơn 11.000 đánh giá được gửi bởi những người làm CNTT.</p>
         </div>
         <div class="col-4">
-          <img style="width: 250px" src="https://itviec.com/assets/2020_best_company_badge-f38d668d87ad0f4a24e39be359afe7d821fb44625a710cd440fd88cfc7d11d4c.svg">
+          <!-- <img style="width: 250px" src="https://itviec.com/assets/2020_best_company_badge-f38d668d87ad0f4a24e39be359afe7d821fb44625a710cd440fd88cfc7d11d4c.svg"> -->
         </div>
       </div>
       <div class="row" style="padding:0 14px">
@@ -33,8 +33,8 @@ Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="star-rating">
-                      <star-rating 
-                      :rating="5" 
+                      <star-rating
+                      :rating="companyInfo.rate"
                       :increment="0.1"
                       :star-size="30"
                       :read-only="true"
@@ -44,7 +44,6 @@ Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt
                 </div>
               </div>  
               <div class="col-6">
-                <p>recommend working here!</p>  
               </div>  
             </div> 
             <div class="row">
@@ -80,22 +79,9 @@ export default {
   },
   methods: {
     async fetch(){
-      let companyInfos = await this.$axios.get('getInfoAll?page=1');
-      this.companyInfos = companyInfos.data.data.data
-      console.log(this.companyInfos.length);
-      console.log(this.companyInfos);
-      console.log(this.companyInfos.company_feedback.length);
-      ;
-      if(companyInfos){
-        for(let i =0; i < this.companyInfos.length; i++)
-        {
-          for(let j=0 ; j< this.companyInfos.company_feedback.length; j++){
-            var totalStar = this.companyInfos.company_feedback.rate_feed;
-          }
-          let star_average = totalStar/(this.companyInfos.company_feedback.length);
-          this.companyInfos.push('star_average', $star_average);
-        }
-      }
+      let companyInfos = await this.$axios.get('getListCompany?page=1');
+      this.companyInfos = companyInfos.data.data.data;
+      console.log(this.companyInfos)
     }
   },
 };

@@ -18,7 +18,9 @@ Route::namespace('API')->group(function () {
   Route::get('getCategoriesJobHome', 'HomeController@getCategoriesJobHome');
   Route::post('saveEmail', 'HomeController@saveEmail');
   //Company
-  Route::get('getInfoAll','Customer\CompanyController@getInfoAll');
+  Route::get('getListCompany','Customer\CompanyController@getListCompany');
+  Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
+  Route::post('postCompanyFeedback','Customer\CompanyController@postCompanyFeedback');
   //tin tuyen dung
   Route::get('getTinTuyenDungNew', 'TinTuyenDungController@getTinTuyenDungNew');
   Route::get('getTinTuyenDungNewCarousel', 'TinTuyenDungController@getTinTuyenDungNewCarousel');
@@ -62,7 +64,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changeMultipleStatusTinTuc', 'Admin\TinTucController@changeMultipleStatusTinTuc');
         Route::post('deleteTinTuc', 'Admin\TinTucController@deleteTinTuc');
         Route::post('deleteMultipleTinTuc', 'Admin\TinTucController@deleteMultipleTinTuc');
-        Route::post('createTinTuc', 'Admin\TinTucController@createTinTuc');
+        Route::post('tintuc', 'Admin\TinTucController@createTinTuc');
         Route::post('updateTinTuc', 'Admin\TinTucController@updateTinTuc');
         Route::get('searchTinTuc', 'Admin\TinTucController@searchTinTuc');
       });

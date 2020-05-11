@@ -1,40 +1,97 @@
 <?php
 namespace App\Services;
 
+use App\Models\NbCompanyFeedback;
 use App\Models\NbCompanyInfo;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use JWTAuth;
 use function foo\func;
 
 class NbCompanyInfoService extends BaseService {
 
     protected $nbCompanyInfo;
+    protected $nbCompanyFeedback;
 
-    public function __construct(NbCompanyInfo $nbCompanyInfo)
+    public function __construct(NbCompanyInfo $nbCompanyInfo, NbCompanyFeedback $companyFeedback)
     {
         $this->nbCompanyInfo = $nbCompanyInfo;
+        $this->nbCompanyFeedback = $companyFeedback;
     }
-    public function getInfoAll(){
+    public function getListCompany(){
         $datas = $this->nbCompanyInfo
-            ->with(['companyFeedback','user'])
-            ->whereHas('user',function($query){
-                $query->select('name');
-            })
-            ->paginate(6);
+        ->with(['user'=> function($q){
+            $q->select('id','name')->whereStatus(1)->whereBlock(0);
+        }])
+        ->with(['companyFeedback'=> function($q){
+            $q->select('company_id', 'rate_feed');
+
+        }])
+        ->select('id','company_id','company_about')
+        ->paginate(6);
         foreach($datas as $key=>$data){
             $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
         }
-        if($datas){
-            $data = ['status' => 200, 'message' => 'Thành công', 'data' => $datas];
+        return [
+            'status' => 200,
+            'message' => 'Thành công',
+            'data' => $datas
+        ];
+    }
+
+    public function getDetailCompanyById($companyId){
+        $datas = $this->nbCompanyInfo
+        ->with(['user'=> function($q){
+            $q->select('id','name')->whereStatus(self::ACTIVE)->whereBlock(self::INACTIVE);
+        }])
+        ->with(['companyFeedback'=> function($q){
+            $q->where('approve_feed',self::ACTIVE);
+
+        }])
+        ->where('id',$companyId)
+        ->get();
+        foreach($datas as $key=>$data){
+            $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
         }
-        return $data;
+        return [
+            'status' => 200,
+            'message' => 'Thành công',
+            'data' => $datas
+        ];
+    }
+    public function postCompanyFeedback($request){
+        $data = $this->getOnlyData($request);
+        try {
+            $this->nbCompanyFeedback->insert($data);
+            return [
+                'status' => 200,
+                'message' => 'Cám ơn bạn đã phản hồi!',
+                'data' => null
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+    private function getOnlyData($request)
+    {
+
+        return [
+            'company_id' => $request->company_id,
+            'name_feed' => $request->name_feed,
+            'email_feed' => $request->email_feed,
+            'content_feed' => $request->content_feed,
+            'rate_feed' => $request->rate_feed,
+            'updated_at' => Carbon::now()
+        ];
     }
     private function getRate($feedBacks)
     {
         $rates = $feedBacks->pluck('rate_feed')->toArray();
-        if (empty($rates)) {
-            return 0;
-        }
-        return array_sum($rates)/count($rates);
+        return empty($rates) ? 0 : round(array_sum($rates)/count($rates),1);
     }
 
     public function getInfoByUserId($userId)
