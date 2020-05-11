@@ -240,6 +240,19 @@ class TinTuyenService extends BaseService {
         return $data;
     }
 
+    private function getJobValid()
+    {
+        return $this->nbJobList->with(['user', 'nation'])
+            ->whereHas('user', function ($query) {
+                $query->where([
+                    'block' => self::UN_BLOCK,
+                    'status' => self::ACTIVE
+                ]);
+            })
+            ->where('deleted',self::INACTIVE)
+            ->where('status',self::ACTIVE);
+    }
+
     private function getJobByRoleCompany()
     {
         return $this->nbJobList->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
@@ -263,13 +276,8 @@ class TinTuyenService extends BaseService {
 
     private function getJobByRoleOther()
     {
-        return $this->nbJobList->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
-            ->where('nb_joblists.deleted', self::INACTIVE)
-            ->where('nb_joblists.status', self::ACTIVE)
-            ->Join('users','users.id','=','nb_joblists.id_created')
-            ->join('nations', 'nb_joblists.nation_id', '=', 'nations.id')
-            ->orderBy('nb_joblists.highlight_job', 'nb_joblists.created_at', 'DESC')
-            ->groupBy('nb_joblists.id');
+
+        return $this->getJobValid()->orderBy('highlight_job', 'created_at', 'DESC');
     }
 
     private function getJobWithConditionAndNotRoleCompany()
@@ -465,16 +473,7 @@ class TinTuyenService extends BaseService {
     }
 
     public function getTinTuyenDungNews($type, $limit){
-        $query = $this->nbJobList->with(['user', 'nation'])
-            ->whereHas('user', function ($query) {
-                $query->where([
-                    'block' => self::UN_BLOCK,
-                    'status' => self::ACTIVE
-                ]);
-            })
-            ->where('deleted',self::INACTIVE)
-            ->where('status',self::ACTIVE)
-            ->where('isPublic',self::ACTIVE);
+        $query = $this->getJobValid()->where('isPublic',self::ACTIVE);
 
         if (!empty($type)) {
             $query->where('type', $type);
@@ -495,15 +494,7 @@ class TinTuyenService extends BaseService {
 
     public function getNewsHot($limit)
     {
-        $query = $this->nbJobList->with(['user', 'nation'])
-            ->whereHas('user', function ($query) {
-                $query->where([
-                    'block' => self::UN_BLOCK,
-                    'status' => self::ACTIVE
-                ]);
-            })
-            ->where('deleted',self::INACTIVE)
-            ->where('status',self::ACTIVE)
+        $query = $this->getJobValid()
             ->where('isPublic',self::ACTIVE)
             ->where('highlight_job',self::ACTIVE);
 
@@ -524,16 +515,7 @@ class TinTuyenService extends BaseService {
     public function getTinTuyenDungNewCarousel($isHot = false)
     {
         $perPage = $isHot ? 10 : 5;
-        $query = $this->nbJobList->with(['user', 'nation'])
-            ->whereHas('user', function ($query) {
-                $query->where([
-                    'block' => self::UN_BLOCK,
-                    'status' => self::ACTIVE
-                ]);
-            })
-            ->where('status',1)
-            ->where('deleted',0)
-            ->where('isPublic',1);
+        $query = $this->getJobValid()->where('isPublic',self::ACTIVE);
         if ($isHot) {
             $query->whereIn('highlight_job', [self::NEW_HOT, self::NEW_VIP]);
         }
@@ -565,16 +547,8 @@ class TinTuyenService extends BaseService {
 
     private function getForCompany($id, $limit)
     {
-        $query = $this->nbJobList->with(['user', 'nation'])
-            ->whereHas('user', function ($query) {
-                $query->where([
-                    'block' => self::UN_BLOCK,
-                    'status' => self::ACTIVE
-                ]);
-            })
-            ->where('status',1)
-            ->where('deleted',0)
-            ->where('isPublic',1)
+        $query = $this->getJobValid()
+            ->where('isPublic',self::ACTIVE)
             ->where('id_created', $id);
         if (!empty($limit)) {
             $query->limit($limit);
@@ -585,9 +559,9 @@ class TinTuyenService extends BaseService {
     public function getDetailNew($id)
     {
         $response = $this->nbJobList->with(['user', 'nation'])
-            ->where('status',1)
-            ->where('deleted',0)
-            ->where('isPublic',1)
+            ->where('status',self::ACTIVE)
+            ->where('deleted',self::INACTIVE)
+            ->where('isPublic',self::ACTIVE)
             ->where('id', $id)
             ->first();
         return [
