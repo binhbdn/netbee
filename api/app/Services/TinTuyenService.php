@@ -548,7 +548,7 @@ class TinTuyenService extends BaseService {
     public function getTinTuyenDungForCompany($request)
     {
         $id = $request->id;
-        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$limit.')');
+        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$request->limit.')');
         $datas['count'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.',0)');
         return
             [
@@ -586,7 +586,8 @@ class TinTuyenService extends BaseService {
             ->where('status',1)
             ->where('deleted',0)
             ->where('isPublic',1)
-            ->where('id', $id);
+            ->where('id', $id)
+            ->first();
         return [
             'status'=> 200,
             'message' => 'Thành công',

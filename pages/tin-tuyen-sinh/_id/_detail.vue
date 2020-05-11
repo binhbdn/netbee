@@ -9,15 +9,15 @@
                     <div class="row p-1">
                         <div class="col-lg-2 d-flex align-items-center">
                             <div class="avatar-company">
-                                <img v-lazy="`/uploads/users/avatars/${tintuc.avatar}`" :alt="`${tintuc.avatar}`" width="100%">
+                                <img v-lazy="`/uploads/users/avatars/${tintuc.user.avatar}`" :alt="`${tintuc.user.avatar}`" width="100%">
                             </div>
                         </div>
                         <div class="col-lg-7">
                             <div class="company-job-title">
                                 <h1 class="font-weight-bold">{{ tintuc.title }}</h1>
-                                <a :href="`/cong-ty/${tintuc.id_created}/${ChangeToSlug(tintuc.name)}`"><h4 class="font-weight-bold text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuc.name}`"> {{ tintuc.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
+                                <a :href="`/cong-ty/${tintuc.id_created}/${ChangeToSlug(tintuc.user.name)}`"><h4 class="font-weight-bold text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuc.user.name}`"> {{ tintuc.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
                                 <p><span class="font-weight-600">Loại tin: </span><span class="badge background-default badge-md">{{ tintuc.type == 3 ? 'Tu nghiệp sinh' : tintuc.type == 2 ? 'Du học sinh' : 'Xuất khẩu lao động' }}</span></p>
-                                <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuc.nation_name }}</p>
+                                <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuc.nation.name }}</p>
                                 <p><span class="font-weight-600" v-if="tintuc.type != 2">Mức lương: </span> <span class="font-weight-600" v-if="tintuc.type == 2">Học phí: </span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
                                 <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ ConvertDate(tintuc.expiration_date) }}</p>
                             </div>
@@ -452,6 +452,7 @@ export default {
     },
     data() {
         return {
+            tintuc: [],
             arrayForCompany: [],
             save: false,
             report: '',
@@ -473,11 +474,8 @@ export default {
         let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=5&type=1`)
         let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=2`)
         let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
-        // let getvisa = await $axios.$get(`getVisa`)
-        // let getNation = await $axios.$get(`getQuocGia`)
-        console.log(detailRes)
         return {
-            tintuc: detailRes.data[0],
+            tintuc: detailRes.data,
             arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
             arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
             arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
@@ -495,7 +493,7 @@ export default {
                 { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
                 { hid: 'og:title', name: 'og:title', content: this.tintuc.title},
                 { hid: 'og:description', name: 'og:description', content: this.tintuc.title},
-                { hid: 'og:image', name: 'og:image', content: this.tintuc.avatar},
+                { hid: 'og:image', name: 'og:image', content: this.tintuc.user.avatar},
             ]
         }
     },
@@ -639,6 +637,9 @@ export default {
     mounted() {
         this.$axios.$get(`getTinTuyenDungForCompany/${this.tintuc.id_created}?limit=5`).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
+        });
+        this.$axios.$get(`getDetailTinTuyenDung/${this.$route.params.id}`).then((response)=>{
+            this.tintuc = response.data
         });
         if(this.$auth.loggedIn) {
             this.$axios.$post(`tintuyendung/postView`,{id_job: this.tintuc.id}).then((response)=>{});
