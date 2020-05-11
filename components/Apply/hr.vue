@@ -84,17 +84,9 @@
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
-                                                                <div class="btn-dropdown ">
-                                                                    <div class="btn-group dropdown actions-dropodown">
-                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            Chọn thao tác
-                                                                        </button>
-                                                                        <div class="dropdown-menu" style="left: -25px!important;">
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)"><i class="far fa-check-circle"></i> Duyệt</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="RefuseApply(item.id)"><i class="far fa-times-circle"></i> Từ chối</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                <button type="button" class="btn btn-danger px-2 py-75 waves-effect waves-light" @click="RefuseApply(item.id)">
+                                                                    Hủy bỏ
+                                                                </button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -128,18 +120,9 @@
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
-                                                                <div class="btn-dropdown ">
-                                                                    <div class="btn-group dropdown actions-dropodown">
-                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            Chọn thao tác
-                                                                        </button>
-                                                                        <div class="dropdown-menu" style="left: -25px!important;">
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="RefuseApply(item.id)"><i class="far fa-times-circle"></i> Từ chối</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
+                                                                    Chi tiết
+                                                                </button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -165,16 +148,9 @@
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
-                                                                <div class="btn-dropdown ">
-                                                                    <div class="btn-group dropdown actions-dropodown">
-                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            Chọn thao tác
-                                                                        </button>
-                                                                        <div class="dropdown-menu" style="left: -25px!important;">
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)"><i class="far fa-check-circle"></i> Duyệt lại</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
+                                                                    Chi tiết
+                                                                </button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -188,6 +164,7 @@
                                                             <th>Tên công việc</th>
                                                             <th>Tên ứng viên</th>
                                                             <th>Trạng thái</th>
+                                                            <th>Bonus</th>
                                                             <th>Nhà tuyển dụng</th>
                                                             <th>Thời gian nộp</th>
                                                             <th>Hành động</th>
@@ -203,24 +180,15 @@
                                                                 <i class="fad fa-times-circle danger" title="Từ chối" style="font-size: 25px" v-if="item.status == 4"></i>
                                                                 <i class="fad fa-check-circle success" title="Đã duyệt" style="font-size: 25px" v-if="item.status == 2"></i>
                                                             </td>
+                                                            <td></td>
+                                                            
                                                             <td>{{item.name_company}}</td>
                                                             <td>{{ConvertDate(item.created_at)}}</td>
                                                             <td>
                                                                 <div class="action-btns">
-                                                                    <div class="btn-dropdown ">
-                                                                        <div class="btn-group dropdown actions-dropodown">
-                                                                            <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                Chọn thao tác
-                                                                            </button>
-                                                                            <div class="dropdown-menu" style="left: -25px!important;">
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 1"><i class="far fa-check-circle"></i> Duyệt</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="RefuseApply(item.id)" v-if="item.status != 4"><i class="far fa-times-circle"></i> Từ chối</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.status == 2 && item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.status == 2 && item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 4"><i class="far fa-check-circle"></i> Duyệt lại</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
+                                                                        Chi tiết
+                                                                    </button>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -284,7 +252,6 @@ export default {
         fetch() {
             this.$axios.$get('apply/getApplyWait').then((response)=>{
                 this.ApplyWait=response.data;
-                console.log(this.ApplyWait)
 	        });
 
         },
@@ -301,19 +268,6 @@ export default {
         getAllApply(){
             this.$axios.$get('apply/getAllApply').then((response)=>{
                 this.AllApply=response.data;
-	        });
-        },
-        ApprovedApply(id){
-            this.$axios.$get(`apply/ApproveApply/${id}`).then((response)=>{
-                if(response.status == 200){
-                    this.$swal(
-                        'Thành công',
-                        response.message,
-                        'success'
-                    ).then( function (){
-                        location.reload()
-                    } )
-                }
 	        });
         },
         RefuseApply(id){
@@ -346,32 +300,6 @@ export default {
                     'Lỗi xóa!',
                     'error')
             }
-        },
-        HideApply(id){
-            this.$axios.$get(`apply/HideApply/${id}`).then((response)=>{
-                if(response.status == 200){
-                    this.$swal(
-                        'Thành công',
-                        response.message,
-                        'success'
-                    ).then( function (){
-                        location.reload()
-                    } )
-                }
-	        });
-        },
-        ShowApply(id){
-            this.$axios.$get(`apply/ShowApply/${id}`).then((response)=>{
-                if(response.status == 200){
-                    this.$swal(
-                        'Thành công',
-                        response.message,
-                        'success'
-                    ).then( function (){
-                        location.reload()
-                    } )
-                }
-	        });
         },
         // search(){
         //     this.$axios.$get(

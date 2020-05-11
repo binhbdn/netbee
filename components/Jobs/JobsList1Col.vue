@@ -6,7 +6,7 @@
 </div>
 </template>
 <script>
-import JobItem from '~/components/JobItem.vue';
+import JobItem from '~/components/JobItemCol1.vue';
 export default {
     components: {
         JobItem

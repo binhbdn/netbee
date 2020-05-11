@@ -72,7 +72,7 @@
                                                                 <label for="firstName3">
                                                                     Quốc gia
                                                                 </label>
-                                                                <multiselect :options="nations" :custom-label="nameWithLang" v-model="data.nation"  :searchable="false" :allow-empty="false" :show-labels="true" placeholder="Chọn quốc gia"></multiselect>
+                                                                <multiselect :options="nations" :custom-label="nameWithLang" v-model="data.nation"  :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
