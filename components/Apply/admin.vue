@@ -78,9 +78,9 @@
                                                     </thead>
                                                     <tr v-for="(item, index) in ApplyWait" :key="index">
                                                         <td>{{item.id}}</td>
-                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
-                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{item.name_company}}</td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
@@ -122,9 +122,9 @@
                                                     </thead>
                                                     <tr v-for="(item, index) in ApplyApproved" :key="index">
                                                         <td>{{item.id}}</td>
-                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
-                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{item.name_company}}</td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
@@ -159,9 +159,9 @@
                                                     </thead>
                                                     <tr v-for="(item, index) in ApplyRefuse" :key="index">
                                                         <td>{{item.id}}</td>
-                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
-                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{item.name_company}}</td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
@@ -172,7 +172,6 @@
                                                                         </button>
                                                                         <div class="dropdown-menu" style="left: -25px!important;">
                                                                             <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)"><i class="far fa-check-circle"></i> Duyệt lại</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="DraftApply(item.id)"><i class="fad fa-trash"></i> Xóa</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -197,10 +196,14 @@
                                                     <tbody class="tab-table">
                                                         <tr v-for="(item, index) in AllApply" :key="index">
                                                             <td>{{item.id}}</td>
-                                                            <td>{{item.jobs.title}}</td>
+                                                            <td>{{item.title}}</td>
                                                             <td>{{item.name}}</td>
-                                                            <td></td>
-                                                            <td>{{item.jobs.user.name}}</td>
+                                                            <td>
+                                                                <i class="fad fa-exclamation-triangle warning" title="Chờ duyệt" style="font-size: 25px" v-if="item.status == 1"></i>
+                                                                <i class="fad fa-times-circle danger" title="Từ chối" style="font-size: 25px" v-if="item.status == 4"></i>
+                                                                <i class="fad fa-check-circle success" title="Đã duyệt" style="font-size: 25px" v-if="item.status == 2"></i>
+                                                            </td>
+                                                            <td>{{item.name_company}}</td>
                                                             <td>{{ConvertDate(item.created_at)}}</td>
                                                             <td>
                                                                 <div class="action-btns">
@@ -215,7 +218,6 @@
                                                                                 <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.status == 2 && item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
                                                                                 <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.status == 2 && item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
                                                                                 <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 4"><i class="far fa-check-circle"></i> Duyệt lại</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="DraftApply(item.id)" v-if="item.status == 4"><i class="fad fa-trash"></i> Xóa</a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -282,6 +284,7 @@ export default {
         fetch() {
             this.$axios.$get('apply/getApplyWait').then((response)=>{
                 this.ApplyWait=response.data;
+                console.log(this.ApplyWait)
 	        });
 
         },
@@ -369,37 +372,6 @@ export default {
                     } )
                 }
 	        });
-        },
-        DraftApply(id){
-            try{
-                this.$swal({
-                    title: 'Bạn có chắc chắn?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Xác nhận',
-                    cancelButtonText: 'Hủy!',
-                    showCloseButton: true,
-                    showLoaderOnConfirm: true
-                }).then((result) =>{
-                    this.$axios.$get(`apply/DraftApply/${id}`).then((response)=>{
-                        if(response.status == 200){
-                            this.$swal('Thành công', response.message, 'success');
-                            location.reload()
-                        }else{
-                            this.$swal(
-                                'Lỗi!',
-                                response.message,
-                                'error'
-                            )
-                        }
-                    });
-                } )
-            } catch (error) {
-                this.$swal(
-                    'Lỗi!',
-                    'Lỗi xóa!',
-                    'error')
-            }
         },
         // search(){
         //     this.$axios.$get(

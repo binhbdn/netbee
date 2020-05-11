@@ -56,11 +56,14 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false" @click="getRefuseApply">Từ chối</a>
                                             </li>
+                                            <!-- <li class="nav-item">
+                                                <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false">Đã tuyển</a>
+                                            </li> -->
                                             <li class="nav-item">
                                                 <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" aria-controls="about" role="tab" aria-selected="false" @click="getAllApply">Tất cả</a>
                                             </li>
                                         </ul>
-                                        <div class="tab-content tab-table">
+                                        <div class="tab-content ">
                                             <div class="tab-pane active" id="home" aria-labelledby="home-tab" role="tabpanel">
                                                 <table class="table table-hover mb-0 zero-configuration">
                                                     <thead>
@@ -75,23 +78,15 @@
                                                     </thead>
                                                     <tr v-for="(item, index) in ApplyWait" :key="index">
                                                         <td>{{item.id}}</td>
-                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
-                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{item.name_company}}</td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
-                                                                <div class="btn-dropdown ">
-                                                                    <div class="btn-group dropdown actions-dropodown">
-                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            Chọn thao tác
-                                                                        </button>
-                                                                        <div class="dropdown-menu" style="left: -25px!important;">
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)"><i class="far fa-check-circle"></i> Duyệt</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="RefuseApply(item.id)"><i class="far fa-times-circle"></i> Từ chối</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                <button type="button" class="btn btn-danger px-2 py-75 waves-effect waves-light" @click="RefuseApply(item.id)">
+                                                                    Hủy bỏ
+                                                                </button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -119,24 +114,15 @@
                                                     </thead>
                                                     <tr v-for="(item, index) in ApplyApproved" :key="index">
                                                         <td>{{item.id}}</td>
-                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
-                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{item.name_company}}</td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
-                                                                <div class="btn-dropdown ">
-                                                                    <div class="btn-group dropdown actions-dropodown">
-                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            Chọn thao tác
-                                                                        </button>
-                                                                        <div class="dropdown-menu" style="left: -25px!important;">
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="RefuseApply(item.id)"><i class="far fa-times-circle"></i> Từ chối</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
+                                                                    Chi tiết
+                                                                </button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -156,23 +142,15 @@
                                                     </thead>
                                                     <tr v-for="(item, index) in ApplyRefuse" :key="index">
                                                         <td>{{item.id}}</td>
-                                                        <td>{{item.jobs.title}}</td>
+                                                        <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
-                                                        <td>{{item.jobs.user.name}}</td>
+                                                        <td>{{item.name_company}}</td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
-                                                                <div class="btn-dropdown ">
-                                                                    <div class="btn-group dropdown actions-dropodown">
-                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            Chọn thao tác
-                                                                        </button>
-                                                                        <div class="dropdown-menu" style="left: -25px!important;">
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)"><i class="far fa-check-circle"></i> Duyệt lại</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="DraftApply(item.id)"><i class="fad fa-trash"></i> Xóa</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
+                                                                    Chi tiết
+                                                                </button>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -186,6 +164,7 @@
                                                             <th>Tên công việc</th>
                                                             <th>Tên ứng viên</th>
                                                             <th>Trạng thái</th>
+                                                            <th>Bonus</th>
                                                             <th>Nhà tuyển dụng</th>
                                                             <th>Thời gian nộp</th>
                                                             <th>Hành động</th>
@@ -194,28 +173,22 @@
                                                     <tbody class="tab-table">
                                                         <tr v-for="(item, index) in AllApply" :key="index">
                                                             <td>{{item.id}}</td>
-                                                            <td>{{item.jobs.title}}</td>
+                                                            <td>{{item.title}}</td>
                                                             <td>{{item.name}}</td>
+                                                            <td>
+                                                                <i class="fad fa-exclamation-triangle warning" title="Chờ duyệt" style="font-size: 25px" v-if="item.status == 1"></i>
+                                                                <i class="fad fa-times-circle danger" title="Từ chối" style="font-size: 25px" v-if="item.status == 4"></i>
+                                                                <i class="fad fa-check-circle success" title="Đã duyệt" style="font-size: 25px" v-if="item.status == 2"></i>
+                                                            </td>
                                                             <td></td>
-                                                            <td>{{item.jobs.user.name}}</td>
+                                                            
+                                                            <td>{{item.name_company}}</td>
                                                             <td>{{ConvertDate(item.created_at)}}</td>
                                                             <td>
                                                                 <div class="action-btns">
-                                                                    <div class="btn-dropdown ">
-                                                                        <div class="btn-group dropdown actions-dropodown">
-                                                                            <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                Chọn thao tác
-                                                                            </button>
-                                                                            <div class="dropdown-menu" style="left: -25px!important;">
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 1"><i class="far fa-check-circle"></i> Duyệt</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="RefuseApply(item.id)" v-if="item.status != 4"><i class="far fa-times-circle"></i> Từ chối</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.status == 2 && item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.status == 2 && item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 4"><i class="far fa-check-circle"></i> Duyệt lại</a>
-                                                                                <a class="dropdown-item" style="margin-top:5px" @click="DraftApply(item.id)" v-if="item.status == 4"><i class="fad fa-trash"></i> Xóa</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
+                                                                        Chi tiết
+                                                                    </button>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -297,19 +270,6 @@ export default {
                 this.AllApply=response.data;
 	        });
         },
-        ApprovedApply(id){
-            this.$axios.$get(`apply/ApproveApply/${id}`).then((response)=>{
-                if(response.status == 200){
-                    this.$swal(
-                        'Thành công',
-                        response.message,
-                        'success'
-                    ).then( function (){
-                        location.reload()
-                    } )
-                }
-	        });
-        },
         RefuseApply(id){
             try{
                 this.$swal({
@@ -322,63 +282,6 @@ export default {
                     showLoaderOnConfirm: true
                 }).then((result) =>{
                     this.$axios.$get(`apply/RefuseApply/${id}`).then((response)=>{
-                        if(response.status == 200){
-                            this.$swal('Thành công', response.message, 'success');
-                            location.reload()
-                        }else{
-                            this.$swal(
-                                'Lỗi!',
-                                response.message,
-                                'error'
-                            )
-                        }
-                    });
-                } )
-            } catch (error) {
-                this.$swal(
-                    'Lỗi!',
-                    'Lỗi xóa!',
-                    'error')
-            }
-        },
-        HideApply(id){
-            this.$axios.$get(`apply/HideApply/${id}`).then((response)=>{
-                if(response.status == 200){
-                    this.$swal(
-                        'Thành công',
-                        response.message,
-                        'success'
-                    ).then( function (){
-                        location.reload()
-                    } )
-                }
-	        });
-        },
-        ShowApply(id){
-            this.$axios.$get(`apply/ShowApply/${id}`).then((response)=>{
-                if(response.status == 200){
-                    this.$swal(
-                        'Thành công',
-                        response.message,
-                        'success'
-                    ).then( function (){
-                        location.reload()
-                    } )
-                }
-	        });
-        },
-        DraftApply(id){
-            try{
-                this.$swal({
-                    title: 'Bạn có chắc chắn?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Xác nhận',
-                    cancelButtonText: 'Hủy!',
-                    showCloseButton: true,
-                    showLoaderOnConfirm: true
-                }).then((result) =>{
-                    this.$axios.$get(`apply/DraftApply/${id}`).then((response)=>{
                         if(response.status == 200){
                             this.$swal('Thành công', response.message, 'success');
                             location.reload()

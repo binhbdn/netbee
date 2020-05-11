@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Apply extends Model
 {
-    protected $table = 'apply';
+    protected $table = 'nb_applies';
 
     public $fillable = [
         'job_id',
@@ -21,6 +21,6 @@ class Apply extends Model
     ];
 
     public function Jobs(){
-        return $this->belongsTo('App\Models\NbJoblist', 'job_id')->with('user');
+        return $this->belongsTo('App\Models\NbJoblist', 'job_id');
     }
 }
