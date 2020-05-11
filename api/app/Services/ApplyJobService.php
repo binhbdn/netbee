@@ -7,11 +7,13 @@ use Auth;
 
 class ApplyJobService extends BaseService {
     
-    const   CHO_DUYET = 1, 
-            DA_DUYET = 2, 
-            DA_TUYEN = 3, 
-            TU_CHOI = 4;
-
+    const   CHO_DUYET = 1,
+            ADMIN_DUYET_CV = 2,
+            DA_TUYEN = 3,
+            TU_CHOI = 4,
+            ADMIN_DUYET_HO_SO = 5,
+            NTD_DUYET_HO_SO = 6;
+            
     const All = 0;
 
     const AN = 0,
@@ -36,6 +38,10 @@ class ApplyJobService extends BaseService {
 
     public function changeStatusApply($id, $status){
         return Apply::where('id',$id)->update(['status'=>$status]);
+    }
+
+    public function refuse($id, $status, $refuse){
+        return Apply::where('id',$id)->update(['status' => $status ,'reason_for_rejection' => $refuse]);
     }
 
     public function getDetailApply($id) {
@@ -67,5 +73,9 @@ class ApplyJobService extends BaseService {
                     ->where($condition)
                     ->where('nb_applies.user_create' ,Auth::user()->id)
                     ->get();
+    }
+
+    public function getBonus($id){
+        return NbJoblist::where('id', $id)->first()->bonus;
     }
 }

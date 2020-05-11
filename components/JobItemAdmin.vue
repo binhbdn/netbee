@@ -15,7 +15,7 @@
         <div class="card-content h-100">
             <div class="text-center p-1">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="job.avatar != null && job.avatar.startsWith('https') ? job.avatar : `/uploads/users/avatars/${job.avatar}`" height="100%" :alt="`${job.avatar}`" style="object-fit: scale-down; max-height: 100%; max-width: 100%;">
+                    <img v-lazy="job.user.avatar != null && job.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 100%; max-width: 100%;">
                 </a>
             </div>
             <div class="remove-border-right">
@@ -24,10 +24,10 @@
                     <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 </div>
                 <div class="item-name">
-                    <a :href="`/cong-ty/${job.id_created}/${ChangeToSlug(job.name)}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.name}`"> {{ job.name }}</span></a>
+                    <a :href="`/cong-ty/${job.id_created}/${ChangeToSlug(job.user.name)}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.user.name }}</span></a>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
-                    <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-location-arrow"></i> {{ job.nation_name }}</p>
+                    <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-location-arrow"></i> {{ job.nation.name }}</p>
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">

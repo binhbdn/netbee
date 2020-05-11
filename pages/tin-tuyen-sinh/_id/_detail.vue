@@ -318,16 +318,35 @@
                                 <ValidationObserver ref="applyJob" v-slot="{ valid }">
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <div class="file-input"> 
-                                                        <label for="file" v-if="file_cv.length == 0"><i class="fas fa-file-upload" style="color: #000000c7;"></i> Chọn file</label>
-                                                        <label for="file" v-else><i class="fas fa-file-upload" style="color: #000000c7;"></i> {{file_cv[0].name}}</label>
-                                                        <input type="file" id="file" @change="onInputChange" > 
+                                            <ValidationProvider
+                                            
+                                            v-slot="{ errors }">
+                                                <div class="form-group">
+                                                    <div class="form-field">
+                                                        <div class="file-input"> 
+                                                            <label for="file" v-if="file_cv.length == 0"><i class="fas fa-file-upload" style="color: #000000c7;"></i> Chọn file</label>
+                                                            <label for="file" v-else><i class="fas fa-file-upload" style="color: #000000c7;"></i> {{file_cv[0].name}}</label>
+                                                            <input type="file" id="file" @change="onInputChange" > 
+                                                        </div>
+                                                        <p class="text-center" style="font-size: 12px">Định dạng file: *.doc, *.docx, *.xls, *.xlsx, *.pdf, *.txt, *.rtf</p>
+                                                        <span style="color: red">{{errors[0]}}</span>
                                                     </div>
-                                                    <p class="text-center" style="font-size: 12px">Định dạng file: *.doc, *.docx, *.xls, *.xlsx, *.pdf, *.txt, *.rtf</p>
                                                 </div>
-                                            </div>
+                                            </ValidationProvider>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <ValidationProvider
+                                            rules="required"
+                                            v-slot="{ errors }">
+                                                <div class="form-group">
+                                                    <div class="form-field">
+                                                        <label for="name">Họ tên</label>
+                                                        <input type="text" id="name" class="form-control" v-model="name">
+                                                        <span style="color: red">{{errors[0]}}</span>
+                                                    </div>
+                                                </div>
+                                            </ValidationProvider>
                                         </div>
                                         <!-- <div class="col-12">
                                             <div class="form-group">
@@ -380,10 +399,35 @@ import {
 } from "vee-validate/dist/vee-validate.full";
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 
-
-
 extend("required", {
   message: (field, values) => "Dữ liệu nhập vào không được để trống.",
+});
+extend("email", {
+  message: (field, values) => "Email không đúng định dạng"
+});
+var errorMessage =
+  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+// create custom rule
+extend("customPassword", {
+  message: field =>"Mật khẩu" + errorMessage,
+  validate: value => {
+    var notTheseChars = /["'?&/<>\s]/;
+    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    var containsRequiredChars = mustContainTheseChars.test(value);
+    if (containsRequiredChars && !containsForbiddenChars) {
+      return true;
+    } else {
+      if (containsForbiddenChars) {
+        errorMessage =
+          ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
+      } else {
+        errorMessage =
+          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+      }
+      return false;
+    }
+  }
 });
 export default {
     components: {
@@ -407,7 +451,6 @@ export default {
             value: [],
             chooseNation: [],
             name: null,
-            phone: null,
         }
     },
     async asyncData({$axios, route}) {
@@ -539,15 +582,14 @@ export default {
         },
         resetData(){
             this.file_cv = []
+            this.name = ''
             this.value = []
             this.chooseNation = []
         },
         async applyJob(){
-            console.log(this.$route.params.id)
             var data = new FormData()
             data.append('file_cv', this.file_cv[0])
             data.append('name', this.name)
-            data.append('phone', this.phone)
             data.append('job_id', this.$route.params.id)
             const isValid = await this.$refs.applyJob.validate();
             if(isValid) {
