@@ -242,7 +242,12 @@ class TinTuyenService extends BaseService {
 
     private function getJobValid()
     {
-        return $this->nbJobList->with(['user', 'nation'])
+        return $this->nbJobList->with(['user' => function ($q) {
+                $q->select('id', 'name', 'avatar');
+            }])
+            ->with(['nation' => function ($q) {
+                $q->select('id', 'name');
+            }])
             ->whereHas('user', function ($query) {
                 $query->where([
                     'block' => self::UN_BLOCK,
