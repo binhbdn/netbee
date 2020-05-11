@@ -72,6 +72,7 @@
                                                             <th>Tên công việc</th>
                                                             <th>Tên ứng viên</th>
                                                             <th>Nhà tuyển dụng</th>
+                                                            <th>Bonus</th>
                                                             <th>Thời gian nộp</th>
                                                             <th>Hành động</th>
                                                         </tr>
@@ -81,6 +82,12 @@
                                                         <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
                                                         <td>{{item.name_company}}</td>
+                                                        <td>
+                                                            <span v-if="item.time_bonus != null && item.bonus != null" style="color: #fc205c">
+                                                                {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                            </span>
+                                                            <span v-else>Không bonus</span>
+                                                        </td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
@@ -116,6 +123,7 @@
                                                             <th>Tên công việc</th>
                                                             <th>Tên ứng viên</th>
                                                             <th>Nhà tuyển dụng</th>
+                                                            <th>Bonus</th>
                                                             <th>Thời gian nộp</th>
                                                             <th>Hành động</th>
                                                         </tr>
@@ -125,6 +133,12 @@
                                                         <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
                                                         <td>{{item.name_company}}</td>
+                                                        <td>
+                                                            <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
+                                                                {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                            </span>
+                                                            <span v-else>Không bonus</span>
+                                                        </td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
@@ -153,6 +167,7 @@
                                                             <th>Tên công việc</th>
                                                             <th>Tên ứng viên</th>
                                                             <th>Nhà tuyển dụng</th>
+                                                            <th>Bonus</th>
                                                             <th>Thời gian nộp</th>
                                                             <th>Hành động</th>
                                                         </tr>
@@ -162,6 +177,12 @@
                                                         <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
                                                         <td>{{item.name_company}}</td>
+                                                        <td>
+                                                            <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
+                                                                {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                            </span>
+                                                            <span v-else>Không bonus</span>
+                                                        </td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
@@ -189,6 +210,7 @@
                                                             <th>Tên ứng viên</th>
                                                             <th>Trạng thái</th>
                                                             <th>Nhà tuyển dụng</th>
+                                                            <th>Bonus</th>
                                                             <th>Thời gian nộp</th>
                                                             <th>Hành động</th>
                                                         </tr>
@@ -204,6 +226,12 @@
                                                                 <i class="fad fa-check-circle success" title="Đã duyệt" style="font-size: 25px" v-if="item.status == 2"></i>
                                                             </td>
                                                             <td>{{item.name_company}}</td>
+                                                            <td>
+                                                                <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
+                                                                    {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                                </span>
+                                                                <span v-else>Không bonus</span>
+                                                            </td>
                                                             <td>{{ConvertDate(item.created_at)}}</td>
                                                             <td>
                                                                 <div class="action-btns">

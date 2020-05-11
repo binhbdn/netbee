@@ -28,9 +28,9 @@ class ApplyJobService extends BaseService {
             $data = $this->getApplyAdmin($status);
         } else if ($userRole == self::ROLE_HR) {
             $data = $this->getApplyHr($status);
-        } //else {
-        //     $query = $this->getJobByRoleOther();
-        // }
+        } else if ($userRole == self::ROLE_COMPANY) {
+            $data = $this->getApplyCompany($status);
+        }
         return $data;
     }
 
@@ -51,7 +51,7 @@ class ApplyJobService extends BaseService {
         if($status){
             $condition = ['nb_applies.status'=>$status];
         }
-        return Apply::select('nb_applies.*','users.name as name_company', 'nb_joblists.title')
+        return Apply::select('nb_applies.*','users.name as name_company', 'nb_joblists.currency', 'nb_joblists.bonus', 'nb_joblists.time_bonus', 'nb_joblists.title')
                     ->Join('nb_joblists', 'nb_applies.job_id','=','nb_joblists.id')
                     ->Join('users', 'nb_joblists.id_created', '=', 'users.id')
                     ->where($condition)->get();
@@ -61,11 +61,23 @@ class ApplyJobService extends BaseService {
         if($status){
             $condition = ['nb_applies.status'=>$status];
         }
-        return Apply::select('nb_applies.*','users.name as name_company', 'nb_joblists.time_bonus', 'nb_joblists.bonus','nb_joblists.title')
+        return Apply::select('nb_applies.*','users.name as name_company', 'nb_joblists.currency', 'nb_joblists.title')
                     ->Join('nb_joblists', 'nb_applies.job_id','=','nb_joblists.id')
                     ->Join('users', 'nb_joblists.id_created', '=', 'users.id')
                     ->where($condition)
                     ->where('nb_applies.user_create' ,Auth::user()->id)
+                    ->get();
+    }
+    public function getApplyCompany($status){
+        $condition = [];
+        if($status){
+            $condition = ['nb_applies.status'=>$status];
+        }
+        return Apply::select('nb_applies.*','users.name as name_company', 'nb_joblists.currency', 'nb_joblists.bonus', 'nb_joblists.time_bonus', 'nb_joblists.title')
+                    ->Join('nb_joblists', 'nb_applies.job_id','=','nb_joblists.id')
+                    ->Join('users', 'nb_joblists.id_created', '=', 'users.id')
+                    ->where($condition)
+                    ->where('nb_joblists.id_created' ,Auth::user()->id)
                     ->get();
     }
 }
