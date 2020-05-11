@@ -27,4 +27,8 @@ class BaseService {
     const
         NEW_VIP = 2,
         NEW_HOT = 1;
+
+    const
+        DEFAULT = 'default',
+        BANK = 'bank';
 }
