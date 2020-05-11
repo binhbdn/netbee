@@ -9,35 +9,37 @@
                     <div class="row p-1">
                         <div class="col-lg-2 d-flex align-items-center">
                             <div class="avatar-company">
-                                <img v-lazy="`/uploads/users/avatars/${tintuc.user.avatar}`" :alt="`${tintuc.user.avatar}`" width="100%">
+                                <img v-lazy="`/uploads/users/avatars/${tintuyendung.user.avatar}`" :alt="`${tintuyendung.user.avatar}`" width="100%">
                             </div>
                         </div>
                         <div class="col-lg-7">
                             <div class="company-job-title">
-                                <h1 class="font-weight-bold">{{ tintuc.title }}</h1>
-                                <a :href="`/cong-ty/${tintuc.id_created}/${ChangeToSlug(tintuc.user.name)}`"><h4 class="font-weight-bold text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuc.user.name}`"> {{ tintuc.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
-                                <p><span class="font-weight-600">Loại tin: </span><span class="badge background-default badge-md">{{ tintuc.type == 3 ? 'Tu nghiệp sinh' : tintuc.type == 2 ? 'Du học sinh' : 'Xuất khẩu lao động' }}</span></p>
-                                <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuc.nation.name }}</p>
-                                <p><span class="font-weight-600" v-if="tintuc.type != 2">Mức lương: </span> <span class="font-weight-600" v-if="tintuc.type == 2">Học phí: </span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
-                                <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ ConvertDate(tintuc.expiration_date) }}</p>
+                                <h1 class="font-weight-bold">{{ tintuyendung.title }}</h1>
+                                <a :href="`/cong-ty/${tintuyendung.id_created}/${ChangeToSlug(tintuyendung.user.name)}`"><h4 class="font-weight-bold text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
+                                <p><span class="font-weight-600">Loại tin: </span><span class="badge background-default badge-md">{{ tintuyendung.type == 3 ? 'Tu nghiệp sinh' : tintuyendung.type == 2 ? 'Du học sinh' : 'Xuất khẩu lao động' }}</span></p>
+                                <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuyendung.nation.name }}</p>
+                                <p><span class="font-weight-600" v-if="tintuyendung.type != 2">Mức lương: </span> <span class="font-weight-600" v-if="tintuyendung.type == 2">Học phí: </span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
+                                <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ ConvertDate(tintuyendung.expiration_date) }}</p>
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div class="row" style="border:#dee2e6 solid 1px;height: 100%">
-                                <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px;border-bottom:#dee2e6 solid 1px;" data-toggle="modal" :data-target="!$auth.loggedIn?'#loginModal':'#ApplyModal'">
-                                    <a class="btn-netbee btn" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i></a>
+                            <div class="row" style="border:#dee2e6 solid 1px;height: 40%">
+                                <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                    <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
-                                <div v-if="$auth.loggedIn" class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px">
-                                    <a class="btn btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
+                                    <a class="btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
-                                <div v-if="!$auth.loggedIn" class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
-                                    <a class="btn btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/tin-tuyen-sinh/99/xuat-khau-lao-dong&amp;src=sdkpreparse" class="btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
                                 </div>
-                                <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
-                                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/tin-tuyen-sinh/99/xuat-khau-lao-dong&amp;src=sdkpreparse" class="btn btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
+                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
+                                    <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                 </div>
-                                <div class="col-sm-6 col-xl-6 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
-                                    <a class="btn btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
+                            </div>
+                            <div class="row m-t-10" style="border:#dee2e6 solid 1px;height: 40%">
+                                <div class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" :data-target="!$auth.loggedIn?'#loginModal':'#ApplyModal'">
+                                    <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                 </div>
                             </div>
                         </div>
@@ -62,16 +64,16 @@
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="px-1">
-                                        <p><span class="font-weight-600">Địa điểm:</span> {{ tintuc.workplace }}</p>
-                                        <p v-if="tintuc.type == 2"><span class="font-weight-600">Trường:</span> {{ tintuc.school_name }}</p>
-                                        <p><span class="font-weight-600">Tuổi:</span> {{ tintuc.age_start }} {{ tintuc.age_end? ' - '+tintuc.age_end+' tuổi' : ' tuổi trở lên' }}</p>
-                                        <p v-if="tintuc.type != 2"><span class="font-weight-600">Lương:</span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
-                                        <p v-if="tintuc.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuc.salary_start) }}{{ tintuc.currency }} ~ {{ FormatPrice(tintuc.salary_end) }}{{ tintuc.currency }}</p>
-                                        <p v-if="tintuc.type != 2"><span class="font-weight-600">Hình thức làm việc:</span> {{ tintuc.form_work == 1 ? 'Toàn thời gian' : tintuc.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
-                                        <p v-if="tintuc.time_bonus"><span class="font-weight-600">Bonus:</span> {{ tintuc.time_bonus == 1 ? tintuc.bonus : tintuc.time_bonus == 2 ? tintuc.bonus * 1.5 : tintuc.bonus * 3 }}{{ tintuc.currency }}</p>
-                                        <p><span class="font-weight-600">Chi phí xuất cảnh:</span> {{ tintuc.subsidy }}{{ tintuc.currency }}</p>
-                                        <p><span class="font-weight-600">Ngày bắt đầu nhận hồ sơ:</span> {{ ConvertDate(tintuc.date_start) }}</p>
-                                        <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuc.expected_date) }}</p>
+                                        <p><span class="font-weight-600">Địa điểm:</span> {{ tintuyendung.workplace }}</p>
+                                        <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Trường:</span> {{ tintuyendung.school_name }}</p>
+                                        <p><span class="font-weight-600">Tuổi:</span> {{ tintuyendung.age_start }} {{ tintuyendung.age_end? ' - '+tintuyendung.age_end+' tuổi' : ' tuổi trở lên' }}</p>
+                                        <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Lương:</span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
+                                        <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
+                                        <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Hình thức làm việc:</span> {{ tintuyendung.form_work == 1 ? 'Toàn thời gian' : tintuyendung.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
+                                        <p v-if="tintuyendung.time_bonus"><span class="font-weight-600">Bonus:</span> {{ tintuyendung.time_bonus == 1 ? tintuyendung.bonus : tintuyendung.time_bonus == 2 ? tintuyendung.bonus * 1.5 : tintuyendung.bonus * 3 }}{{ tintuyendung.currency }}</p>
+                                        <p><span class="font-weight-600">Chi phí xuất cảnh:</span> {{ tintuyendung.subsidy }}{{ tintuyendung.currency }}</p>
+                                        <p><span class="font-weight-600">Ngày bắt đầu nhận hồ sơ:</span> {{ ConvertDate(tintuyendung.date_start) }}</p>
+                                        <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuyendung.expected_date) }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +85,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p class="px-1" v-html="tintuc.description" style="white-space: pre-line;"></p>
+                                    <p class="px-1" v-html="tintuyendung.description" style="white-space: pre-line;"></p>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +96,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p class="px-1" v-html="tintuc.request" style="white-space: pre-line;"></p>
+                                    <p class="px-1" v-html="tintuyendung.request" style="white-space: pre-line;"></p>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +107,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p class="px-1" v-html="tintuc.benefit" style="white-space: pre-line;"></p>
+                                    <p class="px-1" v-html="tintuyendung.benefit" style="white-space: pre-line;"></p>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +118,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p class="px-1" v-html="tintuc.cv_content" style="white-space: pre-line;"></p>
+                                    <p class="px-1" v-html="tintuyendung.cv_content" style="white-space: pre-line;"></p>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +135,7 @@
                                         <div>
                                             <button class="btn  btn-warning w-75" style="width: 214px !important; color: #000; border-color: #ffb701 !important; background-color: #ffb701 !important;"><i class="fad fa-paper-plane"></i> Nộp hồ sơ</button>
                                         </div>
-                                        <i>Hạn nộp hồ sơ: {{ConvertDate(tintuc.expiration_date)}}</i><br>
+                                        <i>Hạn nộp hồ sơ: {{ConvertDate(tintuyendung.expiration_date)}}</i><br>
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +172,7 @@
                 </div>
                 <div class="card-content collapse show">
                 <div class="card-body">
-                    <JobsList1Col :DataList="tintuc.type == 1 ? arrayJobXKLD : tintuc.type == 2 ? arrayJobDHS : arrayJobTNS"></JobsList1Col>
+                    <JobsList1Col :DataList="tintuyendung.type == 1 ? arrayJobXKLD : tintuyendung.type == 2 ? arrayJobDHS : arrayJobTNS"></JobsList1Col>
                 </div>
                 </div>
             </div>
@@ -452,7 +454,6 @@ export default {
     },
     data() {
         return {
-            tintuc: [],
             arrayForCompany: [],
             save: false,
             report: '',
@@ -475,7 +476,7 @@ export default {
         let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=2`)
         let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
         return {
-            tintuc: detailRes.data,
+            tintuyendung: detailRes.data,
             arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
             arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
             arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
@@ -486,20 +487,20 @@ export default {
     },
     head() {
         return {
-            title: this.tintuc.title,
+            title: this.tintuyendung.title,
             meta: [
-                { hid: 'description', name: 'description', content: this.tintuc.title },
-                { hid: 'keywords', name: 'keywords', content: this.tintuc.title},
+                { hid: 'description', name: 'description', content: this.tintuyendung.title },
+                { hid: 'keywords', name: 'keywords', content: this.tintuyendung.title},
                 { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
-                { hid: 'og:title', name: 'og:title', content: this.tintuc.title},
-                { hid: 'og:description', name: 'og:description', content: this.tintuc.title},
-                { hid: 'og:image', name: 'og:image', content: this.tintuc.user.avatar},
+                { hid: 'og:title', name: 'og:title', content: this.tintuyendung.title},
+                { hid: 'og:description', name: 'og:description', content: this.tintuyendung.title},
+                { hid: 'og:image', name: 'og:image', content: this.tintuyendung.user.avatar},
             ]
         }
     },
     methods: {
         saveJob() {
-            this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuc.id}).then((response)=>{
+            this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuyendung.id}).then((response)=>{
                 if(response.status == 200) {
                     this.$swal(
                     'Thành công!',
@@ -548,7 +549,7 @@ export default {
             this.$auth.loginWith('google')
         },
         reportJob() {
-            this.$axios.$post(`tintuyendung/report`,{id_job: this.tintuc.id,report: this.report}).then((response)=>{
+            this.$axios.$post(`tintuyendung/report`,{id_job: this.tintuyendung.id,report: this.report}).then((response)=>{
                 if(response.status == 200) {
                     this.$swal(
                     'Thành công!',
@@ -635,15 +636,12 @@ export default {
         }
     },
     mounted() {
-        this.$axios.$get(`getTinTuyenDungForCompany/${this.tintuc.id_created}?limit=5`).then((response)=>{
+        this.$axios.$get(`getTinTuyenDungForCompany/${this.tintuyendung.id_created}?limit=5`).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
         });
-        this.$axios.$get(`getDetailTinTuyenDung/${this.$route.params.id}`).then((response)=>{
-            this.tintuc = response.data
-        });
         if(this.$auth.loggedIn) {
-            this.$axios.$post(`tintuyendung/postView`,{id_job: this.tintuc.id}).then((response)=>{});
-            this.$axios.$get(`tintuyendung/getSave`,{id_job: this.tintuc.id}).then((response)=>{
+            this.$axios.$post(`tintuyendung/postView`,{id_job: this.tintuyendung.id}).then((response)=>{});
+            this.$axios.$get(`tintuyendung/getSave`,{id_job: this.tintuyendung.id}).then((response)=>{
                 this.save = response.data
             });
         }
@@ -660,31 +658,51 @@ export default {
 }
 .btn-netbee {
     color: #ffb701 !important;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 .btn-save {
     color: #55ce63 !important;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 .btn-fb {
     color: #4267b2 !important;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 .btn-report {
     color: #f62d51 !important;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 .btn-netbee:hover {
     background: #ffb701 !important;
     color: #fff !important;
+    width:100%;
+    height: 70%;
 }
 .btn-save:hover {
     background: #55ce63 !important;
     color: #fff !important;
+    width:100%;
+    height: 70%;
 }
 .btn-fb:hover {
     background: #4267b2 !important;
     color: #fff !important;
+     width:100%;
+    height: 70%;
 }
 .btn-report:hover {
     background: #f62d51 !important;
     color: #fff !important;
+    width:100%;
+    height: 70%;
 }
 .btn-verify {
     color: #4267b2 !important;

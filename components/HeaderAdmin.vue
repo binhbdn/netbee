@@ -9,8 +9,8 @@
                             </ul>
                             <ul class="nav navbar-nav bookmark-icons">
                                 <li class="nav-item d-none d-lg-block">
-                                    <a class="nav-link" href="/admin/tin-tuyen-dung/tao" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
-                                        <i class="ficon feather icon-check-square warning"></i><span style="font-size:1.4rem">Tạo tin tuyển dụng</span>
+                                    <a class="btn bg-netbee" href="/admin/tin-tuyen-dung/tao" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
+                                        <span style="font-size:1rem">Tạo tin tuyển dụng</span>
                                     </a>
                                 </li>
                             </ul>
