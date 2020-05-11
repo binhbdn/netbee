@@ -56,14 +56,11 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false" @click="getRefuseApply">Từ chối</a>
                                             </li>
-                                            <!-- <li class="nav-item">
-                                                <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false">Đã tuyển</a>
-                                            </li> -->
                                             <li class="nav-item">
                                                 <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" aria-controls="about" role="tab" aria-selected="false" @click="getAllApply">Tất cả</a>
                                             </li>
                                         </ul>
-                                        <div class="tab-content ">
+                                        <div class="tab-content tab-table">
                                             <div class="tab-pane active" id="home" aria-labelledby="home-tab" role="tabpanel">
                                                 <table class="table table-hover mb-0 zero-configuration">
                                                     <thead>

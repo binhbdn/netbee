@@ -115,6 +115,7 @@ export default {
     methods:{
         async fetch(){
             let getTin = await this.$axios.$get('/tintuyendung/getTinTuyenDung')
+            console.log(getTin.data.data)
             this.tinTuyenDung = getTin.data.data
         },
         search(){
