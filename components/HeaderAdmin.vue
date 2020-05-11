@@ -7,10 +7,10 @@
                             <ul class="nav navbar-nav">
                                 <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
                             </ul>
-                            <ul class="nav navbar-nav bookmark-icons">
+                            <ul class="nav navbar-nav bookmark-icons" v-if="$auth.user.role == 2 || $auth.user.role == 4">
                                 <li class="nav-item d-none d-lg-block">
-                                    <a class="nav-link" href="/admin/tin-tuyen-dung/tao" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
-                                        <i class="ficon feather icon-check-square warning"></i><span style="font-size:1.4rem">Tạo tin tuyển dụng</span>
+                                    <a class="btn bg-netbee" href="/admin/tin-tuyen-dung/tao" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
+                                        <span style="font-size:1rem">Tạo tin tuyển dụng</span>
                                     </a>
                                 </li>
                             </ul>
@@ -100,8 +100,6 @@ export default {
                 this.$axios
                 .get('/getNotification?page='+ this.page)
                 .then((response) => {
-                    console.log('hello')
-                    console.log(response.data.data.notifications.data)
                     if (response.data.data.notifications.data.length > 1) {
                         response.data.data.notifications.data.forEach((item) => this.notifications.push(item))
                         $state.loaded()

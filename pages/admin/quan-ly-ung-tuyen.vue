@@ -3,6 +3,7 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <adminApplyManage v-if="$auth.user.role == 4"></adminApplyManage>
+        <hrApplyManage v-if="$auth.user.role == 3"></hrApplyManage>
         <!-- <infinite-loading
                 v-if="tinTuyenDung.length"
                 spinner="bubbles"
@@ -15,6 +16,7 @@
 </template>
 <script>
 import adminApplyManage from '~/components/Apply/admin.vue';
+import hrApplyManage from '~/components/Apply/hr.vue';
 
 export default {
     name: 'IndexNews',
@@ -23,7 +25,8 @@ export default {
         title: 'Quản lý tin tuyển dụng',
     },
     components: {
-        adminApplyManage
+        adminApplyManage,
+        hrApplyManage
     },
     data() {
         return {

@@ -134,8 +134,7 @@
                                         <tab-content :before-change="checkValidateStep3" title="Yêu cầu">
                                             <ValidationObserver ref="step3" v-slot="{ valid3 }">
                                                 <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="col-6">
+                                                    <div class="col-6">
                                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                                 <div class="form-group">
                                                                     <label for="firstName3">
@@ -158,6 +157,8 @@
                                                                 </div>
                                                             </ValidationProvider>
                                                         </div>
+                                                    <div class="col-12">
+                                                        
                                                         <div class="form-group">
                                                             <label for="firstName3">
                                                                 Tuổi

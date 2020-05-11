@@ -152,7 +152,7 @@
                                                                 <p style="font-size:12px; text-align:center">Lượt xem</p>
                                                             </div>
                                                             <div class="col-6 pr-0 pl-0">
-                                                                <h3 class="text-center">0</h3>
+                                                                <h3 class="text-center">{{(item.applyers)}}</h3>
                                                                 <p style="font-size:12px; text-align:center">Ứng tuyển</p>
                                                             </div>
                                                         </div>
@@ -549,7 +549,8 @@ export default {
             + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
             ).then((response)=>{
 	             this.tinTuyenDung=response.data;
-	        });
+                console.log(this.tinTuyenDung)
+            });
         },
         async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){
             try {
