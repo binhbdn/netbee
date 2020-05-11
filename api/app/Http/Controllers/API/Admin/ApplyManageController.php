@@ -1,0 +1,116 @@
+<?php
+
+namespace App\Http\Controllers\API\Admin;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Services\ApplyJobService;
+use Response;
+use App\Http\Controllers\API\NotificationController;
+use App\Services\UserService;
+
+class ApplyManageController extends Controller
+{
+    protected $applyJobService;
+    protected $userService;
+    public function __construct(ApplyJobService $applyJobService, UserService $userService)
+    {
+        $this->applyJobService = $applyJobService;
+        $this->userService = $userService;
+    }
+
+    public function getApplyWait()
+    {   
+        $applys = $this->applyJobService->getApply($this->applyJobService::CHO_DUYET);
+        if($applys){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 
+        } else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function getApplyApproved() {
+        $applys = $this->applyJobService->getApply($this->applyJobService::DA_DUYET);
+        if($applys){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 
+        } else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function getRefuseApply() {
+        $applys = $this->applyJobService->getApply($this->applyJobService::TU_CHOI);
+        if($applys){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 
+        } else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function getAllApply() {
+        $applys = $this->applyJobService->getApply($this->applyJobService::All);
+        if($applys){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 
+        } else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function ApproveApply(Request $request){
+        $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::DA_DUYET);
+        $detail = $this->applyJobService->getDetailApply($request->id);
+        if($approve){
+            NotificationController::postNotification('Có 1 yêu cầu ứng tuyển vào tin '.$detail->Jobs['id_created'].' của bạn', $detail->user_create, 'https://netbee.vn/');
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function RefuseApply(Request $request){
+        $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::TU_CHOI);
+        $detail = $this->applyJobService->getDetailApply($request->id);
+        if($approve){
+            NotificationController::postNotification('Yêu cầu ứng tuyển công việc '.$detail->job_id.' đã bị từ chối', $detail->user_create, 'https://netbee.vn/');
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function HideApply(Request $request){
+        $check = $this->applyJobService->isPublic($request->id, $this->applyJobService::AN);
+        if($check){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function ShowApply(Request $request){
+        $check = $this->applyJobService->isPublic($request->id, $this->applyJobService::HIEN);
+        if($check){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function DraftApply(Request $request) {
+        $check = $this->applyJobService->draftApply($request->id);
+        if($check){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+}

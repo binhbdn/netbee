@@ -7,11 +7,12 @@ Route::namespace('API')->group(function () {
   Route::post('login', 'Auth\UserController@login');
   Route::post('loginfb', 'Auth\UserController@loginWithFacebook');
   Route::post('logingg', 'Auth\UserController@loginWithGoogle');
-  Route::get('getTinTucNew', 'TinTucController@getTinTucNew');
   Route::get('getTinTucNewLoading', 'TinTucController@getTinTucNewLoading');
-  Route::get('getTinTucSiteMap', 'TinTucController@getTinTucSiteMap');
-  Route::get('getTinTucCate', 'TinTucController@getTinTucCate');
-  Route::get('getDanhMucTinTuc', 'TinTucController@getDanhMucTinTuc');
+
+  Route::get('getTinTucNew', 'TinTucController@getTinTucNew');
+  Route::get('getTinTucSiteMap', 'TinTucController@getTinTucNew');
+  Route::get('getTinTucCate', 'TinTucController@getTinTucNew');
+
   Route::get('getDetailTinTuc/{id}', 'TinTucController@getDetailTinTuc');
   Route::get('getNationHome', 'HomeController@getNationHome');
   Route::get('getCategoriesJobHome', 'HomeController@getCategoriesJobHome');
@@ -84,6 +85,21 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::prefix('hoso')->group(function () {
         Route::post('getProfileUser', 'Admin\TeamplateCvController@getProfileUser');
         Route::post('getEducationUser', 'Admin\TeamplateCvController@getEducationUser');
+        Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');
+        Route::post('updateEducationUser', 'Admin\TeamplateCvController@updateEducationUser');
+        Route::post('insertEducationUserOne', 'Admin\TeamplateCvController@insertEducationUserOne');
+        Route::post('deleteDataEducation', 'Admin\TeamplateCvController@deleteDataEducation');
+      });
+      Route::prefix('apply')->group(function () {
+        Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');
+        Route::get('getApplyApproved', 'Admin\ApplyManageController@getApplyApproved');
+        Route::get('getRefuseApply', 'Admin\ApplyManageController@getRefuseApply');
+        Route::get('getAllApply', 'Admin\ApplyManageController@getAllApply');
+        Route::get('ApproveApply/{id}', 'Admin\ApplyManageController@ApproveApply');
+        Route::get('RefuseApply/{id}', 'Admin\ApplyManageController@RefuseApply');
+        Route::get('HideApply/{id}', 'Admin\ApplyManageController@HideApply');
+        Route::get('ShowApply/{id}', 'Admin\ApplyManageController@ShowApply');
+        Route::get('DraftApply/{id}', 'Admin\ApplyManageController@DraftApply');
       });
   });
 });

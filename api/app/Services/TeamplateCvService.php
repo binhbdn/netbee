@@ -44,7 +44,7 @@ class TeamplateCvService {
 
     public function getListEducationByIdUser($idUser)
     {
-        return $this->educationUser->where('id_profile_user','=',$idUser)->get();
+        return $this->educationUser->where('id_profile_user','=',$idUser)->where('deleted','=',0)->get();
     }
 
     public function updateProfile($data, $id)
@@ -54,7 +54,7 @@ class TeamplateCvService {
 
     public function updateEducation($data, $id)
     {
-        return $this->getJobById($id)->update($data);
+        return $this->getEducationById($id)->update($data);
     }
 
     public function deleteEducation($id)
@@ -66,7 +66,7 @@ class TeamplateCvService {
                     'deleted' => self::ACTIVE,
                     'updated_at' => Carbon::now()
                 ];
-                $delete = $this->update($data, $id);
+                $delete = $this->updateEducation($data, $id);
                 return [
                     'status'=> 200,
                     'message' => 'Đã xóa thành công',

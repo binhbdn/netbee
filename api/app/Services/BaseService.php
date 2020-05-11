@@ -23,4 +23,8 @@ class BaseService {
         JOB_LABOR_EXPORT = 1,
         JOB_OVERSEAS_STUDENT = 2,
         JOB_TRAINEES = 3;
+
+    const
+        NEW_VIP = 2,
+        NEW_HOT = 1;
 }

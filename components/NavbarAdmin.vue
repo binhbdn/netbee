@@ -33,6 +33,8 @@
                         </li>
                     </ul>
                 </li> 
+                <li :class="[{'active' : this.$route.name == 'quan-ly-ung-tuyen'}, 'nav-item']"><a @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 4"><i class="fad fa-folder-open"></i><span class="menu-title" data-i18n="User">Quản lý ứng tuyển</span></a>
+                </li>
                 <li :class="[{'active' : this.$route.name == 'admin-thong-tin-tai-khoan'}, 'nav-item']"><a @click="$router.push('/admin/thong-tin-tai-khoan')"><i class="feather icon-user" ></i><span class="menu-title" data-i18n="User">Thông tin tài khoản</span></a>
                 </li>
             </ul>
