@@ -100,8 +100,6 @@ export default {
                 this.$axios
                 .get('/getNotification?page='+ this.page)
                 .then((response) => {
-                    console.log('hello')
-                    console.log(response.data.data.notifications.data)
                     if (response.data.data.notifications.data.length > 1) {
                         response.data.data.notifications.data.forEach((item) => this.notifications.push(item))
                         $state.loaded()
