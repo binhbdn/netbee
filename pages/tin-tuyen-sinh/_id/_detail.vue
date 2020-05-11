@@ -318,21 +318,16 @@
                                 <ValidationObserver ref="applyJob" v-slot="{ valid }">
                                     <div class="row">
                                         <div class="col-12">
-                                            <ValidationProvider
-                                            rules="required"
-                                            v-slot="{ errors }">
-                                                <div class="form-group">
-                                                    <div class="form-field">
-                                                        <div class="file-input"> 
-                                                            <label for="file" v-if="file_cv.length == 0"><i class="fas fa-file-upload" style="color: #000000c7;"></i> Chọn file</label>
-                                                            <label for="file" v-else><i class="fas fa-file-upload" style="color: #000000c7;"></i> {{file_cv[0].name}}</label>
-                                                            <input type="file" id="file" @change="onInputChange" > 
-                                                        </div>
-                                                        <p class="text-center" style="font-size: 12px">Định dạng file: *.doc, *.docx, *.xls, *.xlsx, *.pdf, *.txt, *.rtf</p>
-                                                        <span style="color: red">{{errors[0]}}</span>
+                                            <div class="form-group">
+                                                <div class="form-field">
+                                                    <div class="file-input"> 
+                                                        <label for="file" v-if="file_cv.length == 0"><i class="fas fa-file-upload" style="color: #000000c7;"></i> Chọn file</label>
+                                                        <label for="file" v-else><i class="fas fa-file-upload" style="color: #000000c7;"></i> {{file_cv[0].name}}</label>
+                                                        <input type="file" id="file" @change="onInputChange" > 
                                                     </div>
+                                                    <p class="text-center" style="font-size: 12px">Định dạng file: *.doc, *.docx, *.xls, *.xlsx, *.pdf, *.txt, *.rtf</p>
                                                 </div>
-                                            </ValidationProvider>
+                                            </div>
                                         </div>
                                         <!-- <div class="col-12">
                                             <div class="form-group">
