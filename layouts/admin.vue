@@ -14,6 +14,9 @@
   export default {
     middleware: 'after_login',
     head: {
+        meta: [
+          { hid: 'robots', name: 'robots', content: 'noindex' },
+        ],
       link: [
         { rel: 'stylesheet', href: '/app-assets/vendors/css/vendors.min.css'},
         { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether-theme-arrows.css' },
