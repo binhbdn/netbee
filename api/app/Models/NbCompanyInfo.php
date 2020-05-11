@@ -19,9 +19,11 @@ class NbCompanyInfo extends Model
         'company_link',
         'company_verify'
     ];
+
     public function user(){
         return $this->hasOne('App\User','id','company_id');
     }
+
     public function companyFeedback(){
         return $this->hasMany('App\Models\NbCompanyFeedback','company_id');
     }
