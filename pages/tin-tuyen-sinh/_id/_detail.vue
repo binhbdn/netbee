@@ -334,33 +334,6 @@
                                                 </div>
                                             </ValidationProvider>
                                         </div>
-                                        
-                                        <div class="col-12">
-                                            <ValidationProvider
-                                            rules="required"
-                                            v-slot="{ errors }">
-                                                <div class="form-group">
-                                                    <div class="form-field">
-                                                        <label for="name">Họ tên</label>
-                                                        <input type="text" id="name" class="form-control" v-model="name">
-                                                        <span style="color: red">{{errors[0]}}</span>
-                                                    </div>
-                                                </div>
-                                            </ValidationProvider>
-                                        </div>
-                                        <div class="col-12">
-                                            <ValidationProvider
-                                            rules="required"
-                                            v-slot="{ errors }">
-                                                <div class="form-group">
-                                                    <div class="form-field">
-                                                        <label for="name">Số điện thoại</label>
-                                                        <input type="text" id="name" class="form-control" v-model="phone">
-                                                        <span style="color: red">{{errors[0]}}</span>
-                                                    </div>
-                                                </div>
-                                            </ValidationProvider>
-                                        </div>
                                         <!-- <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-field">
@@ -387,7 +360,7 @@
                             </div>
                         </div>
                         <div class="text-right mt-1">
-                            <button type="button" class="btn btn-warning" @click="resetData">reset</button>
+                            <button type="button" class="btn btn-warning" @click="resetData">Reset</button>
                             <button type="button" class="btn btn-warning" @click="applyJob">Ứng tuyển</button>
                         </div>
                     </div>
@@ -416,33 +389,6 @@ import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 
 extend("required", {
   message: (field, values) => "Dữ liệu nhập vào không được để trống.",
-});
-extend("email", {
-  message: (field, values) => "Email không đúng định dạng"
-});
-var errorMessage =
-  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
-// create custom rule
-extend("customPassword", {
-  message: field =>"Mật khẩu" + errorMessage,
-  validate: value => {
-    var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
-    var containsForbiddenChars = notTheseChars.test(value);
-    var containsRequiredChars = mustContainTheseChars.test(value);
-    if (containsRequiredChars && !containsForbiddenChars) {
-      return true;
-    } else {
-      if (containsForbiddenChars) {
-        errorMessage =
-          ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
-      } else {
-        errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
-      }
-      return false;
-    }
-  }
 });
 export default {
     components: {
@@ -481,8 +427,6 @@ export default {
             arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
             arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
             arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
-            // visa: getvisa.data,
-            // nation: getNation.data
         }
     },
     head() {
@@ -600,8 +544,6 @@ export default {
         },
         resetData(){
             this.file_cv = []
-            this.name = ''
-            this.phone = ''
             this.value = []
             this.chooseNation = []
         },
