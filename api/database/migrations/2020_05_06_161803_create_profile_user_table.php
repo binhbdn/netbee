@@ -21,7 +21,8 @@ class CreateProfileUserTable extends Migration
             $table->string('maleFemale')->nullable();
             $table->string('address_profile')->nullable();
             $table->string('phone_profile')->nullable();
-            $table->string('email_profile')->nullable();            
+            $table->string('email_profile')->nullable(); 
+            $table->string('avatar_profile')->nullable();            
             $table->string('note_profile')->nullable();
             $table->string('title_target_profile')->nullable();
             $table->string('note_target_profile')->nullable();
