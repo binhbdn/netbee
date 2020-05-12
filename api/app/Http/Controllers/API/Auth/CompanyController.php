@@ -66,6 +66,7 @@ class CompanyController extends Controller
         $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
         $userId = Auth::user()->id;
         $data = [
+            'image_cover' => $request->image_cover,
             'company_hotline' => $request->company_hotline,
             'company_about' => $request->company_about,
             'company_tax' => $request->company_tax,
