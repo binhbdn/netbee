@@ -214,7 +214,21 @@
                                               <form method="POST" v-on:keyup.enter = "changeInfoCompany">
                                                   <ValidationObserver ref="observerChangeInfoCompany" v-slot="{ valid }">
                                                   <div class="row">
-                                                        
+                                                        <div class="media pl-1">
+                                                            <a href="javascript: void(0);">
+                                                                <img :src="imagesCover[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="imagesCover.length > 0">
+                                                                <img :src="changeInfoCompanyForm.imageCover != null && changeInfoCompanyForm.imageCover.startsWith('https') ? changeInfoCompanyForm.imageCover : `/uploads/users/avatars/${changeInfoCompanyForm.imageCover}`" class="rounded mr-75" alt="cover image" height="64" width="64" style="object-fit: cover;" v-else>
+                                                            </a>
+                                                            <div class="media-body mt-75">
+                                                                <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
+                                                                    <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload-cover" >Đổi ảnh bìa</label>
+                                                                    <input type="file" id="account-upload-cover" @change="onInputChangeCover" hidden>
+                                                                    <button type="button" class="btn btn-sm btn-outline-warning ml-50" @click="resetImgCover">Reset</button>
+                                                                </div>
+                                                                <p class="text-muted ml-75 mt-50"><small>Cho phép JPG, GIF or PNG. Kích thước đề xuất: 1120 x 296</small></p>
+                                                            </div>
+                                                        </div>
+                                                        <hr>
                                                       <div class="col-12">
                                                           <ValidationProvider
                                                             name="companyAbout"
@@ -428,6 +442,7 @@ export default {
                     retypePassword: ""
                 },
                 changeInfoCompanyForm: {
+                    files: [],
                     companyAbout: "",
                     companyHotline: "",
                     companyTax: "",
@@ -435,8 +450,10 @@ export default {
                     companyPolicy: "",
                     companyChance: "",
                     companyLink: "",
+                    imageCover: ""
                 },
                 images: [],
+                imagesCover: [],
                 changeInfoUser: {
                     files: [],
                     name: this.$auth.user.name,
@@ -456,9 +473,27 @@ export default {
             e.preventDefault();
             e.stopPropagation();
             this.isDragging = false;
+            console.log(e.target.files);
             const files = e.target.files;
             if(files.length >0)
                 this.addImage(files[0]);
+
+        },
+        onInputChangeCover(e){
+            console.log(e);
+            if(this.imagesCover.length > 0){
+                this.$delete(this.imagesCover, 0)
+            }
+            // e.preventDefault();
+            // e.stopPropagation();
+            this.isDragging = false;
+            const files = e.target.files;
+            console.log(e);
+            if(files.length >0){
+                this.addImageCover(files[0]);
+                console.log(1);
+            }
+                
 
         },
         addImage(file){
@@ -482,9 +517,34 @@ export default {
 
             reader.readAsDataURL(file);
         },
+        addImageCover(file){
+            if( !file.type.match('image.*') ){
+                this.$swal(
+                        'Lỗi',
+                        'File không đúng định dạng',
+                        'error'
+                    )
+                return;
+            }
+            if(this.changeInfoCompanyForm.files.length >0)
+                this.$delete(this.changeInfoCompanyForm.files, 0)
+            console.log(this.changeInfoCompanyForm.files);
+            this.changeInfoCompanyForm.files.push(file);
+
+            const img = new Image();
+            const reader = new FileReader();
+
+            reader.onload = (e) => this.imagesCover.push(e.target.result);
+
+            reader.readAsDataURL(file);
+        },
 
         resetImg(){
             this.$delete(this.changeInfoUser.files, 0)
+            this.$delete(this.images, 0)
+        },
+        resetImgCover(){
+            this.$delete(this.changeInfoCompanyForm.files, 0)
             this.$delete(this.images, 0)
         },
 
@@ -566,6 +626,7 @@ export default {
             }
         },
         async changeInfoCompany() {
+            console.log(this.changeInfoCompanyForm.imageCover);
             const isValid = await this.$refs.observerChangeInfoCompany.validate();
             if(isValid){
                 try {
@@ -577,6 +638,7 @@ export default {
                     company_policy: this.changeInfoCompanyForm.companyPolicy,
                     company_chance: this.changeInfoCompanyForm.companyChance,
                     company_link: this.changeInfoCompanyForm.companyLink,
+                    image_cover: this.changeInfoCompanyForm.imageCover,
                 });
                 if(response.data.status == 200){
                     this.$swal({
