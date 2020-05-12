@@ -86,6 +86,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       });
       Route::prefix('hoso')->group(function () {       
         Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');       
+        Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');       
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');
