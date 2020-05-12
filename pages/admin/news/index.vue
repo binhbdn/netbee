@@ -334,9 +334,12 @@ export default {
                         icon: 'warning',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
-                    }).then( 
-                        this.search(),
-                    )
+                    }).then(() => {
+                        this.search()
+                        this.selected = []
+                    })
+                        
+                    
                 }
                 else if(res.status == 200){
                     this.$swal({
@@ -345,9 +348,10 @@ export default {
                         icon: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
-                    }).then( 
-                        this.search(),
-                    )
+                    }).then(() => {
+                        this.search()
+                        this.selected = []
+                    })
                 }
                 else {
                 this.$swal(
