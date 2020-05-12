@@ -21,6 +21,8 @@
         "body-parser": "^1.18.2",
         "chart.js": "^2.9.3",
         "hchs-vue-charts": "^1.2.8",
+        "html2canvas": "^1.0.0-rc.5",
+        "jspdf": "^1.5.3",
         "luxon": "^1.23.0",
         "moment": "^2.24.0",
         "nuxt": "^2.12.2",

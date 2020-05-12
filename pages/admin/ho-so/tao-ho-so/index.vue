@@ -122,7 +122,10 @@
                             <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
                                 <center>
                                     <div style="background-color: #029c7c;" class="img-cv">
-                                        <img src="https://www.topcv.vn/upload/images/avatars/no_avatar.jpg">
+                                        <div class="imgg">
+                                            <img v-bind:src="img">
+                                            <input type="file" id="files"  @change="previewFiles" multiple>                                          
+                                        </div>                                        
                                     </div>                        
                                 </center>     
                                 <br> 
@@ -194,7 +197,7 @@
                 </div>
                 <br>
                 <button class="btn btn-primary" @click="insert">Tạo hồ sơ</button>
-                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Xem trước pdf</button> -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Xem trước pdf</button>
             </div>   
         </div>  
         <br>
@@ -202,10 +205,10 @@
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">  
-                    <div class="row" id="cv">
+                    <div class="row" id="cv" style="min-height: 841px">
                         <div class="col-md-8" style="padding-left:30px;">
                             <div class="title-h2-cv">
-                                <h2>RESUME</h2>
+                                <h2>TIÊU ĐỀ HỒ SƠ</h2>
                             </div>
                             <hr>
                             <div class="title-h3-cv">        
@@ -318,7 +321,9 @@
                         <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
                             <center>
                                 <div style="background-color: #029c7c;" class="img-cv">
-                                    <img src="https://www.topcv.vn/upload/images/avatars/no_avatar.jpg">
+                                    <div class="imgg">
+                                        <img v-bind:src="img" style="width: 220px;height: 220px;">
+                                    </div>                                    
                                 </div>                        
                             </center>     
                             <br> 
@@ -387,17 +392,24 @@
                         
                         </div>
                     </div>   
-                    <div id="pdf"></div>                                   
-                    <!-- <button @click="download()">
+                    <button class="btn btn-primary" @click="download()">
                         Xuất pdf
-                    </button>   -->
+                    </button>  
+                    <div id="pdf"></div>                                                       
                 </div>
             </div>
         </div>                                     
     </div>
 </template>
 
-<script>                     
+<script>                
+    let html2canvas = null
+    let JsPDF = null
+    if (process.browser) {
+    html2canvas = require('html2canvas')
+    JsPDF = require('jspdf')
+    }
+      
     export default {
         name: 'Teamplate1',
         layout: 'admin',
@@ -409,6 +421,7 @@
                         fullname_profile:'',
                         birthday_profile:'',
                         maleFemale:'',
+                        avatar_profile:'',
                         address_profile:'',
                         phone_profile:'',
                         email_profile:'',
@@ -422,7 +435,10 @@
                         level_education:'',
                         name_education:'',
                         specialized_education:'',
-                    },             
+                    },  
+                    img:'https://www.topcv.vn/upload/images/avatars/no_avatar.jpg', 
+                    fileImg:[], 
+                           
                 }         
         },        
         components:{
@@ -430,6 +446,12 @@
         },
         
         methods: {
+            previewFiles(e) {                
+                this.info_frofile_user.avatar_profile = e.target.files[0].name;                
+                const file = e.target.files[0];
+                this.fileImg.push(file);
+                this.img = URL.createObjectURL(file);
+            },
              mixin_autoResize_resize(event) {
                 event.target.style.height = "auto";
                 event.target.style.height = `${event.target.scrollHeight}px`;
@@ -438,15 +460,17 @@
                             
             },                                      
             insert(e, route){                         
-                e.preventDefault();
+                e.preventDefault();                
                 var form = new FormData();                             
+                form.append('file' , this.fileImg)
                 form.append('id_user' , this.info_frofile_user.id_user)
                 form.append('fullname_profile' , this.info_frofile_user.fullname_profile)
                 form.append('birthday_profile' , this.info_frofile_user.birthday_profile)
                 form.append('maleFemale' , this.info_frofile_user.maleFemale)
                 form.append('address_profile' , this.info_frofile_user.address_profile)
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
-                form.append('email_profile' , this.info_frofile_user.email_profile)               
+                form.append('email_profile' , this.info_frofile_user.email_profile) 
+                form.append('avatar_profile' , this.info_frofile_user.avatar_profile)               
                 form.append('note_profile' , this.info_frofile_user.note_profile)
                 form.append('title_target_profile' , this.info_frofile_user.title_target_profile)
                 form.append('note_target_profile' , this.info_frofile_user.note_target_profile)
@@ -479,10 +503,21 @@
                 });                
             },
             download(){                                      
-                      
+                 let m = 0;         
+                html2canvas(document.querySelector('#cv'), {scrollX : m,scrollY : 0,logging: true, letterRendering: true, allowTaint: false, useCORS: true, scale: 1920*2/window.innerWidth}).then(canvas => {
+                    document.getElementById('pdf').appendChild(canvas)                                                                 
+                    let img = canvas.toDataURL('image/jpeg')                                        
+                    let pdf = new JsPDF('p','pt','a4','mm')
+                    var width = pdf.internal.pageSize.getWidth();
+                    var height = pdf.internal.pageSize.getHeight();  
+                    console.log(height);                                         
+                    pdf.addImage(img, 'JPEG', 0, 0,width, height)                    
+                    pdf.save('profile_users.pdf')                    
+                    document.getElementById('pdf').innerHTML = ''
+                })      
             },  
 
-        },        
+        },               
         mounted() {                           
             this.$nextTick(() => {
                 this.$el.setAttribute("style", "height",
@@ -600,10 +635,21 @@
        outline-offset: 0px !important;
         outline: none !important;
     } 
-    .img-cv img {
-        width: 70%;
-        margin-top: 50px;
-        margin-bottom: 50px;
+    .img-cv {
+        padding: 30px;
+    }
+    /* .img-cv .imgg{
+        position: relative;
+    }
+    .img-cv .imgg label{
+        position: absolute; 
+        z-index: auto;
+        bottom: 0%;
+        left: 0%;
+    } */
+    .img-cv .imgg img {
+        width: 238px;
+        height: 238px;       
         border-radius: 50%;
     }    
     .briday-cv ,.gioitinh-cv, .Cmnd-cv,.address-cv, .phone-cv, .email-cv, .note-cv {
