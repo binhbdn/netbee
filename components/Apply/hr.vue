@@ -24,11 +24,11 @@
                                             <div class="col-12 col-sm-4 col-lg-4">
                                                 <input type="text"  class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên công ty..." />
                                             </div>
-                                            <div class="col-12 col-sm-4 col-lg-4">
+                                            <!-- <div class="col-12 col-sm-4 col-lg-4">
                                                 <fieldset class="form-group">
                                                     <multiselect v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
                                                 </fieldset>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </form>
                                 </div>
@@ -41,171 +41,46 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card ">
-                                <div class="card-header">
-                                    
-                                </div>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <ul class="nav nav-tabs" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link  active" id="home-tab" data-toggle="tab" href="#home" aria-controls="home" role="tab" aria-selected="true" @click="fetch">Chờ duyệt</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" aria-controls="profile" role="tab" aria-selected="false" @click="getApplyApproved">Đã duyệt</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false" @click="getRefuseApply">Từ chối</a>
-                                            </li>
-                                            <!-- <li class="nav-item">
-                                                <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false">Đã tuyển</a>
-                                            </li> -->
-                                            <li class="nav-item">
-                                                <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" aria-controls="about" role="tab" aria-selected="false" @click="getAllApply">Tất cả</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content ">
-                                            <div class="tab-pane active" id="home" aria-labelledby="home-tab" role="tabpanel">
-                                                <table class="table table-hover mb-0 zero-configuration">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Tên công việc</th>
-                                                            <th>Tên ứng viên</th>
-                                                            <th>Nhà tuyển dụng</th>
-                                                            <th>Thời gian nộp</th>
-                                                            <th>Hành động</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr v-for="(item, index) in ApplyWait" :key="index">
-                                                        <td>{{item.id}}</td>
-                                                        <td>{{item.title}}</td>
-                                                        <td>{{item.name}}</td>
-                                                        <td>{{item.name_company}}</td>
-                                                        <td>{{ConvertDate(item.created_at)}}</td>
-                                                        <td>
-                                                            <div class="action-btns">
-                                                                <button type="button" class="btn btn-danger px-2 py-75 waves-effect waves-light" @click="RefuseApply(item.id)">
-                                                                    Hủy bỏ
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                <!-- <infinite-loading
-                                                    v-if="ApplyWait.length"
-                                                    spinner="bubbles"
-                                                    @infinite="infiniteScroll" style="padding:20px; width:100%"
-                                                >
-                                                    <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
-                                                    <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-                                                </infinite-loading> -->
-                                            </div>
-                                            <div class="tab-pane " id="profile" aria-labelledby="profile-tab" role="tabpanel">
-                                                <table class="table table-hover mb-0 zero-configuration">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Tên công việc</th>
-                                                            <th>Tên ứng viên</th>
-                                                            <th>Nhà tuyển dụng</th>
-                                                            <th>Thời gian nộp</th>
-                                                            <th>Hành động</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr v-for="(item, index) in ApplyApproved" :key="index">
-                                                        <td>{{item.id}}</td>
-                                                        <td>{{item.title}}</td>
-                                                        <td>{{item.name}}</td>
-                                                        <td>{{item.name_company}}</td>
-                                                        <td>{{ConvertDate(item.created_at)}}</td>
-                                                        <td>
-                                                            <div class="action-btns">
-                                                                <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
-                                                                    Chi tiết
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            <div class="tab-pane" id="about" aria-labelledby="about-tab" role="tabpanel">
-                                                <table class="table table-hover mb-0 zero-configuration">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Tên công việc</th>
-                                                            <th>Tên ứng viên</th>
-                                                            <th>Nhà tuyển dụng</th>
-                                                            <th>Thời gian nộp</th>
-                                                            <th>Hành động</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr v-for="(item, index) in ApplyRefuse" :key="index">
-                                                        <td>{{item.id}}</td>
-                                                        <td>{{item.title}}</td>
-                                                        <td>{{item.name}}</td>
-                                                        <td>{{item.name_company}}</td>
-                                                        <td>{{ConvertDate(item.created_at)}}</td>
-                                                        <td>
-                                                            <div class="action-btns">
-                                                                <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
-                                                                    Chi tiết
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            <div class="tab-pane" id="all" aria-labelledby="all-tab" role="tabpanel">
-                                                <table class="table table-hover mb-0 zero-configuration">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>ID</th>
-                                                            <th>Tên công việc</th>
-                                                            <th>Tên ứng viên</th>
-                                                            <th>Trạng thái</th>
-                                                            <th>Bonus</th>
-                                                            <th>Nhà tuyển dụng</th>
-                                                            <th>Thời gian nộp</th>
-                                                            <th>Hành động</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="tab-table">
-                                                        <tr v-for="(item, index) in AllApply" :key="index">
-                                                            <td>{{item.id}}</td>
-                                                            <td>{{item.title}}</td>
-                                                            <td>{{item.name}}</td>
-                                                            <td>
-                                                                <i class="fad fa-exclamation-triangle warning" title="Chờ duyệt" style="font-size: 25px" v-if="item.status == 1"></i>
-                                                                <i class="fad fa-times-circle danger" title="Từ chối" style="font-size: 25px" v-if="item.status == 4"></i>
-                                                                <i class="fad fa-check-circle success" title="Đã duyệt" style="font-size: 25px" v-if="item.status == 2"></i>
-                                                            </td>
-                                                            <td></td>
-                                                            
-                                                            <td>{{item.name_company}}</td>
-                                                            <td>{{ConvertDate(item.created_at)}}</td>
-                                                            <td>
-                                                                <div class="action-btns">
-                                                                    <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
-                                                                        Chi tiết
-                                                                    </button>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                <!-- <infinite-loading
-                                                    v-if="AllApply.length"
-                                                    spinner="bubbles"
-                                                    @infinite="infiniteScroll" style="padding:20px; width:100%"
-                                                >
-                                                    <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
-                                                    <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-                                                </infinite-loading> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- <div class="card-content">
+                                    <table class="table table-hover mb-0 zero-configuration">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Tên công việc</th>
+                                                <th>Tên ứng viên</th>
+                                                <th>Trạng thái</th>
+                                                <th>Bonus</th>
+                                                <th>Nhà tuyển dụng</th>
+                                                <th>Thời gian nộp</th>
+                                                <th>Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tab-table">
+                                            <tr v-for="(item, index) in AllApply" :key="index">
+                                                <td>{{item.id}}</td>
+                                                <td>{{item.title}}</td>
+                                                <td>{{item.name}}</td>
+                                                <td>
+                                                    <i class="fad fa-exclamation-triangle warning" title="Chờ duyệt" style="font-size: 25px" v-if="item.status == 1"></i>
+                                                    <i class="fad fa-times-circle danger" title="Từ chối" style="font-size: 25px" v-if="item.status == 4"></i>
+                                                    <i class="fad fa-check-circle success" title="Đã duyệt" style="font-size: 25px" v-if="item.status == 2"></i>
+                                                </td>
+                                                <td>
+                                                    <span style="color: #fc205c">{{item.bonus}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
+                                                </td>
+                                                <td>{{item.name_company}}</td>
+                                                <td>{{ConvertDate(item.created_at)}}</td>
+                                                <td>
+                                                    <div class="action-btns">
+                                                        <button type="button" class="btn btn-warning px-2 py-75 waves-effect waves-light" >
+                                                            Chi tiết
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -215,17 +90,10 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import 'vue-multiselect/dist/vue-multiselect.min.css'
-import Vue from 'vue'
-import moment from 'moment'
 
 export default {
     data() {
         return {
-            ApplyWait: [],
-            ApplyApproved: [],
-            ApplyRefuse: [],
             AllApply: [],
             cardSearch: {
                 search: "",
@@ -250,22 +118,6 @@ export default {
             return `${name}`
         },
         fetch() {
-            this.$axios.$get('apply/getApplyWait').then((response)=>{
-                this.ApplyWait=response.data;
-	        });
-
-        },
-        getApplyApproved(){
-            this.$axios.$get('apply/getApplyApproved').then((response)=>{
-                this.ApplyApproved=response.data;
-	        });
-        },
-        getRefuseApply(){
-            this.$axios.$get('apply/getRefuseApply').then((response)=>{
-                this.ApplyRefuse=response.data;
-	        });
-        },
-        getAllApply(){
             this.$axios.$get('apply/getAllApply').then((response)=>{
                 this.AllApply=response.data;
 	        });
@@ -346,25 +198,5 @@ export default {
 }
 </script>
 <style scoped>
-    .tab-table{
-        height: 630px;
-        overflow: auto;
-    }
-    .tab-table::-webkit-scrollbar {
-        width: 3px;
-    }
 
-    .tab-table::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.192);
-        border-radius: 10px;
-    }
-
-    .tab-table::-webkit-scrollbar-thumb {
-        background: rgba(78, 78, 78, 0.507);
-        border-radius: 10px;
-    }
-
-    .tab-table::-webkit-scrollbar-thumb:hover {
-        background: rgba(78, 78, 78, 0.404);
-    }
 </style>
