@@ -20,7 +20,7 @@ class ApplyManageController extends Controller
     }
 
     public function getApplyWait()
-    {   
+    {
         $applys = $this->applyJobService->getApply($this->applyJobService::CHO_DUYET);
         if($applys){
             $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 

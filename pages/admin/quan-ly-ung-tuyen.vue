@@ -1,10 +1,8 @@
 <template>
     <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
         <adminApplyManage v-if="$auth.user.role == 4"></adminApplyManage>
-        <hrApplyManage v-if="$auth.user.role == 3"></hrApplyManage>
-        <companyApplyManage v-if="$auth.user.role = 2"></companyApplyManage>
+        <hrApplyManage v-else-if="$auth.user.role == 3"></hrApplyManage>
+        <companyApplyManage v-else></companyApplyManage>
     </div>
 </template>
 <script>
@@ -28,7 +26,6 @@ export default {
 
         }
     },
-    
 }
 </script>
 <style scoped>
