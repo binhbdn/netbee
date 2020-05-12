@@ -5,7 +5,9 @@ use App\Models\NbJobView;
 use App\Models\News;
 use Carbon\Carbon;
 use Auth;
+use Validator;
 use Illuminate\Support\Facades\DB;
+
 
 class NewsService extends BaseService{
 
@@ -299,12 +301,12 @@ class NewsService extends BaseService{
         }
         if($searchStatus != ''){
             $conditions[] = [
-                'status' => $searchStatus
+                'status', '=', $searchStatus
             ];
         }
         if($searchCategory != ''){
             $conditions[] = [
-                'id_category' => $searchCategory
+                'id_category', '=', $searchCategory
             ];
         }
 

@@ -64,7 +64,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changeMultipleStatusTinTuc', 'Admin\TinTucController@changeMultipleStatusTinTuc');
         Route::post('deleteTinTuc', 'Admin\TinTucController@deleteTinTuc');
         Route::post('deleteMultipleTinTuc', 'Admin\TinTucController@deleteMultipleTinTuc');
-        Route::post('tintuc', 'Admin\TinTucController@createTinTuc');
+        Route::post('createTinTuc', 'Admin\TinTucController@createTinTuc');
         Route::post('updateTinTuc', 'Admin\TinTucController@updateTinTuc');
         Route::get('searchTinTuc', 'Admin\TinTucController@searchTinTuc');
       });
