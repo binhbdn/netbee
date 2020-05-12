@@ -51,7 +51,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p v-html="congty.company_about"></p>
+                                    <p v-html="detailCompany.company_about"></p>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                 </h3>
                 <div class="star-rating pt-1">
                       <star-rating 
-                      :rating="5" 
+                      :rating="detailCompany.rate" 
                       :increment="0.1"
                       :star-size="30"
                       :read-only="true"
@@ -119,60 +119,48 @@
                 </div>
                 <hr>
                 <div class="view-more">
-                    <a href="/companies/lg-development-center-vietnam/review">Xem tất cả đánh giá</a>
+                    <a data-toggle="modal" data-target="#modal_feedback">Xem tất cả đánh giá</a>
                 </div>
             </div>
             <div class="card p-1">
                 <div class="card-header pl-0">
-                <h3 class="card-title w-100">
+                <h2 class="w-100">
                     Top đánh giá
-                </h3>
+                </h2>
+                </div>
                 <br>
-                <h5 class="w-100 mb-0 pt-1">
-                    "Công ty tốt"
-                </h5>
-                <div class="star-rating pt-1">
+                <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
+                <div class="row">
+                    <div class="col-4">
+                        <img v-lazy="$auth.user.avatar != null && $auth.user.avatar.startsWith('https') ? $auth.user.avatar : `/uploads/users/avatars/${$auth.user.avatar}`"
+                        style="height:80px; width:80px; padding-top: 1px; padding-left: 20px; object-fit: cover; border-radius: 50%;">
+                        
+                    </div>
+                    <div class="col-8">
+                    <div class="star-rating">
                       <star-rating 
-                      :rating="5" 
+                      :rating="item.rate_feed" 
                       :increment="0.1"
-                      :star-size="30"
+                      :star-size="25"
                       :read-only="true"
                       ></star-rating>
                     </div>
-                </div>
-                <div class="view-more">
-                    <p>
-                    - Công việc ổn đinh, chủ yếu làm việc với khách hàng nước ngoài ( Mỹ, Đức, Hàn Trung)
-                    - Sếp thoải mái, tâm lý
-                    - Có budget ăn uống, chơi bời hoành tráng
-                    - Nhiều event, team building
-                    - Được tính lương OT theo luật, có voucher ăn tối nếu OT muộn
-                    ...
-                    </p>
+                    <h6 class="text-left pt-1 pl-0">{{item.name_feed}} _ {{ ConvertDate(item.created_at) }}</h6>
                 </div>
                 <hr>
-                <h5 class="w-100 mb-0 pt-1">
-                    "Công ty tốt"
-                </h5>
-                <div class="star-rating pt-1">
-                      <star-rating 
-                      :rating="5" 
-                      :increment="0.1"
-                      :star-size="30"
-                      :read-only="true"
-                      ></star-rating>
                 </div>
-                <div class="view-more">
-                    <p>
-                    - Công việc ổn đinh, chủ yếu làm việc với khách hàng nước ngoài ( Mỹ, Đức, Hàn Trung)
-                    - Sếp thoải mái, tâm lý
-                    - Có budget ăn uống, chơi bời hoành tráng
-                    - Nhiều event, team building
-                    - Được tính lương OT theo luật, có voucher ăn tối nếu OT muộn
-                    ...
-                    </p>
+                <div class="row pl-2">
+                    <div class="view-more pt-1" v-if="loadMoreBtn == true">
+                        <p :style="styleLoadMore">{{item.content_feed}}</p>
+                        <p><a @click="loadMore()">Xem thêm</a></p>
+                    </div>
+                    <div class="view-more pt-1" v-else>
+                        <p :style="styleCollapse">{{item.content_feed}}</p>
+                        <p><a @click="collapse()">Thu gọn</a></p>
+                    </div>
                 </div>
                 <hr>
+                </div>
                 <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
                     <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
                 </div>
@@ -263,6 +251,60 @@
         </div>
         <!-- end Modal login -->
         <!-- Modal feedback -->
+        <div class="modal fade text-left" id="modal_feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content">
+                    <div class="card p-1">
+                <div class="card-header pl-0">
+                <h2 class="w-100">
+                    Tất cả đánh giá
+                </h2>
+                </div>
+                <br>
+                <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
+                <div class="row">
+                    <div class="col-4">
+                        <img v-lazy="$auth.user.avatar != null && $auth.user.avatar.startsWith('https') ? $auth.user.avatar : `/uploads/users/avatars/${$auth.user.avatar}`"
+                        style="height:80px; width:80px; padding-top: 1px; padding-left: 20px; object-fit: cover; border-radius: 50%;">
+                        
+                    </div>
+                    <div class="col-8">
+                    <div class="star-rating">
+                      <star-rating 
+                      :rating="item.rate_feed" 
+                      :increment="0.1"
+                      :star-size="25"
+                      :read-only="true"
+                      ></star-rating>
+                    </div>
+                    <h6 class="text-left pt-1 pl-0">{{item.name_feed}} _ {{ ConvertDate(item.created_at) }}</h6>
+                </div>
+                <hr>
+                </div>
+                <div class="row pl-2">
+                    <div class="view-more pt-1" v-if="loadMoreBtn == true">
+                        <p :style="styleLoadMore">{{item.content_feed}}</p>
+                        <p><a @click="loadMore()">Xem thêm</a></p>
+                    </div>
+                    <div class="view-more pt-1" v-else>
+                        <p :style="styleCollapse">{{item.content_feed}}</p>
+                        <p><a @click="collapse()">Thu gọn</a></p>
+                    </div>
+                </div>
+                <hr>
+                </div>
+                <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
+                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
+                </div>
+                <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
+                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
+                </div>
+            </div>
+                </div>
+            </div>
+        </div>
+        <!-- end Modal login -->
+        <!-- Modal form feedback -->
         <div class="modal fade text-left" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered " role="document">
                 <div class="modal-content">
@@ -271,6 +313,7 @@
                     <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px">
                         <div class="star-rating pb-1">
                         <star-rating 
+                            @rating-selected ="setRating"
                             :rating="4.3" 
                             :increment="0.1"
                             :star-size="30"
@@ -285,9 +328,9 @@
                                 v-slot="{ errors }"
                             >
                             <div class="__email">
-                                <fieldset class="form-label-group position-relative has-icon-left mb-0">
-                                    <textarea class="form-control mb-0" id="content" placeholder="Nội dung phản hồi" v-model="userForm.content" style="padding-left:10px;margin-bottom:0px !important; margin-top:2px"></textarea>
-                                    <label for="content">Nội dung</label>
+                                <fieldset class="form-label-group position-relative has-icon-left mb-0 pt-1">
+                                    <textarea class="form-control mb-0" id="content" placeholder="Nội dung phản hồi" v-model="formFeedback.content" style="padding-left:10px;margin-bottom:0px !important; margin-top:2px"></textarea>
+                                    <label style="font-size: 15px; padding-top:12px; color: black " for="content">Nội dung</label>
                                     <ul style="color:red" class="overline text-left">
                                         <li v-for="(error, index) in errors" :key="index">
                                         <span style="top: 53%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
@@ -367,7 +410,31 @@ export default {
                 password: '',
                 content: ''
             },
+            styleLoadMore: {
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: '-webkit-box', 
+                lineHeight: '18px', 
+                fontSize: '16px',
+                maxHeight: '54px',
+                webkitLineClamp: '3',
+                webkitBoxOrient: 'vertical',
+                paddingRight: '5px'
+            },
+            styleCollapse: {
+                display: '-webkit-box', 
+                lineHeight: '18px', 
+                webkitBoxOrient: 'vertical',
+                paddingRight: '5px',
+                fontSize: '16px',
+            },
             show: true,
+            detailCompany: [],
+            loadMoreBtn: true,
+            formFeedback: {
+                rating: 5,
+                content: ''
+            }
         }
     },
     methods: {
@@ -421,10 +488,44 @@ export default {
             this.$auth.loginWith('google')
         },
         sendFeedback(){
-            console.log(1);
+            var form = new FormData();
+            form.append('rate_feed',this.formFeedback.rating);
+            form.append('company_id',this.detailCompany.id);
+            form.append('content_feed',this.formFeedback.content);
+            form.append('name_feed',this.$auth.user.name);
+            form.append('email_feed',this.$auth.user.email);
+            form.append('user_id',this.$auth.user.id);
+            this.$axios.post('postCompanyFeedback',form).then((response)=>{
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Chờ xét duyệt!',
+                        response.data.message,
+                        'success'
+                    ).then( function (){
+                            window.location.reload();
+                        } )
+                }else{
+                    this.$swal(
+                        'Lỗi',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
+        },
+        loadMore(){
+            this.loadMoreBtn = false,
+            console.log(this.arrayForCompany);
+        },
+        collapse(){
+            this.loadMoreBtn = true
+        },
+        setRating: function(rating){
+            this.formFeedback.rating= rating;
         }
     },  
     async asyncData (context) {
+        console.log(context);
         try {
         let detailRes = await context.app.$axios.$get(`getInfoCompanyById/${context.app.router.currentRoute.params.id}`)
         context.seo({
@@ -448,6 +549,9 @@ export default {
         this.$axios.$get(`getTinTuyenDungForCompany/${this.congty.company_id}?limit=5`).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
             this.countJob = response.data.count
+        });
+        this.$axios.$get(`getDetailCompanyById/${this.$route.params.id}`).then((response)=>{
+            this.detailCompany = response.data[0]
         });
     },
     jsonld() {

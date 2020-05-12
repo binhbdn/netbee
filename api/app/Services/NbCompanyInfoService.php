@@ -45,7 +45,8 @@ class NbCompanyInfoService extends BaseService {
             $q->select('id','name')->whereStatus(self::ACTIVE)->whereBlock(self::INACTIVE);
         }])
         ->with(['companyFeedback'=> function($q){
-            $q->where('approve_feed',self::ACTIVE);
+            $q->where('approve_feed',self::ACTIVE)
+            ->limit(3);
 
         }])
         ->where('id',$companyId)
@@ -85,6 +86,9 @@ class NbCompanyInfoService extends BaseService {
             'email_feed' => $request->email_feed,
             'content_feed' => $request->content_feed,
             'rate_feed' => $request->rate_feed,
+            'approve_feed' => self::INACTIVE,
+            'user_id' => $request->user_id,
+            'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ];
     }

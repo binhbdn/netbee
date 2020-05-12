@@ -81,7 +81,6 @@ export default {
     async fetch(){
       let companyInfos = await this.$axios.get('getListCompany?page=1');
       this.companyInfos = companyInfos.data.data.data;
-      console.log(this.companyInfos)
     }
   },
 };
