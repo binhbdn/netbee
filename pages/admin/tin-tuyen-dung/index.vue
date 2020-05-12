@@ -549,7 +549,6 @@ export default {
             + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
             ).then((response)=>{
 	             this.tinTuyenDung=response.data;
-                console.log(this.tinTuyenDung)
             });
         },
         async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){
@@ -561,9 +560,10 @@ export default {
                         icon: 'warning',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
-                    }).then( 
-                        this.search(),
-                    )
+                    }).then(() => {
+                        this.search()
+                        this.selected = []
+                    })
                 }
                 else if(res.status == 200){
                     this.$swal({
@@ -572,9 +572,10 @@ export default {
                         icon: 'success',
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
-                    }).then( 
-                        this.search(),
-                    )
+                    }).then(() => {
+                        this.search()
+                        this.selected = []
+                    })
                 }
                 else {
                 this.$swal(

@@ -186,6 +186,7 @@
                                                         <th>Tên ứng viên</th>
                                                         <th>Trạng thái</th>
                                                         <th>Nhà tuyển dụng</th>
+                                                        <th>Bonus</th>
                                                         <th>Thời gian nộp</th>
                                                         <th>Hành động</th>
                                                     </tr>
@@ -196,11 +197,17 @@
                                                         <td>{{item.title}}</td>
                                                         <td>{{item.name}}</td>
                                                         <td>
-                                                            <i class="fad fa-exclamation-triangle warning" title="Chờ duyệt" style="font-size: 25px" v-if="item.status == 1"></i>
-                                                            <i class="fad fa-times-circle danger" title="Từ chối" style="font-size: 25px" v-if="item.status == 4"></i>
-                                                            <i class="fad fa-check-circle success" title="Đã duyệt" style="font-size: 25px" v-if="item.status == 2"></i>
+                                                            <p v-if="item.status == 1">Chưa duyệt</p>
+                                                            <p v-else-if="item.status == 2">Đã duyệt hồ sơ</p>
+                                                            <p v-else-if="item.status == 5">Đã duyệt hồ sơ đính kèm</p>
                                                         </td>
                                                         <td>{{item.name_company}}</td>
+                                                        <td>
+                                                            <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
+                                                                {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                            </span>
+                                                            <span v-else>Không bonus</span>
+                                                        </td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>
                                                             <div class="action-btns">
@@ -214,6 +221,7 @@
                                                                             <a class="dropdown-item" style="margin-top:5px" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" v-if="item.status != 4"><i class="far fa-times-circle"></i> Từ chối</a>
                                                                             <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.status == 2 && item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
                                                                             <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.status == 2 && item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApplyHoSo(item.id)" v-if="item.status == 2"><i class="fad fa-eye"></i> Duyệt hồ sơ đính kèm</a>
                                                                             <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 4"><i class="far fa-check-circle"></i> Duyệt lại</a>
                                                                         </div>
                                                                     </div>
@@ -382,6 +390,19 @@ export default {
         },
         ShowApply(id){
             this.$axios.$get(`apply/ShowApply/${id}`).then((response)=>{
+                if(response.status == 200){
+                    this.$swal(
+                        'Thành công',
+                        response.message,
+                        'success'
+                    ).then( function (){
+                        location.reload()
+                    } )
+                }
+	        });
+        },
+        ApprovedApplyHoSo(id){
+            this.$axios.$post(`apply/ApprovedApplyHoSo/${id}`).then((response)=>{
                 if(response.status == 200){
                     this.$swal(
                         'Thành công',

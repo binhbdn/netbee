@@ -64,7 +64,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changeMultipleStatusTinTuc', 'Admin\TinTucController@changeMultipleStatusTinTuc');
         Route::post('deleteTinTuc', 'Admin\TinTucController@deleteTinTuc');
         Route::post('deleteMultipleTinTuc', 'Admin\TinTucController@deleteMultipleTinTuc');
-        Route::post('tintuc', 'Admin\TinTucController@createTinTuc');
+        Route::post('createTinTuc', 'Admin\TinTucController@createTinTuc');
         Route::post('updateTinTuc', 'Admin\TinTucController@updateTinTuc');
         Route::get('searchTinTuc', 'Admin\TinTucController@searchTinTuc');
       });
@@ -84,13 +84,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getSave', 'Admin\SaveController@getSave');
         Route::post('report', 'Admin\ReportController@report');
       });
-      Route::prefix('hoso')->group(function () {
-        Route::post('getProfileUser', 'Admin\TeamplateCvController@getProfileUser');
-        Route::post('getEducationUser', 'Admin\TeamplateCvController@getEducationUser');
-        Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');
-        Route::post('updateEducationUser', 'Admin\TeamplateCvController@updateEducationUser');
-        Route::post('insertEducationUserOne', 'Admin\TeamplateCvController@insertEducationUserOne');
-        Route::post('deleteDataEducation', 'Admin\TeamplateCvController@deleteDataEducation');
+      Route::prefix('hoso')->group(function () {       
+        Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');       
+        Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');       
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');
@@ -101,6 +97,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('RefuseApply/{id}', 'Admin\ApplyManageController@RefuseApply');
         Route::get('HideApply/{id}', 'Admin\ApplyManageController@HideApply');
         Route::get('ShowApply/{id}', 'Admin\ApplyManageController@ShowApply');
+        Route::post('ApprovedApplyHoSo/{id}', 'Admin\ApplyManageController@ApprovedApplyHoSo');
       });
   });
 });

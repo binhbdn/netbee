@@ -16,6 +16,10 @@ class BaseService {
         UN_BLOCK = 0;
 
     const
+        DELETE = 1,
+        UN_DELETE = 0;
+
+    const
         FACEBOOK = 'facebook',
         GOOGLE = 'google';
 

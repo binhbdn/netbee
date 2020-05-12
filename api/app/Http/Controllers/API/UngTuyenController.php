@@ -45,7 +45,8 @@ class UngTuyenController extends Controller
         $insert = [
             'cv_file' => $file_cv,
             'job_id' => $request->job_id,
-            'user_id' => Auth::user()->id,
+            'user_id_submit' => Auth::user()->id,
+            'user_id_recever' => $this->applyJobService->getIdCreated($request->job_id),
             'name' => $request->name,
             'status' => 1,
             'bonus' => $this->applyJobService->getBonus($request->job_id),

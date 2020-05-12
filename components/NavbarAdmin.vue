@@ -1,10 +1,10 @@
 <template>
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-        <div class="navbar-header">
+        <div class="navbar-header" style="height: 90px">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="/">
                         <div>
-                          <img src="/assets/img/logo-full.png" alt="Smiley face" height="40" width="150">
+                          <img src="/assets/img/logo-full.png" alt="Smiley face" height="55" width="150">
                         </div>
                     </a>
                 </li>
@@ -33,7 +33,8 @@
                         </li>
                     </ul>
                 </li> 
-                <li :class="[{'active' : this.$route.name == 'quan-ly-ung-tuyen'}, 'nav-item']"><a @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 4"><i class="fad fa-folder-open"></i><span class="menu-title" data-i18n="User">Quản lý ứng tuyển</span></a>
+                <li :class="[{'active' : this.$route.name == 'ho-so'}, 'nav-item']"><a @click="$router.push('/admin/ho-so')" v-if="$auth.user.role == 4 || $auth.user.role == 1 || $auth.user.role == 3"><i class="fad fa-folder-open"></i><span class="menu-title" data-i18n="User">Hồ sơ ứng tuyển</span></a>
+                <li :class="[{'active' : this.$route.name == 'quan-ly-ung-tuyen'}, 'nav-item']"><a @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 4 || $auth.user.role == 2"><i class="fad fa-folder-open"></i><span class="menu-title" data-i18n="User">Quản lý ứng tuyển</span></a>
                 </li>
                 <li :class="[{'active' : this.$route.name == 'quan-ly-ung-tuyen'}, 'nav-item']"><a @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 3"><i class="fad fa-id-card-alt"></i><span class="menu-title" data-i18n="User"> Việc làm đã ứng tuyển</span></a>
                 </li>

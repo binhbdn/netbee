@@ -6,7 +6,16 @@ use App\Models\NbJoblist;
 use Auth;
 
 class ApplyJobService extends BaseService {
-    
+
+    protected $nbJobList;
+    protected $apply;
+
+    public function __construct(NbJoblist $nbJobList, Apply $apply)
+    {
+        $this->nbJobList = $nbJobList;
+        $this->apply = $apply;
+    }
+
     const   CHO_DUYET = 1,
             ADMIN_DUYET_CV = 2,
             DA_TUYEN = 3,
@@ -19,7 +28,8 @@ class ApplyJobService extends BaseService {
     const AN = 0,
           HIEN = 1;
 
-    public function create($data){
+    public function create($data)
+    {
         return Apply::insert($data);
     }
 
@@ -28,54 +38,103 @@ class ApplyJobService extends BaseService {
         $userRole = Auth::user()->role;
         if ($userRole == self::ROLE_ADMIN) {
             $data = $this->getApplyAdmin($status);
-        } else if ($userRole == self::ROLE_HR) {
+        } else if ($userRole == self::ROLE_COMPANY) {
+            $data = $this->getApplyCompany($status);
+        } else {
             $data = $this->getApplyHr($status);
-        } //else {
-        //     $query = $this->getJobByRoleOther();
-        // }
+        }
         return $data;
     }
 
-    public function changeStatusApply($id, $status){
+    public function changeStatusApply($id, $status)
+    {
         return Apply::where('id',$id)->update(['status'=>$status]);
     }
 
-    public function refuse($id, $status, $refuse){
+    public function refuse($id, $status, $refuse)
+    {
         return Apply::where('id',$id)->update(['status' => $status ,'reason_for_rejection' => $refuse]);
     }
 
-    public function getDetailApply($id) {
-        return Apply::with('Jobs')->where('id', $id)->first();
+    public function getDetailApply($id) 
+    {
+        return Apply::with('job')->where('id', $id)->first();
     }
 
-    public function isPublic($id, $isPublic){
+    public function isPublic($id, $isPublic)
+    {
         return Apply::where('id',$id)->update(['isPublic'=>$isPublic]);
     }
 
-    public function getApplyAdmin($status){
+    public function getApplyAdmin($status)
+    {
         $condition = [];
         if($status){
-            $condition = ['nb_applies.status'=>$status];
+            $condition[] = ['nb_applies.status','=',$status];
         }
-        return Apply::select('nb_applies.*','users.name as name_company', 'nb_joblists.title')
+        return Apply::select('nb_applies.*','users.name as name_company', 'nb_joblists.currency', 'nb_joblists.bonus', 'nb_joblists.time_bonus', 'nb_joblists.title')
                     ->Join('nb_joblists', 'nb_applies.job_id','=','nb_joblists.id')
                     ->Join('users', 'nb_joblists.id_created', '=', 'users.id')
                     ->where($condition)->get();
     }
-    public function getApplyHr($status){
+
+    public function getApplyHr($status)
+    {
         $condition = [];
         if($status){
-            $condition = ['nb_applies.status'=>$status];
+            $condition[] = ['nb_applies.status','=',$status];
         }
-        return Apply::select('nb_applies.*','users.name as name_company', 'nb_joblists.time_bonus', 'nb_joblists.bonus','nb_joblists.title')
-                    ->Join('nb_joblists', 'nb_applies.job_id','=','nb_joblists.id')
-                    ->Join('users', 'nb_joblists.id_created', '=', 'users.id')
+        return $this->apply->with(['user' => function ($q) {
+                            $q->select('id', 'name', 'avatar');
+                            $q->where([
+                                'status' => self::ACTIVE,
+                                'block' =>self::UN_BLOCK
+                            ]);
+                        }])
+                        ->with(['job' => function ($q) {
+                            $q->select('currency', 'title','id');
+                            $q->where([
+                                'deleted' => self::UN_DELETE,
+                                'status' => self::ACTIVE,
+                                'isPublic' =>self::ACTIVE
+                            ]);
+                        }])
                     ->where($condition)
-                    ->where('nb_applies.user_create' ,Auth::user()->id)
+                    ->where('user_id_submit' ,Auth::user()->id)
+                    ->get();
+    }
+    public function getApplyCompany($status)
+    {
+        $condition = [];
+        if($status){
+            $condition[] = ['nb_applies.status','=', $status];
+        }
+        return $this->apply->with(['user' => function ($q) {
+                            $q->select('id', 'name', 'avatar');
+                            $q->where([
+                                'status' => self::ACTIVE,
+                                'block' =>self::UN_BLOCK
+                            ]);
+                        }])
+                        ->with(['job' => function ($q) {
+                            $q->select('currency', 'title','id');
+                            $q->where([
+                                'deleted' => self::UN_DELETE,
+                                'status' => self::ACTIVE,
+                                'isPublic' =>self::ACTIVE
+                            ]);
+                        }])
+                    ->where($condition)
+                    ->where('user_id_recever' ,Auth::user()->id)
+                    ->where('status' ,self::ADMIN_DUYET_HO_SO)
                     ->get();
     }
 
     public function getBonus($id){
         return NbJoblist::where('id', $id)->first()->bonus;
+    }
+
+    public function getIdCreated($id){
+        return NbJoblist::where('id', $id)->first()->id_created;
     }
 }
