@@ -151,12 +151,11 @@ class TinTuyenService extends BaseService {
             'type' => $request->type,
             'id_created' => Auth::user()->id,
             'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
+            'updated_at' => Carbon::now(),
+            'school_name' => $request->school_name
         ];
 
-        if ($request->type == self::JOB_OVERSEAS_STUDENT) {
-            $response['school_name'] = $request->school_name;
-        } else {
+        if ($request->type != self::JOB_OVERSEAS_STUDENT) {
             $response['work_form'] = $request->work_form;
             $response['id_visa'] = $request->id_visa;
         }
