@@ -24,6 +24,11 @@ class TeamplateCvController extends Controller
         $this->teamplateCvService = $teamplateCvService;
     }
     
+    public function listProfileUser(){
+        $response = $this->teamplateCvService->getProfileBy();
+        return response()->json($response);
+    }
+
     public function insertProfileUser(Request $request){                                  
         $validator = Validator::make($request->all(),
         [
@@ -62,7 +67,7 @@ class TeamplateCvController extends Controller
                 $fileinfo = pathinfo($file->getClientOriginalName());
                 $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
                 $uploadPath = '/home/netbee.vn/html/static/uploads/users/avatars';                
-                              
+
                 $file->move($uploadPath, $image);
             } catch (\Exception $e) {
                 return [
