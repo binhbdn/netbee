@@ -21,8 +21,7 @@ class CreateProfileUserTable extends Migration
             $table->string('maleFemale')->nullable();
             $table->string('address_profile')->nullable();
             $table->string('phone_profile')->nullable();
-            $table->string('email_profile')->nullable();
-            $table->string('cmnd_profile')->nullable();
+            $table->string('email_profile')->nullable();            
             $table->string('note_profile')->nullable();
             $table->string('title_target_profile')->nullable();
             $table->string('note_target_profile')->nullable();
@@ -30,6 +29,9 @@ class CreateProfileUserTable extends Migration
             $table->string('skill_information_profile')->nullable();
             $table->string('skill_logic_profile')->nullable();
             $table->string('certificate_profile')->nullable();
+            $table->string('level_education')->nullable();
+            $table->string('name_education')->nullable();
+            $table->string('specialized_education')->nullable();
             $table->integer('deleted')->default(0);            
             $table->timestamps();
 

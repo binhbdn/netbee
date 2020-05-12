@@ -84,13 +84,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getSave', 'Admin\SaveController@getSave');
         Route::post('report', 'Admin\ReportController@report');
       });
-      Route::prefix('hoso')->group(function () {
-        Route::post('getProfileUser', 'Admin\TeamplateCvController@getProfileUser');
-        Route::post('getEducationUser', 'Admin\TeamplateCvController@getEducationUser');
-        Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');
-        Route::post('updateEducationUser', 'Admin\TeamplateCvController@updateEducationUser');
-        Route::post('insertEducationUserOne', 'Admin\TeamplateCvController@insertEducationUserOne');
-        Route::post('deleteDataEducation', 'Admin\TeamplateCvController@deleteDataEducation');
+      Route::prefix('hoso')->group(function () {       
+        Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');       
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');

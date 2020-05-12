@@ -10,15 +10,13 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="title-h2-cv">
-                                    <h2>RESUME</h2>
+                                    <h2>TIÊU ĐỀ HỒ SƠ</h2>
                                 </div>
                                 <hr>
                                 <div class="title-h3-cv">                                    
                                     <textarea @click="text()" v-model="info_frofile_user.fullname_profile" class="main-text textarea" placeholder="VD: NGUYỄN VĂN A"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                 </div>
-                                <div class="title-h4-cv">
-                                    <h4>NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG</h4>
-                                </div>
+                                
                                 <br><br>
                                 <div class="target-main-cv">
                                     <div class="target-cv">
@@ -114,12 +112,11 @@
                                             <div class="col-md-4">
                                                 <h5>HỌC VẤN</h5>
                                             </div>
-                                            
+                                            <textarea v-model="info_frofile_user.level_education"  @click="text()" class="main-text textarea" placeholder="VD: 12/12"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                            <textarea v-model="info_frofile_user.name_education"  @click="text()" class="main-text textarea" placeholder="VD: ĐẠI HỌC VINH"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                            <textarea v-model="info_frofile_user.specialized_education"  @click="text()" class="main-text textarea" placeholder="VD: Chuyên ngành CNTT"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                         </div>                                                   
-                                    </div>   
-                                   
-                                    <EducationUser v-for="(edu,k) in education_user" :edu="edu" :key="k" v-on:add="insertDataEducationOne" v-on:deletee="DeleteDataEducation"></EducationUser>
-                                                                                                     
+                                    </div>                                                                                                                                                                              
                                 </div>                                
                             </div>
                             <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
@@ -179,17 +176,7 @@
                                                 <textarea v-model="info_frofile_user.email_profile" @click="text()" class="main-text textarea" placeholder="VD: leuleu@gmail.com"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                             </div>                            
                                         </div>                           
-                                    </div>
-                                    <div class="Cmnd-cv">
-                                        <div class="row">
-                                            <div class="col-md-2 icon-cv-profile">
-                                                <i class="fa fa-address-card"></i>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.cmnd_profile" @click="text()" class="main-text textarea" placeholder="VD: 173721***"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
-                                            </div>                            
-                                        </div>                           
-                                    </div>
+                                    </div>                                   
                                     <div class="note-cv" style="margin-bottom: 16px;">
                                         <div class="row">
                                             <div class="col-md-2 icon-cv-profile">
@@ -206,8 +193,8 @@
                     </div>
                 </div>
                 <br>
-                <button class="btn btn-primary" @click="update">Cập nhật</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Xem trước pdf</button>
+                <button class="btn btn-primary" @click="insert">Tạo hồ sơ</button>
+                <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Xem trước pdf</button> -->
             </div>   
         </div>  
         <br>
@@ -324,9 +311,7 @@
                                         </div>
                                         
                                     </div>                                                   
-                                </div>   
-                                
-                                <EducationUserPdf v-for="(edu,k) in education_user" :edu="edu" :key="k"></EducationUserPdf>
+                                </div>                                                                  
                                                                                                     
                             </div>                                
                         </div>
@@ -387,17 +372,7 @@
                                             <span class="a">{{info_frofile_user.email_profile}}</span>                                                                         
                                         </div>                            
                                     </div>                           
-                                </div>
-                                <div class="Cmnd-cv">
-                                    <div class="row">
-                                        <div class="col-md-2 icon-cv-profile">
-                                            <i class="fa fa-address-card"></i>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span class="a">{{info_frofile_user.cmnd_profile}}</span>                                                                         
-                                        </div>                            
-                                    </div>                           
-                                </div>
+                                </div>                              
                                 <div class="note-cv" style="margin-bottom: 16px;">
                                     <div class="row">
                                         <div class="col-md-2 icon-cv-profile">
@@ -422,22 +397,36 @@
     </div>
 </template>
 
-<script>                    
-    import EducationUser from '~/components/cvProfileUser/EducationUser'
-    import EducationUserPdf from '~/components/cvProfileUser/EducationUserPdf'
+<script>                     
     export default {
         name: 'Teamplate1',
         layout: 'admin',
         
         data(){
             return {               
-                    info_frofile_user: {},
-                    education_user: [],
+                    info_frofile_user: {
+                        id_user:'',
+                        fullname_profile:'',
+                        birthday_profile:'',
+                        maleFemale:'',
+                        address_profile:'',
+                        phone_profile:'',
+                        email_profile:'',
+                        note_profile:'',
+                        title_target_profile:'',
+                        note_target_profile:'',
+                        skill_communication_profile:'',
+                        skill_information_profile:'',
+                        skill_logic_profile:'',
+                        certificate_profile:'',
+                        level_education:'',
+                        name_education:'',
+                        specialized_education:'',
+                    },             
                 }         
         },        
         components:{
-             EducationUser,
-             EducationUserPdf
+            
         },
         
         methods: {
@@ -447,105 +436,17 @@
             },
             text(){
                             
-            },
-            fetchdata(){
-                console.log(this.$route.query.id);
-                this.$axios.post('hoso/getProfileUser',{'id': this.$route.query.id})
-                .then(response => {                    
-                    this.info_frofile_user = response.data;
-                    console.log(this.info_frofile_user);
-                 })
-                 .catch(error => {
-                    console.log(error.response);
-                });
-            },
-            fetchdataEducation(){               
-                this.$axios.post('hoso/getEducationUser',{'id': this.$route.query.id})
-                .then(response => {                    
-                    this.education_user = response.data;
-                    if(this.education_user.length == 0){               
-                        this.insertDataEducationOne();
-                    }
-                    console.log(this.education_user);
-                 })
-                 .catch(error => {
-                    console.log(error.response);
-                });
-            },
-            insertDataEducationOne(){
-                this.$axios.post('hoso/insertEducationUserOne',{'id_profile': this.$route.query.id})
-                .then(response => {                    
-                    this.fetchdataEducation();
-                })
-                .catch(error => {
-                    console.log(error.response);
-                });
-            },
-            DeleteDataEducation(id){                
-                if(this.education_user.length == 1){
-                    this.$swal(
-                        'Bắt buộc',
-                        'Bạn phải nhập thông tin Học vấn',
-                        'error'
-                    ) 
-                }else{
-                    this.$axios.post('hoso/deleteDataEducation',{'id': id})
-                    .then(response => {                    
-                        this.fetchdataEducation();
-                    })
-                    .catch(error => {
-                        console.log(error.response);
-                    });
-                }                
-            },
-            updateEducation(e,route){
-                var i;
-                var n = this.education_user.length;
-                for(i=0;i<n;i++){
-                    e.preventDefault();
-                    var form = new FormData();
-                    form.append('id' , this.education_user[i].id)
-                    form.append('id_profile_user' , this.education_user[i].id_profile_user)
-                    form.append('name_education' , this.education_user[i].name_education)
-                    form.append('learning_education' , this.education_user[i].learning_education)
-                    form.append('business_education' , this.education_user[i].business_education)
-                    form.append('from_datetime_education' , this.education_user[i].from_datetime_education)
-                    form.append('to_datetime_education' , this.education_user[i].to_datetime_education)
-
-                    this.$axios.post('hoso/updateEducationUser',form)
-                    .then(response => {   
-                        console.log(response);                                     
-                        if(response.data.status != 200) {
-                            this.$swal(
-                                'Lỗi',
-                                response.data.message,
-                                'error'
-                            )                                                
-                        }else{                          
-                            this.$swal(
-                            'Cập nhật thành công',
-                            response.data.message,
-                            'success'
-                            )                                                    
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error.response);
-                    });
-                }
-            },            
-            update(e, route){                         
+            },                                      
+            insert(e, route){                         
                 e.preventDefault();
-                var form = new FormData();
-                form.append('id' , this.info_frofile_user.id)                
+                var form = new FormData();                             
                 form.append('id_user' , this.info_frofile_user.id_user)
                 form.append('fullname_profile' , this.info_frofile_user.fullname_profile)
                 form.append('birthday_profile' , this.info_frofile_user.birthday_profile)
                 form.append('maleFemale' , this.info_frofile_user.maleFemale)
                 form.append('address_profile' , this.info_frofile_user.address_profile)
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
-                form.append('email_profile' , this.info_frofile_user.email_profile)
-                form.append('cmnd_profile' , this.info_frofile_user.cmnd_profile)
+                form.append('email_profile' , this.info_frofile_user.email_profile)               
                 form.append('note_profile' , this.info_frofile_user.note_profile)
                 form.append('title_target_profile' , this.info_frofile_user.title_target_profile)
                 form.append('note_target_profile' , this.info_frofile_user.note_target_profile)
@@ -553,12 +454,18 @@
                 form.append('skill_information_profile' , this.info_frofile_user.skill_information_profile)
                 form.append('skill_logic_profile' , this.info_frofile_user.skill_logic_profile)
                 form.append('certificate_profile' , this.info_frofile_user.certificate_profile)
-
-                this.$axios.post('hoso/updateProfileUser',form)
+                form.append('level_education' , this.info_frofile_user.level_education)
+                form.append('name_education' , this.info_frofile_user.name_education)
+                form.append('specialized_education' , this.info_frofile_user.specialized_education)                
+                this.$axios.post('hoso/insertProfileUser',form)
                 .then(response => {   
                     console.log(response);                                     
                     if(response.data.status == 200) {
-                        this.updateEducation(e,route);            
+                        this.$swal(
+                            'Cập nhật thành công',
+                            response.data.message,
+                            'success'
+                            ) 
                     }else{
                         this.$swal(
                             'Lỗi',
@@ -576,9 +483,7 @@
             },  
 
         },        
-        mounted() {    
-            this.fetchdata();    
-            this.fetchdataEducation();  
+        mounted() {                           
             this.$nextTick(() => {
                 this.$el.setAttribute("style", "height",
                 `${this.$el.scrollHeight}px`);      
@@ -757,7 +662,7 @@
         border: 1px solid #fff;
     }
     .target-main-cv:hover {
-        border: 1px solid #029c7c;
+        border: 1px solid #FFF;
     }
    
     .main-skill-cv:hover {
