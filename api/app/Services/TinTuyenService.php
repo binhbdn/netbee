@@ -261,21 +261,21 @@ class TinTuyenService extends BaseService {
     private function getJobByRoleCompany()
     {
         return $this->nbJobList->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
-            ->leftJoin('apply', 'apply.job_id', '=', 'nb_joblists.id')
+            ->leftJoin('nb_applies', 'nb_applies.job_id', '=', 'nb_joblists.id')
             ->where('nb_joblists.id_created', Auth::user()->id)
             ->where('nb_joblists.deleted', self::INACTIVE)
             ->orderBy('nb_joblists.id', 'DESC')
-            ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers, count(apply.job_id) as applyers'))
+            ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
             ->groupBy('nb_joblists.id');
     }
 
     private function getJobByRoleAdmin()
     {
         return $this->nbJobList->where('nb_joblists.deleted', self::INACTIVE)
-            ->leftJoin('apply', 'apply.job_id', '=', 'nb_joblists.id')
+            ->leftJoin('nb_applies', 'nb_applies.job_id', '=', 'nb_joblists.id')
             ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
             ->orderBy('nb_joblists.id', 'DESC')
-            ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers, count(apply.job_id) as applyers'))
+            ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
             ->groupBy('nb_joblists.id');
     }
 
@@ -434,13 +434,13 @@ class TinTuyenService extends BaseService {
 
         if($searchStatus != null){
             $conditions[] = [
-                'nb_joblists.title' => $searchStatus
+                'nb_joblists.title', '=', $searchStatus
             ];
         }
 
         if($searchCategory != null){
             $conditions[] = [
-                'nb_joblists.type' => $searchCategory
+                'nb_joblists.type','=', $searchCategory
             ];
         }
 
