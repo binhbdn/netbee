@@ -549,7 +549,6 @@ export default {
             + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
             ).then((response)=>{
 	             this.tinTuyenDung=response.data;
-                console.log(this.tinTuyenDung)
             });
         },
         async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){

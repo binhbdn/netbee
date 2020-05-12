@@ -10,7 +10,8 @@ class Apply extends Model
 
     public $fillable = [
         'job_id',
-        'user_id',
+        'user_id_submit',
+        'user_id_recever',
         'cv_file',
         'cv_id',
         'name',
@@ -20,7 +21,11 @@ class Apply extends Model
         'reason_for_rejection',
     ];
 
-    public function Jobs(){
+    public function job(){
         return $this->belongsTo('App\Models\NbJoblist', 'job_id');
+    }
+    public  function user()
+    {
+        return $this->belongsTo('App\User', 'user_id_recever');
     }
 }

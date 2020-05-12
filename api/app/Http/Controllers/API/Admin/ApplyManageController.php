@@ -64,7 +64,19 @@ class ApplyManageController extends Controller
         $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::ADMIN_DUYET_CV);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($approve){
-            NotificationController::postNotification('Có 1 yêu cầu ứng tuyển vào tin '.$detail->Jobs['id_created'].' của bạn', $detail->user_create, 'https://netbee.vn/');
+            NotificationController::postNotification('Hồ sơ của bạn đã được duyệt! Vui lòng hoàn tất giấy tờ liên quan', $detail->user_id_submit, 'https://netbee.vn/admin/quan-ly-ung-tuyen');
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+        }
+        return response()->json($data);
+    }
+
+    public function ApprovedApplyHoSo(Request $request){
+        $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::ADMIN_DUYET_HO_SO);
+        $detail = $this->applyJobService->getDetailApply($request->id);
+        if($approve){
+            NotificationController::postNotification('Việc làm của bạn có lượt ứng tuyển mới', $detail->user_id_recever, 'https://netbee.vn/admin/quan-ly-ung-tuyen');
             $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
         }else {
             $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 

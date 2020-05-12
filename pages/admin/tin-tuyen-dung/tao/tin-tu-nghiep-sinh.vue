@@ -502,7 +502,7 @@ export default {
                 highlight_job: 1,
                 visa: {id: null, profession: ''},
                 form_work: {id: null, name: ''},
-                school_name
+                school_name: ''
             },
             checked: false,
             guarantee: [

@@ -116,8 +116,7 @@ export default {
     mounted() {
         this.$axios.$get('getNotification?page='+this.page).then((response) => {
             this.notifications = response.data.notifications.data,
-            this.countNoti = response.data.countNotRead,
-            console.log(response.data.notifications)
+            this.countNoti = response.data.countNotRead
         })
         
     },

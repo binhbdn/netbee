@@ -24,7 +24,7 @@ class NotificationController extends Controller
         ->orderBy('status_notification', 'ASC')
         ->orderBy('created_at', 'DESC')
         ->paginate(7);
-        $noti['countNotRead'] = DB::table('nb_notifications')->where('status_notification', 0)->count();
+        $noti['countNotRead'] = DB::table('nb_notifications')->where('status_notification', 0)->where('id_recever', Auth::user()->id)->count();
         if($noti)
             $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $noti];
         else

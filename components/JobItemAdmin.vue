@@ -65,9 +65,6 @@ export default {
         ],
     },
     props: ['job'],
-    mounted(){
-        console.log(this.job)
-    }
 }
 </script>
 <style scoped>
