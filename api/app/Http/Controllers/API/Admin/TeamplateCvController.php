@@ -111,8 +111,8 @@ class TeamplateCvController extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
-            $check = DB::table('nb_cvs')->insert($insert);               
-            $data = ['status' => 200,'message' => 'Cập nhật tin thành công', 'data' => null];
+            $check = $this->teamplateCvService->insert($insert);               
+            $data = ['status' => 200,'message' => 'Tạo hồ sơ thành công', 'data' => null];
         } catch (\Exception $e) {
             $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
         }            

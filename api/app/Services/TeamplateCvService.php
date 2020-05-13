@@ -34,17 +34,25 @@ class TeamplateCvService {
         return $this->getProfileById($id)->update($data);
     }
 
+    public function insert($data)
+    {
+        return $this->profileUser->insert($data);
+    }
+
     public function getProfileId($id)
     {
         return $this->getProfileById($id)->first();
     }
+
+
 
     public function getAllProfile(){
         return $this->profileUser;
     }
 
     public function getAllProfileByRole($role){
-        return $this->profileUser->where('id_user','=',$role);
+        return $this->profileUser->leftJoin('users','users.id','=','nb_cvs.id_user')
+        ->where('users.role','=',$role);
     }
 
     public function getProfileBy()
