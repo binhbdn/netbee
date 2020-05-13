@@ -547,14 +547,8 @@ export default {
             this.arrayForCompany = response.data.tintuyendung
             this.countJob = response.data.count
         });
-<<<<<<< HEAD:pages/cong-ty/_id/_detail.vue
-        this.$axios.$get(`getDetailCompanyById/${this.$route.params.id}`).then((response)=>{
-            console.log(response.data[0]);
-            this.detailCompany = response.data[0];
-=======
         this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
             this.detailCompany = response.data[0]
->>>>>>> master:pages/cong-ty/_congty.vue
         });
     },
     jsonld() {
