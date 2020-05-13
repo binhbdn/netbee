@@ -48,6 +48,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('changeInfo', 'Auth\UserController@changeInfo');
       Route::get('getInfoCompany', 'Auth\CompanyController@getInfoCompany');
       Route::post('changeInfoCompany', 'Auth\CompanyController@changeInfoCompany');
+      Route::get('checkUsernameCompany', 'Auth\CompanyController@checkUsernameCompany');
       Route::get('getNotification', 'NotificationController@getNotification');
       Route::post('readNotification', 'NotificationController@readNotification');
       Route::post('readNotificationAll', 'NotificationController@readNotificationAll');

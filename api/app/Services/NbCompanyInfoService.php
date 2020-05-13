@@ -115,4 +115,9 @@ class NbCompanyInfoService extends BaseService {
     {
         return $this->nbCompanyInfo->whereCompanyId($userId)->update($data);
     }
+
+    public function checkUsernameCompany($username)
+    {
+        return $this->nbCompanyInfo->where('username', $username)->exits();
+    }
 }
