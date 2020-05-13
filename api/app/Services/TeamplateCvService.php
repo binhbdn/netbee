@@ -50,10 +50,8 @@ class TeamplateCvService {
         return $this->profileUser;
     }
 
-    public function getAllProfileByRole($role){
-        return $this->profileUser->leftJoin('users','users.id','=','nb_cvs.id_user')
-        ->where('users.role','=',$role)
-        ->where('nb_cvs.id_user','=',Auth::user()->id);
+    public function getAllProfileByRole(){
+        return $this->profileUser->where('id_user','=',Auth::user()->id);
     }
 
     public function getProfileBy()
@@ -62,7 +60,7 @@ class TeamplateCvService {
         if($role == self::ADMIN){
             return $this->getAllProfile()->where('deleted','=',self::ACTION)->get();
         }else if($role == self::HR || $role == self::COMPANY || $role == self::USER){
-            return $this->getAllProfileByRole($role)->where('deleted','=',self::ACTION)->get();
+            return $this->getAllProfileByRole()->where('deleted','=',self::ACTION)->get();
         }       
     }  
         
