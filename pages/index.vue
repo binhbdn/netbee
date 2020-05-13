@@ -345,11 +345,9 @@
           this.arrayJobNew = ress.data.tintuyendung.data
         })
         this.$axios.$get(`getTinTuyenDungNewCarousel?page=2`).then((ress) => {
-          console.log(ress)
           this.arrayJobNew2 = ress.data.tintuyendung.data
         })
         this.$axios.$get(`getTinTuyenDungHotCarousel?page=1`).then((ress) => {
-           console.log(ress)
           this.arrayJobHot = ress.data.tintuyendung.data
 
         })

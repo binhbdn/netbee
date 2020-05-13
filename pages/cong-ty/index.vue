@@ -19,7 +19,7 @@ Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt
       <div class="list-company-item" v-for="(companyInfo,index) in companyInfos" :key="`companyInfo-${index}`">
         <div class="row">
           <div class="col-12">
-            <a :href="`cong-ty/${companyInfo.id}/${ChangeToSlug(companyInfo.user.name)}`"><h4>#{{companyInfo.id}} {{companyInfo.user.name}}.</h4>
+            <a :href="`cong-ty/${companyInfo.id}`"><h4>#{{companyInfo.id}} {{companyInfo.user.name}}.</h4>
             </a>
             </div>  
         </div>
