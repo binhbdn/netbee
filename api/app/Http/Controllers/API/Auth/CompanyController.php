@@ -122,4 +122,21 @@ class CompanyController extends Controller
             'data' => null
         ];
     }
+
+    public function checkUsernameCompany(Request $request)
+    {
+        $data = $this->nbCompanyInfoService->checkUsernameCompany($request->username);
+        if($data) {
+            return [
+                'status' => 200,
+                'message' => 'Thành công', 
+                'data' => null
+            ];
+        }
+        return [
+            'status' => 400,
+            'message' => 'Đã tồn tại', 
+            'data' => null
+        ];
+    }
 }

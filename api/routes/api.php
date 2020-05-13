@@ -48,6 +48,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('changeInfo', 'Auth\UserController@changeInfo');
       Route::get('getInfoCompany', 'Auth\CompanyController@getInfoCompany');
       Route::post('changeInfoCompany', 'Auth\CompanyController@changeInfoCompany');
+      Route::get('checkUsernameCompany', 'Auth\CompanyController@checkUsernameCompany');
       Route::get('getNotification', 'NotificationController@getNotification');
       Route::post('readNotification', 'NotificationController@readNotification');
       Route::post('readNotificationAll', 'NotificationController@readNotificationAll');
@@ -101,6 +102,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('HideApply/{id}', 'Admin\ApplyManageController@HideApply');
         Route::get('ShowApply/{id}', 'Admin\ApplyManageController@ShowApply');
         Route::post('ApprovedApplyHoSo/{id}', 'Admin\ApplyManageController@ApprovedApplyHoSo');
+        Route::post('ChooseCalendar/{id}', 'Admin\ApplyManageController@ChooseCalendar');
       });
   });
 });
