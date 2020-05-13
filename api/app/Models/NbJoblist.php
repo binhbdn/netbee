@@ -54,4 +54,7 @@ class NbJoblist extends Model
     {
         return $this->belongsTo('App\User', 'id_created');
     }
+    public function nbCompany(){
+        return $this->belongsTo('App\Models\NbCompanyInfo','id_created','company_id');
+    }
 }

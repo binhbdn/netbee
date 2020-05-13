@@ -148,9 +148,8 @@ class UserController extends Controller
 
     public function user(Request $request)
     {
-        return [
-            'data' => JWTAuth::parseToken()->authenticate()
-        ];
+        $response['data'] = $this->userService->getUser();
+        return response()->json($response);
     }
 
     public function changePassword(Request $request)

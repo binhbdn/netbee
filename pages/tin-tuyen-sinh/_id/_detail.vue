@@ -15,7 +15,7 @@
                         <div class="col-lg-7">
                             <div class="company-job-title">
                                 <h1 class="font-weight-bold">{{ tintuyendung.title }}</h1>
-                                <a :href="`/cong-ty/${tintuyendung.id_created}/${ChangeToSlug(tintuyendung.user.name)}`"><h4 class="font-weight-bold text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
+                                <a :href="`/cong-ty/${tintuyendung.id_created}`"><h4 class="font-weight-bold text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
                                 <p><span class="font-weight-600">Loại tin: </span><span class="badge background-default badge-md">{{ tintuyendung.type == 3 ? 'Tu nghiệp sinh' : tintuyendung.type == 2 ? 'Du học sinh' : 'Xuất khẩu lao động' }}</span></p>
                                 <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuyendung.nation.name }}</p>
                                 <p><span class="font-weight-600" v-if="tintuyendung.type != 2">Mức lương: </span> <span class="font-weight-600" v-if="tintuyendung.type == 2">Học phí: </span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
@@ -132,9 +132,6 @@
                                 <div class="col-lg-12">
                                     Ứng viên nộp hồ sơ trực tiếp tại văn phòng công ty hoặc nộp trực tuyến bằng cách bấm vào nút <b>Nộp hồ sơ</b>.<br>
                                     <div class="text-center">
-                                        <div>
-                                            <button class="btn  btn-warning w-75" style="width: 214px !important; color: #000; border-color: #ffb701 !important; background-color: #ffb701 !important;"><i class="fad fa-paper-plane"></i> Nộp hồ sơ</button>
-                                        </div>
                                         <i>Hạn nộp hồ sơ: {{ConvertDate(tintuyendung.expiration_date)}}</i><br>
                                     </div>
                                 </div>
@@ -305,13 +302,13 @@
                     <div class="modal-body">
                         <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                             <li class="nav-item">
-                            <a class="nav-link active" id="v-pills-1-tab" data-toggle="tab" href="#v-pills-1"
+                                <a class="nav-link active" id="v-pills-1-tab" data-toggle="tab" href="#v-pills-1"
                                 role="tab" aria-controls="v-pills-1" aria-selected="true">Hồ sơ đính kèm</a>
                             </li>
-                            <!-- <li class="nav-item">
-                            <a class="nav-link" id="v-pills-2-tab" data-toggle="tab" href="#v-pills-2"
+                            <li class="nav-item" @click="getListProfileUser()">
+                                <a class="nav-link" id="v-pills-2-tab" data-toggle="tab" href="#v-pills-2"
                                 role="tab" aria-controls="v-pills-2" aria-selected="false">Danh sách hồ sơ</a>
-                            </li> -->
+                            </li>
                         </ul>
                         <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
                             <div class="tab-pane active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-11-tab">
@@ -348,29 +345,33 @@
                                                 </div>
                                             </ValidationProvider>
                                         </div>
-                                        <!-- <div class="col-12">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <label for="name">Ngành nghề dự định</label>
-                                                    <multiselect v-model="value" :options="visa" :multiple="true" :custom-label="nameWithLang"
-                                                        placeholder="Chọn ngành nghề" ></multiselect>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <div class="form-field">
-                                                    <label for="name">Quốc gia</label>
-                                                    <Multiselect :options="nation" v-model="chooseNation" placeholder="Chọn quốc gia" :multiple="true"
-                                                    :searchable="false" :custom-label="nameWithLang1"></Multiselect>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </ValidationObserver>
                             </div>
                             <div class="tab-pane" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-22-tab">
-                                b
+                                <fieldset v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
+                                    <div class="vs-radio-con vs-radio-success">
+                                        <input type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
+                                        <span class="vs-radio">
+                                            <span class="vs-radio--border"></span>
+                                            <span class="vs-radio--circle"></span>
+                                        </span>
+                                        <span class="">{{ listProfileUser.fullname_profile }}</span>
+                                    </div>
+                                </fieldset>
+                                <div class="col-12">
+                                    <ValidationProvider
+                                    rules="required"
+                                    v-slot="{ errors }">
+                                        <div class="form-group">
+                                            <div class="form-field">
+                                                <label for="name">Họ tên</label>
+                                                <input type="text" id="name" class="form-control" v-model="name">
+                                                <span style="color: red">{{errors[0]}}</span>
+                                            </div>
+                                        </div>
+                                    </ValidationProvider>
+                                </div>
                             </div>
                         </div>
                         <div class="text-right mt-1">
@@ -447,10 +448,12 @@ export default {
                 password: ''
             },
             file_cv: [],
+            id_cv: '',
             show: true,
             value: [],
             chooseNation: [],
             name: null,
+            listProfileUsers: []
         }
     },
     async asyncData({$axios, route}) {
@@ -585,10 +588,16 @@ export default {
             this.name = ''
             this.value = []
             this.chooseNation = []
+            this.id_cv = ''
         },
         async applyJob(){
             var data = new FormData()
-            data.append('file_cv', this.file_cv[0])
+            if(this.file_cv.length > 0){
+                data.append('file_cv', this.file_cv[0])
+            }
+            if(this.id_cv != ''){
+                data.append('id_cv', this.id_cv)
+            }
             data.append('name', this.name)
             data.append('job_id', this.$route.params.id)
             const isValid = await this.$refs.applyJob.validate();
@@ -612,6 +621,11 @@ export default {
                 })
             }
   
+        },
+        getListProfileUser(){
+            this.$axios.$get(`hoso/listProfileUser`).then((response)=>{
+                this.listProfileUsers = response
+            });
         }
     },
     mounted() {

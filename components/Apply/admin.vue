@@ -194,14 +194,15 @@
                                                 <tbody class="tab-table">
                                                     <tr v-for="(item, index) in AllApply" :key="index">
                                                         <td>{{item.id}}</td>
-                                                        <td>{{item.title}}</td>
+                                                        <td>{{item.job.title}}</td>
                                                         <td>{{item.name}}</td>
                                                         <td>
                                                             <p v-if="item.status == 1">Chưa duyệt</p>
                                                             <p v-else-if="item.status == 2">Đã duyệt hồ sơ</p>
                                                             <p v-else-if="item.status == 5">Đã duyệt hồ sơ đính kèm</p>
+                                                            <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                                         </td>
-                                                        <td>{{item.name_company}}</td>
+                                                        <td>{{item.user.name}}</td>
                                                         <td>
                                                             <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
                                                                 {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>

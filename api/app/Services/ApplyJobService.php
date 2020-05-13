@@ -16,18 +16,6 @@ class ApplyJobService extends BaseService {
         $this->apply = $apply;
     }
 
-    const   CHO_DUYET = 1,
-            ADMIN_DUYET_CV = 2,
-            DA_TUYEN = 3,
-            TU_CHOI = 4,
-            ADMIN_DUYET_HO_SO = 5,
-            NTD_DUYET_HO_SO = 6;
-            
-    const All = 0;
-
-    const AN = 0,
-          HIEN = 1;
-
     public function create($data)
     {
         return Apply::insert($data);
@@ -48,22 +36,44 @@ class ApplyJobService extends BaseService {
 
     public function changeStatusApply($id, $status)
     {
-        return Apply::where('id',$id)->update(['status'=>$status]);
+        $data = [
+            'status'=>$status
+        ];
+        return $this->update($data, $id);
     }
 
     public function refuse($id, $status, $refuse)
     {
-        return Apply::where('id',$id)->update(['status' => $status ,'reason_for_rejection' => $refuse]);
+        $data = [
+            'status' => $status ,
+            'reason_for_rejection' => $refuse
+        ];
+        return $this->update($data, $id);
+    }
+
+    public function isPublic($id, $isPublic)
+    {
+        $data = [
+            'isPublic'=>$isPublic
+        ];
+        return $this->update($data, $id);
+    }
+
+    public function ChooseCalendar($date, $id){
+        $data = [
+            'interview_schedules'=>$date,
+            'status' => 6
+        ];
+        return $this->update($data, $id);
+    }
+
+    private function update($data, $id){
+        return $this->apply->where('id',$id)->update($data);
     }
 
     public function getDetailApply($id) 
     {
         return Apply::with('job')->where('id', $id)->first();
-    }
-
-    public function isPublic($id, $isPublic)
-    {
-        return Apply::where('id',$id)->update(['isPublic'=>$isPublic]);
     }
 
     public function getApplyAdmin($status)
@@ -72,9 +82,7 @@ class ApplyJobService extends BaseService {
         if($status){
             $condition[] = ['nb_applies.status','=',$status];
         }
-        return Apply::select('nb_applies.*','users.name as name_company', 'nb_joblists.currency', 'nb_joblists.bonus', 'nb_joblists.time_bonus', 'nb_joblists.title')
-                    ->Join('nb_joblists', 'nb_applies.job_id','=','nb_joblists.id')
-                    ->Join('users', 'nb_joblists.id_created', '=', 'users.id')
+        return $this->getApplyValid()
                     ->where($condition)->get();
     }
 
@@ -84,50 +92,36 @@ class ApplyJobService extends BaseService {
         if($status){
             $condition[] = ['nb_applies.status','=',$status];
         }
-        return $this->apply->with(['user' => function ($q) {
-                            $q->select('id', 'name', 'avatar');
-                            $q->where([
-                                'status' => self::ACTIVE,
-                                'block' =>self::UN_BLOCK
-                            ]);
-                        }])
-                        ->with(['job' => function ($q) {
-                            $q->select('currency', 'title','id');
-                            $q->where([
-                                'deleted' => self::UN_DELETE,
-                                'status' => self::ACTIVE,
-                                'isPublic' =>self::ACTIVE
-                            ]);
-                        }])
+        return $this->getApplyValid()
                     ->where($condition)
                     ->where('user_id_submit' ,Auth::user()->id)
                     ->get();
     }
     public function getApplyCompany($status)
     {
-        $condition = [];
-        if($status){
-            $condition[] = ['nb_applies.status','=', $status];
-        }
-        return $this->apply->with(['user' => function ($q) {
-                            $q->select('id', 'name', 'avatar');
-                            $q->where([
-                                'status' => self::ACTIVE,
-                                'block' =>self::UN_BLOCK
-                            ]);
-                        }])
-                        ->with(['job' => function ($q) {
-                            $q->select('currency', 'title','id');
-                            $q->where([
-                                'deleted' => self::UN_DELETE,
-                                'status' => self::ACTIVE,
-                                'isPublic' =>self::ACTIVE
-                            ]);
-                        }])
-                    ->where($condition)
+        return $this->getApplyValid()
                     ->where('user_id_recever' ,Auth::user()->id)
                     ->where('status' ,self::ADMIN_DUYET_HO_SO)
+                    ->orwhere('status', self::NTD_DUYET_HO_SO)
                     ->get();
+    }
+
+    private function getApplyValid() {
+        return $this->apply->with(['user' => function ($q) {
+                                $q->select('id', 'name', 'avatar');
+                                $q->where([
+                                    'status' => self::ACTIVE,
+                                    'block' =>self::UN_BLOCK
+                                ]);
+                            }])
+                            ->with(['job' => function ($q) {
+                                $q->select('currency', 'title','id');
+                                $q->where([
+                                    'deleted' => self::UN_DELETE,
+                                    'status' => self::ACTIVE,
+                                    'isPublic' =>self::ACTIVE
+                                ]);
+                            }]);
     }
 
     public function getBonus($id){
@@ -137,4 +131,6 @@ class ApplyJobService extends BaseService {
     public function getIdCreated($id){
         return NbJoblist::where('id', $id)->first()->id_created;
     }
+
+    
 }

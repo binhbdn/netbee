@@ -217,15 +217,20 @@
                                                         <div class="media pl-1">
                                                             <a href="javascript: void(0);">
                                                                 <img :src="imagesCover[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="imagesCover.length > 0">
-                                                                <img :src="changeInfoCompanyForm.imageCover != null && changeInfoCompanyForm.imageCover.startsWith('https') ? changeInfoCompanyForm.imageCover : `/uploads/users/avatars/${changeInfoCompanyForm.imageCover}`" class="rounded mr-75" alt="cover image" height="64" width="64" style="object-fit: cover;" v-else>
+                                                                <img :src="changeInfoCompanyForm.imageCover != null && changeInfoCompanyForm.imageCover.startsWith('https') ? changeInfoCompanyForm.imageCover : `/uploads/users/covers/${changeInfoCompanyForm.imageCover}`" class="rounded mr-75" alt="cover image" height="64" width="64" style="object-fit: cover;" v-else>
                                                             </a>
                                                             <div class="media-body mt-75">
                                                                 <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
                                                                     <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload-cover" >Đổi ảnh bìa</label>
-                                                                    <input type="file" id="account-upload-cover" @change="onInputChangeCover" hidden>
+                                                                    <input type="file" id="account-upload-cover"  @change="onInputChangeCover" hidden>
                                                                     <button type="button" class="btn btn-sm btn-outline-warning ml-50" @click="resetImgCover">Reset</button>
                                                                 </div>
                                                                 <p class="text-muted ml-75 mt-50"><small>Cho phép JPG, GIF or PNG. Kích thước đề xuất: 1120 x 296</small></p>
+                                                                <ul style="color:red" class="overline text-left">
+                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                        <span>{{ error }}</span>
+                                                                        </li>
+                                                               </ul>
                                                             </div>
                                                         </div>
                                                         <hr>
@@ -480,18 +485,15 @@ export default {
 
         },
         onInputChangeCover(e){
-            console.log(e);
             if(this.imagesCover.length > 0){
                 this.$delete(this.imagesCover, 0)
             }
-            // e.preventDefault();
-            // e.stopPropagation();
+            e.preventDefault();
+            e.stopPropagation();
             this.isDragging = false;
             const files = e.target.files;
-            console.log(e);
             if(files.length >0){
                 this.addImageCover(files[0]);
-                console.log(1);
             }
                 
 
@@ -528,7 +530,6 @@ export default {
             }
             if(this.changeInfoCompanyForm.files.length >0)
                 this.$delete(this.changeInfoCompanyForm.files, 0)
-            console.log(this.changeInfoCompanyForm.files);
             this.changeInfoCompanyForm.files.push(file);
 
             const img = new Image();
@@ -626,7 +627,6 @@ export default {
             }
         },
         async changeInfoCompany() {
-            console.log(this.changeInfoCompanyForm.imageCover);
             const isValid = await this.$refs.observerChangeInfoCompany.validate();
             if(isValid){
                 try {
@@ -638,7 +638,7 @@ export default {
                     company_policy: this.changeInfoCompanyForm.companyPolicy,
                     company_chance: this.changeInfoCompanyForm.companyChance,
                     company_link: this.changeInfoCompanyForm.companyLink,
-                    image_cover: this.changeInfoCompanyForm.imageCover,
+                    image_cover: this.changeInfoCompanyForm.files[0].name,
                 });
                 if(response.data.status == 200){
                     this.$swal({
