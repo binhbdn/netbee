@@ -52,7 +52,8 @@ class TeamplateCvService {
 
     public function getAllProfileByRole($role){
         return $this->profileUser->leftJoin('users','users.id','=','nb_cvs.id_user')
-        ->where('users.role','=',$role);
+        ->where('users.role','=',$role)
+        ->where('nb_cvs.id_user','=',Auth::user()->id);
     }
 
     public function getProfileBy()
