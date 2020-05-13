@@ -85,7 +85,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('report', 'Admin\ReportController@report');
       });
       Route::prefix('hoso')->group(function () {       
-        Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');       
+        Route::post('getProfileUserId', 'Admin\TeamplateCvController@getProfileUserId');
+        Route::post('deleteProfileUser', 'Admin\TeamplateCvController@deleteProfileUser');
+        Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');  
+        Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');       
         Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');       
       });
       Route::prefix('apply')->group(function () {

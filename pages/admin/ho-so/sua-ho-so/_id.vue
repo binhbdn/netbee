@@ -2,8 +2,8 @@
     <div class="app-content content">
          <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
-        <br><br><br><br>
-        <div class="container" >  
+        <br><br><br><br>        
+        <div class="container" >   
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
@@ -15,22 +15,25 @@
                                     </li>
                                     <li class="breadcrumb-item"><a href="/">Hồ sơ ứng tuyển</a>
                                     </li>
-                                    <li class="breadcrumb-item active"> Tạo hồ sơ ứng tuyển
+                                    <li class="breadcrumb-item active" v-if="status == 0"> Chi tiết hồ sơ ứng tuyển
+                                    </li>
+                                    <li class="breadcrumb-item active" v-if="status == 1"> Cập nhật hồ sơ ứng tuyển
                                     </li>
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="main-cv">                 
                 <div class="row">
                     <div class="col-md-10" style="background-color: #fff;box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);">                                
-                        <div class="row">
+                        <div class="row" id="cv">
                             <div class="col-md-8">
                                 <br>
-                                <div class="title-h3-cv">                                    
-                                    <textarea @click="text()" v-model="info_frofile_user.fullname_profile" class="main-text textarea" placeholder="VD: NGUYỄN VĂN A"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                <div class="title-h3-cv">       
+                                    <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.fullname_profile}}</p>   
+                                    <textarea  v-if="status == 1" v-model="info_frofile_user.fullname_profile" class="main-text textarea" placeholder="VD: NGUYỄN VĂN A"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                                              
                                 </div>
                                 
                                 <br><br>
@@ -42,7 +45,7 @@
                                             </div>
                                         </div>                                                                        
                                     </div>
-                                    <div class="target-ngan">                                
+                                    <div v-bind:class="{'target-ngan': status == 0, 'target-ngan1': status == 1}" >                                
                                         <div class="target-Short-term-cv" >
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -51,14 +54,16 @@
                                             </div>                        
                                         </div>
                                         <div class="target-company-cv">
-                                            <textarea v-model="info_frofile_user.title_target_profile"  @click="text()" class="main-text textarea" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY HACHINET"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                    
+                                            <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.title_target_profile}}</p>  
+                                            <textarea v-if="status == 1" v-model="info_frofile_user.title_target_profile"  class="main-text textarea" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY HACHINET"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                          
                                         </div>
                                         <div class="target-Short-term-note-cv">
-                                            <textarea v-model="info_frofile_user.note_target_profile" @click="text()" class="main-text textarea" placeholder="VD: Mong muốn làm việc trong một môi trường năng động, vui vẻ, thỏa sức đưa ra các ý tưởng, sự sáng tạo và đặc biệt là được theo đuổi ngành nghề yêu thích của mình. Đưa bản thân vào một môi trường làm việc có kỷ luật, nâng cao tinh thần trách nhiệm và khả năng chịu áp lực, giải quyết vấn đề một cách sáng tạo và hiệu quả ở một vị trí đầy thách thức."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="5"></textarea>        
+                                            <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.note_target_profile}}</p>   
+                                            <textarea v-if="status == 1" v-model="info_frofile_user.note_target_profile" class="main-text textarea" placeholder="VD: Mong muốn làm việc trong một môi trường năng động, vui vẻ, thỏa sức đưa ra các ý tưởng, sự sáng tạo và đặc biệt là được theo đuổi ngành nghề yêu thích của mình. Đưa bản thân vào một môi trường làm việc có kỷ luật, nâng cao tinh thần trách nhiệm và khả năng chịu áp lực, giải quyết vấn đề một cách sáng tạo và hiệu quả ở một vị trí đầy thách thức."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="5"></textarea>                                                 
                                         </div>
                                     </div>                                  
                                 </div>
-                                <div class="skill-cv">
+                                <div v-bind:class="{'skill-cv': status == 0, 'skill-cv1': status == 1}">
                                     <!--Học vấn-->
                                     <div class="skill-mn-cv" style="padding-left:10px;">
                                         <div class="row">
@@ -75,7 +80,8 @@
                                                     <p>Giao tiếp:</p>
                                                 </div>
                                                 <div class="col-md-10">
-                                                  <textarea v-model="info_frofile_user.skill_communication_profile" @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                    <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.skill_communication_profile}}</p>
+                                                    <textarea v-if="status == 1" v-model="info_frofile_user.skill_communication_profile" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                                       
                                                 </div>
                                             </div>            
                                         </div>
@@ -85,7 +91,8 @@
                                                     <p>Tin học văn phòng(Word, Excel, Power Point):</p>
                                                 </div>
                                                 <div class="col-md-5">
-                                                  <textarea v-model="info_frofile_user.skill_information_profile" @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                    <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.skill_information_profile}}</p>                                                     
+                                                    <textarea v-if="status == 1" v-model="info_frofile_user.skill_information_profile"  class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                                 </div>
                                             </div>                                            
                                         </div>     
@@ -95,7 +102,8 @@
                                                     <p>Tư duy logic:</p>
                                                 </div>
                                                 <div class="col-md-9">
-                                                  <textarea v-model="info_frofile_user.skill_logic_profile" @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                    <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.skill_logic_profile}}</p>                                                    
+                                                    <textarea v-if="status == 1" v-model="info_frofile_user.skill_logic_profile"  class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                                 </div>
                                             </div>                                            
                                         </div>                                                                                                                                                
@@ -115,22 +123,26 @@
                                         <div class="communication">
                                             <div class="row">                                             
                                                 <div class="col-md-12">
-                                                  <textarea v-model="info_frofile_user.certificate_profile"  @click="text()" class="main-text textarea" placeholder="VD: - MS Office Khóa học (2018)"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                                    <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.certificate_profile}}</p>                                                     
+                                                    <textarea v-if="status == 1" v-model="info_frofile_user.certificate_profile"  class="main-text textarea" placeholder="VD: - MS Office Khóa học (2018)"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                                 </div>
                                             </div>            
                                         </div>                                                                                                                                                                                      
                                     </div>
                                 </div> 
-                                <div class="edu-cv">
+                                <div v-bind:class="{'edu-cv': status == 0, 'edu-cv1': status == 1}">
                                     <!--Học vấn-->
                                     <div class="education-cv" style="padding-left:10px;">
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <h5>HỌC VẤN</h5>
                                             </div>
-                                            <textarea v-model="info_frofile_user.level_education"  @click="text()" class="main-text textarea" placeholder="VD: 12/12"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                            <textarea v-model="info_frofile_user.name_education"  @click="text()" class="main-text textarea" placeholder="VD: ĐẠI HỌC ABC"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                            <textarea v-model="info_frofile_user.specialized_education"  @click="text()" class="main-text textarea" placeholder="VD: Chuyên ngành CNTT"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                            <p class="main-text textarea" v-if="status == 0" style="margin-left: 20px;margin-top: 20px;">{{info_frofile_user.level_education}}</p>   
+                                            <p class="main-text textarea" v-if="status == 0" style="margin-left: 20px;">{{info_frofile_user.name_education}}</p>   
+                                            <p class="main-text textarea" v-if="status == 0" style="margin-left: 20px;">{{info_frofile_user.specialized_education}}</p>                                              
+                                             <textarea  v-if="status == 1" v-model="info_frofile_user.level_education" class="main-text textarea" placeholder="VD: 12/12"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                            <textarea  v-if="status == 1" v-model="info_frofile_user.name_education" class="main-text textarea" placeholder="VD: ĐẠI HỌC ABC"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                            <textarea  v-if="status == 1" v-model="info_frofile_user.specialized_education" class="main-text textarea" placeholder="VD: Chuyên ngành CNTT"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                         </div>                                                   
                                     </div>                                                                                                                                                                              
                                 </div>                                
@@ -138,12 +150,18 @@
                             <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
                                 <center>
                                     <div style="background-color: #029c7c;" class="img-cv">
-                                        <div class="imgg">
+                                        <div class="imgg" v-if="status == 0">
+                                            <label>
+                                                <img :src="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`">
+                                            </label>                                                                                                                          
+                                        </div>     
+                                        <div class="imgg" v-if="status == 1">
                                             <label for="files">
-                                                <img v-bind:src="img">
+                                                <img :src="images[0]"  v-if="images.length > 0">
+                                                <img :src="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`" v-else>
                                             </label>
                                             <input type="file" id="files" class="hidden"  @change="previewFiles" multiple>                                          
-                                        </div>                                        
+                                        </div>  
                                     </div>                        
                                 </center>     
                                 <br> 
@@ -154,7 +172,8 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <input v-model="info_frofile_user.birthday_profile" @click="text()" class="main-text textarea" placeholder="VD: 0000/00/00"  style="overflow:hidden;"/>
+                                                <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.birthday_profile}}</p>                                                   
+                                                <input v-if="status == 1" v-model="info_frofile_user.birthday_profile" class="main-text textarea" placeholder="VD: 0000/00/00"  style="overflow:hidden;"/>
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -164,7 +183,8 @@
                                                 <i class="fa fa-venus-mars"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <input v-model="info_frofile_user.maleFemale" @click="text()" class="main-text textarea" placeholder="VD: Nam/Nữ"  style="overflow:hidden;"/>
+                                                <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.maleFemale}}</p> 
+                                                <input v-if="status == 1" v-model="info_frofile_user.maleFemale" class="main-text textarea" placeholder="VD: Nam/Nữ"  style="overflow:hidden;"/>                                                  
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -174,7 +194,8 @@
                                                 <i class="fa fa-location-arrow"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.address_profile" @click="text()" class="main-text textarea" placeholder="VD: 234 Phạm Văn Đồng, Cổ Nhuế, Từ Liêm, thành phố Hà Nội."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="3"></textarea>
+                                                <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.address_profile}}</p>
+                                                <textarea v-if="status == 1" v-model="info_frofile_user.address_profile" class="main-text textarea" placeholder="VD: 234 Phạm Văn Đồng, Cổ Nhuế, Từ Liêm, thành phố Hà Nội."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="3"></textarea>                                                   
                                             </div>                            
                                         </div>                                             
                                     </div>                 
@@ -184,7 +205,8 @@
                                                 <i class="fa fa-phone"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <input v-model="info_frofile_user.phone_profile" @click="text()" class="main-text textarea" placeholder="VD: +84 985372***"  style="overflow:hidden;">  
+                                                <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.phone_profile}}</p>   
+                                                <input v-if="status == 1" v-model="info_frofile_user.phone_profile"  class="main-text textarea" placeholder="VD: +84 985372***"  style="overflow:hidden;">                                                 
                                             </div>                            
                                         </div>                                             
                                     </div>
@@ -194,7 +216,8 @@
                                                 <i class="fa fa-envelope-o"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <input v-model="info_frofile_user.email_profile" @click="text()" class="main-text textarea" placeholder="VD: netbee@gmail.com"  style="overflow:hidden;"/>
+                                                <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.email_profile}}</p>                                                   
+                                                <input v-if="status == 1" v-model="info_frofile_user.email_profile" class="main-text textarea" placeholder="VD: netbee@gmail.com"  style="overflow:hidden;"/>
                                             </div>                            
                                         </div>                           
                                     </div>                                   
@@ -204,7 +227,8 @@
                                                 <i class="fas fa-briefcase"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.note_profile" @click="text()" class="main-text textarea" placeholder="VD: Áp dụng những kinh nghiệm về kỹ năng làm việc nhóm và sự hiểu biết của bản thân, mang đến nhiều giá trị cho khách hàng. Từ đó Công ty tăng số lượng khách hàng."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="7"></textarea>
+                                                <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.note_profile}}</p>                                                   
+                                                <textarea v-if="status == 1" v-model="info_frofile_user.note_profile" class="main-text textarea" placeholder="VD: Áp dụng những kinh nghiệm về kỹ năng làm việc nhóm và sự hiểu biết của bản thân, mang đến nhiều giá trị cho khách hàng. Từ đó Công ty tăng số lượng khách hàng."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="7"></textarea>
                                             </div>                            
                                         </div>                         
                                     </div>
@@ -212,9 +236,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  
+                <div id="pdf"></div>             
                 <br>
-                <button class="btn btn-add bg-netbee" @click="insert">Tạo hồ sơ</button>               
+                <button class="btn btn-add bg-netbee" v-if="status == 1" @click="update">Cập nhật</button>
+                <button class="btn btn-add bg-netbee" v-if="status == 1" @click="canle()">Hủy</button>  
+                <button class="btn btn-add bg-netbee" v-if="status == 0" @click="statust()">Sửa hồ sơ</button>                
+                <button class="btn btn-add bg-netbee" v-if="status == 0" @click="dowload()">Xuất Pdf</button>               
             </div>   
         </div>  
         <br>
@@ -222,14 +250,22 @@
     </div>
 </template>
 
-<script>                          
+<script>                
+    let html2canvas = null
+    let JsPDF = null
+    if (process.browser) {
+    html2canvas = require('html2canvas')
+    JsPDF = require('jspdf')
+    }
+      
     export default {
-        name: 'Teamplate1',
+        name: '',
         layout: 'admin',
         
         data(){
             return {               
                     info_frofile_user: {
+                        id:'',
                         id_user:'',
                         fullname_profile:'',
                         birthday_profile:'',
@@ -248,9 +284,10 @@
                         level_education:'',
                         name_education:'',
                         specialized_education:'',
-                    },  
-                    img:'https://www.topcv.vn/upload/images/avatars/no_avatar.jpg', 
+                    },                      
                     fileImg:[], 
+                    status: 0,  
+                    images: [],                 
                            
                 }         
         },        
@@ -259,31 +296,18 @@
         },
         
         methods: {
-            previewFiles(e) {                
-                this.info_frofile_user.avatar_profile = e.target.files[0].name;                
-                const file = e.target.files[0];
-                this.fileImg.push(file);
-                this.img = URL.createObjectURL(file);
-            },
-             mixin_autoResize_resize(event) {
-                event.target.style.height = "auto";
-                event.target.style.height = `${event.target.scrollHeight}px`;
-            },
-            text(){
-                            
-            },                                      
-            insert(e, route){                         
+            async update(e, route){
                 e.preventDefault();                
                 var form = new FormData();                             
-                form.append('file' , this.fileImg)
+                form.append('avatar_profile' , this.fileImg[0])
+                form.append('id', this.info_frofile_user.id)
                 form.append('id_user' , this.info_frofile_user.id_user)
                 form.append('fullname_profile' , this.info_frofile_user.fullname_profile)
                 form.append('birthday_profile' , this.info_frofile_user.birthday_profile)
                 form.append('maleFemale' , this.info_frofile_user.maleFemale)
                 form.append('address_profile' , this.info_frofile_user.address_profile)
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
-                form.append('email_profile' , this.info_frofile_user.email_profile) 
-                form.append('avatar_profile' , this.info_frofile_user.avatar_profile)               
+                form.append('email_profile' , this.info_frofile_user.email_profile)                            
                 form.append('note_profile' , this.info_frofile_user.note_profile)
                 form.append('title_target_profile' , this.info_frofile_user.title_target_profile)
                 form.append('note_target_profile' , this.info_frofile_user.note_target_profile)
@@ -294,16 +318,16 @@
                 form.append('level_education' , this.info_frofile_user.level_education)
                 form.append('name_education' , this.info_frofile_user.name_education)
                 form.append('specialized_education' , this.info_frofile_user.specialized_education)                
-                this.$axios.post('hoso/insertProfileUser',form)
+                this.$axios.post('hoso/updateProfileUser',form)
                 .then(response => {   
                     console.log(response);                                     
                     if(response.data.status == 200) {
                         this.$swal(
-                            'Tạo mới thành công',
+                            'Cập nhật thành công',
                             response.data.message,
                             'success'
                             ).then( function (){
-                            window.location.href = '/admin/ho-so';
+                             window.location.reload();
                             } )
                     }else{
                         this.$swal(
@@ -315,18 +339,146 @@
                  })
                  .catch(error => {
                     console.log(error.response);
-                });                
-            },           
+                });                                     
+            },
+            previewFiles(e) {  
+                if(this.images.length > 0){
+                this.$delete(this.images, 0)
+                }                                     
+                e.preventDefault();
+                e.stopPropagation();
+                this.isDragging = false;      
+                const files = e.target.files;
+                if(files.length >0)
+                    this.addImage(files[0]);
+            },
+            addImage(file){
+            if( !file.type.match('image.*') ){
+                this.$swal(
+                        'Lỗi',
+                        'File không đúng định dạng',
+                        'error'
+                    )
+                return;
+            }
+            if(this.fileImg.length >0)
+                this.$delete(this.fileImg, 0)
+
+            this.fileImg.push(file);
+
+            const img = new Image();
+            const reader = new FileReader();
+
+            reader.onload = (e) => this.images.push(e.target.result);
+
+            reader.readAsDataURL(file);
+            },
+            mixin_autoResize_resize(event) {
+                event.target.style.height = "auto";
+                event.target.style.height = `${event.target.scrollHeight}px`;
+            },
+            canle(){                
+                 this.$swal({
+                    title: 'Bạn có chắc chắn?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Quay lại!',
+                    cancelButtonText: 'Hủy!',
+                    showCloseButton: true,
+                    showLoaderOnConfirm: true
+                    }).then(async (result) => {
+                        if(result.value) {
+                            window.location.reload();      
+                        }
+                    })                
+            },
+            statust(){
+                this.status = 1;
+            },
+            dowload(){  
+                this.$swal({
+                    title: 'Bạn có chắc chắn?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xuất Pdf!',
+                    cancelButtonText: 'Hủy!',
+                    showCloseButton: true,
+                    showLoaderOnConfirm: true
+                    }).then(async (result) => {
+                        if(result.value) {
+                           html2canvas(document.querySelector('#cv'), {scrollX : 0,scrollY : -scrollY,logging: true, letterRendering: true, allowTaint: false, useCORS: true, scale: 1920*2/window.innerWidth}).then(canvas => {
+                                document.getElementById('pdf').appendChild(canvas)                                                                 
+                                let img = canvas.toDataURL('image/jpeg')                                        
+                                let pdf = new JsPDF('p','mm','a4')
+                                var width = pdf.internal.pageSize.getWidth();
+                                var height = pdf.internal.pageSize.getHeight();  
+                                console.log(height);                                         
+                                pdf.addImage(img, 'JPEG', 0, 0,width, height)                    
+                                pdf.save('profile_users.pdf')                    
+                                document.getElementById('pdf').innerHTML = ''
+                            })      
+                        }
+                    })                                                                               
+            },  
+            fetchdata(){
+                this.$axios.post('hoso/getProfileUserId',{'id': this.$route.params.id})
+                .then(response => {                    
+                    this.info_frofile_user = response.data;
+                    console.log(this.info_frofile_user);
+                 })
+                 .catch(error => {
+                    console.log(error.response);
+                });
+      
+             }
         },               
-        mounted() {                           
+        mounted() {      
+            this.fetchdata();            
             this.$nextTick(() => {
                 this.$el.setAttribute("style", "height",
                 `${this.$el.scrollHeight}px`);      
-            });                                
+            });
+          
         }
     };
 </script>
-<style>
+<style scoped>
+textarea:hover, input:hover {
+     border: 1px dotted #4B6A78;
+}
+</style>
+<style>  
+    .target-main-cv:hover {
+        border: 1px solid #FFF;
+    }
+   
+    .main-skill-cv:hover {
+         border: 1px solid #fff;
+    }
+    .target-ngan1:hover {
+        border: 1px solid #029c7c;
+    }
+    .target-ngan1 {
+        border: 1px solid #fff;
+    }
+    .main-edu-cv:hover .icon-01-01{        
+       visibility: visible;
+    }
+    .main-edu-cv:hover {
+        border: 1px solid #029c7c;
+    }
+    .edu-cv1:hover {
+        border: 1px solid #029c7c;
+    }
+    .edu-cv1 {
+        border: 1px solid #fff;
+    }
+    .skill-cv1:hover {
+        border: 1px solid #029c7c;
+    }
+    .skill-cv1 {
+        border: 1px solid #fff;
+    }
    .title-h2-cv h2{
        margin-top: 20px;
         font-size: 34px;
@@ -426,10 +578,7 @@
         width: 100%;
         border-color: #fff;
     }
-    .main-text:hover {
-        border-color: #4B6A78;
-        border-style: dotted;
-    }    
+    
     textarea:focus{              
        border: #4B6A78 1px dotted !important;
        outline-offset: 0px !important;
@@ -443,15 +592,6 @@
     .img-cv {
         padding: 30px;
     }
-    /* .img-cv .imgg{
-        position: relative;
-    }
-    .img-cv .imgg label{
-        position: absolute; 
-        z-index: auto;
-        bottom: 0%;
-        left: 0%;
-    } */
     .img-cv .imgg img {
         width: 238px;
         height: 238px;       
@@ -498,10 +638,7 @@
     input::placeholder{
         color:crimson !important;
     }
-    .briday-cv  .main-text:hover,.address-cv .main-text:hover,.gioitinh-cv .main-text:hover,.Cmnd-cv .main-text:hover, .phone-cv .main-text:hover, .email-cv .main-text:hover, .note-cv .main-text:hover {
-        border-color: #4B6A78;
-        border-style: dotted;
-    }
+   
     .edu-cv {
         border: 1px solid #fff;
     }
@@ -513,23 +650,12 @@
          position: relative;
          padding: 10px;
     }
-    .target-dai {
-        padding-left: 10px;
-        border: 1px solid #fff;
-    }
-    .target-dai:hover {
-        border: 1px solid #029c7c;
-    }
+  
+  
     .target-main-cv {
         border: 1px solid #fff;
     }
-    .target-main-cv:hover {
-        border: 1px solid #FFF;
-    }
    
-    .main-skill-cv:hover {
-         border: 1px solid #fff;
-    }
     .main-skill-cv {
          border: 1px solid #fff;
     }
@@ -537,24 +663,11 @@
         padding-left: 10px;
         border: 1px solid #fff;
     }
-    .target-ngan:hover {
-        border: 1px solid #029c7c;
-    }
-    .main-edu-cv:hover .icon-01-01{        
-       visibility: visible;
-    }
+ 
     .main-edu-cv .icon-01-01{        
        visibility: hidden;
     } 
-    .main-edu-cv:hover {
-        border: 1px solid #029c7c;
-    }
-    .edu-cv:hover {
-        border: 1px solid #029c7c;
-    }
-    .skill-cv:hover {
-        border: 1px solid #029c7c;
-    }
+  
     .fieldset1{
         position: absolute;
         background: #cfcfcf;
