@@ -157,7 +157,7 @@
                                         <span class="">{{ calendarSuggest.value }}</span>
                                     </div>
                                 </fieldset>
-                                <datetime v-model="chooseCalendar" type="datetime" input-class="form-control" :minute-step="15" :phrases="{ok: 'Tiếp tục', cancel: 'Thoát'}" value-zone="Asia/Ho_Chi_Minh"></datetime> 
+                                <datetime v-model="chooseCalendar" type="datetime" input-class="form-control" :minute-step="15" :phrases="{ok: 'Tiếp tục', cancel: 'Thoát'}"></datetime> 
                             </div>
                             <div class="modal-footer">
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
