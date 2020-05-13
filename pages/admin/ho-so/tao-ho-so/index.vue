@@ -6,13 +6,10 @@
         <div class="container" >   
             <div class="main-cv">                 
                 <div class="row">
-                    <div class="col-md-10" style="background-color: #fff;">                                
+                    <div class="col-md-10" style="background-color: #fff;box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);">                                
                         <div class="row">
                             <div class="col-md-8">
-                                <div class="title-h2-cv">
-                                    <h2>TIÊU ĐỀ HỒ SƠ</h2>
-                                </div>
-                                <hr>
+                                <br>
                                 <div class="title-h3-cv">                                    
                                     <textarea @click="text()" v-model="info_frofile_user.fullname_profile" class="main-text textarea" placeholder="VD: NGUYỄN VĂN A"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                 </div>
@@ -35,7 +32,7 @@
                                             </div>                        
                                         </div>
                                         <div class="target-company-cv">
-                                            <textarea v-model="info_frofile_user.title_target_profile"  @click="text()" class="main-text textarea" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY PROVIP123"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                    
+                                            <textarea v-model="info_frofile_user.title_target_profile"  @click="text()" class="main-text textarea" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY HACHINET"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                    
                                         </div>
                                         <div class="target-Short-term-note-cv">
                                             <textarea v-model="info_frofile_user.note_target_profile" @click="text()" class="main-text textarea" placeholder="VD: Mong muốn làm việc trong một môi trường năng động, vui vẻ, thỏa sức đưa ra các ý tưởng, sự sáng tạo và đặc biệt là được theo đuổi ngành nghề yêu thích của mình. Đưa bản thân vào một môi trường làm việc có kỷ luật, nâng cao tinh thần trách nhiệm và khả năng chịu áp lực, giải quyết vấn đề một cách sáng tạo và hiệu quả ở một vị trí đầy thách thức."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="5"></textarea>        
@@ -113,7 +110,7 @@
                                                 <h5>HỌC VẤN</h5>
                                             </div>
                                             <textarea v-model="info_frofile_user.level_education"  @click="text()" class="main-text textarea" placeholder="VD: 12/12"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                            <textarea v-model="info_frofile_user.name_education"  @click="text()" class="main-text textarea" placeholder="VD: ĐẠI HỌC VINH"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
+                                            <textarea v-model="info_frofile_user.name_education"  @click="text()" class="main-text textarea" placeholder="VD: ĐẠI HỌC ABC"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                             <textarea v-model="info_frofile_user.specialized_education"  @click="text()" class="main-text textarea" placeholder="VD: Chuyên ngành CNTT"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                         </div>                                                   
                                     </div>                                                                                                                                                                              
@@ -123,8 +120,10 @@
                                 <center>
                                     <div style="background-color: #029c7c;" class="img-cv">
                                         <div class="imgg">
-                                            <img v-bind:src="img">
-                                            <input type="file" id="files"  @change="previewFiles" multiple>                                          
+                                            <label for="files">
+                                                <img v-bind:src="img">
+                                            </label>
+                                            <input type="file" id="files" class="hidden"  @change="previewFiles" multiple>                                          
                                         </div>                                        
                                     </div>                        
                                 </center>     
@@ -136,7 +135,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.birthday_profile" @click="text()" class="main-text textarea" placeholder="VD: 12/10/1997"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                                <input v-model="info_frofile_user.birthday_profile" @click="text()" class="main-text textarea" placeholder="VD: 00/00/0000"  style="overflow:hidden;"/>
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -146,7 +145,7 @@
                                                 <i class="fa fa-venus-mars"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.maleFemale" @click="text()" class="main-text textarea" placeholder="VD: Nam/Nữ"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                                <input v-model="info_frofile_user.maleFemale" @click="text()" class="main-text textarea" placeholder="VD: Nam/Nữ"  style="overflow:hidden;"/>
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -156,7 +155,7 @@
                                                 <i class="fa fa-location-arrow"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.address_profile" @click="text()" class="main-text textarea" placeholder="VD: Ngõ 2, đường Bạch Liêu, phường Trường Thi, thành phố Vinh."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="3"></textarea>
+                                                <textarea v-model="info_frofile_user.address_profile" @click="text()" class="main-text textarea" placeholder="VD: 234 Phạm Văn Đồng, Cổ Nhuế, Từ Liêm, thành phố Hà Nội."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="3"></textarea>
                                             </div>                            
                                         </div>                                             
                                     </div>                 
@@ -166,7 +165,7 @@
                                                 <i class="fa fa-phone"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.phone_profile" @click="text()" class="main-text textarea" placeholder="VD: +84 985372698"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                
+                                                <input v-model="info_frofile_user.phone_profile" @click="text()" class="main-text textarea" placeholder="VD: +84 985372***"  style="overflow:hidden;">  
                                             </div>                            
                                         </div>                                             
                                     </div>
@@ -176,7 +175,7 @@
                                                 <i class="fa fa-envelope-o"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.email_profile" @click="text()" class="main-text textarea" placeholder="VD: leuleu@gmail.com"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
+                                                <input v-model="info_frofile_user.email_profile" @click="text()" class="main-text textarea" placeholder="VD: netbee@gmail.com"  style="overflow:hidden;"/>
                                             </div>                            
                                         </div>                           
                                     </div>                                   
@@ -186,7 +185,7 @@
                                                 <i class="fas fa-briefcase"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.note_profile" @click="text()" class="main-text textarea" placeholder="VD: Chà, thực ra thì mình không giỏi nấu ăn lắm. Chắc các bạn không tin đâu, nhưng mình suýt nữa đã làm cháy cái tạp dề yêu thích nhất của mẹ mình trong lúc cố rán mấy quả trứng. Mong là vẫn có một số bạn trong lớp nấu tử tế hơn mình."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="7"></textarea>
+                                                <textarea v-model="info_frofile_user.note_profile" @click="text()" class="main-text textarea" placeholder="VD: Áp dụng những kinh nghiệm về kỹ năng làm việc nhóm và sự hiểu biết của bản thân, mang đến nhiều giá trị cho khách hàng. Từ đó Công ty tăng số lượng khách hàng."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="7"></textarea>
                                             </div>                            
                                         </div>                         
                                     </div>
@@ -196,219 +195,21 @@
                     </div>
                 </div>
                 <br>
-                <button class="btn btn-primary" @click="insert">Tạo hồ sơ</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Xem trước pdf</button>
+                <button class="btn btn-add bg-netbee" @click="insert">Tạo hồ sơ</button>               
             </div>   
         </div>  
         <br>
-
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">  
-                    <div class="row" id="cv" style="min-height: 841px">
-                        <div class="col-md-8" style="padding-left:30px;">
-                            <div class="title-h2-cv">
-                                <h2>TIÊU ĐỀ HỒ SƠ</h2>
-                            </div>
-                            <hr>
-                            <div class="title-h3-cv">        
-                                <span class="a">{{info_frofile_user.fullname_profile}}</span>                                                              
-                            </div>
-                            <div class="title-h4-cv">
-                                <h4>NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG</h4>
-                            </div>
-                            <br><br>
-                            <div class="target-main-cv">
-                                <div class="target-cv">
-                                    <div class="row">
-                                        <div class="col-md-12" >
-                                            <h5>MỤC TIÊU NGHỀ NGHIỆP</h5>
-                                        </div>
-                                    </div>                                                                        
-                                </div>
-                                <div class="target-ngan">                                
-                                    <div class="target-Short-term-cv" >
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h6>MỤC TIÊU CỦA BẠN</h6>
-                                            </div>                                              
-                                        </div>                        
-                                    </div>
-                                    <div class="target-company-cv">
-                                        <span class="a">{{info_frofile_user.title_target_profile}}</span>                                        
-                                    </div>
-                                    <div class="target-Short-term-note-cv">
-                                        <span class="a">{{info_frofile_user.note_target_profile}}</span>                                       
-                                    </div>
-                                </div>                                  
-                            </div>
-                            <div class="skill-cv">
-                                <!--Học vấn-->
-                                <div class="skill-mn-cv" style="padding-left:10px;">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <h5>KỸ NĂNG</h5>
-                                        </div>
-                                        
-                                    </div>                                                   
-                                </div>                                    
-                                <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
-                                    <div class="communication">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <p>Giao tiếp:</p>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <span class="a">{{info_frofile_user.skill_communication_profile}}</span>                                               
-                                            </div>
-                                        </div>            
-                                    </div>
-                                    <div class="Information">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <p>Tin học văn phòng(Word, Excel, Power Point):</p>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <span class="a">{{info_frofile_user.skill_information_profile}}</span>                                                
-                                            </div>
-                                        </div>                                            
-                                    </div>     
-                                    <div class="logic">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <p>Tư duy logic:</p>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <span class="a">{{info_frofile_user.skill_logic_profile}}</span>                                                 
-                                            </div>
-                                        </div>                                            
-                                    </div>                                                                                                                                                
-                                </div>
-                            </div> 
-                            <div class="skill-cv">
-                                <!--Học vấn-->
-                                <div class="skill-mn-cv" style="padding-left:10px;">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <h5>CHỨNG CHỈ</h5>
-                                        </div>
-                                        
-                                    </div>                                                   
-                                </div>                                    
-                                <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
-                                    <div class="communication">
-                                        <div class="row">                                             
-                                            <div class="col-md-12">
-                                                <span class="a">{{info_frofile_user.certificate_profile}}</span>                                                
-                                            </div>
-                                        </div>            
-                                    </div>                                                                                                                                                                                      
-                                </div>
-                            </div> 
-                            <div class="edu-cv">
-                                <!--Học vấn-->
-                                <div class="education-cv" style="padding-left:10px;">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <h5>HỌC VẤN</h5>
-                                        </div>
-                                        
-                                    </div>                                                   
-                                </div>                                                                  
-                                                                                                    
-                            </div>                                
-                        </div>
-                        <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
-                            <center>
-                                <div style="background-color: #029c7c;" class="img-cv">
-                                    <div class="imgg">
-                                        <img v-bind:src="img" style="width: 220px;height: 220px;">
-                                    </div>                                    
-                                </div>                        
-                            </center>     
-                            <br> 
-                            <div style="padding-left:25px;padding-right: 10px;">                                
-                                <div class="briday-cv">
-                                    <div class="row">
-                                        <div class="col-md-2 icon-cv-profile">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span class="a">{{info_frofile_user.birthday_profile}}</span>                                                                      
-                                        </div>                            
-                                    </div>                                             
-                                </div> 
-                                <div class="gioitinh-cv">
-                                    <div class="row">
-                                        <div class="col-md-2 icon-cv-profile">
-                                            <i class="fa fa-venus-mars"></i>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span class="a">{{info_frofile_user.maleFemale}}</span>                                                                           
-                                        </div>                            
-                                    </div>                                             
-                                </div> 
-                                <div class="address-cv">
-                                    <div class="row">
-                                        <div class="col-md-2 icon-cv-profile">
-                                            <i class="fa fa-location-arrow"></i>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span class="a">{{info_frofile_user.address_profile}}</span>                                                                       
-                                        </div>                            
-                                    </div>                                             
-                                </div>                 
-                                <div class="phone-cv">
-                                    <div class="row">
-                                        <div class="col-md-2 icon-cv-profile">
-                                            <i class="fa fa-phone"></i>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span class="a">{{info_frofile_user.phone_profile}}</span>                                                                           
-                                        </div>                            
-                                    </div>                                             
-                                </div>
-                                <div class="email-cv">
-                                    <div class="row">
-                                        <div class="col-md-2 icon-cv-profile">
-                                            <i class="fa fa-envelope-o"></i>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span class="a">{{info_frofile_user.email_profile}}</span>                                                                         
-                                        </div>                            
-                                    </div>                           
-                                </div>                              
-                                <div class="note-cv" style="margin-bottom: 16px;">
-                                    <div class="row">
-                                        <div class="col-md-2 icon-cv-profile">
-                                            <i class="fas fa-briefcase"></i>
-                                        </div>
-                                        <div class="col-md-10">
-                                            <span class="a">{{info_frofile_user.note_profile}}</span>                                                                          
-                                        </div>                            
-                                    </div>                         
-                                </div>
-                            </div>
-                        
-                        </div>
-                    </div>   
-                    <button class="btn btn-primary" @click="download()">
-                        Xuất pdf
-                    </button>  
-                    <div id="pdf"></div>                                                       
-                </div>
-            </div>
-        </div>                                     
+                                          
     </div>
 </template>
 
 <script>                
-    let html2canvas = null
-    let JsPDF = null
-    if (process.browser) {
-    html2canvas = require('html2canvas')
-    JsPDF = require('jspdf')
-    }
+    // let html2canvas = null
+    // let JsPDF = null
+    // if (process.browser) {
+    // html2canvas = require('html2canvas')
+    // JsPDF = require('jspdf')
+    // }
       
     export default {
         name: 'Teamplate1',
@@ -502,20 +303,20 @@
                     console.log(error.response);
                 });                
             },
-            download(){                                      
-                 let m = 0;         
-                html2canvas(document.querySelector('#cv'), {scrollX : m,scrollY : 0,logging: true, letterRendering: true, allowTaint: false, useCORS: true, scale: 1920*2/window.innerWidth}).then(canvas => {
-                    document.getElementById('pdf').appendChild(canvas)                                                                 
-                    let img = canvas.toDataURL('image/jpeg')                                        
-                    let pdf = new JsPDF('p','pt','a4','mm')
-                    var width = pdf.internal.pageSize.getWidth();
-                    var height = pdf.internal.pageSize.getHeight();  
-                    console.log(height);                                         
-                    pdf.addImage(img, 'JPEG', 0, 0,width, height)                    
-                    pdf.save('profile_users.pdf')                    
-                    document.getElementById('pdf').innerHTML = ''
-                })      
-            },  
+            // download(){                                      
+            //      let m = 0;         
+            //     html2canvas(document.querySelector('#cv'), {scrollX : m,scrollY : 0,logging: true, letterRendering: true, allowTaint: false, useCORS: true, scale: 1920*2/window.innerWidth}).then(canvas => {
+            //         document.getElementById('pdf').appendChild(canvas)                                                                 
+            //         let img = canvas.toDataURL('image/jpeg')                                        
+            //         let pdf = new JsPDF('p','pt','a4','mm')
+            //         var width = pdf.internal.pageSize.getWidth();
+            //         var height = pdf.internal.pageSize.getHeight();  
+            //         console.log(height);                                         
+            //         pdf.addImage(img, 'JPEG', 0, 0,width, height)                    
+            //         pdf.save('profile_users.pdf')                    
+            //         document.getElementById('pdf').innerHTML = ''
+            //     })      
+            // },  
 
         },               
         mounted() {                           
@@ -635,6 +436,11 @@
        outline-offset: 0px !important;
         outline: none !important;
     } 
+    input:focus{              
+       border: #4B6A78 1px dotted !important;
+       outline-offset: 0px !important;
+        outline: none !important;
+    } 
     .img-cv {
         padding: 30px;
     }
@@ -654,7 +460,7 @@
     }    
     .briday-cv ,.gioitinh-cv, .Cmnd-cv,.address-cv, .phone-cv, .email-cv, .note-cv {
         color: #fff;
-        margin-top: 30px;
+        margin-top: 15px;
     }
     .icon-cv-profile {
         text-align: center;
@@ -667,7 +473,15 @@
         border-radius: 50%;
         margin-left: 5px;
     }
-    .briday-cv  .main-text,.gioitinh-cv .main-text,.Cmnd-cv .main-text,.address-cv .main-text, .phone-cv .main-text, .email-cv .main-text, .note-cv .main-text ,.briday-cv  .a,.gioitinh-cv .a,.Cmnd-cv .a,.address-cv .a, .phone-cv .a, .email-cv .a, .note-cv .a{
+    .briday-cv  .main-text,.gioitinh-cv .main-text,.Cmnd-cv .main-text, .phone-cv .main-text, .email-cv .main-text{
+        border: 1px dotted #28bb9c;
+        background-color: #28bb9c;
+        font-size: 17px;
+        padding-top: 5px;
+        width: 100%;
+        color: #fff;
+    }
+    .address-cv .main-text, .note-cv .main-text ,.briday-cv  .a,.gioitinh-cv .a,.address-cv .a, .phone-cv .a, .email-cv .a, .note-cv .a{
         font-size: 17px;
         padding-top: 5px;
         width: 100%;
@@ -675,11 +489,14 @@
         background-color: #28bb9c;
         color: #fff;
     }    
-    .briday-cv  textarea::placeholder,.gioitinh-cv textarea::placeholder,.Cmnd-cv .main-text::placeholder,.address-cv textarea::placeholder, .phone-cv textarea::placeholder, .email-cv textarea::placeholder, .note-cv textarea::placeholder {
+    .briday-cv  input::placeholder,.gioitinh-cv input::placeholder,.address-cv textarea::placeholder, .phone-cv input::placeholder, .email-cv input::placeholder, .note-cv textarea::placeholder {
         color:crimson !important;
 
     }  
     textarea::placeholder{
+        color:crimson !important;
+    }
+    input::placeholder{
         color:crimson !important;
     }
     .briday-cv  .main-text:hover,.address-cv .main-text:hover,.gioitinh-cv .main-text:hover,.Cmnd-cv .main-text:hover, .phone-cv .main-text:hover, .email-cv .main-text:hover, .note-cv .main-text:hover {
@@ -712,7 +529,7 @@
     }
    
     .main-skill-cv:hover {
-         border: 1px solid #029c7c;
+         border: 1px solid #fff;
     }
     .main-skill-cv {
          border: 1px solid #fff;
@@ -779,5 +596,8 @@
 <style scoped>
     textarea:focus{              
         border: #4B6A78 1px dotted !important;
-    }            
+    }   
+    input:focus{              
+        border: #4B6A78 1px dotted !important;
+    }         
 </style>
