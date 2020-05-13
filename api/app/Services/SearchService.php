@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\Nation;
 use App\Models\NbCompanyInfo;
+use App\User;
 use App\Models\NbJoblist;
 use App\Models\VisaProfession;
 use Auth;
@@ -13,27 +14,30 @@ class SearchService extends BaseService {
     protected $nation;
     protected $visaProfession;
     protected $nbJobList;
+    protected $user;
 
     public function __construct(
         NbCompanyInfo $nbCompanyInfo,
         Nation $nation,
         VisaProfession $visaProfession,
-        NbJoblist $nbJobList
+        NbJoblist $nbJobList,
+        User $user
     ) {
         $this->nbCompanyInfo = $nbCompanyInfo;
         $this->nation = $nation;
         $this->visaProfession = $visaProfession;
         $this->nbJobList = $nbJobList;
+        $this->user = $user;
     }
 
     public function companies($keyword)
     {
         $condition = '%'.$keyword.'%';
-        $search = $this->nbCompanyInfo->with('user')
-            ->whereHas('user', function ($q) use ($condition) {
-                $q->where('name', 'like', $condition);
+        $search = $this->user->with('nbCompany')
+            ->whereHas('nbCompany', function ($q) use ($condition) {
+                $q->where('company_about', 'like', $condition);
             })
-            ->orWhere('company_about', 'like', $condition)
+            ->orWhere('name', 'like', $condition)
             ->get();
 
         if($search) {
