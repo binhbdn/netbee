@@ -39,8 +39,7 @@ class CompanyController extends Controller
 
     public function changeInfoCompany(Request $request)
     {
-        $validator = Validator::make($request->all(),
-            [
+        $rules = [
                 'company_hotline' => 'required|numeric',
                 'company_about' => 'required',
                 'company_tax' => 'required|numeric',
@@ -48,13 +47,17 @@ class CompanyController extends Controller
                 'company_policy' => 'required',
                 'company_chance' => 'required',
                 'company_link' => 'required'
-            ],
-            [
+        ];
+        $messages = [
                 'required' => 'Không được để trống',
                 'numeric' => 'Số điện thoại không được chứa kí tự'
-            ]
-        );
+        ];
+        if ($request->file('image_cover')) {
+            $rules['image_cover'] = 'required|image';
+            $messages['image'] = 'Định dạng ảnh không phù hợp';
+        }
 
+        $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return response()->json([
                 'status' => 400,
@@ -63,6 +66,28 @@ class CompanyController extends Controller
             ]);
         }
 
+        if($request->file('image_cover')) {
+            try {
+                $file = $request->file('image_cover');
+                $fileinfo = pathinfo($file->getClientOriginalName());
+                $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
+                $uploadPath = '/home/netbee.vn/html/static/uploads/users/covers';
+                $update['image_cover'] = $image;
+                //remove file old
+                $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
+                if($get->image_cover != NULL && file_exists($uploadPath.$get->image_cover))
+                {
+                    unlink($uploadPath.$get->image_cover);
+                }
+                $file->move($uploadPath, $image);
+            } catch (\Exception $e) {
+                return [
+                    'status'=> 400,
+                    'message' => 'Có lỗi xảy ra',
+                    'data' => $e->getMessage()
+                ];
+            }
+        }
         $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
         $userId = Auth::user()->id;
         $data = [
@@ -77,7 +102,6 @@ class CompanyController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]; 
-        
         if (!$get) {
             $data['company_id'] = $userId;
             $response = $this->nbCompanyInfoService->store($data);
