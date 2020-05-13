@@ -27,7 +27,7 @@
                                         <img class="img-fluid" v-lazy="`/uploads/users/avatars/${companyHot.avatar}`" :alt="`${companyHot.avatar}`" style="object-fit: cover" />
                                         <div class="remove-border-rightt">
                                             <div class="item-name">
-                                                <a :href="`/cong-ty/${companyHot.company_id}/${ChangeToSlug(companyHot.name)}`" class="item-company mb-0"> 
+                                                <a :href="`/cong-ty/${companyHot.username ? companyHot.username : companyHot.id}`" class="item-company mb-0"> 
                                                     <h3> {{ companyHot.name }}</h3>
                                                 </a>
                                             </div>

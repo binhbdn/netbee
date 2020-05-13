@@ -198,4 +198,9 @@ class UserService extends BaseService {
     {
         return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_ADMIN)->get();
     }
+
+    public function getUser()
+    {
+        return $this->user->with('nbCompany')->where('id', Auth::user()->id)->first();
+    }
 }
