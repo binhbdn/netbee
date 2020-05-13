@@ -1,7 +1,7 @@
 <template>
     <div class="container" style="padding-top:100px">
         <div>
-            <img style="width:100%; height:296px" src="https://images.careerbuilder.vn/employer_folders/lot2/123152/90115bannerjobstreet.png">
+            <img style="width:100%; height:296px" :src="detailCompany.image_cover != null && detailCompany.image_cover.startsWith('https') ? detailCompany.image_cover : `/uploads/users/covers/${detailCompany.image_cover}`">
         </div>
       <section>
         <div class="row">
@@ -132,7 +132,7 @@
                 <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
                 <div class="row">
                     <div class="col-4">
-                        <img v-lazy="$auth.user.avatar != null && $auth.user.avatar.startsWith('https') ? $auth.user.avatar : `/uploads/users/avatars/${$auth.user.avatar}`"
+                        <img v-lazy="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`"
                         style="height:80px; width:80px; padding-top: 1px; padding-left: 20px; object-fit: cover; border-radius: 50%;">
                         
                     </div>
@@ -150,14 +150,14 @@
                 <hr>
                 </div>
                 <div class="row pl-2">
-                    <div class="view-more pt-1" v-if="loadMoreBtn == true">
-                        <p :style="styleLoadMore">{{item.content_feed}}</p>
-                        <p><a @click="loadMore()">Xem thêm</a></p>
+                    <div class="view-more pt-1" >
+                        <p class="style-loadmore" data-toggle="tooltip" data-placement="top" data-trigger="hover" :data-original-title="item.content_feed">{{item.content_feed}}</p>
+                        <!-- <p><a @click="loadMore()">Xem thêm</a></p> -->
                     </div>
-                    <div class="view-more pt-1" v-else>
+                    <!-- <div class="view-more pt-1" v-else>
                         <p :style="styleCollapse">{{item.content_feed}}</p>
                         <p><a @click="collapse()">Thu gọn</a></p>
-                    </div>
+                    </div> -->
                 </div>
                 <hr>
                 </div>
@@ -264,7 +264,7 @@
                 <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
                 <div class="row">
                     <div class="col-4">
-                        <img v-lazy="$auth.user.avatar != null && $auth.user.avatar.startsWith('https') ? $auth.user.avatar : `/uploads/users/avatars/${$auth.user.avatar}`"
+                        <img v-lazy="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`"
                         style="height:80px; width:80px; padding-top: 1px; padding-left: 20px; object-fit: cover; border-radius: 50%;">
                         
                     </div>
@@ -282,14 +282,10 @@
                 <hr>
                 </div>
                 <div class="row pl-2">
-                    <div class="view-more pt-1" v-if="loadMoreBtn == true">
-                        <p :style="styleLoadMore">{{item.content_feed}}</p>
-                        <p><a @click="loadMore()">Xem thêm</a></p>
+                    <div class="view-more pt-1">
+                        <p style="style-loadmore" data-toggle="tooltip"  data-placement="top" data-trigger="hover" :data-original-title="item.content_feed">{{item.content_feed}}</p>
                     </div>
-                    <div class="view-more pt-1" v-else>
-                        <p :style="styleCollapse">{{item.content_feed}}</p>
-                        <p><a @click="collapse()">Thu gọn</a></p>
-                    </div>
+                    
                 </div>
                 <hr>
                 </div>
@@ -495,6 +491,7 @@ export default {
             form.append('name_feed',this.$auth.user.name);
             form.append('email_feed',this.$auth.user.email);
             form.append('user_id',this.$auth.user.id);
+            form.append('avatar_feed',this.$auth.user.avatar);
             this.$axios.post('postCompanyFeedback',form).then((response)=>{
                 if(response.data.status == 200) {
                     this.$swal(
@@ -551,7 +548,8 @@ export default {
             this.countJob = response.data.count
         });
         this.$axios.$get(`getDetailCompanyById/${this.$route.params.id}`).then((response)=>{
-            this.detailCompany = response.data[0]
+            console.log(response.data[0]);
+            this.detailCompany = response.data[0];
         });
     },
     jsonld() {
@@ -613,5 +611,21 @@ export default {
     color: #fff !important;
     padding: 5px;
     border-radius: 50%;
+}
+.style-loadmore {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 18px;
+    font-size: 15px;
+    max-height: 90px;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    padding-right: 10px
+}
+.style-collapse {
+    line-height: 18px;
+    font-size: 16px;
+    padding-right: 5px
 }
 </style>

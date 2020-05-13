@@ -82,11 +82,12 @@ class NbCompanyInfoService extends BaseService {
 
         return [
             'company_id' => $request->company_id,
+            'avatar_feed' => $request->avatar_feed,
             'name_feed' => $request->name_feed,
             'email_feed' => $request->email_feed,
             'content_feed' => $request->content_feed,
             'rate_feed' => $request->rate_feed,
-            'approve_feed' => self::INACTIVE,
+            'approve_feed' => self::ACTIVE,
             'user_id' => $request->user_id,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
