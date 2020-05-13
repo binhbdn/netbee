@@ -30,7 +30,7 @@ class NbCompanyInfoService extends BaseService {
             $q->select('company_id', 'rate_feed');
 
         }])
-        ->select('id','company_id','company_about')
+        ->select('id','company_id','company_about','username')
         ->paginate(6);
         foreach($datas as $key=>$data){
             $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
@@ -44,13 +44,14 @@ class NbCompanyInfoService extends BaseService {
 
     public function getDetailCompanyById($companyId){
         $datas = $this->user
-        ->with(['nbCompany'=> function($q){
+        ->with(['nbCompany'=> function($q)use ($companyId){
             $q->where('username',$companyId);
         }])
         ->with(['companyFeedback'=> function($q){
             $q->where('approve_feed',self::ACTIVE)
             ->limit(3);
         }])
+        ->orWhere('id', $companyId)
         ->get();
         foreach($datas as $key=>$data){
             $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
