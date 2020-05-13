@@ -5,7 +5,6 @@ use App\Models\NbJobSave;
 use Carbon\Carbon;
 use Auth;
 use Illuminate\Support\Facades\DB;
-use phpDocumentor\Reflection\Types\Self_;
 
 class SaveService extends BaseService {
 
