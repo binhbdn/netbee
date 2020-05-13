@@ -63,6 +63,7 @@
                                                 <td>{{item.name}}</td>
                                                 <td>
                                                     <p v-if="item.status == 5">Chưa duyệt</p>
+                                                    <p v-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                                 </td>
                                                 <td>
                                                     <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
@@ -77,7 +78,7 @@
                                                         <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" >
                                                             Hủy
                                                         </button>
-                                                        <button type="button" data-toggle="modal" data-target="#chooseCalendarModal" @click="idRefuse = item.id" class="btn btn-info py-75 waves-effect waves-light" >
+                                                        <button type="button" data-toggle="modal" data-target="#chooseCalendarModal" @click="idRefuse = item.id" class="btn btn-info py-75 waves-effect waves-light" v-if="item.status == 5">
                                                             Chọn lịch PV
                                                         </button>
                                                     </div>
@@ -148,7 +149,7 @@
                             <div class="modal-body"> 
                                 <fieldset v-for="calendarSuggest in calendarSuggests" :key="calendarSuggest.id">
                                     <div class="vs-radio-con vs-radio-success">
-                                        <input type="radio" name="radiocolor" value="false">
+                                        <input type="radio" name="radiocolor" :value="calendarSuggest.value" v-model="chooseCalendar">
                                         <span class="vs-radio">
                                             <span class="vs-radio--border"></span>
                                             <span class="vs-radio--circle"></span>
@@ -156,10 +157,11 @@
                                         <span class="">{{ calendarSuggest.value }}</span>
                                     </div>
                                 </fieldset>
+                                <datetime v-model="chooseCalendar" type="datetime" input-class="form-control" :minute-step="15" :phrases="{ok: 'Tiếp tục', cancel: 'Thoát'}" value-zone="Asia/Ho_Chi_Minh"></datetime> 
                             </div>
                             <div class="modal-footer">
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
-                                    <button type="button" @click="chooseCalendar()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
+                                    <button type="button" @click="addCalendar()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
                                         <span class="d-none d-lg-block">Gửi</span></button>
                                 </fieldset>
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
@@ -181,6 +183,8 @@ import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import Vue from 'vue'
 import moment from 'moment'
+import { Datetime } from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
 
 export default {
     data() {
@@ -211,6 +215,9 @@ export default {
             pageAll: 1,
             active: 1,
         }
+    },
+    components: {
+        Datetime
     },
     created() {
         this.fetch();
@@ -261,8 +268,19 @@ export default {
                     'error')
             }
         },
-        chooseCalendar() {
-
+        addCalendar() {
+            console.log(this.idRefuse)
+            let a =''
+            let b = moment(this.chooseCalendar)
+            if(b.isValid()){
+                a = moment(this.chooseCalendar).locale("vi").format('llll')
+            } else {
+                a = this.chooseCalendar
+            }
+            this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: a}).then((response) =>{
+                this.$swal('Thành công', response.message, 'success');
+                location.reload()
+            })
         }
         // search(){
         //     this.$axios.$get(

@@ -98,6 +98,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('HideApply/{id}', 'Admin\ApplyManageController@HideApply');
         Route::get('ShowApply/{id}', 'Admin\ApplyManageController@ShowApply');
         Route::post('ApprovedApplyHoSo/{id}', 'Admin\ApplyManageController@ApprovedApplyHoSo');
+        Route::post('ChooseCalendar/{id}', 'Admin\ApplyManageController@ChooseCalendar');
       });
   });
 });
