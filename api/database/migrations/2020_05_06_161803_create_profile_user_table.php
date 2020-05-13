@@ -12,7 +12,7 @@ class CreateProfileUserTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {        
         Schema::create('profile_user', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('id_user')->unsigned();
@@ -37,7 +37,7 @@ class CreateProfileUserTable extends Migration
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');
-        });
+        });        
     }
 
     /**

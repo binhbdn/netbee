@@ -29,6 +29,17 @@ class TeamplateCvController extends Controller
         return response()->json($response);
     }
 
+    public function deleteProfileUser(Request $request)
+    {
+        $response = $this->teamplateCvService->destroy($request->id);
+        return response()->json($response);
+    }
+
+    public function getProfileUserId(Request $request){
+        $response = $this->teamplateCvService->getProfileId($request->id);
+        return response()->json($response);
+    }
+
     public function insertProfileUser(Request $request){                                  
         $validator = Validator::make($request->all(),
         [
@@ -100,7 +111,7 @@ class TeamplateCvController extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
-            $check = DB::table('profile_user')->insert($insert);               
+            $check = DB::table('nb_cvs')->insert($insert);               
             $data = ['status' => 200,'message' => 'Cập nhật tin thành công', 'data' => null];
         } catch (\Exception $e) {
             $data = ['status'=> 400, 'message' => 'Có lỗi xảy ra', 'data' => $e->getMessage()];
@@ -108,5 +119,86 @@ class TeamplateCvController extends Controller
         
         return response()->json($data);
     }    
-   
+    public function updateProfileUser(Request $request)
+    {
+        $rules = [
+            'fullname_profile' => 'required',
+            'birthday_profile' => 'required',
+            'maleFemale' => 'required',
+            'address_profile' => 'required',
+            'phone_profile' => 'required',
+            'email_profile' => 'required',                     
+            'note_profile' => 'required',
+            'title_target_profile' => 'required',
+            'note_target_profile' => 'required',
+            'skill_communication_profile' => 'required',
+            'skill_information_profile' => 'required',
+            'skill_logic_profile' => 'required',
+            'certificate_profile' => 'required',
+            'level_education' => 'required',
+            'name_education' => 'required',
+            'specialized_education' => 'required' 
+        ];
+        $messages = [
+            'required' => 'Không được để trống',           
+        ];
+        $update = [
+            'id_user'=> Auth::user()->id,
+            'fullname_profile' => $request->fullname_profile,
+            'birthday_profile' => $request->birthday_profile,
+            'maleFemale' => $request->maleFemale,
+            'address_profile' => $request->address_profile,
+            'phone_profile' => $request->phone_profile,
+            'email_profile' => $request->email_profile,                         
+            'note_profile' => $request->note_profile,
+            'title_target_profile' => $request->title_target_profile,
+            'note_target_profile' => $request->note_target_profile,
+            'skill_communication_profile' => $request->skill_communication_profile,
+            'skill_information_profile' => $request->skill_information_profile,
+            'skill_logic_profile' => $request->skill_logic_profile,
+            'certificate_profile' => $request->certificate_profile,
+            'level_education' => $request->level_education,
+            'name_education' => $request->name_education,
+            'specialized_education' => $request->specialized_education,            
+            'updated_at' => Carbon::now(),
+        ];
+
+        if ($request->file('avatar_profile')) {
+            $rules['avatar_profile'] = 'required|image';
+            $messages['image'] = 'Định dạng ảnh không phù hợp';
+        }
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'message' => $validator->messages()->first(),
+                'data' => null
+            ]);
+        }
+
+        if($request->file('avatar_profile')) {
+            try {
+                $file = $request->file('avatar_profile');
+                $fileinfo = pathinfo($file->getClientOriginalName());
+                $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
+                $uploadPath = '/home/netbee.vn/html/static/uploads/users/avatars';
+                $update['avatar_profile'] = $image;               
+                $file->move($uploadPath, $image);
+            } catch (\Exception $e) {
+                return [
+                    'status'=> 400,
+                    'message' => 'Có lỗi xảy ra',
+                    'data' => $e->getMessage()
+                ];
+            }
+        }
+        $this->teamplateCvService->updateProfile($update, $request->id);
+        return response()->json([
+            'status' => 200,
+            'message' => 'Cập nhật tin thành công',
+            'data' => null
+        ]);
+    }
 }
