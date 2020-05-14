@@ -7,11 +7,11 @@
       <a class="navbar-brandd" href="/">
         <div>
           <img
-            src="../static/assets/img/logo.png"
+            src="../static/assets/img/logo-full-2.png"
             alt=""
             height="50"
-            width="50"
-          />NetBee
+            width="130"
+          />
         </div>
       </a>
       <div class="collapse navbar-collapse" id="ftco-nav">

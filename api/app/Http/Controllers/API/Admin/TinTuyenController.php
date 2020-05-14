@@ -43,7 +43,7 @@ class TinTuyenController extends Controller
 
     public function deleteTinTuyenDung(Request $request)
     {
-        $response = $this->tinTuyenService->destroy($request->id);
+        $response = $this->tinTuyenService->destroy($request->id); 
         return response()->json($response);
     }
 
