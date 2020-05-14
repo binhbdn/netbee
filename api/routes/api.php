@@ -55,6 +55,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::get('logout', 'Auth\UserController@logout');
       Route::post('pricing_momo_bank', 'MomoController@pricing_momo_bank');
       Route::post('pricing_momo', 'MomoController@pricing_momo');
+      Route::get('getAllNTD', 'Auth\UserController@getAllNTD');
+      Route::get('searchNTD', 'Auth\UserController@searchNTD');
+      Route::post('changeStatusNTD', 'Auth\UserController@changeStatusNTD');
+      Route::post('changeMultipleStatusNTD', 'Auth\UserController@changeMultipleStatusNTD');
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');
 
