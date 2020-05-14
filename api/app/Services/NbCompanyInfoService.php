@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\NbCompanyFeedback;
 use App\Models\NbCompanyInfo;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use JWTAuth;
@@ -12,11 +13,13 @@ class NbCompanyInfoService extends BaseService {
 
     protected $nbCompanyInfo;
     protected $nbCompanyFeedback;
+    protected $user;
 
-    public function __construct(NbCompanyInfo $nbCompanyInfo, NbCompanyFeedback $companyFeedback)
+    public function __construct(NbCompanyInfo $nbCompanyInfo, NbCompanyFeedback $companyFeedback, User $user)
     {
         $this->nbCompanyInfo = $nbCompanyInfo;
         $this->nbCompanyFeedback = $companyFeedback;
+        $this->user = $user;
     }
     public function getListCompany(){
         $datas = $this->nbCompanyInfo
@@ -27,7 +30,7 @@ class NbCompanyInfoService extends BaseService {
             $q->select('company_id', 'rate_feed');
 
         }])
-        ->select('id','company_id','company_about')
+        ->select('id','company_id','company_about','username')
         ->paginate(6);
         foreach($datas as $key=>$data){
             $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
@@ -40,16 +43,15 @@ class NbCompanyInfoService extends BaseService {
     }
 
     public function getDetailCompanyById($companyId){
-        $datas = $this->nbCompanyInfo
-        ->with(['user'=> function($q){
-            $q->select('id','name')->whereStatus(self::ACTIVE)->whereBlock(self::INACTIVE);
+        $datas = $this->user
+        ->with(['nbCompany'=> function($q)use ($companyId){
+            $q->where('username',$companyId);
         }])
         ->with(['companyFeedback'=> function($q){
             $q->where('approve_feed',self::ACTIVE)
             ->limit(3);
-
         }])
-        ->where('id',$companyId)
+        ->orWhere('id', $companyId)
         ->get();
         foreach($datas as $key=>$data){
             $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
@@ -82,11 +84,12 @@ class NbCompanyInfoService extends BaseService {
 
         return [
             'company_id' => $request->company_id,
+            'avatar_feed' => $request->avatar_feed,
             'name_feed' => $request->name_feed,
             'email_feed' => $request->email_feed,
             'content_feed' => $request->content_feed,
             'rate_feed' => $request->rate_feed,
-            'approve_feed' => self::INACTIVE,
+            'approve_feed' => self::ACTIVE,
             'user_id' => $request->user_id,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -111,5 +114,10 @@ class NbCompanyInfoService extends BaseService {
     public function updateByUserId($data, $userId)
     {
         return $this->nbCompanyInfo->whereCompanyId($userId)->update($data);
+    }
+
+    public function checkUsernameCompany($username)
+    {
+        return $this->nbCompanyInfo->where('username', $username)->exits();
     }
 }

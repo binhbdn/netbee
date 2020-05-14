@@ -244,6 +244,9 @@ class TinTuyenService extends BaseService {
         return $this->nbJobList->with(['user' => function ($q) {
                 $q->select('id', 'name', 'avatar');
             }])
+            ->with(['nbCompany' => function ($q) {
+                $q->select('id', 'username','company_id');
+            }])
             ->with(['nation' => function ($q) {
                 $q->select('id', 'name');
             }])

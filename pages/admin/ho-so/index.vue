@@ -42,7 +42,8 @@
                                                     <th>Ngày sinh</th>                                                   
                                                     <th>Email</th>
                                                     <th>Số điện thoại</th>
-                                                    <th>Ngày tạo</th>                                                   
+                                                    <th>Ngày tạo</th>    
+                                                    <th>Hành động</th>                                               
                                                 </tr>
                                             </thead>
                                             <tbody v-if="listProfileUser.length > 0">                                               
@@ -53,6 +54,21 @@
                                                     <td>{{item.email_profile}}</td>
                                                     <td>{{item.phone_profile}}</td>
                                                     <td>{{item.created_at}}</td>
+                                                    <td>
+                                                        <div class="action-btns">
+                                                            <div class="btn-dropdown ">
+                                                                <div class="btn-group dropdown actions-dropodown">
+                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        Chọn thao tác
+                                                                    </button>
+                                                                    <div class="dropdown-menu" style="left: -25px!important;">
+                                                                        <a :href="`/admin/ho-so/sua-ho-so/${item.id}`" class="dropdown-item"> <i class="far fa-edit"></i>Xem chi tiết</a>
+                                                                        <a @click="deleted(item.id)" class="dropdown-item" > <i class="far fa-times-circle"></i>Xóa</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -86,6 +102,41 @@
         },
         
         methods: {
+            async deleted(id){
+                try {
+                    this.$swal({
+                    title: 'Bạn có chắc chắn?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xóa!',
+                    cancelButtonText: 'Hủy!',
+                    showCloseButton: true,
+                    showLoaderOnConfirm: true
+                    }).then(async (result) => {
+                    if(result.value) {
+                        let response = await this.$axios.post('hoso/deleteProfileUser',{id: id});
+                        if(response.data.status == 200) {
+                            this.listProfileUser = this.listProfileUser.filter((e)=>e.id !== id )
+                            this.$swal('Thành công', response.data.message, 'success');
+                        }
+                        else {
+                            this.$swal(
+                                'Lỗi!',
+                                response.data.message,
+                                'error'
+                                )
+                            }
+                    } else {
+                        this.$swal('Hủy', 'Tin được giữ lại', 'info')
+                    }
+                    })
+                } catch (error) {
+                    this.$swal(
+                        'Lỗi!',
+                        'Lỗi xóa!',
+                        'error')
+                }
+            },
              fetchdata(){
                  this.$axios.get('hoso/listProfileUser')
                 .then(response => {                                                          
