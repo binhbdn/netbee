@@ -65,49 +65,48 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header col-12">
-                                    <form class="col-3" action="" method="">
-                                        <button class="btn-add btn bg-netbee text-dark "><i class="far fa-folder-plus"></i> Tạo nhà tuyển dụng</button>
-                                    </form>
-                                    <div class="col-6 row">
-                                        <div class="input-group col-5">
+                                <div class="card-header d-flex">
+                                    <div class="flex-grow-1 row input_date">
+                                        <div class="input-group col-md-4">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">Từ</span>
+                                                <span class="input-group-text p-0 pl-1 pr-1">Từ</span>
                                             </div>
-                                            <input type="date" class="ag-grid-filter form-control" v-model="cardSearch.searchFromDate" id="filter-text-box" placeholder="01-01-2020" />
+                                            <input type="date" class="ag-grid-filter form-control" v-model="cardSearch.searchFromDate" id="filter-text-box" placeholder="" />
                                         </div>
-                                        <div class="input-group col-5">
+                                        <div class="input-group col-md-4">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text">Đến</span>
+                                                <span class="input-group-text p-0 pl-1 pr-1">Đến</span>
                                             </div>
-                                            <input type="date" class="ag-grid-filter form-control" v-model="cardSearch.searchToDate" id="filter-text-box" placeholder="02-02-2020" />
+                                            <input type="date" class="ag-grid-filter form-control" v-model="cardSearch.searchToDate" id="filter-text-box" placeholder="" />
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-md-4">
                                             <button @click="searchDate()" class="btn-add btn bg-netbee text-dark"><i class="far fa-filter"></i> Lọc</button>
                                         </div>
                                     </div>
-                                    <div class="action-btns">
-                                        <div class="btn-dropdown ">
-                                            <div class="btn-group dropdown actions-dropodown">
-                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Sắp xếp
-                                                </button>
-                                                <div class="dropdown-menu" style="left: -25px!important;">
-                                                    <a class="dropdown-item" @click="sortAscendingID()"><i class="feather icon-trash-2"></i>ID tăng dần</a>
-                                                    <a class="dropdown-item" @click="sortDecreaseID()"><i class="feather icon-clipboard"></i>ID giảm dần</a>
+                                    <div class="flex-grow-1 d-flex justify-content-end">
+                                        <div class="action-btns pr-2">
+                                            <div class="btn-dropdown ">
+                                                <div class="btn-group dropdown actions-dropodown">
+                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Sắp xếp
+                                                    </button>
+                                                    <div class="dropdown-menu" style="left: -25px!important;">
+                                                        <a class="dropdown-item" @click="sortAscendingID()"><i class="feather icon-trash-2"></i>ID tăng dần</a>
+                                                        <a class="dropdown-item" @click="sortDecreaseID()"><i class="feather icon-clipboard"></i>ID giảm dần</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="action-btns">
-                                        <div class="btn-dropdown ">
-                                            <div class="btn-group dropdown actions-dropodown">
-                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Hành động
-                                                </button>
-                                                <div class="dropdown-menu" style="left: -25px!important;">
-                                                    <a class="dropdown-item" @click="changeMultipleStatusNTD(1)"><i class="far fa-check-circle"></i>Kích hoạt</a>
-                                                    <a class="dropdown-item" @click="changeMultipleStatusNTD(0)"><i class="far fa-times-circle"></i>Bỏ kích hoạt</a>
+                                        <div class="action-btns">
+                                            <div class="btn-dropdown ">
+                                                <div class="btn-group dropdown actions-dropodown">
+                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Hành động
+                                                    </button>
+                                                    <div class="dropdown-menu" style="left: -25px!important;">
+                                                        <a class="dropdown-item" @click="changeMultipleStatusNTD(1)"><i class="far fa-check-circle"></i>Kích hoạt</a>
+                                                        <a class="dropdown-item" @click="changeMultipleStatusNTD(0)"><i class="far fa-times-circle"></i>Bỏ kích hoạt</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -158,20 +157,20 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td class="text-left"><a data-toggle="tooltip"  data-placement="top" target="_blank">{{item.name}}</a></td>
+                                                    <td class="text-left"><a data-toggle="tooltip" :title=item.name data-placement="top" target="_blank">{{item.name}}</a></td>
                                                     <td>
                                                         <span><img v-lazy="item.avatar" style="object-fit: cover;" width="55" height="55"></span>
                                                     </td>
-                                                    <td>{{ConvertDate(item.created_at)}}</td>
+                                                    <td :title=item.created_at>{{ConvertDate(item.created_at)}}</td>
                                                     <td v-if="item.status == 0">
                                                         <div class="chip-text"><i style="font-size: 20px;" class="far fa-times-circle danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
                                                     <td v-if="item.status == 1">
                                                         <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
                                                     </td>
-                                                    <td class="text-left"><a data-toggle="tooltip"  data-placement="top" :title="`{{item.email}}`" target="_blank">{{item.email}}</a></td>
-                                                    <td class="text-left"><a data-toggle="tooltip"  data-placement="top" :title="`{{item.phone}}`" target="_blank">{{item.phone}}</a></td>
-                                                    <td class="text-left"><a data-toggle="tooltip"  data-placement="top" :title="`{{item.address_detail}}`" target="_blank">{{item.address_detail}}</a></td>
+                                                    <td class="text-left"><a data-toggle="tooltip"  data-placement="top" :title=item.email target="_blank">{{item.email}}</a></td>
+                                                    <td class="text-left"><a data-toggle="tooltip"  data-placement="top" :title=item.phone target="_blank">{{item.phone}}</a></td>
+                                                    <td class="text-left"><a data-toggle="tooltip"  data-placement="top" :title=item.address_detail target="_blank">{{item.address_detail}}</a></td>
                                                     <td>
                                                         <div class="action-btns">
                                                             <div class="btn-dropdown ">
@@ -427,5 +426,9 @@ export default {
 <style scoped>
 .pagination .page-item.active .page-link{
     background-color: #ffb701 !important;
+}
+.input_date input{
+    /* max-height: 34px; */
+    padding: 5px;
 }
 </style>
