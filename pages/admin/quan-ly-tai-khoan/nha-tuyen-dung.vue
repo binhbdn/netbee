@@ -227,6 +227,7 @@ export default {
     },
     data() {
         return {
+            userRole: '2',
             listNTD: [],
             cardSearch: {
                 search: "",
@@ -246,7 +247,7 @@ export default {
             ],
             id: null,
             selected: [],
-            page: 1
+            page: 1,
         }
     },
     created() {
@@ -258,7 +259,7 @@ export default {
         },
         
         changeStatus(id){
-            this.$axios.$post('changeStatusNTD',{id: id}).then((response) => {
+            this.$axios.$post('user/'+(this.userRole)+'/changeStatus',{id: id}).then((response) => {
                 if(response.status == 200) {
                     this.$swal(
                         'Thành công!',
@@ -286,15 +287,15 @@ export default {
         searchDate(){
             return this.search();
         },
-        search(){
+        search(){     
             this.$axios.$get(
-            'searchNTD?searchBlock=' 
-            + ((this.cardSearch.searchBlock.id)?this.cardSearch.searchBlock.id:'') 
-            + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
-            + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
-            + '&searchName='+ ((this.cardSearch.searchName)?this.cardSearch.searchName:'')
-            + '&searchFromDate='+ ((this.cardSearch.searchFromDate)?this.cardSearch.searchFromDate:'')
-            + '&searchToDate='+ ((this.cardSearch.searchToDate)?this.cardSearch.searchToDate:'')
+                'user/'+(this.userRole)+'/search?searchBlock=' 
+                + ((this.cardSearch.searchBlock.id)?this.cardSearch.searchBlock.id:'') 
+                + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
+                + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
+                + '&searchName='+ ((this.cardSearch.searchName)?this.cardSearch.searchName:'')
+                + '&searchFromDate='+ ((this.cardSearch.searchFromDate)?this.cardSearch.searchFromDate:'')
+                + '&searchToDate='+ ((this.cardSearch.searchToDate)?this.cardSearch.searchToDate:'')
             ).then((response)=>{
                  this.listNTD=response.data;
 	        });
@@ -302,7 +303,7 @@ export default {
 
         async changeMultipleStatusNTD(statusNTD){
             try {
-                this.$axios.$post('changeMultipleStatusNTD',{id:JSON.stringify(this.selected), status: statusNTD}).then((res) => {
+                this.$axios.$post('user/'+(this.userRole)+'/changeMultipleStatus',{id:JSON.stringify(this.selected), status: statusNTD}).then((res) => {
                 if(JSON.stringify(this.selected).length == 2){
                     this.$swal({
                         title: 'Bạn chưa chọn nhà tuyển dụng!',
@@ -355,17 +356,15 @@ export default {
         infiniteScroll($state) {
             setTimeout(() => {
                 this.page++
-                this.$axios
-                .get(
-            'searchNTD?searchBlock='
-            + ((this.cardSearch.searchBlock.id)?this.cardSearch.searchBlock.id:'') 
-            + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
-            + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
-            + '&searchName='+ ((this.cardSearch.searchName)?this.cardSearch.searchName:'')
-            + '&searchFromDate='+ ((this.cardSearch.searchFromDate)?this.cardSearch.searchFromDate:'')
-            + '&searchToDate='+ ((this.cardSearch.searchToDate)?this.cardSearch.searchToDate:'')
-            + '&page='+this.page
-            )
+                this.$axios.get(
+                    'user/'+(this.userRole)+'/search?searchBlock=' 
+                    + ((this.cardSearch.searchBlock.id)?this.cardSearch.searchBlock.id:'') 
+                    + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
+                    + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
+                    + '&searchName='+ ((this.cardSearch.searchName)?this.cardSearch.searchName:'')
+                    + '&searchFromDate='+ ((this.cardSearch.searchFromDate)?this.cardSearch.searchFromDate:'')
+                    + '&searchToDate='+ ((this.cardSearch.searchToDate)?this.cardSearch.searchToDate:'') 
+                    + '&page='+ this.page)
                 .then((response) => {
                     if (response.data.data.length > 1) {
                         response.data.data.forEach((item) => this.listNTD.push(item))
