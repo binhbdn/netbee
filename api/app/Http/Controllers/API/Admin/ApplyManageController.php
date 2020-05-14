@@ -2,30 +2,36 @@
 
 namespace App\Http\Controllers\API\Admin;
 
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ApplyJobService;
 use Response;
-use App\Http\Controllers\API\NotificationController;
 use App\Services\UserService;
 
 class ApplyManageController extends Controller
 {
     protected $applyJobService;
     protected $userService;
-    public function __construct(ApplyJobService $applyJobService, UserService $userService)
-    {
+    protected $notificationService;
+
+    public function __construct(
+        ApplyJobService $applyJobService,
+        UserService $userService,
+        NotificationService $notificationService
+    ) {
         $this->applyJobService = $applyJobService;
         $this->userService = $userService;
+        $this->notificationService = $notificationService;
     }
 
     public function getApplyWait()
     {
         $applys = $this->applyJobService->getApply($this->applyJobService::CHO_DUYET);
         if($applys){
-            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys];
         } else {
-            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
     }
@@ -33,9 +39,9 @@ class ApplyManageController extends Controller
     public function getApplyApproved() {
         $applys = $this->applyJobService->getApply($this->applyJobService::ADMIN_DUYET_CV);
         if($applys){
-            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys];
         } else {
-            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
     }
@@ -43,9 +49,9 @@ class ApplyManageController extends Controller
     public function getRefuseApply() {
         $applys = $this->applyJobService->getApply($this->applyJobService::TU_CHOI);
         if($applys){
-            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys];
         } else {
-            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
     }
@@ -53,9 +59,9 @@ class ApplyManageController extends Controller
     public function getAllApply() {
         $applys = $this->applyJobService->getApply($this->applyJobService::All);
         if($applys){
-            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys]; 
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys];
         } else {
-            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
     }
@@ -64,10 +70,13 @@ class ApplyManageController extends Controller
         $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::ADMIN_DUYET_CV);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($approve){
-            NotificationController::postNotification('Hồ sơ của bạn đã được duyệt! Vui lòng hoàn tất giấy tờ liên quan', $detail->user_id_submit, 'https://netbee.vn/admin/quan-ly-ung-tuyen');
+            $content = 'Hồ sơ của bạn đã được duyệt! Vui lòng hoàn tất giấy tờ liên quan';
+            $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
+            $this->notificationService->store($content, $detail->user_id_submit, $url);
+//            NotificationController::postNotification($content, $detail->user_id_submit, $url);
             $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
         }else {
-            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
     }
@@ -76,10 +85,13 @@ class ApplyManageController extends Controller
         $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::ADMIN_DUYET_HO_SO);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($approve){
-            NotificationController::postNotification('Việc làm của bạn có lượt ứng tuyển mới', $detail->user_id_recever, 'https://netbee.vn/admin/quan-ly-ung-tuyen');
+            $content = 'Việc làm của bạn có lượt ứng tuyển mới';
+            $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
+            $this->notificationService->store($content, $detail->user_id_recever, $url);
+//            NotificationController::postNotification($content, $detail->user_id_recever, $url);
             $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
         }else {
-            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
     }
@@ -88,10 +100,13 @@ class ApplyManageController extends Controller
         $approve = $this->applyJobService->refuse($request->id, $this->applyJobService::TU_CHOI, $request->reason_for_rejection);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($approve){
-            NotificationController::postNotification('Yêu cầu ứng tuyển công việc '.$detail->job_id.' đã bị từ chối', $detail->user_id, 'https://netbee.vn/');
+            $content = 'Yêu cầu ứng tuyển công việc'.$detail->job_id.' đã bị từ chối';
+            $url = 'https://netbee.vn/';
+            $this->notificationService->store($content, $detail->user_id, $url);
+//            NotificationController::postNotification($content, $detail->user_id, $url);
             $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
         }else {
-            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
     }
@@ -101,7 +116,7 @@ class ApplyManageController extends Controller
         if($check){
             $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
         }else {
-            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
     }
@@ -111,7 +126,7 @@ class ApplyManageController extends Controller
         if($check){
             $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
         }else {
-            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null]; 
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
     }
@@ -120,7 +135,10 @@ class ApplyManageController extends Controller
         $check = $this->applyJobService->ChooseCalendar($request->interview_schedules, $request->id);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($check){
-            NotificationController::postNotification('Bạn đã được sắp lịch phỏng vấn công việc '.$detail->job_id.'.', $detail->user_id_submit, 'https://netbee.vn/admin/quan-ly-ung-tuyen');
+            $content = 'Bạn đã được sắp lịch phỏng vấn công việc'.$detail->job_id.'.';
+            $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
+            $this->notificationService->store($content, $detail->user_id_submit, $url);
+//            NotificationController::postNotification($content, $detail->user_id_submit, $url);
             $data = ['status' => 200, 'message' => 'Đặt lịch phỏng vấn thành công'];
         } else {
             $data = ['status' => 400, 'message' => 'Đặt lịch phỏng vấn không thành công'];
