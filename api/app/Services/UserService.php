@@ -317,7 +317,8 @@ class UserService extends BaseService {
                 'data' => $e->getMessage()
             ];
         }
-
+    }
+    
     public function getUser()
     {
         return $this->user->with('nbCompany')->where('id', Auth::user()->id)->first();
