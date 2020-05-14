@@ -34,17 +34,24 @@ class TeamplateCvService {
         return $this->getProfileById($id)->update($data);
     }
 
+    public function insert($data)
+    {
+        return $this->profileUser->insert($data);
+    }
+
     public function getProfileId($id)
     {
         return $this->getProfileById($id)->first();
     }
 
+
+
     public function getAllProfile(){
         return $this->profileUser;
     }
 
-    public function getAllProfileByRole($role){
-        return $this->profileUser->where('id_user','=',$role);
+    public function getAllProfileByRole(){
+        return $this->profileUser->where('id_user','=',Auth::user()->id);
     }
 
     public function getProfileBy()
@@ -53,7 +60,7 @@ class TeamplateCvService {
         if($role == self::ADMIN){
             return $this->getAllProfile()->where('deleted','=',self::ACTION)->get();
         }else if($role == self::HR || $role == self::COMPANY || $role == self::USER){
-            return $this->getAllProfileByRole($role)->where('deleted','=',self::ACTION)->get();
+            return $this->getAllProfileByRole()->where('deleted','=',self::ACTION)->get();
         }       
     }  
         

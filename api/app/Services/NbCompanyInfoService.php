@@ -51,7 +51,6 @@ class NbCompanyInfoService extends BaseService {
             $q->where('approve_feed',self::ACTIVE)
             ->limit(3);
         }])
-        ->orWhere('id', $companyId)
         ->get();
         foreach($datas as $key=>$data){
             $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
@@ -101,6 +100,31 @@ class NbCompanyInfoService extends BaseService {
         return empty($rates) ? 0 : round(array_sum($rates)/count($rates),1);
     }
 
+    public function checkUsernameCompany($username)
+    {   
+        $userId = Auth::user()->id;
+        try {
+            if($this->nbCompanyInfo->where('company_id',$userId)->first()->username == $username){
+                return [
+                    'status' => 400,
+                    'message' => 'Tên không hợp lệ!',
+                    'data' => null
+                ];
+            }else{
+                return [
+                    'status' => 200,
+                    'message' => 'Tên hợp lệ!',
+                    'data' => null
+                ];
+            };
+        } catch (\Exception $e) {
+            return [
+                'status'=> 500,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+    }
     public function getInfoByUserId($userId)
     {
         return $this->nbCompanyInfo->whereCompanyId($userId);
@@ -114,5 +138,10 @@ class NbCompanyInfoService extends BaseService {
     public function updateByUserId($data, $userId)
     {
         return $this->nbCompanyInfo->whereCompanyId($userId)->update($data);
+    }
+
+    public function checkUsernameCompany($username)
+    {
+        return $this->nbCompanyInfo->where('username', $username)->exits();
     }
 }
