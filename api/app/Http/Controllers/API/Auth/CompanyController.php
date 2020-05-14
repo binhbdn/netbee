@@ -36,11 +36,6 @@ class CompanyController extends Controller
         }
         return response()->json($data);
     }
-    public function checkUsernameCompany(Request $request){
-        $response = $this->nbCompanyInfoService->checkUsernameCompany($request->username);
-        return response()->json($response);
-    }
-
     public function changeInfoCompany(Request $request)
     {
         $rules = [
