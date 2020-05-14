@@ -302,11 +302,11 @@
                     <div class="modal-body">
                         <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                             <li class="nav-item">
-                                <a class="nav-link active" id="v-pills-1-tab" data-toggle="tab" href="#v-pills-1"
+                                <a @click="changeStateTab(true)" class="nav-link active" id="v-pills-1-tab" data-toggle="tab" href="#v-pills-1"
                                 role="tab" aria-controls="v-pills-1" aria-selected="true">Hồ sơ đính kèm</a>
                             </li>
                             <li class="nav-item" @click="getListProfileUser()">
-                                <a class="nav-link" id="v-pills-2-tab" data-toggle="tab" href="#v-pills-2"
+                                <a class="nav-link" @click="changeStateTab(false)" id="v-pills-2-tab" data-toggle="tab" href="#v-pills-2"
                                 role="tab" aria-controls="v-pills-2" aria-selected="false">Danh sách hồ sơ</a>
                             </li>
                         </ul>
@@ -316,7 +316,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <ValidationProvider
-                                            
+                                            rules="required"
                                             v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
@@ -349,29 +349,38 @@
                                 </ValidationObserver>
                             </div>
                             <div class="tab-pane" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-22-tab">
-                                <fieldset v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
-                                    <div class="vs-radio-con vs-radio-success">
-                                        <input type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
-                                        <span class="vs-radio">
-                                            <span class="vs-radio--border"></span>
-                                            <span class="vs-radio--circle"></span>
-                                        </span>
-                                        <span class="">{{ listProfileUser.fullname_profile }}</span>
+                                <ValidationObserver ref="applyJobCv" v-slot="{ valid }">
+                                    <div class="col-12">
+                                        <ValidationProvider
+                                            rules="required"
+                                            v-slot="{ errors }">
+                                            <fieldset v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
+                                                <div class="vs-radio-con vs-radio-success">
+                                                    <input type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
+                                                    <span class="vs-radio">
+                                                        <span class="vs-radio--border"></span>
+                                                        <span class="vs-radio--circle"></span>
+                                                    </span>
+                                                    <span class="">{{ listProfileUser.fullname_profile }}</span>
+                                                </div>
+                                            </fieldset>
+                                            <span style="color: red">{{errors[0]}}</span>
+                                        </ValidationProvider>
                                     </div>
-                                </fieldset>
-                                <div class="col-12">
-                                    <ValidationProvider
-                                    rules="required"
-                                    v-slot="{ errors }">
-                                        <div class="form-group">
-                                            <div class="form-field">
-                                                <label for="name">Họ tên</label>
-                                                <input type="text" id="name" class="form-control" v-model="name">
-                                                <span style="color: red">{{errors[0]}}</span>
+                                    <div class="col-12">
+                                        <ValidationProvider
+                                        rules="required"
+                                        v-slot="{ errors }">
+                                            <div class="form-group">
+                                                <div class="form-field">
+                                                    <label for="name">Họ tên</label>
+                                                    <input type="text" id="name" class="form-control" v-model="name">
+                                                    <span style="color: red">{{errors[0]}}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </ValidationProvider>
-                                </div>
+                                        </ValidationProvider>
+                                    </div>
+                                </ValidationObserver>
                             </div>
                         </div>
                         <div class="text-right mt-1">
@@ -440,6 +449,7 @@ export default {
     },
     data() {
         return {
+            stateTab: true,
             arrayForCompany: [],
             save: false,
             report: '',
@@ -484,6 +494,9 @@ export default {
         }
     },
     methods: {
+        changeStateTab(state){
+            this.stateTab = state
+        },
         saveJob() {
             this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuyendung.id}).then((response)=>{
                 if(response.status == 200) {
@@ -600,27 +613,49 @@ export default {
             }
             data.append('name', this.name)
             data.append('job_id', this.$route.params.id)
-            const isValid = await this.$refs.applyJob.validate();
-            if(isValid) {
-                this.$axios.post('userApplyJob',data).then(response => {
-                    if(response.data.status == 200) {
-                        this.$swal(
-                            'Thành công',
-                            response.data.message,
-                            'success'
-                        ).then( function (){
-                                location.reload()
-                            } )
-                    }else{
-                        this.$swal(
-                            'Lỗi',
-                            response.data.message,
-                            'error'
-                        )
+            if(this.stateTab) {
+                let isValid = await this.$refs.applyJob.validate();
+                    if(isValid) {
+                        this.$axios.post('userApplyJob',data).then(response => {
+                            if(response.data.status == 200) {
+                                this.$swal(
+                                    'Thành công',
+                                    response.data.message,
+                                    'success'
+                                ).then( function (){
+                                        location.reload()
+                                    } )
+                            }else{
+                                this.$swal(
+                                    'Lỗi',
+                                    response.data.message,
+                                    'error'
+                                )
+                            }
+                        })
                     }
-                })
+            }else {
+                let isValid = await this.$refs.applyJobCv.validate();
+                if(isValid) {
+                    this.$axios.post('userApplyJob',data).then(response => {
+                        if(response.data.status == 200) {
+                            this.$swal(
+                                'Thành công',
+                                response.data.message,
+                                'success'
+                            ).then( function (){
+                                    location.reload()
+                                } )
+                        }else{
+                            this.$swal(
+                                'Lỗi',
+                                response.data.message,
+                                'error'
+                            )
+                        }
+                    })
+                }
             }
-  
         },
         getListProfileUser(){
             this.$axios.$get(`hoso/listProfileUser`).then((response)=>{
