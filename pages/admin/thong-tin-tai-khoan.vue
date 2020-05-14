@@ -226,14 +226,33 @@
                                                                     <button type="button" class="btn btn-sm btn-outline-warning ml-50" @click="resetImgCover">Reset</button>
                                                                 </div>
                                                                 <p class="text-muted ml-75 mt-50"><small>Cho phép JPG, GIF or PNG. Kích thước đề xuất: 1120 x 296</small></p>
-                                                                <ul style="color:red" class="overline text-left">
+                                                            </div>
+                                                        </div>
+                                                        <hr>
+                                                      <div class="col-12">
+                                                          <ValidationProvider
+                                                            name="username"
+                                                            ref="username"
+                                                            rules="required"
+                                                            v-slot="{ errors }"
+                                                        > 
+                                                          <div class="form-group">
+                                                              <label for="accountTextarea1">Username</label>
+                                                              <div class="form-control d-flex p-0">
+                                                              <input style="border:none; color: #5F5F5F; padding-left: 7px!important;" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Thông tin cơ bản của công ty...">
+                                                              <div class="col-1 text-center">
+                                                                  <i style="font-size:16px; padding-top: 10px" :class="checkUsername ? 'fas fa-check-circle success' : 'fas fa-times-circle danger'"></i>
+                                                              </div>
+                                                              </div>
+                                                              <ul style="color:red" class="overline text-left">
                                                                         <li v-for="(error, index) in errors" :key="index">
                                                                         <span>{{ error }}</span>
                                                                         </li>
                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <hr>
+                                                               <a>Đường dẫn sẽ xuất hiện với: https://netbee.vn/cong-ty/{{changeInfoCompanyForm.username}}</a>
+                                                          </div>
+                                                      </ValidationProvider>
+                                                      </div>
                                                       <div class="col-12">
                                                           <ValidationProvider
                                                             name="companyAbout"
@@ -448,6 +467,7 @@ export default {
                 },
                 changeInfoCompanyForm: {
                     files: [],
+                    username: "",
                     companyAbout: "",
                     companyHotline: "",
                     companyTax: "",
@@ -459,6 +479,7 @@ export default {
                 },
                 images: [],
                 imagesCover: [],
+                checkUsername: null,
                 changeInfoUser: {
                     files: [],
                     name: this.$auth.user.name,
@@ -627,11 +648,13 @@ export default {
             }
         },
         async changeInfoCompany() {
+            
             const isValid = await this.$refs.observerChangeInfoCompany.validate();
             if(isValid){
                 try {
                 let response = await this.$axios.post('changeInfoCompany', {
                     company_about: this.changeInfoCompanyForm.companyAbout,
+                    username: this.changeInfoCompanyForm.username,
                     company_hotline: this.changeInfoCompanyForm.companyHotline,
                     company_tax: this.changeInfoCompanyForm.companyTax,
                     company_benefit: this.changeInfoCompanyForm.companyBenefit,
@@ -672,6 +695,16 @@ export default {
                 });
             }
         },
+        checkUsernameCompany($username){
+            this.$axios.get('checkUsernameCompany?username=' + $username).then(response=> {
+                if(response.data.status == 200){
+                    this.checkUsername = true
+                }
+                else if(response.data.status == 400){
+                    this.checkUsername = false
+                }
+            })
+        },
         async fetch() {
             let dataInforCompany = await this.$axios.get('getInfoCompany');
             if(dataInforCompany.data.data !== null){
@@ -682,12 +715,18 @@ export default {
                 this.changeInfoCompanyForm.companyPolicy = dataInforCompany.data.data.company_policy;
                 this.changeInfoCompanyForm.companyChance = dataInforCompany.data.data.company_chance;
                 this.changeInfoCompanyForm.companyLink = dataInforCompany.data.data.company_link;
+                this.changeInfoCompanyForm.username = dataInforCompany.data.data.username;
             }
             
         }
   },
   mounted() {
       this.fetch();
+  },
+  watch: {
+      checkUsername: function(){
+          
+      }
   }
 }
 </script>
@@ -700,5 +739,22 @@ export default {
     ul li span{
         font-style: italic;
     }
+.col-11:focus {
+    outline: unset;
+    border: none;
+    outline-color: unset;
+    outline-style: unset;
+    outline-width: unset;
+    
+}
+.input-username:focus{
+    border: unset!important;
+    color: #5F5F5F;
+    padding-left: 10px!important;
+}
+.col-11 input{
+    color: #5F5F5F;
+}
+
 </style>>
 
