@@ -318,7 +318,7 @@ class UserService extends BaseService {
             ];
         }
     }
-    
+
     public function getUser()
     {
         return $this->user->with('nbCompany')->where('id', Auth::user()->id)->first();
