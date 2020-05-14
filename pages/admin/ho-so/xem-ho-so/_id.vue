@@ -36,7 +36,7 @@
                                     <textarea  v-if="status == 1" v-model="info_frofile_user.fullname_profile" class="main-text textarea" placeholder="VD: NGUYỄN VĂN A"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                                              
                                 </div>
                                 
-                                <br><br>
+                                <br>
                                 <div class="target-main-cv">
                                     <div class="target-cv">
                                         <div class="row">
@@ -172,8 +172,8 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.birthday_profile}}</p>                                                   
-                                                <input v-if="status == 1" v-model="info_frofile_user.birthday_profile" class="main-text textarea" placeholder="VD: 0000/00/00"  style="overflow:hidden;"/>
+                                                <p class="main-text textarea" v-if="status == 0" >{{ConvertDate(info_frofile_user.birthday_profile)}}</p>                                                   
+                                                <input v-if="status == 1" v-model="info_frofile_user.birthday_profile" type="date" class="main-text textarea" placeholder="VD: 0000/00/00"  style="overflow:hidden;"/>
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -295,7 +295,7 @@
             
         },
         
-        methods: {
+        methods: {            
             async update(e, route){
                 e.preventDefault();                
                 var form = new FormData();                             

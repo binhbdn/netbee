@@ -33,7 +33,7 @@
                                     <textarea @click="text()" v-model="info_frofile_user.fullname_profile" class="main-text textarea" placeholder="VD: NGUYỄN VĂN A"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
                                 </div>
                                 
-                                <br><br>
+                                <br>
                                 <div class="target-main-cv">
                                     <div class="target-cv">
                                         <div class="row">
@@ -139,8 +139,9 @@
                                 <center>
                                     <div style="background-color: #029c7c;" class="img-cv">
                                         <div class="imgg">
-                                            <label for="files">
-                                                <img v-bind:src="img">
+                                            <label for="files">                                                
+                                                <img :src="images[0]"  v-if="images.length > 0">
+                                                <img :src="img" v-else>
                                             </label>
                                             <input type="file" id="files" class="hidden"  @change="previewFiles" multiple>                                          
                                         </div>                                        
@@ -154,7 +155,7 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <input v-model="info_frofile_user.birthday_profile" @click="text()" class="main-text textarea" placeholder="VD: 0000/00/00"  style="overflow:hidden;"/>
+                                                <input v-model="info_frofile_user.birthday_profile" @click="text()" type="date" class="main-text textarea" placeholder="VD: 0000/00/00"  style="overflow:hidden;"/>
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -251,6 +252,7 @@
                     },  
                     img:'https://www.topcv.vn/upload/images/avatars/no_avatar.jpg', 
                     fileImg:[], 
+                    images: [], 
                            
                 }         
         },        
@@ -260,10 +262,36 @@
         
         methods: {
             previewFiles(e) {                
-                this.info_frofile_user.avatar_profile = e.target.files[0].name;                
-                const file = e.target.files[0];
+                if(this.images.length > 0){
+                this.$delete(this.images, 0)
+                }                                     
+                e.preventDefault();
+                e.stopPropagation();
+                this.isDragging = false;      
+                const files = e.target.files;
+                if(files.length >0)
+                    this.addImage(files[0]);
+            },
+            addImage(file){
+                if( !file.type.match('image.*') ){
+                    this.$swal(
+                            'Lỗi',
+                            'File không đúng định dạng',
+                            'error'
+                        )
+                    return;
+                }
+                if(this.fileImg.length >0)
+                    this.$delete(this.fileImg, 0)
+
                 this.fileImg.push(file);
-                this.img = URL.createObjectURL(file);
+
+                const img = new Image();
+                const reader = new FileReader();
+
+                reader.onload = (e) => this.images.push(e.target.result);
+
+                reader.readAsDataURL(file);
             },
              mixin_autoResize_resize(event) {
                 event.target.style.height = "auto";
@@ -275,15 +303,14 @@
             insert(e, route){                         
                 e.preventDefault();                
                 var form = new FormData();                             
-                form.append('file' , this.fileImg)
+                form.append('avatar_profile' , this.fileImg[0])
                 form.append('id_user' , this.info_frofile_user.id_user)
                 form.append('fullname_profile' , this.info_frofile_user.fullname_profile)
                 form.append('birthday_profile' , this.info_frofile_user.birthday_profile)
                 form.append('maleFemale' , this.info_frofile_user.maleFemale)
                 form.append('address_profile' , this.info_frofile_user.address_profile)
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
-                form.append('email_profile' , this.info_frofile_user.email_profile) 
-                form.append('avatar_profile' , this.info_frofile_user.avatar_profile)               
+                form.append('email_profile' , this.info_frofile_user.email_profile)                               
                 form.append('note_profile' , this.info_frofile_user.note_profile)
                 form.append('title_target_profile' , this.info_frofile_user.title_target_profile)
                 form.append('note_target_profile' , this.info_frofile_user.note_target_profile)
@@ -295,8 +322,7 @@
                 form.append('name_education' , this.info_frofile_user.name_education)
                 form.append('specialized_education' , this.info_frofile_user.specialized_education)                
                 this.$axios.post('hoso/insertProfileUser',form)
-                .then(response => {   
-                    console.log(response);                                     
+                .then(response => {                                                           
                     if(response.data.status == 200) {
                         this.$swal(
                             'Tạo mới thành công',
@@ -311,6 +337,10 @@
                             response.data.message,
                             'error'
                         )
+                        if(response.data.status == 400){                            
+                            $('input').addClass('your-class');
+                            $('textarea').addClass('your-class');
+                        }                        
                     }
                  })
                  .catch(error => {
@@ -327,6 +357,9 @@
     };
 </script>
 <style>
+    .your-class::-webkit-input-placeholder {
+        color: crimson !important;
+    }
    .title-h2-cv h2{
        margin-top: 20px;
         font-size: 34px;
@@ -488,16 +521,22 @@
         background-color: #28bb9c;
         color: #fff;
     }    
-    .briday-cv  input::placeholder,.gioitinh-cv input::placeholder,.address-cv textarea::placeholder, .phone-cv input::placeholder, .email-cv input::placeholder, .note-cv textarea::placeholder {
-        color:crimson !important;
+    /* .briday-cv  input::placeholder,.gioitinh-cv input::placeholder,.address-cv textarea::placeholder, .phone-cv input::placeholder, .email-cv input::placeholder, .note-cv textarea::placeholder {
+        color:#000 !important;
 
-    }  
-    textarea::placeholder{
+    }   */
+    /* textarea::placeholder{
         color:crimson !important;
     }
     input::placeholder{
         color:crimson !important;
+    } */
+    /* textarea::placeholder{
+        color:#000 !important;
     }
+    input::placeholder{
+        color:#000 !important;
+    } */
     .briday-cv  .main-text:hover,.address-cv .main-text:hover,.gioitinh-cv .main-text:hover,.Cmnd-cv .main-text:hover, .phone-cv .main-text:hover, .email-cv .main-text:hover, .note-cv .main-text:hover {
         border-color: #4B6A78;
         border-style: dotted;
