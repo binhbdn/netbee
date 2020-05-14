@@ -2,12 +2,12 @@
     <div class="card ecommerce-card border-job-item" style="height: 133px;margin-bottom: 15px;">
         <div class="card-content">
             <div class="remove-border-right" style="width: 60vh;padding: 5px 25px;">
-                <a class="item-vip-a" :href="`/cong-ty/${company.username ? company.username : company.id}`" data-toggle="tooltip" data-placement="top" :title="`${company.name}`">{{ company.name }}</a>
+                <a class="item-vip-a" :href="`/cong-ty/${company.username ? company.username : '#'}`" data-toggle="tooltip" data-placement="top" :title="`${company.name}`">{{ company.name }}</a>
             </div>
         </div>
         <div class="card-content">
             <div style="margin: auto;">
-                <a :href="`/cong-ty/${company.username ? company.username : company.id}`">
+                <a :href="`/cong-ty/${company.username ? company.username : '#'}`">
                     <img v-lazy="`/uploads/users/avatars/${company.avatar}`" :alt="`${company.avatar}`" width="100" height="100">
                 </a>
             </div>
