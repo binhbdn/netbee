@@ -272,25 +272,25 @@ class UserController extends Controller
         ]);
     }
 
-    public function getAllNTD(Request $request)
+    public function get(Request $request)
     {
-        $response = $this->userService->getAllNTD($request);
+        $response = $this->userService->get($request);
         return response()->json($response);
     }
 
-    public function searchNTD(Request $request)
+    public function search(Request $request, $userRole)
     {
-        $response = $this->userService->searchNTD($request);
+        $response = $this->userService->search($request);
         return response()->json($response);
     }
 
-    public function changeStatusNTD(Request $request)
+    public function changeStatus(Request $request)
     {
         $response = $this->userService->changeStatus($request->id);
         return response()->json($response);
     }
 
-    public function changeMultipleStatusNTD(Request $request)
+    public function changeMultipleStatus(Request $request)
     {
         $response = $this->userService->changeMultiStatus($request);
         return response()->json($response);

@@ -49,4 +49,13 @@ class BaseService {
     const 
         AN = 0,
         HIEN = 1;
+
+    public static function getRoles()
+    {
+        return [
+            self::ROLE_HR,
+            self::ROLE_COMPANY,
+            self::ROLE_STAFF
+        ];
+    }
 }

@@ -201,13 +201,17 @@ class UserService extends BaseService {
         return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_ADMIN)->get();
     }
 
-    public function getAllNTD()
+    public function get()
     {
         return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_COMPANY)->get();
     }
 
-    public function searchNTD($request)
+    public function search($request)
     {
+        $roles = self::getRoles();
+        if (!in_array($request->userRole, $roles)) {
+            return abort(404, 'Role không hợp lệ');
+        }
         $perPage = 10;
         $search = $request->search;
         $searchStatus = $request->searchStatus;
@@ -238,7 +242,8 @@ class UserService extends BaseService {
                 '%'.$searchName.'%'
             ];
         }
-        $query = $this->user->whereBlock(self::INACTIVE)->whereRole(self::ROLE_COMPANY);
+
+        $query = $this->user->whereBlock(self::INACTIVE)->whereRole($request->userRole);
         if (Auth::user()->role != self::ROLE_ADMIN) {
             $query->whereUserCreated(Auth::user()->id);
         }
