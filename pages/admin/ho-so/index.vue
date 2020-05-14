@@ -50,10 +50,10 @@
                                                 <tr v-for="(item,key) in listProfileUser" :key="key">
                                                     <td>{{item.id}}</td>
                                                     <td>{{item.fullname_profile}}</td>
-                                                    <td>{{item.birthday_profile}}</td>                                                    
+                                                    <td>{{ConvertDate(item.birthday_profile)}}</td>                                                    
                                                     <td>{{item.email_profile}}</td>
                                                     <td>{{item.phone_profile}}</td>
-                                                    <td>{{item.created_at}}</td>
+                                                    <td>{{ConvertDate(item.created_at)}}</td>
                                                     <td>
                                                         <div class="action-btns">
                                                             <div class="btn-dropdown ">
@@ -62,7 +62,7 @@
                                                                         Chọn thao tác
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a :href="`/admin/ho-so/sua-ho-so/${item.id}`" class="dropdown-item"> <i class="far fa-edit"></i>Xem chi tiết</a>
+                                                                        <a :href="`/admin/ho-so/xem-ho-so/${item.id}`" class="dropdown-item"> <i class="far fa-edit"></i>Xem chi tiết</a>
                                                                         <a @click="deleted(item.id)" class="dropdown-item" > <i class="far fa-times-circle"></i>Xóa</a>
                                                                     </div>
                                                                 </div>
