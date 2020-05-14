@@ -46,8 +46,8 @@
                 <section id="News"> 
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
-                                <div class="card-body card-dashboard mt-2">
+                            <div class="">
+                                <div class="card-body card-dashboard p-0">
                                     <div class="table-responsive list-data">
                                         <JobsList3Col :DataList="tinTuyenDung"></JobsList3Col>
                                         <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
@@ -105,12 +105,10 @@ export default {
 
     methods:{
         async fetch(){
-            let getTin = await this.$axios.$get('/tintuyendung/getTinTuyenDung')
-            console.log(getTin.data.data)
-            this.tinTuyenDung = getTin.data.data
+            let getTin = await this.$axios.$get('/tintuyendung/searchTinTuyenDung')
+            this.tinTuyenDung = getTin.data
         },
         search(){
-            console.log(this.cardSearch.searchCategory)
             this.$axios.$get(
             'tintuyendung/searchTinTuyenDung?searchCategory=' 
             + ((this.cardSearch.searchCategory != null && this.cardSearch.searchCategory.id != null)?this.cardSearch.searchCategory.id:'') 
@@ -118,7 +116,8 @@ export default {
             + ((this.cardSearch.search)? '&search='+ this.cardSearch.search:'')
             + ((this.cardSearch.searchTitle)? '&searchTitle='+ this.cardSearch.searchTitle:'')
             ).then((response)=>{
-	             this.tinTuyenDung=response.data;
+                 this.tinTuyenDung=response.data;
+                 this.page = 1;
 	        });
         },
         nameWithLang ({ name, id }) {
@@ -128,10 +127,15 @@ export default {
             setTimeout(() => {
                 this.page++
                 this.$axios
-                .get('/tintuyendung/getTinTuyenDung?page='+ this.page)
+                .get('/tintuyendung/searchTinTuyenDung?page='+ this.page
+                + ((this.cardSearch.searchCategory != null && this.cardSearch.searchCategory.id != null)? '&searchCategory='+this.cardSearch.searchCategory.id:'') 
+                + ((this.cardSearch.searchStatus != null && this.cardSearch.searchStatus.id !=null)? '&searchStatus='+this.cardSearch.searchStatus.id:'') 
+                + ((this.cardSearch.search)? '&search='+ this.cardSearch.search:'')
+                + ((this.cardSearch.searchTitle)? '&searchTitle='+ this.cardSearch.searchTitle:'')
+                )
                 .then((response) => {
-                    if (response.data.data.data.length > 1) {
-                        response.data.data.data.forEach((item) => this.tinTuyenDung.push(item))
+                    if (response.data.data.length > 1) {
+                        response.data.data.forEach((item) => this.tinTuyenDung.push(item))
                         $state.loaded()
                     } else {
                         $state.complete()
