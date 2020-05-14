@@ -115,4 +115,16 @@ class ApplyManageController extends Controller
         }
         return response()->json($data);
     }
+
+    public function ChooseCalendar(Request $request){
+        $check = $this->applyJobService->ChooseCalendar($request->interview_schedules, $request->id);
+        $detail = $this->applyJobService->getDetailApply($request->id);
+        if($check){
+            NotificationController::postNotification('Bạn đã được sắp lịch phỏng vấn công việc '.$detail->job_id.'.', $detail->user_id_submit, 'https://netbee.vn/admin/quan-ly-ung-tuyen');
+            $data = ['status' => 200, 'message' => 'Đặt lịch phỏng vấn thành công'];
+        } else {
+            $data = ['status' => 400, 'message' => 'Đặt lịch phỏng vấn không thành công'];
+        }
+        return response()->json($data);
+    }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProfileUser extends Model
 {
-    protected $table = 'profile_user';
+    protected $table = 'nb_cvs';
 
     public $fillable = [
         'id_user',
@@ -24,6 +24,9 @@ class ProfileUser extends Model
         'skill_information_profile',
         'skill_logic_profile',
         'certificate_profile',
+        'level_education',
+        'name_education',
+        'specialized_education',
         'deleted',        
     ];
 }

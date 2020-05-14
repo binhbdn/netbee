@@ -67,6 +67,7 @@
                                                 <p v-if="item.status == 1">Chờ admin xác thực</p>
                                                 <p v-else-if="item.status == 2">Hoàn tất giấy tờ</p>
                                                 <p v-else-if="item.status == 5">Chờ công ty duyệt</p>
+                                                <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                             </td>
                                             <td>
                                                 <div class="action-btns">

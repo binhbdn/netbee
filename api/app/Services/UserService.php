@@ -6,6 +6,8 @@ use JWTAuth;
 use Auth;
 use DB;
 use Hash;
+use Carbon\Carbon;
+use Validator;
 
 class UserService extends BaseService {
 
@@ -45,6 +47,7 @@ class UserService extends BaseService {
     {
         return $this->user->insertGetId($data);
     }
+
 
     public function loginWithOAuth($request, $typeOAuth)
     {
@@ -197,6 +200,123 @@ class UserService extends BaseService {
     public function getIdAdmin()
     {
         return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_ADMIN)->get();
+    }
+
+    public function getAllNTD()
+    {
+        return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_COMPANY)->get();
+    }
+
+    public function searchNTD($request)
+    {
+        $perPage = 10;
+        $search = $request->search;
+        $searchStatus = $request->searchStatus;
+        $searchBlock = $request->searchBlock;
+        $searchName = $request->searchName;
+        $searchFromDate = $request->searchFromDate;
+        $searchToDate = $request->searchToDate;
+        $conditions =[];
+
+        if($searchStatus != ''){
+            $conditions[] = [
+                'status',
+                '=',
+                $searchStatus
+            ];
+        }
+        if($searchBlock != ''){
+            $conditions[] = [
+                'block',
+                '=',
+                $searchBlock
+            ];
+        }
+        if($searchName != ''){
+            $conditions[] = [
+                'name',
+                'LIKE',
+                '%'.$searchName.'%'
+            ];
+        }
+        $query = $this->user->whereBlock(self::INACTIVE);
+        if (Auth::user()->role != self::ROLE_ADMIN) {
+            $query->whereUserCreated(Auth::user()->id);
+        }
+        if($searchFromDate != '' && $searchToDate != ''){
+            $query->whereBetween('created_at', [$searchFromDate, $searchToDate]);
+        }
+        if (!empty($conditions)) {
+            $query->where($conditions);
+        }
+        if ($search != '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', '%'.$search.'%')
+                    ->orWhere('id','LIKE', '%'.$search.'%');
+            });
+        }
+        return $query->orderBy('id', 'DESC')->paginate($perPage);
+    }
+
+    public function changeStatus($id)
+    {
+        try {
+            $user = $this->getUserById($id)->first();
+            if($user) {
+                $data = [
+                    'status' => !$user->status,
+                    'updated_at' => Carbon::now()
+                ];
+                return [
+                    'status'=> 200,
+                    'message' => 'Thay đổi trạng thái thành công',
+                    'data' => $this->update($data, $id)
+                ];
+            }
+            return [
+                'status'=> 400,
+                'message' => 'Nhà tuyển dụng không tồn tại',
+                'data' => null
+            ];
+
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function changeMultiStatus($request)
+    {
+        if(empty($request->id)){
+            return [
+                'status'=> 400,
+                'message' => 'Bạn chưa chọn nhà tuyển dụng!',
+                'data' => null
+            ];
+        }
+        $ids = json_decode($request->id);
+        $status = $request->status;
+        try {
+            $message = $status ? 'Kích hoạt thành công' : 'Bỏ kích hoạt thành công';
+            $this->user->whereIn('id', $ids)->update([
+                'status' => $status,
+                'updated_at' =>  Carbon::now()
+            ]);
+            return [
+                'status'=> 200,
+                'message' => $message,
+                'data' => null
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
     }
 
     public function getUser()

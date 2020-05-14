@@ -51,7 +51,6 @@ class NbCompanyInfoService extends BaseService {
             $q->where('approve_feed',self::ACTIVE)
             ->limit(3);
         }])
-        ->orWhere('id', $companyId)
         ->get();
         foreach($datas as $key=>$data){
             $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
@@ -139,5 +138,10 @@ class NbCompanyInfoService extends BaseService {
     public function updateByUserId($data, $userId)
     {
         return $this->nbCompanyInfo->whereCompanyId($userId)->update($data);
+    }
+
+    public function checkUsernameCompany($username)
+    {
+        return $this->nbCompanyInfo->where('username', $username)->exits();
     }
 }

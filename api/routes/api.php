@@ -56,6 +56,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::get('logout', 'Auth\UserController@logout');
       Route::post('pricing_momo_bank', 'MomoController@pricing_momo_bank');
       Route::post('pricing_momo', 'MomoController@pricing_momo');
+      Route::get('getAllNTD', 'Auth\UserController@getAllNTD');
+      Route::get('searchNTD', 'Auth\UserController@searchNTD');
+      Route::post('changeStatusNTD', 'Auth\UserController@changeStatusNTD');
+      Route::post('changeMultipleStatusNTD', 'Auth\UserController@changeMultipleStatusNTD');
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');
 
@@ -87,7 +91,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('report', 'Admin\ReportController@report');
       });
       Route::prefix('hoso')->group(function () {       
-        Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');       
+        Route::post('getProfileUserId', 'Admin\TeamplateCvController@getProfileUserId');
+        Route::post('deleteProfileUser', 'Admin\TeamplateCvController@deleteProfileUser');
+        Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');  
+        Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');       
         Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');       
       });
       Route::prefix('apply')->group(function () {
@@ -100,6 +107,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('HideApply/{id}', 'Admin\ApplyManageController@HideApply');
         Route::get('ShowApply/{id}', 'Admin\ApplyManageController@ShowApply');
         Route::post('ApprovedApplyHoSo/{id}', 'Admin\ApplyManageController@ApprovedApplyHoSo');
+        Route::post('ChooseCalendar/{id}', 'Admin\ApplyManageController@ChooseCalendar');
       });
   });
 });
