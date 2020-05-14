@@ -48,7 +48,6 @@ class UserService extends BaseService {
         return $this->user->insertGetId($data);
     }
 
-
     public function loginWithOAuth($request, $typeOAuth)
     {
         $token = $request->token;
@@ -239,7 +238,7 @@ class UserService extends BaseService {
                 '%'.$searchName.'%'
             ];
         }
-        $query = $this->user->whereBlock(self::INACTIVE);
+        $query = $this->user->whereBlock(self::INACTIVE)->whereRole(self::ROLE_COMPANY);
         if (Auth::user()->role != self::ROLE_ADMIN) {
             $query->whereUserCreated(Auth::user()->id);
         }
