@@ -40,6 +40,16 @@
                 </li>
                 <li :class="[{'active' : this.$route.name == 'admin-thong-tin-tai-khoan'}, 'nav-item']"><a @click="$router.push('/admin/thong-tin-tai-khoan')"><i class="feather icon-user" ></i><span class="menu-title" data-i18n="User">Thông tin tài khoản</span></a>
                 </li>
+                <li :class="[{'active' : (this.$route.name == 'admin-tai-khoan-ntd-danh-sach') || (this.$route.name == 'admin-tai-khoan-ntd-tao')}, 'nav-item']" v-if="$auth.user.role == 2 || $auth.user.role == 4"><a href="#"><i class="fas fa-briefcase"></i><span class="menu-title" data-i18n="Ecommerce">Quản lý tài khoản</span></a>
+                    <ul class="menu-content">
+                        <li><a href="/admin/quan-ly-tai-khoan/nha-tuyen-dung"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="User">Tài khoản NTD</span></a>
+                        </li>
+                        <li><a href=""><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Hr</span></a>
+                        </li>
+                        <li><a href=""><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Ứng viên</span></a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

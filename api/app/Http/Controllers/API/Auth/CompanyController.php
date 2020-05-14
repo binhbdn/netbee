@@ -36,12 +36,12 @@ class CompanyController extends Controller
         }
         return response()->json($data);
     }
-
     public function changeInfoCompany(Request $request)
     {
         $rules = [
                 'company_hotline' => 'required|numeric',
                 'company_about' => 'required',
+                'username' => 'required',
                 'company_tax' => 'required|numeric',
                 'company_benefit' => 'required',
                 'company_policy' => 'required',
@@ -94,6 +94,7 @@ class CompanyController extends Controller
             'image_cover' => $request->image_cover,
             'company_hotline' => $request->company_hotline,
             'company_about' => $request->company_about,
+            'username' => $request->username,
             'company_tax' => $request->company_tax,
             'company_benefit' => $request->company_benefit,
             'company_policy' => $request->company_policy,

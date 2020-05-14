@@ -2,23 +2,29 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\ApplyJobService;
 use App\Services\UserService;
 use Validator;
 use Auth;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Http\Controllers\API\NotificationController;
 
 class UngTuyenController extends Controller
 {
     protected $applyJobService;
     protected $userService;
-    public function __construct(ApplyJobService $applyJobService, UserService $userService){
+    protected $notificationService;
+
+    public function __construct(
+        ApplyJobService $applyJobService,
+        UserService $userService,
+        NotificationService $notificationService
+    ){
         $this->applyJobService = $applyJobService;
         $this->userService = $userService;
+        $this->notificationService = $notificationService;
     }
 
     public function userApplyJob(Request $request)
@@ -69,7 +75,9 @@ class UngTuyenController extends Controller
 
         $message = 'Có lượt ứng tuyển mới của tin ['.$request->job_id.']';
         foreach ($admins as $key => $admin) {
-            NotificationController::postNotification($message, $admin->id, 'https://netbee.vn/admin/quan-ly-ung-tuyen');
+            $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
+            $this->notificationService->store($message, $admin->id, $url);
+//            NotificationController::postNotification($message, $admin->id, $url);
         }
         $check = $this->applyJobService->create($insert);
         if($check){

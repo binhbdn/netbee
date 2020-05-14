@@ -18,7 +18,8 @@ class NbCompanyInfo extends Model
         'company_chance',
         'company_link',
         'company_verify',
-        'image_cover'
+        'image_cover',
+        'username'
     ];
 
     public function user(){

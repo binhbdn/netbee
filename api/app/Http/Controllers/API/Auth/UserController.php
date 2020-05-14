@@ -271,4 +271,28 @@ class UserController extends Controller
             'data' => null
         ]);
     }
+
+    public function getAllNTD(Request $request)
+    {
+        $response = $this->userService->getAllNTD($request);
+        return response()->json($response);
+    }
+
+    public function searchNTD(Request $request)
+    {
+        $response = $this->userService->searchNTD($request);
+        return response()->json($response);
+    }
+
+    public function changeStatusNTD(Request $request)
+    {
+        $response = $this->userService->changeStatus($request->id);
+        return response()->json($response);
+    }
+
+    public function changeMultipleStatusNTD(Request $request)
+    {
+        $response = $this->userService->changeMultiStatus($request);
+        return response()->json($response);
+    }
 }
