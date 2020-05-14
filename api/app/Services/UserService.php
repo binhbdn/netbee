@@ -243,7 +243,7 @@ class UserService extends BaseService {
             ];
         }
 
-        $query = $this->user->whereBlock(self::INACTIVE)->whereRole($request->userRole);
+        $query = $this->user->whereRole($request->userRole);
         if (Auth::user()->role != self::ROLE_ADMIN) {
             $query->whereUserCreated(Auth::user()->id);
         }
@@ -256,7 +256,8 @@ class UserService extends BaseService {
         if ($search != '') {
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'LIKE', '%'.$search.'%')
-                    ->orWhere('id','LIKE', '%'.$search.'%');
+                    ->orWhere('id','LIKE', '%'.$search.'%')
+                    ->orWhere('email','LIKE', '%'.$search.'%');
             });
         }
         return $query->orderBy('id', 'DESC')->paginate($perPage);
@@ -279,7 +280,7 @@ class UserService extends BaseService {
             }
             return [
                 'status'=> 400,
-                'message' => 'Nhà tuyển dụng không tồn tại',
+                'message' => 'Tài khoản không tồn tại',
                 'data' => null
             ];
 
@@ -297,7 +298,7 @@ class UserService extends BaseService {
         if(empty($request->id)){
             return [
                 'status'=> 400,
-                'message' => 'Bạn chưa chọn nhà tuyển dụng!',
+                'message' => 'Bạn chưa chọn tài khoản!',
                 'data' => null
             ];
         }
@@ -401,5 +402,63 @@ class UserService extends BaseService {
             'message' => 'Công ty không tồn tại',
             'data' => null
         ];
+    }
+
+    public function deleteUser($request)
+    {
+        try {
+            $user = $this->getUserById($request->id)->first();
+            if($user) {
+                $data = [
+                    'block' => self::BLOCK,
+                    'updated_at' => Carbon::now()
+                ];
+                return [
+                    'status'=> 200,
+                    'message' => 'Xóa tài khoản thành công',
+                    'data' => $this->update($data, $request->id)
+                ];
+            }
+            return [
+                'status'=> 400,
+                'message' => 'Tài khoản không tồn tại',
+                'data' => null
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
+    public function deleteMultipleUser($request)
+    {
+        if(empty($request->id)){
+            return [
+                'status'=> 400,
+                'message' => 'Bạn chưa chọn tài khoản!',
+                'data' => null
+            ];
+        }
+        $ids = json_decode($request->id);
+        try {
+            $this->user->whereIn('id', $ids)->update([
+                'block' => self::BLOCK,
+                'updated_at' =>  Carbon::now()
+            ]);
+            return [
+                'status'=> 200,
+                'message' => 'Xóa tài khoản thành công',
+                'data' => null
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
     }
 }

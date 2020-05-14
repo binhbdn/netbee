@@ -282,4 +282,16 @@ class UserController extends Controller
         $response = $this->userService->changeMultiStatus($request);
         return response()->json($response);
     }
+
+    public function deleteUser(Request $request)
+    {
+        $response = $this->userService->deleteUser($request);
+        return response()->json($response);
+    }
+
+    public function deleteMultipleUser(Request $request)
+    {
+        $response = $this->userService->deleteMultipleUser($request);
+        return response()->json($response);
+    }
 }
