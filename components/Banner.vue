@@ -12,7 +12,11 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                       <li class="nav-item">
-                        <a class="nav-link" :class="{'active': $route.name !== 'tin-tuyen-sinh'}" id="v-pills-11-tab" data-toggle="tab" href="#v-pills-11"
+                        <a class="nav-link" :class="{'active': $route.name !== 'tim-cong-ty'}" id="v-pills-33-tab" data-toggle="tab" href="#v-pills-33"
+                           role="tab" aria-controls="v-pills-33" aria-selected="false">Tìm việc làm</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" :class="{'active': $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" data-toggle="tab" href="#v-pills-11"
                            role="tab" aria-controls="v-pills-11" aria-selected="true">Tìm trường học</a>
                       </li>
                       <li class="nav-item">
@@ -23,23 +27,104 @@
                         <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
                            role="tab" aria-controls="profile-fill" aria-selected="false">Săn học bổng</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" :class="{'active': $route.name == 'tin-tuyen-sinh'}" id="v-pills-33-tab" data-toggle="tab" href="#v-pills-33"
-                           role="tab" aria-controls="v-pills-33" aria-selected="false">Tìm việc làm</a>
-                      </li>
+                      
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
-                      <div class="tab-pane active" id="v-pills-11" role="tabpanel"
+                      <div class="tab-pane active" id="v-pills-33" role="tabpanel"
+                           aria-labelledby="v-pills-33-tab">
+                        <form action="#" class="search-job">
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group" style="height: 67%;">
+                                <div class="form-field" style="height: 100%;">
+                                  <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
+                                  <input style="height: 100%;" type="text" class="form-control" placeholder="Tiêu đề công việc, vị trí, địa điểm làm việc..." name="keyword" v-model="keyJobs">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <Multiselect :options="jobs" v-model="type_job" :custom-label="nameWithLang" placeholder="Ngành nghề" :show-labels="false" :searchable="false">
+                                </Multiselect>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" placeholder="Chọn quốc gia" :show-labels="false" :searchable="false">
+                                </Multiselect>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <div class="form-field">
+                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;" @click="searchJobs">
+                                </div>
+                              </div>
+                            </div>
+                            <!-- <div class="col-md-12 advanced_search_box" id="advanced_search_box">
+                              <a href="javascript:void();" id="advanced_search" @click="show = !show"> <b>Tìm kiếm nâng cao</b> </a>
+                            </div>
+                            <transition>
+                              <div class="col-md-12" id="detail_search" style="padding-left: 15px; padding-top: 10px;" v-if="show">
+                                <div class="row">
+                                  <div class="col-md-2">
+                                    <div class="form-group">
+                                      <Multiselect :options="money" v-model="currency" placeholder="Chọn loại tiền" :show-labels="false" :searchable="false" name="money"></Multiselect>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-5">
+                                    <div class="form-group">
+                                      <div class="form-field">
+                                        <div class="select-wrap">
+                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
+                                          <input name="salary_start" v-model="salary_start" type="text" class="form-control" placeholder="Mức lương tối thiểu....">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-5">
+                                    <div class="form-group">
+                                      <div class="form-field">
+                                        <div class="select-wrap">
+                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
+                                          <input name="salary_end" v-model="salary_end" type="text" class="form-control" placeholder="Mức lương tối đa....">
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <Multiselect :options="visa" v-model="chooseVisa" placeholder="Chọn lĩnh vực" :show-labels="false" :searchable="false" :custom-label="nameWithLang1"></Multiselect>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <Multiselect :options="work_form" v-model="chooseWork" :custom-label="nameWithLang" placeholder="Hình thức làm việc" :show-labels="false" :searchable="false"></Multiselect>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </transition> -->
+                          </div>
+                        </form>
+                      </div>
+                      <div class="tab-pane " id="v-pills-11" role="tabpanel"
                            aria-labelledby="v-pills-11-tab">
                         <form action="" class="search-job">
                           <div class="row">
-                            <div class="col-md-9">
-                              <div class="form-group">
-                                <div class="form-field">
+                            <div class="col-md-5">
+                              <div class="form-group" style="height: 67%;">
+                                <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input type="text" class="form-control" placeholder="Từ khóa" name="keyword" value="" v-model="keysearch">
+                                  <input style="height: 100%;" type="text" class="form-control" placeholder="Từ khóa" name="keyword" value="" v-model="keysearch">
                                 </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" placeholder="Chọn quốc gia" :show-labels="false" :searchable="false">
+                                </Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
@@ -171,84 +256,7 @@
                           </div>
                         </form>
                       </div>
-                      <div class="tab-pane" id="v-pills-33" role="tabpanel"
-                           aria-labelledby="v-pills-33-tab">
-                        <form action="#" class="search-job">
-                          <div class="row">
-                            <div class="col-md-3">
-                              <div class="form-group">
-                                <div class="form-field">
-                                  <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input type="text" class="form-control" placeholder="Tiêu đề công việc, vị trí, địa điểm làm việc..." name="keyword" v-model="keyJobs">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
-                                <Multiselect :options="jobs" v-model="type_job" :custom-label="nameWithLang" placeholder="Ngành nghề" :show-labels="false" :searchable="false">
-                                </Multiselect>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
-                                <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" placeholder="Chọn quốc gia" :show-labels="false" :searchable="false">
-                                </Multiselect>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
-                                <div class="form-field">
-                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;" @click="searchJobs">
-                                </div>
-                              </div>
-                            </div>
-                            <!-- <div class="col-md-12 advanced_search_box" id="advanced_search_box">
-                              <a href="javascript:void();" id="advanced_search" @click="show = !show"> <b>Tìm kiếm nâng cao</b> </a>
-                            </div>
-                            <transition>
-                              <div class="col-md-12" id="detail_search" style="padding-left: 15px; padding-top: 10px;" v-if="show">
-                                <div class="row">
-                                  <div class="col-md-2">
-                                    <div class="form-group">
-                                      <Multiselect :options="money" v-model="currency" placeholder="Chọn loại tiền" :show-labels="false" :searchable="false" name="money"></Multiselect>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-5">
-                                    <div class="form-group">
-                                      <div class="form-field">
-                                        <div class="select-wrap">
-                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
-                                          <input name="salary_start" v-model="salary_start" type="text" class="form-control" placeholder="Mức lương tối thiểu....">
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-5">
-                                    <div class="form-group">
-                                      <div class="form-field">
-                                        <div class="select-wrap">
-                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
-                                          <input name="salary_end" v-model="salary_end" type="text" class="form-control" placeholder="Mức lương tối đa....">
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <Multiselect :options="visa" v-model="chooseVisa" placeholder="Chọn lĩnh vực" :show-labels="false" :searchable="false" :custom-label="nameWithLang1"></Multiselect>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <Multiselect :options="work_form" v-model="chooseWork" :custom-label="nameWithLang" placeholder="Hình thức làm việc" :show-labels="false" :searchable="false"></Multiselect>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </transition> -->
-                          </div>
-                        </form>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>
@@ -298,7 +306,7 @@ export default {
             return `${profession}`
         },
       searchCompany(e){
-        window.location.href = `/tim-cong-ty?keyword=${this.keysearch}`;
+        window.location.href = '/tim-cong-ty?keyword=' + this.keysearch + '&nation=' +(this.chooseNation != '' ? '&nation_id='+this.chooseNation.id : '');
       },
       nameWithLang ({ name, id }) {
         return `${name}`

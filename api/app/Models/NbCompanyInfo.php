@@ -29,4 +29,7 @@ class NbCompanyInfo extends Model
     public function companyFeedback(){
         return $this->hasMany('App\Models\NbCompanyFeedback','company_id');
     }
+    public function nation(){
+        return $this->belongsTo('App\Models\Nation','nation_id');
+    }
 }

@@ -16,7 +16,7 @@ class TimKiemController extends Controller
     }
 
     public function searchCompany(Request $request){
-        $response = $this->searchService->companies($request->keyword);
+        $response = $this->searchService->companies($request);
         return response()->json($response);
     }
 

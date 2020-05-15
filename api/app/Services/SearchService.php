@@ -30,16 +30,51 @@ class SearchService extends BaseService {
         $this->user = $user;
     }
 
-    public function companies($keyword)
+    public function companies($request)
     {
-        $condition = '%'.$keyword.'%';
-        $search = $this->user->with('nbCompany')
-            ->whereHas('nbCompany', function ($q) use ($condition) {
-                $q->where('company_about', 'like', $condition);
-            })
-            ->orWhere('name', 'like', $condition)
-            ->get();
-
+        $companyName = $request->keyword;
+        $companyNation = $request->nation;
+        $condition = [];
+        $search = '';
+        if($companyName== '' && $companyNation == ''){
+            $search = $this->nbCompanyInfo->with('user')->get();
+        }
+        else{
+            if($companyName != '' && $companyNation == ''){
+                $search = $this->nbCompanyInfo->with('user')
+                ->whereHas('user', function ($q) use ($companyName) {
+                    $q->where('name', 'like', '%'.$companyName.'%')
+                    ->where([
+                        'block' => self::UN_BLOCK,
+                        'status' => self::ACTIVE
+                    ]);;
+                })
+                ->get();
+    
+            }
+            else if($companyNation != '' && $companyName == ''){
+                $search = $this->nbCompanyInfo->with('user')
+                ->whereHas('user', function ($q) use ($companyName) {
+                    $q->where([
+                        'block' => self::UN_BLOCK,
+                        'status' => self::ACTIVE
+                    ]);;
+                })->where('nation_id', $companyNation)->get();
+    
+            }
+            else{
+                $search = $this->nbCompanyInfo->with('user')
+                ->whereHas('user', function ($q) use ($companyName) {
+                    $q->where('name', 'like', '%'.$companyName.'%')
+                    ->where([
+                        'block' => self::UN_BLOCK,
+                        'status' => self::ACTIVE
+                    ]);;
+                })
+                ->where('nation_id', $companyNation)
+                ->get();
+            }
+        }
         if($search) {
             return [
                 'status'=> 200,

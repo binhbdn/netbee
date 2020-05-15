@@ -230,12 +230,12 @@
                             <JobsList1Col :DataList="arrayJobNew2"></JobsList1Col>
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
+                    <a v-if="arrayJobNew.length == 8" class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
                         <button class="el-carousel__arrow el-carousel__arrow--left">
                           <i class="fas fa-angle-left"></i>
                         </button>
                     </a>
-                    <a class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
+                    <a v-if="arrayJobNew.length == 8" class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
                         <button class="el-carousel__arrow el-carousel__arrow--right">
                           <i class="fas fa-angle-right"></i>
                         </button>
@@ -342,11 +342,22 @@
     methods: {
       fetch() {
         this.$axios.$get(`getTinTuyenDungNewCarousel?page=1`).then((ress) => {
-          this.arrayJobNew = ress.data.tintuyendung.data
+          var myArray = ress.data.tintuyendung.data
+          var index = 0;
+          var arrayLength = myArray.length;
+          var tempArray = [];
+      
+          for (index = 0; index < arrayLength; index += 8) {
+              var myChunk = myArray.slice(index, index+8);
+              tempArray.push(myChunk);
+          }
+          
+          this.arrayJobNew = tempArray[0];
+          this.arrayJobNew2 = tempArray[1];
         })
-        this.$axios.$get(`getTinTuyenDungNewCarousel?page=2`).then((ress) => {
-          this.arrayJobNew2 = ress.data.tintuyendung.data
-        })
+        // this.$axios.$get(`getTinTuyenDungNewCarousel?page=2`).then((ress) => {
+        //   this.arrayJobNew2 = ress.data.tintuyendung.data
+        // })
         this.$axios.$get(`getTinTuyenDungHotCarousel?page=1`).then((ress) => {
           this.arrayJobHot = ress.data.tintuyendung.data
 

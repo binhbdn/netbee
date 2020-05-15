@@ -521,7 +521,7 @@ class TinTuyenService extends BaseService {
 
     public function getTinTuyenDungNewCarousel($isHot = false)
     {
-        $perPage = $isHot ? 10 : 5;
+        $perPage = $isHot ? 16 : 8;
         $query = $this->getJobValid()->where('isPublic',self::ACTIVE);
         if ($isHot) {
             $query->whereIn('highlight_job', [self::NEW_HOT, self::NEW_VIP]);
