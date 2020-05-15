@@ -232,12 +232,13 @@
                                             </div>                            
                                         </div>                         
                                     </div>
+                                    <br><br><br><br><br><br>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>  
-                <div id="pdf"></div>             
+                <div id="pdf"></div> 
                 <br>
                 <button class="btn btn-add bg-netbee" v-if="status == 1" @click="update">Cập nhật</button>
                 <button class="btn btn-add bg-netbee" v-if="status == 1" @click="canle()">Hủy</button>  
@@ -409,7 +410,7 @@
                                 document.getElementById('pdf').appendChild(canvas) 
                                 const imgData = canvas.toDataURL('image/png')                                                                
                                 let img = canvas.toDataURL('image/jpeg')                                        
-                                let pdf = new JsPDF('p','in',[480, 490])
+                                let pdf = new JsPDF('p','in','a4')
                                const imgProps= pdf.getImageProperties(imgData)
                                 var width = pdf.internal.pageSize.getWidth()
                                 var height = pdf.internal.pageSize.getHeight()
