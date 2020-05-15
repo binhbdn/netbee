@@ -74,6 +74,7 @@
                                                     <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" >
                                                         Hủy
                                                     </button>
+                                                    <button type="button" class="btn btn-warning py-75 gold">Thêm giấy tờ</button>
                                                 </div>
                                             </td>
                                         </tr>
