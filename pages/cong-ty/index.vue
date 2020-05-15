@@ -25,7 +25,9 @@ Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt
         </div>
         <div class="row">
           <div class="col-3">
+            <a :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`">
             <div style="border: 1px solid #ddd; padding: 5px"><img src="https://netbee.vn/_nuxt/img/377bc00.png"></div>
+            </a>
           </div>
           <div class="col-9">
             <div class="row">
@@ -49,11 +51,11 @@ Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt
             <div class="row">
             <p><i class="fas fa-quote-left"></i> {{companyInfo.company_about}}</p>
             </div> 
-            <div class="row text-right">
+            <!-- <div class="row text-right">
               <p style="width:100%; padding-right: 20px">
                 <span class="action-link"><a href="">Xem công việc</a></span>|
                 <span class="action-link"><a href="">Xem phản hồi</a></span></p>
-          </div>
+          </div> -->
           </div>  
              
       </div> 

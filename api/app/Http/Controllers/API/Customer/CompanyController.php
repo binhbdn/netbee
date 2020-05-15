@@ -32,4 +32,12 @@ class CompanyController extends Controller
 
         return response()->json($response);
     }
+    public function followCompany(Request $request) {
+        $data = $this->nbCompanyInfoService->followCompany($request);
+        return response()->json($data);
+    }
+    public function checkFollow(Request $request) {
+        $data = $this->nbCompanyInfoService->checkFollow($request);
+        return response()->json($data);
+    }
 }
