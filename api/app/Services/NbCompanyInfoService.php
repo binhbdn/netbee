@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\NbCompanyFeedback;
+use App\Models\NbCompanyFollows;
 use App\Models\NbCompanyInfo;
 use App\User;
 use Carbon\Carbon;
@@ -14,12 +15,14 @@ class NbCompanyInfoService extends BaseService {
     protected $nbCompanyInfo;
     protected $nbCompanyFeedback;
     protected $user;
+    protected $nbCompanyFollows;
 
-    public function __construct(NbCompanyInfo $nbCompanyInfo, NbCompanyFeedback $companyFeedback, User $user)
+    public function __construct(NbCompanyInfo $nbCompanyInfo, NbCompanyFeedback $companyFeedback, User $user, NbCompanyFollows $companyFollows)
     {
         $this->nbCompanyInfo = $nbCompanyInfo;
         $this->nbCompanyFeedback = $companyFeedback;
         $this->user = $user;
+        $this->nbCompanyFollows = $companyFollows;
     }
     public function getListCompany(){
         $datas = $this->nbCompanyInfo
@@ -93,6 +96,77 @@ class NbCompanyInfoService extends BaseService {
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ];
+    }
+    public function followCompany($request){
+        if(!$request->has('user_id') || !$request->has('company_id')){
+            return [
+                'status'=> 200,
+                'message'=> 'Dữ liệu không được để trống.',
+                'data'=> null
+            ];
+        }
+        $user_id = $request->user_id;
+        $company_id = $request->company_id;
+        $isFollow = $request-> is_follow;
+        if($isFollow == 'true'){
+            $this->nbCompanyFollows->insert(
+                [
+                    'user_id' => $user_id,
+                    'company_id' => $company_id,
+                    'created_at'=> new \DateTime()
+                ]
+            );
+            return [
+                'status'=> 200,
+                'message'=> 'Thêm thành công.',
+                'data'=> null
+            ];
+        }
+        else{
+             $this->nbCompanyFollows
+                ->where('company_id',$company_id)
+                ->where('user_id',$user_id)
+                ->first()
+             ->delete();
+            return [
+                'status'=> 200,
+                'message'=> 'Xóa thành công.',
+                'data'=> null
+            ];
+        }
+
+    }
+    public function checkFollow($request){
+        if($request->has('user_id') && $request->has('company_id')){
+            $user_id = $request->user_id;
+            $company_id = $request->company_id;
+            $data = $this->nbCompanyFollows
+                ->where('company_id',$company_id)
+                ->where('user_id',$user_id)
+                ->first();
+            if($data){
+                return [
+                    'status'=> 200,
+                    'message'=> 'Đang follow.',
+                    'data'=> null
+                ];
+            }
+            else{
+                return [
+                    'status'=> 400,
+                    'message'=> 'Không tìm thấy.',
+                    'data'=> null
+                ];
+            }
+        }
+        else{
+            $followers = $this->nbCompanyFollows->where('company_id',$request->company_id)->count();
+            return [
+                'status'=> 200,
+                'message'=> 'Thành công.',
+                'data'=> $followers
+            ];
+        }
     }
     private function getRate($feedBacks)
     {
