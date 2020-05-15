@@ -62,8 +62,8 @@
                                                 <td>{{item.job.title}}</td>
                                                 <td>{{item.name}}</td>
                                                 <td>
-                                                    <p v-if="item.status == 5">Chưa duyệt</p>
                                                     <p v-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
+                                                    <a :href="`/admin/xac-thuc-ho-so/xem/${item.id}`" v-else-if="item.status == 5">Xem giấy tờ đính kèm</a>
                                                 </td>
                                                 <td>
                                                     <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">

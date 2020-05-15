@@ -3,17 +3,21 @@ namespace App\Services;
 
 use App\Models\Apply;
 use App\Models\NbJoblist;
+use App\Models\NbPaper;
 use Auth;
+use Validator;
 
 class ApplyJobService extends BaseService {
 
     protected $nbJobList;
     protected $apply;
+    protected $nbPaper;
 
-    public function __construct(NbJoblist $nbJobList, Apply $apply)
+    public function __construct(NbJoblist $nbJobList, Apply $apply, NbPaper $nbPaper)
     {
         $this->nbJobList = $nbJobList;
         $this->apply = $apply;
+        $this->nbPaper = $nbPaper;
     }
 
     public function create($data)
@@ -59,7 +63,8 @@ class ApplyJobService extends BaseService {
         return $this->update($data, $id);
     }
 
-    public function ChooseCalendar($date, $id){
+    public function ChooseCalendar($date, $id)
+    {
         $data = [
             'interview_schedules'=>$date,
             'status' => 6
@@ -67,13 +72,19 @@ class ApplyJobService extends BaseService {
         return $this->update($data, $id);
     }
 
-    private function update($data, $id){
+    private function update($data, $id)
+    {
         return $this->apply->where('id',$id)->update($data);
     }
 
     public function getDetailApply($id) 
     {
-        return Apply::with('job')->where('id', $id)->first();
+        return $this->apply->with('job')->where('id', $id)->first();
+    }
+
+    public function getPaperApply($id) 
+    {
+        return $this->nbPaper->where('apply_id', $id)->first();
     }
 
     public function getApplyAdmin($status)
@@ -106,7 +117,8 @@ class ApplyJobService extends BaseService {
                     ->get();
     }
 
-    private function getApplyValid() {
+    private function getApplyValid()
+    {
         return $this->apply->with(['user' => function ($q) {
                                 $q->select('id', 'name', 'avatar');
                                 $q->where([
@@ -114,6 +126,7 @@ class ApplyJobService extends BaseService {
                                     'block' =>self::UN_BLOCK
                                 ]);
                             }])
+                            ->with('nbPaper')
                             ->with(['job' => function ($q) {
                                 $q->select('currency', 'title','id');
                                 $q->where([
@@ -124,13 +137,92 @@ class ApplyJobService extends BaseService {
                             }]);
     }
 
-    public function getBonus($id){
+    public function getBonus($id)
+    {
         return NbJoblist::where('id', $id)->first()->bonus;
     }
 
-    public function getIdCreated($id){
+    public function getIdCreated($id)
+    {
         return NbJoblist::where('id', $id)->first()->id_created;
     }
 
+    public function postPaperApply($data)
+    {
+        $rules = [
+            'front_id_card' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'back_id_card' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'health_certification' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'high_school_diploma' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'passport' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'birth_certificate' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'curriculum_vitae' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'card_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        ];
+        $messages = [
+            'required' => 'Vui lòng tải lên đầy đủ giấy tờ!',
+            'image' => 'Vui lòng tải lên định dạng ảnh',
+            'mimes' => 'Định dạng file không hợp lệ',
+        ];
+        $validator = Validator::make($data->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return [
+                'status' => 400,
+                'message' => $validator->messages()->first(),
+                'data' => null
+            ];
+        }
+        try {
+            $front_id_card = $this->uploadFile($data->file('front_id_card'));
+            $back_id_card = $this->uploadFile($data->file('back_id_card'));
+            $health_certification = $this->uploadFile($data->file('health_certification'));
+            $high_school_diploma = $this->uploadFile($data->file('high_school_diploma'));
+            $passport = $this->uploadFile($data->file('passport'));
+            $birth_certificate = $this->uploadFile($data->file('birth_certificate'));
+            $curriculum_vitae = $this->uploadFile($data->file('curriculum_vitae'));
+            $card_photo = $this->uploadFile($data->file('card_photo'));
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+        $insert = [
+            'front_id_card' => $front_id_card,
+            'back_id_card' => $back_id_card,
+            'health_certification' => $health_certification,
+            'high_school_diploma' => $high_school_diploma,
+            'passport' => $passport,
+            'birth_certificate' => $birth_certificate,
+            'curriculum_vitae' => $curriculum_vitae,
+            'card_photo' => $card_photo,
+            'apply_id' => $data->apply_id,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ];
+        $check =  $this->nbPaper->insert($insert);
+        if($check) {
+            return [
+                'status' => 200,
+                'message' => 'Thêm thành công! Đợi admin xét duyệt',
+                'data' => null
+            ];
+        }
+        return [
+            'status' => 400,
+            'message' => 'Upload thất bại',
+            'data' => null
+        ];
+    }
+
+    private function uploadFile($file)
+    {
+        $fileinfo = pathinfo($file->getClientOriginalName());
+        $file_cv = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
+        $uploadPath = '/home/netbee.vn/html/static/uploads/apply/files/';
+        $file->move($uploadPath, $file_cv );
+        return $file_cv;
+    }
     
 }

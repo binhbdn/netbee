@@ -63,9 +63,9 @@ class UngTuyenController extends Controller
         ];
         $file = $request->file('file_cv');
         if(!empty($file)){
-            $insert['cv_file'] = $file;
             $fileinfo = pathinfo($file->getClientOriginalName());
             $file_cv = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
+            $insert['cv_file'] = $file_cv;
             $uploadPath = '/home/netbee.vn/html/static/uploads/apply/';
             $file->move($uploadPath, $file_cv );
         }

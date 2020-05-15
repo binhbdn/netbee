@@ -145,4 +145,39 @@ class ApplyManageController extends Controller
         }
         return response()->json($data);
     }
+
+    public function getPaperApply(Request $request)
+    {
+        $id = $request->id;
+        $detail = $this->applyJobService->getPaperApply($id);
+        if(!empty($detail)) {
+            return [
+                'status' => 200,
+                'message' => 'Đã upload giấy tờ đính kèm',
+                'data' => $detail
+            ];
+        }
+        return [
+            'status' => 400,
+            'message' => 'Chưa upload giấy tờ đính kèm',
+            'data' => null
+        ];
+    }
+
+    public function PostPaperApply(Request $request)
+    {
+        $data = $this->applyJobService->postPaperApply($request);
+        return response()->json($data);
+    }
+
+    public function ApprovedApplyHoSoDinhKem(Request $request){
+        $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::NTD_DUYET_HO_SO);
+        $detail = $this->applyJobService->getDetailApply($request->id);
+        if($approve){
+            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+        }else {
+            $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
+        }
+        return response()->json($data);
+    }
 }

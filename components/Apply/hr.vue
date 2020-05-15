@@ -65,7 +65,8 @@
                                             <td>{{item.user.name}}</td>
                                             <td>
                                                 <p v-if="item.status == 1">Chờ admin xác thực</p>
-                                                <p v-else-if="item.status == 2">Hoàn tất giấy tờ</p>
+                                                <p v-else-if="item.status == 2">Chưa hoàn tất giấy tờ</p>
+                                                <p v-else-if="item.status == 2 && item.nb_paper != null">Chờ admin xác thực giấy tờ</p>
                                                 <p v-else-if="item.status == 5">Chờ công ty duyệt</p>
                                                 <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                             </td>
@@ -74,7 +75,7 @@
                                                     <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" >
                                                         Hủy
                                                     </button>
-                                                    <button type="button" class="btn btn-warning py-75 gold">Thêm giấy tờ</button>
+                                                    <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn btn-warning py-75 gold">Thêm giấy tờ</a>
                                                 </div>
                                             </td>
                                         </tr>

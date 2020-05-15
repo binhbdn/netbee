@@ -22,8 +22,7 @@ class CreatePapersTable extends Migration
             $table->text('passport')->nullable()->comment('hộ chiếu');
             $table->text('birth_certificate')->nullable()->comment('giấy khai sinh');
             $table->text('curriculum_vitae')->nullable()->comment('sơ yếu lý lịch');
-            $table->text('portrait_3x4')->nullable()->comment('ảnh chân dung 3x4');
-            $table->text('portrait_4x6')->nullable()->comment('ảnh 4x6');
+            $table->text('card_photo')->nullable()->comment('ảnh chân dung 3x4');
             $table->integer('apply_id', 4);
             $table->timestamps();
         });
