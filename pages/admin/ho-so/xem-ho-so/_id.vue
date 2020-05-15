@@ -254,12 +254,11 @@
     let html2canvas = null
     let JsPDF = null
     if (process.browser) {
-    html2canvas = require('html2canvas')
+    html2canvas = require('html2canvas')    
     JsPDF = require('jspdf')
-    }
-      
+    }    
     export default {
-        name: '',
+        name: 'EditProfileUser',
         layout: 'admin',
         
         data(){
@@ -292,7 +291,7 @@
                 }         
         },        
         components:{
-            
+           
         },
         
         methods: {            
@@ -407,14 +406,18 @@
                     }).then(async (result) => {
                         if(result.value) {
                            html2canvas(document.querySelector('#cv'), {scrollX : 0,scrollY : -scrollY,logging: true, letterRendering: true, allowTaint: false, useCORS: true, scale: 1920*2/window.innerWidth}).then(canvas => {
-                                document.getElementById('pdf').appendChild(canvas)                                                                 
+                                document.getElementById('pdf').appendChild(canvas) 
+                                const imgData = canvas.toDataURL('image/png')                                                                
                                 let img = canvas.toDataURL('image/jpeg')                                        
-                                let pdf = new JsPDF('p','mm','a4')
-                                var width = pdf.internal.pageSize.getWidth();
-                                var height = pdf.internal.pageSize.getHeight();  
-                                console.log(height);                                         
-                                pdf.addImage(img, 'JPEG', 0, 0,width, height)                    
-                                pdf.save('profile_users.pdf')                    
+                                let pdf = new JsPDF('p','in',[480, 490])
+                               const imgProps= pdf.getImageProperties(imgData)
+                                var width = pdf.internal.pageSize.getWidth()
+                                var height = pdf.internal.pageSize.getHeight()
+                                // var height = (imgProps.height * width) / imgProps.width  
+                                // console.log(width); 
+                                // console.log(height);                                         
+                                pdf.addImage(img, 'JPEG', 0, 0,width, height) 
+                                pdf.save('profile_users.pdf')
                                 document.getElementById('pdf').innerHTML = ''
                             })      
                         }
