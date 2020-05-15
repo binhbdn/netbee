@@ -327,4 +327,79 @@ class UserService extends BaseService {
     {
         return $this->user->with('nbCompany')->where('id', Auth::user()->id)->first();
     }
+
+    public function getInfoCompanyById($id)
+    {
+        $columns = ['name', 'phone', 'avatar', 'address_detail', 'birth_of_date'];
+        $user = $this->user->with('nbCompany')
+            ->select($columns)
+            ->whereId($id)
+            ->whereStatus(self::ACTIVE)
+            ->whereBlock(self::INACTIVE)
+            ->get();
+        if($user) {
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $user
+            ];
+        }
+        return [
+            'status'=> 400,
+            'message' => 'Công ty không tồn tại',
+            'data' => null
+        ];
+    }
+
+    public function getCompanyHot()
+    {
+        $columns = ['name', 'phone', 'avatar', 'address_detail', 'birth_of_date'];
+        $user = $this->user->with('nbCompany')
+            ->select($columns)
+            ->whereHas('nbCompany', function ($q) {
+                $q->whereCompanyVerify(self::ACTIVE);
+            })
+            ->whereStatus(self::ACTIVE)
+            ->whereBlock(self::INACTIVE)
+            ->limit(9)
+            ->get();
+
+        if($user) {
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $user
+            ];
+        }
+        return [
+            'status'=> 400,
+            'message' => 'Công ty không tồn tại',
+            'data' => null
+        ];
+    }
+
+    public function getCompanyNew($limit)
+    {
+        $columns = ['name', 'phone', 'avatar', 'address_detail', 'birth_of_date'];
+        $query = $this->user->with('nbCompany')
+            ->select($columns)
+            ->whereStatus(self::ACTIVE)
+            ->whereBlock(self::INACTIVE);
+        if (!empty($limit)) {
+            $query->limit($limit);
+        }
+        $user = $query->orderBy('id', 'DESC')->get();
+        if($user) {
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $user
+            ];
+        }
+        return [
+            'status'=> 400,
+            'message' => 'Công ty không tồn tại',
+            'data' => null
+        ];
+    }
 }

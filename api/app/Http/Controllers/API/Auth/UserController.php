@@ -179,33 +179,20 @@ class UserController extends Controller
 
     public function getInfoCompanyById(Request $request)
     {
-        $GetCompanyDetail = DB::select('CALL GetCompanyDetail('.$request->id.')');
-        if($GetCompanyDetail)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $GetCompanyDetail];
-        else
-            $data = ['status'=> 400, 'message' => 'Công ty không tồn tại', 'data' => null];
-        return response()->json($data);
+        $response = $this->userService->getInfoCompanyById($request->id);
+        return response()->json($response);
     }
 
     public function getCompanyHot(Request $request)
     {
-        $GetCompanyHot = DB::select('CALL GetCompanyHot()');
-        if($GetCompanyHot)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $GetCompanyHot];
-        else
-            $data = ['status'=> 400, 'message' => 'Công ty không tồn tại', 'data' => null];
-        return response()->json($data);
+        $response = $this->userService->getCompanyHot();
+        return response()->json($response);
     }
 
     public function getCompanyNew(Request $request)
     {
-        $limit = $request->limit;
-        $GetCompanyNew = DB::select('CALL GetCompanyNew('.$limit.')');
-        if($GetCompanyNew)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $GetCompanyNew];
-        else
-            $data = ['status'=> 400, 'message' => 'Công ty không tồn tại', 'data' => null];
-        return response()->json($data);
+        $response = $this->userService->getCompanyNew($request->limit);
+        return response()->json($response);
     }
 
     public function changeInfo(Request $request)
