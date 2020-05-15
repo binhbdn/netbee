@@ -223,8 +223,8 @@
     </div>
 </template>
 
-<script>                          
-    export default {
+<script>                       
+    export default {        
         name: 'Teamplate1',
         layout: 'admin',
         
