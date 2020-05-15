@@ -16,4 +16,8 @@ class Nation extends Model
     {
         return $this->hasMany('App\Models\NbJoblist');
     }
+    public function nbCompanyInfo()
+    {
+        return $this->hasMany('App\Models\nbCompanyInfo', 'id', 'nation_id');
+    }
 }
