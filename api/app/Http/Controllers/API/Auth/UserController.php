@@ -179,33 +179,20 @@ class UserController extends Controller
 
     public function getInfoCompanyById(Request $request)
     {
-        $GetCompanyDetail = DB::select('CALL GetCompanyDetail('.$request->id.')');
-        if($GetCompanyDetail)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $GetCompanyDetail];
-        else
-            $data = ['status'=> 400, 'message' => 'Công ty không tồn tại', 'data' => null];
-        return response()->json($data);
+        $response = $this->userService->getInfoCompanyById($request->id);
+        return response()->json($response);
     }
 
     public function getCompanyHot(Request $request)
     {
-        $GetCompanyHot = DB::select('CALL GetCompanyHot()');
-        if($GetCompanyHot)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $GetCompanyHot];
-        else
-            $data = ['status'=> 400, 'message' => 'Công ty không tồn tại', 'data' => null];
-        return response()->json($data);
+        $response = $this->userService->getCompanyHot();
+        return response()->json($response);
     }
 
     public function getCompanyNew(Request $request)
     {
-        $limit = $request->limit;
-        $GetCompanyNew = DB::select('CALL GetCompanyNew('.$limit.')');
-        if($GetCompanyNew)
-            $data = ['status'=> 200, 'message' => 'Thành công', 'data' => $GetCompanyNew];
-        else
-            $data = ['status'=> 400, 'message' => 'Công ty không tồn tại', 'data' => null];
-        return response()->json($data);
+        $response = $this->userService->getCompanyNew($request->limit);
+        return response()->json($response);
     }
 
     public function changeInfo(Request $request)
@@ -272,25 +259,25 @@ class UserController extends Controller
         ]);
     }
 
-    public function getAllNTD(Request $request)
+    public function get(Request $request)
     {
-        $response = $this->userService->getAllNTD($request);
+        $response = $this->userService->get($request);
         return response()->json($response);
     }
 
-    public function searchNTD(Request $request)
+    public function search(Request $request, $userRole)
     {
-        $response = $this->userService->searchNTD($request);
+        $response = $this->userService->search($request);
         return response()->json($response);
     }
 
-    public function changeStatusNTD(Request $request)
+    public function changeStatus(Request $request)
     {
         $response = $this->userService->changeStatus($request->id);
         return response()->json($response);
     }
 
-    public function changeMultipleStatusNTD(Request $request)
+    public function changeMultipleStatus(Request $request)
     {
         $response = $this->userService->changeMultiStatus($request);
         return response()->json($response);

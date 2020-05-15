@@ -284,14 +284,25 @@ class TinTuyenService extends BaseService {
     private function getJobByRoleOther()
     {
 
-        return $this->getJobValid()->orderBy('highlight_job', 'created_at', 'DESC');
+        return $this->getJobValid()->orderBy('highlight_job',  'DESC')->orderBy('id', 'DESC');
     }
 
     private function getJobWithConditionAndNotRoleCompany()
     {
-        return $this->nbJobList->select('nb_joblists.*', 'users.name', 'users.avatar', DB::raw('nations.name as nation_name'))
-            ->Join('users','users.id','=','nb_joblists.id_created')
-            ->join('nations', 'nb_joblists.nation_id', '=', 'nations.id');
+        return $this->nbJobList->with(['user' => function ($q) {
+                        $q->select('id', 'name', 'avatar');
+                    }])
+                    ->with(['nation' => function ($q) {
+                        $q->select('id', 'name');
+                    }])
+                    ->whereHas('user', function ($query) {
+                        $query->where([
+                            'block' => self::UN_BLOCK,
+                            'status' => self::ACTIVE
+                        ]);
+                    })
+                    ->orderBy('highlight_job', 'DESC')
+                    ->orderBy('id', 'DESC');
     }
 
     public function changeStatusJob($id)
@@ -448,9 +459,9 @@ class TinTuyenService extends BaseService {
 
         if (empty($conditions) && $search == '') {
             $perPage = 6;
-            if ($userRole == UserService::ROLE_COMPANY) {
+            if ($userRole == self::ROLE_COMPANY) {
                 $query = $this->getJobByRoleCompany();
-            } else if ($userRole == UserService::ROLE_ADMIN) {
+            } else if ($userRole == self::ROLE_ADMIN) {
                 $query = $this->getJobByRoleAdmin();
             } else {
                 $query = $this->getJobByRoleOther();
@@ -458,7 +469,7 @@ class TinTuyenService extends BaseService {
             return $query->paginate($perPage);
         }
 
-        if ($userRole == UserService::ROLE_COMPANY) {
+        if ($userRole == self::ROLE_COMPANY) {
             $perPage = 10;
             $query = $this->getJobByRoleCompany();
         } else {
@@ -539,8 +550,8 @@ class TinTuyenService extends BaseService {
     public function getTinTuyenDungForCompany($request)
     {
         $id = $request->id;
-        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$request->limit.')');
-        $datas['count'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.',0)');
+//        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$request->limit.')');
+//        $datas['count'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.',0)');
         return
             [
                 'status'=> 200,

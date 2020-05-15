@@ -48,7 +48,6 @@ class UserService extends BaseService {
         return $this->user->insertGetId($data);
     }
 
-
     public function loginWithOAuth($request, $typeOAuth)
     {
         $token = $request->token;
@@ -202,13 +201,17 @@ class UserService extends BaseService {
         return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_ADMIN)->get();
     }
 
-    public function getAllNTD()
+    public function get()
     {
         return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_COMPANY)->get();
     }
 
-    public function searchNTD($request)
+    public function search($request)
     {
+        $roles = self::getRoles();
+        if (!in_array($request->userRole, $roles)) {
+            return abort(404, 'Role không hợp lệ');
+        }
         $perPage = 10;
         $search = $request->search;
         $searchStatus = $request->searchStatus;
@@ -239,7 +242,8 @@ class UserService extends BaseService {
                 '%'.$searchName.'%'
             ];
         }
-        $query = $this->user->whereBlock(self::INACTIVE);
+
+        $query = $this->user->whereBlock(self::INACTIVE)->whereRole($request->userRole);
         if (Auth::user()->role != self::ROLE_ADMIN) {
             $query->whereUserCreated(Auth::user()->id);
         }
@@ -322,5 +326,80 @@ class UserService extends BaseService {
     public function getUser()
     {
         return $this->user->with('nbCompany')->where('id', Auth::user()->id)->first();
+    }
+
+    public function getInfoCompanyById($id)
+    {
+        $columns = ['name', 'phone', 'avatar', 'address_detail', 'birth_of_date'];
+        $user = $this->user->with('nbCompany')
+            ->select($columns)
+            ->whereId($id)
+            ->whereStatus(self::ACTIVE)
+            ->whereBlock(self::INACTIVE)
+            ->get();
+        if($user) {
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $user
+            ];
+        }
+        return [
+            'status'=> 400,
+            'message' => 'Công ty không tồn tại',
+            'data' => null
+        ];
+    }
+
+    public function getCompanyHot()
+    {
+        $columns = ['name', 'phone', 'avatar', 'address_detail', 'birth_of_date'];
+        $user = $this->user->with('nbCompany')
+            ->select($columns)
+            ->whereHas('nbCompany', function ($q) {
+                $q->whereCompanyVerify(self::ACTIVE);
+            })
+            ->whereStatus(self::ACTIVE)
+            ->whereBlock(self::INACTIVE)
+            ->limit(9)
+            ->get();
+
+        if($user) {
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $user
+            ];
+        }
+        return [
+            'status'=> 400,
+            'message' => 'Công ty không tồn tại',
+            'data' => null
+        ];
+    }
+
+    public function getCompanyNew($limit)
+    {
+        $columns = ['name', 'phone', 'avatar', 'address_detail', 'birth_of_date'];
+        $query = $this->user->with('nbCompany')
+            ->select($columns)
+            ->whereStatus(self::ACTIVE)
+            ->whereBlock(self::INACTIVE);
+        if (!empty($limit)) {
+            $query->limit($limit);
+        }
+        $user = $query->orderBy('id', 'DESC')->get();
+        if($user) {
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $user
+            ];
+        }
+        return [
+            'status'=> 400,
+            'message' => 'Công ty không tồn tại',
+            'data' => null
+        ];
     }
 }
