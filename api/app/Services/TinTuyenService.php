@@ -550,8 +550,8 @@ class TinTuyenService extends BaseService {
     public function getTinTuyenDungForCompany($request)
     {
         $id = $request->id;
-        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$request->limit.')');
-        $datas['count'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.',0)');
+//        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$request->limit.')');
+//        $datas['count'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.',0)');
         return
             [
                 'status'=> 200,
