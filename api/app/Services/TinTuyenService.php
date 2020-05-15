@@ -287,23 +287,23 @@ class TinTuyenService extends BaseService {
         return $this->getJobValid()->orderBy('highlight_job',  'DESC')->orderBy('id', 'DESC');
     }
 
-    private function getJobWithConditionAndNotRoleCompany()
-    {
-        return $this->nbJobList->with(['user' => function ($q) {
-                        $q->select('id', 'name', 'avatar');
-                    }])
-                    ->with(['nation' => function ($q) {
-                        $q->select('id', 'name');
-                    }])
-                    ->whereHas('user', function ($query) {
-                        $query->where([
-                            'block' => self::UN_BLOCK,
-                            'status' => self::ACTIVE
-                        ]);
-                    })
-                    ->orderBy('highlight_job', 'DESC')
-                    ->orderBy('id', 'DESC');
-    }
+    // private function getJobWithConditionAndNotRoleCompany()
+    // {
+    //     return $this->nbJobList->with(['user' => function ($q) {
+    //                     $q->select('id', 'name', 'avatar');
+    //                 }])
+    //                 ->with(['nation' => function ($q) {
+    //                     $q->select('id', 'name');
+    //                 }])
+    //                 ->whereHas('user', function ($query) {
+    //                     $query->where([
+    //                         'block' => self::UN_BLOCK,
+    //                         'status' => self::ACTIVE
+    //                     ]);
+    //                 })
+    //                 ->orderBy('highlight_job', 'DESC')
+    //                 ->orderBy('id', 'DESC');
+    // }
 
     public function changeStatusJob($id)
     {
@@ -474,7 +474,9 @@ class TinTuyenService extends BaseService {
             $query = $this->getJobByRoleCompany();
         } else {
             $perPage = 6;
-            $query = $this->getJobWithConditionAndNotRoleCompany();
+            $query = $this->getJobValid()
+                    ->orderBy('highlight_job', 'DESC')
+                    ->orderBy('id', 'DESC');
         }
 
         if (!empty($conditions)) {
@@ -483,8 +485,8 @@ class TinTuyenService extends BaseService {
 
         if ($search != '') {
             $query->where(function($q) use ($search){
-                $q->where('nb_joblists.title', 'LIKE', '%'.$search.'%')
-                    ->orwhere('nb_joblists.id','LIKE', '%'.$search.'%');
+                $q->where('title', 'LIKE', '%'.$search.'%')
+                    ->orwhere('id','LIKE', '%'.$search.'%');
             });
         }
         return $query->paginate($perPage);
