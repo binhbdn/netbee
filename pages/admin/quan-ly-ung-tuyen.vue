@@ -1,8 +1,8 @@
 <template>
     <div class="app-content content">
         <adminApplyManage v-if="$auth.user.role == 4"></adminApplyManage>
-        <hrApplyManage v-else-if="$auth.user.role == 3"></hrApplyManage>
-        <companyApplyManage v-else></companyApplyManage>
+        <hrApplyManage v-else-if="$auth.user.role == 3 || $auth.user.role == 1"></hrApplyManage>
+        <companyApplyManage v-else-if="$auth.user.role == 2"></companyApplyManage>
     </div>
 </template>
 <script>
