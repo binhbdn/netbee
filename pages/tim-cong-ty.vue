@@ -62,7 +62,7 @@ export default {
     },
     methods:{
         fetch(){
-            this.$axios.$get('searchCompany?keyword='+this.$route.query.keyword)
+            this.$axios.$get('searchCompany?keyword='+this.$route.query.keyword + '&nation=' + this.$route.query.nation)
             .then(response => {
                 this.arrayCompanyNew = response.data
             })
