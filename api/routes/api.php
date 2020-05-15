@@ -21,7 +21,9 @@ Route::namespace('API')->group(function () {
   Route::get('getListCompany','Customer\CompanyController@getListCompany');
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
   Route::post('postCompanyFeedback','Customer\CompanyController@postCompanyFeedback');
- 
+  Route::post('followCompany','Customer\CompanyController@followCompany');
+  Route::get('checkFollow','Customer\CompanyController@checkFollow');
+
   //tin tuyen dung
   Route::get('getTinTuyenDungNew', 'TinTuyenDungController@getTinTuyenDungNew');
   Route::get('getTinTuyenDungNewCarousel', 'TinTuyenDungController@getTinTuyenDungNewCarousel');
@@ -92,12 +94,12 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getSave', 'Admin\SaveController@getSave');
         Route::post('report', 'Admin\ReportController@report');
       });
-      Route::prefix('hoso')->group(function () {       
+      Route::prefix('hoso')->group(function () {
         Route::post('getProfileUserId', 'Admin\TeamplateCvController@getProfileUserId');
         Route::post('deleteProfileUser', 'Admin\TeamplateCvController@deleteProfileUser');
-        Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');  
-        Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');       
-        Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');       
+        Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');
+        Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');
+        Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');

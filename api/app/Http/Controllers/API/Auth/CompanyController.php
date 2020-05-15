@@ -21,8 +21,8 @@ class CompanyController extends Controller
     public function getInfoCompany(Request $request)
     {
         $data =  [
-            'status'=> 400, 
-            'message' => 'Bạn chưa cập nhật thông tin công ty', 
+            'status'=> 400,
+            'message' => 'Bạn chưa cập nhật thông tin công ty',
             'data' => null
         ];
 
@@ -30,7 +30,7 @@ class CompanyController extends Controller
         if ($info) {
             $data = [
                 'status' => 200,
-                'message' => 'Thành công', 
+                'message' => 'Thành công',
                 'data' => $info
             ];
         }
@@ -102,7 +102,7 @@ class CompanyController extends Controller
             'company_link' => $request->company_link,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
-        ]; 
+        ];
         if (!$get) {
             $data['company_id'] = $userId;
             $response = $this->nbCompanyInfoService->store($data);
@@ -113,13 +113,13 @@ class CompanyController extends Controller
         if ($response) {
             return [
                 'status' => 200,
-                'message' => 'Cập nhật tin thành công', 
+                'message' => 'Cập nhật tin thành công',
                 'data' => null
             ];
         }
         return [
             'status' => 400,
-            'message' => 'Có lỗi xảy ra', 
+            'message' => 'Có lỗi xảy ra',
             'data' => null
         ];
     }
@@ -130,13 +130,13 @@ class CompanyController extends Controller
         if($data) {
             return [
                 'status' => 200,
-                'message' => 'Thành công', 
+                'message' => 'Thành công',
                 'data' => null
             ];
         }
         return [
             'status' => 400,
-            'message' => 'Đã tồn tại', 
+            'message' => 'Đã tồn tại',
             'data' => null
         ];
     }

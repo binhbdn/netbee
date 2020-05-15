@@ -354,17 +354,23 @@
           
           this.arrayJobNew = tempArray[0];
           this.arrayJobNew2 = tempArray[1];
-        })
-        // this.$axios.$get(`getTinTuyenDungNewCarousel?page=2`).then((ress) => {
-        //   this.arrayJobNew2 = ress.data.tintuyendung.data
-        // })
+        });
         this.$axios.$get(`getTinTuyenDungHotCarousel?page=1`).then((ress) => {
-          this.arrayJobHot = ress.data.tintuyendung.data
-
-        })
-        this.$axios.$get(`getTinTuyenDungHotCarousel?page=2`).then((ress) => {
-          this.arrayJobHot2 = ress.data.tintuyendung.data
-        })
+          var myArray = ress.data.tintuyendung.data
+          var index = 0;
+          var arrayLength = myArray.length;
+          var tempArray = [];
+      
+          for (index = 0; index < arrayLength; index += 6) {
+              var myChunk = myArray.slice(index, index+6);
+              tempArray.push(myChunk);
+          }
+          
+          this.arrayJobHot = tempArray[0];
+          this.arrayJobHot2 = tempArray[1];
+          console.log(this.arrayJobHot);
+          console.log(this.arrayJobHot2);
+        });
 
         this.$axios.$get(`getTinTucNew?limit=4`).then((ress) => {
           this.tintuc = ress.data.tintuc
