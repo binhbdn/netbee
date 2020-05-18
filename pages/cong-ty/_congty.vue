@@ -30,7 +30,8 @@
                             <h2>Việc làm</h2>
                         </div>
                         <div class="col-lg-2" style="padding-top:30px; padding-left: 10px">
-                            <button class="btn btn-outline-secondary mt-2">Theo dõi công ty</button>
+                            <button v-if="!$auth.loggedIn" class="btn btn-outline-secondary mt-2" data-toggle="modal" data-target="#loginModal">Theo dõi ({{followers}})</button>
+                            <button v-else class="btn btn-outline-secondary mt-2" @click="followCompany()">{{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}} ({{followers}})</button>
                         </div>
                     </div>
                 </div>
@@ -52,7 +53,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p v-html="detailCompany.company_about"></p>
+                                    <p v-html="congty.company_about"></p>
                                 </div>
                             </div>
                         </div>
@@ -120,7 +121,7 @@
                 </div>
                 <hr>
                 <div class="view-more">
-                    <a data-toggle="modal" data-target="#modal_feedback">Xem tất cả đánh giá</a>
+                    <a data-toggle="modal" :data-target="detailCompany.company_feedback.length >3 ? '#modal_feedback' : '#modal_no_feedback'">Xem tất cả đánh giá</a>
                 </div>
             </div>
             <div class="card p-1">
@@ -181,7 +182,7 @@
                     <p class="text-center" style="margin-bottom:20px; font-size: 16px; "><a class="hover" href="dang-ky">Đăng ký tài khoản mới!</a>
                     </p>
                     <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px">
-                        <ValidationObserver ref="observer" v-slot="{ valid }">
+                        <ValidationObserver ref="observerLogin" v-slot="{ valid }">
                             <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
                                 <div class="__email">
                                     <fieldset class="form-label-group form-group position-relative has-icon-left mb-0">
@@ -431,7 +432,9 @@ export default {
             formFeedback: {
                 rating: 5,
                 content: ''
-            }
+            },
+            isFollow: false,
+            followers: 0
         }
     },
     methods: {
@@ -461,7 +464,7 @@ export default {
             });
         },
         async login() {
-            const isValid = await this.$refs.observer.validate();
+            const isValid = await this.$refs.observerLogin.validate();
             if(isValid){
             try {
                     let response = await this.$auth.loginWith('local',{ data: this.userForm });
@@ -511,9 +514,26 @@ export default {
                 }
             })
         },
+        followCompany(){
+            this.isFollow = !this.isFollow;
+            if(this.isFollow == true){
+                this.followers = this.followers + 1;
+            }
+            else{
+                this.followers  = this.followers - 1;
+            }
+                var form = new FormData();
+                form.append('user_id',this.$auth.user.id);
+                form.append('company_id',this.detailCompany.id);
+                form.append('is_follow',this.isFollow);
+                
+                this.$axios.post('followCompany',form).then(response => {
+                    if(response.data.status == 200){
+                    }
+                })
+        },
         loadMore(){
-            this.loadMoreBtn = false,
-            console.log(this.arrayForCompany);
+            this.loadMoreBtn = false
         },
         collapse(){
             this.loadMoreBtn = true
@@ -525,6 +545,7 @@ export default {
     async asyncData (context) {
         try {
         let detailRes = await context.app.$axios.$get(`getDetailCompanyById/${context.app.router.currentRoute.params.congty}`)
+        console.log(context);
         context.seo({
                 name: detailRes.data[0].name,
                 title: detailRes.data[0].name,
@@ -543,12 +564,24 @@ export default {
         }
     },
     mounted() {
-        this.$axios.$get(`getTinTuyenDungForCompany/${this.$route.params.congty}?limit=5`).then((response)=>{
+        this.$axios.$get(`getTinTuyenDungForCompany/${this.congty.id}?limit=5`).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
             this.countJob = response.data.count
         });
-        this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
+        this.$axios.$get(`getDetailCompanyById/${this.congty.id}`).then((response)=>{
             this.detailCompany = response.data[0]
+        });
+        if(this.$auth.loggedIn){
+            this.$axios.get('checkFollow?user_id=' + this.$auth.user.id + '&company_id='+ this.congty.id).then(response => {
+            if(response.data.status == 200){
+                this.isFollow = true;
+            }
+        });
+        }
+        this.$axios.get('checkFollow?company_id='+ this.congty.id).then(response => {
+            if(response.data.status == 200){
+                this.followers = response.data.data;
+            }
         });
     },
     jsonld() {

@@ -1,5 +1,5 @@
 <template>
-    <div class="p-1" style="background: #ffb701; border-radius: 10px;">
+    <div class="p-1" >
         <div class="uploader"
             @dragenter="OnDragEnter"
             @dragleave="OnDragLeave"
@@ -7,7 +7,7 @@
             @drop="OnDrop"
             :class="{ dragging: isDragging }">
             <div v-show="!images.length && thuml == null">
-                <i class="fa fa-cloud-upload" style="color: #000000c7;"></i>
+                <i class="fa fa-cloud-upload" style="color: #ffb701;"></i>
                 <div class="file-input">
                     <label :for="`file${type}`">Chọn ảnh</label>
                     <input type="file" :id="`file${type}`" @change="onInputChange"> 
@@ -16,8 +16,8 @@
 
             <div class="images-preview" v-show="images.length || thuml != null">
                 <div class="img-wrapper">
-                    <img :src="images[0]" style="height: 240px;width: 450px;" v-if="images.length > 0">
-                    <img :src="`/uploads/news/${thuml}`" style="height: 240px;width: 450px;" v-else>
+                    <img :src="images[0]" class="imgFixed" v-if="images.length > 0">
+                    <img :src="`/uploads/news/${thuml}`" class="imgFixed" v-else>
                 </div>
                 <div class="file-input">
                     <label :for="`file${type}`">Đổi ảnh</label>
@@ -101,16 +101,17 @@ export default {
     color: #000;
     padding: 40px 15px;
     text-align: center;
-    border-radius: 10px;
-    border: 3px dashed #000;
+    border: 2px dashed #ffb701;
     font-size: 20px;
     position: relative;
+    background: #F8F8F8; 
+    border-radius: 8px;
 }  
 
 .dragging{
     background: #fff;
     color: #ffb701;
-    border: 3px dashed #ffb701;
+    border: 2px dashed #ffb701;
 }
 
 .dragging .file-input label{
@@ -131,7 +132,7 @@ export default {
 .uploader .file-input label,
 .uploader .file-input input{
     background-color: #fff;
-    color: #ffb701;
+    color: #000;
     width: 100%;
     position: absolute;
     left: 0;
@@ -145,5 +146,14 @@ export default {
     opacity: 0;
     z-index: -2;
 }
-
+.imgFixed {
+    height: 240px;
+    width: 450px;
+}
+@media only screen and (max-width: 1800px) {
+    .imgFixed {
+        height: 180px;
+        width: 245px;
+    }
+}
 </style>

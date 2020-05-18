@@ -51,8 +51,7 @@ class NbCompanyInfoService extends BaseService {
             $q->where('username',$companyId);
         }])
         ->with(['companyFeedback'=> function($q){
-            $q->where('approve_feed',self::ACTIVE)
-            ->limit(3);
+            $q->where('approve_feed',self::ACTIVE);
         }])
         ->get();
         foreach($datas as $key=>$data){
@@ -105,7 +104,7 @@ class NbCompanyInfoService extends BaseService {
                 'data'=> null
             ];
         }
-        $user_id = $request->user_id;
+        $user_id =Auth::user()->id;
         $company_id = $request->company_id;
         $isFollow = $request-> is_follow;
         if($isFollow == 'true'){
@@ -138,7 +137,7 @@ class NbCompanyInfoService extends BaseService {
     }
     public function checkFollow($request){
         if($request->has('user_id') && $request->has('company_id')){
-            $user_id = $request->user_id;
+            $user_id = Auth::user()->id;
             $company_id = $request->company_id;
             $data = $this->nbCompanyFollows
                 ->where('company_id',$company_id)
