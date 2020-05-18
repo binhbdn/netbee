@@ -563,22 +563,21 @@ export default {
         }
     },
     mounted() {
-        this.$axios.$get(`getTinTuyenDungForCompany/${this.congty.id}?limit=5`).then((response)=>{
+        this.$axios.$get(`getTinTuyenDungForCompany/${this.$route.params.congty}?limit=5`).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
             this.countJob = response.data.count
         });
-        this.$axios.$get(`getDetailCompanyById/${this.congty.id}`).then((response)=>{
-            this.detailCompany = response.data;
-            console.log(this.congty);
+        this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
+            this.detailCompany = response.data[0]
         });
         if(this.$auth.loggedIn){
-            this.$axios.get('checkFollow?user_id=' + this.$auth.user.id + '&company_id='+ this.congty.id).then(response => {
+            this.$axios.get('checkFollow?user_id=' + this.$auth.user.id + '&company_id='+ this.$route.params.congty).then(response => {
             if(response.data.status == 200){
                 this.isFollow = true;
             }
         });
         }
-        this.$axios.get('checkFollow?company_id='+ this.congty.id).then(response => {
+        this.$axios.get('checkFollow?company_id='+ this.$route.params.congty).then(response => {
             if(response.data.status == 200){
                 this.followers = response.data.data;
             }
