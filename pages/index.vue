@@ -118,16 +118,16 @@
                                                 <div class="carousel-item active">
                                                     <JobsList2Col :DataList="arrayJobHot"></JobsList2Col>
                                                 </div>
-                                                <div class="carousel-item">
+                                                <div class="carousel-item" v-if="arrayJobHot2.length > 0">
                                                     <JobsList2Col :DataList="arrayJobHot2"></JobsList2Col>
                                                 </div>
                                             </div>
-                                            <a class="carousel-control-prev" href="#carousel-interval" role="button" data-slide="prev">
+                                            <a v-if="arrayJobHot2.length > 0" class="carousel-control-prev" href="#carousel-interval" role="button" data-slide="prev">
                                                 <button class="el-carousel__arrow el-carousel__arrow--left">
                                                   <i class="fas fa-angle-left"></i>
                                                 </button>
                                             </a>
-                                            <a class="carousel-control-next" href="#carousel-interval" role="button" data-slide="next">
+                                            <a v-if="arrayJobHot2.length > 0" class="carousel-control-next" href="#carousel-interval" role="button" data-slide="next">
                                                 <button class="el-carousel__arrow el-carousel__arrow--right">
                                                   <i class="fas fa-angle-right"></i>
                                                 </button>
@@ -226,16 +226,16 @@
                         <div class="carousel-item active">
                             <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item" v-if="arrayJobNew2.length > 0">
                             <JobsList1Col :DataList="arrayJobNew2"></JobsList1Col>
                         </div>
                     </div>
-                    <a v-if="arrayJobNew.length == 8" class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
+                    <a v-if="arrayJobNew2.length > 0" class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
                         <button class="el-carousel__arrow el-carousel__arrow--left">
                           <i class="fas fa-angle-left"></i>
                         </button>
                     </a>
-                    <a v-if="arrayJobNew.length == 8" class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
+                    <a v-if="arrayJobNew2.length > 0" class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
                         <button class="el-carousel__arrow el-carousel__arrow--right">
                           <i class="fas fa-angle-right"></i>
                         </button>
@@ -368,8 +368,6 @@
           
           this.arrayJobHot = tempArray[0];
           this.arrayJobHot2 = tempArray[1];
-          console.log(this.arrayJobHot);
-          console.log(this.arrayJobHot2);
         });
 
         this.$axios.$get(`getTinTucNew?limit=4`).then((ress) => {
