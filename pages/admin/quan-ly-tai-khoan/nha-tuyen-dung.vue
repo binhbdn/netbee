@@ -159,7 +159,7 @@
                                                         {{item.id}}</td>
                                                     <td class="text-left"><a data-toggle="tooltip" :title=item.name data-placement="top" target="_blank">{{item.name}}</a></td>
                                                     <td>
-                                                        <span><img v-lazy="item.avatar" style="object-fit: cover;" width="55" height="55"></span>
+                                                        <span><img v-lazy="`/uploads/users/avatars/${item.avatar}`" style="object-fit: cover;" width="55" height="55"></span>
                                                     </td>
                                                     <td :title=item.created_at>{{ConvertDate(item.created_at)}}</td>
                                                     <td v-if="item.status == 0">
