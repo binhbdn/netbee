@@ -109,25 +109,25 @@
                                 </div>
                                 <div class="card-content" style="position:relative">
                                     <div class="card-body">
-                                        <div id="carousel-interval" class="carousel slide" data-ride="carousel" data-interval="10000">
+                                        <div id="carousel-interval" class="carousel slide" data-ride="carousel" :data-interval="(typeof(arrayJobHot2) !== 'undefined') ? 10000 : null">
                                             <ol class="carousel-indicators">
-                                                <li data-target="#carousel-interval" data-slide-to="0" class="active"></li>
-                                                <li data-target="#carousel-interval" data-slide-to="1"></li>
+                                                <li v-if="typeof(arrayJobHot2) !== 'undefined'" data-target="#carousel-interval" data-slide-to="0" class="active"></li>
+                                                <li v-if="typeof(arrayJobHot2) !== 'undefined'" data-target="#carousel-interval" data-slide-to="1"></li>
                                             </ol>
                                             <div class="carousel-inner" role="listbox">
                                                 <div class="carousel-item active">
                                                     <JobsList2Col :DataList="arrayJobHot"></JobsList2Col>
                                                 </div>
-                                                <div class="carousel-item" v-if="arrayJobHot2.length > 0">
+                                                <div class="carousel-item" v-if="typeof(arrayJobHot2) !== 'undefined'">
                                                     <JobsList2Col :DataList="arrayJobHot2"></JobsList2Col>
                                                 </div>
                                             </div>
-                                            <a v-if="arrayJobHot2.length > 0" class="carousel-control-prev" href="#carousel-interval" role="button" data-slide="prev">
+                                            <a v-if="typeof(arrayJobHot2) !== 'undefined'" class="carousel-control-prev" href="#carousel-interval" role="button" data-slide="prev">
                                                 <button class="el-carousel__arrow el-carousel__arrow--left">
                                                   <i class="fas fa-angle-left"></i>
                                                 </button>
                                             </a>
-                                            <a v-if="arrayJobHot2.length > 0" class="carousel-control-next" href="#carousel-interval" role="button" data-slide="next">
+                                            <a v-if="typeof(arrayJobHot2) !== 'undefined'" class="carousel-control-next" href="#carousel-interval" role="button" data-slide="next">
                                                 <button class="el-carousel__arrow el-carousel__arrow--right">
                                                   <i class="fas fa-angle-right"></i>
                                                 </button>
@@ -217,25 +217,25 @@
                 <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn bg-netbee">Xem thêm</a>
               </div>
               <div class="card-content collapse show" style="padding: 13px">
-                <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" data-interval="10000">
+                <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="(typeof(arrayJobNew2) !== 'undefined') ? 10000 : null">
                     <ol class="carousel-indicators">
-                        <li data-target="#carousel-interval-new" data-slide-to="0" class="active"></li>
-                        <li data-target="#carousel-interval-new" data-slide-to="1"></li>
+                        <li v-if="typeof(arrayJobNew2) !== 'undefined'" data-target="#carousel-interval-new" data-slide-to="0" class="active"></li>
+                        <li v-if="typeof(arrayJobNew2) !== 'undefined'" data-target="#carousel-interval-new" data-slide-to="1"></li>
                     </ol>
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
                             <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
                         </div>
-                        <div class="carousel-item" v-if="arrayJobNew2.length > 0">
+                        <div v-if="typeof(arrayJobNew2) !== 'undefined'" class="carousel-item">
                             <JobsList1Col :DataList="arrayJobNew2"></JobsList1Col>
                         </div>
                     </div>
-                    <a v-if="arrayJobNew2.length > 0" class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
+                    <a  v-if="typeof(arrayJobNew2) !== 'undefined'" class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
                         <button class="el-carousel__arrow el-carousel__arrow--left">
                           <i class="fas fa-angle-left"></i>
                         </button>
                     </a>
-                    <a v-if="arrayJobNew2.length > 0" class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
+                    <a  v-if="typeof(arrayJobNew2) !== 'undefined'" class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
                         <button class="el-carousel__arrow el-carousel__arrow--right">
                           <i class="fas fa-angle-right"></i>
                         </button>
@@ -368,6 +368,7 @@
           
           this.arrayJobHot = tempArray[0];
           this.arrayJobHot2 = tempArray[1];
+          
         });
 
         this.$axios.$get(`getTinTucNew?limit=4`).then((ress) => {

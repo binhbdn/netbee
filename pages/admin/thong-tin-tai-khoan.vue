@@ -28,7 +28,7 @@
                       <div class="col-md-3 mb-2 mb-md-0">
                           <ul class="nav nav-pills flex-column mt-md-0 mt-1">
                               <li class="nav-item">
-                                  <a class="nav-link d-flex py-75 active" id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
+                                  <a class="nav-link d-flex py-75" :class="{'active': classInfoCommon} " id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
                                       <i class="feather icon-globe mr-50 font-medium-3"></i>
                                       Thông tin chung
                                   </a>
@@ -40,7 +40,7 @@
                                   </a>
                               </li>
                               <li class="nav-item" v-if="this.$auth.user.role == 2">
-                                  <a class="nav-link d-flex py-75" id="account-pill-info" data-toggle="pill" href="#account-vertical-info" aria-expanded="false">
+                                  <a class="nav-link d-flex py-75" :class="{'active': classInfoMore} " id="account-pill-info" data-toggle="pill" href="#account-vertical-info" aria-expanded="false">
                                       <i class="feather icon-info mr-50 font-medium-3"></i>
                                       Thông tin công ty
                                   </a>
@@ -53,7 +53,7 @@
                               <div class="card-content">
                                   <div class="card-body p-t-15 p-b-15">
                                       <div class="tab-content">
-                                          <div role="tabpanel" class="tab-pane active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
+                                          <div role="tabpanel" class="tab-pane" :class="{'active': classInfoCommon} " id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
                                             <form method="post">
                                                 <ValidationObserver ref="InfoUser" v-slot="{ valid }">
                                                 <div class="media">
@@ -210,11 +210,12 @@
                                                    </ValidationObserver>
                                               </form>
                                           </div>
-                                          <div class="tab-pane fade" id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info" aria-expanded="false">
+                                          <div class="tab-pane fade" :class="{'active': classInfoMore, 'show': classInfoMore} " id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info" aria-expanded="false">
                                               <form method="POST" v-on:keyup.enter = "changeInfoCompany">
                                                   <ValidationObserver ref="observerChangeInfoCompany" v-slot="{ valid }">
                                                   <div class="row">
                                                         <div class="media pl-1">
+                                                            
                                                             <a href="javascript: void(0);">
                                                                 <img :src="imagesCover[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="imagesCover.length > 0">
                                                                 <img :src="changeInfoCompanyForm.imageCover != null && changeInfoCompanyForm.imageCover.startsWith('https') ? changeInfoCompanyForm.imageCover : `/uploads/users/covers/${changeInfoCompanyForm.imageCover}`" class="rounded mr-75" alt="cover image" height="64" width="64" style="object-fit: cover;" v-else>
@@ -222,11 +223,12 @@
                                                             <div class="media-body mt-75">
                                                                 <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
                                                                     <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload-cover" >Đổi ảnh bìa</label>
-                                                                    <input type="file" id="account-upload-cover"  @change="onInputChangeCover" hidden>
+                                                                    <input type="file" id="account-upload-cover" name="imageCoverInput" @change="onInputChangeCover" hidden>
                                                                     <button type="button" class="btn btn-sm btn-outline-warning ml-50" @click="resetImgCover">Reset</button>
                                                                 </div>
                                                                 <p class="text-muted ml-75 mt-50"><small>Cho phép JPG, GIF or PNG. Kích thước đề xuất: 1120 x 296</small></p>
                                                             </div>
+                                                           
                                                         </div>
                                                         <hr>
                                                       <div class="col-12">
@@ -239,7 +241,7 @@
                                                           <div class="form-group">
                                                               <label for="accountTextarea1">Username</label>
                                                               <div class="form-control d-flex p-0">
-                                                              <input style="border:none; color: #5F5F5F; padding-left: 7px!important;" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Thông tin cơ bản của công ty...">
+                                                              <input style="border:none; color: #5F5F5F; padding-left: 7px!important;" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Tên đường dẫn tới trang thông tin công ty...">
                                                               <div class="col-1 text-center">
                                                                   <i style="font-size:16px; padding-top: 10px" :class="checkUsername ? 'fas fa-check-circle success' : 'fas fa-times-circle danger'"></i>
                                                               </div>
@@ -487,7 +489,9 @@ export default {
                     phone: this.$auth.user.phone,
                     address: this.$auth.user.address_detail,
                     avatar: this.$auth.user.avatar
-                }
+                },
+                classInfoCommon: true,
+                classInfoMore: false
             };
         },
     methods: {
@@ -581,14 +585,22 @@ export default {
                 form.append('phone' , this.changeInfoUser.phone)
                 form.append('birth_of_date' , this.changeInfoUser.birth)
                 form.append('address_detail' , this.changeInfoUser.address)
+                let $this = this;
+                let role = this.$auth.user.role;
                 this.$axios.post('changeInfo',form).then(response => {
                     if(response.data.status == 200) {
                         this.$swal(
                             'Thành công',
                             response.data.message,
                             'success',
-                        ).then(function(){
-                            window.location.reload()
+                        ).then(function(response){
+                            if(role == 2){
+                                $this.classInfoCommon = false;
+                                $this.classInfoMore = true;
+                            }
+                            else{
+                                window.location.reload();
+                            }
                         })
                     }else{
                         this.$swal(
@@ -650,6 +662,7 @@ export default {
         async changeInfoCompany() {
             
             const isValid = await this.$refs.observerChangeInfoCompany.validate();
+            console.log(isValid);
             if(isValid){
                 try {
                 let response = await this.$axios.post('changeInfoCompany', {
@@ -672,7 +685,7 @@ export default {
                     confirmButtonText: 'OK',
                     }).then( async (result) => {
                     if (result.value) {
-
+                            window.location.href = "/admin";
                         }
                     })
                 }
@@ -718,10 +731,18 @@ export default {
                 this.changeInfoCompanyForm.username = dataInforCompany.data.data.username;
             }
             
+        },
+        updateMoreInfo(){
+            this.classInfoCommon = false,
+            this.classInfoMore = true
+            console.log(this.classInfoMore)
+            console.log(this.classInfoCommon)
         }
   },
   mounted() {
       this.fetch();
+      console.log(this.classInfoMore)
+            console.log(this.classInfoCommon)
   },
   watch: {
       checkUsername: function(){
