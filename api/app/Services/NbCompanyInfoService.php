@@ -31,7 +31,6 @@ class NbCompanyInfoService extends BaseService {
         }])
         ->with(['companyFeedback'=> function($q){
             $q->select('company_id', 'rate_feed');
-
         }])
         ->select('id','company_id','company_about','username')
         ->paginate(6);
@@ -53,9 +52,9 @@ class NbCompanyInfoService extends BaseService {
         ->with(['companyFeedback'=> function($q){
             $q->where('approve_feed',self::ACTIVE);
         }])
-        ->get();
-        foreach($datas as $key=>$data){
-            $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
+        ->first();
+        foreach($datas->companyFeedback as $key=>$data){
+            $datas['rate'] = $this->getRate($data);
         }
         return [
             'status' => 200,

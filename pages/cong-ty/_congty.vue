@@ -545,7 +545,6 @@ export default {
     async asyncData (context) {
         try {
         let detailRes = await context.app.$axios.$get(`getDetailCompanyById/${context.app.router.currentRoute.params.congty}`)
-        console.log(context);
         context.seo({
                 name: detailRes.data[0].name,
                 title: detailRes.data[0].name,
@@ -569,7 +568,8 @@ export default {
             this.countJob = response.data.count
         });
         this.$axios.$get(`getDetailCompanyById/${this.congty.id}`).then((response)=>{
-            this.detailCompany = response.data[0]
+            this.detailCompany = response.data;
+            console.log(this.congty);
         });
         if(this.$auth.loggedIn){
             this.$axios.get('checkFollow?user_id=' + this.$auth.user.id + '&company_id='+ this.congty.id).then(response => {
