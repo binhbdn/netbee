@@ -52,10 +52,6 @@ class CompanyController extends Controller
                 'required' => 'Không được để trống',
                 'numeric' => 'Số điện thoại không được chứa kí tự'
         ];
-        if ($request->file('image_cover')) {
-            $rules['image_cover'] = 'required|image';
-            $messages['image'] = 'Định dạng ảnh không phù hợp';
-        }
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -91,7 +87,7 @@ class CompanyController extends Controller
         $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
         $userId = Auth::user()->id;
         $data = [
-            'image_cover' => $request->image_cover,
+            'image_cover' => $request->image_cover ? $request->image_cover : null ,
             'company_hotline' => $request->company_hotline,
             'company_about' => $request->company_about,
             'username' => $request->username,
@@ -129,15 +125,16 @@ class CompanyController extends Controller
         $data = $this->nbCompanyInfoService->checkUsernameCompany($request->username);
         if($data) {
             return [
-                'status' => 200,
-                'message' => 'Thành công',
+                'status' => 400,
+                'message' => 'Đã tồn tại',
                 'data' => null
             ];
         }
         return [
-            'status' => 400,
-            'message' => 'Đã tồn tại',
-            'data' => null
+
+            'status' => 200,
+                'message' => 'Tên hợp lệ',
+                'data' => null
         ];
     }
 }
