@@ -529,18 +529,18 @@ export default {
         },
         showFile(id) {
             var a = document.querySelector('.overlay-bg');
-            a.classList.add("show");
+            a.classList.add("showFile");
             var b = document.querySelector('.add-new-data');
-            b.classList.add("show");
+            b.classList.add("showFile");
             this.$axios.$get(`apply/getPaperApply/${id}`).then((res) => {
                 this.paper = res.data
             })
         },
         closeShowFile() {
             var a = document.querySelector('.overlay-bg');
-            a.classList.remove("show");
+            a.classList.remove("showFile");
             var b = document.querySelector('.add-new-data');
-            b.classList.remove("show");
+            b.classList.remove("showFile");
         }
         // search(){
         //     this.$axios.$get(
@@ -627,7 +627,7 @@ export default {
     transition: all 0.25s ease;
     overflow: hidden;
     }
-    .show {
+    .showFile {
         transform: translateX(0%);
     }
     .data-items {
@@ -635,7 +635,7 @@ export default {
         height: calc(100% - 11rem);
         position: relative;
     }
-    .overlay-bg.show {
+    .overlay-bg.showFile {
         opacity: 1;
         display: block;
     }
