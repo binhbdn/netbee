@@ -34,7 +34,7 @@
                     </ul>
                 </li> 
                 <li :class="[{'active' : this.$route.name == 'ho-so'}, 'nav-item']"><a @click="$router.push('/admin/ho-so')" v-if="$auth.user.role == 4 || $auth.user.role == 1 || $auth.user.role == 3"><i class="fad fa-folder-open"></i><span class="menu-title" data-i18n="User">Hồ sơ ứng tuyển</span></a>
-                <li :class="[{'active' : this.$route.name == 'quan-ly-ung-tuyen'}, 'nav-item']"><a @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 4 || $auth.user.role == 2"><i class="fad fa-folder-open"></i><span class="menu-title" data-i18n="User">Quản lý ứng tuyển</span></a>
+                <li :class="[{'active' : this.$route.name == 'quan-ly-ung-tuyen'}, 'nav-item']"><a @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 4 || $auth.user.role == 2"><i class="fas fa-satellite-dish"></i><span class="menu-title" data-i18n="User">Quản lý ứng tuyển</span></a>
                 </li>
                 <li :class="[{'active' : this.$route.name == 'quan-ly-ung-tuyen'}, 'nav-item']"><a @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fad fa-id-card-alt"></i><span class="menu-title" data-i18n="User"> Việc làm đã ứng tuyển</span></a>
                 </li>
