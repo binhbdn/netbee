@@ -96,7 +96,7 @@ class NbCompanyInfoService extends BaseService {
         ];
     }
     public function followCompany($request){
-        if(!$request->has('user_id') || !$request->has('company_id')){
+        if(!$request->has('user_id') || !$request->has('username')){
             return [
                 'status'=> 200,
                 'message'=> 'Dữ liệu không được để trống.',
@@ -104,7 +104,7 @@ class NbCompanyInfoService extends BaseService {
             ];
         }
         $user_id =Auth::user()->id;
-        $company_id = $request->company_id;
+        $company_id = $this->nbCompanyInfo->where('username', $request->username)->first()->id;
         $isFollow = $request-> is_follow;
         if($isFollow == 'true'){
             $this->nbCompanyFollows->insert(
@@ -135,9 +135,8 @@ class NbCompanyInfoService extends BaseService {
 
     }
     public function checkFollow($request){
-        if($request->has('user_id') && $request->has('company_id')){
             $user_id = Auth::user()->id;
-            $company_id = $request->company_id;
+            $company_id = $this->nbCompanyInfo->where('username', $request->username)->first()->id;
             $data = $this->nbCompanyFollows
                 ->where('company_id',$company_id)
                 ->where('user_id',$user_id)
@@ -156,15 +155,17 @@ class NbCompanyInfoService extends BaseService {
                     'data'=> null
                 ];
             }
-        }
-        else{
-            $followers = $this->nbCompanyFollows->where('company_id',$request->company_id)->count();
-            return [
-                'status'=> 200,
-                'message'=> 'Thành công.',
-                'data'=> $followers
-            ];
-        }
+    }
+    public function countFollow($request){
+        dd($this->nbCompanyInfo->where('username', $request->username)->first());
+            $followers = $this->nbCompanyFollows
+            ->where('company_id',$this->nbCompanyInfo->where('username', $request->username)->first()->id)
+            ->count();
+        return [
+            'status'=> 200,
+            'message'=> 'Thành công.',
+            'data'=> $followers
+        ];
     }
     private function getRate($feedBacks)
     {

@@ -568,16 +568,16 @@ export default {
             this.countJob = response.data.count
         });
         this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
-            this.detailCompany = response.data[0]
+            this.detailCompany = response.data
         });
         if(this.$auth.loggedIn){
-            this.$axios.get('checkFollow?user_id=' + this.$auth.user.id + '&company_id='+ this.$route.params.congty).then(response => {
+            this.$axios.get('checkFollow?user_id=' + this.$auth.user.id + '&username='+ this.$route.params.congty).then(response => {
             if(response.data.status == 200){
                 this.isFollow = true;
             }
         });
         }
-        this.$axios.get('checkFollow?company_id='+ this.$route.params.congty).then(response => {
+        this.$axios.get('countFollow?username='+ this.$route.params.congty).then(response => {
             if(response.data.status == 200){
                 this.followers = response.data.data;
             }
