@@ -63,7 +63,8 @@
                                                 <td>{{item.name}}</td>
                                                 <td>
                                                     <p v-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
-                                                    <a :href="`/admin/xac-thuc-ho-so/xem/${item.id}`" v-else-if="item.status == 5">Xem giấy tờ đính kèm</a>
+                                                    <a v-else-if="item.status == 5 && item.nb_paper != null" @click="showFile(item.id)" style="text-decoration: underline;">Xem giấy tờ đính kèm</a>
+                                                    <p v-else-if="item.status == 5 && item.nb_paper == null">Đợi giấy tờ đính kèm</p>
                                                 </td>
                                                 <td>
                                                     <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
@@ -78,7 +79,7 @@
                                                         <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" >
                                                             Hủy
                                                         </button>
-                                                        <button type="button" data-toggle="modal" data-target="#chooseCalendarModal" @click="idRefuse = item.id" class="btn btn-info py-75 waves-effect waves-light" v-if="item.status == 5">
+                                                        <button type="button" data-toggle="modal" data-target="#chooseCalendarModal" @click="idRefuse = item.id" class="btn btn-info py-75 waves-effect waves-light" v-if="item.status == 5 && item.nb_paper != null">
                                                             Chọn lịch PV
                                                         </button>
                                                     </div>
@@ -175,6 +176,111 @@
                 </div>
             </div>
         </div>
+        <!-- add new sidebar starts -->
+        <div class="add-new-data-sidebar">
+            <div class="overlay-bg"></div>
+            <div class="add-new-data">
+                <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
+                    <div>
+                        <h4 class="text-uppercase">Giấy tờ đính kèm</h4>
+                    </div>
+                    <div class="hide-data-sidebar" @click="closeShowFile()">
+                        <i class="feather icon-x"></i>
+                    </div>
+                </div>
+                <div class="data-items pb-3">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body m-t-15">
+                                <ul class="activity-timeline timeline-left list-unstyled">
+                                    <li>
+                                        <div class="timeline-icon bg-success">
+                                            <i class="feather icon-check font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">CMND mặt trước</p>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.front_id_card}`" class="font-small-3">Xem trước</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-icon bg-success">
+                                            <i class="feather icon-check font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">CMND mặt sau</p>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.back_id_card}`" class="font-small-3">Xem trước</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-icon bg-success">
+                                            <i class="feather icon-check font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">Ảnh chân dung</p>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.card_photo}`" class="font-small-3">Xem trước</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-icon bg-success">
+                                            <i class="feather icon-check font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">Bằng tốt nghiệp</p>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.high_school_diploma}`" class="font-small-3">Xem trước</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-icon bg-success">
+                                            <i class="feather icon-check font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">Giấy khai sinh</p>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.birth_certificate}`" class="font-small-3">Xem trước</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-icon bg-success">
+                                            <i class="feather icon-check font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">Sơ yếu lí lịch</p>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.curriculum_vitae}`" class="font-small-3">Xem trước</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-icon bg-success">
+                                            <i class="feather icon-check font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">Giấy khám sức khỏe</p>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.health_certification}`" class="font-small-3">Xem trước</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="timeline-icon bg-success">
+                                            <i class="feather icon-check font-medium-2 align-middle"></i>
+                                        </div>
+                                        <div class="timeline-info">
+                                            <p class="font-weight-bold mb-0">Hộ chiếu</p>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.passport}`" class="font-small-3">Xem trước</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
+                    <!-- <div class="add-data-btn">
+                        <button v-if="paper.status == 5" @click="approve()" class="btn bg-netbee">Duyệt giấy tờ</button>
+                    </div> -->
+                    <div class="cancel-data-btn" @click="closeShowFile()">
+                        <button class="btn btn-outline-danger">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- add new sidebar ends -->
     </div>
 </template>
 
@@ -189,6 +295,7 @@ import 'vue-datetime/dist/vue-datetime.css'
 export default {
     data() {
         return {
+            paper: [],
             calendarSuggests: [
                 {'key': 1, 'value': moment(moment().add(1, 'days')).locale("vi").format('llll') },
                 {'key': 2, 'value': moment(moment().add(2, 'days')).locale("vi").format('llll') },
@@ -281,6 +388,21 @@ export default {
                 this.$swal('Thành công', response.message, 'success');
                 location.reload()
             })
+        },
+        showFile(id) {
+            var a = document.querySelector('.overlay-bg');
+            a.classList.add("show");
+            var b = document.querySelector('.add-new-data');
+            b.classList.add("show");
+            this.$axios.$get(`apply/getPaperApply/${id}`).then((res) => {
+                this.paper = res.data
+            })
+        },
+        closeShowFile() {
+            var a = document.querySelector('.overlay-bg');
+            a.classList.remove("show");
+            var b = document.querySelector('.add-new-data');
+            b.classList.remove("show");
         }
         // search(){
         //     this.$axios.$get(
@@ -347,5 +469,49 @@ export default {
 
     .tab-table::-webkit-scrollbar-thumb:hover {
         background: rgba(78, 78, 78, 0.404);
+    }
+    .add-new-data{
+    width: 28.57rem;
+    max-width: 90vw;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    background: #FFFFFF;
+    position: fixed;
+    left: auto;
+    right: 0;
+    top: 0;
+    z-index: 1033;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.05);
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    overflow: hidden;
+    }
+    .show {
+        transform: translateX(0%);
+    }
+    .data-items {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        height: calc(100% - 11rem);
+        position: relative;
+    }
+    .overlay-bg.show {
+        opacity: 1;
+        display: block;
+    }
+    .overlay-bg {
+        background: rgba(0, 0, 0, 0.2);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        opacity: 0;
+        z-index: 1032;
     }
 </style>

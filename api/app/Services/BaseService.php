@@ -42,7 +42,8 @@ class BaseService {
         DA_TUYEN = 3,
         TU_CHOI = 4,
         ADMIN_DUYET_HO_SO = 5,
-        NTD_DUYET_HO_SO = 6;
+        NTD_DUYET_HO_SO = 6,
+        ADMIN_REJECT_HO_SO = 7; //yêu cầu bổ sung giấy tờ đính kèm
         
     const All = 0;
 
