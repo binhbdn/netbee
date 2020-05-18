@@ -94,7 +94,7 @@
 </template>
 <script>
 import Vue from "vue";
-import ImgUploader from '../../../components/ImgUploader';
+import ImgUploader from '~/components/ImgUploader';
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import { ValidationProvider, extend } from 'vee-validate/dist/vee-validate.full';
@@ -120,7 +120,7 @@ export default {
         ValidationObserver
     },
     name: 'create',
-        layout: 'admin',
+    layout: 'admin',
     data() {
         return{
             files: [],

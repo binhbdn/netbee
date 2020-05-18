@@ -28,4 +28,8 @@ class Apply extends Model
     {
         return $this->belongsTo('App\User', 'user_id_recever');
     }
+    public  function nbPaper()
+    {
+        return $this->belongsTo('App\Models\NbPaper','id','apply_id');
+    }
 }

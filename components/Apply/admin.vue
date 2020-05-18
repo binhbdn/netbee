@@ -44,7 +44,7 @@
                             <div class="card-content">
                                 <div class="card-body">
                                     <ul class="nav nav-tabs" role="tablist">
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a class="nav-link  active" id="home-tab" data-toggle="tab" href="#home" aria-controls="home" role="tab" aria-selected="true" @click="fetch">Chờ duyệt</a>
                                         </li>
                                         <li class="nav-item">
@@ -52,16 +52,16 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false" @click="getRefuseApply">Từ chối</a>
-                                        </li>
+                                        </li> -->
                                         <!-- <li class="nav-item">
                                             <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false">Đã tuyển</a>
                                         </li> -->
                                         <li class="nav-item">
-                                            <a class="nav-link" id="all-tab" data-toggle="tab" href="#all" aria-controls="about" role="tab" aria-selected="false" @click="getAllApply">Tất cả</a>
+                                            <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" aria-controls="about" role="tab" aria-selected="true" @click="getAllApply">Tất cả</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content ">
-                                        <div class="tab-pane active" id="home" aria-labelledby="home-tab" role="tabpanel">
+                                        <!-- <div class="tab-pane active" id="home" aria-labelledby="home-tab" role="tabpanel">
                                             <table class="table table-hover mb-0 zero-configuration">
                                                 <thead>
                                                     <tr>
@@ -96,16 +96,16 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!-- <infinite-loading
+                                            <infinite-loading
                                                 v-if="ApplyWait.length"
                                                 spinner="bubbles"
                                                 @infinite="infiniteScroll" style="padding:20px; width:100%"
                                             >
                                                 <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
                                                 <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-                                            </infinite-loading> -->
-                                        </div>
-                                        <div class="tab-pane " id="profile" aria-labelledby="profile-tab" role="tabpanel">
+                                            </infinite-loading>
+                                        </div> -->
+                                        <!-- <div class="tab-pane " id="profile" aria-labelledby="profile-tab" role="tabpanel">
                                             <table class="table table-hover mb-0 zero-configuration">
                                                 <thead>
                                                     <tr>
@@ -141,8 +141,8 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                        </div>
-                                        <div class="tab-pane" id="about" aria-labelledby="about-tab" role="tabpanel">
+                                        </div> -->
+                                        <!-- <div class="tab-pane" id="about" aria-labelledby="about-tab" role="tabpanel">
                                             <table class="table table-hover mb-0 zero-configuration">
                                                 <thead>
                                                     <tr>
@@ -176,8 +176,8 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                        </div>
-                                        <div class="tab-pane" id="all" aria-labelledby="all-tab" role="tabpanel">
+                                        </div> -->
+                                        <div class="tab-pane active" id="all" aria-labelledby="all-tab" role="tabpanel">
                                             <table class="table table-hover mb-0 zero-configuration">
                                                 <thead>
                                                     <tr>
@@ -198,7 +198,8 @@
                                                         <td>{{item.name}}</td>
                                                         <td>
                                                             <p v-if="item.status == 1">Chưa duyệt</p>
-                                                            <p v-else-if="item.status == 2">Đã duyệt hồ sơ</p>
+                                                            <p v-else-if="item.status == 2 && item.nb_paper == null">Đã duyệt hồ sơ</p>
+                                                            <a :href="`/admin/xac-thuc-ho-so/xem/${item.id}`" v-else-if="item.status == 2 && item.nb_paper != null">Xem giấy tờ đính kèm</a>
                                                             <p v-else-if="item.status == 5">Đã duyệt hồ sơ đính kèm</p>
                                                             <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                                         </td>
@@ -222,7 +223,7 @@
                                                                             <a class="dropdown-item" style="margin-top:5px" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" v-if="item.status != 4"><i class="far fa-times-circle"></i> Từ chối</a>
                                                                             <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.status == 2 && item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
                                                                             <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.status == 2 && item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApplyHoSo(item.id)" v-if="item.status == 2"><i class="fad fa-eye"></i> Duyệt hồ sơ đính kèm</a>
+                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApplyHoSo(item.id)" v-if="item.status == 2 && item.nb_paper != null"><i class="fad fa-eye"></i> Duyệt hồ sơ đính kèm</a>
                                                                             <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 4"><i class="far fa-check-circle"></i> Duyệt lại</a>
                                                                         </div>
                                                                     </div>
@@ -315,15 +316,15 @@ export default {
         }
     },
     created() {
-        this.fetch();
+        this.getAllApply();
     },
     methods: {
         nameWithLang ({ name, id }) {
             return `${name}`
         },
         fetch() {
-            this.$axios.$get('apply/getApplyWait').then((response)=>{
-                this.ApplyWait=response.data;
+            this.$axios.$get('apply/getAllApply').then((response)=>{
+                this.AllApply=response.data;
 	        });
 
         },
@@ -340,6 +341,11 @@ export default {
         getAllApply(){
             this.$axios.$get('apply/getAllApply').then((response)=>{
                 this.AllApply=response.data;
+	        });
+        },
+        getApplyWait(){
+            this.$axios.$get('apply/getApplyWait').then((response)=>{
+                this.ApplyWait=response.data;
 	        });
         },
         ApprovedApply(id){

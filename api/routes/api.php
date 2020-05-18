@@ -114,6 +114,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('ShowApply/{id}', 'Admin\ApplyManageController@ShowApply');
         Route::post('ApprovedApplyHoSo/{id}', 'Admin\ApplyManageController@ApprovedApplyHoSo');
         Route::post('ChooseCalendar/{id}', 'Admin\ApplyManageController@ChooseCalendar');
+        Route::get('getPaperApply/{id}', 'Admin\ApplyManageController@getPaperApply');
+        Route::post('PostPaperApply', 'Admin\ApplyManageController@PostPaperApply');
+        Route::post('ApprovedApplyHoSoDinhKem/{id}', 'Admin\ApplyManageController@ApprovedApplyHoSoDinhKem');
       });
   });
 });
