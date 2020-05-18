@@ -40,4 +40,8 @@ class CompanyController extends Controller
         $data = $this->nbCompanyInfoService->checkFollow($request);
         return response()->json($data);
     }
+    public function countFollow(Request $request) {
+        $data = $this->nbCompanyInfoService->countFollow($request);
+        return response()->json($data);
+    }
 }
