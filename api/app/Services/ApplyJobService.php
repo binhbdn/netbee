@@ -6,6 +6,7 @@ use App\Models\NbJoblist;
 use App\Models\NbPaper;
 use Auth;
 use Validator;
+use Carbon\Carbon;
 
 class ApplyJobService extends BaseService {
 

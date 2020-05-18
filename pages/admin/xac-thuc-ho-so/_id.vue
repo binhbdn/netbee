@@ -7,7 +7,7 @@
                         <div class="col-lg-9 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form-wizard color="#00ff00" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
+                                    <form-wizard color="#75d423" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
                                         <tab-content :before-change="checkValidateStep1" icon="fas fa-check">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
