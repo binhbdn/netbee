@@ -21,6 +21,7 @@ Route::namespace('API')->group(function () {
   Route::get('getListCompany','Customer\CompanyController@getListCompany');
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
   Route::post('postCompanyFeedback','Customer\CompanyController@postCompanyFeedback');
+  Route::get('countFollow','Customer\CompanyController@countFollow');
 
 
 
