@@ -66,6 +66,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('search', 'Auth\UserController@search');
         Route::post('changeStatus', 'Auth\UserController@changeStatus');
         Route::post('changeMultipleStatus', 'Auth\UserController@changeMultipleStatus');
+        Route::post('blockUser', 'Auth\UserController@blockUser');
+        Route::post('blockMultipleUser', 'Auth\UserController@blockMultipleUser');
       });
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');
