@@ -242,8 +242,14 @@ class UserService extends BaseService {
                 '%'.$searchName.'%'
             ];
         }
+        
+        $queryBlock = $this->user->whereRole($request->userRole);
+        if ($searchBlock == 1) {
+            $queryBlock->whereBlock(self::ACTIVE);
+            return $queryBlock->orderBy('id', 'DESC')->paginate($perPage);
+        }
 
-        $query = $this->user->whereRole($request->userRole);
+        $query = $this->user->whereBlock(self::INACTIVE)->whereRole($request->userRole);
         if (Auth::user()->role != self::ROLE_ADMIN) {
             $query->whereUserCreated(Auth::user()->id);
         }
