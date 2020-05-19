@@ -27,7 +27,7 @@
                                 <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                     <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
-                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-bottom:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
+                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
                                     <a class="btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
                                 <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">

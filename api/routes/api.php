@@ -21,6 +21,7 @@ Route::namespace('API')->group(function () {
   Route::get('getListCompany','Customer\CompanyController@getListCompany');
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
   Route::post('postCompanyFeedback','Customer\CompanyController@postCompanyFeedback');
+  Route::get('countFollow','Customer\CompanyController@countFollow');
 
 
 
@@ -65,6 +66,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('search', 'Auth\UserController@search');
         Route::post('changeStatus', 'Auth\UserController@changeStatus');
         Route::post('changeMultipleStatus', 'Auth\UserController@changeMultipleStatus');
+        Route::post('blockUser', 'Auth\UserController@blockUser');
+        Route::post('blockMultipleUser', 'Auth\UserController@blockMultipleUser');
       });
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');

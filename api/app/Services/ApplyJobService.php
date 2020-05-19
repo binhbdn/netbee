@@ -135,7 +135,8 @@ class ApplyJobService extends BaseService {
                                     'status' => self::ACTIVE,
                                     'isPublic' =>self::ACTIVE
                                 ]);
-                            }]);
+                            }])
+                            ->orderBy('id', 'DESC');
     }
 
     public function getBonus($id)
