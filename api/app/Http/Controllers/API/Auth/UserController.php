@@ -282,4 +282,16 @@ class UserController extends Controller
         $response = $this->userService->changeMultiStatus($request);
         return response()->json($response);
     }
+
+    public function blockUser(Request $request)
+    {
+        $response = $this->userService->blockUser($request);
+        return response()->json($response);
+    }
+
+    public function blockMultipleUser(Request $request)
+    {
+        $response = $this->userService->blockMultipleUser($request);
+        return response()->json($response);
+    }
 }
