@@ -225,5 +225,74 @@ class ApplyJobService extends BaseService {
         $file->move($uploadPath, $file_cv );
         return $file_cv;
     }
+   
+
+    public function getCalendar()
+    {
+        $userRole = Auth::user()->role;
+        if ($userRole == self::ROLE_ADMIN) {
+            $get = $this->getCalendarAdmin();            
+        } else if ($userRole == self::ROLE_COMPANY) {
+            $get = $this->getCalendarCompany();            
+        } else {
+            $get = $this->getCalendarUser();
+        }
+        $days = [];
+        $data = [];
+        foreach ($get as $key => $value){
+            $days['id'] = $value->id;
+            $days['start'] = Carbon::parse($value->interview_schedules)->format('Y-m-d');
+            $days['title'] = "LPV".$value->job->title;
+            array_push($data,$days);
+        }
+        return $data;
+    }
+
+    public function getCalendarAdmin()
+    {
+        return $this->getApplyCalendar()                    
+                    ->where('status' ,self::NTD_DUYET_HO_SO)           
+                    ->get();
+    }
+
+    public function getCalendarCompany()
+    {
+        return $this->getApplyCalendarCompany()                    
+                    ->where('status' ,self::NTD_DUYET_HO_SO)           
+                    ->get();
+    }
+
+    public function getCalendarUser()
+    {
+        return $this->getApplyCalendar()                    
+                    ->where('status' ,self::NTD_DUYET_HO_SO)  
+                    ->where('user_id_submit' ,Auth::user()->id)         
+                    ->get();
+    }
+
+    private function getApplyCalendar()
+    {
+        return $this->apply->with(['job' => function ($q) {
+                $q->select('currency', 'title','id');
+                $q->where([
+                    'deleted' => self::UN_DELETE,
+                    'status' => self::ACTIVE,
+                    'isPublic' =>self::ACTIVE
+                ]);
+            }]);
+    }
+
+    private function getApplyCalendarCompany()
+    {
+        return $this->apply->with(['job' => function ($q) {
+                $q->select('currency', 'title','id');
+                $q->where([
+                    'id_created'=> Auth::user()->id,
+                    'deleted' => self::UN_DELETE,
+                    'status' => self::ACTIVE,
+                    'isPublic' =>self::ACTIVE
+                ]);
+            }]);
+    }  
     
 }

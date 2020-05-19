@@ -103,6 +103,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');
         Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');
       });
+      Route::prefix('lichphongvan')->group(function () {
+        Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');    
+      });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');
         Route::get('getApplyApproved', 'Admin\ApplyManageController@getApplyApproved');
