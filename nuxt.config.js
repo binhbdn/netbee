@@ -160,12 +160,13 @@ module.exports = {
     router: {
         middleware: ['stats'],
     },
-    plugins: [
+    plugins: [        
         '~/plugins/axios.js',
         '~/plugins/helppers.js',
         '~/plugins/vue-lazyload.js',
-        '~/plugins/jsonld.js',
+        '~/plugins/jsonld.js',        
         { src: './plugins/vue2-editor', ssr: false },
+        { src: '~/plugins/full-calendar.js', ssr: false },
         { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
         { src: '~/plugins/infiniteloading', ssr: false },
         { src: '~/plugins/chart', ssr: false },
