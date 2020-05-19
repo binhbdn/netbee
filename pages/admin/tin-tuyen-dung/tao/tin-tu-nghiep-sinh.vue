@@ -332,61 +332,61 @@
                                                             <input type="number" class="form-control" disabled :value=" data.time_bonus.id == 1 ? data.bonus : data.time_bonus.id == 2 ? data.bonus * 1.5 : data.bonus * 2">
                                                         </div>
                                                     </div>
-                                                   <div class="col-4" id="goi1">
-                                                        <div class="card option p-l-10 py-2" id="high" style="color: #000; border-radius: 10px" :class="data.highlight_job == 1 ? 'high' : 'normal'">
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" class="custom-control-input"
+                                                    <div class="col-lg-4 col-md-6 col-sm-12" id="goi1">
+                                                        <div class="card border-info text-center bg-transparent">
+                                                            <div class="card-content">
+                                                                <div class="card-body p-t-10">
+                                                                    <label for="defaultGroupExample0" class="btn bg-netbee">TIN NỔI BẬT</label>
+                                                                     <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
-                                                                <label class="custom-control-label"
-                                                                    for="defaultGroupExample0" style="font-size: 16px; font-weight: 600;">Tin
-                                                                    nổi bật </label>
-                                                                    <i class="far fa-check" v-if="data.highlight_job == 1" style="color: green"></i>
+                                                                    <i class="far fa-check fa-2x" v-if="data.highlight_job == 1" style="color: green"></i>
+                                                                    <div class="divider divider-default">
+                                                                        <div class="divider-text">Tin thường</div>
+                                                                    </div>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="detail-active high p-10">
-                                                            <p>- Được ưu tiên gợi ý</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                        </div>
                                                     </div>
-                                                    <div class="col-4" id="goi2">
-                                                        <div class="card option p-l-10 py-2" id="normal" style="color: #000; border-radius: 10px" :class="data.highlight_job == 0 ? 'high' : 'normal'">
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" class="custom-control-input"
+                                                    <div class="col-lg-4 col-md-6 col-sm-12" id="goi2">
+                                                        <div class="card border-info text-center bg-transparent">
+                                                            <div class="card-content">
+                                                                <div class="card-body p-t-10">
+                                                                    <label for="defaultGroupExample1" class="btn bg-netbee">TIN THƯỜNG</label>
+                                                                    <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
-                                                                <label class="custom-control-label"
-                                                                    for="defaultGroupExample1" style="font-size: 16px; font-weight: 600;">Tin
-                                                                    thường</label>
-                                                                    <i class="far fa-check" v-if="data.highlight_job == 0" style="color: green"></i>
+                                                                    <i class="far fa-check fa-2x" v-if="data.highlight_job == 0" style="color: green"></i>
+                                                                    <div class="divider divider-warning">
+                                                                        <div class="divider-text"><img src="/assets/img/tinnoibat.jpg" style="height: 25px;"></div>
+                                                                    </div>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="detail-active high p-10">
-                                                            <p>- Được ưu tiên gợi ý</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4" id="goi3">
-                                                        <div class="card option p-l-10 py-2" id="normal" style="color: #000; border-radius: 10px" :class="data.highlight_job == 2 ? 'high' : 'normal'">
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" class="custom-control-input"
+                                                    <div class="col-lg-4 col-md-6 col-sm-12" id="goi3">
+                                                        <div class="card border-info text-center bg-transparent">
+                                                            <div class="card-content">
+                                                                <div class="card-body p-t-10">
+                                                                    <label for="defaultGroupExample2" class="btn bg-netbee">TIN VIP</label>
+                                                                    <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
-                                                                <label class="custom-control-label"
-                                                                    for="defaultGroupExample2" style="font-size: 16px; font-weight: 600;">Tin
-                                                                    VIP</label>
-                                                                    <i class="far fa-check" v-if="data.highlight_job == 2" style="color: green"></i>
+                                                                    <i class="far fa-check fa-2x" v-if="data.highlight_job == 2" style="color: green"></i>
+                                                                    <div class="divider divider-danger">
+                                                                        <div class="divider-text"><img src="/assets/img/tinvip.jpg"></div>
+                                                                    </div>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="detail-active high p-10">
-                                                            <p>- Được ưu tiên gợi ý</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                            <p>- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
                                                         </div>
                                                     </div>
                                                 </div>
