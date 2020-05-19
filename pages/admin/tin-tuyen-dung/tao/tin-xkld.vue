@@ -158,7 +158,7 @@
                                                             </ValidationProvider>
                                                         </div>
                                                         <div class="col-6">
-                                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <ValidationProvider rules="required" v-slot="{ errors }" name="confirmDateStart">
                                                                 <div class="form-group">
                                                                     <label for="firstName3">
                                                                         Ngày bắt đầu nhận hồ sơ
@@ -177,13 +177,13 @@
                                                             <div class="container-fluid">
                                                                 <div class="row">
                                                                     <div class="col-6" style="padding-left:0px">
-                                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmDigit">
                                                                             <input type="number" class="form-control" v-model="data.age_start" placeholder="Từ">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px">
-                                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                        <ValidationProvider rules="required|ssdigit:@confirmDigit" v-slot="{ errors }">
                                                                             <input type="number" class="form-control" v-model="data.age_late" placeholder="Đến">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
@@ -201,13 +201,13 @@
                                                             <div class="container-fluid">
                                                                 <div class="row">
                                                                     <div class="col-6" style="padding-left:0px">
-                                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
                                                                             <input type="number" class="form-control" v-model="data.salary_start" placeholder="Từ">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px">
-                                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                        <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
                                                                             <input type="number" class="form-control" v-model="data.salary_end" placeholder="Đến">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
@@ -262,7 +262,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="required|ssdate" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Ngày thi tuyển
@@ -273,7 +273,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="required|ssdate" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Ngày dự kiến nhập cảnh
@@ -450,6 +450,34 @@ extend("ssdate", {
     validate: value => {
         var date = moment(value)
         if(moment(Date.now()).isBefore(date)){
+            return true
+        }else{
+            return false
+        }
+    }
+})
+
+extend("ssdate_start", {
+    params: ['target'],
+    message: field => "Phải lớn hơn ngày nhận hồ sơ",
+    validate: (value, { target }) => {
+        var date = moment(value)
+        let date_start = moment(target)
+        if(date_start.isBefore(date)){
+            return true
+        }else{
+            return false
+        }
+    }
+})
+
+extend("ssdigit", {
+    params: ['target'],
+    message: (field) => `Không được nhỏ hơn`,
+    validate: (value, { target }) => {
+        var max = parseFloat(value)
+        let min = parseFloat(target)
+        if(max > min){
             return true
         }else{
             return false
