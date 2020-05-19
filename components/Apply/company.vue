@@ -62,8 +62,9 @@
                                                 <td>{{item.job.title}}</td>
                                                 <td>{{item.name}}</td>
                                                 <td>
+                                                    <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" style="text-decoration: underline;">Xem hồ sơ</a>
+                                                    <a v-if="item.nb_paper != null" @click="showFile(item.id)" style="text-decoration: underline;">Xem giấy tờ đính kèm</a>
                                                     <p v-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
-                                                    <a v-else-if="item.status == 5 && item.nb_paper != null" @click="showFile(item.id)" style="text-decoration: underline;">Xem giấy tờ đính kèm</a>
                                                     <p v-else-if="item.status == 5 && item.nb_paper == null">Đợi giấy tờ đính kèm</p>
                                                 </td>
                                                 <td>
@@ -275,7 +276,7 @@
                         <button v-if="paper.status == 5" @click="approve()" class="btn bg-netbee">Duyệt giấy tờ</button>
                     </div> -->
                     <div class="cancel-data-btn" @click="closeShowFile()">
-                        <button class="btn btn-outline-danger">Cancel</button>
+                        <button class="btn btn-outline-danger">Đóng</button>
                     </div>
                 </div>
             </div>

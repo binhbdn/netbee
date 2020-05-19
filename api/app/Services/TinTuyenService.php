@@ -152,7 +152,8 @@ class TinTuyenService extends BaseService {
             'id_created' => Auth::user()->id,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-            'school_name' => $request->school_name
+            'school_name' => $request->school_name,
+            'status' => self::INACTIVE
         ];
 
         if ($request->type != self::JOB_OVERSEAS_STUDENT) {
