@@ -57,9 +57,9 @@
                                     </div>                                  
                                          </ValidationProvider>
                                     <div class="col-sm-12 text-center form-group">
-                                        <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
-                                             <input @click="sendForm()" type="button" name="submit" id="submit" class="btn btn-warning" style="font-weight: bold; color:black; background-color:#ffb701 !important" value="Gửi ngay" />
-                                               </div>
+                                      <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
+                                        <button @click="sendForm()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Gửi ngay</button>
+                                      </div>
                                     </div>
                               </div>
                              </ValidationObserver>  
