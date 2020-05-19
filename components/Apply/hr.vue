@@ -48,7 +48,7 @@
                                             <th>ID</th>
                                             <th>Tên công việc</th>
                                             <th>Tên ứng viên</th>
-                                            <th>Bonus</th>
+                                            <th v-if="$auth.user.role == 3">Bonus</th>
                                             <th>Nhà tuyển dụng</th>
                                             <th>Trạng thái</th>
                                             <th>Hành động</th>
@@ -59,7 +59,7 @@
                                             <td>{{item.id}}</td>
                                             <td>{{item.job.title}}</td>
                                             <td>{{item.name}}</td>
-                                            <td>
+                                            <td v-if="$auth.user.role == 3">
                                                 <span style="color: #fc205c">{{item.bonus}}{{ item.job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                                             </td>
                                             <td>{{item.user.name}}</td>
