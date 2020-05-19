@@ -242,9 +242,9 @@ class UserService extends BaseService {
                 '%'.$searchName.'%'
             ];
         }
-        
+
         $queryBlock = $this->user->whereRole($request->userRole);
-        if ($searchBlock == 1) {
+        if ($searchBlock == self::ACTIVE) {
             $queryBlock->whereBlock(self::ACTIVE);
             return $queryBlock->orderBy('id', 'DESC')->paginate($perPage);
         }
@@ -410,7 +410,7 @@ class UserService extends BaseService {
         ];
     }
 
-    public function deleteUser($request)
+    public function blockUser($request)
     {
         try {
             $user = $this->getUserById($request->id)->first();
@@ -421,7 +421,7 @@ class UserService extends BaseService {
                 ];
                 return [
                     'status'=> 200,
-                    'message' => 'Xóa tài khoản thành công',
+                    'message' => 'Block tài khoản thành công',
                     'data' => $this->update($data, $request->id)
                 ];
             }
@@ -439,7 +439,7 @@ class UserService extends BaseService {
         }
     }
 
-    public function deleteMultipleUser($request)
+    public function blockMultipleUser($request)
     {
         if(empty($request->id)){
             return [
@@ -456,7 +456,7 @@ class UserService extends BaseService {
             ]);
             return [
                 'status'=> 200,
-                'message' => 'Xóa tài khoản thành công',
+                'message' => 'Block tài khoản thành công',
                 'data' => null
             ];
         } catch (\Exception $e) {

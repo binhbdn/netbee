@@ -283,15 +283,15 @@ class UserController extends Controller
         return response()->json($response);
     }
 
-    public function deleteUser(Request $request)
+    public function blockUser(Request $request)
     {
-        $response = $this->userService->deleteUser($request);
+        $response = $this->userService->blockUser($request);
         return response()->json($response);
     }
 
-    public function deleteMultipleUser(Request $request)
+    public function blockMultipleUser(Request $request)
     {
-        $response = $this->userService->deleteMultipleUser($request);
+        $response = $this->userService->blockMultipleUser($request);
         return response()->json($response);
     }
 }

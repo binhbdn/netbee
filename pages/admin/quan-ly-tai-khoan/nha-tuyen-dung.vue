@@ -189,8 +189,8 @@
                             aria-expanded="false"
                           >Hành động</button>
                           <div class="dropdown-menu" style="left: -25px!important;">
-                            <a class="dropdown-item" @click="deleteMultipleUser()">
-                              <i class="feather icon-trash-2"></i>Xóa
+                            <a class="dropdown-item" @click="blockMultipleUser()">
+                              <i class="far fa-lock"></i>Block
                             </a>
                             <a class="dropdown-item" @click="changeMultipleStatusNTD(1)">
                               <i class="far fa-check-circle"></i>Kích hoạt
@@ -338,11 +338,11 @@
                                       {{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}
                                     </a>
                                     <a
-                                      v-on:click="deleteUser(item.id)"
+                                      v-on:click="blockUser(item.id)"
                                       class="dropdown-item"
                                       style="margin-top:5px"
                                     >
-                                      <i class="far fa-trash-alt"></i> Xóa
+                                      <i class="far fa-lock"></i> Block
                                     </a>
                                   </div>
                                 </div>
@@ -569,25 +569,25 @@ export default {
         (this.cardSearch.searchFromDate = ""),
         (this.cardSearch.searchToDate = "");
     },
-    async deleteUser(id) {
+    async blockUser(id) {
       this.$axios
-        .$post("user/" + this.userRole + "/deleteUser", { id: id })
+        .$post("user/" + this.userRole + "/blockUser", { id: id })
         .then(response => {
           if (response.status == 200) {
-            this.$swal("Xóa Thành công!", response.message, "success");
+            this.$swal("Block thành công!", response.message, "success");
             this.search();
           } else {
             this.$swal("Lỗi!", response.message, "error");
           }
         })
         .catch(e => {
-          this.$swal("Lỗi!", "Xóa thất bại!", "error");
+          this.$swal("Lỗi!", "Block thất bại!", "error");
         });
     },
-    async deleteMultipleUser() {
+    async blockMultipleUser() {
       try {
         this.$axios
-          .$post("user/" + this.userRole + "/deleteMultipleUser", {
+          .$post("user/" + this.userRole + "/blockMultipleUser", {
             id: JSON.stringify(this.selected)
           })
           .then(res => {
@@ -619,7 +619,7 @@ export default {
             }
           });
       } catch (error) {
-        this.$swal("Lỗi!", "Lỗi bỏ kích hoạt!", "error");
+        this.$swal("Lỗi!", "Lỗi!", "error");
       }
     }
   },
