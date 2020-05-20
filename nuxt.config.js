@@ -87,8 +87,14 @@ module.exports = {
             id: 'UA-164963357-1'
         }],
         ['@nuxtjs/component-cache', { maxAge: 1000 * 60 * 60 }],
-        ["nuxt-compress",{gzip: {cache: true},brotli: {threshold: 10240}}]
+        ["nuxt-compress",{gzip: {cache: true},brotli: {threshold: 10240}}],
+        '@nuxtjs/robots'
     ],
+    robots: {
+        UserAgent: '*',
+        Disallow: '/admin',
+        Sitemap : 'https://netbee.vn/sitemap.xml'
+    },
     //map sitemap
     sitemap: {
         hostname: 'https://netbee.vn',
@@ -160,12 +166,13 @@ module.exports = {
     router: {
         middleware: ['stats'],
     },
-    plugins: [
+    plugins: [        
         '~/plugins/axios.js',
         '~/plugins/helppers.js',
         '~/plugins/vue-lazyload.js',
-        '~/plugins/jsonld.js',
+        '~/plugins/jsonld.js',        
         { src: './plugins/vue2-editor', ssr: false },
+        { src: '~/plugins/full-calendar.js', ssr: false },
         { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
         { src: '~/plugins/infiniteloading', ssr: false },
         { src: '~/plugins/chart', ssr: false },

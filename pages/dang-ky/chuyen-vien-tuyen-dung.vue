@@ -115,7 +115,7 @@
                         </div>
                     </ValidationProvider>
                     <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
-                        <input @click="signIn()" type="button" name="submit" id="submit" class="btn bg-netbee" style="font-weight: bold;" value="Đăng ký ngay" />
+                        <button @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Đăng ký ngay</button>
                     </div>
                     </ValidationObserver>
                 </form>

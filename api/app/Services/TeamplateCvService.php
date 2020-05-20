@@ -58,9 +58,9 @@ class TeamplateCvService {
     {
         $role = Auth::user()->role;
         if($role == self::ADMIN){
-            return $this->getAllProfile()->where('deleted','=',self::ACTION)->get();
+            return $this->getAllProfile()->where('deleted','=',self::ACTION)->orderBy('id', 'DESC')->get();
         }else if($role == self::HR || $role == self::COMPANY || $role == self::USER){
-            return $this->getAllProfileByRole()->where('deleted','=',self::ACTION)->get();
+            return $this->getAllProfileByRole()->where('deleted','=',self::ACTION)->orderBy('id', 'DESC')->get();
         }       
     }  
         

@@ -7,7 +7,7 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
-              <h2 class="content-header-title float-left mb-0">Danh sách nhà tuyển dụng</h2>
+              <h2 class="content-header-title float-left mb-0">Danh sách HR</h2>
               <div class="breadcrumb-wrapper col-12">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
@@ -16,7 +16,7 @@
                   <li class="breadcrumb-item">
                     <a href="/">Quản lý tài khoản</a>
                   </li>
-                  <li class="breadcrumb-item active">Danh sách nhà tuyển dụng</li>
+                  <li class="breadcrumb-item active">Danh sách HR</li>
                 </ol>
               </div>
             </div>
@@ -192,10 +192,10 @@
                             <a class="dropdown-item" @click="blockMultipleUser()">
                               <i class="far fa-lock"></i>Block
                             </a>
-                            <a class="dropdown-item" @click="changeMultipleStatusNTD(1)">
+                            <a class="dropdown-item" @click="changeMultipleStatus(1)">
                               <i class="far fa-check-circle"></i>Kích hoạt
                             </a>
-                            <a class="dropdown-item" @click="changeMultipleStatusNTD(0)">
+                            <a class="dropdown-item" @click="changeMultipleStatus(0)">
                               <i class="far fa-times-circle"></i>Bỏ kích hoạt
                             </a>
                           </div>
@@ -233,8 +233,8 @@
                           <th>Thao tác</th>
                         </tr>
                       </thead>
-                      <tbody v-if="listNTD.length > 0">
-                        <tr v-for="(item, index) in listNTD" :key="index">
+                      <tbody v-if="listHR.length > 0">
+                        <tr v-for="(item, index) in listHR" :key="index">
                           <td class="d-flex" style="padding-top:34px">
                             <li class="d-inline-block mr-1">
                               <fieldset>
@@ -354,14 +354,14 @@
                     </table>
                     <p
                       class="mb-0 text-center p-1 font-italic"
-                      v-if="listNTD.length == 0"
+                      v-if="listHR.length == 0"
                     >Không có dữ liệu nào.</p>
                   </div>
                 </div>
               </div>
             </div>
             <infinite-loading
-              v-if="listNTD.length"
+              v-if="listHR.length"
               spinner="bubbles"
               @infinite="infiniteScroll"
               style="padding:20px; width:100%"
@@ -381,10 +381,10 @@ import "vue-multiselect/dist/vue-multiselect.min.css";
 import Vue from "vue";
 import moment from "moment";
 export default {
-  name: "ListNTD",
+  name: "ListHR",
   layout: "admin",
   head: {
-    title: "Danh sách tài khoản nhà tuyển dụng",
+    title: "Danh sách tài khoản HR",
     script: [
       { src: "/app-assets/vendors/js/tables/datatable/pdfmake.min.js" },
       { src: "/app-assets/vendors/js/tables/datatable/vfs_fonts.js" }
@@ -395,8 +395,8 @@ export default {
   },
   data() {
     return {
-      userRole: "2",
-      listNTD: [],
+      userRole: "3",
+      listHR: [],
       cardSearch: {
         search: "",
         searchStatus: "",
@@ -450,7 +450,7 @@ export default {
           "user/" +
             this.userRole +
             "/search?searchBlock=" +
-            (this.cardSearch.searchBlock.id
+            (this.cardSearch.searchBlock.id != null
               ? this.cardSearch.searchBlock.id
               : "") +
             "&searchStatus=" +
@@ -469,21 +469,21 @@ export default {
             (this.cardSearch.searchToDate ? this.cardSearch.searchToDate : "")
         )
         .then(response => {
-          this.listNTD = response.data;
+          this.listHR = response.data;
         });
     },
 
-    async changeMultipleStatusNTD(statusNTD) {
+    async changeMultipleStatus(statusHR) {
       try {
         this.$axios
           .$post("user/" + this.userRole + "/changeMultipleStatus", {
             id: JSON.stringify(this.selected),
-            status: statusNTD
+            status: statusHR
           })
           .then(res => {
             if (JSON.stringify(this.selected).length == 2) {
               this.$swal({
-                title: "Bạn chưa chọn nhà tuyển dụng!",
+                title: "Bạn chưa chọn tài khoản!",
                 icon: "warning",
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: "OK"
@@ -513,10 +513,10 @@ export default {
       }
     },
     sortAscendingID() {
-      this.listNTD.sort((a, b) => (a.id > b.id ? 1 : -1));
+      this.listHR.sort((a, b) => (a.id > b.id ? 1 : -1));
     },
     sortDecreaseID() {
-      this.listNTD.sort((a, b) => (a.id < b.id ? 1 : -1));
+      this.listHR.sort((a, b) => (a.id < b.id ? 1 : -1));
     },
     infiniteScroll($state) {
       setTimeout(() => {
@@ -550,7 +550,7 @@ export default {
           )
           .then(response => {
             if (response.data.data.length > 1) {
-              response.data.data.forEach(item => this.listNTD.push(item));
+              response.data.data.forEach(item => this.listHR.push(item));
               $state.loaded();
             } else {
               $state.complete();
@@ -561,14 +561,7 @@ export default {
           });
       }, 500);
     },
-    resetForm() {
-      (this.cardSearch.search = ""),
-        (this.cardSearch.searchStatus = ""),
-        (this.cardSearch.searchName = ""),
-        (this.cardSearch.searchBlock = ""),
-        (this.cardSearch.searchFromDate = ""),
-        (this.cardSearch.searchToDate = "");
-    },
+
     async blockUser(id) {
       this.$axios
         .$post("user/" + this.userRole + "/blockUser", { id: id })
@@ -584,6 +577,7 @@ export default {
           this.$swal("Lỗi!", "Block thất bại!", "error");
         });
     },
+
     async blockMultipleUser() {
       try {
         this.$axios
@@ -621,16 +615,24 @@ export default {
       } catch (error) {
         this.$swal("Lỗi!", "Lỗi!", "error");
       }
+    },
+    resetForm() {
+      (this.cardSearch.search = ""),
+        (this.cardSearch.searchStatus = ""),
+        (this.cardSearch.searchName = ""),
+        (this.cardSearch.searchBlock = ""),
+        (this.cardSearch.searchFromDate = ""),
+        (this.cardSearch.searchToDate = "");
     }
   },
   computed: {
     selectAll: {
       get() {
-        if (this.listNTD && this.listNTD.length > 0) {
+        if (this.listHR && this.listHR.length > 0) {
           // A news array exists with at least one item
           let allChecked = true;
 
-          this.listNTD.forEach(item => {
+          this.listHR.forEach(item => {
             if (!this.selected.includes(item.id)) {
               allChecked = false; // If even one is not included in array
             }
@@ -648,7 +650,7 @@ export default {
         const checked = [];
 
         if (value) {
-          this.listNTD.forEach(item => {
+          this.listHR.forEach(item => {
             checked.push(item.id);
           });
         }
