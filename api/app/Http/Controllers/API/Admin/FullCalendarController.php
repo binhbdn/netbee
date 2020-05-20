@@ -18,7 +18,7 @@ class FullCalendarController extends Controller
     
     public function getCalendar()
     {
-        $response = $this->applyJobService->getCalendar();
+        $response = $this->applyJobService->getCalendar();        
         return response()->json($response);
     }
 

@@ -25,8 +25,8 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div style="margin:20px;">
-                                    <fullcalendar></fullcalendar>
+                                <div style="margin:20px;">                                    
+                                    <fullcalendar></fullcalendar>                                  
                                 </div>                                
                             </div>
                         </div>
@@ -37,8 +37,7 @@
     </div>  
 </template>
 
-<script>                  
-    import fullcalendar from '~/components/Calendar.vue'
+<script>                      
     export default {
         name: 'Calendar',
         layout: 'admin',
@@ -49,7 +48,7 @@
             }
         },        
         components:{
-          fullcalendar
+               
         },
         
         methods: {           

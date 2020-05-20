@@ -34,4 +34,9 @@ class TimKiemController extends Controller
         $response = $this->searchService->jobs($request);
         return response()->json($response);
     }
+
+    public function searchCvs(Request $request){
+        $response = $this->searchService->searchCvs($request);
+        return response()->json($response);
+    }
 }

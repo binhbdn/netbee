@@ -7,6 +7,7 @@ use App\User;
 use App\Models\NbJoblist;
 use App\Models\VisaProfession;
 use Auth;
+use App\Models\NbCvs;
 
 class SearchService extends BaseService {
 
@@ -15,19 +16,22 @@ class SearchService extends BaseService {
     protected $visaProfession;
     protected $nbJobList;
     protected $user;
+    protected $nbCvs;
 
     public function __construct(
         NbCompanyInfo $nbCompanyInfo,
         Nation $nation,
         VisaProfession $visaProfession,
         NbJoblist $nbJobList,
-        User $user
+        User $user,
+        NbCvs $nbCvs
     ) {
         $this->nbCompanyInfo = $nbCompanyInfo;
         $this->nation = $nation;
         $this->visaProfession = $visaProfession;
         $this->nbJobList = $nbJobList;
         $this->user = $user;
+        $this->nbCvs = $nbCvs;
     }
 
     public function companies($request)
@@ -203,5 +207,61 @@ class SearchService extends BaseService {
             'message' => 'Lỗi',
             'data' => null
         ];
+    }
+
+    public function searchCvs($request)
+    {
+        $perPage = 6;
+
+        $search = $request->search;
+        $searchLevel = $request->searchLevel;
+        $searchAddress = $request->searchAddress;
+        $searchSex = $request->maleFemale;
+        $searchBirthday = $request->birthday_year;
+
+        $conditions =[];
+
+        if($searchAddress != ''){
+            $conditions[] = [
+                'address_profile',
+                '=',
+                '%'.$searchAddress.'%'
+            ];
+        }
+        if($searchSex != ''){
+            $conditions[] = [
+                'maleFemale',
+                'LIKE',
+                '%'.$searchSex.'%'
+            ];
+        }
+        if($searchLevel != ''){
+            $conditions[] = [
+                'level_education',
+                'LIKE',
+                '%'.$searchLevel.'%'
+            ];
+        }
+        if($searchBirthday != ''){
+            $conditions[] = [
+                'birthday_profile',
+                'LIKE',
+                '%'.$searchBirthday.'%'
+            ];
+        }
+
+        $query = $this->nbCvs->whereDeleted(self::UN_DELETE);
+
+        if (!empty($conditions)) {
+            $query->where($conditions);
+        }
+        if ($search != '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('fullname_profile', 'LIKE', '%'.$search.'%')
+                    ->orWhere('id','LIKE', '%'.$search.'%')
+                    ->orWhere('address_profile','LIKE', '%'.$search.'%');
+            });
+        }
+        return $query->orderBy('id', 'DESC')->paginate($perPage);
     }
 }
