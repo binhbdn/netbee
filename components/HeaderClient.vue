@@ -34,6 +34,12 @@
               <br />Công ty
             </a>
           </li>
+          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ung-vien'}">
+            <a href="/ung-vien" class="nav-link header-nav-link" style="text-align: center">
+              <i class="fas fa-id-badge" style="font-size: 21px"></i>
+              <br />Ứng viên
+            </a>
+          </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
             <a href="/tin-tuc" class="nav-link header-nav-link" >
               <i class="fa fa-table" style="font-size"></i>
