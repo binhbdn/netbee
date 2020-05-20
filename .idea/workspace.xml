@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c6672db-e408-48a5-a659-dcc79e737b44" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/api/public/css/all.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Http/Controllers/MailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Http/Controllers/MailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/app/Jobs/SendmailJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/app/Jobs/SendmailJob.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2020_05_14_134805_create_papers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/database/migrations/2020_05_14_134805_create_papers_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/database/migrations/2020_05_15_103708_create_table_nb_company_follows.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/database/migrations/2020_05_15_103708_create_table_nb_company_follows.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/api/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dang-ky/ung-vien.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dang-ky/ung-vien.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/quen-mat-khau.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/quen-mat-khau.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/axios.js" afterDir="false" />
-    </list>
+    <list default="true" id="3c6672db-e408-48a5-a659-dcc79e737b44" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,6 +135,7 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -174,7 +165,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589943282365</updated>
-      <workItem from="1589943291062" duration="16632000" />
+      <workItem from="1589943291062" duration="21966000" />
     </task>
     <servers />
   </component>
