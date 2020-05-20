@@ -5,11 +5,11 @@
                 <div class="card-content h-100">
                     <div class="text-center p-1">
                         <a :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.fullname_profile)}`">
-                            <img v-lazy="item.avatar != null && item.avatar.startsWith('https') ? item.avatar : `/uploads/users/avatars/${item.avatar_profile}`" height="100%" :alt="`${item.avatar}`" style="object-fit: scale-down; max-height: 100%; max-width: 100%;">
+                            <img v-lazy="`/uploads/users/avatars/${item.avatar_profile}`" height="100%" :alt="`${item.avatar}`" style="object-fit: scale-down; max-height: 100%; max-width: 100%;">
                         </a>
                     </div>
-                    <div class="remove-border-right p-1">
-                        <div class="remove-border-right d-flex justify-content-between" style="padding: 5px 0px;">
+                    <div class="p-1">
+                        <div class="d-flex justify-content-between" style="padding: 5px 0px;">
                             <a class="item-vip-a" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.fullname_profile)}`" data-toggle="tooltip" data-placement="top" :title="`${item.fullname_profile}`">[{{item.id}}] {{ item.fullname_profile }}</a>
                             <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Giới tính"><i class="far fa-user"></i> {{ item.maleFemale }}</p>
                         </div>
@@ -47,22 +47,14 @@ export default {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
-.quantity-title {
-    white-space: nowrap;
-    overflow: hidden!important;
-    text-overflow: ellipsis!important;
-}
 
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 3fr 2fr;
 }
 .item-vip-a{
     font-weight: 600;
     font-size: 16px;
-}
-.highlight{
-    border-left: 4px solid #ffb701 !important;
 }
 
 .border-DataList-item:hover{
