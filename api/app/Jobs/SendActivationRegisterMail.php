@@ -8,25 +8,26 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Sendmail;
+use App\Mail\ActivationRegisterMail;
 
-class SendmailJob implements ShouldQueue
+class SendActivationRegisterMail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $data;
     public $email;
-    public $tries = 5;
+    public $data;
+    public $tries;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($email, $data)
+    public function __construct($data)
     {
+        //
         $this->queue = 'default'; //choose a queue name
         $this->connection = 'database';
-        $this->email = $email;
-        $this->data = $data;
+        $this->email = $data->email;
+        $this->data = $data->all();
     }
 
     /**
@@ -36,8 +37,7 @@ class SendmailJob implements ShouldQueue
      */
     public function handle()
     {
-        $mail = $this->email;
-        $dataemail = $this->data;
-        Mail::to($mail)->queue(new Sendmail($dataemail));
+        //
+        Mail::to($this->email)->send(new ActivationRegisterMail($this->data));
     }
 }
