@@ -184,7 +184,12 @@
                                             </div>
                                             <div class="col-md-10">
                                                 <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.maleFemale}}</p> 
-                                                <input v-if="status == 1" v-model="info_frofile_user.maleFemale" class="main-text textarea" placeholder="VD: Nam/Nữ"  style="overflow:hidden;"/>                                                  
+                                                <div class="radio-MaleFemale" v-if="status == 1">
+                                                    <input v-model="info_frofile_user.maleFemale" type="radio" id="Nam" value="Nam"/>
+                                                    <label for="Nam">Nam</label>
+                                                    <input v-model="info_frofile_user.maleFemale" type="radio" id="Nu" value="Nữ" style="margin-left: 20px;" />
+                                                    <label for="Nu">Nữ</label>
+                                                </div>                                                 
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -706,6 +711,13 @@ textarea:hover, input:hover {
     .btn-cv-delete{ 
         border: 1px solid red ;           
         background-color: red;
+        color: #fff;
+    }
+    .radio-MaleFemale {
+        margin-top: 6px;
+    }
+    .radio-MaleFemale  label{
+        font-size: 15px;
         color: #fff;
     }
 </style>

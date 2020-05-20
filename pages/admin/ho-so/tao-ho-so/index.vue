@@ -164,8 +164,13 @@
                                             <div class="col-md-2 icon-cv-profile">
                                                 <i class="fa fa-venus-mars"></i>
                                             </div>
-                                            <div class="col-md-10">
-                                                <input v-model="info_frofile_user.maleFemale" @click="text()" class="main-text textarea" placeholder="VD: Nam/Nữ"  style="overflow:hidden;"/>
+                                            <div class="col-md-10">    
+                                                <div class="radio-MaleFemale">
+                                                    <input v-model="info_frofile_user.maleFemale" type="radio" id="Nam" value="Nam"/>
+                                                    <label for="Nam">Nam</label>
+                                                    <input v-model="info_frofile_user.maleFemale" type="radio" id="Nu" value="Nữ" style="margin-left: 20px;" />
+                                                    <label for="Nu">Nữ</label>
+                                                </div>                                                                                           
                                             </div>                            
                                         </div>                                             
                                     </div> 
@@ -340,6 +345,7 @@
                         if(response.data.status == 400){                            
                             $('input').addClass('your-class');
                             $('textarea').addClass('your-class');
+                            // $('label').addClass('clor-class');
                         }                        
                     }
                  })
@@ -360,11 +366,14 @@
     .your-class::-webkit-input-placeholder {
         color: crimson !important;
     }
+    /* .clor-class{
+        color: crimson !important;
+    } */
    .title-h2-cv h2{
        margin-top: 20px;
         font-size: 34px;
         font-weight: 600;
-   }
+   }   
    hr {
        width: 50%;
         text-align: left;
@@ -628,6 +637,13 @@
     .btn-cv-delete{ 
         border: 1px solid red ;           
         background-color: red;
+        color: #fff;
+    }
+    .radio-MaleFemale {
+        margin-top: 6px;
+    }
+    .radio-MaleFemale  label{
+        font-size: 15px;
         color: #fff;
     }
 </style>
