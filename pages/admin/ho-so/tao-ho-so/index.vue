@@ -148,7 +148,22 @@
                                     </div>                        
                                 </center>     
                                 <br> 
-                                <div style="padding-left:25px;padding-right: 10px;">                                
+                                <div style="padding-left:25px;padding-right: 10px;">  
+                                    <div class="briday-cv">
+                                        <div class="row">
+                                            <div class="col-md-2 icon-cv-profile">
+                                                <i class="fa fa-book"></i>
+                                            </div>
+                                            <div class="col-md-10">
+                                                <select class="main-select" v-model="info_frofile_user.form">
+                                                    <option disabled value="">Chọn Hình thức</option>
+                                                    <option value="0">Xuất khẩu lao động</option>
+                                                    <option value="1">Du học sinh</option>
+                                                    <option value="2">Tu nghiệp sinh</option>
+                                                </select>                                                
+                                            </div>                            
+                                        </div>                                             
+                                    </div>                    
                                     <div class="briday-cv">
                                         <div class="row">
                                             <div class="col-md-2 icon-cv-profile">
@@ -239,6 +254,7 @@
                         id_user:'',
                         fullname_profile:'',
                         birthday_profile:'',
+                        form:'',
                         maleFemale:'',
                         avatar_profile:'',
                         address_profile:'',
@@ -312,6 +328,7 @@
                 form.append('id_user' , this.info_frofile_user.id_user)
                 form.append('fullname_profile' , this.info_frofile_user.fullname_profile)
                 form.append('birthday_profile' , this.info_frofile_user.birthday_profile)
+                form.append('form' , this.info_frofile_user.form)
                 form.append('maleFemale' , this.info_frofile_user.maleFemale)
                 form.append('address_profile' , this.info_frofile_user.address_profile)
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
@@ -645,6 +662,13 @@
     .radio-MaleFemale  label{
         font-size: 15px;
         color: #fff;
+    }
+    .main-select{        
+        font-size: 15px;
+        margin-top: 0px;  
+        background-color: #FFB701 !important;     
+        height: 31px;
+        border-radius: 10px;
     }
 </style>
 <style scoped>

@@ -262,6 +262,19 @@ class ApplyJobService extends BaseService {
         return $data;
     }
 
+    public function getInterview()
+    {
+        $userRole = Auth::user()->role;
+        if ($userRole == self::ROLE_ADMIN) {
+            $data = $this->getCalendarAdmin();                        
+        } else if ($userRole == self::ROLE_COMPANY) {
+            $data = $this->getCalendarCompany();            
+        } else {
+            $data = $this->getCalendarUser();
+        }  
+        return $data;
+    }
+
     public function getCalendarAdmin()
     {
         return $this->getApplyCalendar()                    
