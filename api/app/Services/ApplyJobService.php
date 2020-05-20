@@ -232,18 +232,31 @@ class ApplyJobService extends BaseService {
     {
         $userRole = Auth::user()->role;
         if ($userRole == self::ROLE_ADMIN) {
-            $get = $this->getCalendarAdmin();            
+            $get = $this->getCalendarAdmin();                        
         } else if ($userRole == self::ROLE_COMPANY) {
             $get = $this->getCalendarCompany();            
         } else {
             $get = $this->getCalendarUser();
-        }
+        }        
         $days = [];
         $data = [];
         foreach ($get as $key => $value){
             $days['id'] = $value->id;
-            $days['start'] = Carbon::parse($value->interview_schedules)->format('Y-m-d');
+            $days['start'] = $value->interview_schedules;
             $days['title'] = "LPV".$value->job->title;
+            $days['email'] =    $value->user->email;
+            $days['phone'] =    $value->user->phone;
+            $days['name'] =    $value->user->name;
+            $days['address'] =    $value->user->address_detail;
+            $daystime = Carbon::parse($value->interview_schedules)->format('Y-m-d');
+            $timedays = Carbon::now()->format('Y-m-d');
+            if($daystime < $timedays){
+                $days['color'] =  '#BB3511';
+            }else if($daystime == $timedays){
+                $days['color'] =  '#1DA273';
+            }else{
+                $days['color'] =  '#D39B0E';
+            }
             array_push($data,$days);
         }
         return $data;
@@ -252,14 +265,16 @@ class ApplyJobService extends BaseService {
     public function getCalendarAdmin()
     {
         return $this->getApplyCalendar()                    
-                    ->where('status' ,self::NTD_DUYET_HO_SO)           
+                    ->where('status' ,self::NTD_DUYET_HO_SO)  
+                    ->whereNotNull('interview_schedules')           
                     ->get();
     }
 
     public function getCalendarCompany()
     {
         return $this->getApplyCalendarCompany()                    
-                    ->where('status' ,self::NTD_DUYET_HO_SO)           
+                    ->where('status' ,self::NTD_DUYET_HO_SO)  
+                    ->whereNotNull('interview_schedules')          
                     ->get();
     }
 
@@ -267,6 +282,7 @@ class ApplyJobService extends BaseService {
     {
         return $this->getApplyCalendar()                    
                     ->where('status' ,self::NTD_DUYET_HO_SO)  
+                    ->whereNotNull('interview_schedules')                    
                     ->where('user_id_submit' ,Auth::user()->id)         
                     ->get();
     }
@@ -274,13 +290,17 @@ class ApplyJobService extends BaseService {
     private function getApplyCalendar()
     {
         return $this->apply->with(['job' => function ($q) {
-                $q->select('currency', 'title','id');
-                $q->where([
-                    'deleted' => self::UN_DELETE,
-                    'status' => self::ACTIVE,
-                    'isPublic' =>self::ACTIVE
-                ]);
-            }]);
+                            $q->select('currency', 'title','id');
+                            $q->where([
+                                'deleted' => self::UN_DELETE,
+                                'status' => self::ACTIVE,
+                                'isPublic' =>self::ACTIVE
+                            ]);                
+                            }])
+                            ->with(['user' => function ($q) {
+                                $q->select('id','name', 'address_detail','phone','email');
+                            }])
+                            ->orderBy('id', 'DESC');
     }
 
     private function getApplyCalendarCompany()
