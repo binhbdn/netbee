@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 Route::namespace('API')->group(function () {
   Route::post('register', 'Auth\UserController@register');
@@ -22,7 +23,10 @@ Route::namespace('API')->group(function () {
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
   Route::post('postCompanyFeedback','Customer\CompanyController@postCompanyFeedback');
   Route::get('countFollow','Customer\CompanyController@countFollow');
-
+  //Mail
+  Route::get('welcomeEmail', 'MailController@welcomeEmail');
+  Route::post('activationRegisterEmail', 'MailController@activationRegisterEmail');
+  Route::get('activationByEmail', 'MailController@activationByEmail');
 
 
   //tin tuyen dung
