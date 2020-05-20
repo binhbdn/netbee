@@ -1,5 +1,6 @@
 .remove-border-right {
     border-right: none !important;
+    width: 260px;
 }
 .border-job-item {
     border: 1px solid #B8C2CC !important;
@@ -19,6 +20,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 16px;
+    display: inline-block;
+    width: 100%;
 }
 .scrollbar {
     overflow: scroll;

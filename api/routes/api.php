@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 Route::namespace('API')->group(function () {
   Route::post('register', 'Auth\UserController@register');
@@ -22,7 +23,10 @@ Route::namespace('API')->group(function () {
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
   Route::post('postCompanyFeedback','Customer\CompanyController@postCompanyFeedback');
   Route::get('countFollow','Customer\CompanyController@countFollow');
-
+  //Mail
+  Route::get('welcomeEmail', 'MailController@welcomeEmail');
+  Route::post('activationRegisterEmail', 'MailController@activationRegisterEmail');
+  Route::get('activationByEmail', 'MailController@activationByEmail');
 
 
   //tin tuyen dung
@@ -43,6 +47,8 @@ Route::namespace('API')->group(function () {
   Route::get('getQuocGia', 'TimKiemController@getQuocGia');
   Route::get('getVisa', 'TimKiemController@getVisa');
   Route::get('getAnalytic', 'Admin\DashboardController@getAnalytic');
+
+  Route::get('searchCvs', 'TimKiemController@searchCvs');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {

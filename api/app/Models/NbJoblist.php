@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class NbJoblist extends Model
 {
     protected $table = 'nb_joblists';
-
+    public $timestamps = true;
     public $fillable = [
         'type',
         'nation_id',

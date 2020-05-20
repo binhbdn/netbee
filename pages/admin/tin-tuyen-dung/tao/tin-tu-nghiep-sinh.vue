@@ -333,7 +333,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi1">
-                                                        <div class="card border-info text-center bg-transparent">
+                                                        <div class="card border-info text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-10">
                                                                     <label for="defaultGroupExample0" class="btn bg-netbee">TIN NỔI BẬT</label>
@@ -352,7 +352,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi2">
-                                                        <div class="card border-info text-center bg-transparent">
+                                                        <div class="card border-info text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-10">
                                                                     <label for="defaultGroupExample1" class="btn bg-netbee">TIN THƯỜNG</label>
@@ -371,7 +371,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi3">
-                                                        <div class="card border-info text-center bg-transparent">
+                                                        <div class="card border-info text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-10">
                                                                     <label for="defaultGroupExample2" class="btn bg-netbee">TIN VIP</label>

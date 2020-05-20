@@ -1,5 +1,5 @@
 <template>
-    <div class="main" :style="{'background-image':'url('+backgroundUrl+');'}" >
+    <div class="main" style="background : #d8b661">
         <div class="container">
             <div class="row">
                 <div class="col-md-7 hident-mobile">
@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <ul class=" " style="margin-top: 50px;font-size: 15px;padding: 0px; list-style: none;">
+                            <ul style="margin-top: 50px;font-size: 15px;padding: 0px; list-style: none;">
                                 <li><i class="fad fa-check-circle"></i> Tiếp cận 10K CTV tuyển dụng toàn quốc</li>
                                 <li><i class="fad fa-check-circle"></i> Chỉ thanh toán khi ứng viên đóng tiền</li>
                                 <li><i class="fad fa-check-circle"></i> Đơn giản và thân thiện người dùng</li>
@@ -378,14 +378,11 @@ ul {
 ul li {
     padding: 3px 0px;
     z-index: 2;
-    color: #999;
-}
-ul li:not(.init) {
-    color: #fff;
-    /* padding: 5px 10px; */
+    color: #000;
+    font-weight: 600;
 }
 .fa-check-circle {
-    color: #ffb701;
+    color: #000;
     font-weight: 700;
 }
 .fa {

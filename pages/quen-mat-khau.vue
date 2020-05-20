@@ -55,7 +55,16 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+
+  },
+  methods: {
+    testSendMail(){
+      this.$axios.get('testEmail')
+    }
+  }
+};
 </script>
 <style>
 .app-content.content {
