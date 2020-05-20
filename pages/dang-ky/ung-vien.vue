@@ -220,7 +220,6 @@ export default {
                     data: 
                       {
                         email : this.userForm.email, 
-                        password: this.userForm.password,
                         name: this.userForm.name,
                       } 
                     });
