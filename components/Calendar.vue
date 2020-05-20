@@ -108,4 +108,10 @@
 .fc-content{
     color: #fff !important;
 }
+.fc-head{
+    background-color: beige !important;
+}
+.fc-unthemed td.fc-today {
+    background: beige !important;
+}
 </style>

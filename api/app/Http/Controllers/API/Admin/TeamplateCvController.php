@@ -101,6 +101,15 @@ class TeamplateCvController extends Controller
                 'data' => null
             ]);
         }
+        $daystime = Carbon::parse($request->birthday_profile)->format('Y-m-d');
+        $timedays = Carbon::now()->format('Y-m-d');
+        if($daystime >=  $timedays){
+            return response()->json([
+                'status' => 400,
+                'message' => 'Ngày sinh bắt buộc nhỏ hơn ngày hiện tại',
+                'data' => null
+            ]);
+        }
         if($request->file('avatar_profile')) {
             try {
                 $file = $request->file('avatar_profile');
@@ -180,6 +189,16 @@ class TeamplateCvController extends Controller
             return response()->json([
                 'status' => 400,
                 'message' => $validator->messages()->first(),
+                'data' => null
+            ]);
+        }
+
+        $daystime = Carbon::parse($request->birthday_profile)->format('Y-m-d');
+        $timedays = Carbon::now()->format('Y-m-d');
+        if($daystime >=  $timedays){
+            return response()->json([
+                'status' => 400,
+                'message' => 'Ngày sinh bắt buộc nhỏ hơn ngày hiện tại',
                 'data' => null
             ]);
         }
