@@ -22,4 +22,10 @@ class FullCalendarController extends Controller
         return response()->json($response);
     }
 
+    public function getInterview()
+    {
+        $response = $this->applyJobService->getInterview();        
+        return response()->json($response);
+    }
+
 }
