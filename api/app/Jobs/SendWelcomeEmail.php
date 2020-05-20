@@ -8,25 +8,20 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\Sendmail;
+use App\Mail\WelcomeEmail;
 
-class SendmailJob implements ShouldQueue
+class SendWelcomeEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $data;
-    public $email;
-    public $tries = 5;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($email, $data)
+    public function __construct()
     {
-        $this->queue = 'default'; //choose a queue name
-        $this->connection = 'database';
-        $this->email = $email;
-        $this->data = $data;
+        //
     }
 
     /**
@@ -36,8 +31,7 @@ class SendmailJob implements ShouldQueue
      */
     public function handle()
     {
-        $mail = $this->email;
-        $dataemail = $this->data;
-        Mail::to($mail)->queue(new Sendmail($dataemail));
+        $email = new WelcomeEmail();
+        Mail::to('bizinphu@gmail.com')->send($email);
     }
 }

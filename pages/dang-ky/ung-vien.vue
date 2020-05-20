@@ -103,9 +103,8 @@
                         name = "Đồng ý"
                         ref="agree-term"
                     >
-                        <div class="form-check" style="margin-bottom:0px;">
-                            <input disabled type="checkbox"  name="agree-term" id="agree-term" class="agree-term" v-model="userForm.checkbox"/>
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với các  <a href="" class="term-service text-dark">điều khoản</a></label>
+                        <div class="form-check pl-0" style="margin-bottom:0px;">
+                            <label for="agree-term" class="label-agree-term">Bằng việc nhấn nút đăng kí bạn đã đồng ý với <a href="" style="color: #ffb701" class="term-service">Thỏa thuận sử dụng</a> của Netbee.</label>
                         </div>
                     </ValidationProvider>
                     <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
@@ -217,8 +216,15 @@ export default {
                 confirmButtonText: 'OK'
               }).then( async (result) => {
                 if (result.value) {
-                  await this.$auth.login({ data: {email : this.userForm.email, password: this.userForm.password} });
-                  window.location.href = '/admin';
+                  await this.$axios.post('activationRegisterEmail',{ 
+                    data: 
+                      {
+                        email : this.userForm.email, 
+                        password: this.userForm.password,
+                        name: this.userForm.name,
+                      } 
+                    });
+                  window.location.href = '/dang-ky/xac-thuc';
                 }
               })
             }else {
