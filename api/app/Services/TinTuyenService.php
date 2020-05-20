@@ -34,7 +34,7 @@ class TinTuyenService extends BaseService {
         }
         $data = $this->getOnlyRequest($request);
         try {
-            $this->nbJobList->insert($data);
+            $this->nbJobList->create($data);
             return [
                 'status' => 200,
                 'message' => 'Tạo tin thành công',
@@ -150,8 +150,6 @@ class TinTuyenService extends BaseService {
             'highlight_job' => $request->highlight_job,
             'type' => $request->type,
             'id_created' => Auth::user()->id,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
             'school_name' => $request->school_name,
             'status' => self::INACTIVE
         ];
