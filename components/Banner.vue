@@ -139,117 +139,30 @@
                       </div>
                       <div class="tab-pane" id="v-pills-22" role="tabpanel"
                            aria-labelledby="v-pills-22-tab">
-                        <form action="#" class="search-job">
+                        <form action="" class="search-job">
                           <div class="row">
                             <div class="col-md-3">
-                              <div class="form-group">
-                                <div class="form-field">
+                              <div class="form-group" style="height: 67%;">
+                                <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input type="text" class="form-control" placeholder="Từ khóa" name="keyword" value="">
+                                  <input style="height: 100%;" type="text" class="form-control" placeholder="Nhập tiêu đề hồ sơ, vị trí, địa điểm làm việc..." name="keyword" value="" v-model="keyCvs">
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
-                                <div class="form-field">
-                                  <div class="select-wrap">
-                                    <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
-                                    <div class="icon" style="left:10px !important"><span class="fa fa-folder-open"></span></div>
-                                    <select name="cate_id" id="" class="form-control">
-                                      <option disabled selected>Loại hình</option>
-                                      <option value="1">Du học</option>
-                                      <option value="3">Tu nghiệp sinh</option>
-                                      <option value="2">Lao động</option>
-                                    </select>
-                                  </div>
-                                </div>
+                                <Multiselect v-model="searchLevel" :options="level" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Tất cả trình độ" ></Multiselect>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <Multiselect v-model="searchAddress" :options="address" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Tất cả địa điểm" ></Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
-                                  <div class="select-wrap">
-                                    <div class="icon" style="right: 10px !important"><span class="ion-ios-arrow-down"></span></div>
-                                    <div class="icon" style="left:10px !important"><i class="fas fa-map-marked-alt"></i></div>
-                                    <select name="" id="" class="form-control">
-                                      <option disabled selected>Chọn quốc gia</option>
-                                      <option value="">name</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
-                                <div class="form-field">
-                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-12 advanced_search_box" id="advanced_search_box ">
-                              <a href="javascript:void();" id="advanced_search" class="pb-1"> <b>Tìm kiếm nâng cao</b> </a>
-                            </div>
-                            <div class="col-md-12 d-none" id="detail_search" style="padding-left: 15px; padding-top: 10px;">
-                              <div class="row">
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-graduation-cap"></i></div>
-                                        <select name="" id="" class="form-control" >
-                                          <option disabled selected>Trình độ học vấn</option>
-                                          <option value="Cấp 3">Cấp 3</option>
-                                          <option value="Cao Đẳng">Cao đẳng</option>
-                                          <option value="Đại học">Đại học</option>
-                                          <option value="Sau đại học">Sau đại học</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-credit-card"></i></div>
-                                        <select name="" id="" class="form-control">
-                                          <option disabled selected>Mức lương</option>
-
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-tags"></i></div>
-                                        <select name="" id="" class="form-control" >
-                                          <option disabled selected>Tay nghề</option>
-
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="col-md-3">
-                                  <div class="form-group">
-                                    <div class="form-field">
-                                      <div class="select-wrap">
-                                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                        <div class="icon" style="left:10px !important"><i class="fa fa-transgender-alt"></i></div>
-                                        <select name="" id="" class="form-control">
-                                          <option disabled selected>Giới tính</option>
-                                          <option value="1">Nam</option>
-                                          <option value="2">Nữ</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
+                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" @click="searchCvs">
                                 </div>
                               </div>
                             </div>
@@ -278,9 +191,10 @@ export default {
       return {
         keysearch: '',
         keyJobs: '',
+        keyCvs: '',
         type_job: '',
         chooseNation: '',
-        
+
         nation: [],
         money: ['$', 'VND', '€', '¥', '₩'],
         jobs: [
@@ -288,6 +202,22 @@ export default {
           {id: 2, name: 'Du học sinh'},
           {id: 3, name: 'Tu nghiệp sinh'}
         ],
+        searchLevel: '',
+        searchAddress: '',
+        level: [
+          'Đại học',
+          'Cao đẳng',
+          'Trung cấp',
+          '12/12',
+          'Thấp hơn'
+        ],
+        address: [
+          'TP. Hà Nội',
+          'Nghệ An',
+          'TP. Hồ Chí Minh',
+          'Vinh',
+        ],
+        add_location: [],
         show: false
       }
     },
@@ -316,6 +246,13 @@ export default {
         +(this.keyJobs != '' ? this.ChangeToSlug(this.keyJobs) : "")
         +(this.type_job != '' ? '&type='+this.type_job.id : '')
         +(this.chooseNation != '' ? '&nation_id='+this.chooseNation.id : '')
+      },
+
+      searchCvs(){
+        window.location.href = '/ung-vien?keyword='
+        +(this.keyCvs != '' ? this.ChangeToSlug(this.keyCvs) : "")
+        +(this.searchLevel != '' ? '&searchLevel='+this.level : '')
+        +(this.searchAddress != '' ? '&searchAddress='+this.address : '')
       }
     },
     mounted(){
