@@ -87,8 +87,14 @@ module.exports = {
             id: 'UA-164963357-1'
         }],
         ['@nuxtjs/component-cache', { maxAge: 1000 * 60 * 60 }],
-        ["nuxt-compress",{gzip: {cache: true},brotli: {threshold: 10240}}]
+        ["nuxt-compress",{gzip: {cache: true},brotli: {threshold: 10240}}],
+        '@nuxtjs/robots'
     ],
+    robots: {
+        UserAgent: '*',
+        Disallow: '/admin',
+        Sitemap : 'https://netbee.vn/sitemap.xml'
+    },
     //map sitemap
     sitemap: {
         hostname: 'https://netbee.vn',
