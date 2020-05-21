@@ -100,7 +100,7 @@ a {
     text-decoration: none;
     background-color: initial;
 }
-.loaded{
+html {
     background-color: #fff;
 }
 .justify-content-center {
