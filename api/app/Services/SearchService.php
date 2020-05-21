@@ -224,7 +224,7 @@ class SearchService extends BaseService {
         if($searchAddress != ''){
             $conditions[] = [
                 'address_profile',
-                '=',
+                'LIKE',
                 '%'.$searchAddress.'%'
             ];
         }

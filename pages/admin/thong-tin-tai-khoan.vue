@@ -215,7 +215,6 @@
                                                   <ValidationObserver ref="observerChangeInfoCompany" v-slot="{ valid }">
                                                   <div class="row">
                                                         <div class="media pl-1">
-                                                            
                                                             <a href="javascript: void(0);">
                                                                 <img :src="imagesCover[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="imagesCover.length > 0">
                                                                 <img :src="changeInfoCompanyForm.imageCover != null && changeInfoCompanyForm.imageCover.startsWith('https') ? changeInfoCompanyForm.imageCover : `/uploads/users/covers/${changeInfoCompanyForm.imageCover}`" class="rounded mr-75" alt="cover image" height="64" width="64" style="object-fit: cover;" v-else>
@@ -228,7 +227,6 @@
                                                                 </div>
                                                                 <p class="text-muted ml-75 mt-50"><small>Cho phép JPG, GIF or PNG. Kích thước đề xuất: 1120 x 296</small></p>
                                                             </div>
-                                                           
                                                         </div>
                                                         <hr>
                                                       <div class="col-12">
@@ -454,12 +452,6 @@ export default {
         ValidationProvider,
         ValidationObserver
     },
-    head: {
-        title: 'Home page 🚀',
-        script: [
-            { src: '/app-assets/js/scripts/pages/account-setting.js' },
-        ]     
-        },
     data() {
             return {
                 changePasswordForm: {
@@ -660,52 +652,67 @@ export default {
             }
         },
         async changeInfoCompany() {
-            
-            const isValid = await this.$refs.observerChangeInfoCompany.validate();
-            console.log(isValid);
-            if(isValid){
-                try {
-                let response = await this.$axios.post('changeInfoCompany', {
-                    company_about: this.changeInfoCompanyForm.companyAbout,
-                    username: this.changeInfoCompanyForm.username,
-                    company_hotline: this.changeInfoCompanyForm.companyHotline,
-                    company_tax: this.changeInfoCompanyForm.companyTax,
-                    company_benefit: this.changeInfoCompanyForm.companyBenefit,
-                    company_policy: this.changeInfoCompanyForm.companyPolicy,
-                    company_chance: this.changeInfoCompanyForm.companyChance,
-                    company_link: this.changeInfoCompanyForm.companyLink,
-                    image_cover: this.changeInfoCompanyForm.files[0].name,
-                });
-                if(response.data.status == 200){
-                    this.$swal({
-                    titile: 'Thành công',
-                    text: response.data.message,
-                    icon: 'success',
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'OK',
-                    }).then( async (result) => {
-                    if (result.value) {
-                            window.location.href = "/admin";
-                        }
-                    })
-                }
-                else{
-                    this.$swal(
+            if(this.changeInfoCompanyForm.files.length == 0) {
+                this.$swal(
                     'Lỗi!',
-                    response.data.message,
+                    'Chưa chọn ảnh bìa',
                     'error'
                     )
+            }else {
+                const isValid = await this.$refs.observerChangeInfoCompany.validate();
+                if(isValid){
+                    try {
+                        this.$axios.post('changeInfoCompany', {
+                            company_about: this.changeInfoCompanyForm.companyAbout,
+                            username: this.changeInfoCompanyForm.username,
+                            company_hotline: this.changeInfoCompanyForm.companyHotline,
+                            company_tax: this.changeInfoCompanyForm.companyTax,
+                            company_benefit: this.changeInfoCompanyForm.companyBenefit,
+                            company_policy: this.changeInfoCompanyForm.companyPolicy,
+                            company_chance: this.changeInfoCompanyForm.companyChance,
+                            company_link: this.changeInfoCompanyForm.companyLink,
+                            image_cover: this.changeInfoCompanyForm.files[0].name,
+                        }).then((response) => {
+                            if(response.data.status == 200){
+                                this.$swal({
+                                titile: 'Thành công',
+                                text: response.data.message,
+                                icon: 'success',
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'OK',
+                                }).then( async (result) => {
+                                if (result.value) {
+                                        window.location.href = "/admin";
+                                    }
+                                })
+                            }
+                            else{
+                                this.$swal(
+                                'Lỗi!',
+                                response.data.message,
+                                'error'
+                                )
+                            }
+                        }).catch ((error)=> {
+                                this.$swal(
+                                    'Lỗi!',
+                                    'Có lỗi xảy ra'+error,
+                                    'error'
+                                    )
+                            })
+                    } catch (error) {
+                        this.$swal(
+                            'Lỗi!',
+                            'Có lỗi xảy ra'+error,
+                            'error'
+                            )
+                    }
+                    // reset validation
+                    // You should call it on the next frame
+                    requestAnimationFrame(() => {
+                    this.$refs.observer.reset();
+                    });
                 }
-                } catch (error) {
-                'Lỗi',
-                'Đăng nhập thất bại',
-                'Error'
-                }
-                 // reset validation
-                // You should call it on the next frame
-                requestAnimationFrame(() => {
-                this.$refs.observer.reset();
-                });
             }
         },
         checkUsernameCompany($username){

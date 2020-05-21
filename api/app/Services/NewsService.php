@@ -339,7 +339,7 @@ class NewsService extends BaseService{
         if (!empty($request->limit)) {
             $query->limit($request->limit);
         }
-        $query->orderBy('id', 'DESC');
+        $query->orderBy('updated_at', 'DESC');
         $news = $paginate ? $query->paginate($paginate) : $query->get();
         $news->makeHidden(['content']);
         return [

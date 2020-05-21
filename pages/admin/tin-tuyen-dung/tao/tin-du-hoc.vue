@@ -571,7 +571,7 @@ export default {
                 form.append('school_name' , this.data.school_name)
                 form.append('company_name' , this.data.company_name)
                 form.append('address' , this.data.address)
-                form.append('nation' , this.data.nation.id)
+                form.append('nation_id' , this.data.nation.id)
                 form.append('expiration_date' , this.data.expiration_date)
                 form.append('description' , this.data.description)
                 form.append('request' , this.data.request)

@@ -113,7 +113,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');
       });
       Route::prefix('lichphongvan')->group(function () {
-        Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');    
+        Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');   
+        Route::get('getInterview', 'Admin\FullCalendarController@getInterview');    
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');

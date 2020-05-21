@@ -44,6 +44,7 @@ class TeamplateCvController extends Controller
         $rules = [
             'fullname_profile' => 'required',
             'birthday_profile' => 'required',
+            'type' => 'required',
             'maleFemale' => 'required',
             'address_profile' => 'required',           
             'email_profile' => 'required', 
@@ -65,6 +66,7 @@ class TeamplateCvController extends Controller
             'id_user'=> Auth::user()->id,
             'fullname_profile' => $request->fullname_profile,
             'birthday_profile' => $request->birthday_profile,
+            'type' => $request->type,
             'maleFemale' => $request->maleFemale,
             'address_profile' => $request->address_profile,
             'phone_profile' => $request->phone_profile,
@@ -139,6 +141,7 @@ class TeamplateCvController extends Controller
         $rules = [
             'fullname_profile' => 'required',
             'birthday_profile' => 'required',
+            'type' => 'required',
             'maleFemale' => 'required',
             'address_profile' => 'required',
             'phone_profile' => 'required',
@@ -161,6 +164,7 @@ class TeamplateCvController extends Controller
             'id_user'=> Auth::user()->id,
             'fullname_profile' => $request->fullname_profile,
             'birthday_profile' => $request->birthday_profile,
+            'type' => $request->type,
             'maleFemale' => $request->maleFemale,
             'address_profile' => $request->address_profile,
             'phone_profile' => $request->phone_profile,

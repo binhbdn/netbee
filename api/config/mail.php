@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'contac@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Netbee.vn'),
+        'address' => env('MAIL_FROM_ADDRESS', 'contact@netbee.vn'),
+        'name' => env('MAIL_FROM_NAME', 'Netbee Contact'),
     ],
 
     /*
