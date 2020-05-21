@@ -85,7 +85,7 @@ class TinTuyenService extends BaseService {
         $rules = [
             'title' => 'required',
             'address' => 'required',
-            'nation' => 'required',
+            'nation_id' => 'required',
             'expiration_date' => 'required',
             'description' => 'required',
             'request' => 'required',
@@ -109,7 +109,7 @@ class TinTuyenService extends BaseService {
         if ($request->type == self::JOB_OVERSEAS_STUDENT) {
             $rules['school_name'] = 'required';
         } else {
-            $rules['visa'] = 'required';
+            $rules['id_visa'] = 'required';
             $rules['form_work'] = 'required';
         }
 
@@ -129,7 +129,7 @@ class TinTuyenService extends BaseService {
         $response = [
             'title' => $request->title,
             'workplace' => $request->address,
-            'nation_id' => $request->nation,
+            'nation_id' => $request->nation_id,
             'expiration_date' => $request->expiration_date,
             'description' => $request->description,
             'request' => $request->get('request'),

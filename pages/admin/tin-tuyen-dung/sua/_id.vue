@@ -562,9 +562,9 @@ export default {
             this.data.title = job.data.title
             this.data.school_name = job.data.school_name
             this.data.address = job.data.workplace
-            for (let index = 0; index < res.data.length; index++) {
-                if(job.data.nation_id == index+1){
-                    this.data.nation = res.data[index]
+            for (let indexQuocgia = 0; indexQuocgia < res.data.length; indexQuocgia++) {
+                if(job.data.nation_id == indexQuocgia+1){
+                    this.data.nation = res.data[indexQuocgia]
                 }  
             }
             this.data.expiration_date = job.data.expiration_date
@@ -577,9 +577,9 @@ export default {
             this.data.salary_start = job.data.salary_start
             this.data.salary_end = job.data.salary_end
             this.data.subsidy = job.data.subsidy
-            for (let index = 0; index < visa.data.length; index++) {
-                if(job.data.id_visa == index+1){
-                    this.data.visa = res.data[index]
+            for (let indexVisa = 0; indexVisa < visa.data.length; indexVisa++) {
+                if(job.data.id_visa == indexVisa+1){
+                    this.data.visa = visa.data[indexVisa]
                 }  
             }
             if(job.data.form_work == 1){

@@ -621,7 +621,7 @@ export default {
                 form.append('title' , this.data.title)
                 form.append('company_name' , this.data.company_name)
                 form.append('address' , this.data.address)
-                form.append('nation' , this.data.nation.id)
+                form.append('nation_id' , this.data.nation.id)
                 form.append('expiration_date' , this.data.expiration_date)
                 form.append('description' , this.data.description)
                 form.append('request' , this.data.request)
@@ -637,7 +637,7 @@ export default {
                 form.append('date_start' , this.data.date_start)
                 form.append('date_test' , this.data.date_test)
                 form.append('expected_date' , this.data.expected_date)
-                form.append('expected_date' , this.data.school_name)
+                form.append('school_name' , this.data.school_name)
                 if(this.checked){
                     form.append('time_bonus' , this.data.time_bonus.id)
                     form.append('bonus' , this.data.bonus)
@@ -646,10 +646,9 @@ export default {
                     form.append('bonus' , 0)
                 }
                 form.append('highlight_job' , this.data.highlight_job)
-                form.append('visa' , this.data.visa.id)
+                form.append('id_visa' , this.data.visa.id)
                 form.append('form_work' , this.data.form_work.id)
                 form.append('type' , 1)
-                console.log(this.data)
                 this.$axios.post('tintuyendung/createTinTuyen',form)
                 .then(response => {
                     if(response.data.status == 200) {
@@ -667,6 +666,12 @@ export default {
                             'error'
                         )
                     }
+                }).catch((e) => {
+                    this.$swal(
+                            'Lỗi',
+                            e,
+                            'error'
+                        )
                 })
             }
         }
