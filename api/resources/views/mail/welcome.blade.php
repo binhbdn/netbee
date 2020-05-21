@@ -142,7 +142,7 @@
         <tr>
             <td>
                 <div style="overflow:hidden;display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial;maxheight:0px;max-width:0px;opacity:0;">
-                    Welcome to MDB!
+                    Chào mừng bạn đến với Netbee!
                 </div>
             </td>
         </tr>
@@ -197,7 +197,7 @@
 
                             <div style="line-height: 35px">
 
-                               Chào mừng bạn hiền đến với <span style="color: #ffb701;">Netbee</span>
+                               Chào mừng bạn đến với <span style="color: #ffb701;">Netbee</span>
 
                             </div>
                         </td>

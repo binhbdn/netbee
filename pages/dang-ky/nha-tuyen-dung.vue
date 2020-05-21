@@ -121,18 +121,11 @@
                             </ul>
                         </div>
                     </ValidationProvider>
-                    <ValidationProvider
-                        rules = "required"
-                        name = "Đồng ý"
-                        ref="agree-term"
-                    >
-                        <div class="form-check" style="margin-bottom:0px;">
-                            <input disabled type="checkbox" checked  name="agree-term" id="agree-term" class="agree-term" v-model="userForm.checkbox"/>
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>Tôi đồng ý với các  <a href="" class="term-service text-dark">điều khoản</a></label>
+                    <div class="form-check pl-0" style="margin-bottom:0px;">
+                            <label for="agree-term" class="label-agree-term">Bằng việc nhấn nút đăng kí bạn đã đồng ý với <a href="" style="color: #ffb701" class="term-service">Thỏa thuận sử dụng</a> của Netbee.</label>
                         </div>
-                    </ValidationProvider>
                     <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
-                        <button @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%" >Đăng ký ngay</button>
+                        <button type="button" @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%" >Đăng ký ngay</button>
                     </div>
                     </ValidationObserver>
                 </form>
@@ -215,7 +208,6 @@ export default {
             phone: "",
             password: "",
             password_confirmation: "",
-            checkbox: true,
             role: 2
       }
     };
@@ -242,11 +234,9 @@ export default {
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'OK'
                 }).then(async (result) => {
-                    if(result.value) {
-                        await this.$auth.login({
-                            data: {email: this.userForm.email, password: this.userForm.password}
-                        });
-                        window.location.href = '/admin';
+                    if (result.value) {
+                        await this.$axios.post('activationRegisterEmail',{email : this.userForm.email, name: this.userForm.name});
+                        window.location.href = '/dang-ky/xac-thuc';
                     }
                 })
             }
