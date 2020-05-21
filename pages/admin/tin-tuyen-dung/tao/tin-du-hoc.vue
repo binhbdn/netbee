@@ -44,6 +44,17 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
+                                                    <div class="col-12" v-if="$auth.user.role == 4">
+                                                        <ValidationProvider rules="checkSelect" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">
+                                                                    Đăng hộ
+                                                                </label>
+                                                                <multiselect :options="companies" v-model="data.company" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
                                                     <div class="col-12">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
@@ -505,7 +516,8 @@ export default {
                 {id: 2, name: 'Hoàn tất nhập cảnh *1,5'},
                 {id: 3, name: 'Sau nhập cảnh 30 ngày *2'}
             ],
-            money: ['$', 'VND', '€', '¥', '₩']
+            money: ['$', 'VND', '€', '¥', '₩'],
+            companies:[]
         }
     },
     components:{
@@ -520,6 +532,8 @@ export default {
             this.data.date_start = moment(Date.now()).format("YYYY-MM-DD"); 
             let res = await this.$axios.$get(`getQuocGia`)
             this.nations = res.data
+            let company = await this.$axios.$get(`user/2/getChoose`)
+            this.companies = company
         },
         nameWithLang ({ name, id }) {
             return `${name}`
@@ -567,6 +581,10 @@ export default {
             let isValid = await this.$refs.step4.validate();
             var form = new FormData();
             if(isValid){
+                if(this.data.company != null)
+                {
+                    form.append('id_created' , this.data.company.id)
+                }
                 form.append('title' , this.data.title)
                 form.append('school_name' , this.data.school_name)
                 form.append('company_name' , this.data.company_name)

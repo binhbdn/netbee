@@ -265,6 +265,12 @@ class UserController extends Controller
         return response()->json($response);
     }
 
+    public function getChoose(Request $request)
+    {
+        $response = $this->userService->getChoose($request);
+        return response()->json($response);
+    }
+
     public function search(Request $request, $userRole)
     {
         $response = $this->userService->search($request);

@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div class="remove-border-right">
-                <div class="remove-border-right" style="padding: 5px 0px;">
+                <div class="remove-border-right" style="padding: 5px 0px;width: 550px;">
                     
                     <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 </div>

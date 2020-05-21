@@ -44,6 +44,17 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
+                                                    <div class="col-12" v-if="$auth.user.role == 4">
+                                                        <ValidationProvider rules="checkSelect" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">
+                                                                    Đăng hộ
+                                                                </label>
+                                                                <multiselect :options="companies" v-model="data.company" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
                                                     <div class="col-12">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
@@ -543,7 +554,8 @@ export default {
                 {id: 1, name: 'Toàn thời gian'},
                 {id: 2, name: 'Ban thời gian'},
                 {id: 3, name: 'Vừa học vừa làm'}
-            ]
+            ],
+            companies:[]
         }
     },
     components:{
@@ -560,7 +572,8 @@ export default {
             this.options = res.data
             let visa = await this.$axios.$get(`getVisa`)
             this.optionsVisa = visa.data
-            console.log(this.optionsVisa)
+            let company = await this.$axios.$get(`user/2/getChoose`)
+            this.companies = company
         },
         nameWithLang ({ name, id }) {
             return `${name}`
@@ -611,6 +624,10 @@ export default {
             let isValid = await this.$refs.step4.validate();
             var form = new FormData();
             if(isValid){
+                if(this.data.company != null)
+                {
+                    form.append('id_created' , this.data.company.id)
+                }
                 form.append('title' , this.data.title)
                 form.append('company_name' , this.data.company_name)
                 form.append('address' , this.data.address)

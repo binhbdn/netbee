@@ -69,6 +69,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('pricing_momo', 'MomoController@pricing_momo');
       Route::prefix('user/{userRole}')->group(function () {
         Route::get('get', 'Auth\UserController@get');
+        Route::get('getChoose', 'Auth\UserController@getChoose');
         Route::get('search', 'Auth\UserController@search');
         Route::post('changeStatus', 'Auth\UserController@changeStatus');
         Route::post('changeMultipleStatus', 'Auth\UserController@changeMultipleStatus');

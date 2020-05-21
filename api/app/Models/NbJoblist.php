@@ -50,6 +50,11 @@ class NbJoblist extends Model
     {
         return $this->belongsTo('App\Models\Nation');
     }
+
+    public  function visa_profession()
+    {
+        return $this->belongsTo('App\Models\VisaProfession', 'id_visa');
+    }
     public  function user()
     {
         return $this->belongsTo('App\User', 'id_created');
