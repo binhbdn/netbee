@@ -15,7 +15,7 @@ class SendActivationRegisterMail implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     public $email;
     public $data;
-    public $tries;
+    public $tries=3;
     /**
      * Create a new job instance.
      *

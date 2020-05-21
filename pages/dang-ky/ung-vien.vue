@@ -98,17 +98,11 @@
                             </ul>
                         </div>
                     </ValidationProvider>
-                    <ValidationProvider
-                        rules = "required"
-                        name = "Đồng ý"
-                        ref="agree-term"
-                    >
                         <div class="form-check pl-0" style="margin-bottom:0px;">
                             <label for="agree-term" class="label-agree-term">Bằng việc nhấn nút đăng kí bạn đã đồng ý với <a href="" style="color: #ffb701" class="term-service">Thỏa thuận sử dụng</a> của Netbee.</label>
                         </div>
-                    </ValidationProvider>
                     <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
-                        <button @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Đăng ký ngay</button>
+                        <button type="button" @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Đăng ký ngay</button>
                     </div>
                     </ValidationObserver>
                 </form>
@@ -188,7 +182,6 @@ export default {
         phone: "",
         password: "",
         password_confirmation: "",
-        checkbox: true,
         role: 1
       }
     };
@@ -200,45 +193,38 @@ export default {
       const isValid = await this.$refs.observer.validate();
       if (isValid) {
         try {
-            let response = await this.$axios.post('register',{ 
-              email: this.userForm.email,
-              password: this.userForm.password,
-              name: this.userForm.name,
-              phone: this.userForm.phone,
-              role: this.userForm.role
-             });
-            if(response.data.status == 200) {
-              this.$swal({
-                title: 'Thành công',
-                text: response.data.message,
-                icon: 'success',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-              }).then( async (result) => {
-                if (result.value) {
-                  await this.$axios.post('activationRegisterEmail',{ 
-                    data: 
-                      {
-                        email : this.userForm.email, 
-                        name: this.userForm.name,
-                      } 
-                    });
+          let response = await this.$axios.post('register', {
+            email: this.userForm.email,
+            password: this.userForm.password,
+            name: this.userForm.name,
+            phone: this.userForm.phone,
+            role: this.userForm.role
+          });
+          if(response.data.status == 200){
+            this.$swal({
+              titile: 'Thành công',
+              text: response.data.message,
+              icon: 'success',
+              confirmButtonColor: '#3085d6',
+              confirmButtonText: 'OK',
+            }).then( async (result) => {
+              if (result.value) {
+                  await this.$axios.post('activationRegisterEmail',{email : this.userForm.email, name: this.userForm.name});
                   window.location.href = '/dang-ky/xac-thuc';
                 }
               })
-            }else {
-              this.$swal(
-                'Lỗi!',
-                response.data.message,
-                'error'
-              )
-            }
-        } catch (err) {
-          this.$swal(
-            'Lỗi!',
-            'Đăng kí thất bại!',
-            'error'
-          )
+          }
+          else{
+            this.$swal(
+              'Lỗi!',
+              response.data.message,
+              'error'
+            )
+          }
+        } catch (error) {
+          'Lỗi',
+          'Đăng nhập thất bại',
+          'Error'
         }
         // reset validation
         // You should call it on the next frame
