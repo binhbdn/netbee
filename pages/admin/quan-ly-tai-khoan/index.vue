@@ -7,7 +7,9 @@
         <div class="content-header-left col-md-9 col-12 mb-2">
           <div class="row breadcrumbs-top">
             <div class="col-12">
-              <h2 class="content-header-title float-left mb-0">Danh sách Ứng viên</h2>
+              <h2 class="content-header-title float-left mb-0 title-page">
+              
+              </h2>
               <div class="breadcrumb-wrapper col-12">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item">
@@ -16,7 +18,7 @@
                   <li class="breadcrumb-item">
                     <a href="/">Quản lý tài khoản</a>
                   </li>
-                  <li class="breadcrumb-item active">Danh sách ứng viên</li>
+                  <li class="breadcrumb-item active title-page" ></li>
                 </ol>
               </div>
             </div>
@@ -120,7 +122,7 @@
       </div>
       <!-- filter end -->
       <div class="content-body">
-        <section id="Ntd">
+        <section>
           <div class="row">
             <div class="col-12">
               <div class="card">
@@ -221,9 +223,10 @@
                                   </span>
                                 </div>
                               </fieldset>
-                            </li>ID
+                            </li>
+                            ID
                           </th>
-                          <th>Tên NTD</th>
+                          <th>Tên</th>
                           <th style="width:14%;">Avatar</th>
                           <th>Ngày tạo</th>
                           <th>Trạng thái</th>
@@ -233,9 +236,9 @@
                           <th>Thao tác</th>
                         </tr>
                       </thead>
-                      <tbody v-if="ListUV.length > 0">
-                        <tr v-for="(item, index) in ListUV" :key="index">
-                          <td class="d-flex" style="padding-top:34px">
+                      <tbody v-if="users.length > 0">
+                        <tr v-for="(item, index) in users" :key="index">
+                          <td class="d-flex" style="padding-top:34px" >
                             <li class="d-inline-block mr-1">
                               <fieldset>
                                 <div class="vs-checkbox-con vs-checkbox-primary">
@@ -252,6 +255,8 @@
                           </td>
                           <td class="text-left">
                             <a
+                              class="highlight"
+                              @click="openModal(index)"
                               data-toggle="tooltip"
                               :title="item.name"
                               data-placement="top"
@@ -349,19 +354,120 @@
                               </div>
                             </div>
                           </td>
+                          <div class="modal fade" id="detail_user" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                  <div class="modal-header bg-netbee">
+                                    <h4 class="modal-title text-dark">Chi tiết thông tin tài khoản</h4>
+                                    <button type="button" class="close ma-0" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true" class="text-dark">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body" id="modal_body">
+                                    <div>
+                                      <div class="row">
+                                        <div class="col-lg-4" >
+                                          <img
+                                            v-lazy="`/uploads/users/avatars/${userDetail.avatar}`"
+                                            style="object-fit: cover;"
+                                          />
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="row modal-item">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <label>ID</label>
+                                                </div>
+                                                <div class="col-sm-8 col-lg-8">
+                                                    <span>{{userDetail.id}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row modal-item">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <label>Name</label>
+                                                </div>
+                                                <div class="col-sm-8 col-lg-8">
+                                                    <span >{{userDetail.name}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row modal-item">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <label>Email</label>
+                                                </div>
+                                                <div class="col-sm-8 col-lg-8">
+                                                    <span>{{userDetail.email}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row modal-item">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <label>Ngày tạo</label>
+                                                </div>
+                                                <div class="col-sm-8 col-lg-8">
+                                                    <span>{{ConvertDate(userDetail.created_at)}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row modal-item">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <label>Ngày cập nhật</label>
+                                                </div>
+                                                <div class="col-sm-8 col-lg-8">
+                                                    <span>{{ConvertDate(userDetail.updated_at)}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row modal-item">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <label>Trạng thái</label>
+                                                </div>
+                                                <div class="col-sm-8 col-lg-8">
+                                                    <span>{{userDetail.status ? 'Đã kích hoạt' : 'Chưa kích hoạt'}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row modal-item">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <label>Số điện thoại</label>
+                                                </div>
+                                                <div class="col-sm-8 col-lg-8">
+                                                    <span>{{userDetail.phone}} </span>
+                                                </div>
+                                            </div>
+                                            <div class="row modal-item">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <label>Địa chỉ</label>
+                                                </div>
+                                                <div class="col-sm-8 col-lg-8">
+                                                    <span> {{userDetail.address_detail}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row modal-item">
+                                                <div class="col-sm-4 col-lg-4">
+                                                    <label>Ngày sinh</label>
+                                                </div>
+                                                <div class="col-sm-8 col-lg-8">
+                                                    <span>{{userDetail.birth_of_date}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn bg-netbee" data-dismiss="modal">Đóng</button>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
                         </tr>
                       </tbody>
                     </table>
                     <p
                       class="mb-0 text-center p-1 font-italic"
-                      v-if="ListUV.length == 0"
+                      v-if="users.length == 0"
                     >Không có dữ liệu nào.</p>
                   </div>
                 </div>
               </div>
             </div>
             <infinite-loading
-              v-if="ListUV.length"
+              v-if="users.length"
               spinner="bubbles"
               @infinite="infiniteScroll"
               style="padding:20px; width:100%"
@@ -381,10 +487,10 @@ import "vue-multiselect/dist/vue-multiselect.min.css";
 import Vue from "vue";
 import moment from "moment";
 export default {
-  name: "ListUV",
+  name: "users",
   layout: "admin",
   head: {
-    title: "Danh sách tài khoản HR",
+    title: "Danh sách tài khoản",
     script: [
       { src: "/app-assets/vendors/js/tables/datatable/pdfmake.min.js" },
       { src: "/app-assets/vendors/js/tables/datatable/vfs_fonts.js" }
@@ -395,8 +501,9 @@ export default {
   },
   data() {
     return {
-      userRole: "1",
-      ListUV: [],
+      userDetail: [],
+      userRole: 0,
+      users: [],
       cardSearch: {
         search: "",
         searchStatus: "",
@@ -420,6 +527,15 @@ export default {
   },
   created() {
     this.search();
+  },
+  mounted() {
+      let role = this.$route.query.role;
+      let titles = [
+        'Danh sách ứng viên',
+        'Danh sách NTD',
+        'Danh sách HR',
+      ];
+      $('.title-page').text(titles[+role - 1]);
   },
   methods: {
     nameWithLang({ name, id }) {
@@ -445,12 +561,12 @@ export default {
       return this.search();
     },
     search() {
+      this.userRole = this.$route.query.role;
       this.$axios
         .$get(
-          "user/" +
-            this.userRole +
+          "user/" + this.userRole +
             "/search?searchBlock=" +
-            (this.cardSearch.searchBlock.id
+            (this.cardSearch.searchBlock.id != null
               ? this.cardSearch.searchBlock.id
               : "") +
             "&searchStatus=" +
@@ -469,16 +585,15 @@ export default {
             (this.cardSearch.searchToDate ? this.cardSearch.searchToDate : "")
         )
         .then(response => {
-          this.ListUV = response.data;
+          this.users = response.data;
         });
     },
-
-    async changeMultipleStatus(statusUV) {
+    async changeMultipleStatus(status) {
       try {
         this.$axios
           .$post("user/" + this.userRole + "/changeMultipleStatus", {
             id: JSON.stringify(this.selected),
-            status: statusUV
+            status: status
           })
           .then(res => {
             if (JSON.stringify(this.selected).length == 2) {
@@ -513,10 +628,10 @@ export default {
       }
     },
     sortAscendingID() {
-      this.ListUV.sort((a, b) => (a.id > b.id ? 1 : -1));
+      this.users.sort((a, b) => (a.id > b.id ? 1 : -1));
     },
     sortDecreaseID() {
-      this.ListUV.sort((a, b) => (a.id < b.id ? 1 : -1));
+      this.users.sort((a, b) => (a.id < b.id ? 1 : -1));
     },
     infiniteScroll($state) {
       setTimeout(() => {
@@ -550,7 +665,7 @@ export default {
           )
           .then(response => {
             if (response.data.data.length > 1) {
-              response.data.data.forEach(item => this.ListUV.push(item));
+              response.data.data.forEach(item => this.users.push(item));
               $state.loaded();
             } else {
               $state.complete();
@@ -623,16 +738,20 @@ export default {
         (this.cardSearch.searchBlock = ""),
         (this.cardSearch.searchFromDate = ""),
         (this.cardSearch.searchToDate = "");
+    },
+    openModal(key) {
+      this.userDetail = this.users[key];
+      $('#detail_user').modal();
     }
   },
   computed: {
     selectAll: {
       get() {
-        if (this.ListUV && this.ListUV.length > 0) {
+        if (this.users.length > 0) {
           // A news array exists with at least one item
           let allChecked = true;
 
-          this.ListUV.forEach(item => {
+          this.users.forEach(item => {
             if (!this.selected.includes(item.id)) {
               allChecked = false; // If even one is not included in array
             }
@@ -650,7 +769,7 @@ export default {
         const checked = [];
 
         if (value) {
-          this.ListUV.forEach(item => {
+          this.users.forEach(item => {
             checked.push(item.id);
           });
         }
@@ -668,5 +787,17 @@ export default {
 .input_date input {
   /* max-height: 34px; */
   padding: 5px;
+}
+.close{
+  margin: -0.5rem 0;
+}
+.modal-body label{
+  font-weight: bold;
+} 
+.modal-item{
+  margin-bottom: 5px;
+}
+.modal-item:hover{
+  background-color: rgba(34, 41, 47, 0.075);
 }
 </style>
