@@ -7,8 +7,10 @@
             </div>
         </a>
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`"><h2 class="NB_title text-black pt-1 el-3 font-weight-600">{{ title }}</h2></a>
-        <p style="height: 100px;" class="el-3" v-if="type == 1">{{ short_content }}</p>  
-        <i class="fad fa-calendar-star"></i><span class="ml-1">{{ ConvertDate(created_at) }}</span>                                 
+        <p style="height: 100px;" class="el-3" v-if="type == 1">{{ short_content }}</p>
+        <div style="position: absolute; bottom: 10px;">
+            <i class="fad fa-calendar-star"></i><span class="ml-1">{{ ConvertDate(created_at) }}</span>  
+        </div>                              
     </div>
 </template>
 <script>
