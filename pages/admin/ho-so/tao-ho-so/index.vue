@@ -155,11 +155,11 @@
                                                 <i class="fa fa-book"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <select class="main-select" v-model="info_frofile_user.form">
+                                                <select class="main-select" v-model="info_frofile_user.type">
                                                     <option disabled value="">Chọn Hình thức</option>
-                                                    <option value="0">Xuất khẩu lao động</option>
-                                                    <option value="1">Du học sinh</option>
-                                                    <option value="2">Tu nghiệp sinh</option>
+                                                    <option value="1">Xuất khẩu lao động</option>
+                                                    <option value="2">Du học sinh</option>
+                                                    <option value="3">Tu nghiệp sinh</option>
                                                 </select>                                                
                                             </div>                            
                                         </div>                                             
@@ -254,7 +254,7 @@
                         id_user:'',
                         fullname_profile:'',
                         birthday_profile:'',
-                        form:'',
+                        type:'',
                         maleFemale:'',
                         avatar_profile:'',
                         address_profile:'',
@@ -328,7 +328,7 @@
                 form.append('id_user' , this.info_frofile_user.id_user)
                 form.append('fullname_profile' , this.info_frofile_user.fullname_profile)
                 form.append('birthday_profile' , this.info_frofile_user.birthday_profile)
-                form.append('form' , this.info_frofile_user.form)
+                form.append('type' , this.info_frofile_user.type)
                 form.append('maleFemale' , this.info_frofile_user.maleFemale)
                 form.append('address_profile' , this.info_frofile_user.address_profile)
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
