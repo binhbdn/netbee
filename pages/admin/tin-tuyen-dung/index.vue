@@ -3,25 +3,6 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">    
-            <div class="content-header row">
-                <div class="content-header-left col-md-9 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Danh sách tin tuyển dụng</h2>
-                            <div class="breadcrumb-wrapper col-12">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Trang chủ</a>
-                                    </li>
-                                    <li class="breadcrumb-item"><a href="/">Tin tuyển dụng</a>
-                                    </li>
-                                    <li class="breadcrumb-item active"> Danh sách tin tuyển dụng
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- News filter start -->
                     <div class="card">
                         <div class="card-header">
@@ -208,10 +189,10 @@
 
         <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="editTodoTask" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content" style="background-image: url(/assets/img/bg_city_full.png);">
+                <div class="modal-content">
                     <section class="todo-form">
                         <form id="form-edit-todo" class="todo-input">
-                            <div class="modal-header  bg-info white">
+                            <div class="modal-header  bg-netbee white">
                                 <h5 class="modal-title" id="editTodoTask">Thông tin đơn hàng - Gói {{ selectPay.highlight_job == 0 ? 'TIN THƯỜNG' : selectPay.highlight_job == 1 ? 'TIN NỔI BẬT' : 'TIN VIP'}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -221,11 +202,11 @@
                                 <fieldset class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <button class="btn btn-info waves-effect waves-light" type="button"><i class="feather icon-search"></i></button>
+                                            <button class="btn bg-netbee waves-effect waves-light" type="button"><i class="feather icon-search"></i></button>
                                         </div>
                                         <input type="text" class="form-control" id="discount" placeholder="Nhập mã giảm giá" v-model="discount">
                                         <div class="input-group-append">
-                                            <button class="btn btn-info waves-effect waves-light" @click="checkDiscount()" type="button">Kiểm tra</button>
+                                            <button class="btn bg-netbee waves-effect waves-light" @click="checkDiscount()" type="button">Kiểm tra</button>
                                         </div>
                                     </div>
                                     <div id="valid-feedback" style="color: #28C76F"></div>
@@ -315,7 +296,7 @@
                                     </div>
                                 </fieldset>
                             </div>
-                            <div class="modal-footer justify-content-center" style="background-image: url(/assets/img/bg_park_full.png);background-size: cover;">
+                            <div class="modal-footer justify-content-center">
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
                                     <button type="button" @click="pay()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
                                         <span class="d-none d-lg-block">Thanh toán</span>
@@ -756,6 +737,6 @@ export default {
   background: #ffb701;
 }
 .modal .modal-footer {
-    border-color: rgb(179, 229, 252) !important;
+    border-color: #ffb701 !important;
 }
 </style>

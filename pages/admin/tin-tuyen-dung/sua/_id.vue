@@ -1,25 +1,6 @@
 <template>
     <div class="app-content content">
         <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-12 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Danh sách tin tuyển dụng</h2>
-                            <div class="breadcrumb-wrapper col-12">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Trang chủ</a>
-                                    </li>
-                                    <li class="breadcrumb-item"><a href="/">Tin tuyển dụng</a>
-                                    </li>
-                                    <li class="breadcrumb-item active"> Sửa tin [{{this.$route.params.id}}]
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="content-body">
                 <section id="dashboard-ecommerce">
                     <div class="row">
@@ -461,8 +442,8 @@ extend("ssdigit", {
     params: ['target'],
     message: (field) => `Không được nhỏ hơn`,
     validate: (value, { target }) => {
-        var max = parseFloat(value.split(',').join(''))
-        let min = parseFloat(target.split(',').join(''))
+        var max = JSON.stringify(value).split(',').join('')
+        let min = JSON.stringify(target).split(',').join('')
         if(max > min){
             return true
         }else{
@@ -574,9 +555,9 @@ export default {
             this.data.benefit = job.data.benefit
             this.data.date_start = job.data.date_start
             this.data.quantity = job.data.quantity
-            this.data.salary_start = job.data.salary_start.split(',').join('')
-            this.data.salary_end = job.data.salary_end.split(',').join('')
-            this.data.subsidy = job.data.subsidy.split(',').join('')
+            this.data.salary_start = job.data.salary_start ? this.FormatPrice(job.data.salary_start) : job.data.salary_start
+            this.data.salary_end = job.data.salary_end ? this.FormatPrice(job.data.salary_end) : job.data.salary_end
+            this.data.subsidy = job.data.subsidy ? this.FormatPrice(job.data.subsidy) : job.data.subsidy
             for (let indexVisa = 0; indexVisa < visa.data.length; indexVisa++) {
                 if(job.data.id_visa == indexVisa+1){
                     this.data.visa = visa.data[indexVisa]
@@ -661,7 +642,7 @@ export default {
                 form.append('title' , this.data.title)
                 form.append('school_name' , this.data.school_name)
                 form.append('address' , this.data.address)
-                form.append('nation' , this.data.nation.id)
+                form.append('nation_id' , this.data.nation.id)
                 form.append('expiration_date' , this.data.expiration_date)
                 form.append('description' , this.data.description)
                 form.append('request' , this.data.request)
@@ -685,7 +666,7 @@ export default {
                     form.append('bonus' , 0)
                 }
                 form.append('highlight_job' , this.data.highlight_job)
-                form.append('visa' , this.data.visa.id)
+                form.append('id_visa' , this.data.visa.id)
                 form.append('form_work' , this.data.form_work.id)
                 form.append('type' , this.data.type)
                 form.append('id' , this.$route.params.id)

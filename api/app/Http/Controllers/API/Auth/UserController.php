@@ -76,6 +76,19 @@ class UserController extends Controller
         ]);
     }
 
+    public function update(Request $request)
+    {
+        $update = $this->userService->update($request->data, $request->data['id']);
+        if ($update) {
+            return response()->json([
+                'status'=> 200,
+            ]);
+        }
+        return response()->json([
+            'status'=> 400,
+        ]);
+    }
+
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(),

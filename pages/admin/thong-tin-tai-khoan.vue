@@ -3,23 +3,6 @@
       <div class="content-overlay"></div>
       <div class="header-navbar-shadow"></div>
       <div class="content-wrapper">
-          <div class="content-header row">
-              <div class="content-header-left col-md-9 col-12 mb-2">
-                  <div class="row breadcrumbs-top">
-                      <div class="col-12">
-                          <h2 class="content-header-title float-left mb-0">Cài đặt tài khoản</h2>
-                          <div class="breadcrumb-wrapper col-12">
-                              <ol class="breadcrumb">
-                                  <li class="breadcrumb-item"><a href="/">Trang chủ</a>
-                                  </li>
-                                  <li class="breadcrumb-item active"> Cài đặt tài khoản
-                                  </li>
-                              </ol>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
           <div class="content-body">
               <!-- account setting page start -->
               <section id="page-account-settings">
@@ -63,7 +46,7 @@
                                                     </a>
                                                     <div class="media-body mt-75">
                                                         <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                            <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload" >Đổi ảnh đại diện</label>
+                                                            <label class="btn btn-sm bg-netbee ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload" >Đổi ảnh đại diện</label>
                                                             <input type="file" id="account-upload" @change="onInputChange" hidden>
                                                             <button type="button" class="btn btn-sm btn-outline-warning ml-50" @click="resetImg">Reset</button>
                                                         </div>
@@ -132,8 +115,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                        <button type="button" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0" @click="actionInfoUser">Save
-                                                            changes</button>
+                                                        <button type="button" class="btn bg-netbee mr-sm-1 mb-1 mb-sm-0" @click="actionInfoUser">Lưu thay đổi</button>
                                                     </div>
                                                 </div>
                                             </ValidationObserver>
@@ -204,7 +186,7 @@
                                                           </ValidationProvider>
                                                       </div>
                                                       <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                          <button type="button" v-on:click="changePassword()" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
+                                                          <button type="button" v-on:click="changePassword()" class="btn bg-netbee mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
                                                       </div>
                                                   </div>
                                                    </ValidationObserver>
@@ -221,7 +203,7 @@
                                                             </a>
                                                             <div class="media-body mt-75">
                                                                 <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                                    <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload-cover" >Đổi ảnh bìa</label>
+                                                                    <label class="btn btn-sm bg-netbee ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload-cover" >Đổi ảnh bìa</label>
                                                                     <input type="file" id="account-upload-cover" name="imageCoverInput" @change="onInputChangeCover" hidden>
                                                                     <button type="button" class="btn btn-sm btn-outline-warning ml-50" @click="resetImgCover">Reset</button>
                                                                 </div>
@@ -384,7 +366,7 @@
                                                           </ValidationProvider>
                                                       </div>
                                                       <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                          <button type="button" @click="changeInfoCompany()" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
+                                                          <button type="button" @click="changeInfoCompany()" class="btn bg-netbee mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
                                                       </div>
                                                   </div>
                                                   </ValidationObserver>
