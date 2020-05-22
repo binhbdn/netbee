@@ -46,7 +46,7 @@ class NbJoblist extends Model
         return $this->hasMany('App\Models\Apply', 'id');
     }
 
-    public  function nation()
+    public function nation()
     {
         return $this->belongsTo('App\Models\Nation');
     }
@@ -55,11 +55,18 @@ class NbJoblist extends Model
     {
         return $this->belongsTo('App\Models\VisaProfession', 'id_visa');
     }
-    public  function user()
+    
+    public function user()
     {
         return $this->belongsTo('App\User', 'id_created');
     }
+
     public function nbCompany(){
         return $this->belongsTo('App\Models\NbCompanyInfo','id_created','company_id');
+    }
+    
+    public function nbJobSave()
+    {
+        return $this->hasMany('App\Models\NbJobSave', 'id_job', 'id');
     }
 }

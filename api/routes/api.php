@@ -106,6 +106,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getSave', 'Admin\SaveController@getSave');
         Route::post('report', 'Admin\ReportController@report');
       });
+      Route::prefix('quanlyvieclam')->group(function(){
+        Route::get('getSaveBySaver', 'Admin\SaveController@getSaveBySaver');
+        Route::post('deleteJobSave', 'Admin\SaveController@deleteJobSave');
+      });
       Route::prefix('hoso')->group(function () {
         Route::post('getProfileUserId', 'Admin\TeamplateCvController@getProfileUserId');
         Route::post('deleteProfileUser', 'Admin\TeamplateCvController@deleteProfileUser');
