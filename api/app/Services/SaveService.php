@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\NbJobSave;
+use App\Models\NbJoblist;
 use Carbon\Carbon;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -10,9 +11,10 @@ class SaveService extends BaseService {
 
     protected $nbJobSave;
 
-    public function __construct(NbJobSave $nbJobSave)
+    public function __construct(NbJobSave $nbJobSave, NbJoblist $nbJoblist)
     {
         $this->nbJobSave = $nbJobSave;
+        $this->nbJoblist = $nbJoblist;
     }
 
     public function getSaveByJobId($jobId)
@@ -86,4 +88,60 @@ class SaveService extends BaseService {
            ];
         }
     }
+    
+    public function getSaveBySaver($request)
+    {
+        $userId = Auth::user()->id;
+        $perPage = 6;
+        $search = $request->search;
+        $searchCategory = $request->searchCategory;
+        $conditions =[];
+
+        if($searchCategory != ''){
+            $conditions[] = [
+                'type',
+                '=',
+                $searchCategory
+            ];
+        }
+
+        $query = $this->nbJoblist->with('nbJobSave')
+        ->whereHas('nbJobSave', function($q){
+            $q->where('id_saver', Auth::user()->id);
+        })
+        ->with('user')->with('nation');
+
+        if (!empty($conditions)) {
+            $query->where($conditions);
+        }
+        if ($search != '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'LIKE', '%'.$search.'%');
+            });
+        }
+
+        return $query->orderBy('id', 'DESC')->paginate($perPage);
+
+    }
+
+    // public function deleteJobSave($id)
+    // {
+    //     $delete = $this->nbJobSave->whereId($id)->delete();
+    //     if($delete)
+    //     {
+    //         return [
+    //             'status' => 200,
+    //             'message' => 'Xóa thành công',
+    //             'data' => true
+    //         ];
+    //     }
+    //     return [
+    //         'status' => 400,
+    //         'message' => 'Lỗi',
+    //         'data' => false
+    //     ];
+        
+    // }
+
+
 }
