@@ -78,14 +78,32 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        $update = $this->userService->update($request->data, $request->data['id']);
+        $validator = Validator::make($request->all(),
+            [
+                'name' => 'required',
+                'phone' => 'required|numeric',
+            ],
+            [
+                'required' => 'Không được để trống :attribute',
+                'numeric' => 'Số điện thoại không được chứa kí tự'
+            ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'message' => $validator->messages()->first(),
+                'data' => null
+            ]);
+        }
+        $update = $this->userService->update($request->all(), $request->id);
         if ($update) {
             return response()->json([
                 'status'=> 200,
+                'message' => 'Update thành công',
             ]);
         }
         return response()->json([
             'status'=> 400,
+            'message' => 'Không có thông tin nào được thay đổi hoặc có lỗi trong khi thực hiện, vui lòng thực hiện lại',
         ]);
     }
 
