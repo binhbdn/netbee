@@ -12,4 +12,11 @@ class NbJobSave extends Model
         'id_job',
         'id_saver'
     ];
+
+    public function nbJoblist()
+    {
+        return $this->belongsTo('App\Models\NbJoblist', 'id_job');
+    }
+
+
 }

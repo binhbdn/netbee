@@ -12,7 +12,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                       <li class="nav-item">
-                        <a class="nav-link" :class="{'active': $route.name !== 'tim-cong-ty'}" id="v-pills-33-tab" data-toggle="tab" href="#v-pills-33"
+                        <a class="nav-link" :class="{'active': $route.name == 'tim-viec-lam' || $route.name == 'index'}" id="v-pills-33-tab" data-toggle="tab" href="#v-pills-33"
                            role="tab" aria-controls="v-pills-33" aria-selected="false">Tìm việc làm</a>
                       </li>
                       <li class="nav-item">
@@ -20,7 +20,7 @@
                            role="tab" aria-controls="v-pills-11" aria-selected="true">Tìm trường học</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="v-pills-22-tab" data-toggle="tab" href="#v-pills-22"
+                        <a class="nav-link" :class="{'active': $route.name == 'ung-vien'}" id="v-pills-22-tab" data-toggle="tab" href="#v-pills-22"
                            role="tab" aria-controls="v-pills-22" aria-selected="false">Tìm ứng viên</a>
                       </li>
                       <li class="nav-item">

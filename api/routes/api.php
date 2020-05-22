@@ -75,6 +75,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changeMultipleStatus', 'Auth\UserController@changeMultipleStatus');
         Route::post('blockUser', 'Auth\UserController@blockUser');
         Route::post('blockMultipleUser', 'Auth\UserController@blockMultipleUser');
+        Route::post('update', 'Auth\UserController@update');
       });
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');
@@ -106,6 +107,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getSave', 'Admin\SaveController@getSave');
         Route::post('report', 'Admin\ReportController@report');
       });
+      Route::prefix('quanlyvieclam')->group(function(){
+        Route::get('getSaveBySaver', 'Admin\SaveController@getSaveBySaver');
+        Route::post('deleteJobSave', 'Admin\SaveController@deleteJobSave');
+      });
       Route::prefix('hoso')->group(function () {
         Route::post('getProfileUserId', 'Admin\TeamplateCvController@getProfileUserId');
         Route::post('deleteProfileUser', 'Admin\TeamplateCvController@deleteProfileUser');
@@ -118,7 +123,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getCreateCall', 'Admin\FullCalendarController@getCreateCall');
         Route::post('insertAddCall', 'Admin\FullCalendarController@insertAddCall');  
         Route::post('insertHisCall', 'Admin\FullCalendarController@insertHisCall');
-        Route::post('getHisCall', 'Admin\FullCalendarController@getHisCall');   
+        Route::post('getHisCall', 'Admin\FullCalendarController@getHisCall');  
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');

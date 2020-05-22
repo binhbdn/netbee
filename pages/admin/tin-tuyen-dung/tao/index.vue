@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                         <h2 class="text-bold-700">Đăng và nhận ứng viên</h2>
-                                        <p class="mb-0 line-ellipsis">Đăng miễn phí hiển thi mọi nơi trên Netbee</p>
+                                        <p class="mb-0 line-ellipsis">Cập nhât thông tin ứng tuyển thường xuyên qua email, sms ...</p>
                                         <br/>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                         <div class="card text-white bg-gradient-success text-center">
                                             <div class="card-content">
                                                 <div class="card-body p-3">
-                                                    <h2 class="text-white">Tin Tu Nghiệp Sinh</h2>
+                                                    <h2 class="text-white">Tu Nghiệp Sinh</h2>
                                                     <p class="card-text">Đăng tuyển miễn phí</p>
                                                     <p class="card-text">Nhận ứng viên miễn phí</p>
                                                     <a href="/admin/tin-tuyen-dung/tao/tin-tu-nghiep-sinh" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>

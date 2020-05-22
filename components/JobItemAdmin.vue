@@ -18,13 +18,13 @@
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 100%; max-width: 100%;">
                 </a>
             </div>
-            <div class="remove-border-right">
+            <div class="remove-border-right" style="width: 550px;">
                 <div class="remove-border-right" style="padding: 5px 0px;width: 550px;">
                     
                     <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 </div>
                 <div class="item-name">
-                    <a :href="`/cong-ty/${job.user ? job.user.name : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.name}`"> {{ job.user.name }}</span></a>
+                    <a :href="`/cong-ty/${job.user ? job.user.name : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.user.name }}</span></a>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-location-arrow"></i> {{ job.nation.name }}</p>
@@ -48,7 +48,7 @@
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null">
                         <p class="m-0">Tiền thưởng</p>
                         <h3>
-                            <span style="color: #fc205c">{{job.bonus}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
+                            <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                         </h3>
                     </div>
                 </div>
