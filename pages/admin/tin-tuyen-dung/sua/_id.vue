@@ -461,8 +461,8 @@ extend("ssdigit", {
     params: ['target'],
     message: (field) => `Không được nhỏ hơn`,
     validate: (value, { target }) => {
-        var max = parseFloat(value.split(',').join(''))
-        let min = parseFloat(target.split(',').join(''))
+        var max = JSON.stringify(value).split(',').join('')
+        let min = JSON.stringify(target).split(',').join('')
         if(max > min){
             return true
         }else{
@@ -574,9 +574,9 @@ export default {
             this.data.benefit = job.data.benefit
             this.data.date_start = job.data.date_start
             this.data.quantity = job.data.quantity
-            this.data.salary_start = this.FormatPrice(job.data.salary_start)
-            this.data.salary_end = this.FormatPrice(job.data.salary_end)
-            this.data.subsidy = this.FormatPrice(job.data.subsidy)
+            this.data.salary_start = job.data.salary_start ? this.FormatPrice(job.data.salary_start) : job.data.salary_start
+            this.data.salary_end = job.data.salary_end ? this.FormatPrice(job.data.salary_end) : job.data.salary_end
+            this.data.subsidy = job.data.subsidy ? this.FormatPrice(job.data.subsidy) : job.data.subsidy
             for (let indexVisa = 0; indexVisa < visa.data.length; indexVisa++) {
                 if(job.data.id_visa == indexVisa+1){
                     this.data.visa = visa.data[indexVisa]
