@@ -18,7 +18,7 @@
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 100%; max-width: 100%;">
                 </a>
             </div>
-            <div class="remove-border-right">
+            <div class="remove-border-right" style="width: 550px;">
                 <div class="remove-border-right" style="padding: 5px 0px;width: 550px;">
                     
                     <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
@@ -48,7 +48,7 @@
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null">
                         <p class="m-0">Tiền thưởng</p>
                         <h3>
-                            <span style="color: #fc205c">{{job.bonus}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
+                            <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                         </h3>
                     </div>
                 </div>
