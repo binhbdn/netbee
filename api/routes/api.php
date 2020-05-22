@@ -75,6 +75,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changeMultipleStatus', 'Auth\UserController@changeMultipleStatus');
         Route::post('blockUser', 'Auth\UserController@blockUser');
         Route::post('blockMultipleUser', 'Auth\UserController@blockMultipleUser');
+        Route::post('update', 'Auth\UserController@update');
       });
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');
@@ -114,8 +115,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');
       });
       Route::prefix('lichphongvan')->group(function () {
-        Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');   
-        Route::get('getInterview', 'Admin\FullCalendarController@getInterview');    
+        Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');
+        Route::get('getInterview', 'Admin\FullCalendarController@getInterview');
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');
