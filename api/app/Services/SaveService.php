@@ -123,25 +123,4 @@ class SaveService extends BaseService {
         return $query->orderBy('id', 'DESC')->paginate($perPage);
 
     }
-
-    // public function deleteJobSave($id)
-    // {
-    //     $delete = $this->nbJobSave->whereId($id)->delete();
-    //     if($delete)
-    //     {
-    //         return [
-    //             'status' => 200,
-    //             'message' => 'Xóa thành công',
-    //             'data' => true
-    //         ];
-    //     }
-    //     return [
-    //         'status' => 400,
-    //         'message' => 'Lỗi',
-    //         'data' => false
-    //     ];
-        
-    // }
-
-
 }

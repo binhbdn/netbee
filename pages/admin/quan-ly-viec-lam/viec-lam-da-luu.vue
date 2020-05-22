@@ -29,12 +29,6 @@ export default {
       page: 1
     };
   },
-  methods: {
-    
-  },
-  computed: {
-    
-  }
 };
 </script>
 <style scoped>
