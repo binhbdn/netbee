@@ -207,6 +207,9 @@
     background-color: #FFB701 !important;
     color: #000 !important;
 }
+.border-netbee {
+    border: 1px solid #FFB701 !important;
+}
 .bg-netbee:hover {
     color: #fff !important;
 }
