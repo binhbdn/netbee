@@ -469,7 +469,7 @@
                                                 </div>
                                                 <div class="col-sm-8 col-lg-8 d-flex">
                                                     <div class="d-flex" v-if="elementUpdate.birth_of_date">
-                                                      <span>{{userDetail.birth_of_date}}</span>
+                                                      <span>{{ConvertDate(userDetail.birth_of_date)}}</span>
                                                       <i class="fa fa-pencil is-show-edit" @click="showEditBox('birth_of_date')"></i>
                                                     </div>
                                                     <div class="edit-box" v-if="!elementUpdate.birth_of_date">
@@ -478,6 +478,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div id="message_update"></div>
                                         </div>
                                       </div>
                                     </div>
@@ -574,12 +575,15 @@ export default {
   methods: {
     actionUpdate() {
       $('#overlay_update').show();
+      let className = 'text-danger';
       this.$axios
-        .$post("user/" + this.userRole + "/update", { data: this.userDetail})
+        .$post("user/" + this.userRole + "/update", this.userDetail)
         .then(response => {
           if (response.status == 200) {
             this.elementUpdate = this.defaultValue();
+            className = 'text-success';
           }
+          $('#message_update').attr('class', className).show().text(response.message).fadeOut(4500);
           $('#overlay_update').hide();
         })
         .catch(e => {
