@@ -27,4 +27,15 @@ class SaveController extends Controller
         $response = $this->saveService->postSave($request->id_job);
         return response()->json($response);
     }
+
+    public function getSaveBySaver(Request $request)
+    {
+        $response = $this->saveService->getSaveBySaver($request);
+        return response()->json($response);
+    }
+    public function deleteJobSave(Request $request)
+    {
+        $response = $this->saveService->deleteJobSave($request->id);
+        return response()->json($response);
+    }
 }
