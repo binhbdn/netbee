@@ -574,9 +574,9 @@ export default {
             this.data.benefit = job.data.benefit
             this.data.date_start = job.data.date_start
             this.data.quantity = job.data.quantity
-            this.data.salary_start = job.data.salary_start.split(',').join('')
-            this.data.salary_end = job.data.salary_end.split(',').join('')
-            this.data.subsidy = job.data.subsidy.split(',').join('')
+            this.data.salary_start = this.FormatPrice(job.data.salary_start)
+            this.data.salary_end = this.FormatPrice(job.data.salary_end)
+            this.data.subsidy = this.FormatPrice(job.data.subsidy)
             for (let indexVisa = 0; indexVisa < visa.data.length; indexVisa++) {
                 if(job.data.id_visa == indexVisa+1){
                     this.data.visa = visa.data[indexVisa]

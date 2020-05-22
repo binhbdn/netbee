@@ -63,7 +63,7 @@
                                                     </a>
                                                     <div class="media-body mt-75">
                                                         <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                            <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload" >Đổi ảnh đại diện</label>
+                                                            <label class="btn btn-sm bg-netbee ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload" >Đổi ảnh đại diện</label>
                                                             <input type="file" id="account-upload" @change="onInputChange" hidden>
                                                             <button type="button" class="btn btn-sm btn-outline-warning ml-50" @click="resetImg">Reset</button>
                                                         </div>
@@ -132,8 +132,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                        <button type="button" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0" @click="actionInfoUser">Save
-                                                            changes</button>
+                                                        <button type="button" class="btn bg-netbee mr-sm-1 mb-1 mb-sm-0" @click="actionInfoUser">Lưu thay đổi</button>
                                                     </div>
                                                 </div>
                                             </ValidationObserver>
@@ -204,7 +203,7 @@
                                                           </ValidationProvider>
                                                       </div>
                                                       <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                          <button type="button" v-on:click="changePassword()" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
+                                                          <button type="button" v-on:click="changePassword()" class="btn bg-netbee mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
                                                       </div>
                                                   </div>
                                                    </ValidationObserver>
@@ -221,7 +220,7 @@
                                                             </a>
                                                             <div class="media-body mt-75">
                                                                 <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                                    <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload-cover" >Đổi ảnh bìa</label>
+                                                                    <label class="btn btn-sm bg-netbee ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload-cover" >Đổi ảnh bìa</label>
                                                                     <input type="file" id="account-upload-cover" name="imageCoverInput" @change="onInputChangeCover" hidden>
                                                                     <button type="button" class="btn btn-sm btn-outline-warning ml-50" @click="resetImgCover">Reset</button>
                                                                 </div>
@@ -384,7 +383,7 @@
                                                           </ValidationProvider>
                                                       </div>
                                                       <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                          <button type="button" @click="changeInfoCompany()" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
+                                                          <button type="button" @click="changeInfoCompany()" class="btn bg-netbee mr-sm-1 mb-1 mb-sm-0">Lưu thay đổi</button>
                                                       </div>
                                                   </div>
                                                   </ValidationObserver>
