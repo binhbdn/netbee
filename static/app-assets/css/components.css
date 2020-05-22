@@ -3623,3 +3623,46 @@ tr.group {
             justify-content : center;
   }
 }
+
+.has-update .is-show-edit{
+  display: none;
+  margin-left: 15px;
+  cursor: pointer;
+}
+/*.has-update .edit-box {*/
+/*  display: none;*/
+/*}*/
+
+.has-update .hide {
+  display: none !important;
+}
+
+.has-update .edit-box input {
+  outline: none;
+}
+
+.has-update .edit-box button {
+  outline: none;
+  margin-left: 5px;
+  border: 1px solid #28C76F;
+  padding: 5px 7px;
+}
+
+.has-update:hover .is-show-edit {
+  display: block;
+}
+.update-loading {
+  top: 35%;
+  left: 45%;
+  width: 4rem;
+  height: 4rem;
+}
+#overlay_update {
+  background: #8080804d;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  margin-left: -1rem;
+  margin-top: -1rem;
+}
+
