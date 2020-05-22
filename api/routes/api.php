@@ -115,7 +115,10 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       });
       Route::prefix('lichphongvan')->group(function () {
         Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');   
-        Route::get('getInterview', 'Admin\FullCalendarController@getInterview');    
+        Route::get('getCreateCall', 'Admin\FullCalendarController@getCreateCall');
+        Route::post('insertAddCall', 'Admin\FullCalendarController@insertAddCall');  
+        Route::post('insertHisCall', 'Admin\FullCalendarController@insertHisCall');
+        Route::post('getHisCall', 'Admin\FullCalendarController@getHisCall');   
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');

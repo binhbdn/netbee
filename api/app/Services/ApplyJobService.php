@@ -4,6 +4,8 @@ namespace App\Services;
 use App\Models\Apply;
 use App\Models\NbJoblist;
 use App\Models\NbPaper;
+use App\Models\NbCreateCall;
+use App\Models\NbHistoryCall;
 use Auth;
 use Validator;
 use Carbon\Carbon;
@@ -13,12 +15,15 @@ class ApplyJobService extends BaseService {
     protected $nbJobList;
     protected $apply;
     protected $nbPaper;
+    protected $nbCreateCall;
 
-    public function __construct(NbJoblist $nbJobList, Apply $apply, NbPaper $nbPaper)
+    public function __construct(NbJoblist $nbJobList, Apply $apply, NbPaper $nbPaper, NbCreateCall $nbCreateCall, NbHistoryCall $nbHistoryCall)
     {
         $this->nbJobList = $nbJobList;
         $this->apply = $apply;
         $this->nbPaper = $nbPaper;
+        $this->nbCreateCall = $nbCreateCall;
+        $this->nbHistoryCall = $nbHistoryCall;
     }
 
     public function create($data)
@@ -244,10 +249,14 @@ class ApplyJobService extends BaseService {
             $days['id'] = $value->id;
             $days['start'] = $value->interview_schedules;
             $days['title'] = "LPV".$value->job->title;
+            $days['idjob'] = $value->job->id;
             $days['email'] =    $value->user->email;
             $days['phone'] =    $value->user->phone;
             $days['name'] =    $value->user->name;
             $days['address'] =    $value->user->address_detail;
+            $dateromm = Carbon::parse($value->created_at)->format('Ymd');
+            $days['id_room'] = $dateromm.$value->id;
+            $days['status_call'] = $value->status_call;
             $daystime = Carbon::parse($value->interview_schedules)->format('Y-m-d');
             $timedays = Carbon::now()->format('Y-m-d');
             if($daystime < $timedays){
@@ -262,24 +271,25 @@ class ApplyJobService extends BaseService {
         return $data;
     }
 
-    public function getInterview()
-    {
-        $userRole = Auth::user()->role;
-        if ($userRole == self::ROLE_ADMIN) {
-            $data = $this->getCalendarAdmin();                        
-        } else if ($userRole == self::ROLE_COMPANY) {
-            $data = $this->getCalendarCompany();            
-        } else {
-            $data = $this->getCalendarUser();
-        }  
-        return $data;
-    }
+    // public function getInterview()
+    // {
+    //     $userRole = Auth::user()->role;
+    //     if ($userRole == self::ROLE_ADMIN) {
+    //         $data = $this->getCalendarAdmin();                        
+    //     } else if ($userRole == self::ROLE_COMPANY) {
+    //         $data = $this->getCalendarCompany();            
+    //     } else {
+    //         $data = $this->getCalendarUser();
+    //     }  
+    //     return $data;
+    // }
 
     public function getCalendarAdmin()
     {
         return $this->getApplyCalendar()                    
                     ->where('status' ,self::NTD_DUYET_HO_SO)  
-                    ->whereNotNull('interview_schedules')           
+                    ->whereNotNull('interview_schedules')    
+                    ->orderByDesc('interview_schedules')       
                     ->get();
     }
 
@@ -287,7 +297,8 @@ class ApplyJobService extends BaseService {
     {
         return $this->getApplyCalendarCompany()                    
                     ->where('status' ,self::NTD_DUYET_HO_SO)  
-                    ->whereNotNull('interview_schedules')          
+                    ->whereNotNull('interview_schedules')   
+                    ->orderByDesc('interview_schedules')        
                     ->get();
     }
 
@@ -296,7 +307,8 @@ class ApplyJobService extends BaseService {
         return $this->getApplyCalendar()                    
                     ->where('status' ,self::NTD_DUYET_HO_SO)  
                     ->whereNotNull('interview_schedules')                    
-                    ->where('user_id_submit' ,Auth::user()->id)         
+                    ->where('user_id_submit' ,Auth::user()->id)  
+                    ->orderByDesc('interview_schedules')        
                     ->get();
     }
 
@@ -328,5 +340,85 @@ class ApplyJobService extends BaseService {
                 ]);
             }]);
     }  
+
+    public function getCreateCall()
+    {
+        $userRole = Auth::user()->role;
+        if ($userRole == self::ROLE_ADMIN) {
+            $data = $this->getCallAdmin();                        
+        } else if ($userRole == self::ROLE_COMPANY) {
+            $data = $this->getCallCompany();            
+        }
+        return $data;
+    }
     
+    public function getCallAdmin()
+    {
+        return $this->nbCreateCall            
+            ->with(['nbjob' => function ($q) {
+                $q->select('title', 'id');
+                $q->where([               
+                    'deleted' => self::UN_DELETE,
+                    'status' => self::ACTIVE,
+                    'isPublic' =>self::ACTIVE,
+                ]);
+            }])
+            ->with(['Apply' =>function ($q) {
+                $q->select('interview_schedules', 'id'); 
+                $q->orderByDesc('interview_schedules');             
+            }])
+            ->with(['user' => function ($q) {
+                $q->select('id','name', 'address_detail','phone','email');
+            }])
+            ->orderBy('id', 'DESC')
+            ->get();
+    }
+
+    public function getCallCompany()
+    {
+        return $this->nbCreateCall            
+            ->with(['nbjob' => function ($q) {
+                $q->select('title', 'id');
+                $q->where([      
+                    'id_created'=> Auth::user()->id,         
+                    'deleted' => self::UN_DELETE,
+                    'status' => self::ACTIVE,
+                    'isPublic' =>self::ACTIVE
+                ]);
+            }])
+            ->with(['Apply' =>function ($q) {
+                $q->select('interview_schedules', 'id');    
+                $q->orderByDesc('interview_schedules');               
+            }])
+            ->with(['user' => function ($q) {
+                $q->select('id','name', 'address_detail','phone','email');
+            }])
+            ->orderBy('id', 'DESC')
+            ->get();
+    }
+    public function insertCreateCall($data)
+    {
+        return $this->nbCreateCall->insert($data);
+    }
+
+    public function updateAppliesCall($data,$id)
+    {
+        return $this->apply->whereId($id)->update($data);
+    }
+
+    public function insertHisCall($data)
+    {
+        return $this->nbHistoryCall->insert($data);
+    }
+
+    public function getHisCall($id_room)
+    {
+        return $this->nbHistoryCall
+            ->where('id_room' ,$id_room)
+            ->with(['user' => function ($q) {
+                $q->select('id','name',);
+            }])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+    }
 }
