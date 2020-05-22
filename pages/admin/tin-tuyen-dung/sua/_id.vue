@@ -661,7 +661,7 @@ export default {
                 form.append('title' , this.data.title)
                 form.append('school_name' , this.data.school_name)
                 form.append('address' , this.data.address)
-                form.append('nation' , this.data.nation.id)
+                form.append('nation_id' , this.data.nation.id)
                 form.append('expiration_date' , this.data.expiration_date)
                 form.append('description' , this.data.description)
                 form.append('request' , this.data.request)
@@ -685,7 +685,7 @@ export default {
                     form.append('bonus' , 0)
                 }
                 form.append('highlight_job' , this.data.highlight_job)
-                form.append('visa' , this.data.visa.id)
+                form.append('id_visa' , this.data.visa.id)
                 form.append('form_work' , this.data.form_work.id)
                 form.append('type' , this.data.type)
                 form.append('id' , this.$route.params.id)
