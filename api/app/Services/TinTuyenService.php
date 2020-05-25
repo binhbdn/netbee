@@ -237,8 +237,27 @@ class TinTuyenService extends BaseService {
         }
         return $data;
     }
-
-    private function getJobValid($username)
+    private function getJobValid()
+    {
+        return $this->nbJobList->with(['user' => function ($q) {
+            $q->select('id', 'name', 'avatar');
+        }])
+            ->with(['nbCompany' => function ($q) {
+                $q->select('id', 'username','company_id');
+            }])
+            ->with(['nation' => function ($q) {
+                $q->select('id', 'name');
+            }])
+            ->whereHas('user', function ($query) {
+                $query->where([
+                    'block' => self::UN_BLOCK,
+                    'status' => self::ACTIVE
+                ]);
+            })
+            ->where('deleted',self::INACTIVE)
+            ->where('status',self::ACTIVE);
+    }
+    private function getJobValidForCompany($username)
     {
         return $this->nbJobList->with(['user' => function ($q) {
                 $q->select('id', 'name', 'avatar');
@@ -571,7 +590,7 @@ class TinTuyenService extends BaseService {
 
     private function getForCompany($username, $limit)
     {
-        $query = $this->getJobValid($username)
+        $query = $this->getJobValidForCompany($username)
             ->where('isPublic',self::ACTIVE);
         if (!empty($limit)) {
             $query->limit($limit);
