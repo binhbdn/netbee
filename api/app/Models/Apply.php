@@ -32,4 +32,8 @@ class Apply extends Model
     {
         return $this->belongsTo('App\Models\NbPaper','id','apply_id');
     }
+    public  function nbCreateCall()
+    {
+        return $this->belongsTo('App\Models\NbCreateCall','id','id_applies');
+    }
 }

@@ -1,25 +1,6 @@
 <template>
     <div class="app-content content">
         <div class="content-wrapper">
-            <div class="content-header row">
-                <div class="content-header-left col-md-12 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Danh sách tin tuyển dụng</h2>
-                            <div class="breadcrumb-wrapper col-12">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Trang chủ</a>
-                                    </li>
-                                    <li class="breadcrumb-item"><a href="/">Tin tuyển dụng</a>
-                                    </li>
-                                    <li class="breadcrumb-item active"> Sửa tin [{{this.$route.params.id}}]
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="content-body">
                 <section id="dashboard-ecommerce">
                     <div class="row">
@@ -202,13 +183,13 @@
                                                                 <div class="row">
                                                                     <div class="col-6" style="padding-left:0px">
                                                                         <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
-                                                                            <input type="number" class="form-control" v-model="data.salary_start" placeholder="Từ">
+                                                                            <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px">
                                                                         <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
-                                                                            <input type="number" class="form-control" v-model="data.salary_end" placeholder="Đến">
+                                                                            <input type="txt" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
@@ -234,7 +215,7 @@
                                                                 <label for="firstName3">
                                                                     Phí nhập cảnh
                                                                 </label>
-                                                                <input type="number" class="form-control required" v-model="data.subsidy">
+                                                                <input type="txt" class="form-control required" v-model="data.subsidy" @input="data.subsidy = FormatPrice(data.subsidy)">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -302,19 +283,19 @@
                                                             </div>
                                                         </fieldset>
                                                     </div>  
-                                                    <div class="col-4" v-if="checked">
+                                                    <div class="col-6" v-if="checked">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }" >
                                                                 <div class="form-group">
                                                                     <label for="firstName3">
-                                                                        Thời gian bảo hành
+                                                                        Thời gian thanh toán phí
                                                                     </label>
                                                                     <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :allow-empty="false"
-                                                                        :show-labels="false" placeholder="Chọn thời gian bảo hành" :disabled="!checked"></multiselect>
+                                                                        :show-labels="false" placeholder="Thời gian thanh toán phí" :disabled="!checked"></multiselect>
                                                                     <span style="color: red">{{ errors[0] }}</span>
                                                                 </div>
                                                             </ValidationProvider>
                                                     </div>
-                                                    <div class="col-4" v-if="checked">
+                                                    <div class="col-6" v-if="checked">
                                                         <ValidationProvider rules="required" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -325,16 +306,16 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-4" v-if="checked">
+                                                    <!-- <div class="col-4" v-if="checked">
                                                         <div class="form-group">
                                                             <label for="firstName3">
                                                                 Tiền bonus thực nhận
                                                             </label>
                                                             <input type="number" class="form-control" disabled :value=" data.time_bonus.id == 1 ? data.bonus : data.time_bonus.id == 2 ? data.bonus * 1.5 : data.bonus * 2">
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi1">
-                                                        <div class="card border-info text-center bg-transparent" style="height: 100%">
+                                                        <div class="card border-netbee text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-10">
                                                                     <label for="defaultGroupExample0" class="btn bg-netbee">TIN NỔI BẬT</label>
@@ -353,7 +334,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi2">
-                                                        <div class="card border-info text-center bg-transparent" style="height: 100%">
+                                                        <div class="card border-netbee text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-10">
                                                                     <label for="defaultGroupExample1" class="btn bg-netbee">TIN THƯỜNG</label>
@@ -372,7 +353,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi3">
-                                                        <div class="card border-info text-center bg-transparent" style="height: 100%">
+                                                        <div class="card border-netbee text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-10">
                                                                     <label for="defaultGroupExample2" class="btn bg-netbee">TIN VIP</label>
@@ -461,8 +442,8 @@ extend("ssdigit", {
     params: ['target'],
     message: (field) => `Không được nhỏ hơn`,
     validate: (value, { target }) => {
-        var max = parseFloat(value)
-        let min = parseFloat(target)
+        var max = JSON.stringify(value).split(',').join('')
+        let min = JSON.stringify(target).split(',').join('')
         if(max > min){
             return true
         }else{
@@ -531,9 +512,9 @@ export default {
             },
             checked: false,
             guarantee: [
-                {id: 1, name: '30 ngày *1'},
-                {id: 2, name: 'Hoàn tất nhập cảnh *1,5'},
-                {id: 3, name: 'Sau nhập cảnh 30 ngày *2'}
+                {id: 1, name: 'Ngay sau khi bay'},
+                {id: 2, name: 'Sau khi bay 30 ngày *1,5'},
+                {id: 3, name: 'Sau khi bay 60 ngày *2'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
             optionsVisa: [],
@@ -574,9 +555,9 @@ export default {
             this.data.benefit = job.data.benefit
             this.data.date_start = job.data.date_start
             this.data.quantity = job.data.quantity
-            this.data.salary_start = job.data.salary_start
-            this.data.salary_end = job.data.salary_end
-            this.data.subsidy = job.data.subsidy
+            this.data.salary_start = job.data.salary_start ? this.FormatPrice(job.data.salary_start) : job.data.salary_start
+            this.data.salary_end = job.data.salary_end ? this.FormatPrice(job.data.salary_end) : job.data.salary_end
+            this.data.subsidy = job.data.subsidy ? this.FormatPrice(job.data.subsidy) : job.data.subsidy
             for (let indexVisa = 0; indexVisa < visa.data.length; indexVisa++) {
                 if(job.data.id_visa == indexVisa+1){
                     this.data.visa = visa.data[indexVisa]
@@ -661,18 +642,18 @@ export default {
                 form.append('title' , this.data.title)
                 form.append('school_name' , this.data.school_name)
                 form.append('address' , this.data.address)
-                form.append('nation' , this.data.nation.id)
+                form.append('nation_id' , this.data.nation.id)
                 form.append('expiration_date' , this.data.expiration_date)
                 form.append('description' , this.data.description)
                 form.append('request' , this.data.request)
                 form.append('cv_content' , this.data.cv_content)
-                form.append('salary_start' , this.data.salary_start)
-                form.append('salary_end' , this.data.salary_end)
+                form.append('salary_start' , this.data.salary_start.split(',').join(''))
+                form.append('salary_end' , this.data.salary_end.split(',').join(''))
                 form.append('benefit' , this.data.benefit)
                 form.append('age_start' , this.data.age_start)
                 form.append('age_late' , this.data.age_late)
                 form.append('quantity' , this.data.quantity)
-                form.append('subsidy' , this.data.subsidy)
+                form.append('subsidy' , this.data.subsidy.split(',').join(''))
                 form.append('currency' , this.data.currency)
                 form.append('date_start' , this.data.date_start)
                 form.append('date_test' , this.data.date_test)
@@ -685,7 +666,7 @@ export default {
                     form.append('bonus' , 0)
                 }
                 form.append('highlight_job' , this.data.highlight_job)
-                form.append('visa' , this.data.visa.id)
+                form.append('id_visa' , this.data.visa.id)
                 form.append('form_work' , this.data.form_work.id)
                 form.append('type' , this.data.type)
                 form.append('id' , this.$route.params.id)

@@ -206,6 +206,11 @@ class UserService extends BaseService {
         return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_COMPANY)->get();
     }
 
+    public function getChoose()
+    {
+        return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_COMPANY)->whereStatus(self::ACTIVE)->get();
+    }
+
     public function search($request)
     {
         $roles = self::getRoles();

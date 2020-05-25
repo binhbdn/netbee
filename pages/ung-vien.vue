@@ -53,7 +53,7 @@
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <Multiselect v-model="birthday_year" :options="years" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn năm sinh" ></Multiselect>
+                      <Multiselect v-model="birthday_year" :options="getYears" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn năm sinh" ></Multiselect>
                     </div>
                   </div>
                   <div class="col-md-12">
@@ -98,52 +98,10 @@ export default {
       level_education: '',
       address_profile: '',
       birthday_year: '',
+      years: [],
       sex: [
         'Nam', 
         'Nữ'
-      ],
-      years: [
-        '1980', 
-        '1981',
-        '1982', 
-        '1983',
-        '1984', 
-        '1985',
-        '1986', 
-        '1987',
-        '1988', 
-        '1989',
-        '1990', 
-        '1991',
-        '1992', 
-        '1993',
-        '1994', 
-        '1995',
-        '1996', 
-        '1997',
-        '1998', 
-        '1999',
-        '2000', 
-        '2001',
-        '2002', 
-        '2003',
-        '2004', 
-        '2005',
-        '2006', 
-        '2007',
-        '2008',
-        '2009',
-        '2010',
-        '2011',
-        '2012',
-        '2013',
-        '2014',
-        '2015',
-        '2016',
-        '2017',
-        '2018',
-        '2019',
-        '2020',
       ],
       level: [
         'Đại học',
@@ -160,7 +118,6 @@ export default {
   },
 
   async asyncData({$axios, route}) {
-    
     let searchCvs = await $axios.$get('searchCvs?search='
       +(route.query.keyword != null ? route.query.keyword : '')
       // +(route.query.searchLevel != '' ? '&searchLevel=' + route.query.searchLevel : '')
@@ -171,16 +128,26 @@ export default {
     }
   },
 
+  computed: {
+    // getYears(){
+    //   var yearStart = 1970;
+    //   var yearEnd = 2020;
+    //   var years = [];
+    //   for (var i = yearStart; i < yearEnd+1; i++) {
+    //       years.push(i);
+    //   }
+    // },
+    getYears(){
+      let yearStart = 1970;
+      let yearEnd = 2020;
+      let years = Array(yearEnd-yearStart+1)
+        .fill()
+        .map(() => yearStart++);
+      return years;
+    },
+  },
+
   methods: {
-    nameWithLang ({ name, id }) {
-      return `${name}`
-    },
-    nameWithLang ({ name, id }) {
-      return `${name}`
-    },
-    nameWithLang1 ({ profession, id }) {
-      return `${profession}`
-    },
     nameWithLang ({ name, id }) {
       return `${name}`
     },
@@ -193,7 +160,6 @@ export default {
       this.arrayCvs = getCvs.data;
     },
   },
-  
   
 };
 </script>

@@ -149,7 +149,7 @@ class TinTuyenService extends BaseService {
             'bonus' => $request->bonus,
             'highlight_job' => $request->highlight_job,
             'type' => $request->type,
-            'id_created' => Auth::user()->id,
+            'id_created' => $request->id_created ?? Auth::user()->id,
             'school_name' => $request->school_name,
             'status' => self::INACTIVE
         ];
@@ -581,7 +581,7 @@ class TinTuyenService extends BaseService {
 
     public function getDetailNew($id)
     {
-        $response = $this->nbJobList->with(['user', 'nation'])
+        $response = $this->nbJobList->with(['user', 'nation','visa_profession'])
             ->where('status',self::ACTIVE)
             ->where('deleted',self::INACTIVE)
             ->where('isPublic',self::ACTIVE)

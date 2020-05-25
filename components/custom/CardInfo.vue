@@ -10,8 +10,8 @@
                     </div>
                     <div class="p-1">
                         <div class="d-flex justify-content-between" style="padding: 5px 0px;">
-                            <a class="item-vip-a" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.fullname_profile)}`" data-toggle="tooltip" data-placement="top" :title="`${item.fullname_profile}`">[{{item.id}}] {{ item.fullname_profile }}</a>
-                            <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Giới tính"><i class="far fa-user"></i> {{ item.maleFemale }}</p>
+                            <a class="item-vip-a" href="#" data-toggle="tooltip" data-placement="top" :title="`${item.fullname_profile}`">[{{item.id}}] {{ item.fullname_profile }}</a>
+                            <p class="delivery-date mb-0 d-flex justify-content-end" data-toggle="tooltip" data-placement="top" title="Giới tính"><i class="fas fa-venus-mars"></i>&nbsp;{{ item.maleFemale }}</p>
                         </div>
                         <div class="item-quantity d-flex">
                             <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="Địa chỉ"><i class="fad fa-location-arrow"></i> {{ item.address_profile }}</p>
@@ -50,7 +50,7 @@ export default {
 
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 1fr 3fr 2fr!important;
 }
 .item-vip-a{
     font-weight: 600;

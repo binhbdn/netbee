@@ -1,41 +1,5 @@
 <template>
-    <div class="content-wrapper">    
-        <!-- News filter start -->
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Tìm kiếm</h4>
-                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                    <div class="heading-elements">
-                        <ul class="list-inline mb-0">
-                            <li><a data-action="collapse" data-toggle="tooltip"  data-placement="top" :title="`Thu gọn tìm kiếm`"><i class="feather icon-chevron-down"></i></a></li>
-                            <li><a @click="resetForm()" data-toggle="tooltip"  data-placement="top" :title="`Làm mới tìm kiếm`"><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
-                            <li><a data-action="close" data-toggle="tooltip"  data-placement="top" :title="`Đóng tìm kiếm`"><i class="feather icon-x"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card-content collapse show pb-2">
-                    <div class="card-body">
-                        <div class="users-list-filter">
-                            <form>
-                                <div class="row">
-                                    <div class="col-12 col-sm-4 col-lg-4">
-                                        <input type="text"  class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
-                                    </div>
-                                    <div class="col-12 col-sm-4 col-lg-4">
-                                        <input type="text"  class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên công ty..." />
-                                    </div>
-                                    <div class="col-12 col-sm-4 col-lg-4">
-                                        <fieldset class="form-group">
-                                            <multiselect v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <!-- News filter end -->
+    <div class="content-wrapper">
         <div class="content-body">
             <section> 
                 <div class="row">

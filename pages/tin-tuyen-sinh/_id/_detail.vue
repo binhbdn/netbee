@@ -66,7 +66,8 @@
                                     <div class="px-1">
                                         <p><span class="font-weight-600">Địa điểm:</span> {{ tintuyendung.workplace }}</p>
                                         <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Trường:</span> {{ tintuyendung.school_name }}</p>
-                                        <p><span class="font-weight-600">Tuổi:</span> {{ tintuyendung.age_start }} {{ tintuyendung.age_end? ' - '+tintuyendung.age_end+' tuổi' : ' tuổi trở lên' }}</p>
+                                        <p><span class="font-weight-600">Tuổi:</span> {{ tintuyendung.age_start }} {{ tintuyendung.age_late? ' - '+tintuyendung.age_late+' tuổi' : ' tuổi trở lên' }}</p>
+                                        <p v-if="tintuyendung.visa_profession != null"><span class="font-weight-600">Visa:</span> {{ tintuyendung.visa_profession.profession }} </p>
                                         <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Lương:</span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
                                         <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
                                         <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Hình thức làm việc:</span> {{ tintuyendung.form_work == 1 ? 'Toàn thời gian' : tintuyendung.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
