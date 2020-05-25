@@ -65,6 +65,7 @@ export default {
             this.$axios.$get('searchCompany?keyword='+this.$route.query.keyword + '&nation=' + this.$route.query.nation)
             .then(response => {
                 this.arrayCompanyNew = response.data
+                console.log(this.arrayCompanyNew);
             })
         }
     },

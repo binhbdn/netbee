@@ -295,7 +295,7 @@
                     <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'" data-dismiss="modal">Viết phản hồi</a>
                 </div>
                 <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
-                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" data-dismiss="modal" >Đóng</a>
+                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" data-dismiss="modal" >Viết phản hồi</a>
                 </div>
             </div>
                 </div>
@@ -659,5 +659,11 @@ export default {
     line-height: 18px;
     font-size: 16px;
     padding-right: 5px
+}
+.form-label-group textarea:not(:active):not(:placeholder-shown)~label {
+    color: rgba(34, 41, 47, 0.4) !important;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    opacity: 1;
 }
 </style>
