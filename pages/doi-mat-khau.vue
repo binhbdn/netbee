@@ -7,16 +7,16 @@
         <div class="col-xl-7 col-md-9 col-10 d-flex justify-content-center px-0" style="margin: 20px auto">
           <div class="card bg-authentication rounded-0 mb-0 p-2" style="width: 700px">
             <div class="row mt-1 ml-1">
-            <h4>Nhập mã bảo mật</h4>
+            <h4>Chọn mật khẩu mới</h4>
             </div>
             <hr>
             <p
                     class="px-2 mb-2"
                   >
-                  Vui lòng kiểm tra mã trong email của bạn. Mã này gồm 6 số.
+                  Tạo mật khẩu mới có tối thiểu 6 ký tự. Mật khẩu mạnh là mật khẩu được kết hợp từ các ký tự, số và dấu câu.
             <div class="row m-0">
-              <div class="col-lg-6 d-lg-block d-none text-left align-self-center">
-                <div class="card rounded-0 mb-0">
+              <div class="col-lg-8 d-lg-block d-none text-left align-self-center">
+                <div class="card rounded-0 mb-0" style="margin-bottom: 8px">
                   
                   <div class="card-content">
                     <ValidationObserver ref="observer" v-slot="{ valid }">
@@ -24,18 +24,18 @@
                       <form >
                         <div class="form-label-group">
                           <ValidationProvider
-                              name="codeRecover"
-                              ref="codeRecover"
-                              rules="required"
+                              name="password"
+                              ref="password"
+                              rules="required|customPassword"
                               v-slot="{ errors }"
                           >
                           <input
-                            type="text"
                             id="inputEmail"
-                            name="codeRecover"
+                            name="password"
+                            :type="show ? 'text' : 'password'"
                             class="form-control" style="margin-top: 5px"
-                            placeholder="Nhập mã"
-                            v-model="recoverCode"
+                            placeholder="Mật khẩu mới"
+                            v-model="passoword"
                           />
                           <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
@@ -51,24 +51,23 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 col-12 p-0">
-                <div class="card rounded-0 mb-0 px-2 py-1">
-                  <h6>
-                  Chúng tôi đã gửi cho bạn mã đến:</h6>
-                  <div class="card-content">
-                    <p>{{$route.query.email}}</p>
-                  </div>
+              <div class="col-lg-3 d-lg-block d-none text-left align-self-center">
+                <div class="card rounded-0 mb-0">
+                  <div class="float-md-left d-block mb-1">
+                <a style="background-color: rgb(228, 228, 228); border-color: #ccd0d5; color: #4b4f56;"
+                    @click="showPassword()"
+                    class="btn btn-outline-primary btn-block px-75"
+                    ><i style="padding-right: 5px" :class="show ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{(show ? 'Ẩn' : 'Hiển thị')}}</a>
+                </div>
                 </div>
               </div>
+              
             </div> 
             <hr>
             <div class="row">
-              <div class="col-6 d-flex justify-content-start">
-                <a class="color:#464646" @click="resentPasscode()">Bạn chưa có mã?</a> 
-              </div>
-            <div class="col-6 d-flex justify-content-end">
+            <div class="col-12 d-flex justify-content-end">
                 <div class="float-md-right d-block mb-1 mr-1">
-                        <button  @click="recoverPassword" class="btn btn-primary btn-block px-75" :class="{'not-allowed': ((emailRecoverPassword != '') ? flase : true)}" >Tiếp tục</button>
+                        <button  @click="changePassword()" class="btn btn-primary btn-block px-75" :class="{'not-allowed': ((emailRecoverPassword != '') ? flase : true)}" >Tiếp tục</button>
                       </div>
                 <div class="float-md-left d-block mb-1">
                 <a style="background-color: #f5f6f7; border-color: #ccd0d5; color: #4b4f56;"
@@ -93,7 +92,33 @@ import {
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 // can customize default error messages
 extend("required", {
-  message: (field, values) => "Vui lòng nhập mã.",
+  message: (field, values) => "Vui lòng nhập mật khẩu.",
+});
+
+// create custom error message for custom rule
+var errorMessage =
+  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+// create custom rule
+extend("customPassword", {
+  message: field =>"Mật khẩu" + errorMessage,
+  validate: value => {
+    var notTheseChars = /["'?&/<>\s]/;
+    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    var containsRequiredChars = mustContainTheseChars.test(value);
+    if (containsRequiredChars && !containsForbiddenChars) {
+      return true;
+    } else {
+      if (containsForbiddenChars) {
+        errorMessage =
+          ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
+      } else {
+        errorMessage =
+          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+      }
+      return false;
+    }
+  }
 });
 export default {
   components: {
@@ -102,38 +127,35 @@ export default {
   },
   data() {
     return {
-      recoverCode: ""
+      password: '',
+      show: false
     }
   },
   methods: {
-    recoverPassword(){
-      this.$axios.get('checkRecoverCode?email=' + this.$route.query.email + '&code=' +this.recoverCode).then(response => {
-        if(response.data.status == 200){
-          window.location.href = "doi-mat-khau?email=" + this.$route.query.email + '&code=' +this.recoverCode
+    changePassword(){
+        const isValid = this.$refs.observer.validate();
+        if(isValid){
+            this.$axios.post('changePasswordForgot', {email: this.$route.query.email, password: this.password}).then(response => {
+            if(response.data.status == 200){
+                this.$auth.login({ data: {email : this.$route.query.email, password: this.password} });
+                window.location.href = '/admin';
+            }
+            else{
+            'Lỗi',
+            response.data.message,
+            'warning'
+            }
+        })
         }
-        else{
-          'Lỗi',
-          response.data.message,
-          'warning'
-        }
-      })
+      
     },
-    resentPasscode(){
-      this.$axios.get('recoverPassword?email='+ this.$route.query.email).then(response => {
-        try {
-          if(response.data.status == 200){
-            this.$swal('Thành công', this.response.data.message, 'warning')
-          }
-          else{
-            this.$swal('Lỗi', this.response.data.message, 'warning')
-          }
-        } catch (Exception) {
-          this.$swal('Lỗi', this.response.data.message, 'error')
-        }
-      })
+    showPassword() {
+        this.show = !this.show
     }
   },
-
+  created(){
+    console.log(this.$route.query.email)
+  }
 };
 </script>
 <style>

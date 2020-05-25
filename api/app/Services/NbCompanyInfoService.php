@@ -68,33 +68,42 @@ class NbCompanyInfoService extends BaseService {
         ];
     }
     public function postCompanyFeedback($request){
-        $data = $this->getOnlyData($request);
-        try {
-            $this->nbCompanyFeedback->insert($data);
+        if(Auth::check()){
+            $user = Auth::user();
+            $data = $this->getOnlyData($request,$user);
+            try {
+                $this->nbCompanyFeedback->insert($data);
+                return [
+                    'status' => 200,
+                    'message' => 'Cám ơn bạn đã phản hồi!',
+                    'data' => null
+                ];
+            } catch (\Exception $e) {
+                return [
+                    'status'=> 400,
+                    'message' => 'Có lỗi xảy ra',
+                    'data' => $e->getMessage()
+                ];
+            }
+        }else{
             return [
-                'status' => 200,
-                'message' => 'Cám ơn bạn đã phản hồi!',
+                'status' => 500,
+                'message' => 'Bạn chưa đăng nhập!',
                 'data' => null
-            ];
-        } catch (\Exception $e) {
-            return [
-                'status'=> 400,
-                'message' => 'Có lỗi xảy ra',
-                'data' => $e->getMessage()
             ];
         }
     }
-    private function getOnlyData($request)
+    private function getOnlyData($request,$user)
     {
         return [
             'company_id' => $request->company_id,
-            'avatar_feed' => $request->avatar_feed,
-            'name_feed' => $request->name_feed,
-            'email_feed' => $request->email_feed,
+            'avatar_feed' => $user->avatar,
+            'name_feed' => $user->name,
+            'email_feed' => $user->email,
             'content_feed' => $request->content_feed,
             'rate_feed' => $request->rate_feed,
             'approve_feed' => self::ACTIVE,
-            'user_id' => $request->user_id,
+            'user_id' => $user->id,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ];

@@ -96,9 +96,16 @@ export default {
   },
   methods: {
     recoverPassword(){
-      this.$axios.get('recoverPassword', this.emailRecoverPassword).then(response => {
-        if(response.data.status == 200){
-          console.log(1);
+      this.$axios.get('recoverPassword?email='+ this.emailRecoverPassword).then(response => {
+        try {
+          if(response.data.status == 200){
+            window.location.href = 'nhap-ma-khoi-phuc?email='+ this.emailRecoverPassword;
+          }
+          else{
+            this.$swal('Lỗi', this.response.data.message, 'warning')
+          }
+        } catch (Exception) {
+          this.$swal('Lỗi', this.response.data.message, 'error')
         }
       })
     }
