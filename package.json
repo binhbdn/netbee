@@ -32,6 +32,7 @@
         "moment": "^2.24.0",
         "nuxt": "^2.12.2",
         "nuxt-compress": "^1.1.0",
+        "nuxt-i18n": "^6.11.1",
         "nuxt-jsonld": "^1.4.5",
         "nuxt-seo": "^1.2.2",
         "nuxt-sweetalert2": "^1.0.0",
