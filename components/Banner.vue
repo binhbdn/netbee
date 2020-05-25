@@ -13,15 +13,15 @@
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                       <li class="nav-item">
                         <a class="nav-link" :class="{'active': $route.name == 'tim-viec-lam' || $route.name == 'index'}" id="v-pills-33-tab" data-toggle="tab" href="#v-pills-33"
-                           role="tab" aria-controls="v-pills-33" aria-selected="false">Tìm việc làm</a>
+                           role="tab" aria-controls="v-pills-33" aria-selected="false">{{ $t('banner.jobs.tab') }}</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" :class="{'active': $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" data-toggle="tab" href="#v-pills-11"
-                           role="tab" aria-controls="v-pills-11" aria-selected="true">Tìm trường học</a>
+                           role="tab" aria-controls="v-pills-11" aria-selected="true">{{$t('banner.company.tab')}}</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" :class="{'active': $route.name == 'ung-vien'}" id="v-pills-22-tab" data-toggle="tab" href="#v-pills-22"
-                           role="tab" aria-controls="v-pills-22" aria-selected="false">Tìm ứng viên</a>
+                           role="tab" aria-controls="v-pills-22" aria-selected="false">{{$t('banner.candidates.tab')}}</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
@@ -39,26 +39,26 @@
                               <div class="form-group" style="height: 67%;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input style="height: 100%;" type="text" class="form-control" placeholder="Tiêu đề công việc, vị trí, địa điểm làm việc..." name="keyword" v-model="keyJobs">
+                                  <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.jobs.key')" name="keyword" v-model="keyJobs">
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
-                                <Multiselect :options="jobs" v-model="type_job" :custom-label="nameWithLang" placeholder="Ngành nghề" :show-labels="false" :searchable="false">
+                                <Multiselect :options="jobs" v-model="type_job" :custom-label="nameWithLang" :placeholder="$t('banner.jobs.career')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
-                                <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" placeholder="Chọn quốc gia" :show-labels="false" :searchable="false">
+                                <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" :placeholder="$t('banner.nation')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
-                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;" @click="searchJobs">
+                                  <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchJobs">
                                 </div>
                               </div>
                             </div>
@@ -117,20 +117,20 @@
                               <div class="form-group" style="height: 67%;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input style="height: 100%;" type="text" class="form-control" placeholder="Từ khóa" name="keyword" value="" v-model="keysearch">
+                                  <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.company.key')" name="keyword" value="" v-model="keysearch">
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
-                                <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" placeholder="Chọn quốc gia" :show-labels="false" :searchable="false">
+                                <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" :placeholder="$t('banner.nation')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
-                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" @click="searchCompany">
+                                  <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchCompany">
                                 </div>
                               </div>
                             </div>
@@ -145,24 +145,24 @@
                               <div class="form-group" style="height: 67%;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input style="height: 100%;" type="text" class="form-control" placeholder="Nhập tiêu đề hồ sơ, vị trí, địa điểm làm việc..." name="keyword" value="" v-model="keyCvs">
+                                  <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.candidates.key')" name="keyword" value="" v-model="keyCvs">
                                 </div>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
-                                <Multiselect v-model="searchLevel" :options="level" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Tất cả trình độ" ></Multiselect>
+                                <Multiselect v-model="searchLevel" :options="level" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.candidates.level')" ></Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
-                                <Multiselect v-model="searchAddress" :options="address" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Tất cả địa điểm" ></Multiselect>
+                                <Multiselect v-model="searchAddress" :options="address" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.candidates.address')" ></Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
                               <div class="form-group">
                                 <div class="form-field">
-                                  <input type="button" value="Tìm ngay" class="form-control btn btn-primary" @click="searchCvs">
+                                  <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchCvs">
                                 </div>
                               </div>
                             </div>
