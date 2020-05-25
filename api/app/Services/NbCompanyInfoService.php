@@ -44,14 +44,19 @@ class NbCompanyInfoService extends BaseService {
         ];
     }
 
-    public function getDetailCompanyById($companyId){
-        $datas = $this->user
-        ->with(['nbCompany'=> function($q)use ($companyId){
-            $q->where('username',$companyId);
-        }])
-        ->with(['companyFeedback'=> function($q){
-            $q->where('approve_feed',self::ACTIVE);
-        }])
+    public function getDetailCompanyById($username){
+        $datas = $this->user->with('companyFeedback')
+            ->with('nbCompany')
+            ->whereHas('nbCompany', function ($query) use ($username) {
+                $query->where([
+                    'username' => $username,
+                ]);
+            })
+        ->whereHas('companyFeedback', function($q){
+            $q->where('approve_feed', self::ACTIVE);
+        })
+            ->where('block', self::UN_BLOCK)
+            ->where('status', self::ACTIVE)
         ->first();
         foreach($datas->companyFeedback as $key=>$data){
             $datas['rate'] = $this->getRate($data);
@@ -81,7 +86,6 @@ class NbCompanyInfoService extends BaseService {
     }
     private function getOnlyData($request)
     {
-
         return [
             'company_id' => $request->company_id,
             'avatar_feed' => $request->avatar_feed,
@@ -157,7 +161,6 @@ class NbCompanyInfoService extends BaseService {
             }
     }
     public function countFollow($request){
-        dd($this->nbCompanyInfo->where('username', $request->username)->first());
             $followers = $this->nbCompanyFollows
             ->where('company_id',$this->nbCompanyInfo->where('username', $request->username)->first()->id)
             ->count();

@@ -3,42 +3,38 @@
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper pb-2 mt-0" >
-      <div class="content-header row"></div>
-      <div class="content-body">
+      <div class="content-body p-2">
         <div class="col-xl-7 col-md-9 col-10 d-flex justify-content-center px-0" style="margin: 20px auto">
-          <div class="card bg-authentication rounded-0 mb-0">
-            <div class="row m-0">
-              <div class="col-lg-6 d-lg-block d-none text-center align-self-center">
-                <img src="/app-assets/images/pages/forgot-password.png" alt="branding logo" />
-              </div>
-              <div class="col-lg-6 col-12 p-0">
-                <div class="card rounded-0 mb-0 px-2 py-1">
-                  <div class="card-header pb-1">
-                    <div class="card-title">
-                      <h4 class="mb-0">Quên Mật Khẩu</h4>
-                    </div>
-                  </div>
-                  <p
+          <div class="card bg-authentication rounded-0 mb-0 p-2" style="width: 700px">
+            <div class="row mt-1 ml-1">
+            <h4>Nhập mã bảo mật</h4>
+            </div>
+            <hr>
+            <p
                     class="px-2 mb-2"
                   >
-                  Bạn quên mật khẩu? Đừng lo lắng! Cung cấp cho chúng tôi email được sử dụng để đăng ký tài khoản Netbee của bạn. 
-                  <br/>Chúng tôi sẽ gửi cho bạn một liên kết để thiết lập lại mật khẩu của bạn.</p>
+                  Vui lòng kiểm tra mã trong email của bạn. Mã này gồm 6 số.
+            <div class="row m-0">
+              <div class="col-lg-6 d-lg-block d-none text-left align-self-center">
+                <div class="card rounded-0 mb-0">
+                  
                   <div class="card-content">
                     <ValidationObserver ref="observer" v-slot="{ valid }">
-                    <div class="card-body">
+                    <div class="card-body p-0">
                       <form >
                         <div class="form-label-group">
                           <ValidationProvider
-                              name="Email"
-                              ref="email"
-                              rules="required|email"
+                              name="codeRecover"
+                              ref="codeRecover"
+                              rules="required"
                               v-slot="{ errors }"
                           >
                           <input
-                            type="email"
+                            type="text"
                             id="inputEmail"
+                            name="codeRecover"
                             class="form-control" style="margin-top: 5px"
-                            placeholder="Email"
+                            placeholder="Nhập mã"
                             v-model="emailRecoverPassword"
                           />
                           <ul style="color:red" class="overline text-left">
@@ -47,24 +43,37 @@
                             </li>
                         </ul>
                         </ValidationProvider>
-                          <label style="color:black; font-size:15px; margin-bottom: 10px" for="inputEmail">Email</label>
                         </div>
                       </form>
-                      <div class="float-md-left d-block mb-1">
-                        <a
-                          href="/dang-nhap"
-                          class="btn btn-outline-primary btn-block px-75"
-                        >Chuyển sang Login</a>
-                      </div>
-                      <div class="float-md-right d-block mb-1">
-                        <button  @click="recoverPassword" class="btn btn-primary btn-block px-75" :class="{'not-allowed': ((emailRecoverPassword != '') ? flase : true)}" >Gửi Email</button>
-                      </div>
+                      
                     </div>
                     </ValidationObserver>
                   </div>
                 </div>
               </div>
-            </div>
+              <div class="col-lg-6 col-12 p-0">
+                <div class="card rounded-0 mb-0 px-2 py-1">
+                  <h6>
+                  Chúng tôi đã gửi cho bạn mã đến:</h6>
+                  <div class="card-content">
+                    <p>phunv.ilika@gmail.com</p>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <hr>
+            <div class="row d-flex justify-content-end">
+                <div class="float-md-right d-block mb-1 mr-1">
+                        <button  @click="recoverPassword" class="btn btn-primary btn-block px-75" :class="{'not-allowed': ((emailRecoverPassword != '') ? flase : true)}" >Gửi Email</button>
+                      </div>
+                <div class="float-md-left d-block mb-1">
+                <a style="background-color: #f5f6f7; border-color: #ccd0d5; color: #4b4f56;"
+                    href="/dang-nhap"
+                    class="btn btn-outline-primary btn-block px-75"
+                    >Hủy</a>
+                </div>
+                      
+              </div>
           </div>
         </div>
       </div>
@@ -79,10 +88,7 @@ import {
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 // can customize default error messages
 extend("required", {
-  message: (field, values) => "Dữ liệu nhập vào không được để trống.",
-});
-extend("email", {
-  message: (field, values) => "Email không đúng định dạng"
+  message: (field, values) => "Vui lòng nhập mã.",
 });
 export default {
   components: {

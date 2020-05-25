@@ -166,7 +166,7 @@ export default {
     layout: 'no_banner',
     components: {
     ValidationProvider,
-    ValidationObserver
+    ValidationObserver,
   },
     data() {
         return {
@@ -203,7 +203,17 @@ export default {
         logingg() {
             this.$auth.loginWith('google')
         }
-    }
+    },
+    mounted() {
+        console.log(this.$route.fullPath == '/dang-nhap?success');
+        if(this.$route.fullPath == '/dang-nhap?success'){
+            this.$swal(
+                        'Chúc mừng!',
+                        'Kích hoạt tài khoản thành công!',
+                        'success'
+                    )
+                }
+        }
 }
 </script>
 <style scoped>

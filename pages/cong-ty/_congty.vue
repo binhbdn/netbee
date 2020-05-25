@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="padding-top:100px">
+    <div class="container" style="padding-top:100px; position: relative">
         <div>
             <img v-if="congty.nb_company != null && congty.avatar != null" style="width:100%; height:100%" v-lazy="`/uploads/users/covers/${congty.nb_company.image_cover}`">
             <img v-else style="width:100%; height:100%" v-lazy="`/assets/img/cover-netbee.jpg`">
@@ -9,19 +9,19 @@
           <div class="col-lg-12 col-12">
             <div class="card">
               <div class="card-content collapse show">
-                <div class="card-body">
+                <div class="card-body" v-if="detailCompany != null">
                     <div class="row p-1">
                         <div class="col-lg-2 d-flex align-items-center">
                             <div class="avatar-company">
-                                <img v-lazy="`/uploads/users/avatars/${congty.avatar}`" :alt="`${congty.avatar}`" width="100%">
+                                <img v-lazy="`/uploads/users/avatars/${detailCompany.avatar}`" :alt="`${detailCompany.avatar}`" width="100%">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="company-job-title">
-                                <h2 class="font-weight-bold text-uppercase"><span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${congty.name}`"> {{ congty.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h2>
-                                <p><span class="font-weight-600"><i class="fad fa-map-marked-alt"></i> Địa chỉ: {{ congty.address_detail ? congty.address_detail: 'Đang cập nhật' }}</span></p>
-                                <p><span class="font-weight-600"><i class="fad fa-phone-office"></i> Hotline: {{ congty.company_hotline ? congty.company_hotline: 'Đang cập nhật' }}</span></p>
-                                <p><span class="font-weight-600"><i class="fad fa-link"></i> Website: {{ congty.company_link ? congty.company_link: 'Đang cập nhật' }}</span></p>
+                                <h2 class="font-weight-bold text-uppercase"><span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${detailCompany.name}`"> {{ detailCompany.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h2>
+                                <p><span class="font-weight-600"><i class="fad fa-map-marked-alt"></i> Địa chỉ: {{ detailCompany.address_detail ? detailCompany.address_detail: 'Đang cập nhật' }}</span></p>
+                                <p><span class="font-weight-600"><i class="fad fa-phone-office"></i> Hotline: {{ detailCompany.nb_company.company_hotline ? detailCompany.nb_company.company_hotline: 'Đang cập nhật' }}</span></p>
+                                <p><span class="font-weight-600"><i class="fad fa-link"></i> Website: {{ detailCompany.nb_company.company_link ? detailCompany.nb_company.company_link: 'Đang cập nhật' }}</span></p>
                                 <p><span class="font-weight-600"><i class="fad fa-calendar-minus"></i> Ngày thành lập: {{ congty.birth_of_date ? ConvertDate(congty.birth_of_date): 'Đang cập nhật' }}</span></p>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p v-html="congty.company_about"></p>
+                                    <p v-html="detailCompany.nb_company.company_about"></p>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
         </div>
       </section>
       <!-- Modal -->
-        <div class="modal fade text-left" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+        <div  class="modal fade text-left" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered " role="document">
                 <div class="modal-content">
                     <div class="col-md-12 col-lg-12 formlogin form-control" >
@@ -292,10 +292,10 @@
                 <hr>
                 </div>
                 <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
-                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
+                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'" data-dismiss="modal">Viết phản hồi</a>
                 </div>
                 <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
-                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
+                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" data-dismiss="modal" >Đóng</a>
                 </div>
             </div>
                 </div>
@@ -568,7 +568,8 @@ export default {
             this.countJob = response.data.count
         });
         this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
-            this.detailCompany = response.data
+            this.detailCompany = response.data;
+            console.log(this.detailCompany);
         });
         if(this.$auth.loggedIn){
             this.$axios.get('checkFollow?user_id=' + this.$auth.user.id + '&username='+ this.$route.params.congty).then(response => {
