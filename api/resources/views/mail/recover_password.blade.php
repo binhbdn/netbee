@@ -259,7 +259,7 @@
                                                 <!-- main section button -->
 
                                                 <div style="line-height: 22px;">
-                                                    <a href="https://netbee.vn/api/activationByEmail?email={{$data['email']}}" style="color: #ffffff; text-decoration: none;">Đổi mật khẩu</a>
+                                                    <a href="https://netbee.vn/doi-mat-khau?email={{$data['email']}}&code={{$data['codeRecover']}}" style="color: #ffffff; text-decoration: none;">Đổi mật khẩu</a>
                                                 </div>
                                             </td>
                                         </tr>
