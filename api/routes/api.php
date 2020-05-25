@@ -27,6 +27,7 @@ Route::namespace('API')->group(function () {
   Route::get('welcomeEmail', 'MailController@welcomeEmail');
   Route::post('activationRegisterEmail', 'MailController@activationRegisterEmail');
   Route::get('activationByEmail', 'MailController@activationByEmail');
+  Route::get('recoverPassword', 'MailController@recoverPassword');
 
 
   //tin tuyen dung

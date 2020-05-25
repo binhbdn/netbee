@@ -250,7 +250,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;">
-                                                        <a href="{{asset('')}}api/activationByEmail?email={{$data['email']}}" style="color: #ffffff; text-decoration: none;">Xác nhận đăng kí</a>
+                                                        <a href="https://netbee.vn/api/activationByEmail?email={{$data['email']}}" style="color: #ffffff; text-decoration: none;">Xác nhận đăng kí</a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -271,7 +271,7 @@
                                                     <!-- main section button -->
 
                                                     <div style="line-height: 22px;">
-                                                        <a href="{{asset('/')}}" style="color: #ffffff; text-decoration: none;">Hủy xác nhận</a>
+                                                        <a href="https://netbee.vn" style="color: #ffffff; text-decoration: none;">Hủy xác nhận</a>
                                                     </div>
                                                 </td>
                                             </tr>
