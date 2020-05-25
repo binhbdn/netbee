@@ -1,100 +1,100 @@
 {
-    "login": "Đăng nhập",
-    "logout": "Đăng xuất",
-    "account": "Tài khoản",
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "account": "アカウント",
     "nav": {
-        "home": "Trang chủ",
-        "company": "Công ty",
-        "candidates": "Ứng viên",
-        "news": "Tin tức",
-        "about": "Về Netbee",
-        "contact": "Liên hệ",
-        "languages": "Ngôn ngữ",
+        "home": "ホーム",
+        "company": "会社",
+        "candidates": "応募者",
+        "news": "ニュース",
+        "about": "Netbee について",
+        "contact": "お問い合わせ",
+        "languages": "言語",
         "become_partner": {
-            "title": "Trở thành đối tác",
-            "user": "Đăng ký ứng viên",
-            "hr": "Đăng ký nhà chuyên viên tuyển sinh",
-            "company": "Đăng ký nhà tuyển dụng"
+            "title": "協力者になる",
+            "user": "候補者の登録",
+            "hr": "募集者の登録",
+            "company": "雇用者の登録"
         }
     },
     "banner": {
-        "nation": "Quốc gia",
+        "nation": "国家",
         "jobs": {
-            "tab": "Tìm việc làm",
-            "key": "Tiêu đề công việc, vị trí, địa điểm làm việc",
-            "career": "Ngành nghề"
+            "tab": "仕事を見つける",
+            "key": "仕事のテーマ, 職名, 勤務地",
+            "career": "業界"
         },
         "company": {
-            "tab": "Tìm công ty",
-            "key": "Từ khóa"
+            "tab": "会社を探す",
+            "key": "キーワード"
         },
         "candidates": {
-            "tab": "Tìm ướng viên",
-            "key": "Từ khóa",
-            "address": "Tất cả địa điểm"
+            "tab": "応募者を探す",
+            "key": "キーワード",
+            "address": "全場所"
         }
     },
     "home": {
         "title": {
-            "jobs_hot": "Tin nổi bật",
-            "jobs_new": "Tin mới",
-            "news": "Tin tức",
-            "see_more": "Xem thêm"
+            "jobs_hot": "トプニュース",
+            "jobs_new": "ニュース",
+            "news": "ニュース",
+            "see_more": "もっと見る"
         },
         "banner": {
-            "registration": "Đăng ký",
-            "up_job": "Đăng tuyển miễn phí",
-            "introduce": "Giới thiệu học sinh",
-            "decs": "Có học viên là có thưởng"
+            "registration": "登録",
+            "up_job": "無料で採用",
+            "introduce": "学生の紹介",
+            "decs": "学生の募集するとボーナスがある"
         },
         "advantages": {
-            "title": "TẠI SAO NÊN CHỌN NETBEE",
+            "title": "NETBEEを選ぶ理由？",
             "net": {
-                "title": "Mạng lưới rộng lớn",
-                "decs": "Với hơn 1000 học viên đã sang Đức, 1.200 học viên đã sang Hàn Quốc, 600 học viên đã sang Nhật Bản"
+                "title": "広大なネットワーク",
+                "decs": "1,000人以上の学生がドイツに行き、1,200人の学生が韓国に行き、600人の学生が日本に行った。"
             },
             "CTV": {
-                "title": "Hơn 4000 cộng tác viên",
+                "title": "4,000人以上の協力者",
                 "decs": ""
             },
             "profile": {
-                "title": "Hơn 3000 hồ sơ",
+                "title": "4,000セット以上書類",
                 "decs": ""
             },
-            "field": "Lĩnh vực",
-            "area": "Khu vực"
+            "field": "分野",
+            "area": "エリア"
         }
     },
     "follow": {
-        "title": "Đăng ký tư vấn",
+        "title": "アドバイスにサインアップ",
         "decs": "Hãy để lại thông tin để nhận tư vấn từ netbee",
-        "name": "Nhập họ tên",
-        "phone": "Nhập số điện thoại",
-        "email": "Nhập địa chỉ email",
-        "submit": "Submit"
+        "name": "名前",
+        "phone": "電話番号",
+        "email": "メールアドレス",
+        "submit": "送信"
     },
     "footer": {
         "title": "Cộng đồng chuyên viên tuyển sinh lớn nhât",
         "link": {
             "title": "Liên kết",
-            "news": "Tin tức",
-            "regulations": "Quy định bảo mật",
-            "contact": "Liên hệ",
-            "faq": "Câu hỏi thường gặp"
+            "news": "ニュース",
+            "regulations": "プライバシー規制",
+            "contact": "お問い合わせ",
+            "faq": "FAQs"
         },
         "contact_info": {
-            "title": "Thông tin liên hệ",
+            "title": "連絡先情報",
             "address": "Tầng 2 21-B6, Green Stars 234 Phạm Văn Đồng"
         }
     },
     "job": {
         "title": {
-            "new": "Việc làm mới",
-            "hot": "Việc làm hot",
-            "labor_export": "Xuất khẩu lao động",
-            "overseas_student": "Du học sinh",
-            "trainees": "Tu nghiệp sinh"
+            "new": "新しい仕事",
+            "hot": "ホットな仕事",
+            "labor_export": "労働輸出",
+            "overseas_student": "留学生",
+            "trainees": "研修生"
         }
-
+ 
     }
 }
