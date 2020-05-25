@@ -27,6 +27,7 @@ Route::namespace('API')->group(function () {
   Route::get('welcomeEmail', 'MailController@welcomeEmail');
   Route::post('activationRegisterEmail', 'MailController@activationRegisterEmail');
   Route::get('activationByEmail', 'MailController@activationByEmail');
+  Route::get('recoverPassword', 'MailController@recoverPassword');
 
 
   //tin tuyen dung
@@ -113,8 +114,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');
       });
       Route::prefix('lichphongvan')->group(function () {
-        Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');   
-        Route::get('getInterview', 'Admin\FullCalendarController@getInterview');    
+        Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');
+        Route::get('getInterview', 'Admin\FullCalendarController@getInterview');
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');

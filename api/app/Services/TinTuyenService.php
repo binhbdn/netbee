@@ -238,7 +238,7 @@ class TinTuyenService extends BaseService {
         return $data;
     }
 
-    private function getJobValid()
+    private function getJobValid($username)
     {
         return $this->nbJobList->with(['user' => function ($q) {
                 $q->select('id', 'name', 'avatar');
@@ -246,6 +246,11 @@ class TinTuyenService extends BaseService {
             ->with(['nbCompany' => function ($q) {
                 $q->select('id', 'username','company_id');
             }])
+            ->whereHas('nbCompany', function ($query) use ($username) {
+                $query->where([
+                    'username' => $username
+                ]);
+            })
             ->with(['nation' => function ($q) {
                 $q->select('id', 'name');
             }])
@@ -550,7 +555,7 @@ class TinTuyenService extends BaseService {
 
     public function getTinTuyenDungForCompany($request)
     {
-        $id = $request->id;
+        $username = $request->id;
 //        $datas['tintuyendung'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.','.$request->limit.')');
 //        $datas['count'] = DB::select('CALL GetTinTuyenDungForCompany('.$request->id.',0)');
         return
@@ -558,17 +563,16 @@ class TinTuyenService extends BaseService {
                 'status'=> 200,
                 'message' => 'Thành công',
                 'data' => [
-                    'tintuyendung' => $this->getForCompany($id, $request->limit),
-                    'count' => $this->getForCompany($id, 0),
+                    'tintuyendung' => $this->getForCompany($username, $request->limit),
+                    'count' => $this->getForCompany($username, 0),
                 ]
             ];
     }
 
-    private function getForCompany($id, $limit)
+    private function getForCompany($username, $limit)
     {
-        $query = $this->getJobValid()
-            ->where('isPublic',self::ACTIVE)
-            ->where('id_created', $id);
+        $query = $this->getJobValid($username)
+            ->where('isPublic',self::ACTIVE);
         if (!empty($limit)) {
             $query->limit($limit);
         }
