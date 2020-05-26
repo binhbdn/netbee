@@ -8,7 +8,7 @@
           <div class="row breadcrumbs-top">
             <div class="col-12">
               <h2 class="content-header-title float-left mb-0 title-page">
-              
+
               </h2>
               <div class="breadcrumb-wrapper col-12">
                 <ol class="breadcrumb">
@@ -364,12 +364,17 @@
                                     </button>
                                   </div>
                                   <div class="modal-body" id="modal_body">
+                                    <div class="position-absolute" id="overlay_update">
+                                      <div class="spinner-grow text-warning position-absolute update-loading" role="status">
+                                        <span class="sr-only"></span>
+                                      </div>
+                                    </div>
                                     <div>
                                       <div class="row">
                                         <div class="col-lg-4" >
                                           <img
                                             v-lazy="`/uploads/users/avatars/${userDetail.avatar}`"
-                                            style="object-fit: cover;"
+                                            style="object-fit: cover; width: 226px; height: 226px;"
                                           />
                                         </div>
                                         <div class="col-lg-8">
@@ -381,12 +386,19 @@
                                                     <span>{{userDetail.id}}</span>
                                                 </div>
                                             </div>
-                                            <div class="row modal-item">
+                                            <div class="row modal-item has-update">
                                                 <div class="col-sm-4 col-lg-4">
                                                     <label>Name</label>
                                                 </div>
-                                                <div class="col-sm-8 col-lg-8">
-                                                    <span >{{userDetail.name}}</span>
+                                                <div class="col-sm-8 col-lg-8 d-flex">
+                                                    <div class="d-flex" v-if="elementUpdate.name">
+                                                      <span>{{userDetail.name}}</span>
+                                                      <i class="fa fa-pencil is-show-edit" @click="showEditBox('name')"></i>
+                                                    </div>
+                                                    <div class="edit-box" v-if="!elementUpdate.name">
+                                                      <input type="text" v-model="userDetail.name">
+                                                      <button class="btn-success fa fa-save" @click="actionUpdate()"></button>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="row modal-item">
@@ -421,30 +433,52 @@
                                                     <span>{{userDetail.status ? 'Đã kích hoạt' : 'Chưa kích hoạt'}}</span>
                                                 </div>
                                             </div>
-                                            <div class="row modal-item">
+                                            <div class="row modal-item has-update">
                                                 <div class="col-sm-4 col-lg-4">
                                                     <label>Số điện thoại</label>
                                                 </div>
-                                                <div class="col-sm-8 col-lg-8">
-                                                    <span>{{userDetail.phone}} </span>
+                                                <div class="col-sm-8 col-lg-8 d-flex">
+                                                    <div class="d-flex" v-if="elementUpdate.phone">
+                                                      <span>{{userDetail.phone}}</span>
+                                                      <i class="fa fa-pencil is-show-edit" @click="showEditBox('phone')"></i>
+                                                    </div>
+                                                    <div class="edit-box" v-if="!elementUpdate.phone">
+                                                      <input type="text" v-model="userDetail.phone">
+                                                      <button class="fa fa-save btn-success" @click="actionUpdate()"></button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row modal-item">
+                                            <div class="row modal-item has-update">
                                                 <div class="col-sm-4 col-lg-4">
                                                     <label>Địa chỉ</label>
                                                 </div>
-                                                <div class="col-sm-8 col-lg-8">
-                                                    <span> {{userDetail.address_detail}}</span>
+                                                <div class="col-sm-8 col-lg-8 d-flex">
+                                                    <div class="d-flex" v-if="elementUpdate.address_detail">
+                                                      <span>{{userDetail.address_detail}}</span>
+                                                      <i class="fa fa-pencil is-show-edit" @click="showEditBox('address_detail')"></i>
+                                                    </div>
+                                                    <div class="edit-box" v-if="!elementUpdate.address_detail">
+                                                      <input type="text" v-model="userDetail.address_detail">
+                                                      <button class="btn-success fa fa-save" @click="actionUpdate()"></button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="row modal-item">
+                                            <div class="row modal-item has-update">
                                                 <div class="col-sm-4 col-lg-4">
                                                     <label>Ngày sinh</label>
                                                 </div>
-                                                <div class="col-sm-8 col-lg-8">
-                                                    <span>{{userDetail.birth_of_date}}</span>
+                                                <div class="col-sm-8 col-lg-8 d-flex">
+                                                    <div class="d-flex" v-if="elementUpdate.birth_of_date">
+                                                      <span>{{ConvertDate(userDetail.birth_of_date)}}</span>
+                                                      <i class="fa fa-pencil is-show-edit" @click="showEditBox('birth_of_date')"></i>
+                                                    </div>
+                                                    <div class="edit-box" v-if="!elementUpdate.birth_of_date">
+                                                      <input type="date" v-model="userDetail.birth_of_date">
+                                                      <button class="btn-success fa fa-save" @click="actionUpdate()"></button>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div id="message_update"></div>
                                         </div>
                                       </div>
                                     </div>
@@ -501,6 +535,7 @@ export default {
   },
   data() {
     return {
+      elementUpdate: this.defaultValue(),
       userDetail: [],
       userRole: 0,
       users: [],
@@ -538,10 +573,32 @@ export default {
       $('.title-page').text(titles[+role - 1]);
   },
   methods: {
+    actionUpdate() {
+      $('#overlay_update').show();
+      let className = 'text-danger';
+      this.$axios
+        .$post("user/" + this.userRole + "/update", this.userDetail)
+        .then(response => {
+          if (response.status == 200) {
+            this.elementUpdate = this.defaultValue();
+            className = 'text-success';
+          }
+          $('#message_update').attr('class', className).show().text(response.message).fadeOut(4500);
+          $('#overlay_update').hide();
+        })
+        .catch(e => {
+          this.$swal("Lỗi!", "Lỗi bỏ kích hoạt!", "error");
+          $('#overlay_update').hide();
+        });
+
+    },
+    showEditBox(key) {
+      this.elementUpdate = this.defaultValue();
+      this.elementUpdate[key] = !this.elementUpdate[key];
+    },
     nameWithLang({ name, id }) {
       return `${name}`;
     },
-
     changeStatus(id) {
       this.$axios
         .$post("user/" + this.userRole + "/changeStatus", { id: id })
@@ -740,8 +797,18 @@ export default {
         (this.cardSearch.searchToDate = "");
     },
     openModal(key) {
+      $('#overlay_update').hide();
+      this.elementUpdate = this.defaultValue();
       this.userDetail = this.users[key];
       $('#detail_user').modal();
+    },
+    defaultValue() {
+      return {
+        name: true,
+        phone: true,
+        address_detail: true,
+        birth_of_date: true
+      }
     }
   },
   computed: {
@@ -762,7 +829,6 @@ export default {
 
           return allChecked;
         }
-
         return false;
       },
       set(value) {
@@ -793,7 +859,7 @@ export default {
 }
 .modal-body label{
   font-weight: bold;
-} 
+}
 .modal-item{
   margin-bottom: 5px;
 }

@@ -21,12 +21,14 @@ Route::namespace('API')->group(function () {
   //Company
   Route::get('getListCompany','Customer\CompanyController@getListCompany');
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
-  Route::post('postCompanyFeedback','Customer\CompanyController@postCompanyFeedback');
   Route::get('countFollow','Customer\CompanyController@countFollow');
   //Mail
   Route::get('welcomeEmail', 'MailController@welcomeEmail');
   Route::post('activationRegisterEmail', 'MailController@activationRegisterEmail');
   Route::get('activationByEmail', 'MailController@activationByEmail');
+  Route::get('recoverPassword', 'MailController@recoverPassword');
+  Route::get('checkRecoverCode', 'MailController@checkRecoverCode');
+  Route::post('changePasswordForgot', 'MailController@changePasswordForgot');
 
 
   //tin tuyen dung
@@ -55,6 +57,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     //auth
       Route::post('followCompany','Customer\CompanyController@followCompany');
       Route::get('checkFollow','Customer\CompanyController@checkFollow');
+      Route::post('postCompanyFeedback','Customer\CompanyController@postCompanyFeedback');
       Route::get('user', 'Auth\UserController@user');
       Route::post('changePassword', 'Auth\UserController@changePassword');
       Route::post('changeInfo', 'Auth\UserController@changeInfo');
@@ -75,6 +78,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changeMultipleStatus', 'Auth\UserController@changeMultipleStatus');
         Route::post('blockUser', 'Auth\UserController@blockUser');
         Route::post('blockMultipleUser', 'Auth\UserController@blockMultipleUser');
+        Route::post('update', 'Auth\UserController@update');
       });
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');
@@ -118,8 +122,11 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');
       });
       Route::prefix('lichphongvan')->group(function () {
-        Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');   
-        Route::get('getInterview', 'Admin\FullCalendarController@getInterview');    
+        Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');
+        Route::get('getCreateCall', 'Admin\FullCalendarController@getCreateCall');
+        Route::post('insertAddCall', 'Admin\FullCalendarController@insertAddCall');
+        Route::post('insertHisCall', 'Admin\FullCalendarController@insertHisCall');
+        Route::post('getHisCall', 'Admin\FullCalendarController@getHisCall');
       });
       Route::prefix('apply')->group(function () {
         Route::get('getApplyWait', 'Admin\ApplyManageController@getApplyWait');

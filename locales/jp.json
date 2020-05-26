@@ -1,0 +1,100 @@
+{
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "account": "アカウント",
+    "nav": {
+        "home": "ホーム",
+        "company": "会社",
+        "candidates": "応募者",
+        "news": "ニュース",
+        "about": "Netbee について",
+        "contact": "お問い合わせ",
+        "languages": "言語",
+        "become_partner": {
+            "title": "協力者になる",
+            "user": "候補者の登録",
+            "hr": "募集者の登録",
+            "company": "雇用者の登録"
+        }
+    },
+    "banner": {
+        "nation": "国家",
+        "jobs": {
+            "tab": "仕事を見つける",
+            "key": "仕事のテーマ, 職名, 勤務地",
+            "career": "業界"
+        },
+        "company": {
+            "tab": "会社を探す",
+            "key": "キーワード"
+        },
+        "candidates": {
+            "tab": "応募者を探す",
+            "key": "キーワード",
+            "address": "全場所"
+        }
+    },
+    "home": {
+        "title": {
+            "jobs_hot": "トプニュース",
+            "jobs_new": "ニュース",
+            "news": "ニュース",
+            "see_more": "もっと見る"
+        },
+        "banner": {
+            "registration": "登録",
+            "up_job": "無料で採用",
+            "introduce": "学生の紹介",
+            "decs": "学生の募集するとボーナスがある"
+        },
+        "advantages": {
+            "title": "NETBEEを選ぶ理由？",
+            "net": {
+                "title": "広大なネットワーク",
+                "decs": "1,000人以上の学生がドイツに行き、1,200人の学生が韓国に行き、600人の学生が日本に行った。"
+            },
+            "CTV": {
+                "title": "4,000人以上の協力者",
+                "decs": ""
+            },
+            "profile": {
+                "title": "4,000セット以上書類",
+                "decs": ""
+            },
+            "field": "分野",
+            "area": "エリア"
+        }
+    },
+    "follow": {
+        "title": "アドバイスにサインアップ",
+        "decs": "Hãy để lại thông tin để nhận tư vấn từ netbee",
+        "name": "名前",
+        "phone": "電話番号",
+        "email": "メールアドレス",
+        "submit": "送信"
+    },
+    "footer": {
+        "title": "Cộng đồng chuyên viên tuyển sinh lớn nhât",
+        "link": {
+            "title": "Liên kết",
+            "news": "ニュース",
+            "regulations": "プライバシー規制",
+            "contact": "お問い合わせ",
+            "faq": "FAQs"
+        },
+        "contact_info": {
+            "title": "連絡先情報",
+            "address": "Tầng 2 21-B6, Green Stars 234 Phạm Văn Đồng"
+        }
+    },
+    "job": {
+        "title": {
+            "new": "新しい仕事",
+            "hot": "ホットな仕事",
+            "labor_export": "労働輸出",
+            "overseas_student": "留学生",
+            "trainees": "研修生"
+        }
+ 
+    }
+}
