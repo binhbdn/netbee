@@ -1,19 +1,19 @@
 <template>
   <div class="container">
     <section>
-      <div class="row">
-          <div class="col-8">
+      <!-- <div class="row"> -->
+          <!-- <div class="col-8">
           <h1>Công ty CNTT tốt nhất Việt Nam 2020</h1>
           <p style="font-size: 16px">
 Các nhân viên đã lên tiếng! Dưới đây là Top 15 công ty CNTT tốt nhất Việt Nam 2020 hoạt động dựa trên hơn 11.000 đánh giá được gửi bởi những người làm CNTT.</p>
         </div>
-        <div class="col-4">
+        <div class="col-4"> -->
           <!-- <img style="width: 250px" src="https://itviec.com/assets/2020_best_company_badge-f38d668d87ad0f4a24e39be359afe7d821fb44625a710cd440fd88cfc7d11d4c.svg"> -->
-        </div>
-      </div>
+        <!-- </div> -->
+      <!-- </div>
       <div class="row" style="padding:0 14px">
         <p style="font-size: 16px">Dựa trên phản hồi của nhân viên Việt Nam từ 1/1/19 đến 12/12/19</p>
-      </div>
+      </div> -->
     </section>
     <section class="list-company" style="background-color:#fff; padding: 15px">
       <div class="list-company-item" v-for="(companyInfo,index) in companyInfos" :key="`companyInfo-${index}`">

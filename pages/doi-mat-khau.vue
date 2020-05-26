@@ -137,8 +137,11 @@ export default {
         if(isValid){
             this.$axios.post('changePasswordForgot', {email: this.$route.query.email, password: this.password}).then(response => {
             if(response.data.status == 200){
-                this.$auth.login({ data: {email : this.$route.query.email, password: this.password} });
-                window.location.href = '/admin';
+                this.$swal('Thành công', response.data.message, 'success').then((result) =>{
+                  this.$auth.login({ data: {email : this.$route.query.email, password: this.password} });
+                  window.location.href = '/admin';
+                })
+                
             }
             else{
             'Lỗi',
