@@ -8,7 +8,7 @@
         <div>
           <img
             src="../static/assets/img/logo-full-2.png"
-            alt=""
+            alt="logo netbee"
             height="50"
             width="130"
           />
@@ -74,7 +74,7 @@
             </div>
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-else>
-            <img v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`"
+            <img :alt="this.$auth.user.avatar" v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`"
             style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; object-fit: cover; border-radius: 50%;">
             <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
               <br />Tài khoản
@@ -94,7 +94,7 @@
           </li> -->
           <li class="nav-item cta dropdown">
             <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img style="margin-left: 19px;margin-bottom: -2px;" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="25px"/>
+              <img style="margin-left: 19px;margin-bottom: -2px;" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="25px" alt="netbee việt nam"/>
               <br />Ngôn ngữ
               <i class="fas fa-caret-down" style="padding-left:2px"></i>
             </a>
@@ -108,18 +108,21 @@
                 <img
                   src="/assets/img/iconfinder_United-Kingdom.png"
                   width="25px"
+                  alt="netbee united kingdom"
                 />
               </a>
               <a class="dropdown-item">
                 <img
                   src="/assets/img/iconfinder_Japan_92149.png"
                   width="25px"
+                  alt="netbee japan"
                 />
               </a>
               <a class="dropdown-item">
                 <img
                   src="/assets/img/iconfinder_South-Korea_92351.png"
                   width="25px"
+                  alt="netbee korea"
                 />
               </a>
             </div>
