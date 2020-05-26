@@ -102,10 +102,10 @@ export default {
             window.location.href = 'nhap-ma-khoi-phuc?email='+ this.emailRecoverPassword;
           }
           else{
-            this.$swal('Lỗi', this.response.data.message, 'warning')
+            this.$swal('Lỗi',response.data.message, 'warning')
           }
         } catch (Exception) {
-          this.$swal('Lỗi', this.response.data.message, 'error')
+          this.$swal('Lỗi', response.data.message, 'error')
         }
       })
     }

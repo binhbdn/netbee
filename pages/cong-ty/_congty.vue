@@ -569,7 +569,6 @@ export default {
         });
         this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
             this.detailCompany = response.data;
-            console.log(this.detailCompany);
         });
         if(this.$auth.loggedIn){
             this.$axios.get('checkFollow?user_id=' + this.$auth.user.id + '&username='+ this.$route.params.congty).then(response => {
