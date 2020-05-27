@@ -239,8 +239,9 @@
                                                 <i class="fa fa-envelope-o"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.email_profile}}</p>                                                   
-                                                <input v-if="status == 1" v-model="info_frofile_user.email_profile" class="main-text textarea" placeholder="VD: netbee@gmail.com"  style="overflow:hidden;"/>
+                                                <!-- <textarea class="hovertexta main-text textarea" v-model="info_frofile_user.email_profile" v-if="status == 0" style="overflow:hidden;"  rows="2" disabled></textarea> -->
+                                                <p class="hovertexta main-text textarea" v-if="status == 0" style="overflow:hidden;" >{{info_frofile_user.email_profile}}</p>
+                                                <textarea v-if="status == 1" v-model="info_frofile_user.email_profile" class="main-text textarea" placeholder="VD: netbee@gmail.com"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="2"></textarea>
                                             </div>                            
                                         </div>                           
                                     </div>                                   
@@ -255,7 +256,7 @@
                                             </div>                            
                                         </div>                         
                                     </div>
-                                    <br><br><br><br><br><br>
+                                    <div id="kc"></div>
                                 </div>
                             </div>
                         </div>
@@ -431,21 +432,22 @@
                     showLoaderOnConfirm: true
                     }).then(async (result) => {
                         if(result.value) {
-                           html2canvas(document.querySelector('#cv'), {scrollX : 0,scrollY : -scrollY,logging: true, letterRendering: true, allowTaint: false, useCORS: true, scale: 1920*2/window.innerWidth}).then(canvas => {
-                                document.getElementById('pdf').appendChild(canvas) 
-                                const imgData = canvas.toDataURL('image/png')                                                                
-                                let img = canvas.toDataURL('image/jpeg')                                        
-                                let pdf = new JsPDF('p','in','a4')
+                            document.getElementById('kc').innerHTML = '<div class="heg"></div>'
+                            html2canvas(document.querySelector('#cv'), {scrollX : 0,scrollY : -scrollY,logging: true, letterRendering: true, allowTaint: false, useCORS: true, scale: 1920*2/window.innerWidth}).then(canvas => {                                
+                                document.getElementById('pdf').appendChild(canvas)                             
+                                const imgData = canvas.toDataURL('image/jpeg')  
+                                let img = canvas.toDataURL('image/jpeg') 
+                                let pdf = new JsPDF('p','px','a4')
                                const imgProps= pdf.getImageProperties(imgData)
                                 var width = pdf.internal.pageSize.getWidth()
-                                var height = pdf.internal.pageSize.getHeight()
-                                // var height = (imgProps.height * width) / imgProps.width  
-                                // console.log(width); 
-                                // console.log(height);                                         
+                                var height = pdf.internal.pageSize.getHeight()                                
+                                console.log(width);
+                                console.log(height);
                                 pdf.addImage(img, 'JPEG', 0, 0,width, height) 
                                 pdf.save('profile_users.pdf')
-                                document.getElementById('pdf').innerHTML = ''
+                                document.getElementById('pdf').innerHTML = ''                                
                             })      
+                            document.getElementById('kc').innerHTML = ''
                         }
                     })                                                                               
             },  
@@ -475,8 +477,14 @@
 textarea:hover, input:hover {
      border: 1px dotted #4B6A78;
 }
+.hovertexta:hover {
+    border: 1px dotted #28bb9c;
+}
 </style>
-<style>  
+<style> 
+    .heg {
+        height: 500px;
+    }
     .target-main-cv:hover {
         border: 1px solid #FFF;
     }
