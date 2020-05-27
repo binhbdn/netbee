@@ -79,6 +79,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('blockUser', 'Auth\UserController@blockUser');
         Route::post('blockMultipleUser', 'Auth\UserController@blockMultipleUser');
         Route::post('update', 'Auth\UserController@update');
+        Route::post('create', 'Auth\UserController@createUser');
       });
       //apply job
       Route::post('userApplyJob', 'UngTuyenController@userApplyJob');
