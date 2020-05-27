@@ -30,7 +30,7 @@ class UserService extends BaseService {
 
     public function store($data)
     {
-        return $this->user->insert($data);
+        return $this->user->create($data);
     }
 
     public function login($data)
