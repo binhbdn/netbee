@@ -7,7 +7,7 @@
                         <div class="col-lg-9 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form-wizard color="#75d423" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
+                                    <form-wizard color="#FFB701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
                                         <tab-content :before-change="checkValidateStep1" icon="fas fa-check">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
@@ -15,7 +15,7 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="title">
-                                                                    <h3>Ảnh CMND/Thẻ căn cước mặt trước</h3>
+                                                                    <h3>Ảnh CMND/Căn cước mặt trước</h3>
                                                                 </label>
                                                                 <ImgUploaderPaper :files="data.front_id_card" v-model="data.front_id_card" :type="1"></ImgUploaderPaper>
                                                                 <span style="color: red">{{ errors[0] }}</span>
@@ -26,7 +26,7 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
-                                                                    <h3>Ảnh CMND/Thẻ căn cước mặt sau</h3>
+                                                                    <h3>Ảnh CMND/Căn cước mặt sau</h3>
                                                                 </label>
                                                                 <ImgUploaderPaper :files="data.back_id_card" v-model="data.back_id_card" :type="2"></ImgUploaderPaper>
                                                                 <span style="color: red">{{ errors[0] }}</span>
