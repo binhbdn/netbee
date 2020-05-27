@@ -112,9 +112,7 @@ export default {
           window.location.href = "doi-mat-khau?email=" + this.$route.query.email + '&code=' +this.recoverCode
         }
         else{
-          'Lỗi',
-          response.data.message,
-          'warning'
+          this.$swal('Lỗi',response.data.message, 'warning')
         }
       })
     },
@@ -122,13 +120,13 @@ export default {
       this.$axios.get('recoverPassword?email='+ this.$route.query.email).then(response => {
         try {
           if(response.data.status == 200){
-            this.$swal('Thành công', this.response.data.message, 'warning')
+            this.$swal('Thành công', response.data.message, 'success')
           }
           else{
-            this.$swal('Lỗi', this.response.data.message, 'warning')
+            this.$swal('Lỗi', response.data.message, 'warning')
           }
         } catch (Exception) {
-          this.$swal('Lỗi', this.response.data.message, 'error')
+          this.$swal('Lỗi', response.data.message, 'error')
         }
       })
     }

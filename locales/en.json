@@ -1,41 +1,51 @@
 {
+    "login": "Login",
+    "logout": "Logout",
+    "account": "My account",
+    "see_more": "See more",
     "nav": {
-        "home": "Trang chủ",
-        "company": "Công ty",
-        "candidates": "Ứng viên",
-        "news": "Tin tức",
-        "about": "Về Netbee",
-        "contact": "Liên hệ",
-        "languages": "Ngôn ngữ"
+        "home": "Home",
+        "company": "Company",
+        "candidates": "Candidate",
+        "news": "News",
+        "about": "About Netbee",
+        "contact": "Contact",
+        "languages": "Languages",
+        "become_partner": {
+            "title": "Become a partner",
+            "user": "Registration of candidates",
+            "hr": "Registration of enrollment experts",
+            "company": "Đăng ký nhà tuyển dụng"
+        }
     },
     "banner": {
-        "nation": "Quốc gia",
+        "nation": "Nation",
+        "search": "Search",
         "jobs": {
-            "tab": "Tìm việc làm",
-            "key": "Tiêu đề công việc, vị trí, địa điểm làm việc",
-            "career": "Ngành nghề"
+            "tab": "Jobs search",
+            "key": "Job title, location, work address,....",
+            "career": "Career"
         },
         "company": {
-            "tab": "Tìm công ty",
-            "key": "Từ khóa"
+            "tab": "Companys search",
+            "key": "Key words"
         },
         "candidates": {
-            "tab": "Tìm ứng viên",
-            "key": "Từ khóa",
+            "tab": "Candidates search",
+            "key": "Key words",
+            "level": "All levels",
             "address": "Tất cả địa điểm"
         }
     },
     "home": {
         "title": {
-            "jobs_hot": "Tin nổi bật",
-            "jobs_new": "Tin mới",
-            "news": "Tin tức",
-            "see_more": "Xem thêm"
+            "jobs_hot": "TIN NỔI BẬT",
+            "jobs_new": "TIN MỚI",
+            "news": "TIN TỨC"
         },
         "banner": {
             "registration": "Đăng ký",
-            "login": "Đăng nhập",
-            "up_job": "Đăng tuyển miễn phí",
+            "up_job": "Đăng tuyển du học miễn phí",
             "introduce": "Giới thiệu học sinh",
             "decs": "Có học viên là có thưởng"
         },
@@ -53,9 +63,13 @@
                 "title": "Hơn 3000 hồ sơ",
                 "decs": ""
             },
-            "field": "Lĩnh vực",
-            "area": "Khu vực"
-        }
+            "partner": {
+                "title": "Hơn 500 đối các",
+                "decs": ""
+            }
+        },
+        "field": "Lĩnh vực",
+        "area": "Khu vực"
     },
     "follow": {
         "title": "Đăng ký tư vấn",
@@ -81,11 +95,15 @@
     },
     "job": {
         "title": {
-            "new": "Việc làm mới",
-            "hot": "Việc làm hot",
-            "labor_export": "Xuất khẩu lao động",
-            "overseas_student": "Du học sinh",
-            "trainees": "Tu nghiệp sinh"
+            "new": "VIỆC LÀM MỚI",
+            "hot": "VIỆC LÀM HOT",
+            "labor_export": "XUẤT KHẨU LAO ĐỘNG",
+            "overseas_student": "DU HỌC SINH",
+            "trainees": "TU NGHIỆP SINH"
+        },
+        "follow": {
+            "title": "Gửi tôi việc làm tương tự",
+            "btn": "Nhận thông báo"
         }
 
     }

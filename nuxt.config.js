@@ -164,19 +164,20 @@ module.exports = {
     },
     router: {
         middleware: ['stats'],
+        middleware: ['i18n']
     },
     plugins: [
         '~/plugins/axios.js',
         '~/plugins/helppers.js',
         '~/plugins/vue-lazyload.js',
         '~/plugins/jsonld.js',
-        '~/plugins/i18n.js',
         { src: './plugins/vue2-editor', ssr: false },
         { src: '~/plugins/full-calendar.js', ssr: false },
         { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
         { src: '~/plugins/infiniteloading', ssr: false },
         { src: '~/plugins/chart', ssr: false },
-        { src: '~/plugins/hchs-vue-charts', ssr: false }
+        { src: '~/plugins/hchs-vue-charts', ssr: false },
+        { src: '~/plugins/i18n.js', ssr: false }
     ],
     vue: {
         config: {

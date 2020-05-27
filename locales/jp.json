@@ -2,6 +2,7 @@
     "login": "ログイン",
     "logout": "ログアウト",
     "account": "アカウント",
+    "see_more": "もっと見る",
     "nav": {
         "home": "ホーム",
         "company": "会社",
@@ -38,8 +39,8 @@
         "title": {
             "jobs_hot": "トプニュース",
             "jobs_new": "ニュース",
-            "news": "ニュース",
-            "see_more": "もっと見る"
+            "news": "ニュース"
+
         },
         "banner": {
             "registration": "登録",
@@ -58,16 +59,20 @@
                 "decs": ""
             },
             "profile": {
-                "title": "4,000セット以上書類",
+                "title": "3,000セット以上書類",
                 "decs": ""
             },
-            "field": "分野",
-            "area": "エリア"
-        }
+            "partner": {
+                "title": "500以上のパートナー",
+                "decs": ""
+            }
+        },
+        "field": "分野",
+        "area": "エリア"
     },
     "follow": {
         "title": "アドバイスにサインアップ",
-        "decs": "Hãy để lại thông tin để nhận tư vấn từ netbee",
+        "decs": "netbeeからアドバイスを受けるには、情報を残してください",
         "name": "名前",
         "phone": "電話番号",
         "email": "メールアドレス",
@@ -95,6 +100,6 @@
             "overseas_student": "留学生",
             "trainees": "研修生"
         }
- 
+
     }
 }

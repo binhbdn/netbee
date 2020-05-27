@@ -301,7 +301,7 @@
                             <div class="card-body m-t-15">
                                 <ul class="activity-timeline timeline-left list-unstyled">
                                     <li>
-                                        <div class="timeline-icon bg-success">
+                                        <div class="timeline-icon bg-netbee">
                                             <i class="feather icon-check font-medium-2 align-middle"></i>
                                         </div>
                                         <div class="timeline-info">
@@ -310,7 +310,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="timeline-icon bg-success">
+                                        <div class="timeline-icon bg-netbee">
                                             <i class="feather icon-check font-medium-2 align-middle"></i>
                                         </div>
                                         <div class="timeline-info">
@@ -319,7 +319,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="timeline-icon bg-success">
+                                        <div class="timeline-icon bg-netbee">
                                             <i class="feather icon-check font-medium-2 align-middle"></i>
                                         </div>
                                         <div class="timeline-info">
@@ -328,7 +328,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="timeline-icon bg-success">
+                                        <div class="timeline-icon bg-netbee">
                                             <i class="feather icon-check font-medium-2 align-middle"></i>
                                         </div>
                                         <div class="timeline-info">
@@ -337,7 +337,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="timeline-icon bg-success">
+                                        <div class="timeline-icon bg-netbee">
                                             <i class="feather icon-check font-medium-2 align-middle"></i>
                                         </div>
                                         <div class="timeline-info">
@@ -346,7 +346,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="timeline-icon bg-success">
+                                        <div class="timeline-icon bg-netbee">
                                             <i class="feather icon-check font-medium-2 align-middle"></i>
                                         </div>
                                         <div class="timeline-info">
@@ -355,7 +355,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="timeline-icon bg-success">
+                                        <div class="timeline-icon bg-netbee">
                                             <i class="feather icon-check font-medium-2 align-middle"></i>
                                         </div>
                                         <div class="timeline-info">
@@ -364,7 +364,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="timeline-icon bg-success">
+                                        <div class="timeline-icon bg-netbee">
                                             <i class="feather icon-check font-medium-2 align-middle"></i>
                                         </div>
                                         <div class="timeline-info">

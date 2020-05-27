@@ -121,6 +121,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('insertProfileUser', 'Admin\TeamplateCvController@insertProfileUser');
         Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');
         Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');
+        Route::post('changeStatus', 'Admin\TeamplateCvController@changeStatus');
       });
       Route::prefix('lichphongvan')->group(function () {
         Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');

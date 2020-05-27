@@ -88,7 +88,7 @@ class MailController extends Controller
         }else{
             return response()->json([
                 'status' => 400,
-                'message' => 'Mã không hợp lệ',
+                'message' => 'Mã không hợp lệ! Vui lòng kiểm tra lại.',
                 'data' => null
             ]);
         }
@@ -100,10 +100,9 @@ class MailController extends Controller
             $user->update([
                 'password' => bcrypt($request->password)
             ]);
-            dd($user);
             return response() -> json([
                 'status' => 200,
-                'message' => 'Thay đổi mật khẩu thành công',
+                'message' => 'Thay đổi mật khẩu thành công!',
                 'data' => null
             ]);
         }catch (\Exception $exception){
