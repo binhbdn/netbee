@@ -100,4 +100,41 @@ class TeamplateCvService {
         }
     }
 
+    public function changeStatus($id)
+    {
+        try {
+            $job = $this->getProfileById($id)->first();
+            if($job) {
+                if($job->status == 0){
+                    $data = [
+                        'status' => self::NOACTION,
+                        'updated_at' => Carbon::now()
+                    ];
+                }else if($job->status == 1){
+                    $data = [
+                        'status' => self::ACTION,
+                        'updated_at' => Carbon::now()
+                    ];
+                }               
+                $update = $this->update($data, $id);
+                return [
+                    'status'=> 200,
+                    'message' => 'Thay đổi trạng thái thành công',
+                    'data' => $update
+                ];
+            }
+            return [
+                'status'=> 400,
+                'message' => 'Hồ sơ không tồn tại',
+                'data' => null
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
 }
