@@ -93,7 +93,7 @@
             </a>
           </li> -->
           <li class="nav-item cta dropdown">
-            <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
               <img style="margin-left: 19px;margin-bottom: -2px;" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="25px" alt="netbee việt nam"/>
               <br />{{ $t('nav.languages') }}
               <i class="fas fa-caret-down" style="padding-left:2px"></i>
@@ -104,14 +104,14 @@
               aria-labelledby="navbarDropdown"
             >
               <div id="login-up"></div>
-              <a class="dropdown-item">
+              <a class="dropdown-item" @click="changeLang('en')">
                 <img
                   src="/assets/img/iconfinder_United-Kingdom.png"
                   width="25px"
                   alt="netbee united kingdom"
                 />
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" @click="changeLang('jp')">
                 <img
                   src="/assets/img/iconfinder_Japan_92149.png"
                   width="25px"
@@ -133,11 +133,22 @@
   </nav>
 </template>
 <script>
+import Vue from 'vue';
+import i18n from '@/plugins/i18n';
+import VueLocalStorage from 'vue-localstorage'
+
+Vue.use(VueLocalStorage)
+
 export default {
       methods: {
-      async logout() {
-        this.$auth.logout()
-      }
-    },
+        async logout() {
+          this.$auth.logout()
+        },
+        changeLang (lang) {
+          this.$localStorage.set("lang", lang)
+          this.$store.commit('SET_LANG', lang)
+          this.$router.push({ path: `${this.$router.currentRoute.path}?lang=${lang}` })
+        }
+      },
 }
 </script>

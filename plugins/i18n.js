@@ -3,23 +3,17 @@ import VueI18n from 'vue-i18n'
 
 Vue.use(VueI18n)
 
-export default ({ app, store }) => {
+export default ({ app, localStorage }) => {
     // Set i18n instance on app
     // This way we can use it in middleware and pages asyncData/fetch
     app.i18n = new VueI18n({
-        locale: store.state.locale,
-        fallbackLocale: 'vn',
+        locale: localStorage.getItem('lang'),
+        fallbackLocale: 'vi',
         messages: {
-            vn: require('~/locales/vn.json'),
-            en: require('~/locales/en.json')
+            vi: require('~/locales/vn.json'),
+            en: require('~/locales/en.json'),
+            jp: require('~/locales/jp.json')
         }
     })
 
-    app.i18n.path = (link) => {
-        if (app.i18n.locale === app.i18n.fallbackLocale) {
-            return `/${link}`
-        }
-
-        return `/${app.i18n.locale}/${link}`
-    }
 }
