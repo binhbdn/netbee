@@ -72,9 +72,9 @@
                                             </td>
                                             <td>
                                                 <div class="action-btns">
-                                                    <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" >
+                                                    <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" >
                                                         Hủy
-                                                    </button>
+                                                    </a>
                                                     <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn btn-warning py-75 gold">Thêm giấy tờ</a>
                                                 </div>
                                             </td>
