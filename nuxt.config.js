@@ -177,7 +177,7 @@ module.exports = {
         { src: '~/plugins/infiniteloading', ssr: false },
         { src: '~/plugins/chart', ssr: false },
         { src: '~/plugins/hchs-vue-charts', ssr: false },
-        { src: '~/plugins/i18n.js', ssr: false }
+        { src: '~/plugins/i18n.js', ssr: true }
     ],
     vue: {
         config: {

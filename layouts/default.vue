@@ -23,6 +23,9 @@ export default {
     Follow,
     FooterClient,
     GroupIcon
+  },
+  mounted() {
+    this.$i18n.locale = window.localStorage.getItem('lang')
   }
 };
 </script>
