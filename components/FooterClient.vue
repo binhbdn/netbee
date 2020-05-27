@@ -5,18 +5,18 @@
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">NETBEE</h2>
-                        <p style="line-height: 28px">Cộng đồng chuyên viên tuyển sinh lớn nhất</p>
+                        <p style="line-height: 28px">{{$t('footer.title')}}</p>
                         <img v-lazy="`/assets/img/QR.png`" alt="Smiley face" height="200" width="auto">
                     </div>
                 </div>
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Liên kết </h2>
+                        <h2 class="ftco-heading-2">{{$t('footer.link.title')}} </h2>
                         <ul class="list-unstyled" style="line-height: 5px;"> 
-                            <li><a href="#" class="py-2 d-block a_footer">Tin Tức</a></li>
-                            <li><a href="#" class="py-2 d-block a_footer">Quy định bảo mật</a></li>
-                            <li><a href="#" class="py-2 d-block a_footer">Liên hệ</a></li>
-                            <li><a href="#" class="py-2 d-block a_footer">Câu hỏi thường gặp</a></li>
+                            <li><a href="#" class="py-2 d-block a_footer">{{$t('footer.link.news')}}</a></li>
+                            <li><a href="#" class="py-2 d-block a_footer">{{$t('footer.link.regulations')}}</a></li>
+                            <li><a href="#" class="py-2 d-block a_footer">{{$t('footer.link.contact')}}</a></li>
+                            <li><a href="#" class="py-2 d-block a_footer">{{$t('footer.link.faq')}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -29,10 +29,10 @@
                 </div>
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Thông tin liên hệ</h2>
+                        <h2 class="ftco-heading-2">{{$t('footer.contact_info.title')}}</h2>
                         <div class="block-23 ">
                             <ul>
-                                <li><span class="fa fa-map-marker-alt"></span><span class="text pl-2">Tầng 2 21-B6, Green Stars 234 Phạm Văn Đồng </span></li>
+                                <li><span class="fa fa-map-marker-alt"></span><span class="text pl-2">{{$t('footer.contact_info.address')}}</span></li>
                                 <li><a href="tel:+842462900388" class="a_footer"><span class="fa fa-phone"></span><span class="pl-2 text">+842462900388</span></a></li>
                                 <li><a href="mailto:contact@netbee.vn" class="a_footer"><span class="fa fa-envelope"></span><span class="pl-2 text">Email: contact@netbee.vn</span></a></li>
                             </ul>

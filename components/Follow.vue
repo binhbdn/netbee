@@ -5,8 +5,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-7">
                         <div class="register_form">
-                            <div><h2 class="text">Đăng ký tư vấn</h2></div>
-                            <p>Hãy để lại thông tin để nhận tư vấn từ netbee.</p>
+                            <div><h2 class="text">{{$t('follow.title')}}</h2></div>
+                            <p>{{$t('follow.decs')}}</p>
                            <form class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
                                     <ValidationObserver ref="observer" v-slot="{ valid }">
                                  <div class="roww"  style="width: 400px;">   
@@ -17,7 +17,7 @@
                                            v-slot="{ errors }"
                                            > 
                               <div class="form-group col-sm-12" style="height: 47px;">
-                                        <input type="text"  class="form-control"  placeholder="Nhập họ tên"  name="name" v-model="dataForm.name">
+                                        <input type="text"  class="form-control"  :placeholder="$t('follow.name')"  name="name" v-model="dataForm.name">
                                                
                                             <ul style="color:#FFC107" class="overline">
                                                 <li v-for="(error, index) in errors" :key="index">
@@ -33,7 +33,7 @@
                                              v-slot="{ errors }"
                                             >
                                       <div class="form-group col-sm-12" style="height: 47px;">                                     
-                                       <input type="text" class="form-control" placeholder="Nhập số điện thoại"  name="phone" v-model="dataForm.phone">
+                                       <input type="text" class="form-control" :placeholder="$t('follow.phone')"  name="phone" v-model="dataForm.phone">
                                               <ul style="color:#FFC107" class="overline text-left">
                                                <li v-for="(error, index) in errors" :key="index">
                                                 <span>{{ error }}</span>
@@ -48,7 +48,7 @@
                                        v-slot="{ errors }"
                                      >
                                       <div class="form-group col-sm-12">
-                                         <input type="email" class="form-control" placeholder="Nhập địa chỉ email"  name="email" v-model="dataForm.email">
+                                         <input type="email" class="form-control" :placeholder="$t('follow.email')"  name="email" v-model="dataForm.email">
                                                <ul style="color:#FFC107" class="overline text-left">
                                                    <li v-for="(error, index) in errors" :key="index">
                                                    <span>{{ error }}</span>
