@@ -40,6 +40,11 @@ class TeamplateCvController extends Controller
         return response()->json($response);
     }
 
+    public function changeStatus(Request $request){
+        $response = $this->teamplateCvService->changeStatus($request->id);
+        return response()->json($response);
+    }
+
     public function insertProfileUser(Request $request){                                       
         $rules = [
             'fullname_profile' => 'required',
