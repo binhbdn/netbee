@@ -7,8 +7,8 @@
           <img id="hmt" src="/app-assets/images/logo/homt.png" alt="branding logo" />
         </div>
         <div class="float-lerft-a">
-          <h3 style="display: contents;">Gửi tôi việc tương tự</h3>
-          <a href="#follow" class="btn btn-outline-primary">Nhận thông báo</a>
+          <h3 style="display: contents;">{{$t('job.follow.title')}}</h3>
+          <a href="#follow" class="btn btn-outline-primary">{{$t('job.follow.btn')}}</a>
         </div>
         <!-- <div class="float-right-a">
           <span style=" margin-right: 14px; color: BLACK; font-size: 17px;">Sắp xếp theo</span>
@@ -27,7 +27,7 @@
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
-                <i class="fad fa-business-time"></i> VIỆC LÀM MỚI
+                <i class="fad fa-business-time"></i> {{$t('job.title.new')}}
               </h4>
             </div>
             <div class="card-content collapse show">
@@ -41,7 +41,7 @@
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
-                <i class="fad fa-business-time"></i> VIỆC LÀM HOT NHẤT
+                <i class="fad fa-business-time"></i> {{$t('job.title.hot')}}
               </h4>
             </div>
             <div class="card-content collapse show">
@@ -60,7 +60,7 @@
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
-                <i class="fad fa-business-time"></i> XUẤT KHẨU LAO ĐỘNG
+                <i class="fad fa-business-time"></i> {{$t('job.title.labor_export')}}
               </h4>
             </div>
             <div class="card-content collapse show">
@@ -74,7 +74,7 @@
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
-                <i class="fad fa-business-time"></i> DU HỌC SINH
+                <i class="fad fa-business-time"></i> {{$t('job.title.overseas_student')}}
               </h4>
             </div>
             <div class="card-content collapse show">
@@ -88,7 +88,7 @@
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
-                <i class="fad fa-business-time"></i> TU NGHIỆP SINH
+                <i class="fad fa-business-time"></i> {{$t('job.title.trainees')}}
               </h4>
             </div>
             <div class="card-content collapse show">
