@@ -470,6 +470,108 @@
                                 </div>
                               </div>
                           </div>
+
+                          <div class="modal fade" id="create_user" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                  <div class="modal-header bg-netbee">
+                                    <h4 class="modal-title text-dark">Tạo tài khoản</h4>
+                                    <button type="button" class="close ma-0" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true" class="text-dark">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body" id="modal_body">
+                                    <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
+                                      <ValidationObserver ref="observer" v-slot="{ valid }">
+                                        <ValidationProvider
+                                          name="name"
+                                          ref="name"
+                                          rules="required"
+                                          v-slot="{ errors }"
+                                        >   
+                                          <div class="form-group">
+                                              <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Họ & Tên</label>
+                                              <input type="text" class="form-control" name="name" v-model="userForm.name">
+                                              <ul style="color:red" class="overline text-left">
+                                                <li v-for="(error, index) in errors" :key="index">
+                                                  <span>{{ error }}</span>
+                                                </li>
+                                              </ul>
+                                          </div>
+                                        </ValidationProvider>
+                                        <ValidationProvider
+                                          name="email"
+                                          ref="email"
+                                          rules="required|email"
+                                          v-slot="{ errors }"
+                                        >
+                                          <div class="form-group">
+                                              <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Email</label>
+                                              <input type="email" class="form-control" name="email" v-model="userForm.email">
+                                              <ul style="color:red" class="overline text-left">
+                                                <li v-for="(error, index) in errors" :key="index">
+                                                  <span>{{ error }}</span>
+                                                </li>
+                                              </ul>
+                                          </div>
+                                        </ValidationProvider>
+                                        <ValidationProvider
+                                          rules="required|integer"
+                                          ref="phone"
+                                          name="phone"
+                                          v-slot="{ errors }"
+                                        >
+                                          <div class="form-group">
+                                            <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Số điện thoại</label>
+                                            <input type="text" class="form-control" name="phone" v-model="userForm.phone">
+                                            <ul style="color:red" class="overline text-left">
+                                              <li v-for="(error, index) in errors" :key="index">
+                                                <span>{{ error }}</span>
+                                              </li>
+                                            </ul>
+                                          </div>
+                                        </ValidationProvider>
+                                        <ValidationProvider
+                                          name="password"
+                                          ref="password"
+                                          rules="required|customPassword|min:8"
+                                          v-slot="{ errors }"
+                                        >
+                                          <div class="form-group">
+                                              <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Mật khẩu</label>
+                                              <input type="password" class="form-control" name="password" v-model="userForm.password">
+                                              <ul style="color:red" class="overline text-left">
+                                                <li v-for="(error, index) in errors" :key="index">
+                                                  <span>{{ error }}</span>
+                                                </li>
+                                              </ul>
+                                          </div>
+                                        </ValidationProvider>
+                                        <ValidationProvider
+                                          name="password_confirmation"
+                                          ref="password_confirmation"
+                                          rules="required|password_confirmation:@password"
+                                          v-slot="{ errors }"
+                                        >
+                                          <div class="form-group">
+                                              <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
+                                              <input type="password" class="form-control" name="password_confirmation" v-model="userForm.password_confirmation" data-vv-as="password">
+                                              <ul style="color:red" class="overline text-left">
+                                                  <li v-for="(error, index) in errors" :key="index">
+                                                  <span>{{ error }}</span>
+                                                  </li>
+                                              </ul>
+                                          </div>
+                                        </ValidationProvider>
+                                        <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
+                                            <button type="button" @click="createUser()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Tạo</button>
+                                        </div>
+                                      </ValidationObserver>
+                                  </form>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
                         </tr>
                       </tbody>
                     </table>
@@ -695,11 +797,6 @@ export default {
         password_confirmation: "",
         role: ""
       },
-      roles: [
-        {id: 1, name: 'Ứng viên'},
-        {id: 2, name: 'Hr'},
-        {id: 3, name: 'Nhà tuyển dụng'}
-      ],
       block: [
         { id: 0, name: "Đang hoạt động" },
         { id: 1, name: "Blocked" }
@@ -735,7 +832,7 @@ export default {
             password: this.userForm.password,
             name: this.userForm.name,
             phone: this.userForm.phone,
-            role: this.userForm.role.id
+            role: this.$route.query.role
           });
           if(response.data.status == 200){
             this.$swal({
