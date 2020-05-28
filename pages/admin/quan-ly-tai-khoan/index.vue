@@ -585,11 +585,6 @@
                                               </ul>
                                           </div>
                                         </ValidationProvider>
-                                        <div class="form-group">
-                                          <label for="exampleInputEmail1" class="text-register"><span class="text-danger"></span>Chọn role</label>
-                                          <Multiselect :options="roles" v-model="userForm.role" :custom-label="nameWithLang" placeholder="Chọn role" :show-labels="false" :searchable="false">
-                                          </Multiselect>
-                                        </div>
                                         <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
                                             <button type="button" @click="createUser()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Tạo</button>
                                         </div>
@@ -716,11 +711,6 @@ export default {
         password_confirmation: "",
         role: ""
       },
-      roles: [
-        {id: 1, name: 'Ứng viên'},
-        {id: 2, name: 'Hr'},
-        {id: 3, name: 'Nhà tuyển dụng'}
-      ],
       block: [
         { id: 0, name: "Đang hoạt động" },
         { id: 1, name: "Blocked" }
@@ -748,15 +738,15 @@ export default {
   },
   methods: {
     async createUser() {
-      // const isValid = await this.$refs.observer.validate();
-      // if (isValid) {
+      const isValid = await this.$refs.observer.validate();
+      if (isValid) {
         try {
           let response = await this.$axios.post("user/" + this.userRole + "/create", {
             email: this.userForm.email,
             password: this.userForm.password,
             name: this.userForm.name,
             phone: this.userForm.phone,
-            role: this.userForm.role.id
+            role: this.$route.query.role
           });
           if(response.data.status == 200){
             this.$swal({
@@ -766,8 +756,7 @@ export default {
               confirmButtonColor: '#3085d6',
               confirmButtonText: 'OK',
             }).then( function (){
-                window.location.href = '/admin/quan-ly-tai-khoan?role='+ this.userRole;
-                $('#create_user').modal().close();
+                window.location.reload();
             })
           }
           else{
@@ -781,12 +770,10 @@ export default {
           'Lỗi',
           'Error'
         }
-      //   // reset validation
-      //   // You should call it on the next frame
-      //   requestAnimationFrame(() => {
-      //     this.$refs.observer.reset();
-      //   });
-      // }
+        requestAnimationFrame(() => {
+          this.$refs.observer.reset();
+        });
+      }
     },
 
     actionUpdate() {
