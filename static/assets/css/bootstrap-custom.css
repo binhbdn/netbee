@@ -207,9 +207,15 @@
     background-color: #FFB701 !important;
     color: #000 !important;
 }
-.border-netbee {
-    border: 1px solid #FFB701 !important;
-}
 .bg-netbee:hover {
     color: #fff !important;
+}
+.border-netbee {
+    border: 1px solid #FFB701 !important;
+    background-color: #fff !important;
+    color: #000 !important;
+}
+.border-netbee:hover {
+    background-color: #FFB701 !important;
+    color: #fff;
 }

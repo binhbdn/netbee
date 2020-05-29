@@ -222,7 +222,7 @@
                                                                 <label for="firstName3">
                                                                     Phí nhập cảnh
                                                                 </label>
-                                                                <input type="number" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">
+                                                                <input type="txt" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>

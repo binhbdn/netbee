@@ -17,7 +17,7 @@
                         <div class="card" v-if="tintucNew.length > 0">
                             <div class="card-header">
                                 <h4><i class="fad fa-newspaper"></i> Tin mới</h4>
-                                <a href="/tin-tuc/tin-moi" class="btn bg-netbee">Xem thêm</a>
+                                <a href="/tin-tuc/tin-moi" class="btn border-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -28,7 +28,7 @@
                         <div class="card" v-if="tintucCamNang.length > 0">
                             <div class="card-header">
                                 <h4><i class="fad fa-newspaper"></i> Cẩm nang</h4>
-                                <a href="/tin-tuc/cam-nang" class="btn bg-netbee">Xem thêm</a>
+                                <a href="/tin-tuc/cam-nang" class="btn border-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -39,7 +39,7 @@
                         <div class="card" v-if="tintucDuHoc.length > 0">
                             <div class="card-header">
                                 <h4><i class="fad fa-newspaper"></i> Du học</h4>
-                                <a href="/tin-tuc/du-hoc" class="btn bg-netbee">Xem thêm</a>
+                                <a href="/tin-tuc/du-hoc" class="btn border-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -50,7 +50,7 @@
                         <div class="card" v-if="tintucXKLD.length > 0">
                             <div class="card-header">
                                 <h4><i class="fad fa-newspaper"></i> Xuất khẩu lao động</h4>
-                                <a href="/tin-tuc/xuat-khau-lao-dong" class="btn bg-netbee">Xem thêm</a>
+                                <a href="/tin-tuc/xuat-khau-lao-dong" class="btn border-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">

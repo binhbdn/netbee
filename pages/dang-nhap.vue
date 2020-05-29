@@ -1,5 +1,5 @@
 <template>
-    <div class="main" style="background : #d8b661">
+    <div class="main" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
         <div class="container">
             <div class="row">
                 <div class="col-md-7 hident-mobile">
