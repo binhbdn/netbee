@@ -263,11 +263,13 @@
                     </div>
                 </div>  
                 <div id="pdf"></div> 
-                <br>
-                <button class="btn btn-add bg-netbee" v-if="status == 1" @click="update">Cập nhật</button>
+                <br>                
+                <button  v-if="status == 1" class="btn btn-add bg-netbee"  @click="update">Cập nhật</button>                               
                 <button class="btn btn-add bg-netbee" v-if="status == 1" @click="canle()">Hủy</button>  
-                <button class="btn btn-add bg-netbee" v-if="status == 0" @click="statust()">Sửa hồ sơ</button>                
-                <button class="btn btn-add bg-netbee" v-if="status == 0" @click="dowload()">Xuất Pdf</button>               
+                <div v-if="$auth.user.role == 4 || $auth.user.role == 3 || $auth.user.role == 1">
+                    <button class="btn btn-add bg-netbee" v-if="status == 0" @click="statust()">Sửa hồ sơ</button>                
+                </div>
+                <button class="btn btn-add bg-netbee" v-if="status == 0" @click="dowload()">Xuất PDF</button>               
             </div>   
         </div>  
         <br>
