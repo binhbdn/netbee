@@ -1,11 +1,13 @@
 <?php
 namespace App\Services;
 
+use App\Jobs\SendActivationRegisterMail;
+use App\Jobs\SendMailJobQueue;
 use App\User;
 use JWTAuth;
-use Auth;
-use DB;
-use Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Validator;
 
@@ -32,7 +34,6 @@ class UserService extends BaseService {
     {
         return $this->user->insert($data);
     }
-
     public function login($data)
     {
         return JWTAuth::attempt($data);
@@ -161,13 +162,24 @@ class UserService extends BaseService {
 
     public function changePassword($data)
     {
-        $userId = Auth::user()->id;
+        $user = Auth::user();
+        $userId = $user->id;
         $hashPassword = $this->getUserById($userId)->value('password');
         if (Hash::check($data->password_old, $hashPassword)) {
             $update = $this->user->whereId($userId)->update([
                 'password' => Hash::make($data->password_new)
             ]);
             if ($update) {
+                $dataEmail = [
+                    'name' => $user->name,
+                    'title' => 'Đổi mật khẩu Netbee',
+                    'content' => 'Mật khẩu của bạn đã được thay đổi vào lúc '. $user->updated_at . '<br style="padding-top: 10px"> <b>Nếu bạn đã làm điều này,</b> bạn có thể bỏ qua email này một cách an toàn.
+                                 <br><b>Nếu bạn đã không làm điều này, </b> vui lòng bảo vệ tài khoản của bạn. <br>',
+                    'textButton' => 'Đăng nhập Netbee',
+                    'url' => 'https://netbee.vn/dang-nhap'
+                ];
+                $sendEmail = new SendMailJobQueue($user->email, $dataEmail);
+                dispatch($sendEmail);
                 return [
                     'status' => 200,
                     'message' => 'Cập nhật mật khẩu thành công',

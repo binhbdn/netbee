@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API\Auth;
 
+use App\Jobs\SendMailJobQueue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\UserService;
@@ -62,6 +63,14 @@ class UserController extends Controller
         $store = $this->userService->store($users);
 
         if ($store) {
+            $dataEmail = (object)[
+                'name' => $users['name'],
+                'title' => 'Kích hoạt tài khoản Netbee',
+                'content' => 'Chỉ còn 1 bước để có thể kích hoạt tài khoản Netbee. <br> Click ngay vào nút bên dưới để kích hoạt tài khoản của bạn.',
+                'textButton' => 'Kích hoạt ngay',
+                'url' => 'https://netbee.vn/api/activationByEmail?email='.$users['email']
+            ];
+            dispatch(new SendMailJobQueue($users['email'], $dataEmail));
             return response()->json([
                 'status'=> 200,
                 'message' => 'Đăng ký thành công',

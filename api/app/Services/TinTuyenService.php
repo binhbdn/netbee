@@ -1,7 +1,9 @@
 <?php
 namespace App\Services;
 
+use App\Jobs\SendMailJobQueue;
 use App\Models\NbJoblist;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -33,8 +35,28 @@ class TinTuyenService extends BaseService {
             return $validate;
         }
         $data = $this->getOnlyRequest($request);
+        $user = User::find('id',$data->id_created);
         try {
             $this->nbJobList->create($data);
+            $dataEmail = (object)[
+                'name' => $user->name,
+                'title' => '[THÔNG BÁO] Tin '. $data->title . ' của bạn đang chờ để được phê duyệt!',
+                'content' => 'Chúc mừng tin ' . $data->title . ' của bạn đã được tạo thành công. <br> Chúng tôi sẽ phản hồi yêu cầu phê duyệt trong thời gian sớm nhất.',
+                'textButton' => 'Về Netbee',
+                'url' => 'https://netbee.vn/dang-nhap'
+            ];
+            dispatch(new SendMailJobQueue($user->email, $dataEmail));
+            $userAdmins = User::where('role',4)->get();
+            foreach ($userAdmins as $userAdmin){
+                    $dataEmail = (object)[
+                        'name' => $userAdmin->name,
+                        'title' => '[THÔNG BÁO] Tin '. $data->title . ' cần được phê duyệt!',
+                        'content' => 'Tin tuyển dụng ' . $data->title . ' cần được phê duyệt. <br> Đăng nhập Netbee ngay để phê duyệt tin.',
+                        'textButton' => 'Về Netbee',
+                        'url' => 'https://netbee.vn/dang-nhap'
+                    ];
+            dispatch(new SendMailJobQueue($userAdmin->email, $dataEmail));
+            }
             return [
                 'status' => 200,
                 'message' => 'Tạo tin thành công',
@@ -64,8 +86,18 @@ class TinTuyenService extends BaseService {
             return $validate;
         }
         $data = $this->getOnlyRequest($request);
+        $user = User::find('id',$data->id_created);
         try {
             $this->getJobById($request->id)->update($data);
+            $dataEmail = [
+                'name' => $user->name,
+                'title' => '[THÔNG BÁO] Sửa tin '. $data->title . ' Netbee!',
+                'content' => 'Tin ' . $data->title . ' của bạn đã được sửa lúc '.$data->updated_at.' <br> <b>Nếu đây là hành động của bạn,</b> vui lòng bỏ qua email này. <br>
+                <b>Nếu đây không phải là hành động của bạn,</b> vui lòng liên hệ đội ngũ hỗ trợ của Netbee để được hỗ trợ.',
+                'textButton' => 'Đăng nhập Netbee',
+                'url' => 'https://netbee.vn/dang-nhap'
+            ];
+            dispatch(new SendMailJobQueue($user->email, $dataEmail));
             return [
                 'status' => 200,
                 'message' => 'Cập nhật tin thành công',
@@ -190,7 +222,8 @@ class TinTuyenService extends BaseService {
                     'updated_at' => Carbon::now()
                 ];
                 $sortDelete = $this->update($data, $id);
-
+                $user = User::find('id',$job->id_created);
+                $this->sendMailDestroy($user,$job);
                 return [
                     'status'=> 200,
                     'message' => 'Xóa tin thành công',
@@ -210,7 +243,28 @@ class TinTuyenService extends BaseService {
             ];
         }
     }
-
+    public function sendMailDestroy($user,$job){
+        $dataEmail = (object)[
+            'name' => $user->name,
+            'title' => '[THÔNG BÁO] Tin tuyển dụng ' .'"'.$job->title .'"' . ' của bạn đã bị xóa!',
+            'content' => 'Tin ' .'"'.$job->title .'"' . ' của bạn đã bị xóa. <br> <br>Nếu cho rằng đây là 1 nhầm lẫn, hãy cho chúng tôi biết.<br> Đăng nhập Netbee ngay để xem chi tiết.',
+            'textButton' => 'Đăng nhập Netbee',
+            'url' => 'https://netbee.vn/dang-nhap'
+        ];
+        dispatch(new SendMailJobQueue($user->email, $dataEmail));
+        $userAdmins = User::where('role',4)->get();
+        foreach ($userAdmins as $userAdmin){
+            $userDeleted = Auth::user();
+            $dataEmail = (object)[
+                'name' => $userAdmin->name,
+                'title' => '[THÔNG BÁO] Tin tuyển dụng ' .'"'.$job->title .'"' . ' đã bị xóa!',
+                'content' => 'Tin ' .'"'.$job->title .'"' . ' của bạn đã bị xóa bởi admin: '.$userDeleted->name . '<br> <br>Nếu cho rằng đây là 1 nhầm lẫn, hãy cho chúng tôi biết.<br> Đăng nhập Netbee ngay để xem chi tiết.',
+                'textButton' => 'Đăng nhập Netbee',
+                'url' => 'https://netbee.vn/dang-nhap'
+            ];
+            dispatch(new SendMailJobQueue($userAdmin->email, $dataEmail));
+        }
+}
     public function getJobs()
     {
         $userRole = Auth::user()->role;
@@ -332,11 +386,13 @@ class TinTuyenService extends BaseService {
     {
         try {
             $job = $this->getJobById($id)->first();
+            $user = User::find($job->id_created);
             if($job) {
                 $data = [
                     'status' => !$job->status,
                     'updated_at' => Carbon::now()
                 ];
+                $this->sendEmailChangeStatus($job,$user,$data['status']);
                 $update = $this->update($data, $id);
                 return [
                     'status'=> 200,
@@ -357,7 +413,28 @@ class TinTuyenService extends BaseService {
             ];
         }
     }
-
+    public function sendEmailChangeStatus($job,$user,$status){
+        $dataEmail = [];
+        if($status == 1){
+            $dataEmail = (object)[
+                'name' => $user->name,
+                'title' => '[THÔNG BÁO] Tin tuyển dụng ' .'"'.$job->title .'"' . ' của bạn đã được kích hoạt thành công!',
+                'content' => 'Chúc mừng tin' .'"'.$job->title .'"' . ' của bạn đã được kích hoạt thành công. <br> Đăng nhập Netbee ngay để theo dõi chi tiết tin tuyển dụng của mình.',
+                'textButton' => 'Đăng nhập Netbee',
+                'url' => 'https://netbee.vn/dang-nhap'
+            ];
+        }
+        else{
+            $dataEmail = (object)[
+                'name' => $user->name,
+                'title' => '[THÔNG BÁO] Tin tuyển dụng ' .'"'.$job->title .'"' . ' của bạn đã bị hủy kích hoạt!',
+                'content' => 'Chúng tôi đã hủy kích hoạt tin ' .'"'.$job->title .'"' . '. <br>Nếu cho rằng đây là 1 nhầm lẫn, hãy cho chúng tôi biết.<br> Đăng nhập Netbee ngay để xem chi tiết.',
+                'textButton' => 'Đăng nhập Netbee',
+                'url' => 'https://netbee.vn/dang-nhap'
+            ];
+        }
+        dispatch(new SendMailJobQueue($user->email, $dataEmail));
+    }
     public function changeStatusJobs($data)
     {
         if(empty($data->id)){
@@ -373,6 +450,11 @@ class TinTuyenService extends BaseService {
             $this->nbJobList->whereIn('id', $ids)->update([
                 'status' => $status
             ]);
+            foreach ($ids as $id){
+                $job = $this->nbJobList->find($id);
+                $user = User::find($job->id_created);
+                $this->sendEmailChangeStatus($job,$user,$status);
+            }
             $message = $status ? 'Kích hoạt thành công' : 'Bỏ kích hoạt thành công';
             return [
                 'status'=> 200,
@@ -404,6 +486,11 @@ class TinTuyenService extends BaseService {
                 'updated_at' =>  Carbon::now()
             ];
             $this->nbJobList->whereIn('id', $ids)->update($update);
+            foreach ($ids as $id){
+                $job = $this->nbJobList->whereId($id)->first();
+                $user = User::find($job->id_created);
+                $this->sendMailDestroy($user, $job);
+            }
             return [
                 'status'=> 200,
                 'message' => 'Xóa tin thành công',

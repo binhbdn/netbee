@@ -36,18 +36,20 @@ class BaseService {
         DEFAULT = 'default',
         BANK = 'bank';
 
-    const   
+    const
         CHO_DUYET = 1,
         ADMIN_DUYET_CV = 2,
         DA_TUYEN = 3,
         TU_CHOI = 4,
         ADMIN_DUYET_HO_SO = 5,
         NTD_DUYET_HO_SO = 6,
-        ADMIN_REJECT_HO_SO = 7; //yêu cầu bổ sung giấy tờ đính kèm
-        
+        ADMIN_REJECT_HO_SO = 7, //yêu cầu bổ sung giấy tờ đính kèm
+        CHO_DUYET_HO_SO = 8,
+        HEN_LICH_PHONG_VAN = 9;
+
     const All = 0;
 
-    const 
+    const
         AN = 0,
         HIEN = 1;
 

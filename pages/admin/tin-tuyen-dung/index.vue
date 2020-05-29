@@ -462,6 +462,7 @@ export default {
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'OK'
                     }).then( 
+                        this.$axios.get('sendActivationNews',{id: index}),
                         this.search(),
                     )
                 }

@@ -23,13 +23,15 @@ Route::namespace('API')->group(function () {
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
   Route::get('countFollow','Customer\CompanyController@countFollow');
   //Mail
-  Route::get('welcomeEmail', 'MailController@welcomeEmail');
-  Route::post('activationRegisterEmail', 'MailController@activationRegisterEmail');
   Route::get('activationByEmail', 'MailController@activationByEmail');
   Route::get('recoverPassword', 'MailController@recoverPassword');
   Route::get('checkRecoverCode', 'MailController@checkRecoverCode');
   Route::post('changePasswordForgot', 'MailController@changePasswordForgot');
-
+  Route::get('sent-mail', 'MailController@sentMail');
+  Route::get('sendActivationNews', 'MailController@sendActivationNews');
+  Route::get('sendToAdminHasNewsCV', 'MailController@sendToAdminHasNewsCV');
+  Route::get('sendMailApprovedCV', 'MailController@sendMailApprovedCV');
+  Route::get('sendMailFeedbackTo', 'MailController@sendMailApprovedCV');
 
   //tin tuyen dung
   Route::get('getTinTuyenDungNew', 'TinTuyenDungController@getTinTuyenDungNew');

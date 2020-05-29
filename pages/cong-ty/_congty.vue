@@ -241,7 +241,7 @@
                                     Facebook</a> &nbsp;&nbsp;
                             </div>
                             <div class="lopgin-c" style="position:relative">
-                                <img src="`/assets/img/logo-google.png`" style="height:15px;position: absolute; left: 106px; top: 11px; color: blue; font-size: 18px;">
+                                <img src="/assets/img/logo-google.png" style="height:15px;position: absolute; left: 106px; top: 11px; color: blue; font-size: 18px;">
                                 <a @click="logingg()" class="btn btn-outline-info gg" style="padding: 10px!important">Đăng nhập bằng Google</a>
                             </div>
                         </div>

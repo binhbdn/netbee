@@ -148,7 +148,7 @@
     <!--section Tại sao chon netbee-->
     <section class="ftco-section services-section card why" style="background: #fff; text-align:center">
       <div class="container">
-        <h2 class="text-center NB_benefit" style="text-transform:uppercase">Tại sao nên chọn NetBee</h2>
+        <h1 class="text-center NB_benefit" style="text-transform:uppercase">Tại sao nên chọn NetBee</h1>
         <div class="row " style="padding-left:14px!important;">
           <div class="col-md-3  align-self-stretch ftco-animate " style="padding-left:0!important; padding-right:10px!important">
             <div class="d_item v_block" style="">
