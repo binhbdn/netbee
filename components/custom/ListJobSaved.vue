@@ -65,7 +65,7 @@
                                                             <div class="item-quantity d-flex justify-content-between">
                                                                 <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</p>
                                                                 <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
-                                                                    <span class="badge background-default badge-sm" style="width: 100px">
+                                                                    <span class="badge border-netbee badge-sm" style="width: 100px">
                                                                         {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
                                                                     </span>
                                                                 </p>

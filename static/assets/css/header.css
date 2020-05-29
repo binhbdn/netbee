@@ -62,7 +62,7 @@ a.navbar-brandd {
 
 }
 .ftco-navbar-light {
-  background: #ffb701 !important;
+  background: #fff !important;
   position: fixed;
   top: 0;
   left: 0;
@@ -74,10 +74,10 @@ a.navbar-brandd {
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item.active>a {
-  color: white !important;
+  color: #ffb701 !important;
 }
 .ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover {
-  color: #fff!important;
+  color: #ffb701!important;
 }
 .ftco-navbar-light .navbar-nav>.nav-item.cta>a {
   color: #000!important;
@@ -87,8 +87,7 @@ a.navbar-brandd {
   padding-left: 20px;
   padding-right: 20px;
   margin-top: 0px;
-  background: #ffb701;
-  border: 1px solid white;
+  border: 1px solid #ffb701 !important;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;

@@ -1,8 +1,8 @@
 <template>
-    <section class="hero-wraps js-fullheight" style="margin-top:100px">
+    <section class="hero-wraps js-fullheight" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
     <div class="container">
         <div class="row ">
-            <div class="col-7" style="padding:0px 15px;">
+            <div class="col-7" style="padding:100px 15px;">
                 <h3>Đăng kí chuyên viên tuyển sinh</h3>
                 <ul class="list">
                     <li>Tiếp cận hàng triệu ứng viên hoàn toàn miễn phí</li>
@@ -253,7 +253,7 @@ export default {
         width: 100%;
         height: 700px !important;
         position: inherit;
-        margin-top: 40px;
+        margin-top: 66px;
     }
     .bg-dark.ftco-navbar-light.ftco_navbar.navbar.navbar-dark.navbar-expand-lg{
         top: 0;

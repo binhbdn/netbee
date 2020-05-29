@@ -3,7 +3,7 @@
         <div class="card-content h-100">
             <div class="text-center p-1">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 85px; max-width: 100%;">
+                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 150px; max-width: 100%;">
                 </a>
             </div>
             <div class="remove-border-right" style="width: 195px">
@@ -29,7 +29,7 @@
                     <span class="item-hot mr-1" style="font-size: 1rem; float: left"  v-if="job.highlight_job == 2"><i class="fas fa-star" style="color: gold;"></i> Hot</span>
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="">
                         <a :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
-                            <span class="badge background-default badge-sm" style="width: 100px">
+                            <span class="badge border-netbee badge-sm" style="width: 100px">
                                 {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
                             </span>
                         </a>

@@ -6,5 +6,5 @@ Vue.use(Lazyload, {
 	error: '/assets/img/logo.png',
 	loading: '/assets/img/loading.gif',
 	attempt: 1,
-	listenEvents: [ 'scroll','wheel' ]
+	listenEvents: [ 'scroll','wheel','mousewheel' ]
 })
