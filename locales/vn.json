@@ -2,6 +2,7 @@
     "login": "Đăng nhập",
     "logout": "Đăng xuất",
     "account": "Tài khoản",
+    "see_more": "Xem thêm",
     "nav": {
         "home": "Trang chủ",
         "company": "Công ty",
@@ -30,7 +31,7 @@
             "key": "Từ khóa"
         },
         "candidates": {
-            "tab": "Tìm ướng viên",
+            "tab": "Tìm ứng viên",
             "key": "Từ khóa",
             "level": "Tất cả các trình độ",
             "address": "Tất cả địa điểm"
@@ -38,14 +39,13 @@
     },
     "home": {
         "title": {
-            "jobs_hot": "Tin nổi bật",
-            "jobs_new": "Tin mới",
-            "news": "Tin tức",
-            "see_more": "Xem thêm"
+            "jobs_hot": "TIN NỔI BẬT",
+            "jobs_new": "TIN MỚI",
+            "news": "TIN TỨC"
         },
         "banner": {
             "registration": "Đăng ký",
-            "up_job": "Đăng tuyển miễn phí",
+            "up_job": "Đăng tuyển du học miễn phí",
             "introduce": "Giới thiệu học sinh",
             "decs": "Có học viên là có thưởng"
         },
@@ -63,9 +63,13 @@
                 "title": "Hơn 3000 hồ sơ",
                 "decs": ""
             },
-            "field": "Lĩnh vực",
-            "area": "Khu vực"
-        }
+            "partner": {
+                "title": "Hơn 500 đối các",
+                "decs": ""
+            }
+        },
+        "field": "Lĩnh vực",
+        "area": "Khu vực"
     },
     "follow": {
         "title": "Đăng ký tư vấn",
@@ -91,11 +95,15 @@
     },
     "job": {
         "title": {
-            "new": "Việc làm mới",
-            "hot": "Việc làm hot",
-            "labor_export": "Xuất khẩu lao động",
-            "overseas_student": "Du học sinh",
-            "trainees": "Tu nghiệp sinh"
+            "new": "VIỆC LÀM MỚI",
+            "hot": "VIỆC LÀM HOT",
+            "labor_export": "XUẤT KHẨU LAO ĐỘNG",
+            "overseas_student": "DU HỌC SINH",
+            "trainees": "TU NGHIỆP SINH"
+        },
+        "follow": {
+            "title": "Gửi tôi việc làm tương tự",
+            "btn": "Nhận thông báo"
         }
 
     }

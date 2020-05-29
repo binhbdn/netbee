@@ -123,4 +123,26 @@ class SaveService extends BaseService {
         return $query->orderBy('id', 'DESC')->paginate($perPage);
 
     }
+
+    public function deleteJobSave($id){
+        try {
+            $job = $this->getSaveByJobId($id)->first();
+            if($job) {
+                $job->delete();
+                return [
+                    'status'=> 200,
+                    'message' => 'Bỏ lưu thành công',
+                ];
+            }
+            return [
+                'status'=> 400,
+                'message' => 'Việc làm không tồn tại',
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+            ];
+        }
+    }
 }

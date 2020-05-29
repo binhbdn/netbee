@@ -78,7 +78,7 @@
   </div>
 </template>
 <script>
-import CardInfo from "~/components/Custom/CardInfo";
+import CardInfo from "~/components/custom/CardInfo";
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 

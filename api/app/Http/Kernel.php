@@ -41,7 +41,7 @@
         
         'api' => [
         \Illuminate\Session\Middleware\StartSession::class,
-        'throttle:120,1',
+        'throttle:1000,1',
         'bindings',
         ],
         ];

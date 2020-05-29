@@ -41,8 +41,9 @@
                                                     <th>Họ tên</th>
                                                     <th>Ngày sinh</th>                                                   
                                                     <th>Email</th>
-                                                    <th>Số điện thoại</th>
-                                                    <th>Ngày tạo</th>    
+                                                    <th>Số điện thoại</th>                                                    
+                                                    <th>Trạng thái</th>  
+                                                    <th>Ngày tạo</th>  
                                                     <th>Hành động</th>                                               
                                                 </tr>
                                             </thead>
@@ -52,7 +53,13 @@
                                                     <td>{{item.fullname_profile}}</td>
                                                     <td>{{ConvertDate(item.birthday_profile)}}</td>                                                    
                                                     <td>{{item.email_profile}}</td>
-                                                    <td>{{item.phone_profile}}</td>
+                                                    <td>{{item.phone_profile}}</td>                                                    
+                                                    <td v-if="item.status == 0">
+                                                        <div class="chip-text"><i style="font-size: 20px;" class="far fa-times-circle danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
+                                                    </td>
+                                                    <td v-if="item.status == 1">
+                                                        <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
+                                                    </td>
                                                     <td>{{ConvertDate(item.created_at)}}</td>
                                                     <td>
                                                         <div class="action-btns">
@@ -62,6 +69,7 @@
                                                                         Chọn thao tác
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
+                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
                                                                         <a :href="`/admin/ho-so/xem-ho-so/${item.id}`" class="dropdown-item"> <i class="far fa-edit"></i>Xem chi tiết</a>
                                                                         <a @click="deleted(item.id)" class="dropdown-item" > <i class="far fa-times-circle"></i>Xóa</a>
                                                                     </div>
@@ -102,6 +110,37 @@
         },
         
         methods: {
+            async changeStatus(index){
+                try {
+                        let response = await this.$axios.post('hoso/changeStatus',{
+                        id: index
+                    });                                     
+                    if(response.data.status == 200) {                        
+                        this.$swal({
+                            title: 'Thành công',
+                            text: response.data.message,
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK'
+                        }).then( 
+                            this.fetchdata(),
+                        )
+                    }
+                    else {
+                    this.$swal(
+                        'Lỗi!',
+                        response.data.message,
+                        'error'
+                        )
+                    }
+                } catch (error) {
+                    this.$swal(
+                        'Lỗi!',
+                        'Lỗi kích hoạt!',
+                        'error')
+                }
+                        
+            },
             async deleted(id){
                 try {
                     this.$swal({

@@ -313,7 +313,8 @@ class TinTuyenService extends BaseService {
     }
     private function getJobValidForCompany($username)
     {
-        return $this->nbJobList->with(['user' => function ($q) {
+        return $this->nbJobList
+            ->with(['user' => function ($q) {
                 $q->select('id', 'name', 'avatar');
             }])
             ->with(['nbCompany' => function ($q) {
@@ -687,7 +688,7 @@ class TinTuyenService extends BaseService {
 
     public function getDetailNew($id)
     {
-        $response = $this->nbJobList->with(['user', 'nation','visa_profession'])
+        $response = $this->nbJobList->with(['user', 'nation','visa_profession','nbCompany'])
             ->where('status',self::ACTIVE)
             ->where('deleted',self::INACTIVE)
             ->where('isPublic',self::ACTIVE)

@@ -26,7 +26,7 @@
                   </svg>
                 </div>
                 <div class="media-body">
-                  <h3 class="heading mb-3 text-center text-12">Đăng ký</h3>
+                  <h3 class="heading mb-3 text-center text-12">{{$t('home.banner.registration')}}</h3>
                 </div>
               </a>
             </div>
@@ -45,7 +45,7 @@
                   </svg>
                 </div>
                 <div class="media-body">
-                  <h3 class="heading mb-3 text-center text-12">Đăng nhập</h3>
+                  <h3 class="heading mb-3 text-center text-12">{{$t('login')}}</h3>
                 </div>
               </a>
             </div>
@@ -66,7 +66,7 @@
                   </svg>
                 </div>
                 <div class="media-body">
-                  <h3 class="heading mb-3 text-center text-12">Đăng tuyển du học miễn phí</h3>
+                  <h3 class="heading mb-3 text-center text-12">{{$t('home.banner.up_job')}}</h3>
                 </div>
               </a>
             </div>
@@ -81,9 +81,9 @@
                   </svg>
                 </div>
                 <div class="media-body">
-                  <h3 class="heading mb-0 text-center text-12">Giới thiệu học sinh
+                  <h3 class="heading mb-0 text-center text-12">{{$t('home.banner.introduce')}}
                   </h3>
-                  <p class="text-center text-12">Có học viên là có thưởng </p>
+                  <p class="text-center text-12">{{$t('home.banner.decs')}}</p>
                 </div>
               </div>
             </div>
@@ -103,9 +103,9 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                  <h4 class="card-title"><i class="fad fa-business-time"></i> TIN NỔI BẬT </h4>
+                                  <h4 class="card-title"><i class="fad fa-business-time"></i>{{$t('home.title.jobs_hot')}}</h4>
                                   <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn bg-netbee">Xem thêm</a>
+                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn bg-netbee">{{$t('see_more')}}</a>
                                 </div>
                                 <div class="card-content" style="position:relative">
                                     <div class="card-body">
@@ -148,56 +148,56 @@
     <!--section Tại sao chon netbee-->
     <section class="ftco-section services-section card why" style="background: #fff; text-align:center">
       <div class="container">
-        <h1 class="text-center NB_benefit" style="text-transform:uppercase">Tại sao nên chọn NetBee</h1>
-        <div class="row " style="padding-left:14px!important;">
-          <div class="col-md-3  align-self-stretch ftco-animate " style="padding-left:0!important; padding-right:10px!important">
+        <h1 class="text-center NB_benefit" style="text-transform:uppercase">{{$t('home.advantages.title')}}</h1>
+        <div class="row ">
+          <div class="col-md-3  align-self-stretch ftco-animate ">
             <div class="d_item v_block" style="">
               <a class="media block-6 services d-block" href="">
                 <div class="icon text-center SB_bn">
                   <img v-lazy="`/assets/img/mang-luoi.png`" alt="">
                 </div>
                 <div class="media-body benefit-item-icon">
-                  <h3 class="heading text-center" style="padding-top:10px">Mạng lưới rộng lớn</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">Với hơn 1000 học viên đã sang Đức, 1.200 học viên học viên đã sang Hàn Quốc, 600 học viên đã sang Nhật Bản.</p>
+                  <h3 class="heading text-center" style="padding-top:10px">{{$t('home.advantages.net.title')}}</h3>
+                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.net.decs')}}</p>
                 </div>
               </a>
             </div>
           </div>
-          <div class="col-md-3  align-self-stretch ftco-animate" style="padding: 0 10px">
+          <div class="col-md-3  align-self-stretch ftco-animate">
             <div class="d_item v_block">
               <a class="media block-6 services d-block" href="">
                 <div class="icon text-center SB_bn">
                   <img v-lazy="`/assets/img/CTV.png`" alt="">
                 </div>
                 <div class="media-body benefit-item-icon">
-                  <h3 class="heading text-center" style="padding-top:10px">Hơn 4000 cộng tác viên</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">Với hơn 1000 học viên đã sang Đức, 1.200 học viên học viên đã sang Hàn Quốc, 600 học viên đã sang Nhật Bản.</p>
+                  <h3 class="heading text-center" style="padding-top:10px">{{$t('home.advantages.CTV.title')}}</h3>
+                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.net.decs')}}</p>
                 </div>
               </a>
             </div>
           </div>
-          <div class="col-md-3  align-self-stretch ftco-animate" style="padding: 0 10px;">
+          <div class="col-md-3  align-self-stretch ftco-animate">
             <div class="d_item v_block bg__">
               <a class="media block-6 services d-block" href="">
                 <div class="icon text-center SB_bn">
                   <img v-lazy="`/assets/img/ho-so.png`" alt="">
                 </div>
                 <div class="media-body benefit-item-icon">
-                  <h3 class="text-center" style="padding-top:10px">Hơn 3000 hồ sơ</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">Với hơn 1000 học viên đã sang Đức, 1.200 học viên học viên đã sang Hàn Quốc, 600 học viên đã sang Nhật Bản.</p>
+                  <h3 class="text-center" style="padding-top:10px">{{$t('home.advantages.profile.title')}}</h3>
+                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.net.decs')}}</p>
                 </div>
               </a>
             </div>
           </div>
-          <div class="col-md-3  align-self-stretch ftco-animate" style="padding-left: 10px!important;">
+          <div class="col-md-3  align-self-stretch ftco-animate" >
             <div class="d_item v_block">
               <div class="media block-6 services d-block">
                 <div class="icon text-center SB_bn">
                   <img v-lazy="`/assets/img/doi-tac.png`" alt="">
                 </div>
                 <div class="media-body benefit-item-icon">
-                  <h3 class="mb-0 text-center" style="padding-top:10px">Hơn 500 đối tác</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">Với hơn 1000 học viên đã sang Đức, 1.200 học viên học viên đã sang Hàn Quốc, 600 học viên đã sang Nhật Bản.</p>
+                  <h3 class="mb-0 text-center" style="padding-top:10px">{{$t('home.advantages.partner.title')}}</h3>
+                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.net.decs')}}</p>
                 </div>
               </div>
             </div>
@@ -212,9 +212,9 @@
           <div class="col-lg-8 col-12 p-r-0">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"><i class="fad fa-business-time"></i> TIN MỚI </h4>
+                <h4 class="card-title"><i class="fad fa-business-time"></i>{{$t('home.title.jobs_new')}}</h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn bg-netbee">Xem thêm</a>
+                <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn bg-netbee">{{$t('see_more')}}</a>
               </div>
               <div class="card-content collapse show" style="padding: 13px">
                 <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="(typeof(arrayJobNew2) !== 'undefined') ? 10000 : null">
@@ -259,12 +259,12 @@
                                 <li class="nav-item">
                                   <a class="nav-link active" id="home-tab-fill" data-toggle="tab" href="#home-fill"
                                       role="tab" aria-controls="home-fill" aria-selected="true"><i
-                                    class="fad fa-align-center"></i> LĨNH VỰC</a>
+                                    class="fad fa-align-center"></i>{{$t('home.field')}}</a>
                                 </li>
                                 <li class="nav-item">
                                   <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
                                       role="tab" aria-controls="profile-fill" aria-selected="false"><i
-                                    class="fas fa-map-marker-check"></i> KHU VỰC</a>
+                                    class="fas fa-map-marker-check"></i>{{$t('home.area')}}</a>
                                 </li>
                               </ul>
                               <!-- Tab panes -->
@@ -300,8 +300,8 @@
           <div class="col-lg-12 col-12">
             <div class="card">
               <div class="card-header">
-                <h4><i class="fad fa-newspaper"></i> TIN TỨC</h4>
-                <a href="/tin-tuc" class="btn bg-netbee">Xem thêm</a>
+                <h4><i class="fad fa-newspaper"></i>{{$t('home.title.news')}}</h4>
+                <a href="/tin-tuc" class="btn bg-netbee">{{$t('see_more')}}</a>
               </div>
               <div class="card-content collapse show news">
                 <div class="card-body">

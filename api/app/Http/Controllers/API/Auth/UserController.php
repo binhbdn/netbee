@@ -299,6 +299,65 @@ class UserController extends Controller
         ]);
     }
 
+    private function userRequest(Request $request) 
+    {
+        $rules = [
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'name' => 'required',
+            'phone' => 'required|numeric',
+            'role' => 'required|numeric|between:1,3',
+        ];
+        $messages = [
+            'required' => 'Không được để trống',
+            'email' => 'Địa chỉ email không đúng định dạng',
+            'numeric' => 'Số điện thoại không được chứa kí tự',
+            'unique' => 'Email đã tồn tại',
+            'between' => 'Role không hợp lệ'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return [
+                'status' => 400,
+                'message' => $validator->messages()->first(),
+                'data' => null
+            ];
+        }
+        return false;
+    }
+
+    public function createUser(Request $request) 
+    {
+        $validate = $this->userRequest($request);
+        if($validate) {
+            return $validate;
+        }
+        $users = [
+            'email' => $request->email,
+            'password' => bcrypt($request['password']),
+            'name' => $request['name'],
+            'phone' => $request['phone'],
+            'status' => '0',
+            'role' => $request->role
+        ];
+        $store = $this->userService->store($users);
+
+        if ($store) {
+            return response()->json([
+                'status'=> 200,
+                'message' => 'Đăng ký thành công',
+                'data' => null
+            ]);
+        }
+        return response()->json([
+            'status'=> 400,
+            'message' => 'Đăng ký thất bại',
+            'data' => null
+        ]);
+    }
+
     public function get(Request $request)
     {
         $response = $this->userService->get($request);
