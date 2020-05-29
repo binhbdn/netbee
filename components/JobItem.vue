@@ -28,9 +28,11 @@
                     
                     <span class="item-hot" style="font-size: 1rem"  v-if="job.highlight_job == 2"><i class="fas fa-star" style="color: gold;"></i> Hot</span>
                     <p class="delivery-date mb-0 mt-1" data-toggle="tooltip" data-placement="top" title="">
-                        <span class="badge background-default badge-sm" style="width: 100px">
-                            {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
-                        </span>
+                        <a :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
+                            <span class="badge background-default badge-sm" style="width: 100px">
+                                {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
+                            </span>
+                        </a>
                     </p>
                 </div>
             </div>

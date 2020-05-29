@@ -12,7 +12,7 @@ class Sendmail extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
- 
+
     /**
      * Create a new message instance.
      *
@@ -30,6 +30,6 @@ class Sendmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.sendemail',['data'=>$this->data])->subject($this->data->title);
+        return $this->view('mail.send_mail',['data'=>$this->data])->subject($this->data->title);
     }
 }
