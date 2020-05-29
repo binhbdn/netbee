@@ -1,6 +1,6 @@
 <template>    
     <FullCalendar :locale="viLocale" :header="calHeader" @eventClick="eventClick"  defaultView="dayGridMonth"
-   :plugins="calendarPlugins" :events="events"/>    
+   :plugins="calendarPlugins" :events="events" :height="610"/>    
 </template>
 
 <script>

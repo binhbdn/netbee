@@ -40,7 +40,7 @@ class ApplyJobService extends BaseService {
         if ($userRole == self::ROLE_ADMIN) {
             $data = $this->getApplyAdmin($status);
         } else if ($userRole == self::ROLE_COMPANY) {
-            $data = $this->getApplyCompany($status);
+            $data = $this->getApplyCompany();
         } else {
             $data = $this->getApplyHr($status);
         }
@@ -196,12 +196,14 @@ class ApplyJobService extends BaseService {
                     ->where('user_id_submit' ,Auth::user()->id)
                     ->get();
     }
-    public function getApplyCompany($status)
-    {
+    public function getApplyCompany()
+    {        
         return $this->getApplyValid()
-                    ->where('user_id_recever' ,Auth::user()->id)
-                    ->where('status' ,self::ADMIN_DUYET_HO_SO)
-                    ->orwhere('status', self::NTD_DUYET_HO_SO)
+                    ->where('user_id_recever',Auth::user()->id)
+                    ->where(function ($q) {
+                        $q->where('status',self::ADMIN_DUYET_HO_SO)
+                        ->orwhere('status', self::NTD_DUYET_HO_SO);
+                    })       
                     ->get();
     }
 

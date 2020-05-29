@@ -16,7 +16,7 @@
         <div class="col-lg-8 col-12 p-r-0">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title">
+              <h4 class="card-title"> 
                 <i class="fal fa-user-friends"></i> HỒ SƠ ỨNG VIÊN
               </h4>
             </div>

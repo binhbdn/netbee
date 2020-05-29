@@ -38,9 +38,15 @@
                                 </div>
                             </div>
                             <div class="row m-t-10" style="border:#dee2e6 solid 1px;height: 40%">
-                                <div class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" :data-target="!$auth.loggedIn?'#loginModal':'#ApplyModal'">
+                                <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal">
                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
-                                </div>
+                                </div> 
+                                <div v-if="$auth.loggedIn && $auth.user.role == 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center">                                    
+                                    <a  @click="warningModal()" class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                                                                                                                          
+                                </div>    
+                                <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#ApplyModal">
+                                    <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                </div>                                                              
                             </div>
                         </div>
                     </div>
@@ -288,8 +294,8 @@
                 </div>
             </div>
         </div>
-        <!-- end Modal login -->
-                <!-- modal apply -->
+        <!-- end Modal login -->     
+        <!-- modal apply -->
 
         <div class="modal fade text-left" id="ApplyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered " role="document">
@@ -495,6 +501,13 @@ export default {
         }
     },
     methods: {
+        warningModal(){
+            this.$swal(
+                'Cảnh báo!',
+                'Bạn cần đăng nhập tài khoản Hr hoặc Ứng viên để ứng tuyển',
+                'warning'
+            );
+        },
         changeStateTab(state){
             this.stateTab = state
         },
