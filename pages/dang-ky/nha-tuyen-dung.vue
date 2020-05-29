@@ -235,7 +235,6 @@ export default {
                     confirmButtonText: 'OK'
                 }).then(async (result) => {
                     if (result.value) {
-                        await this.$axios.post('activationRegisterEmail',{email : this.userForm.email, name: this.userForm.name});
                         window.location.href = '/dang-ky/xac-thuc';
                     }
                 })

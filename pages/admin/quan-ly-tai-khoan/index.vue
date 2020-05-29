@@ -685,11 +685,6 @@
                           </ul>
                       </div>
                     </ValidationProvider>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1" class="text-register"><span class="text-danger"></span>Chọn role</label>
-                      <Multiselect :options="roles" v-model="userForm.role" :custom-label="nameWithLang" placeholder="Chọn role" :show-labels="false" :searchable="false">
-                      </Multiselect>
-                    </div>
                     <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
                         <button type="button" @click="createUser()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Tạo</button>
                     </div>

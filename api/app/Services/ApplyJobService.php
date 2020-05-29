@@ -1,11 +1,13 @@
 <?php
 namespace App\Services;
 
+use App\Jobs\SendMailJobQueue;
 use App\Models\Apply;
 use App\Models\NbJoblist;
 use App\Models\NbPaper;
 use App\Models\NbCreateCall;
 use App\Models\NbHistoryCall;
+use App\User;
 use Auth;
 use Validator;
 use Carbon\Carbon;
@@ -16,6 +18,7 @@ class ApplyJobService extends BaseService {
     protected $apply;
     protected $nbPaper;
     protected $nbCreateCall;
+    protected $nbHistoryCall;
 
     public function __construct(NbJoblist $nbJobList, Apply $apply, NbPaper $nbPaper, NbCreateCall $nbCreateCall, NbHistoryCall $nbHistoryCall)
     {
@@ -46,10 +49,86 @@ class ApplyJobService extends BaseService {
 
     public function changeStatusApply($id, $status)
     {
+        $this->sendMailApply($id, $status);
         $data = [
             'status'=>$status
         ];
         return $this->update($data, $id);
+    }
+    public function sendMailApply($idApply, $type){
+        $apply = $this->apply->whereId($idApply)->first();
+        $job = $this->nbJobList->where('id',$apply -> job_id)->first();
+        $user = User::whereId($apply -> user_id_submit)->first();
+        $dataEmail = [];
+        $employer =  User::whereId($apply -> user_id_recever)->first();
+        $adminUsers = User::where('role', self::ROLE_ADMIN)->get();
+        if($type == self::ADMIN_DUYET_CV){
+            $dataEmail = (object)[
+                'name' => $user->name,
+                'title' => '[THÔNG BÁO] CV ứng tuyển '.'"' . $job->title. '"'.' của bạn đã được Netbee phê duyệt.!',
+                'content' =>'Chúc mừng CV ứng tuyển '. ' "' . $job->title. '"' .' của bạn đã được bạn quan trị Netbee phê duyệt thành công.<br> <b>Để hoàn thiện hồ sơ bạn cần chuẩn bị những giấy tờ sau:</b><br>1. Chứng minh thư nhân dân 2 mặt. <br> 2. Ảnh chân dung.
+                    <br>3. Bằng tốt nghiệp các cấp. <br>4. Giấy khai sinh <br> 5. Sơ yếu lý lịch <br> 6. Giấy khám sức khỏe <br> 7. Hộ chiếu',
+                'textButton' => 'Nộp hồ sơ ngay',
+                'url' => 'https://netbee.vn/admin/ho-so'
+            ];
+        }
+        else if($type == self::TU_CHOI){
+            $dataEmail = (object)[
+                'name' => $user->name,
+                'title' => '[THÔNG BÁO] CV ứng tuyển '.'"' . $job->title. '"'.' của bạn chưa được Netbee phê duyệt.!',
+                'content' =>'CV ứng tuyển '. ' "' . $job->title. '"' .' của bạn đã được bạn chưa được Netbee phê duyệt.<br>Lý do: '.$apply-> reason_for_rejection.' <br> Đăng nhập ngay Netbee để xem thông tin chi tiết.',
+                'textButton' => 'Về Netbee',
+                'url' => 'https://netbee.vn/admin/ho-so'
+            ];
+        }
+        else if($type == self::ADMIN_DUYET_HO_SO){
+            $dataEmail = (object)[
+                'name' => $user->name,
+                'title' => '[THÔNG BÁO] Phê duyệt hồ sơ ảnh xem xét ứng tuyển '.'"' . $job->title. '"'.' của bạn chưa được Netbee phê duyệt.!',
+                'content' =>'Hồ sơ ảnh xem xét ứng tuyển '. ' "' . $job->title. '"' .' của bạn đã được bạn đã được Netbee phê duyệt. <br> Đăng nhập ngay Netbee để xem thông tin chi tiết.',
+                'textButton' => 'Đăng nhập Netbee',
+                'url' => 'https://netbee.vn/admin/ho-so'
+            ];
+            $dataEmailToEmployer = (object)[
+                'name' => $employer-> name,
+                'title' => '[THÔNG BÁO] Có ứng viên mới ứng tuyển '.'"' . $job->title. '"'.'.!',
+                'content' =>'Xem chi tiết ứng viên ứng tuyển công việc '. ' "' . $job->title. '"' .'. <br> Đăng nhập ngay Netbee để xem thông tin chi tiết.',
+                'textButton' => 'Xem hồ sơ',
+                'url' => 'https://netbee.vn/admin/ho-so'
+            ];
+            dispatch(new sendMailJobQueue($employer->email, $dataEmailToEmployer));
+        }
+        else if($type == self::CHO_DUYET_HO_SO){
+            $dataEmail = (object)[
+                'name' => $user->name,
+                'title' => '[THÔNG BÁO] Hồ sơ ảnh xem xét ứng tuyển '.'"' . $job->title. '"'.' của bạn đang được xem xét phê duyệt.!',
+                'content' =>'Hồ sơ ứng tuyển '. ' "' . $job->title. '"' .' của bạn đã được bạn đang được Netbee xem xét phê duyệt. <br> Đăng nhập ngay Netbee để xem thông tin chi tiết.',
+                'textButton' => 'Về Netbee',
+                'url' => 'https://netbee.vn/admin/ho-so'
+            ];
+
+            foreach ($adminUsers as $adminUser){
+                $dataEmailAdmin = (object)[
+                    'name' => $adminUser->name,
+                    'title' => '[THÔNG BÁO] Hồ sơ ứng tuyển bổ sung '.'"' . $job->title. '"'.' đang cần được phê duyệt.!',
+                    'content' =>'Hồ sơ ứng tuyển '. ' "' . $job->title. '"' .' của ứng viên '.' "' . $user->name. '"'.' đang cần được phê duyệt. <br> Đăng nhập ngay Netbee để phê duyệt trong thời gian sớm nhất.',
+                    'textButton' => 'Phê duyệt ngay',
+                    'url' => 'https://netbee.vn/admin/quan-ly-ung-tuyen'
+                ];
+                dispatch(new SendMailJobQueue($adminUser->email, $dataEmailAdmin));
+            }
+        }
+        else if($type == self::HEN_LICH_PHONG_VAN){
+            $dataEmail = (object)[
+                'name' => $user->name,
+                'title' => '[THÔNG BÁO] Hẹn lịch phỏng vấn công việc '.'"' . $job->title. '"'.'!',
+                'content' =>'Hồ sơ ứng tuyển '. ' "' . $job->title. '"' .' của bạn đã được nhà tuyển dụng '.$employer->name.' xem xét và đánh giá cao. <br>Trân trọng kính mời'
+                    .$user->name.' tham gia buổi phỏng vấn online tại <b>"Phòng họp trực tuyến"</b> tại Netbee Đăng nhập ngay Netbee để xem thông tin chi tiết.',
+                'textButton' => 'Tham gia họp',
+                'url' => 'https://netbee.vn/admin/call'
+            ];
+        }
+        dispatch(new SendMailJobQueue($user->email, $dataEmail));
     }
 
     public function refuse($id, $status, $refuse)
@@ -58,7 +137,9 @@ class ApplyJobService extends BaseService {
             'status' => $status ,
             'reason_for_rejection' => $refuse
         ];
-        return $this->update($data, $id);
+        $refuse = $this->update($data, $id);
+        $this->sendMailApply($id,self::TU_CHOI);
+        return $refuse;
     }
 
     public function isPublic($id, $isPublic)
@@ -71,6 +152,7 @@ class ApplyJobService extends BaseService {
 
     public function ChooseCalendar($date, $id)
     {
+        $this->sendMailApply($id,self::HEN_LICH_PHONG_VAN);
         $data = [
             'interview_schedules'=>$date,
             'status' => 6
@@ -83,12 +165,12 @@ class ApplyJobService extends BaseService {
         return $this->apply->where('id',$id)->update($data);
     }
 
-    public function getDetailApply($id) 
+    public function getDetailApply($id)
     {
         return $this->apply->with('job')->where('id', $id)->first();
     }
 
-    public function getPaperApply($id) 
+    public function getPaperApply($id)
     {
         return $this->nbPaper->where('apply_id', $id)->first();
     }
@@ -210,6 +292,7 @@ class ApplyJobService extends BaseService {
         ];
         $check =  $this->nbPaper->insert($insert);
         if($check) {
+            $this->sendMailApply($data->apply_id,self::CHO_DUYET_HO_SO);
             return [
                 'status' => 200,
                 'message' => 'Thêm thành công! Đợi admin xét duyệt',
@@ -231,18 +314,18 @@ class ApplyJobService extends BaseService {
         $file->move($uploadPath, $file_cv );
         return $file_cv;
     }
-   
+
 
     public function getCalendar()
     {
         $userRole = Auth::user()->role;
         if ($userRole == self::ROLE_ADMIN) {
-            $get = $this->getCalendarAdmin();                        
+            $get = $this->getCalendarAdmin();
         } else if ($userRole == self::ROLE_COMPANY) {
-            $get = $this->getCalendarCompany();            
+            $get = $this->getCalendarCompany();
         } else {
             $get = $this->getCalendarUser();
-        }        
+        }
         $days = [];
         $data = [];
         foreach ($get as $key => $value){
@@ -275,40 +358,40 @@ class ApplyJobService extends BaseService {
     // {
     //     $userRole = Auth::user()->role;
     //     if ($userRole == self::ROLE_ADMIN) {
-    //         $data = $this->getCalendarAdmin();                        
+    //         $data = $this->getCalendarAdmin();
     //     } else if ($userRole == self::ROLE_COMPANY) {
-    //         $data = $this->getCalendarCompany();            
+    //         $data = $this->getCalendarCompany();
     //     } else {
     //         $data = $this->getCalendarUser();
-    //     }  
+    //     }
     //     return $data;
     // }
 
     public function getCalendarAdmin()
     {
-        return $this->getApplyCalendar()                    
-                    ->where('status' ,self::NTD_DUYET_HO_SO)  
-                    ->whereNotNull('interview_schedules')    
-                    ->orderByDesc('interview_schedules')       
+        return $this->getApplyCalendar()
+                    ->where('status' ,self::NTD_DUYET_HO_SO)
+                    ->whereNotNull('interview_schedules')
+                    ->orderByDesc('interview_schedules')
                     ->get();
     }
 
     public function getCalendarCompany()
     {
-        return $this->getApplyCalendarCompany()                    
-                    ->where('status' ,self::NTD_DUYET_HO_SO)  
-                    ->whereNotNull('interview_schedules')   
-                    ->orderByDesc('interview_schedules')        
+        return $this->getApplyCalendarCompany()
+                    ->where('status' ,self::NTD_DUYET_HO_SO)
+                    ->whereNotNull('interview_schedules')
+                    ->orderByDesc('interview_schedules')
                     ->get();
     }
 
     public function getCalendarUser()
     {
-        return $this->getApplyCalendar()                    
-                    ->where('status' ,self::NTD_DUYET_HO_SO)  
-                    ->whereNotNull('interview_schedules')                    
-                    ->where('user_id_submit' ,Auth::user()->id)  
-                    ->orderByDesc('interview_schedules')        
+        return $this->getApplyCalendar()
+                    ->where('status' ,self::NTD_DUYET_HO_SO)
+                    ->whereNotNull('interview_schedules')
+                    ->where('user_id_submit' ,Auth::user()->id)
+                    ->orderByDesc('interview_schedules')
                     ->get();
     }
 
@@ -320,7 +403,7 @@ class ApplyJobService extends BaseService {
                                 'deleted' => self::UN_DELETE,
                                 'status' => self::ACTIVE,
                                 'isPublic' =>self::ACTIVE
-                            ]);                
+                            ]);
                             }])
                             ->with(['user' => function ($q) {
                                 $q->select('id','name', 'address_detail','phone','email');
@@ -339,33 +422,33 @@ class ApplyJobService extends BaseService {
                     'isPublic' =>self::ACTIVE
                 ]);
             }]);
-    }  
+    }
 
     public function getCreateCall()
     {
         $userRole = Auth::user()->role;
         if ($userRole == self::ROLE_ADMIN) {
-            $data = $this->getCallAdmin();                        
+            $data = $this->getCallAdmin();
         } else if ($userRole == self::ROLE_COMPANY) {
-            $data = $this->getCallCompany();            
+            $data = $this->getCallCompany();
         }
         return $data;
     }
-    
+
     public function getCallAdmin()
     {
-        return $this->nbCreateCall            
+        return $this->nbCreateCall
             ->with(['nbjob' => function ($q) {
                 $q->select('title', 'id');
-                $q->where([               
+                $q->where([
                     'deleted' => self::UN_DELETE,
                     'status' => self::ACTIVE,
                     'isPublic' =>self::ACTIVE,
                 ]);
             }])
             ->with(['Apply' =>function ($q) {
-                $q->select('interview_schedules', 'id'); 
-                $q->orderByDesc('interview_schedules');             
+                $q->select('interview_schedules', 'id');
+                $q->orderByDesc('interview_schedules');
             }])
             ->with(['user' => function ($q) {
                 $q->select('id','name', 'address_detail','phone','email');
@@ -376,19 +459,19 @@ class ApplyJobService extends BaseService {
 
     public function getCallCompany()
     {
-        return $this->nbCreateCall            
+        return $this->nbCreateCall
             ->with(['nbjob' => function ($q) {
                 $q->select('title', 'id');
-                $q->where([      
-                    'id_created'=> Auth::user()->id,         
+                $q->where([
+                    'id_created'=> Auth::user()->id,
                     'deleted' => self::UN_DELETE,
                     'status' => self::ACTIVE,
                     'isPublic' =>self::ACTIVE
                 ]);
             }])
             ->with(['Apply' =>function ($q) {
-                $q->select('interview_schedules', 'id');    
-                $q->orderByDesc('interview_schedules');               
+                $q->select('interview_schedules', 'id');
+                $q->orderByDesc('interview_schedules');
             }])
             ->with(['user' => function ($q) {
                 $q->select('id','name', 'address_detail','phone','email');

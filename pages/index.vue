@@ -148,7 +148,7 @@
     <!--section Tại sao chon netbee-->
     <section class="ftco-section services-section card why" style="background: #fff; text-align:center">
       <div class="container">
-        <h2 class="text-center NB_benefit" style="text-transform:uppercase">{{$t('home.advantages.title')}}</h2>
+        <h1 class="text-center NB_benefit" style="text-transform:uppercase">{{$t('home.advantages.title')}}</h1>
         <div class="row ">
           <div class="col-md-3  align-self-stretch ftco-animate ">
             <div class="d_item v_block" style="">
