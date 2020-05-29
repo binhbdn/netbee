@@ -4,7 +4,7 @@
             <div class="content-body">
                 <section id="dashboard-ecommerce">
                     <div class="row">
-                        <div class="col-lg-4 col-sm-6 col-12 p-r-0">
+                        <div class="col-lg-4 col-sm-6 col-12 p-l-0">
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2">
@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="col-lg-4 col-sm-6 col-12 p-r-0">
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2">
@@ -56,7 +56,7 @@
             <div class="content-body">
                 <section id="News"> 
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 p-r-0 p-l-0">
                             <div class="card">
                                 <div class="card-header" style="margin: auto;">
                                     <h3 class="font-weight-bold">CÁC LOẠI TIN ĐĂNG</h3>
