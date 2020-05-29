@@ -209,7 +209,7 @@ export default {
               confirmButtonText: 'OK',
             }).then( async (result) => {
               if (result.value) {
-                  window.location.href = '/dang-ky/xac-thuc';
+                  window.location.href = '/dang-ky/xac-thuc?username=' + this.userForm.name + '&email=' + this.userForm.email;
                 }
               })
           }

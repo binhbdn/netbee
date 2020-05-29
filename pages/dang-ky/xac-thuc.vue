@@ -12,7 +12,7 @@
                     <!---->
                     <div class="el-card__body">
                         <h1 class="card-title text-center">
-                            Đăng ký tài khoản cho Netbee
+                            Kích hoạt tài khoản Netbee
                         </h1>
                         <p class="card-subtitle mt-2">
                             Chào mừng bạn đến với <strong>nền tảng tuyển dụng Netbee</strong>!
@@ -25,14 +25,14 @@
                             <div class="el-alert__description">
                             <div>
                                 <p>
-                                    Chào mừng <strong>phunguyenvan</strong>,
+                                    Chào mừng <strong>{{$route.query.username}}</strong>,
                                     tài khoản của bạn đã được <strong>đăng kí thành công</strong>.
-                                    Chúng tôi đã gửi cho bạn 1 đường dẫn kích hoạt tài khoản tới <strong>phunv.ilika@gmail.com</strong>.
+                                    Chúng tôi đã gửi cho bạn 1 đường dẫn kích hoạt tài khoản tới <strong>{{$route.query.email}}</strong>.
                                     Vui lòng kiểm tra hộp thư đến của bạn để hoàn tất đăng kí.
                                 </p>
                                 <p>
                                     Nếu bạn không nhận được email kích hoạt từ chúng tôi, vui lòng nhấn vào 
-                                    <a href="/send-activation" class=""><strong>gửi lại</strong></a>
+                                    <a @click="resentActivationEmail()" class=""><strong>gửi lại</strong></a>
                                     email kích hoạt.
                                 </p>
                             </div>
@@ -50,6 +50,15 @@
 <script>
 export default {
     layout: 'no_layout',
+    methods: {
+        resentActivationEmail(){
+            this.$axios.get('resentActivationEmail',this.$route.query.email).then(response=> {
+                if(response.data.status == 200){
+                    this.$swal('Thành công',response.data.message, 'success')
+                }
+            })
+        }
+    }
 }
 </script>>
 

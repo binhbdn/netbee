@@ -1,13 +1,13 @@
 <template>
     <div class="app-content content">
-        <div class="content-wrapper container">
+        <div class="content-wrapper container" style="padding-top:19px">
             <div class="content-body">
                 <section id="dashboard-ecommerce">
                     <div class="row">
                         <div class="col-lg-4 col-sm-6 col-12 p-r-0">
                             <div class="card text-center">
                                 <div class="card-content">
-                                    <div class="card-body p-2">
+                                    <div class="card-body p-2 pb-3">
                                         <div class="avatar bg-rgba-warning p-50 m-0 mb-1">
                                             <div class="avatar-content">
                                                 <i class="feather icon-message-square text-warning font-medium-5"></i>
@@ -22,7 +22,7 @@
                         <div class="col-lg-4 col-sm-6 col-12 p-r-0">
                             <div class="card text-center">
                                 <div class="card-content">
-                                    <div class="card-body p-2">
+                                    <div class="card-body p-2 pb-3">
                                         <div class="avatar bg-rgba-info p-50 m-0 mb-1">
                                             <div class="avatar-content">
                                                 <i class="feather icon-heart text-info font-medium-5"></i>
