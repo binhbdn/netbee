@@ -41,12 +41,12 @@
                                 <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal">
                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                 </div> 
-                                <div v-if="$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center">                                    
-                                    <a  v-if="$auth.user.role == 2"  @click="warningModal()" class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                                                       
-                                    <div data-toggle="modal"  data-target="#ApplyModal" style="width: 100%;">
-                                        <a v-if="$auth.user.role != 2" class="btn-netbee" data-toggle="tooltip" data-placement="top"  title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                    
-                                    </div>                                    
-                                </div>                                                               
+                                <div v-if="$auth.loggedIn && $auth.user.role == 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center">                                    
+                                    <a  @click="warningModal()" class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                                                                                                                          
+                                </div>    
+                                <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#ApplyModal">
+                                    <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                </div>                                                              
                             </div>
                         </div>
                     </div>
