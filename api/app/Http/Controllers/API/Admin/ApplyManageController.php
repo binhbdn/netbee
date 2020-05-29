@@ -48,6 +48,7 @@ class ApplyManageController extends Controller
 
     public function getRefuseApply() {
         $applys = $this->applyJobService->getApply($this->applyJobService::TU_CHOI);
+        return $applys;
         if($applys){
             $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys];
         } else {

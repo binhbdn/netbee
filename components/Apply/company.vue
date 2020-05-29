@@ -7,7 +7,7 @@
                         <div class="card ">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <table class="table table-hover mb-0 zero-configuration">
+                                    <table class="table table-hover mb-0 zero-configuration" v-if="AllApply.length > 0">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -20,7 +20,7 @@
                                                 <th>Hành động</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="tab-table">
+                                        <tbody class="tab-table" >
                                             <tr v-for="(item, index) in AllApply" :key="index">
                                                 <td>{{item.id}}</td>
                                                 <td>{{item.job.title}}</td>
@@ -50,8 +50,11 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tbody>
+                                        </tbody>                                        
                                     </table>
+                                    <div v-if="AllApply.length == 0">
+                                        <p style="padding-top:10px;text-align: center;font-style: italic;">Không có hồ sơ ứng tuyển.</p>
+                                    </div>                                    
                                     <!-- <infinite-loading
                                         v-if="ApplyWait.length"
                                         spinner="bubbles"
@@ -258,6 +261,8 @@ import { Datetime } from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 
 export default {
+     name: 'QLUTCompany',
+        layout: 'admin',
     data() {
         return {
             paper: [],
@@ -268,7 +273,7 @@ export default {
             ],
             reason_for_rejection: '',
             idRefuse: '',
-            chooseCalendar: {},
+            chooseCalendar: '',
             ApplyWait: [],
             ApplyApproved: [],
             ApplyRefuse: [],
@@ -290,10 +295,7 @@ export default {
     },
     components: {
         Datetime
-    },
-    created() {
-        this.fetch();
-    },
+    },   
     methods: {
         nameWithLang ({ name, id }) {
             return `${name}`
@@ -301,6 +303,7 @@ export default {
         fetch() {
             this.$axios.$get('apply/getAllApply').then((response)=>{
                 this.AllApply=response.data;
+                console.log(this.AllApply)
 	        });
 
         },
@@ -314,11 +317,12 @@ export default {
                 this.ApplyRefuse=response.data;
 	        });
         },
-        getAllApply(){
-            this.$axios.$get('apply/getAllApply').then((response)=>{
-                this.AllApply=response.data;
-	        });
-        },
+        // getAllApply(){
+        //     this.$axios.$get('apply/getAllApply').then((response)=>{
+        //         this.AllApply=response.data;
+        //         console.log(response);
+	    //     });
+        // },
         RefuseApply(){
             try{ 
                 this.$axios.$post(`apply/RefuseApply/${this.idRefuse}`,{reason_for_rejection: this.reason_for_rejection}).then((response)=>{
@@ -409,7 +413,8 @@ export default {
         //         this.cardSearch.searchCategory = ""
         // }
     },
-    computed: {
+    mounted(){
+        this.fetch();
     }
 }
 </script>
