@@ -23,6 +23,7 @@ Route::namespace('API')->group(function () {
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
   Route::get('countFollow','Customer\CompanyController@countFollow');
   //Mail
+  Route::get('resentActivationByEmail', 'MailController@resentActivationByEmail');
   Route::get('activationByEmail', 'MailController@activationByEmail');
   Route::get('recoverPassword', 'MailController@recoverPassword');
   Route::get('checkRecoverCode', 'MailController@checkRecoverCode');

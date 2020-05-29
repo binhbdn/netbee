@@ -24,31 +24,55 @@ class MailController extends Controller
         $emailWelcome = new SendWelcomeEmail();
         dispatch($emailWelcome);
     }
-    public function activationRegisterEmail(Request $request)
+    public function resentActivationByEmail(Request $request)
     {
-        $emailRegister = new SendActivationRegisterMail($request);
-        dispatch($emailRegister);
+        $user = User::where('email',$request->email)->first();
+        if($user){
+            $dataEmail = (object)[
+                'name' => $user->name,
+                'title' => 'Kích hoạt tài khoản Netbee',
+                'content' => 'Chỉ còn 1 bước để có thể kích hoạt tài khoản Netbee. <br> Click ngay vào nút bên dưới để kích hoạt tài khoản của bạn.',
+                'textButton' => 'Kích hoạt ngay',
+                'url' => 'https://netbee.vn/api/activationByEmail?email='.$user->email.'&code='.$user->recover_code
+            ];
+            dispatch(new SendMailJobQueue($user->email, $dataEmail));
+            return response()->json([
+                'status' => 200,
+                'message' => 'Vui lòng chờ!',
+                'data' => null
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 400,
+                'message' => 'Lỗi!',
+                'data' => null
+            ]);
+        }
     }
 
     public function activationByEmail(Request $request){
         try {
             $user = User::where('email',$request->email);
-            $user->update([
-                'status'=> 1
-            ]);
-            $dataEmail = (object)[
-                'name' => $user->first()->name,
-                'title'=> 'Chào mừng ' . $user->first()->name . ' đến với Netbee.',
-                'content' => 'Netbee kết nối đến hàng ngàn du học sinh và cộng tác viên tuyển dụng ở khắp mọi nơi ,
+            if($request->code == $user->first()->recover_code){
+                $user->update([
+                    'status'=> 1,
+                    'recover_code' => null
+                ]);
+                $dataEmail = (object)[
+                    'name' => $user->first()->name,
+                    'title'=> 'Chào mừng ' . $user->first()->name . ' đến với Netbee.',
+                    'content' => 'Netbee kết nối đến hàng ngàn du học sinh và cộng tác viên tuyển dụng ở khắp mọi nơi ,
             Netbee trở thành mạng lưới giới thiệu và giải đáp thắc mắc lớn nhất Việt Nam.
             Netbee trở thành nơi tuyển dụng ưu việt, nhanh chóng, hiệu quả nhất cho các trung tâm tư vấn và môi giới du học trên khắp cả nước.
             <br>Netbee được ví như mạng lưới của những chú ong chăm chỉ, cần mẫn hàng ngày làm những công việc thầm lặng đưa những người con của đất Việt đi khắp muôn nơi trên thế giới.',
-                'textButton' => 'Đăng nhập Netbee',
-                'url' => 'https://netbee.vn/dang-nhap'
-            ];
-            $emailRegister = new SendMailJobQueue($user->first()->email, $dataEmail);
-            dispatch($emailRegister);
-            return redirect('https://netbee.vn/dang-nhap?success')->with('success','Kích hoạt tài khoản thành công');
+                    'textButton' => 'Đăng nhập Netbee',
+                    'url' => 'https://netbee.vn/dang-nhap'
+                ];
+                $emailRegister = new SendMailJobQueue($user->first()->email, $dataEmail);
+                dispatch($emailRegister);
+                return redirect('https://netbee.vn/dang-nhap?success')->with('success','Kích hoạt tài khoản thành công');
+            }
         }catch (Exception $exception){
             return response()->json([
                 'status' => 400,
@@ -156,7 +180,6 @@ class MailController extends Controller
 
     }
     public function sendMailApprovedCV(Request $request){
-        dd($request->ip());
         //Gửi cho uv,hr đã duyệt CV -> yc gửi hồ sơ đính kèm
         $idApply = $request -> id;
         $applyInfo = Apply::where('id', $idApply)->first();
