@@ -15,11 +15,12 @@ class CompanyController extends Controller
     {
         $this->nbCompanyInfoService = $nbCompanyInfoService;
     }
-    public function getListCompany(){
-        $response = $this->nbCompanyInfoService->getListCompany();
+    public function getListCompany(Request $request){
+        $response = $this->nbCompanyInfoService->getListCompany($request->type, $request->limit, $request->perPage);
 
         return response()->json($response);
     }
+
     public function getDetailCompanyByID(Request $request)
     {
         $response = $this->nbCompanyInfoService->getDetailCompanyById($request->id);
