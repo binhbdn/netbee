@@ -16,10 +16,10 @@
                                           rules="required"
                                            v-slot="{ errors }"
                                            > 
-                              <div class="form-group col-sm-12" style="height: 47px;">
+                              <div class="form-group col-sm-12" style="height: 47px;padding-left:0px;">
                                         <input type="text"  class="form-control"  :placeholder="$t('follow.name')"  name="name" v-model="dataForm.name">
                                                
-                                            <ul style="color:#FFC107" class="overline">
+                                            <ul style="color:#FFC107;padding-left:15px;" class="overline">
                                                 <li v-for="(error, index) in errors" :key="index">
                                                 <span>{{ error }}</span>
                                                </li>
@@ -32,9 +32,9 @@
                                              name="Số điện thoại"
                                              v-slot="{ errors }"
                                             >
-                                      <div class="form-group col-sm-12" style="height: 47px;">                                     
+                                      <div class="form-group col-sm-12" style="height: 47px;padding-left:0px;">                                     
                                        <input type="text" class="form-control" :placeholder="$t('follow.phone')"  name="phone" v-model="dataForm.phone">
-                                              <ul style="color:#FFC107" class="overline text-left">
+                                              <ul style="color:#FFC107;padding-left:15px;" class="overline text-left">
                                                <li v-for="(error, index) in errors" :key="index">
                                                 <span>{{ error }}</span>
                                               </li>
@@ -47,16 +47,16 @@
                                        rules="required|email"
                                        v-slot="{ errors }"
                                      >
-                                      <div class="form-group col-sm-12">
+                                      <div class="form-group col-sm-12" style="padding-left:0px;">
                                          <input type="email" class="form-control" :placeholder="$t('follow.email')"  name="email" v-model="dataForm.email">
-                                               <ul style="color:#FFC107" class="overline text-left">
+                                               <ul style="color:#FFC107;padding-left:15px;" class="overline text-left">
                                                    <li v-for="(error, index) in errors" :key="index">
                                                    <span>{{ error }}</span>
                                                   </li>
                                               </ul>
                                     </div>                                  
                                          </ValidationProvider>
-                                    <div class="col-sm-12 text-center form-group">
+                                    <div class="col-sm-12 text-center form-group" style="padding-left:0px;">
                                       <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
                                         <button @click="sendForm()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Gửi ngay</button>
                                       </div>

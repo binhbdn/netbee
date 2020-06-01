@@ -3,24 +3,8 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">    
-            <div class="content-header row">
-                <div class="content-header-left col-md-9 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Danh sách lịch phỏng vấn</h2>
-                            <div class="breadcrumb-wrapper col-12">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Trang chủ</a>
-                                    </li>                       
-                                    <li class="breadcrumb-item active"> Danh sách lịch phỏng vấn
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="content-body">
+            
+            <div class="content-body" style="margin-top: 10px;margin-bottom: 9px;">
                 <section id="News"> 
                     <div class="row">
                         <div class="col-12">
