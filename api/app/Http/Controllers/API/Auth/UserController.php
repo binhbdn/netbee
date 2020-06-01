@@ -57,7 +57,8 @@ class UserController extends Controller
             'name' => $request['name'],
             'phone' => $request['phone'],
             'status' => '0',
-            'role' => $request->role
+            'role' => $request->role,
+            'recover_code' => rand(100000,999999)
         ];
 
         $store = $this->userService->store($users);
@@ -68,7 +69,7 @@ class UserController extends Controller
                 'title' => 'Kích hoạt tài khoản Netbee',
                 'content' => 'Chỉ còn 1 bước để có thể kích hoạt tài khoản Netbee. <br> Click ngay vào nút bên dưới để kích hoạt tài khoản của bạn.',
                 'textButton' => 'Kích hoạt ngay',
-                'url' => 'https://netbee.vn/api/activationByEmail?email='.$users['email']
+                'url' => 'https://netbee.vn/api/activationByEmail?email='.$users['email'].'&code='.$users['recover_code']
             ];
             dispatch(new SendMailJobQueue($users['email'], $dataEmail));
             return response()->json([
@@ -299,7 +300,7 @@ class UserController extends Controller
         ]);
     }
 
-    private function userRequest(Request $request) 
+    private function userRequest(Request $request)
     {
         $rules = [
             'email' => 'required|email|unique:users',
@@ -328,7 +329,7 @@ class UserController extends Controller
         return false;
     }
 
-    public function createUser(Request $request) 
+    public function createUser(Request $request)
     {
         $validate = $this->userRequest($request);
         if($validate) {

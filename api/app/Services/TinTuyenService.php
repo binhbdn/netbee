@@ -693,7 +693,7 @@ class TinTuyenService extends BaseService {
     public function getDetailNew($id)
     {
         $response = $this->nbJobList->with(['user', 'nation','visa_profession','nbCompany'])
-            ->where('status',self::ACTIVE)
+            // ->where('status',self::ACTIVE)
             ->where('deleted',self::INACTIVE)
             ->where('isPublic',self::ACTIVE)
             ->where('id', $id)

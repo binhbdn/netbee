@@ -60,7 +60,8 @@
                                                         <ValidationProvider rules="required" ref="name" name="name" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <div class="controls">
-                                                                    <label for="account-username">Họ tên</label>
+                                                                    <label v-if="$auth.user.role != 2" for="account-username">Họ tên</label>
+                                                                    <label v-if="$auth.user.role == 2" for="account-username">Tên công ty</label>
                                                                     <input type="text" class="form-control" name="name" v-model="changeInfoUser.name">
                                                                     <ul style="color:red" class="overline text-left">
                                                                         <li v-for="(error, index) in errors" :key="index">
@@ -75,7 +76,8 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <div class="controls">
-                                                                    <label for="account-name">Ngày sinh</label>
+                                                                    <label v-if="$auth.user.role != 2" for="account-name">Ngày sinh</label>
+                                                                    <label v-if="$auth.user.role == 2" for="account-name">Ngày thành lập</label>
                                                                     <input type="date" class="form-control" v-model="changeInfoUser.birth">
                                                                     <ul style="color:red" class="overline text-left">
                                                                         <li v-for="(error, index) in errors" :key="index">
