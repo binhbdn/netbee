@@ -5,7 +5,7 @@
                 <div class="card-content h-100">
                     <div class="text-center p-1">
                         <a :href="`/ho-so/${item.id}`">
-                            <img v-lazy="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`" style="object-fit: scale-down; height: 92px; max-width: 100%;">
+                            <img v-lazy="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`" style="height: 92px; max-width: 100%;">
                         </a>
                     </div>
                     <div class="p-1">

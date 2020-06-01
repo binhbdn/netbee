@@ -1,6 +1,6 @@
 <template>
     <div class="card border-job-item" style="border-radius: 5px">
-        <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" class="text-center" style="height: 220px">
+        <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" class="text-center" style="height: 150px">
             <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" style="max-height: 100%;width: 100%;height: 100%;object-fit: fill;">
         </a>
         <div class="px-2 p-t-15" style="height: 190px;">
@@ -33,6 +33,9 @@ export default {
 }
 h4:hover{
     color: #ffb701;
+}
+.el-3 {
+    line-height: 20px !important;
 }
 /* .title{
     height: 65px;

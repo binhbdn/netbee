@@ -16,13 +16,18 @@ use Mail;
 use Validator;
 use Hash;
 use Carbon\Carbon;
+use App\Services\NotificationService;
 
 class UserController extends Controller
 {
     protected $userService;
 
-    public function __construct(UserService $userService) {
+    public function __construct(
+        UserService $userService,
+        NotificationService $notificationService
+    ) {
         $this->userService = $userService;
+        $this->notificationService = $notificationService;
     }
 
     public function register(Request $request)
@@ -60,8 +65,20 @@ class UserController extends Controller
             'role' => $request->role,
             'recover_code' => rand(100000,999999)
         ];
-
-        $store = $this->userService->store($users);
+        
+        $notification = [
+            'content' => 'Có tài khoản đăng ký mới ['.$users['email'].']',
+            'ids' => $this->userService->getIdAdmin()->pluck('id'),
+            'url' => 'https://netbee.vn/admin/quan-ly-tai-khoan?role='.$users['role']
+        ];
+        DB::beginTransaction();
+            $store = $this->userService->store($users);
+            $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
+        if ($store && $response['status'] == 200) {
+            DB::commit();
+        } else {
+            DB::rollback();
+        }
 
         if ($store) {
             $dataEmail = (object)[
