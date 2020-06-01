@@ -1,4 +1,4 @@
-<?php
+changeInfoCompany<?php
 namespace App\Services;
 
 use App\Jobs\SendMailJobQueue;
@@ -197,13 +197,13 @@ class ApplyJobService extends BaseService {
                     ->get();
     }
     public function getApplyCompany()
-    {        
+    {
         return $this->getApplyValid()
                     ->where('user_id_recever',Auth::user()->id)
                     ->where(function ($q) {
                         $q->where('status',self::ADMIN_DUYET_HO_SO)
                         ->orwhere('status', self::NTD_DUYET_HO_SO);
-                    })       
+                    })
                     ->get();
     }
 
