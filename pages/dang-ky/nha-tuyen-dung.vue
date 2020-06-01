@@ -2,12 +2,12 @@
     <section class="hero-wraps js-fullheight" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
     <div class="container">
         <div class="row ">
-            <div class="col-7" style="padding:100px 15px;">
-                <div style="font-size: 24px;">
+            <div class="col-7" style="padding:95px 15px;">
+                <!-- <div style="font-size: 24px;">
                     <span style="margin-right: 190px;">Đăng tin tuyển dụng</span>
                     <span>Tìm kiếm ứng viên</span>
-                </div>
-                <div style="margin-top: 3.5rem">
+                </div> -->
+                <div style="margin-top: 0px;">
                     <div class="round stat rounded-circle">
                         <h4 class="pt-4">+3000</h4>
                         <p>ứng viên</p>
@@ -25,110 +25,112 @@
                         <p>đối tác</p>
                     </div>
                 </div>
-                <div style="margin-top: 16em !important;    line-height: 40px;">
+                <div style="margin-top: 12em !important;    line-height: 40px;">
                     <ul>
-                        <li>+3,000 ứng viên tiếp cận thông tin tuyển dụng</li>
-                        <li>Hơn 20 hồ sơ ứng tuyển cho 1 việc làm đăng tuyển tại Netbee</li>
-                        <li>Tăng hiệu quả 4 - 5 lần so với các phương thức tuyển dụng khác</li>
-                        <li>+2,000 lượt xem trung bình cho 1 việc làm</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>+3,000 ứng viên tiếp cận thông tin tuyển dụng</b></li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>Hơn 20 hồ sơ ứng tuyển cho 1 việc làm đăng tuyển tại Netbee</b></li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>Tăng hiệu quả 4 - 5 lần so với các phương thức tuyển dụng khác</b></li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>+2,000 lượt xem trung bình cho 1 việc làm</b></li>
                     </ul>
                 </div>
             </div>
             <div class="col-5" style="padding:0px 15px; ">
-                <div class="text-center" style="background: #ffb701;padding:10px;margin-bottom:10px;">
+                <div class="style-backrou">
+                    <div class="text-center" style="background: #ffb701;padding:10px;margin-bottom:10px;">
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN NHÀ TUYỂN DỤNG</span>
-                </div>
-                <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap">Tại đây</a></span>
-               <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
-                    <ValidationObserver ref="observer" v-slot="{ valid }">
-                     <ValidationProvider
-                        name="name"
-                        ref="name"
-                        rules="required|max:30"
-                        v-slot="{ errors }"
-                    >   
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Tên công ty</label>
-                        <input type="text" class="form-control" name="name" v-model="userForm.name">
-                        <ul style="color:red" class="overline text-left">
-                            <li v-for="(error, index) in errors" :key="index">
-                            <span>{{ error }}</span>
-                            </li>
-                        </ul>
                     </div>
-                    </ValidationProvider>
-                    <ValidationProvider
-                        name="email"
-                        ref="email"
-                        rules="required|email"
-                        v-slot="{ errors }"
-                    >
-                    <div class="form-group">
-                        <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Email</label>
-                        <input type="email" class="form-control" name="email" v-model="userForm.email">
-                        <ul style="color:red" class="overline text-left">
-                            <li v-for="(error, index) in errors" :key="index">
-                            <span>{{ error }}</span>
-                            </li>
-                        </ul>
-                    </div>
-                    </ValidationProvider>
-                    <ValidationProvider
-                        rules="required|integer"
-                        ref="phone"
-                        name="phone"
-                        v-slot="{ errors }"
-                    >
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Số điện thoại</label>
-                            <input type="text" class="form-control" name="phone" v-model="userForm.phone">
-                            <ul style="color:red" class="overline text-left">
-                            <li v-for="(error, index) in errors" :key="index">
-                            <span>{{ error }}</span>
-                            </li>
-                        </ul>
-                        </div>
-                    </ValidationProvider>
-                    <ValidationProvider
-                        name="password"
-                        ref="password"
-                        rules="required|customPassword"
-                        v-slot="{ errors }"
-                    >
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Mật khẩu</label>
-                            <input type="password" class="form-control" name="password" v-model="userForm.password">
+                    <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap"><b>Tại đây</b></a></span>
+                <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
+                        <ValidationObserver ref="observer" v-slot="{ valid }">
+                        <ValidationProvider
+                            name="name"
+                            ref="name"
+                            rules="required|max:30"
+                            v-slot="{ errors }"
+                        >   
+                        <div class="form-group" style="margin-bottom:0px;">
+                            <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Tên công ty</label>
+                            <input type="text" class="form-control" name="name" v-model="userForm.name">
                             <ul style="color:red" class="overline text-left">
                                 <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
                                 </li>
                             </ul>
                         </div>
-                    </ValidationProvider>
-                    <ValidationProvider
-                        ref="confirm"
-                        name="confirm"
-                        rules="required|confirm:@password"
-                        v-slot="{ errors }"
-                    >
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
-                            <input type="password" class="form-control"  data-vv-rules="confirmed:password" v-model="userForm.password_confirmation" data-vv-as="password">
+                        </ValidationProvider>
+                        <ValidationProvider
+                            name="email"
+                            ref="email"
+                            rules="required|email"
+                            v-slot="{ errors }"
+                        >
+                        <div class="form-group" style="margin-bottom:0px;">
+                            <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Email</label>
+                            <input type="email" class="form-control" name="email" v-model="userForm.email">
                             <ul style="color:red" class="overline text-left">
                                 <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
                                 </li>
                             </ul>
                         </div>
-                    </ValidationProvider>
-                    <div class="form-check pl-0" style="margin-bottom:0px;">
-                            <label for="agree-term" class="label-agree-term">Bằng việc nhấn nút đăng kí bạn đã đồng ý với <a href="" style="color: #ffb701" class="term-service">Thỏa thuận sử dụng</a> của Netbee.</label>
+                        </ValidationProvider>
+                        <ValidationProvider
+                            rules="required|integer"
+                            ref="phone"
+                            name="phone"
+                            v-slot="{ errors }"
+                        >
+                            <div class="form-group" style="margin-bottom:0px;">
+                                <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Số điện thoại</label>
+                                <input type="text" class="form-control" name="phone" v-model="userForm.phone">
+                                <ul style="color:red" class="overline text-left">
+                                <li v-for="(error, index) in errors" :key="index">
+                                <span>{{ error }}</span>
+                                </li>
+                            </ul>
+                            </div>
+                        </ValidationProvider>
+                        <ValidationProvider
+                            name="password"
+                            ref="password"
+                            rules="required|customPassword"
+                            v-slot="{ errors }"
+                        >
+                            <div class="form-group" style="margin-bottom:0px;">
+                                <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Mật khẩu</label>
+                                <input type="password" class="form-control" name="password" v-model="userForm.password">
+                                <ul style="color:red" class="overline text-left">
+                                    <li v-for="(error, index) in errors" :key="index">
+                                    <span>{{ error }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ValidationProvider>
+                        <ValidationProvider
+                            ref="confirm"
+                            name="confirm"
+                            rules="required|confirm:@password"
+                            v-slot="{ errors }"
+                        >
+                            <div class="form-group" style="margin-bottom:0px;">
+                                <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
+                                <input type="password" class="form-control"  data-vv-rules="confirmed:password" v-model="userForm.password_confirmation" data-vv-as="password">
+                                <ul style="color:red" class="overline text-left">
+                                    <li v-for="(error, index) in errors" :key="index">
+                                    <span>{{ error }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ValidationProvider>
+                        <div class="form-check pl-0" style="margin-bottom:0px;">
+                                <label for="agree-term" style="padding-bottom: 10px;" class="label-agree-term">Bằng việc nhấn nút đăng kí bạn đã đồng ý với <a href=""  class="term-service"><b>Thỏa thuận sử dụng</b></a> của Netbee.</label>
+                            </div>
+                        <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
+                            <button type="button" @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%" >Đăng ký ngay</button>
                         </div>
-                    <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
-                        <button type="button" @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%" >Đăng ký ngay</button>
-                    </div>
-                    </ValidationObserver>
-                </form>
+                        </ValidationObserver>
+                    </form>
+                </div>                
             </div>
         </div>
     </div>
@@ -264,6 +266,13 @@ export default {
 }
 </script>
 <style scoped>
+.style-backrou{
+  border-radius: 7px;
+    background: hsla(0,0%,100%,.52157);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 25px;
+}
 .hero-wrap {
         width: 100%;
         height: 80px !important;
@@ -309,7 +318,7 @@ export default {
     }
     .hero-wraps {
         width: 100%;
-        height: 750px !important;
+        /* height: 750px !important; */
         position: inherit;
         margin-top: 66px;
     }
@@ -328,9 +337,23 @@ export default {
         width: 23%;
         height: 145px;
         text-align: center;
+        background-color: #fff!important;
         background-color: #ffb701;
+        border: 3px solid #ffb701;
+        color: #000;    
         float: left;
         margin-right: 12px;
+    }
+    .pricing-round {
+        background-color: #fff!important;
+    }
+    .round.stat h4 {
+        font-size: 25px !important;
+    font-weight: 600;
+    }
+
+    .round.stat p {
+        font-size: 16px !important;
     }
     p{
         color: #000;
