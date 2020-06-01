@@ -11,37 +11,39 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header mb-0">
-                                    <h4 style="text-transform: uppercase">công ty nổi bật</h4>
+                                    <h4 style="text-transform: uppercase">công ty đã kiểm duyệt</h4>
                                 </div>
                                     <div class="card-content collapse show" style="padding: 13px; position:relative">
                                   <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="10000">
                                       <ol class="carousel-indicators">
-                                          <li data-target="#carousel-interval-new" data-slide-to="0" class="active"></li>
-                                          <li data-target="#carousel-interval-new" data-slide-to="1"></li>
+                                          <li data-target="#carousel-interval-new" v-for="(companyInfo,index) in listVerifyCompany" :key="index" :data-slide-to="index" :class="{'active': index == 0}"></li>
                                       </ol>
                                       <div class="carousel-inner" role="listbox">
-                                          <div class="carousel-item active">
+                                          <div class="carousel-item" :class="{'active': index == 0}" v-for="(companyInfo,index) in listVerifyCompany" :key="index">
                                               <div class="swiper-slide swiper-slide-next">
                                         <div class="spotlightBlock">
-                                            <div class="spotlightBlock__background" role="img" aria-label="DXC Vietnam tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn." style="background-image: url(&quot;https://images.vietnamworks.com/logo/1160x308-DXCnew.JPG_111589.jpg&quot;);"></div>
+                                            <div class="spotlightBlock__background" v-if="companyInfo.user.image_cover != null" role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${companyInfo.users.image_cover}` + ')' }"></div>
+                                            <div class="spotlightBlock__background" v-else role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/assets/img/cover-netbee.jpg` + ')' }"></div>
                                             <div class="spotlightBlock__wrapper">
                                               <div class="is-mobile is-centered">
                                                   <div class="spotlightBlock__inner">
                                                     <div class="columns spotlight-item is-vcentered">
                                                         <div class="column is-3 spotlightBlock__logo">
-                                                          <figure class="image is-inline-block"><img src="https://images.vietnamworks.com/logo/170x102-DXC.JPG_111589.jpg" alt="DXC Vietnam tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn."></figure>
+                                                          <figure class="image is-inline-block">
+                                                            <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatar/${companyInfo.user.avatar}`" alt="DXC Vietnam tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.">
+                                                            <img v-else v-lazy = "`assets/img/logo.png`"></figure>
                                                         </div>
                                                         <div class="column is-8 spotlightBlock__content-wrapper">
                                                           <div class="spotlightBlock__title">
-                                                              <h3>DXC Vietnam</h3>
+                                                              <h3>{{companyInfo.user.name}}</h3>
                                                           </div>
-                                                          <div class="spotlightBlock__message ellipsis">#ThriveOnChange #DigitalTransformation</div>
+                                                          <!-- <div class="spotlightBlock__message ellipsis">#ThriveOnChange #DigitalTransformation</div> -->
                                                           <div class="spotlightBlock__content">
                                                               <div class="clamp-lines ">
-                                                                <div id="clamped-content-spotlight-description-4" aria-hidden="true">DXC Vietnam is a place where high achievers embrace change and thrive - together. We’re in the thick of it: a changing business landscape in a changing world. That’s why we’re creating a workplace where our staff have the ability to run toward challenges &amp; success. Shape your career at DXC Vietnam!</div>
+                                                                <div id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
                                                               </div>
                                                           </div>
-                                                          <div class="spotlightBlock__cta"><a href="" target="_blank" class="button button_secondary is-outlined">Xem thêm</a></div>
+                                                          <div class="spotlightBlock__cta"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" class="button button_secondary is-outlined">Xem thêm</a></div>
                                                         </div>
                                                     </div>
                                                   </div>
@@ -49,44 +51,14 @@
                                             </div>
                                         </div>
                                       </div>
-                                          </div>
-                                          <div class="carousel-item">
-                                              <div class="swiper-slide swiper-slide-next">
-                                              <div class="spotlightBlock">
-                                                  <div class="spotlightBlock__background" role="img" aria-label="DXC Vietnam tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn." style="background-image: url(&quot;https://images.vietnamworks.com/logo/1160x308-DXCnew.JPG_111589.jpg&quot;);"></div>
-                                                  <div class="spotlightBlock__wrapper">
-                                                    <div class="is-mobile is-centered">
-                                                        <div class="spotlightBlock__inner">
-                                                          <div class="columns spotlight-item is-vcentered">
-                                                              <div class="column is-3 spotlightBlock__logo">
-                                                                <figure class="image is-inline-block"><img src="https://images.vietnamworks.com/logo/170x102-DXC.JPG_111589.jpg" alt="DXC Vietnam tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn."></figure>
-                                                              </div>
-                                                              <div class="column is-8 spotlightBlock__content-wrapper">
-                                                                <div class="spotlightBlock__title">
-                                                                    <h3>DXC Vietnam</h3>
-                                                                </div>
-                                                                <div class="spotlightBlock__message ellipsis">#ThriveOnChange #DigitalTransformation</div>
-                                                                <div class="spotlightBlock__content">
-                                                                    <div class="clamp-lines ">
-                                                                      <div id="clamped-content-spotlight-description-4" aria-hidden="true">DXC Vietnam is a place where high achievers embrace change and thrive - together. We’re in the thick of it: a changing business landscape in a changing world. That’s why we’re creating a workplace where our staff have the ability to run toward challenges &amp; success. Shape your career at DXC Vietnam!</div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="spotlightBlock__cta"><a href="" target="_blank" class="button button_secondary is-outlined">Xem thêm</a></div>
-                                                              </div>
-                                                          </div>
-                                                        </div>
-                                                    </div>
-                                                  </div>
-                                              </div>
-                                            </div>
-                                          </div>
+                                      </div>
                                       </div>
                                       <a class="carousel-control-prev" href="#carousel-interval-new" style="position: absolute; top: 101%; left: 37%;" role="button" data-slide="prev">
                                           <button class="el-carousel__arrow el-carousel__arrow--left">
                                             <i class="fas fa-angle-left"></i>
                                           </button>
                                       </a>
-                                      <a class="carousel-control-next" href="#carousel-interval-new" style="position: absolute;top: 38%; right: 36%;" role="button" data-slide="next">
+                                      <a class="carousel-control-next" href="#carousel-interval-new" style="position: absolute;top: 34%; right: 36%;" role="button" data-slide="next">
                                           <button class="el-carousel__arrow el-carousel__arrow--right">
                                             <i class="fas fa-angle-right"></i>
                                           </button>
@@ -103,45 +75,15 @@
         <div class="col-4">
             <div class="card">
                 <div class="card-header">
-                    <h4 style="text-transform: uppercase">Công ty hot</h4>
+                    <h4 style="text-transform: uppercase">Công ty mới</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4 col-6 user-latest-img" >
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-01.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-02.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-03.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-04.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-05.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-06.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-07.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-08.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-09.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-07.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-08.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                        </div>
-                        <div class="col-md-4 col-6 user-latest-img">
-                            <img src="../../static/app-assets/images/profile/user-uploads/user-09.jpg" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
+                        <div class="col-md-4 col-6 user-latest-img" v-for="(companyInfo,index) in listNewCompany" :key="index">
+                            <a :href="`cong-ty/${companyInfo.username}`">
+                              <img v-if="companyInfo.user.avatar != null" :src="`uploads/users/avatar/${companyInfo.user.avatar}`" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
+                              <img v-else src="assets/img/logo.png" class="img-fluid mb-1 rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -153,7 +95,7 @@
       </div>
     </section>
     <section class="list-company" style="background-color:#fff; padding: 15px">
-      <div class="list-company-item" v-for="(companyInfo,index) in companyInfos" :key="`companyInfo-${index}`">
+      <div class="list-company-item" v-for="(companyInfo,index) in listAllCompany" :key="`companyInfo-${index}`">
         <div class="row">
           <div class="col-12">
             <a :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`"><h4>#{{companyInfo.id}} {{companyInfo.user.name}}.</h4>
@@ -216,16 +158,10 @@ export default {
   data() {
     return {
       rating:3,
-      companyInfos: [],
-      arrayJobNew: [],
-            arrayJobNew2: [],
-            tintuc: [],
-            arrayJobHot: [],
-            arrayJobHot2: [],
-            pageLoadingHot: 1,
-            pageLoadingNew: 1,
-            linhvuc: [],
-            quocgia: []
+      listAllCompany: [],
+      listVerifyCompany: [],
+      listNewCompany: []
+      
     }
   },
   components: {
@@ -239,47 +175,12 @@ export default {
   },
   methods: {
     async fetch(){
-      let companyInfos = await this.$axios.get('getListCompany?page=1');
-      this.companyInfos = companyInfos.data.data.data;
-      this.$axios.$get(`getTinTuyenDungNewCarousel?page=1`).then((ress) => {
-          var myArray = ress.data.tintuyendung.data
-          var index = 0;
-          var arrayLength = myArray.length;
-          var tempArray = [];
-      
-          for (index = 0; index < arrayLength; index += 8) {
-              var myChunk = myArray.slice(index, index+8);
-              tempArray.push(myChunk);
-          }
-          
-          this.arrayJobNew = tempArray[0];
-          this.arrayJobNew2 = tempArray[1];
-        });
-        this.$axios.$get(`getTinTuyenDungHotCarousel?page=1`).then((ress) => {
-          var myArray = ress.data.tintuyendung.data
-          var index = 0;
-          var arrayLength = myArray.length;
-          var tempArray = [];
-      
-          for (index = 0; index < arrayLength; index += 6) {
-              var myChunk = myArray.slice(index, index+6);
-              tempArray.push(myChunk);
-          }
-          
-          this.arrayJobHot = tempArray[0];
-          this.arrayJobHot2 = tempArray[1];
-          
-        });
-
-        this.$axios.$get(`getTinTucNew?limit=4`).then((ress) => {
-          this.tintuc = ress.data.tintuc
-        })
-        this.$axios.$get(`getVisa`).then((ress) => {
-          this.linhvuc = ress.data
-        })
-        this.$axios.$get(`getQuocGia`).then((ress) => {
-          this.quocgia = ress.data
-        })
+      let getAllCompany = await this.$axios.get('getListCompany?perPage=6');
+      this.listAllCompany = getAllCompany.data.data.data;
+      let getVerifyCompany = await this.$axios.get('getListCompany?type=2&limit=5&perPage=0');
+      this.listVerifyCompany = getVerifyCompany.data.data;
+      let getNewCompany = await this.$axios.get('getListCompany?type=1&limit=9&perPage=0');
+      this.listNewCompany = getNewCompany.data.data;
     }
   },
 };
@@ -542,7 +443,7 @@ img {
     padding-right: 30px;
 }
 .review_headline p {
-    font-size: 18px;
+    font-size: 16px;
     color: #7f7f7f;
     line-height: 30px;
     height: 120px;
@@ -556,5 +457,24 @@ img {
 }
 .vue-star-rating-rating-text {
     font-size: 25px;
+}
+.user-latest-img:hover {
+    -webkit-transform: translateY(-4px) scale(1.2);
+    -ms-transform: translateY(-4px) scale(1.2);
+    transform: translateY(-4px) scale(1.2);
+    z-index: 30;
+}
+.clamped-content-spotlight-description-4{
+  font-size: 16px;
+    color: #7f7f7f;
+    line-height: 30px;
+    height: 120px;
+    margin-top: 3px;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 </style>
