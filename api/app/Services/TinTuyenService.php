@@ -12,10 +12,11 @@ use Validator;
 class TinTuyenService extends BaseService {
 
     protected $nbJobList;
-
-    public function __construct(NbJoblist $nbJobList)
+    protected $user;
+    public function __construct(NbJoblist $nbJobList, User $user)
     {
         $this->nbJobList = $nbJobList;
+        $this->user = $user;
     }
 
     public function getJobById($id)
@@ -35,23 +36,25 @@ class TinTuyenService extends BaseService {
             return $validate;
         }
         $data = $this->getOnlyRequest($request);
-        $user = User::find('id',$data->id_created);
+        $id_created = $request->has('id_created') ? $request->id_created : Auth::user()->id;
+        $user = $this->user->whereId($id_created)->first();
         try {
             $this->nbJobList->create($data);
             $dataEmail = (object)[
                 'name' => $user->name,
-                'title' => '[THÔNG BÁO] Tin '. $data->title . ' của bạn đang chờ để được phê duyệt!',
-                'content' => 'Chúc mừng tin ' . $data->title . ' của bạn đã được tạo thành công. <br> Chúng tôi sẽ phản hồi yêu cầu phê duyệt trong thời gian sớm nhất.',
+                'title' => '[THÔNG BÁO] Tin '. $request->title . ' của bạn đang chờ để được phê duyệt!',
+                'content' => 'Chúc mừng tin ' . $request->title . ' của bạn đã được tạo thành công. <br> Chúng tôi sẽ phản hồi yêu cầu phê duyệt trong thời gian sớm nhất.',
                 'textButton' => 'Về Netbee',
                 'url' => 'https://netbee.vn/dang-nhap'
             ];
             dispatch(new SendMailJobQueue($user->email, $dataEmail));
             $userAdmins = User::where('role',4)->get();
+            
             foreach ($userAdmins as $userAdmin){
                     $dataEmail = (object)[
                         'name' => $userAdmin->name,
-                        'title' => '[THÔNG BÁO] Tin '. $data->title . ' cần được phê duyệt!',
-                        'content' => 'Tin tuyển dụng ' . $data->title . ' cần được phê duyệt. <br> Đăng nhập Netbee ngay để phê duyệt tin.',
+                        'title' => '[THÔNG BÁO] Tin '. $request->title . ' cần được phê duyệt!',
+                        'content' => 'Tin tuyển dụng ' . $request->title . ' cần được phê duyệt. <br> Đăng nhập Netbee ngay để phê duyệt tin.',
                         'textButton' => 'Về Netbee',
                         'url' => 'https://netbee.vn/dang-nhap'
                     ];
@@ -86,13 +89,14 @@ class TinTuyenService extends BaseService {
             return $validate;
         }
         $data = $this->getOnlyRequest($request);
-        $user = User::find('id',$data->id_created);
+        $id_created = $request->has('id_created') ? $request->id_created : Auth::user()->id;
+        $user = $this->user->whereId($id_created)->first();
         try {
             $this->getJobById($request->id)->update($data);
             $dataEmail = [
                 'name' => $user->name,
-                'title' => '[THÔNG BÁO] Sửa tin '. $data->title . ' Netbee!',
-                'content' => 'Tin ' . $data->title . ' của bạn đã được sửa lúc '.$data->updated_at.' <br> <b>Nếu đây là hành động của bạn,</b> vui lòng bỏ qua email này. <br>
+                'title' => '[THÔNG BÁO] Sửa tin '. $request->title . ' Netbee!',
+                'content' => 'Tin ' . $request->title . ' của bạn đã được sửa <br> <b>Nếu đây là hành động của bạn,</b> vui lòng bỏ qua email này. <br>
                 <b>Nếu đây không phải là hành động của bạn,</b> vui lòng liên hệ đội ngũ hỗ trợ của Netbee để được hỗ trợ.',
                 'textButton' => 'Đăng nhập Netbee',
                 'url' => 'https://netbee.vn/dang-nhap'
@@ -689,7 +693,7 @@ class TinTuyenService extends BaseService {
     public function getDetailNew($id)
     {
         $response = $this->nbJobList->with(['user', 'nation','visa_profession','nbCompany'])
-            ->where('status',self::ACTIVE)
+            // ->where('status',self::ACTIVE)
             ->where('deleted',self::INACTIVE)
             ->where('isPublic',self::ACTIVE)
             ->where('id', $id)

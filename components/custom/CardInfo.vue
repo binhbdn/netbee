@@ -4,13 +4,13 @@
             <div class="ecommerce-card border-job-item make-it-sl highlight" style="margin-bottom: 15px;">
                 <div class="card-content h-100">
                     <div class="text-center p-1">
-                        <a href="#">
-                            <img v-lazy="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`" style="object-fit: scale-down; height: 92px; max-width: 100%;">
+                        <a :href="`/ho-so/${item.id}`">
+                            <img v-lazy="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`" style="height: 92px; max-width: 100%;">
                         </a>
                     </div>
                     <div class="p-1">
                         <div class="d-flex justify-content-between" style="padding: 5px 0px;">
-                            <a class="item-vip-a" href="#" data-toggle="tooltip" data-placement="top" :title="`${item.fullname_profile}`">[{{item.id}}] {{ item.fullname_profile }}</a>
+                            <a class="item-vip-a" :href="`/ho-so/${item.id}`" data-toggle="tooltip" data-placement="top" :title="`${item.fullname_profile}`">[{{item.id}}] {{ item.fullname_profile }}</a>
                             <p class="delivery-date mb-0 d-flex justify-content-end" data-toggle="tooltip" data-placement="top" title="Giới tính"><i class="fas fa-venus-mars"></i>&nbsp;{{ item.maleFemale }}</p>
                         </div>
                         <div class="item-quantity d-flex">
