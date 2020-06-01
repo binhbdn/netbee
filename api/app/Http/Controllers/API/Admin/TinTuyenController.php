@@ -14,14 +14,21 @@ use Hash;
 use Carbon\Carbon;
 use App\Services\PayUService\Exception;
 use App\Helpers\AppHelpers;
+use App\Services\NotificationService;
+use App\Services\UserService;
 
 class TinTuyenController extends Controller
 {
     protected $tinTuyenService;
 
-    public function __construct(TinTuyenService $tinTuyenService)
-    {
+    public function __construct(
+        TinTuyenService $tinTuyenService,
+        NotificationService $notificationService,
+        UserService $userService   
+    ){
         $this->tinTuyenService = $tinTuyenService;
+        $this->notificationService = $notificationService;
+        $this->userService = $userService;
     }
 
     public function getTinTuyenDung(){
@@ -72,8 +79,23 @@ class TinTuyenController extends Controller
 
     public function createTinTuyen(Request $request)
     {
-        $response = $this->tinTuyenService->store($request);
-        return response()->json($response);
+        //Notification + Transaction Begin
+        $notification = [
+            'content' => 'Có tin tuyển dụng mới',
+            'ids' => $this->userService->getIdAdmin()->pluck('id'),
+            'url' => 'https://netbee.vn/admin/tin-tuyen-dung'
+        ];
+        DB::beginTransaction();
+            $resTinTuyen = $this->tinTuyenService->store($request);
+            $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
+        if ($resTinTuyen && $response['status'] == 200) {
+            DB::commit();
+        } else {
+            DB::rollback();
+        }
+        //Notification + Transaction End
+        //$response = $this->tinTuyenService->store($request);
+        return response()->json($resTinTuyen);
     }
 
     public function updateTinTuyen(Request $request){

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Services\NotificationService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Response;
@@ -11,10 +12,15 @@ class NotificationController extends Controller
 {
 
     protected $notificationService;
+    protected $userService;
 
-    public function __construct(NotificationService $notificationService)
-    {
+    public function __construct
+    (
+        NotificationService $notificationService, 
+        UserService $userService
+    ) {
         $this->notificationService = $notificationService;
+        $this->userService = $userService;
     }
 
     public function getNotification()
@@ -23,9 +29,10 @@ class NotificationController extends Controller
         return response()->json($response);
     }
 
-    public function postNotification($content = null, $idRecever = null,  $url = null)
+    public function postNotification(Request $request)
     {
-        $response = $this->notificationService->store($content, $idRecever, $url);
+        $ids = $this->userService->getIdAdmin()->pluck('id');
+        $response = $this->notificationService->store($request->content, $ids, $request->url);
         return response()->json($response);
     }
 
