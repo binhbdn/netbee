@@ -52,6 +52,10 @@ class CompanyController extends Controller
                 'required' => 'Không được để trống',
                 'numeric' => 'Số điện thoại không được chứa kí tự'
         ];
+        $update = [
+            'image_cover' => "",
+            'updated_at' => Carbon::now()
+        ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -61,14 +65,26 @@ class CompanyController extends Controller
                 'data' => null
             ]);
         }
-
+        $data = [
+            'image_cover' => $request->image_cover ? $request->image_cover : null ,
+            'company_hotline' => $request->company_hotline,
+            'company_about' => $request->company_about,
+            'username' => $request->username,
+            'company_tax' => $request->company_tax,
+            'company_benefit' => $request->company_benefit,
+            'company_policy' => $request->company_policy,
+            'company_chance' => $request->company_chance,
+            'company_link' => $request->company_link,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ];
         if($request->file('image_cover')) {
             try {
                 $file = $request->file('image_cover');
                 $fileinfo = pathinfo($file->getClientOriginalName());
                 $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
                 $uploadPath = '/home/netbee.vn/html/static/uploads/users/covers';
-                $update['image_cover'] = $image;
+                $data['image_cover'] = $image;
                 //remove file old
                 $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
                 if($get->image_cover != NULL && file_exists($uploadPath.$get->image_cover))
@@ -86,19 +102,7 @@ class CompanyController extends Controller
         }
         $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
         $userId = Auth::user()->id;
-        $data = [
-            'image_cover' => $request->image_cover ? $request->image_cover : null ,
-            'company_hotline' => $request->company_hotline,
-            'company_about' => $request->company_about,
-            'username' => $request->username,
-            'company_tax' => $request->company_tax,
-            'company_benefit' => $request->company_benefit,
-            'company_policy' => $request->company_policy,
-            'company_chance' => $request->company_chance,
-            'company_link' => $request->company_link,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-        ];
+
         if (!$get) {
             $data['company_id'] = $userId;
             $response = $this->nbCompanyInfoService->store($data);
