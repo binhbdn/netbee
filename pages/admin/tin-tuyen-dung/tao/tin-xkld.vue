@@ -537,7 +537,7 @@ export default {
             optionsVisa: [],
             optionsFormWork: [
                 {id: 1, name: 'Toàn thời gian'},
-                {id: 2, name: 'Ban thời gian'},
+                {id: 2, name: 'Bán thời gian'},
                 {id: 3, name: 'Vừa học vừa làm'}
             ],
             companies:[]
