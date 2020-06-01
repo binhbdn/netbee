@@ -3,7 +3,7 @@
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" class="text-center" style="height: 150px">
             <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" style="max-height: 100%;width: 100%;height: 100%;object-fit: fill;">
         </a>
-        <div class="px-2 p-t-15" style="height: 190px;">
+        <div class="px-2 p-t-15" style="">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" 
             style="display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -12,7 +12,7 @@
     text-overflow: ellipsis;
     height: 45px;"><h4 class="title font-weight-600">{{ title }}</h4></a>
             <p class="el-3">{{ short_content }}</p>
-            <p style="bottom: 0px;position: absolute;"><i class="fad fa-calendar-star"></i> {{ ConvertDate(created_at) }}</p>
+            <p style="margin-bottom: 12px;"><i class="fad fa-calendar-star"></i> {{ ConvertDate(created_at) }}</p>
         </div>
     </div>
 </template>
@@ -35,6 +35,7 @@ h4:hover{
     color: #ffb701;
 }
 .el-3 {
+    margin-bottom: 5px;
     line-height: 20px !important;
 }
 /* .title{
