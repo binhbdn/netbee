@@ -41,16 +41,29 @@ class NotificationService extends BaseService {
 
     public function store($content = null, $idRecever = null,  $url = null)
     {
-        $insert = [
-            'content' => $content,
-            'id_recever' => $idRecever,
-            'url' => $url,
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now()
-        ];
+        if (is_array($idRecever) || is_object($idRecever)) {
+            foreach ($idRecever as $id){
+                $saves[] = [
+                    'content' => $content,
+                    'id_recever' => $id,
+                    'url' => $url,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ];
+            }
+        } else {
+            $saves = [
+                'content' => $content,
+                'id_recever' => $idRecever,
+                'url' => $url,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ];
+        }
+
 
         try {
-            $this->nbNotification->insert($insert);
+            $this->nbNotification->insert($saves);
             return [
                 'status' => 200,
                 'message' => 'View thành công',

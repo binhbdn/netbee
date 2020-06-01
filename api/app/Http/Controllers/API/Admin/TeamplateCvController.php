@@ -14,14 +14,21 @@ use Hash;
 use Carbon\Carbon;
 use App\Services\PayUService\Exception;
 use App\Helpers\AppHelpers;
+use App\Services\NotificationService;
+use App\Services\UserService;
 
 class TeamplateCvController extends Controller
 {
     protected $teamplateCvService;
 
-    public function __construct(TeamplateCvService $teamplateCvService)
-    {
+    public function __construct(
+        TeamplateCvService $teamplateCvService,
+        NotificationService $notificationService,
+        UserService $userService   
+    ){
         $this->teamplateCvService = $teamplateCvService;
+        $this->notificationService = $notificationService;
+        $this->userService = $userService;
     }
     
     public function listProfileUser(){
@@ -133,7 +140,22 @@ class TeamplateCvController extends Controller
                 ];
             }
         }
-        $check = $this->teamplateCvService->insert($insert); 
+        //Notification + Transaction Begin
+        $notification = [
+            'content' => 'Có hồ sơ tạo mới ['.$insert['id_user'].']',
+            'ids' => $this->userService->getIdAdmin()->pluck('id'),
+            'url' => 'https://netbee.vn/admin/ho-so'
+        ];
+        DB::beginTransaction();
+            $check = $this->teamplateCvService->insert($insert); 
+            $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
+        if ($check && $response['status'] == 200) {
+            DB::commit();
+        } else {
+            DB::rollback();
+        }
+        //Notification + Transaction End
+        //$check = $this->teamplateCvService->insert($insert); 
         return response()->json([
             'status' => 200,
             'message' => 'Tạo hồ sơ thành công',
