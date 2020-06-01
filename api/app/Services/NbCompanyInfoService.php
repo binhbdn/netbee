@@ -12,6 +12,15 @@ use function foo\func;
 
 class NbCompanyInfoService extends BaseService {
 
+    const
+        IS_HOT = 1,
+        IS_VERIFY = 2,
+        IS_NEW = 3,
+        COMPANY_VERIFIED = 1,
+        COMPANY_UN_VERIFIED = 0,
+        UN_LIMIT = 0,
+        NO_PAGINATION = 0;
+
     protected $nbCompanyInfo;
     protected $nbCompanyFeedback;
     protected $user;
@@ -24,23 +33,39 @@ class NbCompanyInfoService extends BaseService {
         $this->user = $user;
         $this->nbCompanyFollows = $companyFollows;
     }
-    public function getListCompany(){
+    public function getListCompany($type, $limit, $perPage){
         $datas = $this->nbCompanyInfo
         ->with(['user'=> function($q){
-            $q->select('id','name')->whereStatus(1)->whereBlock(0);
+            $q->select('id','name','avatar')->whereStatus(1)->whereBlock(0);
         }])
         ->with(['companyFeedback'=> function($q){
             $q->select('company_id', 'rate_feed');
         }])
-        ->select('id','company_id','company_about','username')
-        ->paginate(6);
-        foreach($datas as $key=>$data){
-            $datas[$key]['rate'] = $this->getRate($data->companyFeedback);
+        ->select('id','company_id','company_about','username','image_cover','company_verify');
+        $getData = null;
+        if($perPage == self::NO_PAGINATION){
+            if ($type == self::IS_VERIFY){
+                $datas->where('company_verify', 1)
+                    ->orderBy('id','DESC');
+            }
+            if ($type == self::IS_NEW){
+                $datas->orderBy('id','DESC');
+            }
+            if($limit != self::UN_LIMIT){
+                $datas->limit($limit);
+            }
+            $getData = $datas->get();
+        }
+        else{
+            $getData = $datas->paginate($perPage);
+        }
+        foreach($getData as $key=>$data){
+            $getData[$key]['rate'] = $this->getRate($data->companyFeedback);
         }
         return [
             'status' => 200,
             'message' => 'Thành công',
-            'data' => $datas
+            'data' => $getData
         ];
     }
 
