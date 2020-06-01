@@ -6,9 +6,9 @@
                 <img alt="img" v-lazy="`/uploads/news/${thuml}`" style="max-height: 100%;width: 100%;max-width: 100%;object-fit: fill;" v-if="type != 1" />
             </div>
         </a>
-        <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`"><h2 class="NB_title text-black pt-1 el-3 font-weight-600">{{ title }}</h2></a>
-        <p style="height: 100px;" class="el-3" v-if="type == 1">{{ short_content }}</p>
-        <div style="position: absolute; bottom: 2px;">
+        <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`"><h2 class="NB_title text-black pt-1 el-3 font-weight-600" style="line-height: 1.4;">{{ title }}</h2></a>
+        <p style="line-height: 1.5;margin-bottom: 5px;" class="el-3" v-if="type == 1">{{ short_content }}</p>
+        <div style="">
             <i class="fad fa-calendar-star"></i><span class="ml-1">{{ ConvertDate(created_at) }}</span>  
         </div>                              
     </div>
