@@ -5,7 +5,7 @@
 </template>
 <script>
 import Multiselect from "vue-multiselect";
-import ListJobSaved from "~/components/Custom/ListJobSaved";
+import ListJobSaved from "~/components/custom/ListJobSaved";
 import Vue from "vue";
 import moment from "moment";
 export default {

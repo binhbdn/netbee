@@ -520,7 +520,7 @@ export default {
             optionsVisa: [],
             optionsFormWork: [
                 {id: 1, name: 'Toàn thời gian'},
-                {id: 2, name: 'Ban thời gian'},
+                {id: 2, name: 'Bán thời gian'},
                 {id: 3, name: 'Vừa học vừa làm'}
             ]
         }
@@ -566,7 +566,7 @@ export default {
             if(job.data.form_work == 1){
                 this.data.form_work = {id: 1, name: 'Toàn thời gian'}
             }else if(job.data.form_work == 2){
-                this.data.form_work = {id: 2, name: 'Ban thời gian'}
+                this.data.form_work = {id: 2, name: 'Bán thời gian'}
             } else {
                 this.data.form_work = {id: 3, name: 'Vừa học vừa làm'}
             }
