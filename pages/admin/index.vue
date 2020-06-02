@@ -9,7 +9,7 @@
                     <section id="dashboard-ecommerce">
                         <div class="row">
                             <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="card">
+                                <div class="card" style="margin-bottom: 0px;">
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-primary p-50 m-0">
                                             <div class="avatar-content">
@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="card">
+                                <div class="card" style="margin-bottom: 0px;">
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-success p-50 m-0">
                                             <div class="avatar-content">
@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="card">
+                                <div class="card" style="margin-bottom: 0px;">
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-danger p-50 m-0">
                                             <div class="avatar-content">
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="card">
+                                <div class="card" style="margin-bottom: 0px;">
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-warning p-50 m-0">
                                             <div class="avatar-content">
