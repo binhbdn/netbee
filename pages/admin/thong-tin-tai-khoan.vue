@@ -626,7 +626,6 @@ export default {
         //change Info User
         async actionInfoUser(){
             var form = new FormData();
-            
             const isValid = await this.$refs.InfoUser.validate();
             if(isValid){
                 form.append('avatar' , this.changeInfoUser.files[0])
@@ -717,19 +716,20 @@ export default {
                     )
             }else {
                 const isValid = await this.$refs.observerChangeInfoCompany.validate();
+                var form = new FormData();
+                console.log(this.changeInfoCompanyForm.files[0]);
                 if(isValid){
+                    form.append('company_about',this.changeInfoCompanyForm.companyAbout);
+                    form.append('username',this.changeInfoCompanyForm.username);
+                    form.append('company_hotline',this.changeInfoCompanyForm.companyHotline);
+                    form.append('company_tax',this.changeInfoCompanyForm.companyTax);
+                    form.append('company_benefit',this.changeInfoCompanyForm.companyBenefit);
+                    form.append('company_policy',this.changeInfoCompanyForm.companyPolicy);
+                    form.append('company_chance',this.changeInfoCompanyForm.companyChance);
+                    form.append('company_link',this.changeInfoCompanyForm.companyLink);
+                    form.append('image_cover',this.changeInfoCompanyForm.files[0]);
                     try {
-                        this.$axios.post('changeInfoCompany', {
-                            company_about: this.changeInfoCompanyForm.companyAbout,
-                            username: this.changeInfoCompanyForm.username,
-                            company_hotline: this.changeInfoCompanyForm.companyHotline,
-                            company_tax: this.changeInfoCompanyForm.companyTax,
-                            company_benefit: this.changeInfoCompanyForm.companyBenefit,
-                            company_policy: this.changeInfoCompanyForm.companyPolicy,
-                            company_chance: this.changeInfoCompanyForm.companyChance,
-                            company_link: this.changeInfoCompanyForm.companyLink,
-                            image_cover: this.changeInfoCompanyForm.files[0].name,
-                        }).then((response) => {
+                        this.$axios.post('changeInfoCompany',form).then((response) => {
                             if(response.data.status == 200){
                                 this.$swal({
                                 titile: 'Thành công',
