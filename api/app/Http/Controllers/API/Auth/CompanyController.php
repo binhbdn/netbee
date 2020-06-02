@@ -98,7 +98,6 @@ class CompanyController extends Controller
         }
         $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
         $userId = Auth::user()->id;
-
         if (!$get) {
             $data['company_id'] = $userId;
             $response = $this->nbCompanyInfoService->store($data);
