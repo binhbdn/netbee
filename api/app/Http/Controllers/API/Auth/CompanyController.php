@@ -52,10 +52,6 @@ class CompanyController extends Controller
                 'required' => 'Không được để trống',
                 'numeric' => 'Số điện thoại không được chứa kí tự'
         ];
-        $update = [
-            'image_cover' => "",
-            'updated_at' => Carbon::now()
-        ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -83,7 +79,7 @@ class CompanyController extends Controller
                 $file = $request->file('image_cover');
                 $fileinfo = pathinfo($file->getClientOriginalName());
                 $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
-                $uploadPath = '/home/netbee.vn/html/static/uploads/users/covers';
+                $uploadPath = '/home/netbee.vn/html/static/uploads/users/avatars';
                 $data['image_cover'] = $image;
                 //remove file old
                 $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
