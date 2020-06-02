@@ -12,8 +12,8 @@ use JWTAuth;
 use JWTFactory;
 use Auth;
 use App\Mail\Contacs;
-use Mail;
-use Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Hash;
 use Carbon\Carbon;
 use App\Services\NotificationService;
@@ -21,6 +21,7 @@ use App\Services\NotificationService;
 class UserController extends Controller
 {
     protected $userService;
+    protected $notificationService;
 
     public function __construct(
         UserService $userService,
@@ -65,7 +66,6 @@ class UserController extends Controller
             'role' => $request->role,
             'recover_code' => rand(100000,999999)
         ];
-        
         $notification = [
             'content' => 'Có tài khoản đăng ký mới ['.$users['email'].']',
             'ids' => $this->userService->getIdAdmin()->pluck('id'),
