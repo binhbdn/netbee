@@ -79,7 +79,7 @@ class CompanyController extends Controller
                 $file = $request->file('image_cover');
                 $fileinfo = pathinfo($file->getClientOriginalName());
                 $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
-                $uploadPath = '/home/netbee.vn/html/static/uploads/users/avatars';
+                $uploadPath = '/home/netbee.vn/html/static/uploads/users/covers';
                 $data['image_cover'] = $image;
                 //remove file old
                 $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
