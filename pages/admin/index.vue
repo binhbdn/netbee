@@ -66,7 +66,7 @@
             </div>
             <companyApplyManage class="m-t-0"/>
         </div>
-        <DashboardHr v-else-if="$auth.user.role == 3"/>
+        <DashboardHr v-else-if="$auth.user.role == 3 || $auth.user.role == 1"/>
         <DashboardAdmin v-else/>
     </div>
 </template>
