@@ -56,8 +56,8 @@
                                 {{ $auth.user.role == 4 ? 'Admin' : $auth.user.role == 1 ? 'Ứng viên' : $auth.user.role == 2 ? 'Nhà tuyển dụng' : 'Chuyên viên tuyển sinh'}}
                                 </span></div><span><img class="round" v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`" alt="avatar" height="40" width="40" style="object-fit: cover;"></span>
                           </a>
-                          <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="/admin/thong-tin-tai-khoan"><i class="feather icon-user"></i> Edit Profile</a>
-                              <div class="dropdown-divider"></div><a class="dropdown-item" @click="logout()"><i class="feather icon-power"></i> Logout</a>
+                          <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="/admin/thong-tin-tai-khoan"><i class="feather icon-user"></i> Trang cá nhân</a>
+                              <div class="dropdown-divider"></div><a class="dropdown-item" @click="logout()"><i class="feather icon-power"></i> Đăng xuất</a>
                           </div>
                       </li>
                   </ul>
