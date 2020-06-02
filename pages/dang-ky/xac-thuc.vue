@@ -3,7 +3,7 @@
         <div class="container my-3">
             <div class="row">
                 <div class="d-flex justify-content-center py-4 col-12">
-                <div class="logo logo--medium text-center"><a href="/" class="router-link-active"><img style="height: 84%; width: 30%" src="https://netbee.vn/assets/img/logo-full.png" alt="Netbee Accounts" class="logo-image"></a></div>
+                <div class="logo logo--medium text-center"><a href="/" class="router-link-active"><img style="height: 95%; width: 30%" src="/assets/img/logo_no_bg.png" alt="Netbee Logo" class="logo-image"></a></div>
                 </div>
             </div>
             <div class="row">
@@ -16,7 +16,7 @@
                         </h1>
                         <p class="card-subtitle mt-2">
                             Chào mừng bạn đến với <strong>nền tảng tuyển dụng Netbee</strong>!
-                            Tham gia với chúng tôi để tìm được việc làm ưng ý và thông tin hữu ích cần thiết cho bạn. Vui lòng điền thông tin của bạn vào mẫu dưới đây để tiếp tục.
+                            Tham gia với chúng tôi để tìm được việc làm ưng ý và thông tin hữu ích cần thiết cho bạn.
                         </p>
                         <div role="alert" class="el-alert my-4 pt-4 el-alert--success">
                             <!---->
@@ -119,6 +119,6 @@ html {
     display: flex!important;
 }
 .netbee{
-    background-color: #fff;
+    background-color: #F8F8F8;
 }
 </style>
