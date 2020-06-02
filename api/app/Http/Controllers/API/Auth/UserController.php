@@ -64,8 +64,7 @@ class UserController extends Controller
             'phone' => $request['phone'],
             'status' => '0',
             'role' => $request->role,
-            '
-            ' => rand(100000,999999)
+            'recover_code' => rand(100000,999999)
         ];
         $notification = [
             'content' => 'Có tài khoản đăng ký mới ['.$users['email'].']',
