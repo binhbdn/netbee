@@ -318,8 +318,8 @@
                             </li>
                         </ul>
                         <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
-                            <div class="tab-pane active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-11-tab">
-                                <ValidationObserver ref="applyJob" v-slot="{ valid }">
+                            <div class="tab-pane active" v-if="stateTab == true" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-11-tab">
+                                <ValidationObserver  ref="applyJobFile" v-slot="{ valid }">
                                     <div class="row">
                                         <div class="col-12">
                                             <ValidationProvider
@@ -332,8 +332,7 @@
                                                             <label for="file" v-else><i class="fas fa-file-upload" style="color: #000000c7;"></i> {{file_cv[0].name}}</label>
                                                             <input type="file" id="file" @change="onInputChange" > 
                                                         </div>
-                                                        <p class="text-center" style="font-size: 12px">Định dạng file: *.doc, *.docx, *.xls, *.xlsx, *.pdf, *.txt, *.rtf</p>
-                                                        <span style="color: red">{{errors[0]}}</span>
+                                                        <p class="text-center" style="font-size: 12px">Định dạng file: *.doc, *.docx, *.xls, *.xlsx, *.pdf, *.txt, *.rtf</p>                                                        
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
@@ -346,7 +345,7 @@
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="name">Họ tên</label>
-                                                        <input type="text" id="name" class="form-control" v-model="name">
+                                                        <input type="text" id="name" class="form-control" v-model="nameFile">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
@@ -355,7 +354,7 @@
                                     </div>
                                 </ValidationObserver>
                             </div>
-                            <div class="tab-pane" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-22-tab">
+                            <div class="tab-pane" id="v-pills-2" v-if="stateTab == false" role="tabpanel" aria-labelledby="v-pills-22-tab">
                                 <ValidationObserver ref="applyJobCv" v-slot="{ valid }">
                                     <div class="col-12">
                                         <ValidationProvider
@@ -381,11 +380,11 @@
                                             <div class="form-group">
                                                 <div class="form-field">
                                                     <label for="name">Họ tên</label>
-                                                    <input type="text" id="name" class="form-control" v-model="name">
+                                                    <input type="text" id="name" class="form-control" v-model="nameCv">
                                                     <span style="color: red">{{errors[0]}}</span>
                                                 </div>
                                             </div>
-                                        </ValidationProvider>
+                                        </ValidationProvider>   
                                     </div>
                                 </ValidationObserver>
                             </div>
@@ -469,7 +468,8 @@ export default {
             show: true,
             value: [],
             chooseNation: [],
-            name: null,
+            nameFile: '',
+            nameCv: '',
             listProfileUsers: []
         }
     },
@@ -510,6 +510,7 @@ export default {
         },
         changeStateTab(state){
             this.stateTab = state
+            this.resetData()
         },
         saveJob() {
             this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuyendung.id}).then((response)=>{
@@ -587,21 +588,12 @@ export default {
             if(this.file_cv != null && this.file_cv.length > 0){
                 this.file_cv = []
             }
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault()
+            e.stopPropagation()
             const file = e.target.files[0]
             this.addfile(file)
         },
-        addfile(file){
-            console.log(file.type)
-            // if( file.type == 'application/pdf' ){
-            //     this.$swal(
-            //             'Lỗi',
-            //             'File không đúng định dạng',
-            //             'error'
-            //         )
-            //     return;
-            // }
+        addfile(file){      
             this.file_cv.push(file)
         },
         nameWithLang ({ profession, id }) {
@@ -612,64 +604,62 @@ export default {
         },
         resetData(){
             this.file_cv = []
-            this.name = ''
+            this.nameFile = ''
+            this.nameCv = ''
             this.value = []
             this.chooseNation = []
             this.id_cv = ''
         },
-        async applyJob(){
-            var data = new FormData()
+        async applyJob(){            
+            var data = new FormData()                     
             if(this.file_cv.length > 0){
                 data.append('file_cv', this.file_cv[0])
             }
             if(this.id_cv != ''){
                 data.append('id_cv', this.id_cv)
             }
-            data.append('name', this.name)
             data.append('job_id', this.$route.params.id)
-            if(this.stateTab) {
-                let isValid = await this.$refs.applyJob.validate();
+            if(this.stateTab == true){
+                data.append('name', this.nameFile)
+                if(this.file_cv.length == 0){
+                    this.$swal(
+                        'Cảnh báo!',
+                        'Yêu cầu nhập file',
+                        'warning'
+                    );
+                }else{
+                    let isValid = this.$refs.applyJobFile.validate()
                     if(isValid) {
-                        this.$axios.post('userApplyJob',data).then(response => {
-                            if(response.data.status == 200) {
-                                this.$swal(
-                                    'Thành công',
-                                    response.data.message,
-                                    'success'
-                                ).then( function (){
-                                        location.reload()
-                                    } )
-                            }else{
-                                this.$swal(
-                                    'Lỗi',
-                                    response.data.message,
-                                    'error'
-                                )
-                            }
-                        })
+                        this.toApiApplyJob(data)
                     }
-            }else {
-                let isValid = await this.$refs.applyJobCv.validate();
+                }                             
+            }else if(this.stateTab == false){
+                data.append('name', this.nameCv)
+                let isValid = this.$refs.applyJobCv.validate()
                 if(isValid) {
-                    this.$axios.post('userApplyJob',data).then(response => {
-                        if(response.data.status == 200) {
-                            this.$swal(
-                                'Thành công',
-                                response.data.message,
-                                'success'
-                            ).then( function (){
-                                    location.reload()
-                                } )
-                        }else{
-                            this.$swal(
-                                'Lỗi',
-                                response.data.message,
-                                'error'
-                            )
-                        }
-                    })
+                    this.toApiApplyJob(data)
                 }
-            }
+            }                                                
+        },
+        toApiApplyJob(data)
+        {
+            this.$axios.post('userApplyJob',data).then(response => {
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Thành công',
+                        response.data.message,
+                        'success'
+                    ).then( function (){
+                            location.reload()
+                        } )
+                }else{
+                    this.$swal(
+                        'Lỗi',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
         },
         getListProfileUser(){
             this.$axios.$get(`hoso/listProfileUser`).then((response)=>{
