@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\API\Auth;
 
+use App\Exports\UsersExport;
 use App\Jobs\SendMailJobQueue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Mockery\Exception;
 use Response;
 use JWTAuth;
@@ -447,5 +449,9 @@ class UserController extends Controller
                 'data'=> null
             ]);
         }
+    }
+
+    public function export(Request $request){
+        return Excel::download(new UsersExport(explode(',', $request->id)), 'Danh-sach-tai-khoan.xlsx');
     }
 }
