@@ -181,6 +181,9 @@
                             <a class="dropdown-item" @click="changeMultipleStatus(0)">
                               <i class="far fa-times-circle"></i>Bỏ kích hoạt
                             </a>
+                            <a class="dropdown-item" @click="exportUser()">
+                              <i class="far fa-file-excel"></i> Xuất Excel
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -1086,6 +1089,14 @@ export default {
         phone: true,
         address_detail: true,
         birth_of_date: true
+      }
+    },
+    exportUser(){
+      if(this.selected.length == 0){
+        this.$swal('Cảnh báo' , 'Vui lòng chọn bản ghi cần xuất', 'warning');
+      }
+      else{
+        window.location.href = "https://netbee.vn/api/usersExport?id=" + this.selected;
       }
     }
   },
