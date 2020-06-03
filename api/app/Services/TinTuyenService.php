@@ -28,7 +28,13 @@ class TinTuyenService extends BaseService {
     {
         return $this->getJobById($id)->update($data);
     }
-
+    public function listcompany()
+    {
+        return $this->user
+            ->where("role",self::ROLE_COMPANY)
+            ->select('users.*')
+            ->get();
+    }
     public function store($request)
     {
         $validate = $this->jobRequest($request);
@@ -88,7 +94,7 @@ class TinTuyenService extends BaseService {
         if ($validate) {
             return $validate;
         }
-        $data = $this->getOnlyRequest($request);
+        $data = $this->getOnlyRequestUpdate($request);
         $id_created = $request->has('id_created') ? $request->id_created : Auth::user()->id;
         $user = $this->user->whereId($id_created)->first();
         try {
@@ -158,6 +164,43 @@ class TinTuyenService extends BaseService {
             ];
         }
         return false;
+    }
+
+    private function getOnlyRequestUpdate($request)
+    {
+        $response = [
+            'title' => $request->title,
+            'workplace' => $request->address,
+            'nation_id' => $request->nation_id,
+            'expiration_date' => $request->expiration_date,
+            'description' => $request->description,
+            'request' => $request->get('request'),
+            'cv_content' => $request->cv_content,
+            'benefit' => $request->benefit,
+            'age_start' => $request->age_start,
+            'age_late' => $request->age_late,
+            'quantity' => $request->quantity,
+            'salary_start' => $request->salary_start,
+            'salary_end' => $request->salary_end,
+            'subsidy' => $request->subsidy,
+            'currency' => $request->currency,
+            'date_start' => $request->date_start,
+            'date_test' => $request->date_test,
+            'expected_date' => $request->expected_date,
+            'time_bonus' => $request->time_bonus,
+            'bonus' => $request->bonus,
+            'highlight_job' => $request->highlight_job,
+            'type' => $request->type,           
+            'school_name' => $request->school_name,
+            'status' => self::INACTIVE
+        ];
+
+        if ($request->type != self::JOB_OVERSEAS_STUDENT) {
+            $response['work_form'] = $request->work_form;
+            $response['id_visa'] = $request->id_visa;
+        }
+
+        return $response;
     }
 
     private function getOnlyRequest($request)
@@ -342,10 +385,22 @@ class TinTuyenService extends BaseService {
             ->where('status',self::ACTIVE);
     }
 
-    private function getJobByRoleCompany()
+    private function getJobByRoleCompanySearch()
     {
         return $this->nbJobList->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
             ->leftJoin('nb_applies', 'nb_applies.job_id', '=', 'nb_joblists.id')
+            ->leftJoin('users','users.id','=','nb_joblists.id_created')
+            ->where('nb_joblists.id_created', Auth::user()->id)
+            ->where('nb_joblists.deleted', self::INACTIVE)
+            ->orderBy('nb_joblists.id', 'DESC')
+            ->select('nb_joblists.*','users.*',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
+            ->groupBy('nb_joblists.id');
+    }
+
+    private function getJobByRoleCompany()
+    {
+        return $this->nbJobList->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
+            ->leftJoin('nb_applies', 'nb_applies.job_id', '=', 'nb_joblists.id')            
             ->where('nb_joblists.id_created', Auth::user()->id)
             ->where('nb_joblists.deleted', self::INACTIVE)
             ->orderBy('nb_joblists.id', 'DESC')
@@ -353,11 +408,22 @@ class TinTuyenService extends BaseService {
             ->groupBy('nb_joblists.id');
     }
 
-    private function getJobByRoleAdmin()
+    private function getJobByRoleAdminSearch()
     {
         return $this->nbJobList->where('nb_joblists.deleted', self::INACTIVE)
             ->leftJoin('nb_applies', 'nb_applies.job_id', '=', 'nb_joblists.id')
             ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
+            ->leftJoin('users','users.id','=','nb_joblists.id_created')
+            ->orderBy('nb_joblists.id', 'DESC')
+            ->select('nb_joblists.*','users.*',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
+            ->groupBy('nb_joblists.id');
+    }
+
+    private function getJobByRoleAdmin()
+    {
+        return $this->nbJobList->where('nb_joblists.deleted', self::INACTIVE)
+            ->leftJoin('nb_applies', 'nb_applies.job_id', '=', 'nb_joblists.id')
+            ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')            
             ->orderBy('nb_joblists.id', 'DESC')
             ->select('nb_joblists.*',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
             ->groupBy('nb_joblists.id');
@@ -548,21 +614,19 @@ class TinTuyenService extends BaseService {
         $userRole = Auth::user()->role;
         $conditions = [];
         $search = $data->search;
-        $searchTitle = $data->searchTitle;
+        $searchCompany = $data->searchCompany;
         $searchCategory = $data->searchCategory;
         $searchStatus = $data->searchStatus;
 
-        if ($searchTitle != '') {
+        if ($searchCompany != '') {
             $conditions[] = [
-                'nb_joblists.title',
-                'LIKE',
-                '%'.$searchTitle.'%'
+                'nb_joblists.id_created', '=', $searchCompany
             ];
         }
 
         if($searchStatus != null){
             $conditions[] = [
-                'nb_joblists.title', '=', $searchStatus
+                'nb_joblists.status', '=', $searchStatus
             ];
         }
 
@@ -575,9 +639,9 @@ class TinTuyenService extends BaseService {
         if (empty($conditions) && $search == '') {
             $perPage = 6;
             if ($userRole == self::ROLE_COMPANY) {
-                $query = $this->getJobByRoleCompany();
+                $query = $this->getJobByRoleCompanySearch();
             } else if ($userRole == self::ROLE_ADMIN) {
-                $query = $this->getJobByRoleAdmin();
+                $query = $this->getJobByRoleAdminSearch();
             } else {
                 $query = $this->getJobByRoleOther();
             }
@@ -586,7 +650,7 @@ class TinTuyenService extends BaseService {
 
         if ($userRole == self::ROLE_COMPANY) {
             $perPage = 10;
-            $query = $this->getJobByRoleCompany();
+            $query = $this->getJobByRoleCompanySearch();
         } else {
             $perPage = 6;
             $query = $this->getJobValid()
