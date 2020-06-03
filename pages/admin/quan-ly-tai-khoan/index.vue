@@ -1096,7 +1096,7 @@ export default {
         this.$swal('Cảnh báo' , 'Vui lòng chọn bản ghi cần xuất', 'warning');
       }
       else{
-        window.location.href = "http://127.0.0.1:8000/api/usersExport?id=" + this.selected;
+        window.location.href = "https://netbee.vn/api/usersExport?id=" + this.selected;
       }
     }
   },
