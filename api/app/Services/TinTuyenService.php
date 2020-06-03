@@ -94,8 +94,13 @@ class TinTuyenService extends BaseService {
         if ($validate) {
             return $validate;
         }
-        $data = $this->getOnlyRequestUpdate($request);
-        $id_created = $request->has('id_created') ? $request->id_created : Auth::user()->id;
+        $data = $this->getOnlyRequest($request);
+        
+        if(Auth::user()->role == 4) {
+            $data['id_created'] = $this->getUserIdByJobId($request->id);
+        }
+
+        $id_created = $this->getUserIdByJobId($request->id);
         $user = $this->user->whereId($id_created)->first();
         try {
             $this->getJobById($request->id)->update($data);
@@ -111,7 +116,8 @@ class TinTuyenService extends BaseService {
             return [
                 'status' => 200,
                 'message' => 'Cập nhật tin thành công',
-                'data' => null
+                'data' => null,
+                'id_created' => $data['id_created']
             ];
         } catch (\Exception $e) {
             return [
@@ -459,8 +465,9 @@ class TinTuyenService extends BaseService {
             $job = $this->getJobById($id)->first();
             $user = User::find($job->id_created);
             if($job) {
+                $status = !$job->status;
                 $data = [
-                    'status' => !$job->status,
+                    'status' => $status,
                     'updated_at' => Carbon::now()
                 ];
                 $this->sendEmailChangeStatus($job,$user,$data['status']);
@@ -468,7 +475,8 @@ class TinTuyenService extends BaseService {
                 return [
                     'status'=> 200,
                     'message' => 'Thay đổi trạng thái thành công',
-                    'data' => $update
+                    'data' => $update,
+                    'status_notification' => $status
                 ];
             }
             return [
@@ -530,7 +538,8 @@ class TinTuyenService extends BaseService {
             return [
                 'status'=> 200,
                 'message' => $message,
-                'data' => null
+                'data' => null,
+                'status_notification' => $status
             ];
         } catch (\Exception $e) {
             return [
@@ -767,5 +776,10 @@ class TinTuyenService extends BaseService {
             'message' => 'Thành công',
             'data' => $response
         ];
+    }
+
+    public function getUserIdByJobId($id) {
+        $id_created = $this->getJobById($id)->value('id_created');
+        return $id_created;
     }
 }

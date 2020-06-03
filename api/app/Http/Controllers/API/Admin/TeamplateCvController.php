@@ -140,22 +140,17 @@ class TeamplateCvController extends Controller
                 ];
             }
         }
-        //Notification + Transaction Begin
+        
+        //Notification Begin
         $notification = [
             'content' => 'Có hồ sơ tạo mới ['.$insert['id_user'].']',
             'ids' => $this->userService->getIdAdmin()->pluck('id'),
             'url' => 'https://netbee.vn/admin/ho-so'
         ];
-        DB::beginTransaction();
-            $check = $this->teamplateCvService->insert($insert); 
-            $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
-        if ($check && $response['status'] == 200) {
-            DB::commit();
-        } else {
-            DB::rollback();
-        }
-        //Notification + Transaction End
-        //$check = $this->teamplateCvService->insert($insert); 
+        $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
+        //Notification End
+
+        $this->teamplateCvService->insert($insert);
         return response()->json([
             'status' => 200,
             'message' => 'Tạo hồ sơ thành công',
