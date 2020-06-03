@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\API\Auth;
 
+use App\Exports\UsersExport;
 use App\Jobs\SendMailJobQueue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Services\UserService;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use Mockery\Exception;
 use Response;
 use JWTAuth;
 use JWTFactory;
@@ -411,5 +414,39 @@ class UserController extends Controller
     {
         $response = $this->userService->blockMultipleUser($request);
         return response()->json($response);
+    }
+    public function activationByEmail(Request $request){
+        try {
+            $user = User::where('email',$request->email)->first();
+            if($request->code == $user->recover_code){
+                $user->update([
+                    'status'=> 1,
+                    'recover_code' => null
+                ]);
+                $dataEmail = (object)[
+                    'name' => $user->name,
+                    'title'=> 'Chào mừng ' . $user->name . ' đến với Netbee.',
+                    'content' => 'Netbee kết nối đến hàng ngàn du học sinh và cộng tác viên tuyển dụng ở khắp mọi nơi ,
+            Netbee trở thành mạng lưới giới thiệu và giải đáp thắc mắc lớn nhất Việt Nam.
+            Netbee trở thành nơi tuyển dụng ưu việt, nhanh chóng, hiệu quả nhất cho các trung tâm tư vấn và môi giới du học trên khắp cả nước.
+            <br>Netbee được ví như mạng lưới của những chú ong chăm chỉ, cần mẫn hàng ngày làm những công việc thầm lặng đưa những người con của đất Việt đi khắp muôn nơi trên thế giới.',
+                    'textButton' => 'Đăng nhập Netbee',
+                    'url' => 'https://netbee.vn/dang-nhap'
+                ];
+                $emailRegister = new SendMailJobQueue($user->email, $dataEmail);
+                dispatch($emailRegister);
+                return redirect('https://netbee.vn/dang-nhap?success')->with('success','Kích hoạt tài khoản thành công');
+            }
+        }catch (Exception $exception){
+            return response()->json([
+                'status' => 400,
+                'message' => 'Lỗi',
+                'data'=> null
+            ]);
+        }
+    }
+
+    public function export(Request $request){
+        return Excel::download(new UsersExport(explode(',', $request->id)), 'Danh-sach-tai-khoan.xlsx');
     }
 }

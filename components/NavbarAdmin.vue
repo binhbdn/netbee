@@ -48,7 +48,8 @@
                         </li>
                     </ul>
                 </li>
-
+                <li :class="[{'active' : this.$route.name == 'friends'}, 'nav-item']"><a @click="$router.push('/admin/friends')" v-if="$auth.user.role == 1 || $auth.user.role == 3"><i class="fa fa-users"></i><span class="menu-title" data-i18n="User">Giới thiệu bạn bè</span></a>                
+                </li>
                 <li :class="[{'active' : this.$route.name == 'admin-thong-tin-tai-khoan'}, 'nav-item']"><a @click="$router.push('/admin/thong-tin-tai-khoan')"><i class="feather icon-user" ></i><span class="menu-title" data-i18n="User">Thông tin tài khoản</span></a>
                 </li>
                 <li :class="[{'active' : (this.$route.name == 'admin-tai-khoan-danh-sach')}, 'nav-item']" v-if="$auth.user.role == 4"><a href="#"><i class="fas fa-briefcase"></i><span class="menu-title" data-i18n="Ecommerce">Quản lý tài khoản</span></a>

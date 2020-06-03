@@ -10,14 +10,14 @@
                                     <table class="table table-hover mb-0 zero-configuration" v-if="AllApply.length > 0">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>Tên công việc</th>
-                                                <th>Tên ứng viên</th>
-                                                <th>Trạng thái</th>
-                                                <th>Bonus</th>
-                                                <th>Nhà tuyển dụng</th>
-                                                <th>Thời gian nộp</th>
-                                                <th>Hành động</th>
+                                                <th style="width:5%;">ID</th>
+                                                <th style="width:15%;">Tên công việc</th>
+                                                <th style="width:15%;">Tên ứng viên</th>
+                                                <th style="width:20%;">Trạng thái</th>
+                                                <th style="width:10%;">Bonus</th>
+                                                <th style="width:10%;">Nhà tuyển dụng</th>
+                                                <th style="width:10%;">Thời gian nộp</th>
+                                                <th style="width:15%;">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody class="tab-table" >
@@ -41,12 +41,16 @@
                                                 <td>{{ConvertDate(item.created_at)}}</td>
                                                 <td>
                                                     <div class="action-btns">
-                                                        <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" >
+                                                        <div>
+                                                            <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light"  style="width: 100%;">
                                                             Hủy
-                                                        </button>
-                                                        <button type="button" data-toggle="modal" data-target="#chooseCalendarModal" @click="idRefuse = item.id" class="btn btn-info py-75 waves-effect waves-light" v-if="item.status == 5 && item.nb_paper != null">
+                                                            </button>
+                                                        </div>  
+                                                        <div>
+                                                            <button type="button" data-toggle="modal" data-target="#chooseCalendarModal" @click="idRefuse = item.id" class="btn btn-info py-75 waves-effect waves-light" v-if="item.status == 5 && item.nb_paper != null" style="width: 100%;margin-top: 5px;">
                                                             Chọn lịch PV
-                                                        </button>
+                                                            </button>
+                                                        </div>                                                                                                              
                                                     </div>
                                                 </td>
                                             </tr>
@@ -128,15 +132,15 @@
                                 </fieldset>
                                 <datetime v-model="chooseCalendar" type="datetime" input-class="form-control" :minute-step="15" :phrases="{ok: 'Tiếp tục', cancel: 'Thoát'}"></datetime> 
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer">                                
+                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
+                                        <span class="d-none d-lg-block">Hủy</span>
+                                    </button>
+                                </fieldset>
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
                                     <button type="button" @click="addCalendar()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
                                         <span class="d-none d-lg-block">Gửi</span></button>
-                                </fieldset>
-                                <fieldset class="form-group position-relative has-icon-left mb-0">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
-                                        <span class="d-none d-lg-block">Cancel</span>
-                                    </button>
                                 </fieldset>
                             </div>
                         </form>

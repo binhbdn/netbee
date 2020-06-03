@@ -45,7 +45,7 @@
                         <ValidationProvider
                             name="name"
                             ref="name"
-                            rules="required|max:30"
+                            rules="required"
                             v-slot="{ errors }"
                         >   
                         <div class="form-group" style="margin-bottom:0px;">
@@ -98,7 +98,14 @@
                         >
                             <div class="form-group" style="margin-bottom:0px;">
                                 <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Mật khẩu</label>
-                                <input type="password" class="form-control" name="password" v-model="userForm.password">
+                                <div class="input-group">                                
+                                    <input :type="show ? 'password' : 'text'" class="form-control" name="password" v-model="userForm.password">
+                                    <div class="input-group-addon" style="padding: 10px;">
+                                        <a @click="showPassword()">
+                                            <i :class="show ?'fad fa-eye':'fas fa-eye-slash'" aria-hidden="true"></i>                                   
+                                        </a>
+                                    </div>
+                                </div>
                                 <ul style="color:red" class="overline text-left">
                                     <li v-for="(error, index) in errors" :key="index">
                                     <span>{{ error }}</span>
@@ -114,7 +121,7 @@
                         >
                             <div class="form-group" style="margin-bottom:0px;">
                                 <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
-                                <input type="password" class="form-control"  data-vv-rules="confirmed:password" v-model="userForm.password_confirmation" data-vv-as="password">
+                                <input :type="show ? 'password' : 'text'" class="form-control"  data-vv-rules="confirmed:password" v-model="userForm.password_confirmation" data-vv-as="password">
                                 <ul style="color:red" class="overline text-left">
                                     <li v-for="(error, index) in errors" :key="index">
                                     <span>{{ error }}</span>
@@ -211,12 +218,16 @@ export default {
             password: "",
             password_confirmation: "",
             role: 2
-      }
+      },
+      show: true
     };
   },
   computed: {},
   created() {},
   methods: {
+    showPassword(){
+      this.show = !this.show
+    },
     async signIn() {
       const isValid = await this.$refs.observer.validate();
       if (isValid) {

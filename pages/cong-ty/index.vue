@@ -30,7 +30,7 @@
                                                     <div class="columns spotlight-item is-vcentered">
                                                         <div class="column is-3 spotlightBlock__logo">
                                                           <figure class="image is-inline-block">
-                                                            <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatar/${companyInfo.user.avatar}`" alt="DXC Vietnam tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.">
+                                                            <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" :alt="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`">
                                                             <img v-else v-lazy = "`assets/img/logo.png`"></figure>
                                                         </div>
                                                         <div class="column is-8 spotlightBlock__content-wrapper">
@@ -81,7 +81,7 @@
                     <div class="row">
                         <div class="col-md-4 col-6 user-latest-img" v-for="(companyInfo,index) in listNewCompany" :key="index">
                             <a :href="`cong-ty/${companyInfo.username}`">
-                              <img v-if="companyInfo.user.avatar != null" :src="`uploads/users/avatar/${companyInfo.user.avatar}`" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
+                              <img v-if="companyInfo.user.avatar != null" :src="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
                               <img v-else src="assets/img/logo.png" class="img-fluid mb-1 rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
                             </a>
                         </div>
@@ -107,7 +107,7 @@
             <div class="content-box">
             <div class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
               <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`" rel="nofollow" target="_blank">
-                <img v-if="companyInfo.user.avatar != null" class=" ls-is-cached lazyloaded" :src="`uploads/users/avatar/${companyInfo.user.avatar}`">
+                <img v-if="companyInfo.user.avatar != null" class=" ls-is-cached lazyloaded" :src="`/uploads/users/avatars/${companyInfo.user.avatar}`">
                 <img v-else class=" ls-is-cached lazyloaded" src="https://netbee.vn/_nuxt/img/377bc00.png">
               </a>
               </div>
@@ -409,10 +409,10 @@ ol.carousel-indicators {
     border-color: #4a4a4a;
     color: #363636;
 }
-img {
+/* img {
     height: auto;
     max-width: 100%;
-}
+} */
 .button.button_secondary {
     border: 1px solid #F7941D;
     color: #F7941D;
