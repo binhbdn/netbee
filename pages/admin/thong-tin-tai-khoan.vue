@@ -717,7 +717,6 @@ export default {
             }else {
                 const isValid = await this.$refs.observerChangeInfoCompany.validate();
                 var form = new FormData();
-                console.log(this.changeInfoCompanyForm.files[0]);
                 if(isValid){
                     form.append('company_about',this.changeInfoCompanyForm.companyAbout);
                     form.append('username',this.changeInfoCompanyForm.username);
@@ -793,6 +792,7 @@ export default {
                 this.changeInfoCompanyForm.companyChance = dataInforCompany.data.data.company_chance;
                 this.changeInfoCompanyForm.companyLink = dataInforCompany.data.data.company_link;
                 this.changeInfoCompanyForm.username = dataInforCompany.data.data.username;
+                this.changeInfoCompanyForm.imageCover = dataInforCompany.data.data.image_cover;
             }
             
         },
