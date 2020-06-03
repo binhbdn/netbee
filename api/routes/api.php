@@ -24,7 +24,7 @@ Route::namespace('API')->group(function () {
   Route::get('countFollow','Customer\CompanyController@countFollow');
   //Mail
   Route::get('resentActivationByEmail', 'MailController@resentActivationByEmail');
-  Route::get('activationByEmail', 'MailController@activationByEmail');
+  Route::get('activationByEmail', 'UserController@activationByEmail');
   Route::get('recoverPassword', 'MailController@recoverPassword');
   Route::get('checkRecoverCode', 'MailController@checkRecoverCode');
   Route::post('changePasswordForgot', 'MailController@changePasswordForgot');

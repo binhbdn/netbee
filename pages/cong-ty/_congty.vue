@@ -99,7 +99,7 @@
                 </div>
                 <div class="card-content collapse show">
                 <div class="card-body">
-                    <JobsList1ColNotCate :DataList="arrayForCompany"></JobsList1ColNotCate>
+                    <JobsList1Col :DataList="arrayForCompany"></JobsList1Col>
                 </div>
                 </div>
             </div>
@@ -352,7 +352,7 @@
     </div>
 </template>
 <script>
-import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate'
+import JobsList1Col from '~/components/Jobs/JobsList1Col'
 import StarRating from 'vue-star-rating'
 import {
   ValidationProvider,
@@ -395,7 +395,7 @@ extend("customPassword", {
 export default {
     layout: 'no_banner',
     components: {
-        JobsList1ColNotCate,StarRating,
+        JobsList1Col,StarRating,
         ValidationProvider,
         ValidationObserver,
     },

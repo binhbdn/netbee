@@ -52,10 +52,6 @@ class CompanyController extends Controller
                 'required' => 'Không được để trống',
                 'numeric' => 'Số điện thoại không được chứa kí tự'
         ];
-        $update = [
-            'image_cover' => "",
-            'updated_at' => Carbon::now()
-        ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -102,7 +98,6 @@ class CompanyController extends Controller
         }
         $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
         $userId = Auth::user()->id;
-
         if (!$get) {
             $data['company_id'] = $userId;
             $response = $this->nbCompanyInfoService->store($data);

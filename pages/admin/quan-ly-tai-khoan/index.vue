@@ -211,9 +211,8 @@
                           <th style="width:14%;">Avatar</th>
                           <th>Ngày tạo</th>
                           <th>Trạng thái</th>
-                          <th>Email</th>
+                          <th style="width:100px;">Email</th>
                           <th>Số điện thoại</th>
-                          <th>Địa chỉ</th>
                           <th>Thao tác</th>
                         </tr>
                       </thead>
@@ -277,8 +276,8 @@
                               ></i>
                             </div>
                           </td>
-                          <td class="text-left">
-                            <a
+                          <td class="text-left" style="width: 100px; height: 100px">
+                            <a style="line-height: 1.5em; height: 3em; overflow: hidden; width: 100px;"
                               data-toggle="tooltip"
                               data-placement="top"
                               :title="item.email"
@@ -292,14 +291,6 @@
                               :title="item.phone"
                               target="_blank"
                             >{{item.phone}}</a>
-                          </td>
-                          <td class="text-left">
-                            <a
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              :title="item.address_detail"
-                              target="_blank"
-                            >{{item.address_detail}}</a>
                           </td>
                           <td>
                             <div class="action-btns">
