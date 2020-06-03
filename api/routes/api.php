@@ -54,6 +54,7 @@ Route::namespace('API')->group(function () {
   Route::get('getAnalytic', 'Admin\DashboardController@getAnalytic');
 
   Route::get('searchCvs', 'TimKiemController@searchCvs');
+  Route::get('usersExport','Auth\UserController@export');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
@@ -73,6 +74,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::get('logout', 'Auth\UserController@logout');
       Route::post('pricing_momo_bank', 'MomoController@pricing_momo_bank');
       Route::post('pricing_momo', 'MomoController@pricing_momo');
+      //export excel
+//      Route::get('usersExport','Auth\UserController@export');
       Route::prefix('user/{userRole}')->group(function () {
         Route::get('get', 'Auth\UserController@get');
         Route::get('getChoose', 'Auth\UserController@getChoose');
