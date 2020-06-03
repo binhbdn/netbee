@@ -1092,7 +1092,6 @@ export default {
       }
     },
     exportUser(){
-      console.log(this.selected);
       if(this.selected.length == 0){
         this.$swal('Cảnh báo' , 'Vui lòng chọn bản ghi cần xuất', 'warning');
       }
