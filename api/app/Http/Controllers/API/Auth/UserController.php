@@ -66,20 +66,15 @@ class UserController extends Controller
             'role' => $request->role,
             'recover_code' => rand(100000,999999)
         ];
+        //Notification Begin
         $notification = [
             'content' => 'Có tài khoản đăng ký mới ['.$users['email'].']',
             'ids' => $this->userService->getIdAdmin()->pluck('id'),
             'url' => 'https://netbee.vn/admin/quan-ly-tai-khoan?role='.$users['role']
         ];
-        DB::beginTransaction();
-            $store = $this->userService->store($users);
-            $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
-        if ($store && $response['status'] == 200) {
-            DB::commit();
-        } else {
-            DB::rollback();
-        }
-
+        $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
+        //Notification End
+        $store = $this->userService->store($users);
         if ($store) {
             $dataEmail = (object)[
                 'name' => $users['name'],

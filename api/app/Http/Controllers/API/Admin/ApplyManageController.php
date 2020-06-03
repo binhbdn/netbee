@@ -168,6 +168,14 @@ class ApplyManageController extends Controller
     public function PostPaperApply(Request $request)
     {
         $data = $this->applyJobService->postPaperApply($request);
+        if($data['status'] == 200) {
+            $notification = [
+                'content' => 'Ứng viên đã cập nhập hồ sơ đính kèm, chờ xét duyệt ['.$data['user_id'].']',
+                'ids' => $this->userService->getIdAdmin()->pluck('id'),
+                'url' => 'https://netbee.vn/admin/quan-ly-ung-tuyen'
+            ];
+            $this->sendNotification($notification);
+        }
         return response()->json($data);
     }
 
@@ -180,5 +188,9 @@ class ApplyManageController extends Controller
             $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }
         return response()->json($data);
+    }
+
+    public function sendNotification($notification){
+        $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
     }
 }

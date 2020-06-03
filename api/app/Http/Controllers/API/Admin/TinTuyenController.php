@@ -38,19 +38,30 @@ class TinTuyenController extends Controller
 
     public function changeStatusTinTuyenDung(Request $request)
     {
-        $response = $this->tinTuyenService->changeStatusJob($request->id);
+        $id = $request->id;
+        $response = $this->tinTuyenService->changeStatusJob($id);
+        if($response['status'] == 200){
+            $this->notificationStatus($response, $id);
+        }
         return response()->json($response);
     }
 
     public function changeMultipleStatusTinTuyenDung(Request $request)
     {
         $response = $this->tinTuyenService->changeStatusJobs($request);
+        if($response['status'] == 200){
+            $ids = json_decode($request->id);
+            foreach ($ids as $id){
+                $this->notificationStatus($response, $id);
+            }
+        }
+
         return response()->json($response);
     }
 
     public function deleteTinTuyenDung(Request $request)
     {
-        $response = $this->tinTuyenService->destroy($request->id); 
+        $response = $this->tinTuyenService->destroy($request->id);
         return response()->json($response);
     }
 
@@ -79,27 +90,51 @@ class TinTuyenController extends Controller
 
     public function createTinTuyen(Request $request)
     {
-        //Notification + Transaction Begin
-        $notification = [
-            'content' => 'Có tin tuyển dụng mới',
-            'ids' => $this->userService->getIdAdmin()->pluck('id'),
-            'url' => 'https://netbee.vn/admin/tin-tuyen-dung'
-        ];
-        DB::beginTransaction();
-            $resTinTuyen = $this->tinTuyenService->store($request);
-            $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
-        if ($resTinTuyen && $response['status'] == 200) {
-            DB::commit();
-        } else {
-            DB::rollback();
+        $response = $this->tinTuyenService->store($request);
+        if($response['status'] == 200) {
+            $notification = [
+                'content' => 'Có tin tuyển dụng mới',
+                'ids' => $this->userService->getIdAdmin()->pluck('id'),
+                'url' => 'https://netbee.vn/admin/tin-tuyen-dung'
+            ];
+            $this->sendNotification($notification);
         }
-        //Notification + Transaction End
-        //$response = $this->tinTuyenService->store($request);
         return response()->json($resTinTuyen);
     }
 
-    public function updateTinTuyen(Request $request){
+    public function updateTinTuyen(Request $request) {
+        $id = $request->id;
         $response = $this->tinTuyenService->updateJob($request);
+        if($response['status'] == 200) {
+            $notification = [
+                'content' => 'Hệ thống đã cập nhập lại tin tuyển dụng của bạn ['.$id.']',
+                'ids' => $response['id_created'],
+                'url' => 'https://netbee.vn/admin/tin-tuyen-dung/'.$id
+            ];
+            $this->sendNotification($notification);
+        }
         return response()->json($response);
+    }
+
+    public function notificationStatus($response, $id){
+        $id_created = $this->tinTuyenService->getUserIdByJobId($id);
+        $status = $response['status_notification'];
+        $baseUrl = 'https://netbee.vn/tin-tuyen-sinh/';
+        $content = $status ? 
+            'Tin tuyển dụng của bạn đã được duyệt ['.$id.']' :
+            'Tin tuyển dụng của bạn đã bị hủy ['.$id.']';
+
+        $url = $status ? $baseUrl.$id : $baseUrl;
+
+        $notification = [
+            'content' => $content,
+            'ids' => $id_created,
+            'url' => $url
+        ];
+        return $this->sendNotification($notification);
+    }
+
+    public function sendNotification($notification){
+        $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
     }
 }
