@@ -171,7 +171,7 @@
                 </div>
                 <div class="media-body benefit-item-icon">
                   <h3 class="heading text-center" style="padding-top:10px">{{$t('home.advantages.CTV.title')}}</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.net.decs')}}</p>
+                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.CTV.decs')}}</p>
                 </div>
               </a>
             </div>
@@ -184,7 +184,7 @@
                 </div>
                 <div class="media-body benefit-item-icon">
                   <h3 class="text-center" style="padding-top:10px">{{$t('home.advantages.profile.title')}}</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.net.decs')}}</p>
+                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.profile.decs')}}</p>
                 </div>
               </a>
             </div>
@@ -197,7 +197,7 @@
                 </div>
                 <div class="media-body benefit-item-icon">
                   <h3 class="mb-0 text-center" style="padding-top:10px">{{$t('home.advantages.partner.title')}}</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.net.decs')}}</p>
+                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.partner.decs')}}</p>
                 </div>
               </div>
             </div>

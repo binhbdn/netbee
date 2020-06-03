@@ -24,8 +24,13 @@
                                             <div class="col-12 col-sm-6 col-lg-3">
                                                 <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                             </div>
-                                            <div class="col-12 col-sm-6 col-lg-3">
+                                            <!-- <div class="col-12 col-sm-6 col-lg-3">
                                                 <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
+                                            </div> -->
+                                            <div class="col-12 col-sm-6 col-lg-3">
+                                                <fieldset class="form-group">
+                                                    <multiselect @input="search()" v-model="cardSearch.searchCompany" :options="companylist" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn công ty" style="font-size:14px"></multiselect>
+                                                </fieldset>
                                             </div>
                                             <div class="col-12 col-sm-6 col-lg-3">
                                                 <fieldset class="form-group">
@@ -100,13 +105,14 @@
                                                             </fieldset>
                                                         </li>
                                                         ID</th>
-                                                    <th>Tiêu đề</th>
-                                                    <th style="width:14%;">Thống kê</th>
-                                                    <th>Ngày tạo</th>
-                                                    <th>Trạng thái</th>
-                                                    <th>Thể loại</th>
-                                                    <th>Loại tin</th>
-                                                    <th>Thao tác</th>
+                                                    <th style="width:15%;">Tiêu đề</th>
+                                                    <th style="width:15%;">Thống kê</th>
+                                                    <th style="width:10%">Ngày tạo</th>
+                                                    <th style="width:10%;">Trạng thái</th>
+                                                    <th style="width:10%">Tên công ty</th>
+                                                    <th style="width:10%;">Thể loại</th>
+                                                    <th style="width:10%;">Loại tin</th>
+                                                    <th style="width:10%;">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody v-if="tinTuyenDung.length > 0">
@@ -144,6 +150,9 @@
                                                     </td>
                                                     <td v-if="item.status == 1">
                                                         <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{item.name}}</span>
                                                     </td>
                                                     <td style="white-space: nowrap;">
                                                         <span v-if="item.type == 1">Xuất khẩu lao động</span>
@@ -310,7 +319,8 @@
         </div>
         <infinite-loading
                 v-if="tinTuyenDung.length"
-                spinner="bubbles"
+                spinner="bubbles"    
+                ref="infiniteLoading"            
                 @infinite="infiniteScroll" style="padding:20px; width:100%"
             >
             <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
@@ -343,8 +353,9 @@ export default {
             cardSearch: {
                 search: "",
                 searchStatus: "",
-                searchTitle: "",
-                searchCategory: ""
+                // searchTitle: "",
+                searchCategory: "",
+                searchCompany: ""
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
@@ -355,13 +366,14 @@ export default {
                 {id: 1, name: 'Đã kích hoạt'},
                 {id: 0, name: 'Chưa kích hoạt'},
             ],
+            companylist: [],
             id: null,
             selected: [],
             page: 1
         }
     },
     created() {
-        this.search();
+        this.search();             
     },
     mounted() {
         if(typeof this.$route.query.errorCode !== 'undefined' ) {
@@ -378,9 +390,15 @@ export default {
                     'error'
                 ) 
             }
-        }
+        }                        
     },
     methods: {
+        listconpany(){
+            this.$axios.$get(
+            'tintuyendung/listcompany').then((response)=>{            
+                this.companylist=response;                           
+        });
+        },
         payWithMomo() {
             this.$axios.$post('/pricing_momo',{code: this.discount,idJob: this.selectPay.id}).then((response)=>{
                 if(response.status == 200) {
@@ -460,10 +478,15 @@ export default {
                         text: response.data.message,
                         icon: 'success',
                         confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    }).then( 
-                        this.$axios.get('sendActivationNews',{id: index}),
-                        this.search(),
+                        confirmButtonText: 'OK',
+                        showLoaderOnConfirm: true
+                    }).then(async (result) => {
+                        if(result.value) {
+                            this.$axios.get('sendActivationNews',{id: index}),
+                            this.search(),         
+                            location.reload()                                
+                        }
+                    }                          
                     )
                 }
                 else {
@@ -523,14 +546,15 @@ export default {
             this.tinTuyenDung.sort((a, b) => a.id < b.id ? 1 : -1);
         },
         search(){
+            // this.listconpany() 
             this.$axios.$get(
             'tintuyendung/searchTinTuyenDung?searchCategory=' 
             + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
-            + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
+            + '&searchCompany='+ ((this.cardSearch.searchCompany)?this.cardSearch.searchCompany.id:'')
             ).then((response)=>{
-	             this.tinTuyenDung=response.data;
+                 this.tinTuyenDung=response.data;                                     
             });
         },
         async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){
@@ -661,7 +685,7 @@ export default {
             + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
-            + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
+            + '&searchCompany='+ ((this.cardSearch.searchCompany)?this.cardSearch.searchCompany.id:'')
             + '&page='+this.page
             )
                 .then((response) => {
@@ -680,7 +704,7 @@ export default {
         resetForm(){
                 this.cardSearch.search = "",
                 this.cardSearch.searchStatus = "",
-                this.cardSearch.searchTitle = "",
+                this.cardSearch.searchCompany = "",
                 this.cardSearch.searchCategory = ""
         }
     },

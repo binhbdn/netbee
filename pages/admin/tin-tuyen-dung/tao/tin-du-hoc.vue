@@ -372,7 +372,7 @@
                                             <img src="../../../../static/assets/img/logo.png" width="70px">
                                             <p class="__title">Quy trình tuyển dụng tại Netbee</p>
                                         </div>
-                                        <div>
+                                        <div style="text-align: left;">
                                             <p>1. Tạo tin tuyển dụng</p>
                                             <p>2. Chờ admin xét duyệt tin(Thông báo qua email)</p>
                                             <p>3. Nhận hồ sơ giới thiệu từ chuyên viên tuyển sinh(Thông báo khi có lượt ứng tuyển)</p>
@@ -506,7 +506,7 @@ export default {
     },
     methods:{
         async fetch (route) {
-            this.data.expiration_date = moment(Date.now()).add(30, 'days').format("YYYY-MM-DD"); 
+            this.data.expiration_date = moment(Date.now()).add(90, 'days').format("YYYY-MM-DD"); 
             this.data.date_start = moment(Date.now()).format("YYYY-MM-DD"); 
             let res = await this.$axios.$get(`getQuocGia`)
             this.nations = res.data
