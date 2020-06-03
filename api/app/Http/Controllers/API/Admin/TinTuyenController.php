@@ -71,6 +71,12 @@ class TinTuyenController extends Controller
         return response()->json($response);
     }
 
+    public function listcompany()
+    {
+        $response = $this->tinTuyenService->listcompany();
+        return response()->json($response);
+    }
+
     public function getDetailTinTuyen(Request $request)
     {
         $response = $this->tinTuyenService->show($request->id);
