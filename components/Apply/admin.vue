@@ -40,7 +40,7 @@
             <section id="News"> 
                 <div class="row">
                     <div class="col-12">
-                        <div class="card ">
+                        <div class="card " style="margin-top: 10px;margin-bottom: 32px;">
                             <div class="card-content">
                                 <div class="card-body">
                                     <ul class="nav nav-tabs" role="tablist">
