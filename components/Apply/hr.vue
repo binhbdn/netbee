@@ -1,7 +1,7 @@
 <template>
     <div class="content-wrapper">    
         <!-- News filter start -->
-            <div class="card">
+            <div class="card" style="margin-top: 8px;margin-bottom: 30px;">
                 <div class="card-header">
                     <h4 class="card-title">Tìm kiếm</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
@@ -45,13 +45,13 @@
                                 <table class="table table-hover mb-0 zero-configuration">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Tên công việc</th>
-                                            <th>Tên ứng viên</th>
-                                            <th v-if="$auth.user.role == 3">Bonus</th>
-                                            <th>Nhà tuyển dụng</th>
-                                            <th>Trạng thái</th>
-                                            <th>Hành động</th>
+                                            <th style="width:5%;">ID</th>
+                                            <th style="width:25%;">Tên công việc</th>
+                                            <th style="width:15%;">Tên ứng viên</th>
+                                            <th style="width:10%;" v-if="$auth.user.role == 3">Bonus</th>
+                                            <th style="width:15%;">Nhà tuyển dụng</th>
+                                            <th style="width:15%;">Trạng thái</th>
+                                            <th style="width:15%;">Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody class="tab-table">

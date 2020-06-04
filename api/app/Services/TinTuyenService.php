@@ -399,7 +399,7 @@ class TinTuyenService extends BaseService {
             ->where('nb_joblists.id_created', Auth::user()->id)
             ->where('nb_joblists.deleted', self::INACTIVE)
             ->orderBy('nb_joblists.id', 'DESC')
-            ->select('nb_joblists.*','users.*',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
+            ->select('nb_joblists.*','users.name as namecompany',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
             ->groupBy('nb_joblists.id');
     }
 
@@ -421,7 +421,7 @@ class TinTuyenService extends BaseService {
             ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
             ->leftJoin('users','users.id','=','nb_joblists.id_created')
             ->orderBy('nb_joblists.id', 'DESC')
-            ->select('nb_joblists.*','users.*',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
+            ->select('nb_joblists.*','users.name as namecompany',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
             ->groupBy('nb_joblists.id');
     }
 
@@ -627,7 +627,7 @@ class TinTuyenService extends BaseService {
         $searchCategory = $data->searchCategory;
         $searchStatus = $data->searchStatus;
 
-        if ($searchCompany != '') {
+        if ($searchCompany != null) {
             $conditions[] = [
                 'nb_joblists.id_created', '=', $searchCompany
             ];

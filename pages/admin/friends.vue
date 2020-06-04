@@ -12,7 +12,7 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/">Trang chủ</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="/">Giới thiệu bạn bè</a>
+                                    <li class="breadcrumb-item"><a>Giới thiệu bạn bè</a>
                                     </li>                                   
                                 </ol>
                             </div>
@@ -62,10 +62,10 @@
                                 <div class="cach1">
                                     <h2><b>Cách 1: Chia sẻ liên kết giới thiệu của bạn</b></h2> 
                                     <div class="input-group">                                
-                                        <input type="text" class="form-control" id="link">
+                                        <input type="text" class="form-control" id="link" v-model="linkdangky">
                                         <div class="input-group-addon bg-netbee" style="padding: 10px;">
                                             <a @click="copyLink()" data-toggle="tooltip" data-placement="top" title="Sao chép liên kết">
-                                                Sao chép liên kết                                   
+                                                Sao chép liên kết 
                                             </a>
                                         </div>                                    
                                     </div>
@@ -81,7 +81,7 @@
                                     <h2><b>Cách 2: Chia sẻ mã cộng tác viên</b></h2><br>
                                     <span><i>Bạn gửi mã CTV của mình cho bạn bè và yêu cầu nhập khi đăng ký tài khoản !</i></span>
                                     <div class="input-group">                                
-                                        <input type="text" class="form-control" id="mactv">
+                                        <input type="text" class="form-control" id="mactv" v-model="usersfirst.introduce_code">
                                         <div class="input-group-addon bg-netbee" style="padding: 10px;">
                                             <a @click="copyMactv()" data-toggle="tooltip" data-placement="top" title="Sao chép mã CTV">
                                                 Sao chép mã CTV                                  
@@ -113,7 +113,8 @@
        
         data(){
             return {
-                
+                usersfirst:{},
+                linkdangky:''
             }
         },        
         components:{
@@ -134,7 +135,15 @@
                 document.execCommand("copy")
             },
             fetchdata(){
-                           
+                this.$axios.get('introduce/getidintroduce')
+                .then(response => {                                                          
+                    this.usersfirst = response.data
+                    this.linkdangky = window.location.host +"/dang-ky/ung_vien/" + this.usersfirst.introduce_code
+                    console.log(this.usersfirst)
+                 })
+                 .catch(error => {
+                    console.log(error.response)
+                });          
             }
         },        
         mounted() {             

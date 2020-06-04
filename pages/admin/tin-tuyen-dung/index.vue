@@ -396,7 +396,7 @@ export default {
         listconpany(){
             this.$axios.$get(
             'tintuyendung/listcompany').then((response)=>{            
-                this.companylist=response;                           
+                this.companylist=response;                                           
         });
         },
         payWithMomo() {
@@ -546,15 +546,17 @@ export default {
             this.tinTuyenDung.sort((a, b) => a.id < b.id ? 1 : -1);
         },
         search(){
-            // this.listconpany() 
+            // this.listconpany()
+            this.listconpany()  
             this.$axios.$get(
             'tintuyendung/searchTinTuyenDung?searchCategory=' 
             + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
-            + '&searchCompany='+ ((this.cardSearch.searchCompany)?this.cardSearch.searchCompany.id:'')
-            ).then((response)=>{
-                 this.tinTuyenDung=response.data;                                     
+            + '&searchCompany='+ ((this.cardSearch.searchCompany.id !=null)?this.cardSearch.searchCompany.id:'')
+            ).then((response)=>{                 
+                 this.tinTuyenDung=response.data;     
+                //  console.log(this.tinTuyenDung)                                
             });
         },
         async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){
@@ -685,7 +687,7 @@ export default {
             + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
-            + '&searchCompany='+ ((this.cardSearch.searchCompany)?this.cardSearch.searchCompany.id:'')
+            + '&searchCompany='+ ((this.cardSearch.searchCompany.id !=null)?this.cardSearch.searchCompany.id:'')
             + '&page='+this.page
             )
                 .then((response) => {

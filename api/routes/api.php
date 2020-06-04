@@ -55,6 +55,7 @@ Route::namespace('API')->group(function () {
 
   Route::get('searchCvs', 'TimKiemController@searchCvs');
   Route::get('usersExport','Auth\UserController@export');
+  Route::post('ktintroduce', 'Auth\UserController@ktintroduce');     
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
@@ -129,6 +130,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('updateProfileUser', 'Admin\TeamplateCvController@updateProfileUser');
         Route::get('listProfileUser', 'Admin\TeamplateCvController@listProfileUser');
         Route::post('changeStatus', 'Admin\TeamplateCvController@changeStatus');
+      });
+      Route::prefix('introduce')->group(function () {
+        Route::get('getidintroduce', 'Auth\UserController@getidintroduce');           
       });
       Route::prefix('lichphongvan')->group(function () {
         Route::get('fullCalendar', 'Admin\FullCalendarController@getCalendar');
