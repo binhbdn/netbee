@@ -1,8 +1,8 @@
 <template>
-    <div class="app-content content">
+    <div style="padding: 15px; padding-top:0">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper">    
+        <div class="content-wrappe">    
             <!-- News filter start -->
                     <div class="card">
                         <div class="card-header">
@@ -109,6 +109,7 @@
                                                     <th style="width:15%;">Thống kê</th>
                                                     <th style="width:10%">Ngày tạo</th>
                                                     <th style="width:10%;">Trạng thái</th>
+                                                    <th style="width:10%">Tên công ty</th>
                                                     <th style="width:10%;">Thể loại</th>
                                                     <th style="width:10%;">Loại tin</th>
                                                     <th style="width:10%;">Thao tác</th>
@@ -130,11 +131,7 @@
                                                             </fieldset>
                                                         </li>
                                                         {{item.id}}</td>
-                                                    <td class="text-left">
-                                                        <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}} 
-                                                        </a>
-                                                        <hr style="border-top: 1px dotted black;"><p class="text-center font-italic">{{item.name}}</p>
-                                                    </td>
+                                                    <td class="text-left"><a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
                                                     <td>
                                                         <div class="row">
                                                             <div class="col-6 pr-0 pl-0">
@@ -153,6 +150,9 @@
                                                     </td>
                                                     <td v-if="item.status == 1">
                                                         <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
+                                                    </td>
+                                                    <td>
+                                                        <span>{{item.name}}</span>
                                                     </td>
                                                     <td style="white-space: nowrap;">
                                                         <span v-if="item.type == 1">Xuất khẩu lao động</span>

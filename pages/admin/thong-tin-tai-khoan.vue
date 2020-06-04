@@ -168,20 +168,20 @@
                                                           <ValidationProvider
                                                             name="username"
                                                             ref="username"
-                                                            rules="required"
+                                                            rules="required|customUsername"
                                                             v-slot="{ errors }"
                                                         > 
                                                           <div class="form-group row">
                                                               <div class="col-3 text-right for-label">
                                                                   <label for="accountTextarea1">Username</label>
                                                               </div>
-                                                              <div class="col-9 form-control d-flex p-0">
-                                                              <input style="border:none; color: #5F5F5F; padding-left: 7px!important;" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Tên đường dẫn tới trang thông tin công ty...">
-                                                              <div class="col-1 text-center">
-                                                                  <i style="font-size:16px; padding-top: 10px" :class="checkUsername ? 'fas fa-check-circle success' : 'fas fa-times-circle danger'"></i>
-                                                              </div>
-                                                              
-                                                               
+                                                              <div class="col-9">
+                                                                  <div class="form-control d-flex p-0" style="border-radius: 0">
+                                                                    <input style="border:none; color: #5F5F5F; padding-left: 7px!important;" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Biệt danh hoặc tên viết tắt duy nhất của công ty.">
+                                                                    <div class="col-1 text-center">
+                                                                        <i style="font-size:16px; padding-top: 10px" :class="checkUsername ? 'fas fa-check-circle success' : 'fas fa-times-circle danger'"></i>
+                                                                    </div>
+                                                                </div>
                                                               </div>
                                                               <div class="col-3"></div>
                                                               <div class="col-9">
@@ -465,6 +465,8 @@ import {
   ValidationProvider,
   extend
 } from "vee-validate/dist/vee-validate.full";
+import swal from 'sweetalert';
+swal("Hello world!");
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 extend('retypePassword', {
   params: ['target'],
@@ -498,6 +500,23 @@ extend("customPassword", {
       } else {
         errorMessage =
           " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+      }
+      return false;
+    }
+  }
+});
+extend("customUsername", {
+  message: field =>"Username" + errorMessage,
+  validate: value => {
+    var notTheseChars = /["'?&/<>\s]/;
+    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9])/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    if (!containsForbiddenChars) {
+      return true;
+    } else {
+      if (containsForbiddenChars) {
+        errorMessage =
+          ' không được chứa các ký tự đặc biệt: " ' + " ' ? & / < > hoặc khoảng trắng";
       }
       return false;
     }

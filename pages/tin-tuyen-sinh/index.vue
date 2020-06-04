@@ -1,29 +1,44 @@
 <template>
   <div class="container">
     <!-- VIỆC LÀM MỚI -->
-    <div class="banner-tt">
-      <div class="litss">
-        <div class="img-logoo">
-          <img id="hmt" src="/app-assets/images/logo/homt.png" alt="branding logo" />
-        </div>
-        <div class="float-lerft-a">
-          <h3 style="display: contents;">{{$t('job.follow.title')}}</h3>
-          <a href="#follow" class="btn btn-outline-primary">{{$t('job.follow.btn')}}</a>
-        </div>
-        <!-- <div class="float-right-a">
-          <span style=" margin-right: 14px; color: BLACK; font-size: 17px;">Sắp xếp theo</span>
-          <select id="cars" name="cars">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </div> -->
-      </div>
-    </div>
     <section>
       <div class="row">
-        <div class="col-lg-12 col-12 p-r-0">
+        <div class="col-lg-4 col-12 pr-0">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title"><i class="fas fa-briefcase"></i> TÌM KIẾM NÂNG CAO</h4>
+            </div>
+            <div class="card-content show">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <Multiselect v-model="maleFemale" :options="sex" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn giới tính" ></Multiselect>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <Multiselect v-model="birthday_year" :options="getYears" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn năm sinh" ></Multiselect>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <Multiselect v-model="level_education" :options="level" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trình độ" ></Multiselect>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-field">
+                        <input type="button" value="Tìm ngay" class="form-control btn btn-warning text-dark" style="background-color: #ffb701 !important; border-color: #ffb701 !important" @click="search">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-12 p-r-0">
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
@@ -39,58 +54,13 @@
         </div>
       </div>
     </section>
-    <!-- VIỆC LÀM mới -->
-    <section>
-      <div class="row">
-        <div class="col-lg-4 col-12 p-r-0">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">
-                <i class="fad fa-business-time"></i> {{$t('job.title.labor_export')}}
-              </h4>
-            </div>
-            <div class="card-content collapse show">
-              <div class="card-body scrollbar">
-                <JobsList1ColNotCate :DataList="arrayJobXKLD"></JobsList1ColNotCate>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12 p-r-0">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">
-                <i class="fad fa-business-time"></i> {{$t('job.title.overseas_student')}}
-              </h4>
-            </div>
-            <div class="card-content collapse show">
-              <div class="card-body scrollbar">
-                <JobsList1ColNotCate :DataList="arrayJobDHS"></JobsList1ColNotCate>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">
-                <i class="fad fa-business-time"></i> {{$t('job.title.trainees')}}
-              </h4>
-            </div>
-            <div class="card-content collapse show">
-              <div class="card-body scrollbar">
-                <JobsList1ColNotCate :DataList="arrayJobTNS"></JobsList1ColNotCate>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 <script>
 import JobsList1Col from "~/components/Jobs/JobsList1Col";
 import JobsList1ColNotCate from "~/components/Jobs/JobsList1ColNotCate";
+import Multiselect from 'vue-multiselect';
+import 'vue-multiselect/dist/vue-multiselect.min.css';
 export default {
   head: {
     title: "Tin tuyển sinh mới nhất,tin tuyển dụng du học,tin xuất khẩu lao động mới nhất",
@@ -100,9 +70,30 @@ export default {
       { hid: "description", name: "description", content: "Tin tuyển sinh mới nhất,tin tuyển dụng du học,tin xuất khẩu lao động mới nhất" }
     ]
   },
+    data() {
+    return{
+      listCvs: [],
+      maleFemale: '',
+      level_education: '',
+      address_profile: '',
+      birthday_year: '',
+      years: [],
+      sex: [
+        'Nam', 
+        'Nữ'
+      ],
+      level: [
+        'Đại học',
+        'Cao đẳng',
+        'Trung cấp',
+        '12/12',
+        'Thấp hơn'
+      ],
+    }
+  },
   components: {
     JobsList1Col,
-    JobsList1ColNotCate
+    JobsList1ColNotCate, Multiselect
   },
   async asyncData({$axios, route}) {
     let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=20&type=0`)
@@ -110,13 +101,41 @@ export default {
     let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=2`)
     let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=3`)
     let getTinTuyenDungHot = await $axios.$get(`getTinTuyenDungHot?limit=10`)
+    let searchCvs = await $axios.$get('searchCvs?search='
+      +(route.query.keyword != null ? route.query.keyword : '')
+    )
     return {
         arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
         arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
         arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
         arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
         arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
+        arrayCvs: searchCvs.data
     }
+  },
+  computed: {
+    getYears(){
+      let yearStart = 1970;
+      let yearEnd = 2020;
+      let years = Array(yearEnd-yearStart+1)
+        .fill()
+        .map(() => yearStart++);
+      return years;
+    },
+  },
+
+  methods: {
+    nameWithLang ({ name, id }) {
+      return `${name}`
+    },
+    async search() {
+      let getCvs = await this.$axios.$get('searchCvs?search='
+        +(this.level_education != '' ? '&searchLevel=' + this.level_education : '')
+        +(this.birthday_year != '' ? '&birthday_year=' + this.birthday_year : '')
+        +(this.maleFemale != '' ? '&maleFemale=' + this.maleFemale : '')
+      )
+      this.arrayCvs = getCvs.data;
+    },
   },
 };
 </script>
