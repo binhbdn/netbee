@@ -105,7 +105,7 @@ class TinTuyenController extends Controller
             ];
             $this->sendNotification($notification);
         }
-        return response()->json($resTinTuyen);
+        return response()->json($response);
     }
 
     public function updateTinTuyen(Request $request) {
