@@ -16,8 +16,7 @@
                 <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN ỨNG VIÊN</span>
                 </div>
-                <!-- <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap"><b>Tại đây</b></a></span><br> -->
-                <span>Nếu bạn có mã giới thiệu, xin vui lòng đăng ký <a @click="introduce()"><b>Tại đây</b></a></span>
+                <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../../dang-nhap"><b>Tại đây</b></a></span>
                <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
                     <ValidationObserver ref="observer" v-slot="{ valid }">
                      <ValidationProvider
@@ -116,28 +115,7 @@
                     </ValidationObserver>
                 </form>
               </div>                           
-            </div>            
-        </div>
-        <!-- ma gioi thieu -->
-        <div class="modal fade" id="introduce" role="dialog">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Mã giới thiệu của bạn</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <div class="form-group">
-                  <input id="introduceValue" placeholder="Mời nhập mã" type="text" class="form-control">
-                </div>
-              </div>
-              <div class="modal-footer">
-                <a @click="ktintroduce()" class="btn bg-netbee">Đăng ký</a>
-              </div>
             </div>
-          </div>
         </div>
     </div>
 </section>
@@ -216,35 +194,15 @@ export default {
         role: 1,        
       },
       show: true,
-      statust: 0, 
-      introduce_code: "",
+      statust: 1,
+      introduceOk:''
     };
   },
   computed: {},
   created() {},
   methods: {
-    introduce(){   
-      $('#introduce').modal()
-      $("#introduce").modal('show')
-    },
     showPassword(){
       this.show = !this.show
-    },
-    async ktintroduce() {
-      var valueIntro = document.getElementById('introduceValue').value      
-      this.introduce_code = valueIntro      
-      let response = await this.$axios.post('ktintroduce', {
-             introduce_code: this.introduce_code
-      });
-      if(response.data.status == 200){
-        window.location.href = "/dang-ky/ung_vien/"+this.introduce_code
-      }else{
-        this.$swal(
-          'Lỗi!',
-          response.data.message,
-          'error'
-        )
-      }
     },
     async signIn() {
       const isValid = await this.$refs.observer.validate();
@@ -256,7 +214,8 @@ export default {
             name: this.userForm.name,
             phone: this.userForm.phone,
             role: this.userForm.role,
-            statust: this.statust        
+            statust: this.statust,
+            introduceOk: this.introduceOk
           });
           if(response.data.status == 200){
             this.$swal({
@@ -290,7 +249,10 @@ export default {
         });
       }
     }
-  }
+  },
+   mounted() {   
+       this.introduceOk = this.$route.params.introduce       
+   }
 }
 </script>
 <style scoped>
