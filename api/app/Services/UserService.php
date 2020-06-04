@@ -25,6 +25,11 @@ class UserService extends BaseService {
         $this->socialAccountService = $socialAccountService;
     }
 
+    public function getid($id)
+    {
+        return $this->user->whereId($id);
+    }
+    
     public function update($data, $userId)
     {
         return $this->user->whereId($userId)->update($data);
@@ -47,6 +52,12 @@ class UserService extends BaseService {
     public function getIdAfterStore($data)
     {
         return $this->user->insertGetId($data);
+    }
+
+    public function getidintroduce()
+    {
+        $id = Auth::user()->id;
+        return $this->getid($id)->first();
     }
 
     public function loginWithOAuth($request, $typeOAuth)
@@ -484,4 +495,10 @@ class UserService extends BaseService {
             ];
         }
     }
+
+    public function checkIntroduce($request)
+    {
+        return $this->user->where('introduce_code',$request->introduce_code)->first();
+    }
+
 }
