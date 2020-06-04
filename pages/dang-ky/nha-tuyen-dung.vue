@@ -219,8 +219,7 @@ export default {
             password_confirmation: "",
             role: 2
       },
-      show: true,
-      statust: 0
+      show: true,     
     };
   },
   computed: {},
@@ -238,8 +237,7 @@ export default {
                 password: this.userForm.password,
                 name: this.userForm.name,
                 phone: this.userForm.phone,
-                role: this.userForm.role,
-                statust: this.statust
+                role: this.userForm.role,              
             })
             if(response.data.status == 200){
                 this.$swal({

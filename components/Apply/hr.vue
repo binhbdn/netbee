@@ -1,7 +1,7 @@
 <template>
     <div class="content-wrapper">    
         <!-- News filter start -->
-            <div class="card">
+            <div class="card" style="margin-top: 8px;margin-bottom: 30px;">
                 <div class="card-header">
                     <h4 class="card-title">Tìm kiếm</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
@@ -45,13 +45,13 @@
                                 <table class="table table-hover mb-0 zero-configuration">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Tên công việc</th>
-                                            <th>Tên ứng viên</th>
-                                            <th v-if="$auth.user.role == 3">Bonus</th>
-                                            <th>Nhà tuyển dụng</th>
-                                            <th>Trạng thái</th>
-                                            <th>Hành động</th>
+                                            <th style="width:5%;">ID</th>
+                                            <th style="width:25%;">Tên công việc</th>
+                                            <th style="width:15%;">Tên ứng viên</th>
+                                            <th style="width:10%;" v-if="$auth.user.role == 3">Bonus</th>
+                                            <th style="width:15%;">Nhà tuyển dụng</th>
+                                            <th style="width:15%;">Trạng thái</th>
+                                            <th style="width:15%;">Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody class="tab-table">
@@ -72,10 +72,14 @@
                                             </td>
                                             <td>
                                                 <div class="action-btns">
-                                                    <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" >
+                                                    <div>
+                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" style="width: 100%;">
                                                         Hủy
-                                                    </a>
-                                                    <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn btn-warning py-75 gold">Thêm giấy tờ</a>
+                                                        </a>
+                                                    </div>   
+                                                    <div>
+                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn bg-netbee" style="width: 100%;margin-top: 10px;">Thêm giấy tờ</a>
+                                                    </div>                                                                                                     
                                                 </div>
                                             </td>
                                         </tr>
