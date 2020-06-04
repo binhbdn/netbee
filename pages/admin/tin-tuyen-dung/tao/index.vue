@@ -68,8 +68,6 @@
                                             <div class="card-content">
                                                 <div class="card-body p-3">
                                                     <h2 class="text-white">Tin Du Học</h2>
-                                                    <p class="card-text">Đăng tuyển miễn phí</p>
-                                                    <p class="card-text">Nhận ứng viên miễn phí</p>
                                                     <a href="/admin/tin-tuyen-dung/tao/tin-du-hoc" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>
                                                 </div>
                                             </div>
@@ -80,8 +78,6 @@
                                             <div class="card-content">
                                                 <div class="card-body p-3">
                                                     <h2 class="text-white">Tin Xuất Khẩu</h2>
-                                                    <p class="card-text">Đăng tuyển miễn phí</p>
-                                                    <p class="card-text">Nhận ứng viên miễn phí</p>
                                                     <a href="/admin/tin-tuyen-dung/tao/tin-xkld" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>
                                                 </div>
                                             </div>
@@ -92,8 +88,6 @@
                                             <div class="card-content">
                                                 <div class="card-body p-3">
                                                     <h2 class="text-white">Tu Nghiệp Sinh</h2>
-                                                    <p class="card-text">Đăng tuyển miễn phí</p>
-                                                    <p class="card-text">Nhận ứng viên miễn phí</p>
                                                     <a href="/admin/tin-tuyen-dung/tao/tin-tu-nghiep-sinh" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>
                                                 </div>
                                             </div>

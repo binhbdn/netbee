@@ -3,9 +3,14 @@
     <div class="container has-text-centered">
         <div class="row p-b-15">
           <div class="col-md-12 order-md-last d-flex">
-            <div class="col-md-6">
+            <div class="col-md-6 form-lienhe">
               <h2 class="h3 NB_main_title p-10">Thông tin liên hệ</h2>
                 <div class="row d-flex mb-5 contact-info">
+                  <div class="col-md-12">
+                    <p>
+                      Cám ơn bạn đã vào thăm trang Netbee.vn của chúng tôi, website tuyển dụng xuất khẩu lao động lớn nhất tại Việt Nam hiện nay. Bạn có thể liên hệ với chúng tôi theo một trong những cách sau:
+                    </p>
+                  </div>
                   <div class="col-md-12">
                     <p>
                       <span class="font-weight-600">Địa chỉ:</span> Tầng 2 21-B6, Green Stars 234 Phạm Văn Đồng
@@ -42,3 +47,11 @@
     </div>
   </section>
 </template>
+<style scoped>
+.form-lienhe {
+  background-image: url('/assets/img/contact-page-banner.png');
+  background-size: 230px 230px;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+</style>
