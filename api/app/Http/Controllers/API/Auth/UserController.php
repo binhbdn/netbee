@@ -23,6 +23,11 @@ use App\Services\NotificationService;
 
 class UserController extends Controller
 {
+    const
+        ROLE_ADMIN = 4,
+        ROLE_HR = 3,
+        ROLE_COMPANY = 2,
+        ROLE_STAFF = 1;
     protected $userService;
     protected $notificationService;
 
@@ -34,6 +39,31 @@ class UserController extends Controller
         $this->notificationService = $notificationService;
     }
 
+    public function getidintroduce()
+    {
+        $response = $this->userService->getidintroduce();
+        return response()->json($response);
+    }
+
+    public function ktintroduce(Request $request)
+    {        
+        $check =  $this->userService->checkIntroduce($request);
+        if ($check) {
+            return response()->json([
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => null
+            ]);            
+        } else{
+            return response()->json([
+                'status' => 400,
+                'message' => 'Mã giới thiệu không chính xác',
+                'data' => null
+            ]);
+        }
+        
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(),
@@ -42,7 +72,7 @@ class UserController extends Controller
             'password' => 'required',
             'name' => 'required',
             'phone' => 'required|numeric',
-            'role' => 'required|numeric|between:1,3',
+            'role' => 'required|numeric|between:1,3',           
         ],
         [
             'required' => 'Không được để trống',
@@ -58,17 +88,43 @@ class UserController extends Controller
                  'message' => $validator->messages()->first(),
                  'data' => null
              ]);
+        }                
+        if ($request->role == self::ROLE_HR || $request->role == self::ROLE_STAFF) {   
+            if($request->statust == 1){
+                $users = [
+                    'email' => $request->email,
+                    'password' => bcrypt($request['password']),
+                    'name' => $request['name'],
+                    'phone' => $request['phone'],
+                    'status' => '0',
+                    'role' => $request->role,  
+                    'introduce_code' => rand(10000,99999),
+                    'introduce_ok_code' => $request->introduceOk,
+                    'recover_code' => rand(100000,999999)
+                ];
+            }else{
+                $users = [
+                    'email' => $request->email,
+                    'password' => bcrypt($request['password']),
+                    'name' => $request['name'],
+                    'phone' => $request['phone'],
+                    'status' => '0',
+                    'role' => $request->role,  
+                    'introduce_code' => rand(10000,99999),
+                    'recover_code' => rand(100000,999999)
+                ];
+            }                   
+        }else{
+            $users = [
+                'email' => $request->email,
+                'password' => bcrypt($request['password']),
+                'name' => $request['name'],
+                'phone' => $request['phone'],
+                'status' => '0',
+                'role' => $request->role,                  
+                'recover_code' => rand(100000,999999)
+            ];
         }
-
-        $users = [
-            'email' => $request->email,
-            'password' => bcrypt($request['password']),
-            'name' => $request['name'],
-            'phone' => $request['phone'],
-            'status' => '0',
-            'role' => $request->role,
-            'recover_code' => rand(100000,999999)
-        ];
         //Notification Begin
         $notification = [
             'content' => 'Có tài khoản đăng ký mới ['.$users['email'].']',
