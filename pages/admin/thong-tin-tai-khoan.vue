@@ -465,8 +465,6 @@ import {
   ValidationProvider,
   extend
 } from "vee-validate/dist/vee-validate.full";
-import swal from 'sweetalert';
-swal("Hello world!");
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 extend('retypePassword', {
   params: ['target'],
