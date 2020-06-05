@@ -193,4 +193,9 @@ class ApplyManageController extends Controller
     public function sendNotification($notification){
         $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
     }
+
+    public function getDowloadFile(Request $request){
+        $file_path = '/home/netbee.vn/html/static/uploads/apply/'.$request->filename;       
+        return response()->download($file_path);
+    }
 }

@@ -72,10 +72,14 @@
                                             </td>
                                             <td>
                                                 <div class="action-btns">
-                                                    <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light text-white" >
-                                                        Từ chối
-                                                    </a>
-                                                    <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn btn-warning py-75 gold">Thêm giấy tờ</a>
+                                                    <div>
+                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" style="width: 100%;">
+                                                        Hủy
+                                                        </a>
+                                                    </div>   
+                                                    <div>
+                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn bg-netbee" style="width: 100%;margin-top: 10px;">Thêm giấy tờ</a>
+                                                    </div>                                                                                                     
                                                 </div>
                                             </td>
                                         </tr>
