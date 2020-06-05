@@ -120,8 +120,6 @@ export default {
   async asyncData({$axios, route}) {
     let searchCvs = await $axios.$get('searchCvs?search='
       +(route.query.keyword != null ? route.query.keyword : '')
-      // +(route.query.searchLevel != '' ? '&searchLevel=' + route.query.searchLevel : '')
-      // +(route.query.searchAddress != '' ? '&searchAddress=' + route.query.searchAddress : '')
     )
     return {
       arrayCvs: searchCvs.data
@@ -129,14 +127,6 @@ export default {
   },
 
   computed: {
-    // getYears(){
-    //   var yearStart = 1970;
-    //   var yearEnd = 2020;
-    //   var years = [];
-    //   for (var i = yearStart; i < yearEnd+1; i++) {
-    //       years.push(i);
-    //   }
-    // },
     getYears(){
       let yearStart = 1970;
       let yearEnd = 2020;

@@ -2,8 +2,8 @@
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
-        <div v-if="$auth.user.role == 2">
-            <div class="content-wrapper" >
+        <div v-if="$auth.user.role == 2" >
+            <div class="content-wrapper">
                 <div class="content-body">
                     <!-- Dashboard Ecommerce Starts -->
                     <section id="dashboard-ecommerce">
@@ -16,8 +16,8 @@
                                                 <i class="feather icon-users text-primary font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">92.6k</h2>
-                                        <p class="mb-0">Subscribers Gained</p>
+                                        <h2 class="text-bold-700 mt-1">234</h2>
+                                        <p class="mb-0">Số tin tuyển dụng</p>
                                     </div>
                                 </div>
                             </div>
@@ -29,8 +29,8 @@
                                                 <i class="feather icon-credit-card text-success font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">97.5k</h2>
-                                        <p class="mb-0">Revenue Generated</p>
+                                        <h2 class="text-bold-700 mt-1">56</h2>
+                                        <p class="mb-0">Số lượt xem</p>
                                     </div>
                                 </div>
                             </div>
@@ -42,8 +42,8 @@
                                                 <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">36%</h2>
-                                        <p class="mb-0">Quarterly Sales</p>
+                                        <h2 class="text-bold-700 mt-1">45</h2>
+                                        <p class="mb-0">Số lượt ứng tuyển</p>
                                     </div>
                                 </div>
                             </div>
@@ -55,8 +55,8 @@
                                                 <i class="feather icon-package text-warning font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">97.5K</h2>
-                                        <p class="mb-0">Orders Received</p>
+                                        <h2 class="text-bold-700 mt-1">34</h2>
+                                        <p class="mb-0">Phỏng vấn online</p>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                     </section>
                 </div>
             </div>
-            <companyApplyManage class="m-t-0"/>
+            <DashboardNTD/>
         </div>
         <DashboardHr v-else-if="$auth.user.role == 3 || $auth.user.role == 1"/>
         <DashboardAdmin v-else/>
@@ -74,7 +74,9 @@
 <script>
 import DashboardHr from '~/components/dashboard/hr'
 import DashboardAdmin from '~/components/dashboard/admin'
-import companyApplyManage from '~/components/Apply/company.vue';
+import DashboardNTD from '~/components/dashboard/nhaTuyenDung'
+
+import companyApplyManage from '~/components/Apply/company.vue'
 
 export default {
      data() {
@@ -105,7 +107,8 @@ export default {
     components:{
         DashboardHr,
         DashboardAdmin,
-        companyApplyManage
+        companyApplyManage,
+        DashboardNTD
     }
 }
 </script>
