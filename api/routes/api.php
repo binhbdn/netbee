@@ -155,6 +155,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('getPaperApply/{id}', 'Admin\ApplyManageController@getPaperApply');
         Route::post('PostPaperApply', 'Admin\ApplyManageController@PostPaperApply');
         Route::post('ApprovedApplyHoSoDinhKem/{id}', 'Admin\ApplyManageController@ApprovedApplyHoSoDinhKem');
+        Route::post('getDowloadFile', 'Admin\ApplyManageController@getDowloadFile');
       });
   });
 });

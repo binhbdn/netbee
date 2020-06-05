@@ -11,22 +11,28 @@
                                         <thead>
                                             <tr>
                                                 <th style="width:5%;">ID</th>
-                                                <th style="width:15%;">Tên công việc</th>
-                                                <th style="width:15%;">Tên ứng viên</th>
+                                                <th style="width:20%;">Tên công việc</th>
+                                                <th style="width:20%;">Tên ứng viên</th>
                                                 <th style="width:20%;">Trạng thái</th>
-                                                <th style="width:10%;">Bonus</th>
-                                                <th style="width:10%;">Nhà tuyển dụng</th>
+                                                <th style="width:10%;">Bonus</th>                                            
                                                 <th style="width:10%;">Thời gian nộp</th>
                                                 <th style="width:15%;">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody class="tab-table" >
                                             <tr v-for="(item, index) in AllApply" :key="index">
-                                                <td>{{item.id}}</td>
-                                                <td>{{item.job.title}}</td>
+                                                <td>
+                                                    {{item.id}}                                                    
+                                                </td>                                                
+                                                <td>
+                                                    <p style="margin-bottom: 0px;">{{item.job.title}}</p>
+                                                    <span style="font-size: 12px;" v-if="item.cv_id != null"><i>Hồ sơ online</i></span>
+                                                    <span style="font-size: 12px;" v-if="item.cv_file != null"><i>Hồ sơ đính kèm</i></span>
+                                                </td>
                                                 <td>{{item.name}}</td>
                                                 <td>
                                                     <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" style="text-decoration: underline;">Xem hồ sơ</a>
+                                                    <a v-if="item.cv_file != null" target="_blank" @click="dowloadfile(item.cv_file)" style="text-decoration: underline;">Xem hồ sơ</a>
                                                     <a v-if="item.nb_paper != null" @click="showFile(item.id)" style="text-decoration: underline;">Xem giấy tờ đính kèm</a>
                                                     <p v-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                                     <p v-else-if="item.status == 5 && item.nb_paper == null">Đợi giấy tờ đính kèm</p>
@@ -35,9 +41,8 @@
                                                     <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
                                                         {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
                                                     </span>
-                                                    <span v-else>0đ</span>
-                                                </td>
-                                                <td>{{item.user.name}}</td>
+                                                    <span v-else>Không bonus</span>
+                                                </td>                                                
                                                 <td>{{ConvertDate(item.created_at)}}</td>
                                                 <td>
                                                     <div class="action-btns">
@@ -301,6 +306,10 @@ export default {
         Datetime
     },   
     methods: {
+        dowloadfile(file){
+            this.$axios.$post('apply/getDowloadFile',{filename: file}).then((response)=>{                
+	        });
+        },
         nameWithLang ({ name, id }) {
             return `${name}`
         },
