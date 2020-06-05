@@ -36,6 +36,7 @@
         "nuxt-jsonld": "^1.4.5",
         "nuxt-seo": "^1.2.2",
         "nuxt-sweetalert2": "^1.0.0",
+        "sweetalert": "^2.1.2",
         "v-viewer": "^1.5.1",
         "vee-validate": "^3.2.5",
         "vue-datetime": "^1.0.0-beta.11",
@@ -46,7 +47,7 @@
         "vue-localstorage": "^0.6.2",
         "vue-multiselect": "^2.1.6",
         "vue-star-rating": "^1.6.1",
-        "vue-sweetalert2": "^3.0.3",
+        "vue-sweetalert2": "^3.0.5",
         "vue2-editor": "^2.10.2",
         "weekstart": "^1.0.1"
     },

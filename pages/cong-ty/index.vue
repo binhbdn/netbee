@@ -189,7 +189,7 @@ export default {
 <style>
 img.img-fluid {
     width: 423px;
-    height: unset !important;
+    height: 88px;
     margin-bottom: 14px;
 }
 .card-title {
@@ -230,11 +230,6 @@ span.carousel-control-prev-icon {
 }
 .col-md-8 {
   margin-left: 235px;
-}
-img.img-fluid {
-  width: 423px;
-  height: 288px;
-  margin-bottom: 14px;
 }
 .remove-border-rightt {
   position: initial;
@@ -440,10 +435,7 @@ ol.carousel-indicators {
     max-height: 152px;
     max-width: 100%;
 }
-.review_headline {
-    padding-right: 30px;
-}
-.review_headline p {
+  .review_headline p {
     font-size: 16px;
     color: #7f7f7f;
     line-height: 30px;
@@ -477,5 +469,12 @@ ol.carousel-indicators {
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+.list-company-item h4{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.col-3 {
+    max-width: 21%;
 }
 </style>
