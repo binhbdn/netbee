@@ -16,7 +16,8 @@
 }
 
 html body .content .content-wrapper {
-    margin-top: 59px;
+    margin-top: 62px;
+    padding: 15px;
 }
 
 .custom-header {
@@ -47,7 +48,12 @@ tbody .vs-checkbox-con .vs-checkbox {
 .table th {
     font-size: 15px;
 }
-
+#dashboard-ecommerce .col-lg-3, #dashboard-ecommerce .col-lg-8, #dashboard-ecommerce .col-lg-7{
+    padding-right: 0;
+}
+#dashboard-ecommerce .col-lg-3:last-child{
+    padding-right:15px;
+}
 
 /* important multiselect */
 

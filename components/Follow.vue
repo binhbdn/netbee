@@ -47,9 +47,9 @@
                                        rules="required|email"
                                        v-slot="{ errors }"
                                      >
-                                      <div class="form-group col-sm-12" style="padding-left:0px;">
+                                      <div class="form-group col-sm-12" style="padding-left:0px; margin-bottom: 5px;">
                                          <input type="email" class="form-control" :placeholder="$t('follow.email')"  name="email" v-model="dataForm.email">
-                                               <ul style="color:#FFC107;padding-left:15px;" class="overline text-left">
+                                               <ul style="color:#FFC107;padding-left:15px; margin-bottom: 0" class="overline text-left">
                                                    <li v-for="(error, index) in errors" :key="index">
                                                    <span>{{ error }}</span>
                                                   </li>
@@ -58,7 +58,7 @@
                                          </ValidationProvider>
                                     <div class="col-sm-12 text-center form-group" style="padding-left:0px;">
                                       <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
-                                        <button @click="sendForm()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Gửi ngay</button>
+                                        <button type="button" @click="sendForm()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Gửi ngay</button>
                                       </div>
                                     </div>
                               </div>
@@ -176,5 +176,13 @@ export default {
 } 
 .text{
     color: #fff;
+}
+#follow ul{
+    list-style: none;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+#follow ul li span{
+  font-style: italic;
 }
 </style>

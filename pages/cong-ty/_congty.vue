@@ -25,13 +25,13 @@
                                 <p><span class="font-weight-600"><i class="fad fa-calendar-minus"></i> Ngày thành lập: {{ congty.birth_of_date ? ConvertDate(congty.birth_of_date): 'Đang cập nhật' }}</span></p>
                             </div>
                         </div>
-                        <div class="col-lg-2 count-job">
-                            <h1 style="font-size: 70px;color: #ffb701;">{{ countJob.length ? countJob.length : '0' }}</h1>
-                            <h2>Việc làm</h2>
-                        </div>
                         <div class="col-lg-2" style="padding-top:30px; padding-left: 10px">
                             <button v-if="!$auth.loggedIn" class="btn btn-outline-secondary mt-2" data-toggle="modal" data-target="#loginModal">Theo dõi ({{followers}})</button>
                             <button v-else class="btn btn-outline-secondary mt-2" @click="followCompany()">{{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}} ({{followers}})</button>
+                        </div>
+                        <div class="col-lg-2 count-job">
+                            <h1 style="font-size: 70px;color: #ffb701;">{{ countJob.length ? countJob.length : '0' }}</h1>
+                            <h2>Việc làm</h2>
                         </div>
                     </div>
                 </div>

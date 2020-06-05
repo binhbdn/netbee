@@ -35,7 +35,7 @@
                                                     <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
                                                         {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
                                                     </span>
-                                                    <span v-else>Không bonus</span>
+                                                    <span v-else>0đ</span>
                                                 </td>
                                                 <td>{{item.user.name}}</td>
                                                 <td>{{ConvertDate(item.created_at)}}</td>

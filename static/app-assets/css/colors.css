@@ -7027,7 +7027,7 @@ input:focus ~ .bg-danger {
 .btn-danger:hover {
   border-color : #E73D3E !important;
   color : #FFFFFF !important;
-  box-shadow : 0 8px 25px -8px #EA5455;
+  background-color: #c82333!important;
 }
 .btn-danger:focus, .btn-danger:active {
   color : #FFFFFF !important;
