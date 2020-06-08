@@ -5,7 +5,9 @@
                 <div class="card-content h-100">
                     <div class="text-center p-1">
                         <a :href="`/ho-so/${item.id}`">
-                            <img v-lazy="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`" style="height: 92px; max-width: 100%;">
+                            <div class="setImg">
+                                <img v-lazy="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`">
+                            </div>
                         </a>
                     </div>
                     <div class="p-1">
@@ -59,5 +61,15 @@ export default {
 
 .border-DataList-item:hover{
     background-color: #ffb7012b;
+}
+.setImg{
+    height: 92px;
+    width: 90px;
+    position: relative;
+}
+.setImg img {
+    object-fit:cover;
+    height: 92px;
+    width: 90px;
 }
 </style>
