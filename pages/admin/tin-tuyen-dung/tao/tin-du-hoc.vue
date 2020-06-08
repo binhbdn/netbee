@@ -287,7 +287,7 @@
                                                                 <label for="firstName3">
                                                                     Tiền thưởng
                                                                 </label>
-                                                                <input type="txt" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>

@@ -1,7 +1,7 @@
 <template>
     <div class="content-wrapper">    
         <!-- News filter start -->
-            <div class="card" style="margin-top: 8px;margin-bottom: 30px;">
+            <div class="card" style="margin-top: 0px;margin-bottom: 15px;">
                 <div class="card-header">
                     <h4 class="card-title">Tìm kiếm</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
@@ -73,12 +73,12 @@
                                             <td>
                                                 <div class="action-btns">
                                                     <div>
-                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light" style="width: 100%;">
+                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-edit-fix-huy py-75 waves-effect waves-light" style="width: 100%;">
                                                         Hủy
                                                         </a>
                                                     </div>   
                                                     <div>
-                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn bg-netbee" style="width: 100%;margin-top: 10px;">Thêm giấy tờ</a>
+                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn btn-edit-fix-add" style="width: 100%;margin-top: 10px;">Thêm giấy tờ</a>
                                                     </div>                                                                                                     
                                                 </div>
                                             </td>
@@ -227,5 +227,16 @@ export default {
 }
 </script>
 <style scoped>
+    .btn-edit-fix-add, .btn-edit-fix-huy{
+        border: 1px solid rgb(255, 183, 1);
+        color: #000;
+    }
 
+    .btn-edit-fix-add:hover{
+        background:  rgb(255, 183, 1);
+    }
+    .btn-edit-fix-huy:hover{
+        background: #E42728;
+        border: 1px solid #E42728;
+    }
 </style>

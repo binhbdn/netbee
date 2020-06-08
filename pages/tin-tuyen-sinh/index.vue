@@ -2,42 +2,7 @@
   <div class="container">
     <!-- VIỆC LÀM MỚI -->
     <section>
-      <div class="row">
-        <div class="col-lg-4 col-12 pr-0">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title"><i class="fas fa-briefcase"></i> TÌM KIẾM NÂNG CAO</h4>
-            </div>
-            <div class="card-content show">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <Multiselect v-model="maleFemale" :options="sex" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn giới tính" ></Multiselect>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <Multiselect v-model="birthday_year" :options="getYears" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn năm sinh" ></Multiselect>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <Multiselect v-model="level_education" :options="level" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trình độ" ></Multiselect>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <div class="form-field">
-                        <input type="button" value="Tìm ngay" class="form-control btn btn-warning text-dark" style="background-color: #ffb701 !important; border-color: #ffb701 !important" @click="search">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="row">        
         <div class="col-lg-8 col-12 p-r-0">
           <div class="card">
             <div class="card-header">
@@ -48,6 +13,61 @@
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
                 <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-12 pr-0">
+            <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">
+                <i class="fad fa-bullhorn"></i> TÌM KIẾM NÂNG CAO
+              </h4>
+            </div>
+            <div class="card-content show">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <Multiselect :options="money" v-model="currency" placeholder="Chọn loại tiền" :show-labels="false" :searchable="false" name="money"></Multiselect>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-field">
+                        <div class="select-wrap">
+                          <input name="salary_start" v-model="salary_start" type="text" class="form-control" placeholder="Mức lương tối thiểu....">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-field">
+                        <div class="select-wrap">
+                          <input name="salary_end" v-model="salary_end" type="text" class="form-control" placeholder="Mức lương tối đa....">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <Multiselect :options="visa" v-model="chooseVisa" placeholder="Chọn lĩnh vực" :show-labels="false" :searchable="false" :custom-label="nameWithLang1"></Multiselect>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <Multiselect :options="work_form" v-model="chooseWork" :custom-label="nameWithLang" placeholder="Hình thức làm việc" :show-labels="false" :searchable="false"></Multiselect>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-field">
+                        <input type="button" value="Tìm ngay" class="form-control btn btn-warning text-dark" style="background-color: #ffb701 !important; border-color: #ffb701 !important" @click="search">
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -71,23 +91,18 @@ export default {
     ]
   },
     data() {
-    return{
-      listCvs: [],
-      maleFemale: '',
-      level_education: '',
-      address_profile: '',
-      birthday_year: '',
-      years: [],
-      sex: [
-        'Nam', 
-        'Nữ'
-      ],
-      level: [
-        'Đại học',
-        'Cao đẳng',
-        'Trung cấp',
-        '12/12',
-        'Thấp hơn'
+    return{      
+      currency: '',
+      chooseWork: '',
+      chooseVisa: '',
+      salary_start: '',
+      salary_end: '',
+
+      money: ['$', 'VND', '€', '¥', '₩'],
+      work_form: [
+        {id: 1, name: 'Toàn thời gian'},
+        {id: 2, name: 'Bán thời gian'},
+        {id: 3, name: 'Vừa học vừa làm'}
       ],
     }
   },
@@ -104,37 +119,36 @@ export default {
     let searchCvs = await $axios.$get('searchCvs?search='
       +(route.query.keyword != null ? route.query.keyword : '')
     )
+    let getVisa = await $axios.$get(`getVisa`)
     return {
         arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
         arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
         arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
         arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
         arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
-        arrayCvs: searchCvs.data
+        arrayCvs: searchCvs.data,
+        visa: getVisa.data
     }
   },
   computed: {
-    getYears(){
-      let yearStart = 1970;
-      let yearEnd = 2020;
-      let years = Array(yearEnd-yearStart+1)
-        .fill()
-        .map(() => yearStart++);
-      return years;
-    },
+    
   },
 
   methods: {
     nameWithLang ({ name, id }) {
-      return `${name}`
-    },
+            return `${name}`
+        },
+    nameWithLang1 ({ profession, id }) {
+            return `${profession}`
+        },
     async search() {
-      let getCvs = await this.$axios.$get('searchCvs?search='
-        +(this.level_education != '' ? '&searchLevel=' + this.level_education : '')
-        +(this.birthday_year != '' ? '&birthday_year=' + this.birthday_year : '')
-        +(this.maleFemale != '' ? '&maleFemale=' + this.maleFemale : '')
-      )
-      this.arrayCvs = getCvs.data;
+      this.arrayJobNew = []   
+      let getTinTuyenDungNew = await this.$axios.$get('searchJobs?currency='+(this.currency == '' || this.currency == null ? '' : this.currency)
+                                                  +(this.chooseWork != '' && this.chooseWork != null ? '&work_form='+this.chooseWork.id : '')
+                                                  +(this.salary_start != '' ? '&salary_start='+this.salary_start : '')
+                                                  +(this.salary_end != '' ? '&salary_end='+this.salary_end : '')
+                                                  +(this.chooseVisa != '' && this.chooseVisa != null ? '&id_visa='+this.chooseVisa.id : ''))
+      this.arrayJobNew = getTinTuyenDungNew.data
     },
   },
 };

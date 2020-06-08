@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <!-- VIỆC LÀM MỚI -->
-    <div class="banner-tt">
+    <!-- <div class="banner-tt">
       <div class="litss">
         <div class="img-logoo">
           <img id="hmt" src="/app-assets/images/logo/homt.png" alt="branding logo" />
@@ -10,7 +10,7 @@
           <h3 style="display: contents;">Gửi tôi việc tương tự</h3>
           <a href="#follow" class="btn btn-outline-primary">Nhận thông báo</a>
         </div>
-        <!-- <div class="float-right-a">
+        <div class="float-right-a">
           <span style=" margin-right: 14px; color: BLACK; font-size: 17px;">Sắp xếp theo</span>
           <select id="cars" name="cars">
             <option value="1">1</option>
@@ -18,9 +18,9 @@
             <option value="3">3</option>
             <option value="4">4</option>
           </select>
-        </div> -->
+        </div>
       </div>
-    </div>
+    </div> -->
     <section>
       <div class="row">
         <div class="col-lg-8 col-12 p-r-0">
