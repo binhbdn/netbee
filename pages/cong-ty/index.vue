@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <section>
-        <h1 class="text-center" style="margin-bottom: 15px">Nhà tuyển dụng nổi bật</h1>
+        <!-- <h1 class="text-center" style="margin-bottom: 15px">Nhà tuyển dụng nổi bật</h1> -->
       <div class="row">
           <div class="col-8">
           <div class="card">
@@ -22,7 +22,7 @@
                                           <div class="carousel-item" :class="{'active': index == 0}" v-for="(companyInfo,index) in listVerifyCompany" :key="index">
                                               <div class="swiper-slide swiper-slide-next">
                                         <div class="spotlightBlock">
-                                            <div class="spotlightBlock__background" v-if="companyInfo.user.image_cover != null" role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${companyInfo.users.image_cover}` + ')' }"></div>
+                                            <div class="spotlightBlock__background" v-if="companyInfo.image_cover != null" role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${companyInfo.image_cover}` + ')' }"></div>
                                             <div class="spotlightBlock__background" v-else role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/assets/img/cover-netbee.jpg` + ')' }"></div>
                                             <div class="spotlightBlock__wrapper">
                                               <div class="is-mobile is-centered">
@@ -72,7 +72,7 @@
                 <!-- Carousel Options end -->
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-4" style="padding-left: 4px;">
             <div class="card">
                 <div class="card-header">
                     <h4 style="text-transform: uppercase">Công ty mới</h4>
@@ -141,7 +141,7 @@
             </div> 
             <div class="row text-right">
               <p style="width:100%; padding-right: 30px; font-size: 18px">
-                <span class="action-link"><a :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`">Xem chi tiết</a></span></p>
+                <span class="action-link"><a :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`" class="btn btn-bg-edit">Xem chi tiết</a></span></p>
           </div>
           </div>  
       </div> 
@@ -270,8 +270,8 @@ ol.carousel-indicators {
     transition: all 0.3s ease;
 }
 .action-link a {
-    border-bottom: 1px dotted #ea2635;
-    color: #EA2635;
+    /* border-bottom: 1px dotted #ea2635;
+    color: #EA2635; */
     text-decoration: none;
 }
 .list-company .list-company-item:nth-child(odd) {
@@ -455,7 +455,7 @@ ol.carousel-indicators {
     -webkit-transform: translateY(-4px) scale(1.2);
     -ms-transform: translateY(-4px) scale(1.2);
     transform: translateY(-4px) scale(1.2);
-    z-index: 30;
+    z-index: auto;
 }
 .clamped-content-spotlight-description-4{
   font-size: 16px;
@@ -476,5 +476,12 @@ ol.carousel-indicators {
 }
 .col-3 {
     max-width: 21%;
+}
+.btn-bg-edit {
+  color: #000;
+  border: 1px solid #ffc107;
+}
+.btn-bg-edit:hover {
+  background:#ffc107 ;
 }
 </style>

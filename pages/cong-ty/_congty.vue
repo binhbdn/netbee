@@ -1,7 +1,7 @@
 <template>
     <div class="container" style="padding-top:100px; position: relative">
         <div>
-            <img v-if="congty.nb_company != null && congty.avatar != null" style="width:100%; height:100%" v-lazy="`/uploads/users/covers/${congty.nb_company.image_cover}`">
+            <img v-if="congty.nb_company != null && congty.nb_company.image_cover != null" style="width:100%; height:100%" v-lazy="`/uploads/users/covers/${congty.nb_company.image_cover}`">
             <img v-else style="width:100%; height:100%" v-lazy="`/assets/img/cover-netbee.jpg`">
         </div>
       <section>

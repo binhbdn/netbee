@@ -275,7 +275,7 @@ class TinTuyenService extends BaseService {
                     'updated_at' => Carbon::now()
                 ];
                 $sortDelete = $this->update($data, $id);
-                $user = User::find('id',$job->id_created);
+                $user = User::find($job->id_created);                
                 $this->sendMailDestroy($user,$job);
                 return [
                     'status'=> 200,
