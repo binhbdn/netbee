@@ -155,9 +155,9 @@
                                                         <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
                                                     </td>
                                                     <td style="white-space: nowrap;">
-                                                        <span v-if="item.id_category == 1">Xuất khẩu lao động</span>
-                                                        <span v-if="item.id_category == 2">Du học sinh</span>
-                                                        <span v-if="item.id_category == 3">Tu nghiệp sinh</span>
+                                                        <span v-if="item.id_category == 1">Cẩm nang</span>
+                                                        <span v-if="item.id_category == 2">Xuất khẩu lao động</span>
+                                                        <span v-if="item.id_category == 3">Du học</span>
                                                     </td>
                                                     <td>
                                                         <div class="action-btns">
