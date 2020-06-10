@@ -13,10 +13,10 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">{{$t('footer.link.title')}} </h2>
                         <ul class="list-unstyled" style="line-height: 5px;"> 
-                            <li><a href="#" class="py-2 d-block a_footer">{{$t('footer.link.news')}}</a></li>
-                            <li><a href="#" class="py-2 d-block a_footer">{{$t('footer.link.regulations')}}</a></li>
-                            <li><a href="#" class="py-2 d-block a_footer">{{$t('footer.link.contact')}}</a></li>
-                            <li><a href="#" class="py-2 d-block a_footer">{{$t('footer.link.faq')}}</a></li>
+                            <li><a href="/tin-tuc" class="py-2 d-block a_footer">{{$t('footer.link.news')}}</a></li>
+                            <li><a href="/ve-netbee" class="py-2 d-block a_footer">{{$t('footer.link.regulations')}}</a></li>
+                            <li><a href="/lien-he" class="py-2 d-block a_footer">{{$t('footer.link.contact')}}</a></li>
+                            <li><a href="/ve-netbee" class="py-2 d-block a_footer">{{$t('footer.link.faq')}}</a></li>
                         </ul>
                     </div>
                 </div>
