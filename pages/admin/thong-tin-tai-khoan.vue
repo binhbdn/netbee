@@ -725,6 +725,7 @@ export default {
             }
         },
         async changeInfoCompany() {
+            console.log(this.changeInfoCompanyForm.files[0])
             if(this.changeInfoCompanyForm.files.length == 0) {
                 this.$swal(
                     'Lỗi!',
@@ -744,6 +745,8 @@ export default {
                     form.append('company_chance',this.changeInfoCompanyForm.companyChance);
                     form.append('company_link',this.changeInfoCompanyForm.companyLink);
                     form.append('image_cover',this.changeInfoCompanyForm.files[0]);
+
+                    console.log(form)
                     try {
                         this.$axios.post('changeInfoCompany',form).then((response) => {
                             if(response.data.status == 200){

@@ -64,7 +64,7 @@
                 <div class="card-body">
                     <div class="row p-t-10">
                         <div class="col-12">
-                            <div class="col-12 p-l-0 p-t-5">
+                            <div class="col-6 p-l-0 p-t-5">
                                 <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> THÔNG TIN TUYỂN DỤNG NHANH</h5>
                             </div>
                             <div class="row">
@@ -405,7 +405,7 @@
 </template>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=1459241224260897&autoLogAppEvents=1"></script>
 <script>
-import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate'
+import JobsList1ColNotCate from '~/components/Jobs/JobsList2ColNotCate'
 import JobsList1Col from '~/components/Jobs/JobsList1Col'
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
@@ -688,11 +688,15 @@ export default {
 .avatar-company {
     width: 170px;
 }
-.btn-netbee {
-    color: #ffb701 !important;
+.btn-netbee { 
     align-items: center;
     display: flex;
     justify-content: center;
+    background: #ffb701 !important;
+    color: #000 !important;
+    width:100%;
+    height: 70%;
+    
 }
 .btn-save {
     color: #55ce63 !important;

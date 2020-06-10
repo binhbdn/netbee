@@ -36,27 +36,27 @@
                         <form action="#" class="search-job">
                           <div class="row">
                             <div class="col-md-3">
-                              <div class="form-group" style="height: 67%;">
+                              <div class="form-group" style="height: 67%;margin-bottom: 14px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
                                   <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.jobs.key')" name="keyword" v-model="keyJobs">
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
+                            <div class="col-md-3" style="padding-left: 0px;">
+                              <div class="form-group" style="margin-bottom: 14px;">
                                 <Multiselect :options="jobs" v-model="type_job" :custom-label="nameWithLang" :placeholder="$t('banner.jobs.career')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
+                            <div class="col-md-3" style="padding-left: 0px;">
+                              <div class="form-group" style="margin-bottom: 14px;">
                                 <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" :placeholder="$t('banner.nation')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
-                            <div class="col-md-3">
-                              <div class="form-group">
+                            <div class="col-md-3" style="padding-left: 0px;">
+                              <div class="form-group" style="margin-bottom: 14px;">
                                 <div class="form-field">
                                   <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchJobs">
                                 </div>
