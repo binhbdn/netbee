@@ -2040,7 +2040,7 @@ html [type='button'],
 
 .header-navbar .navbar-container ul.nav li.dropdown-user .dropdown-menu-right .dropdown-item:hover,
 .header-navbar .navbar-container ul.nav li.dropdown-user .dropdown-menu-right .dropdown-item:active {
-    background: #7367F0;
+    /* background: #7367F0; */
     color: #FFFFFF !important;
 }
 

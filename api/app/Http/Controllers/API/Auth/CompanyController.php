@@ -62,7 +62,7 @@ class CompanyController extends Controller
             ]);
         }
         $data = [
-            'image_cover' => $request->image_cover ? $request->image_cover : null ,
+            // 'image_cover' => $request->image_cover ? $request->image_cover : null ,
             'company_hotline' => $request->company_hotline,
             'company_about' => $request->company_about,
             'username' => $request->username,
@@ -73,16 +73,32 @@ class CompanyController extends Controller
             'company_link' => $request->company_link,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
-        ];
+        ];        
         if($request->file('image_cover')) {
             try {
                 $file = $request->file('image_cover');
                 $fileinfo = pathinfo($file->getClientOriginalName());
-                $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
+                $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());                
                 $uploadPath = '/home/netbee.vn/html/static/uploads/users/covers';
-                $data['image_cover'] = $image;
-                //remove file old
+                $data['image_cover'] = $image;                
                 $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
+                $userId = Auth::user()->id;
+                if ($get) {
+                    $response = $this->nbCompanyInfoService->updateByUserId($data, $userId);            
+                } else {         
+                    $data['company_id'] = $userId;
+                    
+                    $response = $this->nbCompanyInfoService->store($data);   
+                }
+
+                if ($response) {
+                    return [
+                        'status' => 200,
+                        'message' => 'Cập nhật tin thành công',
+                        'data' => null
+                    ];
+                }
+                //remove file old                
                 if($get->image_cover != NULL && file_exists($uploadPath.$get->image_cover))
                 {
                     unlink($uploadPath.$get->image_cover);
@@ -94,24 +110,8 @@ class CompanyController extends Controller
                     'message' => 'Có lỗi xảy ra',
                     'data' => $e->getMessage()
                 ];
-            }
-        }
-        $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
-        $userId = Auth::user()->id;
-        if (!$get) {
-            $data['company_id'] = $userId;
-            $response = $this->nbCompanyInfoService->store($data);
-        } else {
-            $response = $this->nbCompanyInfoService->updateByUserId($data, $userId);
-        }
-
-        if ($response) {
-            return [
-                'status' => 200,
-                'message' => 'Cập nhật tin thành công',
-                'data' => null
-            ];
-        }
+            }           
+        }       
         return [
             'status' => 400,
             'message' => 'Có lỗi xảy ra',

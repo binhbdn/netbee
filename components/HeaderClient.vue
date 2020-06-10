@@ -1,7 +1,7 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
-    id="ftco-navbar"
+    class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" 
+    id="ftco-navbar" style="box-shadow: 0 1px 4px #887e7e !important;"
   >
     <div class="container">
       <a class="navbar-brandd" href="/">
