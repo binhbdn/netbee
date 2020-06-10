@@ -9,7 +9,7 @@
             <div class="remove-border-right">
                 <div class="remove-border-right" style="padding: 5px 0px;">
                     
-                    <a style="max-width: 205px;" class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
+                    <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 </div>
                 <div class="item-name">
                     <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.user.name }}</span></a>
@@ -52,6 +52,7 @@ export default {
 </script>
 <style scoped>
 .item-vip-a{
+    max-width: 250px;
     font-weight: 600;
     font-size: 16px;
 }
@@ -61,5 +62,14 @@ export default {
 
 .border-job-item:hover{
     background-color: #ffb7012b;
+}
+.ecommerce-application .list-view .ecommerce-card .card-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+}
+@media(max-width: 768px) {
+    .item-vip-a{
+        max-width: 140px;
+    }
 }
 </style>

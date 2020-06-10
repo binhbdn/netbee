@@ -43,19 +43,19 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-3" style="padding-left: 0px;">
+                            <div class="col-md-3" style="padding-left: 0px;" id="pd15">
                               <div class="form-group" style="margin-bottom: 14px;">
                                 <Multiselect :options="jobs" v-model="type_job" :custom-label="nameWithLang" :placeholder="$t('banner.jobs.career')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
-                            <div class="col-md-3" style="padding-left: 0px;">
+                            <div class="col-md-3" style="padding-left: 0px;" id="pd15">
                               <div class="form-group" style="margin-bottom: 14px;">
                                 <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" :placeholder="$t('banner.nation')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
-                            <div class="col-md-3" style="padding-left: 0px;">
+                            <div class="col-md-3" style="padding-left: 0px;" id="pd15">
                               <div class="form-group" style="margin-bottom: 14px;">
                                 <div class="form-field">
                                   <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchJobs">
@@ -477,5 +477,24 @@ export default {
 
 .multiselect__select:before {
     top: 54%;
+}
+@media(max-width: 768px) {
+  .nav-item{
+    width: 50%;
+    padding: 1px;
+  }
+  .nav-item a{
+    width: 100%;
+  }
+  .no-gutters{
+    height: auto !important;
+  }
+  #pd15{
+    padding-left: 13px !important;
+  }
+  .pb-5{
+    padding-bottom: 0px !important;
+  }
+  
 }
 </style>
