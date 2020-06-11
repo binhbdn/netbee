@@ -52,6 +52,7 @@ export default {
 </script>
 <style scoped>
 .item-vip-a{
+     max-width: 250px;
     font-weight: 600;
     font-size: 16px;
 }
@@ -65,5 +66,10 @@ export default {
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
     grid-template-columns: 1fr 3fr 2fr;
+}
+@media(max-width: 768px) {
+    .item-vip-a{
+        max-width: 140px;
+    }
 }
 </style>
