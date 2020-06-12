@@ -1,8 +1,8 @@
 <template>
     <div class="container" style="padding-top:100px; position: relative">
         <div>
-            <img v-if="congty.nb_company != null && congty.nb_company.image_cover != null" style="width:100%; height:100%" v-lazy="`/uploads/users/covers/${congty.nb_company.image_cover}`">
-            <img v-else style="width:100%; height:100%" v-lazy="`/assets/img/cover-netbee.jpg`">
+            <img v-if="congty.nb_company != null && congty.nb_company.image_cover != null" style="width:100%; height:450px" src="`/uploads/users/covers/${congty.nb_company.image_cover}`">
+            <img v-else style="width:100%; height:100%" src="`/assets/img/cover-netbee.jpg`">
         </div>
       <section>
         <div class="row">
@@ -175,7 +175,7 @@
       </section>
       <!-- Modal -->
         <div  class="modal fade text-left" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-dialog modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="col-md-12 col-lg-12 formlogin form-control" >
                     <h2 class="text-center mt-1" style="margin-bottom:15px">Vui lòng đăng nhập</h2>
@@ -254,7 +254,7 @@
         <!-- end Modal login -->
         <!-- Modal feedback -->
         <div class="modal fade text-left" id="modal_feedback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true" v-if="detailCompany != null">
-            <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-dialog modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="card p-1">
                 <div class="card-header pl-0">
@@ -304,7 +304,7 @@
         <!-- end Modal login -->
         <!-- Modal form feedback -->
         <div class="modal fade text-left" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-dialog modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="col-md-12 col-lg-12 formlogin form-control" >
                     <h2 class="text-center mt-1" style="margin-bottom:15px">Viết phản hồi</h2>
@@ -437,6 +437,27 @@ export default {
             followers: 0
         }
     },
+    async asyncData (context) {
+      
+        try {  
+        let detailRes = await context.app.$axios.$get(`getDetailCompanyById/${context.app.router.currentRoute.params.congty}`)      
+        context.seo({
+                name: detailRes.data.name,
+                title: detailRes.data.name,
+                keywords: detailRes.data.name.replace(/ /g, ","),
+                description: detailRes.data.nb_company.company_about,
+                openGraph: {
+                    title: detailRes.data.name,
+                    url: `https://netbee.vn${context.app.router.currentRoute.path}`,
+                    description: detailRes.data.nb_company.company_about,
+                    image: `https://netbee.vn/uploads/users/avatars${detailRes.data.avatar}`
+				}
+            })        
+        return { congty: detailRes.data }
+        }catch (er) {
+            return {congty : []}
+        }        
+    },
     methods: {
         saveJob() {
             this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuc.id}).then((response)=>{
@@ -541,28 +562,8 @@ export default {
         setRating: function(rating){
             this.formFeedback.rating= rating;
         }
-    },  
-    async asyncData (context) {
-        try {
-        let detailRes = await context.app.$axios.$get(`getDetailCompanyById/${context.app.router.currentRoute.params.congty}`)
-        context.seo({
-                name: detailRes.data[0].name,
-                title: detailRes.data[0].name,
-                keywords: detailRes.data[0].name.replace(/ /g, ","),
-                description: detailRes.data[0].company_about,
-                openGraph: {
-                    title: detailRes.data[0].name,
-                    url: `https://netbee.vn${context.app.router.currentRoute.path}`,
-                    description: detailRes.data[0].company_about,
-                    image: `https://netbee.vn/uploads/users/avatars${detailRes.data[0].avatar}`
-				}
-            })
-        return { congty: detailRes.data[0] }
-        }catch (er) {
-            return {congty : []}
-        }
-    },
-    mounted() {
+    },      
+    mounted() {        
         this.$axios.$get(`getTinTuyenDungForCompany/${this.$route.params.congty}?limit=5`).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
             this.countJob = response.data.count
