@@ -1,7 +1,7 @@
 <template>
     <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content h-100">
-            <div class="text-center p-1">
+            <div class="text-center p-1 ab">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 85px; max-width: 100%;">
                 </a>
@@ -71,5 +71,14 @@ export default {
     .item-vip-a{
         max-width: 140px;
     }
+}
+@media(max-width: 320px) {
+  .border-netbee{
+      padding: 6px;
+  }
+  .ab{
+      width: 0px;
+      padding: 4px !important;
+  }
 }
 </style>

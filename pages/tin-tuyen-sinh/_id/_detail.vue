@@ -64,8 +64,9 @@
                 <div class="card-body">
                     <div class="row p-t-10">
                         <div class="col-12">
-                            <div class="col-6 p-l-0 p-t-5">
+                            <div class="col-12 p-l-0 p-t-5">
                                 <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> THÔNG TIN TUYỂN DỤNG NHANH</h5>
+                                <hr class="hr-color" style="max-width: 284px;">
                             </div>
                             <div class="row">
                                 <div class="col-xl-12">
@@ -88,7 +89,7 @@
                         <div class="col-12">
                             <div class="col-12 p-l-0">
                                 <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> MÔ TẢ CÔNG VIỆC</h5>
-                                
+                                <hr class="hr-color" style="max-width: 163px;">
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -99,7 +100,7 @@
                         <div class="col-12">
                             <div class="col-12 p-l-0">
                                 <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> YÊU CẦU</h5>
-                                
+                                <hr class="hr-color" style="max-width: 90px;">
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -110,7 +111,7 @@
                         <div class="col-12">
                             <div class="col-12 p-l-0">
                                 <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> QUYỀN LỢI</h5>
-                                
+                                <hr class="hr-color" style="max-width: 108px;">
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -121,7 +122,7 @@
                         <div class="col-12">
                             <div class="col-12 p-l-0">
                                 <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> HỒ SƠ CẦN CHUẨN BỊ</h5>
-                                
+                                <hr class="hr-color" style="max-width: 194px;">
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -132,7 +133,7 @@
                         <div class="col-12 pb-2">
                             <div class="col-12 p-l-0">
                                 <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> CÁCH THỨC ỨNG TUYỂN</h5>
-                                
+                                <hr class="hr-color" style="max-width: 216px;">
                             </div>
                             <div class="row">
                                 
@@ -682,8 +683,8 @@ export default {
 </script>
 <style scoped>
 .line-title {
-    border-bottom: 2px solid #ffb701;
-    padding-bottom: 5px;
+    /* border-bottom: 2px solid #ffb701; */
+    padding-bottom: 0px;
 }
 .avatar-company {
     width: 170px;
@@ -790,6 +791,12 @@ export default {
     text-align: center;
     border-radius: 10px;
 }
-
+.hr-color{
+    background-color: #ffb701;
+    height: 2px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+}
 
 </style>

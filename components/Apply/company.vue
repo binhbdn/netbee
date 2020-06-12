@@ -25,7 +25,7 @@
                                                     {{item.id}}                                                    
                                                 </td>                                                
                                                 <td>
-                                                    <p style="margin-bottom: 0px;">{{item.job.title}}</p>
+                                                    <p style="margin-bottom: 0px;" v-if="item.job">{{item.job.title}}</p>                                                
                                                     <span style="font-size: 12px;" v-if="item.cv_id != null"><i>Hồ sơ online</i></span>
                                                     <span style="font-size: 12px;" v-if="item.cv_file != null"><i>Hồ sơ đính kèm</i></span>
                                                 </td>

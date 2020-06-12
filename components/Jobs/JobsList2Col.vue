@@ -14,3 +14,15 @@ export default {
     props: ['DataList']
 }
 </script>
+<style scoped>
+@media(max-width: 768px) {
+    .p-r-0{
+        padding-right: 14px !important;
+    }
+}
+@media(max-width: 320px) {
+  .p-r-0{
+      padding-right: 14px !important;
+  }
+}
+</style>

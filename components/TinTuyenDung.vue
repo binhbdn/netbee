@@ -131,7 +131,7 @@
                                                     <td class="text-left">
                                                         <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}} 
                                                         </a>
-                                                        <hr style="border-top: 1px dotted black;"><p class="text-center font-italic">{{item.name}}</p>
+                                                        <!-- <hr style="border-top: 1px dotted black;"><p class="text-center font-italic">{{item.name}}</p> -->
                                                     </td>
                                                     <td>
                                                         <div class="row">

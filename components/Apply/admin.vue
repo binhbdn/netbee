@@ -190,17 +190,23 @@
                                                         <th>Thời gian nộp</th>
                                                         <th>Hành động</th>
                                                     </tr>
-                                                </thead>
-                                                <tbody class="tab-table">
+                                                </thead>                                                
+                                                <tbody v-if="AllApply.length > 0" class="tab-table">                                                                                                        
                                                     <tr v-for="(item, index) in AllApply" :key="index">
                                                         <td>{{item.id}}</td>
-                                                        <td>{{item.job.title}}</td>
-                                                        <td>{{item.name}}</td>
+                                                        <td>                                                            
+                                                            <p v-if="item.job">{{item.job.title}}</p>
+                                                            <p v-else>Đang cập nhật</p>
+                                                        </td>
+                                                        
+                                                        <td>{{item.name}}</td>                                                        
                                                         <td>
                                                             <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" style="text-decoration: underline;">Xem hồ sơ</a>
                                                             <a v-if="item.nb_paper != null" @click="showFile(item.id)" style="text-decoration: underline;">Xem giấy tờ đính kèm</a>
                                                             <p v-if="item.status == 1">Chưa duyệt</p>
                                                             <p v-else-if="item.status == 2 && item.nb_paper == null">Đã duyệt hồ sơ</p>
+                                                            <p v-else-if="item.status == 3">Đã tuyển hồ sơ</p>
+                                                            <p v-else-if="item.status == 4">Đã từ chối hồ sơ</p>
                                                             <p v-else-if="item.status == 5">Đã duyệt hồ sơ đính kèm</p>
                                                             <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                                         </td>
@@ -232,8 +238,9 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                </tbody>
+                                                </tbody>                                                
                                             </table>
+                                            <Center v-if="AllApply.length == 0"><i>Không có hồ sơ ứng tuyển</i></Center>
                                             <!-- <infinite-loading
                                                 v-if="AllApply.length"
                                                 spinner="bubbles"
@@ -431,7 +438,7 @@ export default {
         },
         fetch() {
             this.$axios.$get('apply/getAllApply').then((response)=>{
-                this.AllApply=response.data;
+                this.AllApply=response.data;                
 	        });
 
         },
@@ -447,7 +454,7 @@ export default {
         },
         getAllApply(){
             this.$axios.$get('apply/getAllApply').then((response)=>{
-                this.AllApply=response.data;
+                this.AllApply=response.data;                
 	        });
         },
         getApplyWait(){

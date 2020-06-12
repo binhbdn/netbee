@@ -57,7 +57,7 @@
                                     <tbody class="tab-table">
                                         <tr v-for="(item, index) in AllApply" :key="index">
                                             <td>{{item.id}}</td>
-                                            <td>{{item.job.title}}</td>
+                                            <td v-if="item.job">{{item.job.title}}</td>
                                             <td>{{item.name}}</td>
                                             <td v-if="$auth.user.role == 3">
                                                 <span style="color: #fc205c">{{item.bonus}}{{ item.job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>

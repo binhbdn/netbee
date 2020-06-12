@@ -14,7 +14,7 @@ export default {
     name: 'IndexNews',
         layout: 'admin',
     head: {
-        title: 'Quản lý tin tuyển dụng',
+        title: 'Quản lý ứng tuyển',
     },
     components: {
         adminApplyManage,
