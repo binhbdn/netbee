@@ -105,7 +105,7 @@
                                 <div class="card-header">
                                   <h4 class="card-title"><i class="fad fa-business-time"></i>{{$t('home.title.jobs_hot')}}</h4>
                                   <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn border-netbee">{{$t('see_more')}}</a>
+                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn border-netbee aa">{{$t('see_more')}}</a>
                                 </div>
                                 <div class="card-content" style="position:relative">
                                     <div class="card-body">
@@ -214,7 +214,7 @@
               <div class="card-header">
                 <h4 class="card-title"><i class="fad fa-business-time"></i>{{$t('home.title.jobs_new')}}</h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn border-netbee">{{$t('see_more')}}</a>
+                <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn border-netbee aa">{{$t('see_more')}}</a>
               </div>
               <div class="card-content collapse show" style="padding: 13px">
                 <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="(typeof(arrayJobNew2) !== 'undefined') ? 10000 : null">
@@ -500,4 +500,9 @@
     background: rgba(78, 78, 78, 0.404);
   }
 
+  @media(max-width: 320px) {
+  .aa{
+      padding: 6px;
+  }
+}
 </style>

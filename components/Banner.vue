@@ -121,7 +121,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 aa">
                               <div class="form-group">
                                 <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" :placeholder="$t('banner.nation')" :show-labels="false" :searchable="false">
                                 </Multiselect>
@@ -149,12 +149,12 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 bb">
                               <div class="form-group">
                                 <Multiselect v-model="searchLevel" :options="level" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.candidates.level')" ></Multiselect>
                               </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3 cc">
                               <div class="form-group">
                                 <Multiselect v-model="searchAddress" :options="address" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.candidates.address')" ></Multiselect>
                               </div>
@@ -450,6 +450,11 @@ export default {
     transition: opacity .75s;
   }
 
+  .aa {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
   .slide-fade-enter-active {
     transition: all .3s ease;
   }
@@ -469,6 +474,7 @@ export default {
     color: #000;
 }
 
+
 .multiselect,
 .multiselect__input,
 .multiselect__single {
@@ -478,7 +484,38 @@ export default {
 .multiselect__select:before {
     top: 54%;
 }
+.bb{
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.cc{
+  padding-right: 6px;
+}
+@media(max-width: 320px) {
+  .aa {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+  .bb{
+  padding-left: 13px;
+  padding-right: 13px;
+  }
+  .cc{
+    padding-right: 13px;
+  }
+}
 @media(max-width: 768px) {
+  .aa {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+  .bb{
+  padding-left: 13px;
+  padding-right: 13px;
+  }
+  .cc{
+    padding-right: 13px;
+  }
   .nav-item{
     width: 50%;
     padding: 1px;
