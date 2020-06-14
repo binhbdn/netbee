@@ -1,9 +1,7 @@
 <template>
     <div class="container" style="padding-top:100px; position: relative">
-        <div>
-            <img v-if="congty.nb_company != null && congty.nb_company.image_cover != null" style="width:100%; height:450px" v-lazy="`/uploads/users/covers/${congty.nb_company.image_cover}`">
-            <img v-else style="width:100%; height:100%" v-lazy="`/assets/img/cover-netbee.jpg`">
-        </div>
+        <div class="bk-auto" v-if="congty.nb_company != null && congty.nb_company.image_cover != null" role="img" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${congty.nb_company.image_cover}` + ')' }"></div>
+        <div class="bk-auto" v-else role="img" :style="{ 'background-image': 'url(' + `/assets/img/cover-netbee.jpg` + ')' }"></div>
       <section>
         <div class="row">
           <div class="col-lg-12 col-12">
@@ -665,5 +663,12 @@ export default {
     -webkit-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
     opacity: 1;
+}
+.bk-auto{
+    width: 100%;
+    height: 455px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 </style>
