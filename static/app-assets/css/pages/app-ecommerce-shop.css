@@ -226,7 +226,8 @@
   color : #626262;
 }
 .ecommerce-application .ecommerce-card .item-name a:hover {
-  color : #7367F0;
+  /* color : #7367F0; */
+  color: #ffb701;
 }
 
 .ecommerce-application .ecommerce-card .item-description {
