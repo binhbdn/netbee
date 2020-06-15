@@ -58,7 +58,7 @@
       </section>
       <section>
         <div class="row">
-          <div class="col-lg-8 col-12">
+          <div class="col-lg-8 col-12" style="padding-right: 2px;">
             <div class="card">
               <div class="card-content collapse show">
                 <div class="card-body">

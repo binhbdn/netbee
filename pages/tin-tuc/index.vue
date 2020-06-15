@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="category p-b-15">
+        <!-- <section class="category p-b-15">
             <div class="container">
                 <div class="row d-flex">
                     <div class="col-md-6 pd-20">
@@ -9,7 +9,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <section class="bg-white" style="background-color: #f6f6f6!important;">
             <div class="container">
                 <div class="row">

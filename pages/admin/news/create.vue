@@ -51,7 +51,7 @@
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
                                                             <label for="basicInput">Nội dung</label>
-                                                            <vue-editor  v-model="dataNews.content" style="overfollow: scroll">
+                                                            <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="dataNews.content" style="overfollow: scroll">
 
                                                             </vue-editor>
                                                             <span style="color: red">{{ errors[0] }}</span>
@@ -94,6 +94,7 @@
 </template>
 <script>
 import Vue from "vue";
+import axios from "axios";
 import ImgUploader from '~/components/ImgUploader';
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
@@ -143,6 +144,23 @@ export default {
         }
     },
     methods:{
+        handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {        
+            var formData = new FormData();
+            formData.append("image", file);        
+            axios({
+                url: "https://api.imgur.com/3/upload",
+                method: "POST",
+                data: formData
+            })
+                .then(result => {
+                let url = result.data.url;
+                Editor.insertEmbed(cursorLocation, "image", url);
+                resetUploader();
+                })
+                .catch(err => {
+                console.log(err);
+                });
+            },
         nameWithLang ({ name, id }) {
             return `${id} - [${name}]`
         },
@@ -155,9 +173,7 @@ export default {
             form.append('content' , this.dataNews.content)
             form.append('short_content' , this.dataNews.short_content,)
             form.append('id_category' , this.id )
-            
-                
-                  
+                                              
             this.$axios.post('tintuc/createTinTuc',form)
             .then(response => {
                 if(response.data.status == 200) {
