@@ -60,6 +60,12 @@ class TinTucController extends Controller
         return response()->json($response);
     }
 
+    public function createTinTucImg(Request $request)
+    {
+        $response = $this->newsService->createimg($request);
+        return response()->json($response);
+    }
+
     public function updateTinTuc(Request $request)
     {
         $response = $this->newsService->updateNews($request);

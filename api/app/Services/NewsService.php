@@ -193,6 +193,28 @@ class NewsService extends BaseService{
         }
     }
 
+    public function createimg($request)
+    {
+        try {
+            $image = $request->image;
+            $image = str_replace('data:image/png;base64,', '', $image);
+            // $image = str_replace(' ', '+', $image);
+            $imageName = str_random(10).'.'.'png';
+            \File::put(storage_path(). '/' . $imageName, base64_decode($image));
+            return [
+                'status' => 200,
+                'message' => 'Tạo tin thành công',
+                'data' => null
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }        
+    }
+
     public function updateNews($request)
     {
         $id = $request->id;
