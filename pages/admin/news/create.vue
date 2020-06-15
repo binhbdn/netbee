@@ -148,7 +148,7 @@ export default {
             var formData = new FormData();
             formData.append("image", file);        
             axios({
-                url: "https://api.imgur.com/3/upload",
+                url: "https://fakeapi.yoursite.com/images",
                 method: "POST",
                 data: formData
             })
