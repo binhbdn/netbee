@@ -30,33 +30,33 @@
                       
                     </ul>
                     <!-- Tab panes -->
-                    <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
+                    <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;padding-left: 15px !important;padding-right: 15px !important;">
                       <div class="tab-pane active" id="v-pills-33" role="tabpanel"
                            aria-labelledby="v-pills-33-tab">
                         <form action="#" class="search-job">
                           <div class="row">
                             <div class="col-md-3">
-                              <div class="form-group" style="height: 67%;margin-bottom: 14px;">
+                              <div class="form-group" style="height: 74%;margin-bottom: 15px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
                                   <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.jobs.key')" name="keyword" v-model="keyJobs">
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-3" style="padding-left: 0px;" id="pd15">
-                              <div class="form-group" style="margin-bottom: 14px;">
+                            <div class="col-md-3" style="padding-left: 2px;" id="pd15">
+                              <div class="form-group" style="margin-bottom: 15px;">
                                 <Multiselect :options="jobs" v-model="type_job" :custom-label="nameWithLang" :placeholder="$t('banner.jobs.career')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
-                            <div class="col-md-3" style="padding-left: 0px;" id="pd15">
-                              <div class="form-group" style="margin-bottom: 14px;">
+                            <div class="col-md-3" style="padding-left: 2px;" id="pd15">
+                              <div class="form-group" style="margin-bottom: 15px;">
                                 <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" :placeholder="$t('banner.nation')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
-                            <div class="col-md-3" style="padding-left: 0px;" id="pd15">
-                              <div class="form-group" style="margin-bottom: 14px;">
+                            <div class="col-md-3" style="padding-left: 2px;" id="pd15">
+                              <div class="form-group" style="margin-bottom: 15px;">
                                 <div class="form-field">
                                   <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchJobs">
                                 </div>
@@ -114,7 +114,7 @@
                         <form action="" class="search-job">
                           <div class="row">
                             <div class="col-md-5">
-                              <div class="form-group" style="height: 67%;">
+                              <div class="form-group" style="height: 74%;margin-bottom: 15px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
                                   <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.company.key')" name="keyword" value="" v-model="keysearch">
@@ -122,13 +122,13 @@
                               </div>
                             </div>
                             <div class="col-md-4 aa">
-                              <div class="form-group">
+                              <div class="form-group" style="margin-bottom: 15px;">
                                 <Multiselect :options="nation" v-model="chooseNation" :custom-label="nameWithLang" :placeholder="$t('banner.nation')" :show-labels="false" :searchable="false">
                                 </Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <div class="form-group">
+                              <div class="form-group" style="margin-bottom: 15px;">
                                 <div class="form-field">
                                   <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchCompany">
                                 </div>
@@ -142,7 +142,7 @@
                         <form action="" class="search-job">
                           <div class="row">
                             <div class="col-md-3">
-                              <div class="form-group" style="height: 67%;">
+                              <div class="form-group" style="height: 74%;margin-bottom: 15px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
                                   <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.candidates.key')" name="keyword" value="" v-model="keyCvs">
@@ -150,17 +150,17 @@
                               </div>
                             </div>
                             <div class="col-md-3 bb">
-                              <div class="form-group">
+                              <div class="form-group" style="margin-bottom: 15px;">
                                 <Multiselect v-model="searchLevel" :options="level" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.candidates.level')" ></Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3 cc">
-                              <div class="form-group">
+                              <div class="form-group" style="margin-bottom: 15px;">
                                 <Multiselect v-model="searchAddress" :options="address" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.candidates.address')" ></Multiselect>
                               </div>
                             </div>
                             <div class="col-md-3">
-                              <div class="form-group">
+                              <div class="form-group" style="margin-bottom: 15px;">
                                 <div class="form-field">
                                   <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchCvs">
                                 </div>
@@ -451,8 +451,8 @@ export default {
   }
 
   .aa {
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 2px;
+    padding-right: 2px;
   }
 
   .slide-fade-enter-active {
@@ -485,11 +485,11 @@ export default {
     top: 54%;
 }
 .bb{
-  padding-left: 6px;
-  padding-right: 6px;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 .cc{
-  padding-right: 6px;
+  padding-right: 2px;
 }
 @media(max-width: 320px) {
   .aa {
