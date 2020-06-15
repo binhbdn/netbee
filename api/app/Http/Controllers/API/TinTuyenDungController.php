@@ -27,6 +27,12 @@ class TinTuyenDungController extends Controller
         return response()->json($response);
     }
 
+    public function getTinTuyenDungNewPage(Request $request)
+    {
+        $response = $this->tinTuyenService->getTinTuyenDungPageNews($request->perPage);
+        return response()->json($response);
+    }
+
     public function getTinTuyenDungHot(Request $request)
     {
         $response = $this->tinTuyenService->getNewsHot($request->limit);

@@ -700,6 +700,19 @@ class TinTuyenService extends BaseService {
         ];
     }
 
+    public function getTinTuyenDungPageNews($perPage){       
+        $query = $this->getJobValid()->where('isPublic',self::ACTIVE);
+        $query->paginate($perPage);
+        $news = $query->orderBy('id', 'desc')->get();
+        return [
+            'status'=> 200,
+            'message' => 'Thành công',
+            'data' => [
+                'tintuyendung' => $news
+            ]
+        ];
+    }
+
     public function getNewsHot($limit)
     {
         $query = $this->getJobValid()

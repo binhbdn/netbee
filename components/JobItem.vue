@@ -7,21 +7,20 @@
                 </a>
             </div>
             <div class="remove-border-right">
-                <div class="remove-border-right" style="padding: 5px 0px;">
+                <div class="remove-border-right" style="padding-top: 14px;padding-bottom: 0px;">
                     
                     <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 </div>
                 <div class="item-name">
-                    <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.user.name }}</span></a>
+                    <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company item-vip-a mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.user.name }}</span></a>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-location-arrow"></i> {{ job.nation.name }}</p>
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
-                <div class="item-quantity d-flex justify-content-between">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</p>
-                    <p class="delivery-date" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
-                </div>
+                <div >                   
+                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="top" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</p>                                                                                 
+                </div>        
             </div>
             <div class="item-options text-center mt-1" >
                 <div class="item-wrapper">
@@ -34,6 +33,7 @@
                             </span>
                         </a>
                     </p>
+                     <p class="delivery-date mg-top-10" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
                 </div>
             </div>
         </div>
@@ -59,13 +59,19 @@ export default {
 .highlight{
     border-left: 4px solid #ffb701 !important;
 }
-
+.mg-b{
+    margin-bottom: 0px;
+}
 .border-job-item:hover{
     background-color: #ffb7012b;
 }
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
     grid-template-columns: 1fr 3fr 2fr;
+}
+.mg-top-10{
+    margin-top: 10px;
+    margin-bottom: 0px;
 }
 @media(max-width: 768px) {
     .item-vip-a{
