@@ -51,7 +51,7 @@
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
                                                             <label for="basicInput">Nội dung</label>
-                                                            <vue-editor  v-model="dataNews.content"></vue-editor>
+                                                            <vue-editor useCustomImageHandler @image-added="handleImageAdded" v-model="dataNews.content"></vue-editor>
                                                             <span style="color: red">{{ errors[0] }}</span>
                                                         </fieldset>
                                                     </ValidationProvider>
@@ -93,6 +93,7 @@
 </template>
 <script>
 import Vue from "vue";
+import axios from 'axios';
 import ImgUploader from '../../../../components/ImgUploader';
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
@@ -145,6 +146,26 @@ export default {
         }
     },
     methods:{
+        handleImageAdded(file, Editor, cursorLocation) {
+            const CLIENT_ID = '993793b1d8d3e2e'
+            var formData = new FormData();
+            formData.append('image', file)
+            axios({
+                url: 'https://api.imgur.com/3/image',
+                method: 'POST',
+                headers:{
+                'Authorization': 'Client-ID ' + CLIENT_ID
+                },
+                data: formData
+            })
+            .then((result) => {             
+                let url = result.data.data.link
+                Editor.insertEmbed(cursorLocation, 'image', url);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        },
         async fetch (route) {
             let res = await this.$axios.$get(`getDetailTinTuc/${this.$route.params.id}`)
             this.dataNews.title = res.data.title

@@ -169,8 +169,7 @@ export default {
                 },
                 data: formData
             })
-            .then((result) => {
-                console.log(result);
+            .then((result) => {             
                 let url = result.data.data.link
                 Editor.insertEmbed(cursorLocation, 'image', url);
             })
