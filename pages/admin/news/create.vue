@@ -155,9 +155,7 @@ export default {
             form.append('content' , this.dataNews.content)
             form.append('short_content' , this.dataNews.short_content,)
             form.append('id_category' , this.id )
-            
-                
-                  
+                                              
             this.$axios.post('tintuc/createTinTuc',form)
             .then(response => {
                 if(response.data.status == 200) {

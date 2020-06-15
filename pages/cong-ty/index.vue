@@ -81,8 +81,8 @@
                     <div class="row">
                         <div class="col-md-4 col-6 user-latest-img" v-for="(companyInfo,index) in listNewCompany" :key="index">
                             <a :href="`cong-ty/${companyInfo.username}`">
-                              <img v-if="companyInfo.user.avatar != null" :src="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                              <img v-else src="assets/img/logo.png" class="img-fluid mb-1 rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
+                              <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
+                              <img v-else v-lazy="`assets/img/logo.png`" class="img-fluid mb-1 rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
                             </a>
                         </div>
                     </div>
@@ -107,8 +107,8 @@
             <div class="content-box">
             <div class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
               <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`" rel="nofollow" target="_blank">
-                <img v-if="companyInfo.user.avatar != null" class=" ls-is-cached lazyloaded" :src="`/uploads/users/avatars/${companyInfo.user.avatar}`">
-                <img v-else class=" ls-is-cached lazyloaded" src="https://netbee.vn/_nuxt/img/377bc00.png">
+                <img v-if="companyInfo.user.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`">
+                <img v-else class=" ls-is-cached lazyloaded" v-lazy="`https://netbee.vn/_nuxt/img/377bc00.png`">
               </a>
               </div>
             </div>
@@ -146,6 +146,15 @@
           </div>  
       </div> 
       </div>
+      <infinite-loading
+                v-if="listAllCompany.length"
+                spinner="bubbles"    
+                ref="infiniteLoading" 
+                @infinite="infiniteScroll" style="padding:20px; width:100%"
+            >        
+            <div slot="no-more" style="font-size:15px; font-style: italic;display: none;">Hết</div>    
+            <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+        </infinite-loading>
     </section>
   </div>
 </template>
@@ -161,7 +170,8 @@ export default {
       rating:3,
       listAllCompany: [],
       listVerifyCompany: [],
-      listNewCompany: []
+      listNewCompany: [],
+      page: 1
       
     }
   },
@@ -176,13 +186,33 @@ export default {
   },
   methods: {
     async fetch(){
-      let getAllCompany = await this.$axios.get('getListCompany?perPage=6');
+      let getAllCompany = await this.$axios.get('getListCompany?perPage=3');
       this.listAllCompany = getAllCompany.data.data.data;
       let getVerifyCompany = await this.$axios.get('getListCompany?type=2&limit=5&perPage=0');
       this.listVerifyCompany = getVerifyCompany.data.data;
       let getNewCompany = await this.$axios.get('getListCompany?type=1&limit=9&perPage=0');
       this.listNewCompany = getNewCompany.data.data;
-    }
+    },
+    infiniteScroll($state) {
+            setTimeout(() => {
+                this.page++
+                this.$axios
+                .get('getListCompany?perPage=3'+ '&page='+this.page)
+                 .then((response) => {
+                   console.log(response)
+                    if (response.data.data.data.length > 1) {
+                        response.data.data.data.forEach((item) => this.listAllCompany.push(item))
+                        $state.loaded()
+                    } else {
+                        $state.complete()
+                    }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }, 500)
+            }        
+                
   },
 };
 </script>

@@ -13,7 +13,16 @@
             <div class="card-content collapse show">
               <div class="card-body scrollbar">
                 <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
-              </div>
+                <infinite-loading
+                    v-if="arrayJobNew.length"
+                    spinner="bubbles"    
+                    ref="infiniteLoading" 
+                    @infinite="infiniteScroll" style="padding:20px; width:100%"
+                >        
+                  <div slot="no-more" style="font-size:15px; font-style: italic;">Không còn kết quả.</div>    
+                  <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+                </infinite-loading>
+              </div>            
             </div>
           </div>
         </div>
@@ -104,6 +113,7 @@ export default {
         {id: 2, name: 'Bán thời gian'},
         {id: 3, name: 'Vừa học vừa làm'}
       ],
+      page: 1
     }
   },
   components: {
@@ -111,7 +121,7 @@ export default {
     JobsList1ColNotCate, Multiselect
   },
   async asyncData({$axios, route}) {
-    let getTinTuyenDungNew = await $axios.$get(`getTinTuyenDungNew?limit=20&type=0`)
+    let getTinTuyenDungNew = await $axios.$get('getTinTuyenDungNewPage?perPage=6')
     let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=20&type=1`)
     let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=2`)
     let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=3`)
@@ -120,6 +130,7 @@ export default {
       +(route.query.keyword != null ? route.query.keyword : '')
     )
     let getVisa = await $axios.$get(`getVisa`)
+
     return {
         arrayJobNew: getTinTuyenDungNew.data.tintuyendung,
         arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
@@ -135,6 +146,24 @@ export default {
   },
 
   methods: {
+    infiniteScroll($state) {     
+      setTimeout(() => {
+          this.page++
+          this.$axios
+          .get('getTinTuyenDungNewPage?perPage=6'+ '&page='+this.page)
+            .then((response) => {            
+              if (response.data.data.tintuyendung.length > 1) {
+                  response.data.data.tintuyendung.forEach((item) => this.arrayJobNew.push(item))
+                  $state.loaded()
+              } else {
+                  $state.complete()
+              }
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+      }, 500)
+      },   
     nameWithLang ({ name, id }) {
             return `${name}`
         },
