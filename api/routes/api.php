@@ -100,6 +100,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('deleteTinTuc', 'Admin\TinTucController@deleteTinTuc');
         Route::post('deleteMultipleTinTuc', 'Admin\TinTucController@deleteMultipleTinTuc');
         Route::post('createTinTuc', 'Admin\TinTucController@createTinTuc');
+        Route::post('createTinTucImg', 'Admin\TinTucController@createTinTucImg');
         Route::post('updateTinTuc', 'Admin\TinTucController@updateTinTuc');
         Route::get('searchTinTuc', 'Admin\TinTucController@searchTinTuc');
       });
