@@ -51,7 +51,7 @@
             </div>
           </div>
           <div class="col-md-5  align-self-stretch ftco-animate" style="padding: 0 10px;">
-            <div class="d_item v_block bg__" style="background-color: #ffb701">
+            <div class="d_item v_block bg__">
               <a class="media block-6 services d-block" href="">
                 <div class="icon text-center SB_bn">
                   <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 512.039 512.039"
@@ -258,7 +258,7 @@
                               <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
                                 <li class="nav-item">
                                   <a class="nav-link active" id="home-tab-fill" data-toggle="tab" href="#home-fill"
-                                      role="tab" aria-controls="home-fill" aria-selected="true"><i
+                                      role="tab" aria-controls="home-fill" aria-selected="true" ><i
                                     class="fad fa-align-center"></i>{{$t('home.field')}}</a>
                                 </li>
                                 <li class="nav-item">

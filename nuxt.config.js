@@ -170,14 +170,15 @@ module.exports = {
         '~/plugins/axios.js',
         '~/plugins/helppers.js',
         '~/plugins/vue-lazyload.js',
-        '~/plugins/jsonld.js',
+        '~/plugins/jsonld.js',        
         { src: './plugins/vue2-editor', ssr: false },
         { src: '~/plugins/full-calendar.js', ssr: false },
         { src: '~/plugins/vue-fb-customer-chat.js', ssr: false },
         { src: '~/plugins/infiniteloading', ssr: false },
         { src: '~/plugins/chart', ssr: false },
         { src: '~/plugins/hchs-vue-charts', ssr: false },
-        { src: '~/plugins/i18n.js', ssr: true }
+        { src: '~/plugins/i18n.js', ssr: true },
+        { src: '~/plugins/vue-particles.js', ssr: false },
     ],
     vue: {
         config: {
