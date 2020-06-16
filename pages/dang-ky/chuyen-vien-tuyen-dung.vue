@@ -28,7 +28,7 @@
                     <div class="form-group" style="margin-bottom:0px;">
                         <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Họ & Tên</label>
                         <input type="text" class="form-control" name="name" v-model="userForm.name">
-                        <ul style="color:red" class="overline text-left">
+                        <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
                             </li>
@@ -44,7 +44,7 @@
                     <div class="form-group" style="margin-bottom:0px;">
                         <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Email</label>
                         <input type="email" class="form-control" name="email" v-model="userForm.email">
-                        <ul style="color:red" class="overline text-left">
+                        <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
                             </li>
@@ -60,7 +60,7 @@
                         <div class="form-group" style="margin-bottom:0px;">
                             <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Số điện thoại</label>
                             <input type="text" class="form-control" name="phone" v-model="userForm.phone">
-                            <ul style="color:red" class="overline text-left">
+                            <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
                             </li>
@@ -77,13 +77,13 @@
                             <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Mật khẩu</label>
                             <div class="input-group">
                               <input :type="show ? 'password' : 'text'" class="form-control" name="password" v-model="userForm.password">
-                              <div class="input-group-addon" style="padding: 10px;">
+                              <div class="input-group-addon" style="padding: 10px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                   <a @click="showPassword()">
                                       <i :class="show ?'fad fa-eye':'fas fa-eye-slash'" aria-hidden="true"></i>                                   
                                   </a>
                               </div>
                             </div>
-                            <ul style="color:red" class="overline text-left">
+                            <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                                 <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
                                 </li>
@@ -99,7 +99,7 @@
                         <div class="form-group" style="margin-bottom:0px;">
                             <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register"><span class="text-danger">(*)</span>Nhập lại mật khẩu</label>
                             <input :type="show ? 'password' : 'text'" class="form-control" name="password_confirmation" v-model="userForm.password_confirmation" data-vv-as="password">
-                            <ul style="color:red" class="overline text-left">
+                            <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                                 <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
                                 </li>
