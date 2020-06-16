@@ -6,11 +6,8 @@
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 85px; max-width: 100%;">
                 </a>
             </div>
-            <div class="remove-border-right">
-                <div class="remove-border-right" style="padding-top: 14px;padding-bottom: 0px;">
-                    
-                    <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
-                </div>
+            <div class="remove-border-right" style="margin: auto; width: 100%;">
+                <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 <div class="item-name">
                     <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company item-vip-a mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.user.name }}</span></a>
                 </div>
@@ -23,9 +20,8 @@
                 </div>        
             </div>
             <div class="item-options text-center mt-1" >
-                <div class="item-wrapper">
-                    
-                    <span class="item-hot" style="font-size: 1rem"  v-if="job.highlight_job == 2"><i class="fas fa-star" style="color: gold;"></i> Hot</span>
+                <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
+                <div class="item-wrapper" style="margin-top: -5px;">
                     <p class="delivery-date mb-0 mt-1" data-toggle="tooltip" data-placement="top" title="">
                         <a :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
                             <span class="badge border-netbee badge-sm" style="width: 100px">
@@ -33,7 +29,7 @@
                             </span>
                         </a>
                     </p>
-                     <p class="delivery-date mg-top-10" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
+                     <p class="delivery-date mg-top-5" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
                 </div>
             </div>
         </div>
@@ -69,9 +65,28 @@ export default {
     display: grid;
     grid-template-columns: 1fr 3fr 2fr;
 }
-.mg-top-10{
-    margin-top: 10px;
+.mg-top-5{
+    margin-top: 5px;
     margin-bottom: 0px;
+}
+.hot{
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 2;
+    font-size: 9px;
+    border-radius: 2px;
+    right: 10px;
+    font-weight: 700;
+}
+.hot img {
+    width: 6%;
+    float: right;
+    position: absolute;
+    right: 15px;
+    top: 0;
+}
+.p-r-0 .hot img{
+    right: 0 !important;
 }
 @media(max-width: 768px) {
     .item-vip-a{
