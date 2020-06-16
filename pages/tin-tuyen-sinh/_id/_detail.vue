@@ -65,8 +65,8 @@
                     <div class="row p-t-10">
                         <div class="col-12">
                             <div class="col-12 p-l-0 p-t-5">
-                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> THÔNG TIN TUYỂN DỤNG NHANH</h5>
-                                <hr class="hr-color" style="max-width: 284px;">
+                                <h5 class="font-weight-600 line-title line1"> THÔNG TIN TUYỂN DỤNG NHANH</h5>
+                                <!-- <hr class="hr-color" style="max-width: 284px;"> -->
                             </div>
                             <div class="row">
                                 <div class="col-xl-12">
@@ -88,8 +88,8 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> MÔ TẢ CÔNG VIỆC</h5>
-                                <hr class="hr-color" style="max-width: 163px;">
+                                <h5 class="font-weight-600 line-title line2"> MÔ TẢ CÔNG VIỆC</h5>
+                                <!-- <hr class="hr-color" style="max-width: 163px;"> -->
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -99,8 +99,8 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> YÊU CẦU</h5>
-                                <hr class="hr-color" style="max-width: 90px;">
+                                <h5 class="font-weight-600 line-title line3"> YÊU CẦU</h5>
+                                <!-- <hr class="hr-color" style="max-width: 90px;"> -->
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -110,8 +110,8 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> QUYỀN LỢI</h5>
-                                <hr class="hr-color" style="max-width: 108px;">
+                                <h5 class="font-weight-600 line-title line4"> QUYỀN LỢI</h5>
+                                <!-- <hr class="hr-color" style="max-width: 108px;"> -->
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -121,8 +121,8 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> HỒ SƠ CẦN CHUẨN BỊ</h5>
-                                <hr class="hr-color" style="max-width: 194px;">
+                                <h5 class="font-weight-600 line-title line5"> HỒ SƠ CẦN CHUẨN BỊ</h5>
+                                <!-- <hr class="hr-color" style="max-width: 194px;"> -->
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -132,8 +132,8 @@
                         </div>
                         <div class="col-12 pb-2">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title"><i class="fad fa-bell-plus"></i> CÁCH THỨC ỨNG TUYỂN</h5>
-                                <hr class="hr-color" style="max-width: 216px;">
+                                <h5 class="font-weight-600 line-title line6"> CÁCH THỨC ỨNG TUYỂN</h5>
+                                <!-- <hr class="hr-color" style="max-width: 216px;"> -->
                             </div>
                             <div class="row">
                                 
@@ -682,12 +682,49 @@ export default {
 }
 </script>
 <style scoped>
+.card{
+    border-radius: 3px;
+}
 .line-title {
     /* border-bottom: 2px solid #ffb701; */
     padding-bottom: 0px;
 }
+.line1,.line2,.line3,.line4,.line5,.line6{
+    margin: 0;
+    padding-bottom: 7px;
+    position: relative;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 12px;
+}
+
+.line1::before,.line2::before,.line3::before,.line4::before,.line5::before,.line6::before{
+    position: absolute;
+  background: #ffb701;
+  height: 2px;
+  content: '';  
+  bottom: -2px;
+  left: 0;
+}
+.line1::before{
+    width: 265px;
+}
+.line2::before{
+    width: 147px;
+}
+.line3::before{
+    width: 70px;
+}
+.line4::before{
+    width: 93px;
+}
+.line5::before{
+    width: 176px;
+}
+.line6::before{
+    width: 200px;
+}
 .avatar-company {
-    width: 170px;
+    width: 167px;
 }
 .btn-netbee { 
     align-items: center;
