@@ -1,6 +1,6 @@
 <template>
     
-    <div class="hero-wrap js-fullheight m-b-15"  v-lazy:background-image="'/assets/img/banerThanh.png'"  style="position: relative;background-position: center; " >        
+    <div  class="hero-wrap js-fullheight m-b-15"  v-lazy:background-image="'/assets/img/banerThanh.png'"  style="position: relative;background-position: center; " >        
 
     <div class="section-intro" :class="show ? 'section-intro-active' : ''">
       <vue-particles color="#dedede"
@@ -197,7 +197,7 @@ Vue.use(VueParticles)
 export default {
    name: 'Header',
     data () {
-      return {
+      return {        
         keysearch: '',
         keyJobs: '',
         keyCvs: '',
@@ -232,7 +232,7 @@ export default {
     },
     components:{
       Multiselect,
-    },
+    },  
     methods: {
       async fetch (route) {
         let res = await this.$axios.$get(`getQuocGia`)
