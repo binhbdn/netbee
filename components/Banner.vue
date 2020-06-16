@@ -1,13 +1,19 @@
 <template>
-  <div class="hero-wrap js-fullheight m-b-15" v-lazy:background-image="'/assets/img/banner.jpg'" style="position: relative; height: 100%;" >
+    
+    <div class="hero-wrap js-fullheight m-b-15"  v-lazy:background-image="'/assets/img/banerThanh.png'"  style="position: relative;background-position: center; " >        
+
     <div class="section-intro" :class="show ? 'section-intro-active' : ''">
-      <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+      <vue-particles color="#dedede"
+        :particleOpacity="0.9"
+        :particlesNumber="130" class="parti"></vue-particles>  
+      <div class="container">                      
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">         
           <div class="col-xl-12 ftco-animate mb-5 pb-5 container" data-scrollax=" properties: { translateY: '70%' }">
             <p class="mb-4 mt-5 " data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></p>
-            <div class="ftco-search container pl-0 pr-0">
+            <div class="ftco-search container pl-0 pr-0">                         
               <div class="row">
                 <div class="card-content col-md-12 pl-0 pr-0" style="padding-top: 70px!important">
+                  
                   <div class="card-body search ">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
@@ -178,13 +184,16 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div>            
+      
+   </div>     
 </template>
 <script>
+import Vue from 'vue'
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
-
+import VueParticles from 'vue-particles'
+Vue.use(VueParticles)
 export default {
    name: 'Header',
     data () {
@@ -260,7 +269,16 @@ export default {
     }
 }
 </script>
+<style>
+  .particles-js-canvas-el{  
+  height: 300px !important;
+}
+</style>
 <style scoped>
+  .parti{
+        max-height: 0px;
+        position: relative;
+  }
   .ftco-search .nav-pills .nav-link.active, .ftco-search .nav-pills .nav-link:hover {
     color: #ffb701!important;
     -moz-transition: all 0.3s ease;
@@ -382,7 +400,7 @@ export default {
      height: 98%;
      display: inline-block;
      border: 1px solid transparent;
-     background: #ffb701;
+     background: #fff;
      border-top-left-radius: 5px!important;
      border-top-right-radius: 5px!important;
      margin-right: 5px;

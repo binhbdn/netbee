@@ -3322,7 +3322,7 @@ body[data-col='1-column'] .header-navbar.floating-nav {
 }
 
 .nav.nav-tabs .nav-item .nav-link {
-    color: #626262;
+    color: #000;
     font-size: 0.95rem;
     border: none;
     min-width: auto;
