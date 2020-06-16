@@ -103,7 +103,7 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                  <h4 class="card-title"><i class="fad fa-business-time"></i>{{$t('home.title.jobs_hot')}}</h4>
+                                  <h4 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_hot')}}</h4>
                                   <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                                   <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn border-netbee aa">{{$t('see_more')}}</a>
                                 </div>
@@ -148,56 +148,58 @@
     <!--section Tại sao chon netbee-->
     <section class="ftco-section services-section card why" style="background: #fff; text-align:center">
       <div class="container">
-        <h1 class="text-center NB_benefit" style="text-transform:uppercase">{{$t('home.advantages.title')}}</h1>
-        <div class="row ">
-          <div class="col-md-3  align-self-stretch ftco-animate ">
-            <div class="d_item v_block" style="">
-              <a class="media block-6 services d-block" href="">
-                <div class="icon text-center SB_bn">
-                  <img v-lazy="`/assets/img/mang-luoi.png`" alt="">
+        <h1 class="text-center NB_benefit" style="text-transform:uppercase"> {{$t('home.advantages.title')}}</h1>
+        <div class="col-md-12" style="padding: 0">
+          <div class="row">
+            <div class="col-md-3" style="text-align: center; margin: 0">
+              <div class="col-md-12 ncd-border-style">
+                <div class="ncd-footer-content">
+                  <div class="icon text-center SB_bn">
+                    <img v-lazy="`/assets/img/anh1-ncd.jpg`" alt="netbee" style="width: 100%; border-radius: 10px;">
+                  </div>
+                  <div class="media-body benefit-item-icon">
+                    <h3 class="text-center" style="margin-bottom: 10px; text-transform:uppercase">{{$t('home.advantages.net.title')}}</h3>
+                    <p>{{$t('home.advantages.net.decs')}}</p>
+                  </div>
                 </div>
-                <div class="media-body benefit-item-icon">
-                  <h3 class="heading text-center" style="padding-top:10px">{{$t('home.advantages.net.title')}}</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.net.decs')}}</p>
-                </div>
-              </a>
+              </div>
             </div>
-          </div>
-          <div class="col-md-3  align-self-stretch ftco-animate">
-            <div class="d_item v_block">
-              <a class="media block-6 services d-block" href="">
-                <div class="icon text-center SB_bn">
-                  <img v-lazy="`/assets/img/CTV.png`" alt="">
+            <div class="col-md-3" style="text-align: center; margin: 0">
+              <div class="col-md-12 ncd-border-style">
+                <div class="ncd-footer-content">
+                  <div class="icon text-center SB_bn">
+                    <img v-lazy="`/assets/img/anh2-ncd.jpg`" alt="netbee" style="width: 100%; border-radius: 10px;">
+                  </div>
+                  <div class="media-body benefit-item-icon">
+                    <h3 class="text-center" style="margin-bottom: 10px; text-transform:uppercase">{{$t('home.advantages.CTV.title')}}</h3>
+                    <p>{{$t('home.advantages.CTV.decs')}}</p>
+                  </div>
                 </div>
-                <div class="media-body benefit-item-icon">
-                  <h3 class="heading text-center" style="padding-top:10px">{{$t('home.advantages.CTV.title')}}</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.CTV.decs')}}</p>
-                </div>
-              </a>
+              </div>
             </div>
-          </div>
-          <div class="col-md-3  align-self-stretch ftco-animate">
-            <div class="d_item v_block bg__">
-              <a class="media block-6 services d-block" href="">
-                <div class="icon text-center SB_bn">
-                  <img v-lazy="`/assets/img/ho-so.png`" alt="">
+            <div class="col-md-3" style="text-align: center; margin: 0">
+              <div class="col-md-12 ncd-border-style">
+                <div class="ncd-footer-content">
+                  <div class="icon text-center SB_bn">
+                    <img v-lazy="`/assets/img/anh3-ncd.jpg`" alt="netbee" style="width: 100%; border-radius: 10px;">
+                  </div>
+                  <div class="media-body benefit-item-icon">
+                    <h3 class="text-center" style="margin-bottom: 10px; text-transform:uppercase">{{$t('home.advantages.profile.title')}}</h3>
+                    <p>{{$t('home.advantages.profile.decs')}}</p>
+                  </div>
                 </div>
-                <div class="media-body benefit-item-icon">
-                  <h3 class="text-center" style="padding-top:10px">{{$t('home.advantages.profile.title')}}</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.profile.decs')}}</p>
-                </div>
-              </a>
+              </div>
             </div>
-          </div>
-          <div class="col-md-3  align-self-stretch ftco-animate" >
-            <div class="d_item v_block">
-              <div class="media block-6 services d-block">
-                <div class="icon text-center SB_bn">
-                  <img v-lazy="`/assets/img/doi-tac.png`" alt="">
-                </div>
-                <div class="media-body benefit-item-icon">
-                  <h3 class="mb-0 text-center" style="padding-top:10px">{{$t('home.advantages.partner.title')}}</h3>
-                  <p style="padding: 5px 15px 20px 15px; color:black">{{$t('home.advantages.partner.decs')}}</p>
+            <div class="col-md-3" style="text-align: center; margin: 0">
+              <div class="col-md-12 ncd-border-style">
+                <div class="ncd-footer-content">
+                  <div class="icon text-center SB_bn">
+                    <img v-lazy="`/assets/img/anh4-ncd.jpg`" alt="netbee" style="width: 100%; border-radius: 10px;">
+                  </div>
+                  <div class="media-body benefit-item-icon">
+                    <h3 class="text-center" style="margin-bottom: 10px; text-transform:uppercase">{{$t('home.advantages.partner.title')}}</h3>
+                    <p>{{$t('home.advantages.partner.decs')}}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -212,7 +214,7 @@
           <div class="col-lg-8 col-12 p-r-0">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"><i class="fad fa-business-time"></i>{{$t('home.title.jobs_new')}}</h4>
+                <h4 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_new')}}</h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                 <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn border-netbee aa">{{$t('see_more')}}</a>
               </div>
@@ -300,7 +302,7 @@
           <div class="col-lg-12 col-12">
             <div class="card">
               <div class="card-header">
-                <h4><i class="fad fa-newspaper"></i>{{$t('home.title.news')}}</h4>
+                <h4><i class="fad fa-newspaper"></i> {{$t('home.title.news')}}</h4>
                 <a href="/tin-tuc" class="btn border-netbee">{{$t('see_more')}}</a>
               </div>
               <div class="card-content collapse show news">
@@ -394,6 +396,18 @@
     }
   }
 
+  .ncd-border-style:hover{
+    box-shadow: 1px 1px 5px 5px #cccbcb;
+  }
+  .ncd-border-style{
+    box-shadow: 1px 1px 5px 5px #dfdfdf;
+    background: #fff;
+    border-radius: 3px;
+    min-height: 250px;
+  }
+  .ncd-footer-content{
+      padding: 15px 0;
+  }
   .ftco-section {
     padding: 20px 0px 20px 0px;
     position: relative;
@@ -445,7 +459,7 @@
   }
 
   .SB_bn {
-    padding: 13px 0 0 5px !important;
+    padding: 0 0 15px !important;
     color: #000 !important;
     font-size: 40px !important;
   }
