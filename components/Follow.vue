@@ -47,17 +47,10 @@
                         </div>
                       </div>
                     </div>
-<<<<<<< .mine
-                    <div class="col-lg-6 col-md-5 text-center">
-                        <img :src="`/assets/img/1256652.svg`" height="280">
-                    </div>
-                </div>
-=======
                   </ValidationObserver>  
                 </form>
               </div>
 
->>>>>>> .theirs
             </div>
             <div class="col-lg-6 col-md-7">
               <img src="/assets/img/logo-netbee-2-ncd.png" alt="logo netbee" height="80" width="200">
