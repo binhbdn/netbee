@@ -23,20 +23,6 @@
     </div> -->
     <section>
       <div class="row">
-        <div class="col-lg-8 col-12 p-r-0">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">
-                <i class="fad fa-bullhorn"></i> VIỆC LÀM MỚI
-              </h4>
-            </div>
-            <div class="card-content collapse show">
-              <div class="card-body scrollbar">
-                <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="col-lg-4 col-12">
           <div class="card">
             <div class="card-header">
@@ -92,6 +78,20 @@
             </div>
           </div>
         </div>
+        <div class="col-lg-8 col-12 p-r-0">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">
+                <i class="fad fa-bullhorn"></i> VIỆC LÀM MỚI
+              </h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body ">
+                <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
+              </div>
+            </div>
+          </div>
+        </div>        
       </div>
     </section>
   </div>

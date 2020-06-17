@@ -6,7 +6,7 @@
                     <img :src="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 85px; max-width: 100%;">
                 </a>
             </div>
-            <div class="remove-border-right" style="margin: auto; width: 100%;">
+            <div class="remove-border-right " style="margin: auto; width: 100%;">
                 <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 <div class="item-name">
                     <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company item-vip-a mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.user.name }}</span></a>
@@ -52,6 +52,13 @@ export default {
     font-weight: 600;
     font-size: 16px;
 }
+/* .item-vip-a:hover{
+    color: #000 !important;
+} */
+
+.item-name .item-vip-a:hover{
+    color: #ffb701 !important;
+}
 .highlight{
     border-left: 2px solid #ffb701 !important;
 }
@@ -59,7 +66,7 @@ export default {
     margin-bottom: 0px;
 }
 .border-job-item:hover{
-    background-color: #ffb7012b;
+    /* background-color: #ffb7012b; */
 }
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
