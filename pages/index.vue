@@ -114,11 +114,7 @@
               <div class="col-md-12 ncd-border-style" style="padding: 0;">
                 <div class="ncd-footer-content">
                   <div class="icon text-center SB_bn">
-<<<<<<< .mine
-                    <img :src="`/assets/img/anh1-ncd.jpg`" alt="netbee" style="width: 100%; border-radius: 10px;">
-=======
-                    <img v-lazy="`/assets/img/anh1-ncd.jpg`" alt="netbee" class="img-ncd">
->>>>>>> .theirs
+                    <img :src="`/assets/img/anh1-ncd.jpg`" alt="netbee" class="img-ncd">
                   </div>
                   <div class="media-body benefit-item-icon" style="padding: 0 10px;">
                     <h3 class="text-center text-home">{{$t('home.advantages.net.title')}}</h3>
@@ -131,11 +127,7 @@
               <div class="col-md-12 ncd-border-style" style="padding: 0;">
                 <div class="ncd-footer-content">
                   <div class="icon text-center SB_bn">
-<<<<<<< .mine
-                    <img :src="`/assets/img/anh2-ncd.jpg`" alt="netbee" style="width: 100%; border-radius: 10px;">
-=======
-                    <img v-lazy="`/assets/img/anh2-ncd.jpg`" alt="netbee" class="img-ncd">
->>>>>>> .theirs
+                    <img :src="`/assets/img/anh2-ncd.jpg`" alt="netbee" class="img-ncd">
                   </div>
                   <div class="media-body benefit-item-icon" style="padding: 0 10px;">
                     <h3 class="text-center text-home">{{$t('home.advantages.CTV.title')}}</h3>
@@ -148,11 +140,7 @@
               <div class="col-md-12 ncd-border-style" style="padding: 0;">
                 <div class="ncd-footer-content">
                   <div class="icon text-center SB_bn">
-<<<<<<< .mine
-                    <img :src="`/assets/img/anh3-ncd.jpg`" alt="netbee" style="width: 100%; border-radius: 10px;">
-=======
-                    <img v-lazy="`/assets/img/anh3-ncd.jpg`" alt="netbee" class="img-ncd">
->>>>>>> .theirs
+                    <img :src="`/assets/img/anh3-ncd.jpg`" alt="netbee" class="img-ncd">
                   </div>
                   <div class="media-body benefit-item-icon" style="padding: 0 10px;">
                     <h3 class="text-center text-home">{{$t('home.advantages.profile.title')}}</h3>
@@ -165,11 +153,7 @@
               <div class="col-md-12 ncd-border-style" style="padding: 0;">
                 <div class="ncd-footer-content">
                   <div class="icon text-center SB_bn">
-<<<<<<< .mine
-                    <img :src="`/assets/img/anh4-ncd.jpg`" alt="netbee" style="width: 100%; border-radius: 10px;">
-=======
-                    <img v-lazy="`/assets/img/anh4-ncd.jpg`" alt="netbee" class="img-ncd">
->>>>>>> .theirs
+                    <img :src="`/assets/img/anh4-ncd.jpg`" alt="netbee" class="img-ncd">
                   </div>
                   <div class="media-body benefit-item-icon" style="padding: 0 10px;">
                     <h3 class="text-center text-home">{{$t('home.advantages.partner.title')}}</h3>
