@@ -1,5 +1,5 @@
 <template>
-    <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px;" :class="job.highlight_job ? 'highlight' : ''">
+    <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px; border-radius: 3px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content h-100">
             <div class="text-center p-1 ab">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
@@ -86,11 +86,19 @@ export default {
     top: 0;
 }
 .p-r-0 .hot img{
-    right: 0 !important;
+    right: 0;
+}
+@media(max-width: 991px) {
+    .p-r-0 .hot img{
+        right: 15px;
+    }
 }
 @media(max-width: 768px) {
     .item-vip-a{
         max-width: 140px;
+    }
+    .p-r-0 .hot img{
+        right: 15px;
     }
 }
 @media(max-width: 320px) {
