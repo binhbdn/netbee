@@ -6,7 +6,7 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2">NETBEE</h2>
                         <p style="line-height: 28px; color: #fff;">{{$t('footer.title')}}</p>
-                        <img v-lazy="`/assets/img/QR.png`" alt="Smiley face" height="200" width="auto">
+                        <img :src="`/assets/img/QR.png`" alt="Smiley face" height="200" width="auto">
                     </div>
                 </div>
                 <div class="col-md">

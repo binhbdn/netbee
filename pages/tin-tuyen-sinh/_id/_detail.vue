@@ -9,7 +9,7 @@
                     <div class="row p-1">
                         <div class="col-lg-2 d-flex align-items-center">
                             <div class="avatar-company">
-                                <img v-lazy="`/uploads/users/avatars/${tintuyendung.user.avatar}`" :alt="`${tintuyendung.user.avatar}`" width="100%">
+                                <img :src="`/uploads/users/avatars/${tintuyendung.user.avatar}`" :alt="`${tintuyendung.user.avatar}`" width="100%">
                             </div>
                         </div>
                         <div class="col-lg-7">
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div class="row" style="border:#dee2e6 solid 1px;height: 40%">
+                            <div class="row" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
                                 <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                     <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
@@ -37,15 +37,15 @@
                                     <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                 </div>
                             </div>
-                            <div class="row m-t-10" style="border:#dee2e6 solid 1px;height: 40%">
+                            <div class="row m-t-10" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
                                 <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal">
-                                    <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                    <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                 </div> 
                                 <div v-if="$auth.loggedIn && $auth.user.role == 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center">                                    
                                     <a  @click="warningModal()" class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                                                                                                                          
                                 </div>    
                                 <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#ApplyModal">
-                                    <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                    <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                 </div>                                                              
                             </div>
                         </div>

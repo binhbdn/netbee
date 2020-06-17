@@ -2,8 +2,8 @@
     <div>
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
             <div class="text-center" :style="type == 1 ? 'height: 150px' : 'height: 85px'">
-                <img style="width: 100%;max-height: 100%;height: 100%;object-fit: fill;" :alt="`${thuml}`" v-lazy="`/uploads/news/${thuml}`" v-if="type == 1" />
-                <img alt="img" v-lazy="`/uploads/news/${thuml}`" style="max-height: 100%;width: 100%;max-width: 100%;object-fit: fill;" v-if="type != 1" />
+                <img style="width: 100%;max-height: 100%;height: 100%;object-fit: fill;" :alt="`${thuml}`" :src="`/uploads/news/${thuml}`" v-if="type == 1" />
+                <img alt="img" :src="`/uploads/news/${thuml}`" style="max-height: 100%;width: 100%;max-width: 100%;object-fit: fill;" v-if="type != 1" />
             </div>
         </a>
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`"><h2 class="NB_title text-black pt-1 el-3 font-weight-600" style="line-height: 1.4;">{{ title }}</h2></a>
