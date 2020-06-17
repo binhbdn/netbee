@@ -1,78 +1,70 @@
 <template>
-    <div class="ftco-section-parallax">
-        <div class="d-flex " id="follow">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-7">
-                        <div class="register_form">
-                            <div><h2 class="text">{{$t('follow.title')}}</h2></div>
-                            <p>{{$t('follow.decs')}}</p>
-                           <form class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
-                                    <ValidationObserver ref="observer" v-slot="{ valid }">
-                                 <div class="roww"  style="width: 400px;">   
-                                       <ValidationProvider 
-                                          name="Họ và tên"
-                                          ref="name"
-                                          rules="required"
-                                           v-slot="{ errors }"
-                                           > 
-                              <div class="form-group col-sm-12" style="height: 47px;padding-left:0px;">
-                                        <input type="text"  class="form-control"  :placeholder="$t('follow.name')"  name="name" v-model="dataForm.name">
-                                               
-                                            <ul style="color:#FFC107;padding-left:15px;" class="overline">
-                                                <li v-for="(error, index) in errors" :key="index">
-                                                <span>{{ error }}</span>
-                                               </li>
-                                             </ul>                                         
-                                       </div>
-                                      </ValidationProvider>
-                                       <ValidationProvider
-                                             rules="required|integer"
-                                             ref="phone"
-                                             name="Số điện thoại"
-                                             v-slot="{ errors }"
-                                            >
-                                      <div class="form-group col-sm-12" style="height: 47px;padding-left:0px;">                                     
-                                       <input type="text" class="form-control" :placeholder="$t('follow.phone')"  name="phone" v-model="dataForm.phone">
-                                              <ul style="color:#FFC107;padding-left:15px;" class="overline text-left">
-                                               <li v-for="(error, index) in errors" :key="index">
-                                                <span>{{ error }}</span>
-                                              </li>
-                                                 </ul>                                        
-                                          </div>
-                                         </ValidationProvider>                                          
-                                  <ValidationProvider
-                                       name="Email"
-                                       ref="email"
-                                       rules="required|email"
-                                       v-slot="{ errors }"
-                                     >
-                                      <div class="form-group col-sm-12" style="padding-left:0px;">
-                                         <input type="email" class="form-control" :placeholder="$t('follow.email')"  name="email" v-model="dataForm.email">
-                                               <ul style="color:#FFC107;padding-left:15px;" class="overline text-left">
-                                                   <li v-for="(error, index) in errors" :key="index">
-                                                   <span>{{ error }}</span>
-                                                  </li>
-                                              </ul>
-                                    </div>                                  
-                                         </ValidationProvider>
-                                    <div class="col-sm-12 text-center form-group" style="padding-left:0px;">
-                                      <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
-                                        <button @click="sendForm()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Gửi ngay</button>
-                                      </div>
-                                    </div>
-                              </div>
-                             </ValidationObserver>  
-                            </form>
+  <div class="ftco-section-parallax">
+    <div class="d-flex" id="follow">
+      <div style="background-color: #242222c9; width: 100%;">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-md-7">
+              <div class="register_form">
+                <div><h2 class="text">{{$t('follow.title')}}</h2></div>
+                <p>{{$t('follow.decs')}}</p>
+                <form class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
+                  <ValidationObserver ref="observer" v-slot="{ valid }">
+                    <div style="width: 80%">   
+                      <ValidationProvider name="Họ và tên" ref="name" rules="required" v-slot="{ errors }"> 
+                        <div class="col-md-12 form-group" style="padding-left: 0;">
+                          <input type="text" class="form-control"  :placeholder="$t('follow.name')"  name="name" v-model="dataForm.name">
+                          <ul style="color:#FFC107;padding-left:15px;" class="overline">
+                            <li v-for="(error, index) in errors" :key="index">
+                              <span>{{ error }}</span>
+                            </li>
+                           </ul>                                         
                         </div>
+                      </ValidationProvider>
+                      <ValidationProvider rules="required|integer" ref="phone" name="Số điện thoại" v-slot="{ errors }">
+                        <div class="col-md-12 form-group" style="padding-left: 0;">                                     
+                          <input type="text" class="form-control" :placeholder="$t('follow.phone')"  name="phone" v-model="dataForm.phone">
+                          <ul style="color:#FFC107;padding-left:15px;" class="overline text-left">
+                            <li v-for="(error, index) in errors" :key="index">
+                              <span>{{ error }}</span>
+                            </li>
+                         </ul>                                        
+                        </div>
+                      </ValidationProvider>                                          
+                      <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
+                        <div class="col-md-12 form-group" style="padding-left: 0;">
+                          <input type="email" class="form-control" :placeholder="$t('follow.email')"  name="email" v-model="dataForm.email">
+                            <ul style="color:#FFC107;padding-left:15px;" class="overline text-left">
+                              <li v-for="(error, index) in errors" :key="index">
+                                <span>{{ error }}</span>
+                              </li>
+                            </ul>
+                        </div>                                  
+                      </ValidationProvider>
+                      <div class="col-md-12 text-center form-group" style="padding-left: 0;">
+                        <div class="form-submit text-center">
+                          <button @click="sendForm()" class="btn bg-netbee" style="width: 100%;">Gửi ngay</button>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-lg-6 col-md-5 text-center">
-                        <img v-lazy="`/assets/img/1256652.svg`" height="280">
-                    </div>
-                </div>
+                  </ValidationObserver>  
+                </form>
+              </div>
             </div>
+            <div class="col-lg-6 col-md-7">
+              <img src="/assets/img/logo-netbee-2-ncd.png" alt="logo netbee" height="80" width="200">
+              <div style="margin-left: 10px;">
+                <h1 style="color: #ffb701; font-weight: bold;">Cùng bạn trên con đường thành công !</h1>
+                <h4 style="color: #fff;"><i class="fa fa-check" style="margin-right: 5px;"></i> Đội ngũ tư vấn nhiệt tình</h4>
+                <h4 style="color: #fff;"><i class="fa fa-check" style="margin-right: 5px;"></i> Giải đáp mọi thắc mắc</h4>
+                <h4 style="color: #fff;"><i class="fa fa-check" style="margin-right: 5px;"></i> Hỗ sợ 24/24</h4>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
 import {
@@ -163,16 +155,16 @@ export default {
  
 <style>
 #follow{
-    background-image: url("/assets/img/pattern_bg.png");
+    background-image: url("/assets/img/hands-ncd.jpg");
     background-position: center center;
     background-size: cover;
     background-color: #1e1e1e;
-    height: 380px;
+    height: auto;
 }
 
 .register_form {
     color: #ececec;
-    padding-top: 50px;
+    padding:30px 0;
 } 
 .text{
     color: #fff;
