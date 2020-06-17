@@ -1,5 +1,5 @@
 <template>
-    <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px;" :class="job.highlight_job ? 'highlight' : ''">
+    <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px; border-radius: 3px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content h-100">
             <div class="text-center p-1">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
