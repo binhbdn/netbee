@@ -2723,7 +2723,7 @@ body[data-col='1-column'] .header-navbar.floating-nav {
 .card {
     margin-bottom: 15px;
     border: none;
-    border-radius: 0;
+    border-radius: 3px;
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1);
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;

@@ -213,12 +213,15 @@ export default {
     font-weight: 600;
     font-size: 20px;
 }
+/* .item-vip-a:hover{
+    color: #000 !important;
+} */
 .highlight{
     border-left: 2px solid #ffb701 !important;
 }
 
 .border-job-item:hover{
-    background-color: #ffb7012b;
+    /* background-color: #ffb7012b; */
 }
 
 .ecommerce-application .list-view .ecommerce-card .card-content {

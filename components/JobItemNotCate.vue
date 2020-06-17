@@ -14,7 +14,7 @@
                 </p>
             </div>
             <div class="remove-border-right" style="width: 195px">
-                <div class="remove-border-right" style="padding: 5px 0px;">
+                <div class="remove-border-right title-job-hv" style="padding: 5px 0px;">
                     
                     <a class="item-vip-a el-1" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 </div>
@@ -52,12 +52,15 @@ export default {
     font-weight: 600;
     font-size: 16px;
 }
+/* .item-vip-a:hover{
+    color: #000 !important;
+} */
 .highlight{
     border-left: 4px solid #ffb701 !important;
 }
 
 .border-job-item:hover{
-    background-color: #ffb7012b;
+    /* background-color: #ffb7012b; */
 }
 
 .ecommerce-application .list-view .ecommerce-card .card-content {
