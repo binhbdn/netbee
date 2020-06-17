@@ -25,8 +25,7 @@
                     <!-- <p class="delivery-date m-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển"><i class="fad fa-user-friends"></i> {{job.quantity}}</p> -->
                 </div>
                 <div class="item-quantity mb-1">
-                    
-                    <span class="item-hot mr-1" style="font-size: 1rem; float: left"  v-if="job.highlight_job == 2"><i class="fas fa-star" style="color: gold;"></i> Hot</span>
+                    <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="">
                         <a :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
                             <span class="badge border-netbee badge-sm" style="width: 100px">
@@ -76,5 +75,21 @@ export default {
     text-overflow: ellipsis;
     line-height: 30px;
     white-space: normal;
+}
+.hot{
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 2;
+    font-size: 9px;
+    border-radius: 2px;
+    right: 10px;
+    font-weight: 700;
+}
+.hot img {
+    width: 9%;
+    float: right;
+    position: absolute;
+    right: 14px;
+    top: 0;
 }
 </style>

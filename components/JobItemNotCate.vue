@@ -1,10 +1,21 @@
 <template>
-    <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px;" :class="job.highlight_job ? 'highlight' : ''">
+    <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px; border-radius: 3px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content h-100">
-            <div class="text-center p-1">
+            <div class="text-center p-1" style="margin: auto;">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
+<<<<<<< .mine
                     <img :src="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 150px; max-width: 100%;">
+=======
+                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 150px; max-width: 100%;">
+>>>>>>> .theirs
                 </a>
+                <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" style="margin-top: 6px;">
+                    <a :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
+                        <span class="badge border-netbee badge-sm" style="width: 100px">
+                            {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
+                        </span>
+                    </a>
+                </p>
             </div>
             <div class="remove-border-right" style="width: 195px">
                 <div class="remove-border-right" style="padding: 5px 0px;">
@@ -24,17 +35,7 @@
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</p>
                     <!-- <p class="delivery-date m-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển"><i class="fad fa-user-friends"></i> {{job.quantity}}</p> -->
                 </div>
-                <div class="item-quantity mb-1">
-                    
-                    <span class="item-hot mr-1" style="font-size: 1rem; float: left"  v-if="job.highlight_job == 2"><i class="fas fa-star" style="color: gold;"></i> Hot</span>
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="">
-                        <a :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
-                            <span class="badge border-netbee badge-sm" style="width: 100px">
-                                {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
-                            </span>
-                        </a>
-                    </p>
-                </div>
+                <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
             </div>
         </div>
     </div>
@@ -76,5 +77,21 @@ export default {
     text-overflow: ellipsis;
     line-height: 30px;
     white-space: normal;
+}
+.hot{
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 2;
+    font-size: 9px;
+    border-radius: 2px;
+    right: 10px;
+    font-weight: 700;
+}
+.hot img {
+    width: 8%;
+    float: right;
+    position: absolute;
+    right: 15px;
+    top: 0;
 }
 </style>
