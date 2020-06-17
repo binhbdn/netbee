@@ -1,10 +1,10 @@
 <template>
-    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" style="background-color: #2f3b4c;" data-scroll-to-active="true">
         <div class="navbar-header" style="height: 90px">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="/">
                         <div>
-                          <img src="/assets/img/logo-full.png" alt="Smiley face" height="55" width="150">
+                          <img src="/assets/img/netbee-03.png" alt="Smiley face" height="70" width="200">
                         </div>
                     </a>
                 </li>
@@ -12,10 +12,10 @@
         </div>
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
-            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+            <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" style="background-color: #2f3b4c;color: #fff;">
                 <li :class="[{'active' : this.$route.name == 'admin'}, 'nav-item']"><a @click="$router.push('/admin')"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
                 </li>
-                <li class=" navigation-header"><span>Apps</span>
+                <li class=" navigation-header"><span style="color: #fff;">Apps</span>
                 </li>
                 <li :class="[{'active' : (this.$route.name == 'admin-news') || (this.$route.name == 'admin-news-create')}, 'nav-item']" v-if="$auth.user.role == 4"><a href="#"><i class="far fa-copy"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
                     <ul class="menu-content">
@@ -79,3 +79,18 @@ export default {
   }
 }
 </script>
+<style scoped>
+.main-menu.menu-light .navigation li a{
+    color: #fff !important;
+}
+.main-menu.menu-light .navigation > li > ul {
+    background-color: #2f3b4c;
+}
+.main-menu.menu-light .navigation > li.open > a{
+    background: darkgray;
+}
+.main-menu.menu-light .navigation > li.active > a {
+    background: darkgray !important;
+    box-shadow: 0 0 0px 0px darkgray !important;
+}
+</style>

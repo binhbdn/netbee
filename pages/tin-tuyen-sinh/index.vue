@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="!loading" class="container">
     <!-- VIỆC LÀM MỚI -->
     <section>
       <div class="row">        
@@ -100,7 +100,8 @@ export default {
     ]
   },
     data() {
-    return{      
+    return{    
+      loading: true,  
       currency: '',
       chooseWork: '',
       chooseVisa: '',
@@ -116,6 +117,11 @@ export default {
       page: 1
     }
   },
+  created () {
+        this.$nextTick(function () {
+           this.loading = false
+       })
+     },
   components: {
     JobsList1Col,
     JobsList1ColNotCate, Multiselect
