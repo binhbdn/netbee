@@ -30,8 +30,8 @@
                                                     <div class="columns spotlight-item is-vcentered">
                                                         <div class="column is-3 spotlightBlock__logo">
                                                           <figure class="image is-inline-block">
-                                                            <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" :alt="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`">
-                                                            <img v-else v-lazy = "`assets/img/logo.png`"></figure>
+                                                            <img v-if="companyInfo.user.avatar != null" :src="`/uploads/users/avatars/${companyInfo.user.avatar}`" :alt="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`">
+                                                            <img v-else :src = "`assets/img/logo.png`"></figure>
                                                         </div>
                                                         <div class="column is-8 spotlightBlock__content-wrapper">
                                                           <div class="spotlightBlock__title">
@@ -81,8 +81,8 @@
                     <div class="row">
                         <div class="col-md-4 col-6 user-latest-img" v-for="(companyInfo,index) in listNewCompany" :key="index">
                             <a :href="`cong-ty/${companyInfo.username}`">
-                              <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                              <img v-else v-lazy="`assets/img/logo.png`" class="img-fluid mb-1 rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
+                              <img v-if="companyInfo.user.avatar != null" :src="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
+                              <img v-else :src="`assets/img/logo.png`" class="img-fluid mb-1 rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
                             </a>
                         </div>
                     </div>
@@ -107,8 +107,8 @@
             <div class="content-box">
             <div class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
               <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`" rel="nofollow" target="_blank">
-                <img v-if="companyInfo.user.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`">
-                <img v-else class=" ls-is-cached lazyloaded" v-lazy="`https://netbee.vn/_nuxt/img/377bc00.png`">
+                <img v-if="companyInfo.user.avatar != null" class=" ls-is-cached lazyloaded" :src="`/uploads/users/avatars/${companyInfo.user.avatar}`">
+                <img v-else class=" ls-is-cached lazyloaded" :src="`https://netbee.vn/_nuxt/img/377bc00.png`">
               </a>
               </div>
             </div>

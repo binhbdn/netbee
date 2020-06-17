@@ -2,30 +2,7 @@
   <div v-if="!loading" class="container">
     <!-- VIỆC LÀM MỚI -->
     <section>
-      <div class="row">        
-        <div class="col-lg-8 col-12 p-r-0">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">
-                <i class="fad fa-business-time"></i> {{$t('job.title.new')}}
-              </h4>
-            </div>
-            <div class="card-content collapse show">
-              <div class="card-body scrollbar">
-                <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
-                <infinite-loading
-                    v-if="arrayJobNew.length"
-                    spinner="bubbles"    
-                    ref="infiniteLoading" 
-                    @infinite="infiniteScroll" style="padding:20px; width:100%"
-                >        
-                  <div slot="no-more" style="font-size:15px; font-style: italic;">Không còn kết quả.</div>    
-                  <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-                </infinite-loading>
-              </div>            
-            </div>
-          </div>
-        </div>
+      <div class="row">  
         <div class="col-lg-4 col-12 pr-0">
             <div class="card">
             <div class="card-header">
@@ -80,7 +57,30 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>      
+        <div class="col-lg-8 col-12 p-r-0">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">
+                <i class="fad fa-business-time"></i> {{$t('job.title.new')}}
+              </h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
+                <infinite-loading
+                    v-if="arrayJobNew.length"
+                    spinner="bubbles"    
+                    ref="infiniteLoading" 
+                    @infinite="infiniteScroll" style="padding:20px; width:100%"
+                >        
+                  <div slot="no-more" style="font-size:15px; font-style: italic;">Không còn kết quả.</div>    
+                  <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+                </infinite-loading>
+              </div>            
+            </div>
+          </div>
+        </div>        
       </div>
     </section>
   </div>

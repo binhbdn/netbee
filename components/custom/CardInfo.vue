@@ -6,7 +6,7 @@
                     <div class="text-center p-1">
                         <a :href="`/ho-so/${item.id}`">
                             <div class="setImg">
-                                <img v-lazy="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`">
+                                <img :src="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`">
                             </div>
                         </a>
                     </div>

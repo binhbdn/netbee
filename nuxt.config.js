@@ -81,7 +81,8 @@ module.exports = {
     modules: [
         '@nuxtjs/axios',
         '@nuxtjs/auth',
-        'vue-sweetalert2/nuxt',
+        // 'vue-sweetalert2/nuxt',
+        'nuxt-sweetalert2',
         'nuxt-seo',
         '@nuxtjs/sitemap', ['@nuxtjs/google-analytics', {
             id: 'UA-164963357-1'
@@ -90,7 +91,7 @@ module.exports = {
         ["nuxt-compress", { gzip: { cache: true }, brotli: { threshold: 10240 } }],
         '@nuxtjs/robots'
     ],
-    robots: {
+    robots: {   
         UserAgent: '*',
         Disallow: '/admin',
         Sitemap: 'https://netbee.vn/sitemap.xml'

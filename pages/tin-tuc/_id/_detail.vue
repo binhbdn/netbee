@@ -25,7 +25,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <img v-lazy="`/uploads/news/${tintuc.thuml}`" width="100%" class="m-b-15" :alt="`${tintuc.thuml}`">
+                                    <img :src="`/uploads/news/${tintuc.thuml}`" width="100%" class="m-b-15" :alt="`${tintuc.thuml}`">
                                     <p style="text-align:justify" v-html="tintuc.content"></p>
                                     <iframe :src="`https://www.facebook.com/plugins/share_button.php?href=https://netbee.vn${this.$route.path}&layout=button&size=small&appId=1459241224260897&width=76&height=20`" width="76" height="30" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                                 </div>

@@ -47,7 +47,7 @@
                                                     <div class="card-content h-100">
                                                         <div class="text-center p-1">
                                                             <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                                                                <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 85px; max-width: 100%;">
+                                                                <img :src="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 85px; max-width: 100%;">
                                                             </a>
                                                         </div>
                                                         <div class="remove-border-right" style="width: 550px;">
@@ -214,7 +214,7 @@ export default {
     font-size: 20px;
 }
 .highlight{
-    border-left: 4px solid #ffb701 !important;
+    border-left: 2px solid #ffb701 !important;
 }
 
 .border-job-item:hover{
