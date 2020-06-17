@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-5 text-center d-flex align-items-center">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
-                <img v-lazy="`/uploads/news/${thuml}`" :style="type != 1 ? 'max-height: 117px' : 'max-height: 190px'" style="max-width: 100%;width: 100%;object-fit: fill;">
+                <img :src="`/uploads/news/${thuml}`" :style="type != 1 ? 'max-height: 117px' : 'max-height: 190px'" style="max-width: 100%;width: 100%;object-fit: fill;">
             </a>
         </div>
         <div class="col-7 d-flex flex-column">

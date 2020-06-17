@@ -249,7 +249,7 @@
                           <td>
                             <span>
                               <img
-                                v-lazy="`/uploads/users/avatars/${item.avatar}`"
+                                :src="`/uploads/users/avatars/${item.avatar}`"
                                 style="object-fit: cover;"
                                 width="55"
                                 height="55"
@@ -348,7 +348,7 @@
                                       <div class="row">
                                         <div class="col-lg-4" >
                                           <img
-                                            v-lazy="`/uploads/users/avatars/${userDetail.avatar}`"
+                                            :src="`/uploads/users/avatars/${userDetail.avatar}`"
                                             style="object-fit: cover; width: 226px; height: 226px;"
                                           />
                                         </div>

@@ -14,6 +14,7 @@
                                     </div>
                                     <h2 class="text-bold-700 mt-1">{{ countPageView }}</h2>
                                     <p class="mb-0">Lượt truy cập</p>
+                                    <a @click="ok()">click tao</a>
                                 </div>
                             </div>
                         </div>
@@ -190,6 +191,10 @@ export default {
                 this.data.week = res.fetchTotalVisitorsAndPageViews.map(item => item.pageViews)
                 this.labels.week = res.fetchTotalVisitorsAndPageViews.map(item => item.date.date)
             })
+        },
+        ok(){
+            console.log('văn thành')
+             this.$swal('Hủy', 'Tin được giữ lại', 'info')
         }
     },
     mounted() {

@@ -8,7 +8,7 @@
         <div class="card-content">
             <div style="margin: auto;">
                 <a :href="`/cong-ty/${company.username ? company.username : '#'}`">
-                    <img v-lazy="`/uploads/users/avatars/${company.user.avatar}`" :alt="`${company.user.avatar}`" width="100" height="100">
+                    <img :src="`/uploads/users/avatars/${company.user.avatar}`" :alt="`${company.user.avatar}`" width="100" height="100">
                 </a>
             </div>
             <div class="remove-border-right">
