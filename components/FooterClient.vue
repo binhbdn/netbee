@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="copyright">
+        <div class="copyright" style="font-size: 15px;">
             Copyright &copy;
             <script>
                 document.write(new Date().getFullYear());
