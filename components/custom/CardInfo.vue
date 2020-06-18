@@ -55,8 +55,8 @@ export default {
     grid-template-columns: 1fr 3fr 2fr!important;
 }
 .item-vip-a{
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 15px;
 }
 
 .border-DataList-item:hover{

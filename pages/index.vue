@@ -175,33 +175,12 @@
               <div class="card-header">
                 <h4 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_new')}}</h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                <a href="/tin-tuyen-sinh/tim-kiem?keyword=" class="btn border-netbee aa">{{$t('see_more')}}</a>
+                <a href="/tin-tuyen-sinh" class="btn border-netbee aa">{{$t('see_more')}}</a>
               </div>
               <div class="card-content collapse show" style="padding: 13px">
-                <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="(typeof(arrayJobNew2) !== 'undefined') ? 10000 : null">
-                    <ol class="carousel-indicators">
-                        <li v-if="typeof(arrayJobNew2) !== 'undefined'" data-target="#carousel-interval-new" data-slide-to="0" class="active"></li>
-                        <li v-if="typeof(arrayJobNew2) !== 'undefined'" data-target="#carousel-interval-new" data-slide-to="1"></li>
-                    </ol>
-                    <div class="carousel-inner" role="listbox">
-                        <div class="carousel-item active">
-                            <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
-                        </div>
-                        <div v-if="typeof(arrayJobNew2) !== 'undefined'" class="carousel-item">
-                            <JobsList1Col :DataList="arrayJobNew2"></JobsList1Col>
-                        </div>
-                    </div>
-                    <a  v-if="typeof(arrayJobNew2) !== 'undefined'" class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
-                        <button class="el-carousel__arrow el-carousel__arrow--left">
-                          <i class="fas fa-angle-left"></i>
-                        </button>
-                    </a>
-                    <a  v-if="typeof(arrayJobNew2) !== 'undefined'" class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
-                        <button class="el-carousel__arrow el-carousel__arrow--right">
-                          <i class="fas fa-angle-right"></i>
-                        </button>
-                    </a>
-                </div>
+                <div>
+                   <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
+                </div>              
               </div>
             </div>
           </div>
@@ -233,13 +212,13 @@
                                 <div class="tab-pane active list-item" id="home-fill" role="tabpanel"
                                       aria-labelledby="home-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item item" v-for="(item, index) in linhvuc" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?id_visa=${item.id}`"><i class="fad fa-location-arrow"></i> {{item.profession}}</a></li>
+                                    <li class="nav-item item" v-for="(item, index) in linhvuc" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?id_visa=${item.id}`"><i class="fa fa-angle-right"></i> {{item.profession}}</a></li>
                                   </ul>
                                 </div>
                                 <div class="tab-pane" id="profile-fill" role="tabpanel"
                                       aria-labelledby="profile-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item item" v-for="(item, index) in quocgia" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?nation_id=${item.id}`"><i class="fad fa-location-arrow"></i> {{item.name}}</a></li>
+                                    <li class="nav-item item" v-for="(item, index) in quocgia" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?nation_id=${item.id}`"><i class="fa fa-angle-right"></i> {{item.name}}</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -308,8 +287,8 @@
           var arrayLength = myArray.length;
           var tempArray = [];
       
-          for (index = 0; index < arrayLength; index += 8) {
-              var myChunk = myArray.slice(index, index+8);
+          for (index = 0; index < arrayLength; index += 10) {
+              var myChunk = myArray.slice(index, index+10);
               tempArray.push(myChunk);
           }
           

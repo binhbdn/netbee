@@ -219,7 +219,7 @@
 }
 
 .ecommerce-application .ecommerce-card .item-name {
-  font-weight : 600;
+  /* font-weight : 600; */
   color : #2C2C2C;
 }
 .ecommerce-application .ecommerce-card .item-name a {

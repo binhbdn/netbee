@@ -49,8 +49,8 @@ export default {
 <style scoped>
 .item-vip-a{
      max-width: 250px;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 400;
+    font-size: 15px;
 }
 /* .item-vip-a:hover{
     color: #000 !important;
