@@ -19,19 +19,19 @@
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                       <li class="nav-item">
                         <a class="nav-link" :class="{'active': $route.name == 'tim-viec-lam' || $route.name == 'index'}" id="v-pills-33-tab" data-toggle="tab" href="#v-pills-33"
-                           role="tab" aria-controls="v-pills-33" aria-selected="false">{{ $t('banner.jobs.tab') }}</a>
+                           role="tab" aria-controls="v-pills-33" aria-selected="false" style="font-weight: 400 !important;">{{ $t('banner.jobs.tab') }}</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" :class="{'active': $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" data-toggle="tab" href="#v-pills-11"
-                           role="tab" aria-controls="v-pills-11" aria-selected="true">{{$t('banner.company.tab')}}</a>
+                           role="tab" aria-controls="v-pills-11" aria-selected="true" style="font-weight: 400 !important;">{{$t('banner.company.tab')}}</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" :class="{'active': $route.name == 'ung-vien'}" id="v-pills-22-tab" data-toggle="tab" href="#v-pills-22"
-                           role="tab" aria-controls="v-pills-22" aria-selected="false">{{$t('banner.candidates.tab')}}</a>
+                           role="tab" aria-controls="v-pills-22" aria-selected="false" style="font-weight: 400 !important;">{{$t('banner.candidates.tab')}}</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
-                           role="tab" aria-controls="profile-fill" aria-selected="false">Săn học bổng</a>
+                           role="tab" aria-controls="profile-fill" aria-selected="false" style="font-weight: 400 !important;">Săn học bổng</a>
                       </li>
                       
                     </ul>
@@ -180,6 +180,7 @@
                   </div>
                 </div>
               </div>
+              <p class="title-p-main">Dành cho du học sinh và các trung tâm du học...</p>
             </div>
           </div>
         </div>
@@ -275,6 +276,11 @@ export default {
 }
 </style>
 <style scoped>
+  .title-p-main{
+    font-size: 18px;
+    padding-top: 19px;
+    color: #ffb701!important;
+  }
   .parti{
         max-height: 0px;
         position: relative;
