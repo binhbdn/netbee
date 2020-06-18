@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Validator;
 use Hash;
 use Carbon\Carbon;
 use App\Services\NotificationService;
+use App\User;
 
 class UserController extends Controller
 {

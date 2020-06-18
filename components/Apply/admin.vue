@@ -212,10 +212,13 @@
                                                         </td>
                                                         <td>{{item.user.name}}</td>
                                                         <td>
-                                                            <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
-                                                                {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                            <span v-if="item.bonus == null || item.bonus == 0">Không bonus</span>
+                                                            <span v-else  style="color: #fc205c">
+                                                                {{item.bonus}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
                                                             </span>
-                                                            <span v-else>Không bonus</span>
+                                                            <!-- <span v-else  style="color: #fc205c">
+                                                                {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                            </span> -->
                                                         </td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
                                                         <td>

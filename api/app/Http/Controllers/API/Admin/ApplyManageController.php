@@ -170,7 +170,7 @@ class ApplyManageController extends Controller
         $data = $this->applyJobService->postPaperApply($request);
         if($data['status'] == 200) {
             $notification = [
-                'content' => 'Ứng viên đã cập nhập hồ sơ đính kèm, chờ xét duyệt ['.$data['user_id'].']',
+                'content' => 'Ứng viên đã cập nhập hồ sơ đính kèm, chờ xét duyệt',
                 'ids' => $this->userService->getIdAdmin()->pluck('id'),
                 'url' => 'https://netbee.vn/admin/quan-ly-ung-tuyen'
             ];
