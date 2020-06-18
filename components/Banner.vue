@@ -18,30 +18,26 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                       <li class="nav-item">
-                        <a class="nav-link" :class="{'active': $route.name == 'tim-viec-lam' || $route.name == 'index'}" id="v-pills-33-tab" data-toggle="tab" href="#v-pills-33"
-                           role="tab" aria-controls="v-pills-33" aria-selected="false" style="font-weight: 400 !important;">{{ $t('banner.jobs.tab') }}</a>
+                        <a class="nav-link" href="/" :class="{'active': $route.name != 'cong-ty' && $route.name != 'tim-cong-ty' && $route.name != 'ung-vien' && $route.name != 'tin-tuyen-sinh' && $route.name != 'tim-viec-lam'}" id="v-pills-33-tab" style="font-weight: 400 !important;">{{ $t('banner.jobs.tab') }}</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" :class="{'active': $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" data-toggle="tab" href="#v-pills-11"
-                           role="tab" aria-controls="v-pills-11" aria-selected="true" style="font-weight: 400 !important;">{{$t('banner.company.tab')}}</a>
+                        <a class="nav-link" href="/cong-ty" :class="{'active': $route.name == 'cong-ty' || $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" style="font-weight: 400 !important;">{{$t('banner.company.tab')}}</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" :class="{'active': $route.name == 'ung-vien'}" id="v-pills-22-tab" data-toggle="tab" href="#v-pills-22"
-                           role="tab" aria-controls="v-pills-22" aria-selected="false" style="font-weight: 400 !important;">{{$t('banner.candidates.tab')}}</a>
+                        <a class="nav-link" href="/ung-vien" :class="{'active': $route.name == 'ung-vien' || $route.name == 'tim-ung-vien'}" id="v-pills-22-tab" style="font-weight: 400 !important;">{{$t('banner.candidates.tab')}}</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
+                        <a class="nav-link" :class="{'active': $route.name == 'tin-tuyen-sinh'}" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
                            role="tab" aria-controls="profile-fill" aria-selected="false" style="font-weight: 400 !important;">Săn học bổng</a>
                       </li>
                       
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;padding-left: 15px !important;padding-right: 15px !important;">
-                      <div class="tab-pane active" id="v-pills-33" role="tabpanel"
-                           aria-labelledby="v-pills-33-tab">
+                      <div v-bind:class="{'active': $route.name != 'cong-ty' && $route.name != 'tim-cong-ty' && $route.name != 'ung-vien' && $route.name != 'tim-ung-vien' && $route.name != 'tim-viec-lam'}" class="tab-pane">
                         <form action="#" class="search-job">
                           <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                               <div class="form-group" style="height: 74%;margin-bottom: 15px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
@@ -61,7 +57,7 @@
                                 </Multiselect>
                               </div>
                             </div>
-                            <div class="col-md-3" style="padding-left: 2px;" id="pd15">
+                            <div class="col-md-2" style="padding-left: 2px;" id="pd15">
                               <div class="form-group" style="margin-bottom: 15px;">
                                 <div class="form-field">
                                   <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchJobs">
@@ -115,8 +111,7 @@
                           </div>
                         </form>
                       </div>
-                      <div class="tab-pane " id="v-pills-11" role="tabpanel"
-                           aria-labelledby="v-pills-11-tab">
+                      <div v-bind:class="{active : this.$route.path == '/cong-ty' || this.$route.path == '/tim-cong-ty'}" class="tab-pane">
                         <form action="" class="search-job">
                           <div class="row">
                             <div class="col-md-5">
@@ -143,8 +138,7 @@
                           </div>
                         </form>
                       </div>
-                      <div class="tab-pane" id="v-pills-22" role="tabpanel"
-                           aria-labelledby="v-pills-22-tab">
+                      <div v-bind:class="{active : this.$route.path == '/ung-vien'}"class="tab-pane" >
                         <form action="" class="search-job">
                           <div class="row">
                             <div class="col-md-3">
@@ -175,12 +169,11 @@
                           </div>
                         </form>
                       </div>
-                      
+                      <p class="title-p-main">Dành cho du học sinh và các trung tâm du học...</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <p class="title-p-main">Dành cho du học sinh và các trung tâm du học...</p>
             </div>
           </div>
         </div>
@@ -277,9 +270,9 @@ export default {
 </style>
 <style scoped>
   .title-p-main{
-    font-size: 18px;
-    padding-top: 19px;
+    font-size: 15.5px;
     color: #ffb701!important;
+    margin-top: -8px;
   }
   .parti{
         max-height: 0px;
