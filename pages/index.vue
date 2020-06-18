@@ -26,7 +26,7 @@
             </div>
           </a>
           <a class="col-md-5 align-self-stretch ftco-animate" href="#">
-            <div class="d_item v_block hover-ncd-2">
+            <div class="d_item v_block hover-ncd">
               <div class="icon text-center SB_bn_1">
                 <i class="fa fa-handshake"></i>
               </div>
@@ -450,14 +450,7 @@
     background: #ffb701;
     cursor: pointer;
   }
-  .hover-ncd-2{
-    background: #ffb701;
-  }
-  .hover-ncd-2:hover {
-    background: #fff;
-    cursor: pointer;
-    border: 1.5px solid #ffb701;
-  }
+ 
   .why .d_item.v_block:hover{
     background-color: white!important ;
     color:black!important;
