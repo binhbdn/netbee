@@ -235,6 +235,10 @@
                 </div>
               </div>
             </div>
+            <div class="card" style="box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);">
+              <h3 style="margin-top: 20px;text-align: center;">Từ khóa tìm kiếm</h3>
+                <TagList :DataList="tag"></TagList>
+            </div>
           </div>
         </div>
       </section>
@@ -264,6 +268,7 @@
 <script>
   import JobsList1Col from '~/components/Jobs/JobsList1Col'
   import JobsList2Col from '~/components/Jobs/JobsList2Col'
+  import TagList from '~/components/TagList'
   import NewsList from '../components/News/NewsList'
 
   export default {
@@ -277,13 +282,15 @@
             pageLoadingHot: 1,
             pageLoadingNew: 1,
             linhvuc: [],
-            quocgia: []
+            quocgia: [],
+            tag:[]
         }
     },
     components: {
       JobsList2Col,
       NewsList,
-      JobsList1Col
+      JobsList1Col,
+      TagList
     },
     methods: {
       fetch() {
@@ -325,6 +332,9 @@
         })
         this.$axios.$get(`getQuocGia`).then((ress) => {
           this.quocgia = ress.data
+        })
+        this.$axios.$get(`getTagAll`).then((ress) => {
+          this.tag = ress          
         })
       },
     },
