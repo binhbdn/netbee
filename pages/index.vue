@@ -63,8 +63,7 @@
                             <div class="card">
                                 <div class="card-header">
                                   <h4 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_hot')}}</h4>
-                                  <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn border-netbee aa">{{$t('see_more')}}</a>
+                                  <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>                                  
                                 </div>
                                 <div class="card-content" style="position:relative">
                                     <div class="card-body">
@@ -93,6 +92,9 @@
                                             </a>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="main-bottom">
+                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn border-netbee aa">{{$t('see_more')}}</a>
                                 </div>
                             </div>
                         </div>
@@ -174,13 +176,15 @@
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_new')}}</h4>
-                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                <a href="/tin-tuyen-sinh" class="btn border-netbee aa">{{$t('see_more')}}</a>
+                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>                
               </div>
-              <div class="card-content collapse show" style="padding: 13px">
+              <div class="card-content collapse show" style="padding: 13px;padding-bottom: 0px !important;">
                 <div>
                    <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
                 </div>              
+              </div>
+              <div class="main-bottom" style="padding-bottom: 15px;">
+                <a href="/tin-tuyen-sinh" class="btn border-netbee aa">{{$t('see_more')}}</a>
               </div>
             </div>
           </div>
@@ -240,13 +244,15 @@
           <div class="col-lg-12 col-12">
             <div class="card">
               <div class="card-header">
-                <h4><i class="fad fa-newspaper"></i> {{$t('home.title.news')}}</h4>
-                <a href="/tin-tuc" class="btn border-netbee">{{$t('see_more')}}</a>
+                <h4><i class="fad fa-newspaper"></i> {{$t('home.title.news')}}</h4>                
               </div>
               <div class="card-content collapse show news">
                 <div class="card-body">
                   <NewsList :DataList="tintuc"></NewsList>
                 </div>
+              </div>
+              <div class="main-bottom" style="margin-bottom: 15px;">
+                <a href="/tin-tuc" class="btn border-netbee">{{$t('see_more')}}</a>
               </div>
             </div>
           </div>
@@ -328,6 +334,10 @@
   }
 </script>
 <style scoped>
+  .main-bottom{
+    text-align: right;
+    padding-right: 15px;
+  }
   @media (min-width: 1000px) {
     .jobs .card-body {
       max-height: 375px;

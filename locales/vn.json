@@ -14,7 +14,7 @@
         "become_partner": {
             "title": "Trở thành đối tác",
             "user": "Đăng ký ứng viên",
-            "hr": "Đăng ký nhà chuyên viên tuyển sinh",
+            "hr": "Đăng ký chuyên viên tuyển sinh",
             "company": "Đăng ký nhà tuyển dụng"
         }
     },
@@ -80,7 +80,7 @@
         "submit": "Submit"
     },
     "footer": {
-        "title": "Cộng đồng chuyên viên tuyển sinh lớn nhât",
+        "title": "Mạng lưới du học số 1 Việt Nam",
         "link": {
             "title": "Liên kết",
             "news": "Tin tức",

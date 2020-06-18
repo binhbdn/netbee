@@ -5,10 +5,10 @@
             <div class="col-7 pt-4" style="padding-top: 90px !important;">
                 <h3 style="color:black;"><b>Đăng kí ứng viên</b></h3>
                 <ul class="list">
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>Tếp cận hàng triệu công việc hoàn toàn miễn phí</b></li>
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>Ứng tuyển nhanh chóng, dễ dàng</b></li>
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>Nhận bản tin công việc phù hợp định kỳ</b></li>
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>Nâng cao cơ hội tìm việc với chương trình ứng viên năng động</b></li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tếp cận hàng triệu công việc hoàn toàn miễn phí</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Ứng tuyển nhanh chóng, dễ dàng</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận bản tin công việc phù hợp định kỳ</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nâng cao cơ hội tìm việc với chương trình ứng viên năng động</li>
                 </ul>
             </div>
             <div class="col-5" style="padding:0px 15px;">
