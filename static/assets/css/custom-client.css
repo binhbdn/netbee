@@ -3,7 +3,7 @@
     width: 95%;
 }
 .border-job-item {
-    border: 1px solid #B8C2CC !important;
+    border: 1px solid hsla(0, 0%, 80%, .8);
 }
 .background-default {
     background-color: #FFB701;

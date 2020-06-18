@@ -55,10 +55,10 @@
             <div class="col-lg-6 col-md-7">
               <img src="/assets/img/logo-netbee-2-ncd.png" alt="logo netbee" height="80" width="200">
               <div style="margin-left: 10px;">
-                <h1 style="color: #ffb701; font-weight: bold;">Cùng bạn trên con đường thành công !</h1>
-                <h4 style="color: #fff;"><i class="fa fa-check" style="margin-right: 5px;"></i> Đội ngũ tư vấn nhiệt tình</h4>
-                <h4 style="color: #fff;"><i class="fa fa-check" style="margin-right: 5px;"></i> Giải đáp mọi thắc mắc</h4>
-                <h4 style="color: #fff;"><i class="fa fa-check" style="margin-right: 5px;"></i> Hỗ sợ 24/24</h4>
+                <h1 style="color: #ffb701; font-weight: bold;font-size: 21px;padding-top: 10px;">Cùng bạn trên con đường thành công !</h1>
+                <h4 style="color: #fff;font-size: 16px;padding-top: 10px;"><i class="fa fa-check" style="margin-right: 5px;"></i> Đội ngũ tư vấn nhiệt tình</h4>
+                <h4 style="color: #fff;font-size: 16px;padding-top: 6px;"><i class="fa fa-check" style="margin-right: 5px;"></i> Giải đáp mọi thắc mắc</h4>
+                <h4 style="color: #fff;font-size: 16px;padding-top: 6px;"><i class="fa fa-check" style="margin-right: 5px;"></i> Hỗ trợ 24/24</h4>
               </div>
             </div>
           </div>
