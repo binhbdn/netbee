@@ -332,10 +332,11 @@
                                                                     <div class="divider divider-default">
                                                                         <div class="divider-text">Tin thường</div>
                                                                     </div>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị ở box đầu tiên của trang chủ</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> 1,000,000 VND/ Tin</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -351,10 +352,11 @@
                                                                     <div class="divider divider-warning">
                                                                         <div class="divider-text"><img src="/assets/img/tinnoibat.jpg" style="height: 25px;"></div>
                                                                     </div>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị ở box tin mới</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Không có icon nổi bật</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Không có chuyên viên hỗ trợ hotline</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Miễn phí tin đăng</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -370,10 +372,13 @@
                                                                     <div class="divider divider-danger">
                                                                         <div class="divider-text"><img src="/assets/img/tinvip.jpg"></div>
                                                                     </div>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
-                                                                    <p class="font-weight-600">- Được tiếp cận với + 3000 chuyên viên tuyển sinh</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị ở box nổi bật của trang chủ</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị icon màu đỏ ở góc phải tin gây nổi bật</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Chi tiết tin hiển thị là tin đã xác thực</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> 1,500,000 VND/ Tin</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -668,6 +673,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+#goi1 .border-netbee:hover ,#goi2 .border-netbee:hover,#goi3 .border-netbee:hover{
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1) !important;;
+    background-color: #fff !important;
+    border: 1px solid #FFB701 !important;
+}
+.border-netbee{
+    border: 1px solid hsla(0, 0%, 80%, .8)!important;
+}
+.p-main{
+    text-align: left;
+    font-weight: 400;
+}
 .vue-form-wizard.md .wizard-navigation .wizard-progress-with-circle {
     position: relative;
     top: 25px !important;
