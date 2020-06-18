@@ -3,7 +3,7 @@
          <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>           
         <div class="container" > 
-            <section class="category p-b-15">
+            <!-- <section class="category p-b-15">
                 <div class="container">
                     <div class="row d-flex">
                         <div class="col-md-6 pd-20 pl-0">
@@ -13,7 +13,7 @@
                         </div>
                     </div>
                 </div>
-            </section>             
+            </section>              -->
             <div class="main-cv">                 
                 <div class="row">
                     <div class="col-md-10" style="background-color: #fff;box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);">                                
@@ -218,7 +218,7 @@
         
         methods: {                                                                                                                           
             fetchdata(){
-                this.$axios.post('hoso/getProfileUserId',{'id': this.$route.params.id})
+                this.$axios.post('getProfileUserId',{'id': this.$route.params.id})
                 .then(response => {                    
                     this.info_frofile_user = response.data;
                     console.log(this.info_frofile_user);

@@ -57,6 +57,7 @@ Route::namespace('API')->group(function () {
   Route::get('searchCvs', 'TimKiemController@searchCvs');
   Route::get('usersExport','Auth\UserController@export');
   Route::post('ktintroduce', 'Auth\UserController@ktintroduce');     
+  Route::post('getProfileUserId', 'Admin\TeamplateCvController@getProfileUserId');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
