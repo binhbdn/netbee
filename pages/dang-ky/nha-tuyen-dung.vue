@@ -10,15 +10,15 @@
                 <div style="margin-top: 0px;">
                     <div class="round stat rounded-circle">
                         <h4 class="pt-4">+3000</h4>
-                        <p>ứng viên</p>
+                        <p>Ứng viên</p>
                     </div>
                     <div class="round stat rounded-circle">
                         <h4 class="pt-4">+1000</h4>
-                        <p>tin</p>
+                        <p>Tin</p>
                     </div>
                     <div class="round stat rounded-circle">
                         <h4 class="pt-4">+4000</h4>
-                        <p>CTV</p>
+                        <p style="font-size: 14px !important;">Chuyên viên tuyển sinh</p>
                     </div>
                     <div class="round stat rounded-circle">
                         <h4 class="pt-4">+500</h4>
@@ -27,10 +27,10 @@
                 </div>
                 <div style="margin-top: 12em !important;    line-height: 40px;">
                     <ul>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>+3,000 ứng viên tiếp cận thông tin tuyển dụng</b></li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>Hơn 20 hồ sơ ứng tuyển cho 1 việc làm đăng tuyển tại Netbee</b></li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>Tăng hiệu quả 4 - 5 lần so với các phương thức tuyển dụng khác</b></li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> <b>+2,000 lượt xem trung bình cho 1 việc làm</b></li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> +3,000 ứng viên tiếp cận thông tin tuyển dụng</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hơn 20 hồ sơ ứng tuyển cho 1 việc làm đăng tuyển tại Netbee</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tăng hiệu quả 4 - 5 lần so với các phương thức tuyển dụng khác</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> +2,000 lượt xem trung bình cho 1 việc làm</li>
                     </ul>
                 </div>
             </div>
