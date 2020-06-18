@@ -236,13 +236,47 @@
               </div>
             </div>
             <div class="card" style="box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1);">
-              <h3 style="margin-top: 20px;text-align: center;">Từ khóa tìm kiếm</h3>
-                <TagList :DataList="tag"></TagList>
+              <TagList :DataList="tag"></TagList>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+      <!-- banner quang cao -->
+      <section class="banner-ncd ftco-section services-section card why">
+        <div class="container">
+          <div class="card-content collapse show">
+            <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="10000">
+              <ol class="carousel-indicators">
+                  <li data-target="#carousel-interval-new" v-for="(companyInfo,index) in listVerifyCompany" :key="index" :data-slide-to="index" :class="{'active': index == 0}"></li>
+              </ol>
+              <div class="carousel-inner" role="listbox">
+                <div class="carousel-item" :class="{'active': index == 0}" v-for="(companyInfo,index) in listVerifyCompany" :key="index">
+                  <div class="swiper-slide swiper-slide-next">
+                    <div class="spotlightBlock">
+                      <div class="spotlightBlock__wrapper">
+                        <div class="is-mobile is-centered">
+                          <div class="spotlightBlock__inner">
+                            <div class="columns spotlight-item is-vcentered">
+                                <div class="column is-3 spotlightBlock__logo">
+                                  <figure class="image is-inline-block">
+                                    <img src="/assets/img/test-banner.jpg" style="width: 100%">
+                                  </figure>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
       <!-- tin tức -->
+    <div class="container">
       <section>
         <div class="row">
           <div class="col-lg-12 col-12">
@@ -283,7 +317,8 @@
             pageLoadingNew: 1,
             linhvuc: [],
             quocgia: [],
-            tag:[]
+            tag:[],
+            listVerifyCompany: [],
         }
     },
     components: {
@@ -336,6 +371,9 @@
         this.$axios.$get(`getTagAll`).then((ress) => {
           this.tag = ress          
         })
+        this.$axios.get(`getListCompany?type=2&limit=5&perPage=0`).then((ress) => {
+          this.listVerifyCompany = ress.data.data
+        }) 
       },
     },
     mounted() {
@@ -344,6 +382,13 @@
   }
 </script>
 <style scoped>
+  .banner-ncd{
+    background-image: url("/assets/img/body-bg.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-color: #1e1e1e;
+    height: auto;
+  }
   .main-bottom{
     text-align: right;
     padding-right: 15px;
