@@ -276,9 +276,9 @@ export default {
         return {
             paper: [],
             calendarSuggests: [
-                {'key': 1, 'value': moment(moment().add(1, 'days')).locale("vi").format('llll') },
-                {'key': 2, 'value': moment(moment().add(2, 'days')).locale("vi").format('llll') },
-                {'key': 3, 'value': moment(moment().add(3, 'days')).locale("vi").format('llll') }
+                {'key': 1, 'value': moment(moment().add(1, 'days')).locale("vi").format('DD MM YYYY hh:mm:ss') },
+                {'key': 2, 'value': moment(moment().add(2, 'days')).locale("vi").format('DD MM YYYY hh:mm:ss') },
+                {'key': 3, 'value': moment(moment().add(3, 'days')).locale("vi").format('DD MM YYYY hh:mm:ss') }
             ],
             reason_for_rejection: '',
             idRefuse: '',
@@ -360,15 +360,16 @@ export default {
         addCalendar() {
             console.log(this.idRefuse)
             let a =''
-            let b = moment(this.chooseCalendar)
-            if(b.isValid()){
-                a = moment(this.chooseCalendar).locale("vi").format('llll')
-            } else {
-                a = this.chooseCalendar
-            }
-            this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: a}).then((response) =>{
+            let b = (this.chooseCalendar).split(" ");
+            let c = new Date(b[2]+'-'+b[1]+'-'+b[0]+' '+b[3]);
+            // if(b.isValid()){
+            //     a = moment(this.chooseCalendar).locale("vi").format('llll')
+            // } else {
+            //     a = this.chooseCalendar
+            // }
+            this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: c}).then((response) =>{
                 this.$swal('Thành công', response.message, 'success');
-                location.reload()
+                //location.reload()
             })
         },
         showFile(id) {

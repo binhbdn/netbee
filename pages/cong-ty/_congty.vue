@@ -14,7 +14,7 @@
                                 <img :src="`/uploads/users/avatars/${detailCompany.avatar}`" :alt="`${detailCompany.avatar}`" width="100%">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-8">
                             <div class="company-job-title">
                                 <h2 class="font-weight-bold text-uppercase"><span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${detailCompany.name}`"> {{ detailCompany.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h2>
                                 <p><span class="font-weight-600"><i class="fad fa-map-marked-alt"></i> Địa chỉ: {{ detailCompany.address_detail ? detailCompany.address_detail: 'Đang cập nhật' }}</span></p>
@@ -23,13 +23,15 @@
                                 <p><span class="font-weight-600"><i class="fad fa-calendar-minus"></i> Ngày thành lập: {{ congty.birth_of_date ? ConvertDate(congty.birth_of_date): 'Đang cập nhật' }}</span></p>
                             </div>
                         </div>
-                        <div class="col-lg-2" style="padding-top:30px; padding-left: 10px">
-                            <button v-if="!$auth.loggedIn" class="btn btn-outline-secondary mt-2" data-toggle="modal" data-target="#loginModal">Theo dõi ({{followers}})</button>
-                            <button v-else class="btn btn-outline-secondary mt-2" @click="followCompany()">{{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}} ({{followers}})</button>
-                        </div>
-                        <div class="col-lg-2 count-job">
-                            <h1 style="font-size: 70px;color: #ffb701;">{{ countJob.length ? countJob.length : '0' }}</h1>
-                            <h2>Việc làm</h2>
+                        <div class="col-lg-2 ">
+                            <div class="count-job">
+                                <h1 style="font-size: 70px;color: #ffb701;">{{ countJob.length ? countJob.length : '0' }}</h1>
+                                <h2>Việc làm</h2>
+                            </div>
+                            <div>
+                                <button v-if="!$auth.loggedIn" class="btn btn-hover-netbee mt-2" data-toggle="modal" data-target="#loginModal">Theo dõi ({{followers}})</button>
+                                <button v-else class="btn btn-hover-netbee mt-2" @click="followCompany()">{{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}} ({{followers}})</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -614,12 +616,15 @@ export default {
 .col-lg-2 button{
     width:100%; padding: 16px; font-size:16px;
 }
-.col-lg-2 .btn-outline-secondary:hover {
-    border-color: #EA2635;
+.btn-hover-netbee:hover {
+    background: #ffb701;
     -webkit-transform: scale(1.01);
     transform: scale(1.01);
-    color: #EA2635;
-    background-color: #fff;
+    color: #fff;
+}
+.btn-hover-netbee {
+    border: 1px solid #ffb701;
+    color: #000;
 }
 .avatar-company {
     width: 170px;
