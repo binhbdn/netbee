@@ -13,7 +13,7 @@
                                                 <i class="feather icon-message-square text-warning font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700">Chọn loại tin</h2>
+                                        <h2>Chọn loại tin</h2>
                                         <p class="mb-0 line-ellipsis">Chọn 1 trong những mẫu tin phù hợp với yêu cầu của bạn miễn phí</p>
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@
                                                 <i class="feather icon-heart text-info font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700">Cập nhật thông tin</h2>
+                                        <h2>Cập nhật thông tin</h2>
                                         <p class="mb-0 line-ellipsis">Cập nhật các thông tin, kỹ năng, học vấn, kinh nghiệm... mà bạn yêu cầu</p>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                                 <i class="feather icon-award text-success font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700">Đăng và nhận ứng viên</h2>
+                                        <h2>Đăng và nhận ứng viên</h2>
                                         <p class="mb-0 line-ellipsis">Cập nhât thông tin ứng tuyển thường xuyên qua email, sms ...</p>
                                         <br/>
                                     </div>
@@ -59,7 +59,7 @@
                         <div class="col-12 p-r-0 p-l-0">
                             <div class="card">
                                 <div class="card-header" style="margin: auto;">
-                                    <h3 class="font-weight-bold">CÁC LOẠI TIN ĐĂNG</h3>
+                                    <h3>CÁC LOẠI TIN ĐĂNG</h3>
                                 </div>
                                 <div class="card-body card-dashboard">
                                     <div class="row">
