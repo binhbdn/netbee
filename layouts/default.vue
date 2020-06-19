@@ -49,7 +49,15 @@ export default {
     GroupIcon
   },
   mounted() {
-    this.$i18n.locale = window.localStorage.getItem('lang')
+    this.$i18n.locale = window.localStorage.getItem('lang');
+      if (window.FB) {
+      window.FB.init({
+          appId      : '1459241224260897',
+          status     : true,
+          xfbml      : true,
+          version    : 'v3.3'
+      })
+    }
   }
 };
 </script>
