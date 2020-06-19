@@ -13,10 +13,11 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2 line2">{{$t('footer.link.title')}} </h2>
                         <ul class="list-unstyled" style="line-height: 5px;"> 
-                            <li><a href="/tin-tuc" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.news')}}</a></li>
-                            <li><a href="/quy-dinh-bao-mat" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.regulations')}}</a></li>
-                            <li><a href="/lien-he" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.contact')}}</a></li>
-                            <li><a href="/ve-netbee" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.faq')}}</a></li>
+                            <li><a href="/tin-tuc" target="_blank" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.news')}}</a></li>
+                            <li><a href="/lien-he" target="_blank" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.contact')}}</a></li>
+                            <li><a href="/quy-dinh-bao-mat" target="_blank" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.regulations')}}</a></li>
+                            <li><a href="/ve-netbee" target="_blank" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.faq')}}</a></li>
+                            <li><a href="/co-che-netbee" target="_blank" class="py-2 d-block a_footer" style="color: #fff;">Cơ chế giải quyết tranh chấp</a></li>
                         </ul>
                     </div>
                 </div>

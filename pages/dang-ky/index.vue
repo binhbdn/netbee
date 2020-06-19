@@ -11,12 +11,12 @@
                 <span class="circle danger" style="margin: 0 auto;"><i class="fa fa-list-alt" style="color:white"></i></span>
               </div>
               <div class="col-8">
-                <h4 class="text-danger">Đăng ký chuyển viên tuyển sinh</h4>
+                <h4 class="" style="color: #f61100;">Đăng ký chuyển viên tuyển sinh</h4>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Tiếp cận hàng triệu ứng viên hoàn toàn miễn phí</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Ứng tuyển nhanh chóng, dễ dàng</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Nhận bản tin công việc phù hợp định kỳ</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Nâng cao cơ hội tìm ứng viên</p>
-                <p style="width: 100%;height: 46px;"><button class="btn btn-danger register-company"><span>Chuyên viên tuyển sinh</span></button></p>
+                <p style="width: 100%;height: 46px;"><button class="btn btn-danger"><span>Chuyên viên tuyển sinh</span></button></p>
               </div>
             </div>
           </a>
@@ -25,7 +25,7 @@
           <a href="/dang-ky/nha-tuyen-dung">
             <div class="row">
               <div class="col-8" style="text-align: right">
-                <h4 class="text-success rgs-between register-company-text">Đăng ký nhà tuyển dụng</h4>
+                <h4 class="rgs-between register-company-text" style="color: #038600;">Đăng ký nhà tuyển dụng</h4>
                 <p class="box-register_text">+ 3,000 ứng viên tiếp cận thông tin tuyển dụng&nbsp;<i class="fa fa-check-circle"></i></p>
                 <p class="box-register_text">Hơn 20 hồ sơ ứng tuyển cho 1 việc làm đăng tuyển tại Netbee&nbsp;<i class="fa fa-check-circle"></i></p>
                 <p class="box-register_text">Tăng hiệu quả 4 - 5 lần so với các phương thức tuyển dụng khác&nbsp;<i class="fa fa-check-circle"></i></p>
@@ -45,7 +45,7 @@
                 <span class="circle uv" style="margin: 0 auto;"><i class="fa fa-list-alt" style="color:white"></i></span>
               </div>
               <div class="col-8">
-                <h4 class="text-danger ulc">Đăng ký ứng viên</h4>
+                <h4 class="ulc" style="color: #9200ac;">Đăng ký ứng viên</h4>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i> Tiếp cận hàng triệu công việc hoàn toàn miễn phí</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i> Ứng tuyển nhanh chóng, dễ dàng</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i> Nhận bản tin công việc phù hợp định kỳ</p>
@@ -122,7 +122,7 @@
     transition: all .15s ease-in-out;
   }
   .formlogin p{
-    color: white;
+    color: #000;
   }
   .formlogin i{
     color: #ffb701;

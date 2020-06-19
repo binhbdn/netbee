@@ -1,6 +1,6 @@
 <template>
     
-    <div  class="hero-wrap js-fullheight m-b-15"  v-lazy:background-image="'/assets/img/banerThanh.png'"  style="position: relative;background-position: center; " >        
+    <div  class="hero-wrap js-fullheight m-b-15"  v-lazy:background-image="'/assets/img/banner-danh-01a.jpg'"  style="position: relative;background-position: center; " >        
 
     <div class="section-intro" :class="show ? 'section-intro-active' : ''">
       <vue-particles color="#dedede"
@@ -414,7 +414,7 @@ export default {
     color: white!important;
   }
   .ftco-search .tab-ct2 {
-    background: rgba(255, 255, 255, 0.1)!important;
+    background: hsla(0, 0%, 3%, 0.28)!important;
     border-radius: 3px;
     border-top-left-radius: 0;
     margin-top: -9px;
@@ -424,10 +424,10 @@ export default {
     content: unset!important;
   }
   .nav.nav-tabs .nav-item .nav-link.active{
-    background: hsla(0,0%,100%,.1)!important;
+    background: hsla(0, 0%, 3%, 0.28)!important;
   }
   .nav.nav-tabs .nav-item .nav-link:hover {
-    background: hsla(0,0%,100%,.1)!important;
+    background: hsla(0, 0%, 3%, 0.28)!important;
   }
   .search ul li a i {
     padding-right: 3px;
