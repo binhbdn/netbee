@@ -1,6 +1,6 @@
 <template>
   <div class="ftco-section-parallax">
-    <div class="d-flex" id="follow">
+    <div class="d-flex" id="follow" v-lazy:background-image="`/assets/img/hands-ncd.jpg`">
       <div style="background-color: #242222c9; width: 100%;">
         <div class="container">
           <div class="row align-items-center">
@@ -156,7 +156,6 @@ export default {
  
 <style>
 #follow{
-    background-image: url("/assets/img/hands-ncd.jpg");
     background-position: center center;
     background-size: cover;
     background-color: #1e1e1e;
