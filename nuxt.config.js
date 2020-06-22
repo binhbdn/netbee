@@ -71,7 +71,6 @@ module.exports = {
             { hid: 'stripe', src: '/app-assets/js/core/app-menu.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/core/app.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/scripts/components.js', defer: true },
-            { hid: 'stripe', src: 'https://meet.jit.si/external_api.js', defer: true },
             // { src: '/app-assets/vendors/js/forms/select/select2.full.min.js', },
             // { src: '/app-assets/js/scripts/forms/select/form-select2.js', },
 
