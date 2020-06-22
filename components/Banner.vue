@@ -1,6 +1,6 @@
 <template>
     
-    <div  class="hero-wrap js-fullheight m-b-15"  v-lazy:background-image="'/assets/img/banner-danh-01a.jpg'"  style="position: relative;background-position: center; " >        
+    <div  class="hero-wrap js-fullheight m-b-15"  v-lazy:background-image="'/assets/img/banner-danh-01aa.jpg'"  style="position: relative;background-position: center; " >        
 
     <div class="section-intro" :class="show ? 'section-intro-active' : ''">
       <vue-particles color="#dedede"

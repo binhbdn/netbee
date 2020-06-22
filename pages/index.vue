@@ -242,7 +242,7 @@
       </section>
     </div>
       <!-- banner quang cao -->
-      <section class="banner-ncd ftco-section services-section card why">
+      <section class="banner-ncd ftco-section services-section card why" v-lazy:background-image="`/assets/img/body-bg.jpg`">
         <div class="container">
           <div class="card-content collapse show">
             <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="10000">
@@ -259,7 +259,7 @@
                             <div class="columns spotlight-item is-vcentered">
                                 <div class="column is-3 spotlightBlock__logo">
                                   <figure class="image is-inline-block">
-                                    <img src="/assets/img/test-banner.jpg" style="width: 100%">
+                                    <img v-lazy="`/assets/img/test-banner.jpg`" style="width: 100%">
                                   </figure>
                                 </div>
                             </div>
@@ -382,7 +382,6 @@
 </script>
 <style scoped>
   .banner-ncd{
-    background-image: url("/assets/img/body-bg.jpg");
     background-position: center center;
     background-size: cover;
     background-color: #1e1e1e;
