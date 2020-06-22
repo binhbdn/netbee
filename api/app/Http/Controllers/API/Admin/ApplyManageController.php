@@ -195,7 +195,8 @@ class ApplyManageController extends Controller
     }
 
     public function getDowloadFile(Request $request){
-        $file_path = '/home/netbee.vn/html/static/uploads/apply/'.$request->filename;       
+
+        $file_path = '/home/netbee.vn/html/static/uploads/apply/'.$request->filename;   
         return response()->download($file_path);
     }
 }

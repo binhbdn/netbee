@@ -247,14 +247,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
-                    <!-- <div class="add-data-btn">
-                        <button v-if="paper.status == 5" @click="approve()" class="btn bg-netbee">Duyệt giấy tờ</button>
-                    </div> -->
+                <!-- <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
                     <div class="cancel-data-btn" @click="closeShowFile()">
                         <button class="btn btn-outline-danger">Đóng</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- add new sidebar ends -->
