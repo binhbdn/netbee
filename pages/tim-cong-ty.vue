@@ -24,7 +24,7 @@
                                 </ol>
                                 <div class="carousel-inner" role="listbox">
                                     <div class="carousel-item text-center" :class="{'active' : indexCompanyHot == 0}" v-for="(companyHot, indexCompanyHot) in arrayCompanyHot" :key="indexCompanyHot">
-                                        <img class="img-fluid" :src="`/uploads/users/avatars/${companyHot.avatar}`" :alt="`${companyHot.avatar}`" style="object-fit: cover" />
+                                        <img class="img-fluid" v-lazy="`/uploads/users/avatars/${companyHot.avatar}`" :alt="`${companyHot.avatar}`" style="object-fit: cover" />
                                         <div class="remove-border-rightt">
                                             <div class="item-name">
                                                 <a :href="`/cong-ty/${companyHot.username ? companyHot.username : '#'}`" class="item-company mb-0"> 

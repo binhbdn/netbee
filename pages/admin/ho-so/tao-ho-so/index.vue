@@ -140,8 +140,8 @@
                                     <div style="background-color: #029c7c;" class="img-cv">
                                         <div class="imgg">
                                             <label for="files">                                                
-                                                <img :src="images[0]"  v-if="images.length > 0">
-                                                <img :src="img" v-else>
+                                                <img v-lazy="images[0]"  v-if="images.length > 0">
+                                                <img v-lazy="img" v-else>
                                             </label>
                                             <input type="file" id="files" class="hidden"  @change="previewFiles" multiple>                                          
                                         </div>                                        
