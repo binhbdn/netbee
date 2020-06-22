@@ -46,7 +46,12 @@
             return {
                 
             }
-        },        
+        }, 
+        head: {
+            script: [
+                { hid: 'stripe', src: 'https://meet.jit.si/external_api.js', defer: true },
+            ]
+        },       
         components:{
                      
         },     
