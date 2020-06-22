@@ -25,7 +25,7 @@
               </div>
             </div>
           </a>
-          <a class="col-md-5 align-self-stretch ftco-animate" href="#">
+          <a class="col-md-5 align-self-stretch ftco-animate" href="/dang-ky/nha-tuyen-dung">
             <div class="d_item v_block hover-ncd">
               <div class="icon text-center SB_bn_1">
                 <i class="fa fa-handshake"></i>
@@ -35,7 +35,7 @@
               </div>
             </div>
           </a>
-          <a class="col-md-3  align-self-stretch ftco-animate pd-l-0" href="#">
+          <a class="col-md-3  align-self-stretch ftco-animate pd-l-0" href="/dang-ky/chuyen-vien-tuyen-dung">
             <div class="d_item v_block hover-ncd">
               <div class="icon text-center SB_bn_1">
                 <i class="fa fa-comments-dollar"></i>
@@ -192,8 +192,7 @@
             <ul class="nav nav-tabs nav-fill" style="margin: 0;" id="myTab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="home-tab-fill" data-toggle="tab" href="#home-fill"
-                    role="tab" aria-controls="home-fill" aria-selected="true" ><i
-                  class="fad fa-align-center"></i> {{$t('home.field')}}</a>
+                    role="tab" aria-controls="home-fill" aria-selected="true" ><i class="fa fa-clipboard-list"></i> {{$t('home.field')}}</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
@@ -216,13 +215,13 @@
                                 <div class="tab-pane active list-item" id="home-fill" role="tabpanel"
                                       aria-labelledby="home-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item item" v-for="(item, index) in linhvuc" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?id_visa=${item.id}`"><i class="fa fa-angle-right"></i> {{item.profession}}</a></li>
+                                    <li class="nav-item item" v-for="(item, index) in linhvuc" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?id_visa=${item.id}`"><i class="fa fa-hand-point-right"></i> {{item.profession}}</a></li>
                                   </ul>
                                 </div>
                                 <div class="tab-pane" id="profile-fill" role="tabpanel"
                                       aria-labelledby="profile-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item item" v-for="(item, index) in quocgia" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?nation_id=${item.id}`"><i class="fa fa-angle-right"></i> {{item.name}}</a></li>
+                                    <li class="nav-item item" v-for="(item, index) in quocgia" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?nation_id=${item.id}`"><i class="fa fa-hand-point-right"></i> {{item.name}}</a></li>
                                   </ul>
                                 </div>
                               </div>
@@ -289,7 +288,7 @@
                   <NewsList :DataList="tintuc"></NewsList>
                 </div>
               </div>
-              <div class="main-bottom" style="margin-bottom: 15px;">
+              <div class="main-bottom m-r-bt-15">
                 <a href="/tin-tuc" class="btn border-netbee">{{$t('see_more')}}</a>
               </div>
             </div>
@@ -359,7 +358,7 @@
           
         });
 
-        this.$axios.$get(`getTinTucNew?limit=4`).then((ress) => {
+        this.$axios.$get(`getTinTucNew?limit=6`).then((ress) => {
           this.tintuc = ress.data.tintuc
         })
         this.$axios.$get(`getVisa`).then((ress) => {
@@ -397,6 +396,10 @@
     .jobs .card-body {
       max-height: 375px;
     }
+  }
+  .m-r-bt-15{
+    margin-bottom: 15px; 
+    margin-right: 15px;
   }
   .nav.nav-tabs .nav-item .nav-link.active:after{
     display: none;
@@ -572,6 +575,9 @@
     }
     .text-ds{
       display: block;
+    }
+    .m-r-bt-15{
+      margin-right: 0px;
     }
   }
   @media(max-width: 320px) {
