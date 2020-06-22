@@ -88,7 +88,7 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title line2"> MÔ TẢ CÔNG VIỆC</h5>
+                                <h5 class="font-weight-600 line-title line2"> LỘ TRÌNH</h5>
                                 <!-- <hr class="hr-color" style="max-width: 163px;"> -->
                             </div>
                             <div class="row">
@@ -709,7 +709,7 @@ export default {
     width: 265px;
 }
 .line2::before{
-    width: 147px;
+    width: 75px;
 }
 .line3::before{
     width: 70px;
