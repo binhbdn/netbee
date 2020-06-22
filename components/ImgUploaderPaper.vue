@@ -16,8 +16,8 @@
 
             <div class="images-preview" v-show="images.length || thuml != null">
                 <div class="img-wrapper">
-                    <img :src="images[0]" class="imgFixed" v-if="images.length > 0">
-                    <img :src="`/uploads/news/${thuml}`" class="imgFixed" v-else>
+                    <img v-lazy="images[0]" class="imgFixed" v-if="images.length > 0">
+                    <img v-lazy="`/uploads/news/${thuml}`" class="imgFixed" v-else>
                 </div>
                 <div class="file-input">
                     <label :for="`file${type}`">Đổi ảnh</label>

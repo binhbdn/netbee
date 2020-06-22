@@ -4,7 +4,7 @@
       <div class="card">
         <div class="row">
           <div class="col-md-6">
-            <img :src="`/app-assets/images/logo/about.jpg`" width="100%"/>
+            <img v-lazy="`/app-assets/images/logo/about.jpg`" width="100%"/>
           </div>
           <div class="col-md-6"> 
             <div class="main">

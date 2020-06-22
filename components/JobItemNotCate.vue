@@ -3,7 +3,7 @@
         <div class="card-content h-100">
             <div class="text-center p-1" style="margin: auto;">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img :src="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 150px; max-width: 100%;">
+                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 150px; max-width: 100%;">
                 </a>
                 <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" style="margin-top: 6px;">
                     <a :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">

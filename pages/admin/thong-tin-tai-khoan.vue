@@ -33,8 +33,8 @@
                                                     <div class="col-7">
                                                         <div class="media">
                                                             <a href="javascript: void(0);">
-                                                                <img :src="images[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="images.length > 0">
-                                                                <img :src="changeInfoUser.avatar != null && changeInfoUser.avatar.startsWith('https') ? changeInfoUser.avatar : `/uploads/users/avatars/${changeInfoUser.avatar}`" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-else>
+                                                                <img v-lazy="images[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="images.length > 0">
+                                                                <img v-lazy="changeInfoUser.avatar != null && changeInfoUser.avatar.startsWith('https') ? changeInfoUser.avatar : `/uploads/users/avatars/${changeInfoUser.avatar}`" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-else>
                                                             </a>
                                                             <div class="media-body mt-75">
                                                                 <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
@@ -150,8 +150,8 @@
                                                             <div class="col-9">
                                                                 <div class="media pl-1">
                                                                 <a href="javascript: void(0);">
-                                                                    <img :src="imagesCover[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="imagesCover.length > 0">
-                                                                    <img :src="changeInfoCompanyForm.imageCover != null && changeInfoCompanyForm.imageCover.startsWith('https') ? changeInfoCompanyForm.imageCover : `/uploads/users/covers/${changeInfoCompanyForm.imageCover}`" class="rounded mr-75" alt="cover image" height="64" width="64" style="object-fit: cover;" v-else>
+                                                                    <img v-lazy="imagesCover[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="imagesCover.length > 0">
+                                                                    <img v-lazy="changeInfoCompanyForm.imageCover != null && changeInfoCompanyForm.imageCover.startsWith('https') ? changeInfoCompanyForm.imageCover : `/uploads/users/covers/${changeInfoCompanyForm.imageCover}`" class="rounded mr-75" alt="cover image" height="64" width="64" style="object-fit: cover;" v-else>
                                                                 </a>
                                                                 <div class="media-body mt-75">
                                                                     <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">

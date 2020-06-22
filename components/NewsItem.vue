@@ -13,7 +13,7 @@
     </div> -->
     <div class="card border-job-item" style="border-radius: 3px;">
         <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" class="text-center" style="height: 200px">
-            <img :src="`/uploads/news/${thuml}`" :alt="`${thuml}`" class="img-new">
+            <img v-lazy="`/uploads/news/${thuml}`" :alt="`${thuml}`" class="img-new">
         </a>
         <div class="col-md-12" style="text-align: center;">
             <img src="/assets/img/logo.png" alt="logo netbee" width="60" style="margin-top: -30px; text-align: center;">
