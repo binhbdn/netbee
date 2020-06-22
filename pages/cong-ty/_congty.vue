@@ -11,7 +11,7 @@
                     <div class="row p-1">
                         <div class="col-lg-2 d-flex align-items-center">
                             <div class="avatar-company">
-                                <img :src="`/uploads/users/avatars/${detailCompany.avatar}`" :alt="`${detailCompany.avatar}`" width="100%">
+                                <img v-lazy="`/uploads/users/avatars/${detailCompany.avatar}`" :alt="`${detailCompany.avatar}`" width="100%">
                             </div>
                         </div>
                         <div class="col-lg-8">
@@ -134,7 +134,7 @@
                 <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
                 <div class="row">
                     <div class="col-4">
-                        <img :src="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`"
+                        <img v-lazy="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`"
                         style="height:80px; width:80px; padding-top: 1px; padding-left: 20px; object-fit: cover; border-radius: 50%;">
                         
                     </div>
@@ -266,7 +266,7 @@
                 <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
                 <div class="row">
                     <div class="col-4">
-                        <img :src="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`"
+                        <img v-lazy="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`"
                         style="height:80px; width:80px; padding-top: 1px; padding-left: 20px; object-fit: cover; border-radius: 50%;">
                         
                     </div>

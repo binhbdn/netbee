@@ -152,13 +152,13 @@
                                     <div style="background-color: #029c7c;" class="img-cv">
                                         <div class="imgg" v-if="status == 0">
                                             <label>
-                                                <img :src="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`">
+                                                <img v-lazy="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`">
                                             </label>                                                                                                                          
                                         </div>     
                                         <div class="imgg" v-if="status == 1">
                                             <label for="files">
-                                                <img :src="images[0]"  v-if="images.length > 0">
-                                                <img :src="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`" v-else>
+                                                <img v-lazy="images[0]"  v-if="images.length > 0">
+                                                <img v-lazy="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`" v-else>
                                             </label>
                                             <input type="file" id="files" class="hidden"  @change="previewFiles" multiple>                                          
                                         </div>  

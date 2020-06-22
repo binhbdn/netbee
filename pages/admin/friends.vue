@@ -31,7 +31,7 @@
                                         <div class="col-md-4">
                                             <div class="b1" style="margin-left: 23px;">
                                                 <center>
-                                                    <img :src="`/assets/img/friend1.png`">
+                                                    <img v-lazy="`/assets/img/friend1.png`">
                                                     <h3><b>Bước 1: Chia sẻ<br>link giới thiệu</b></h3>
                                                     <p>đến bạn bè qua Email, Facebook,<br> Linkedin và nhiều hơn thế nữa!</p>
                                                 </center>                                                
@@ -40,7 +40,7 @@
                                         <div class="col-md-4">
                                             <div class="b1">
                                                 <center>
-                                                    <img :src="`/assets/img/friend2.png`">
+                                                    <img v-lazy="`/assets/img/friend2.png`">
                                                     <h3><b>Bước 2: Người được giới thiệu<br> đã đăng ký</b></h3>
                                                     <p>và tiến hành làm việc</p>
                                                 </center>                                                
@@ -49,7 +49,7 @@
                                         <div class="col-md-4">
                                             <div class="b1" style="margin-right: 23px;">
                                                 <center>
-                                                    <img :src="`/assets/img/friend3.png`">
+                                                    <img v-lazy="`/assets/img/friend3.png`">
                                                     <h3><b>Bạn được hưởng <br>15.000 VND</b></h3>
                                                     <p>khi bạn bè của bạn có "Hồ sơ đạt"</p>
                                                 </center>                                                

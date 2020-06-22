@@ -132,7 +132,7 @@
                                     <div style="background-color: #029c7c;" class="img-cv">
                                         <div class="imgg">
                                             <label>
-                                                <img :src="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`">
+                                                <img v-lazy="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`">
                                             </label>                                                                                                                          
                                         </div>                                            
                                     </div>                        

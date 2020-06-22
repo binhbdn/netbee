@@ -145,7 +145,7 @@
                                                         {{item.id}}</td>
                                                     <td class="text-left"><a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuc/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}}</a></td>
                                                     <td>
-                                                        <span><img :src="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>
+                                                        <span><img v-lazy="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>
                                                     </td>
                                                     <td>{{ConvertDate(item.created_at)}}</td>
                                                     <td v-if="item.status == 0">

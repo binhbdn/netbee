@@ -7,7 +7,7 @@
                         <div class="col-md-2">
                             <a :href="`/ho-so/${item.id}`">
                                 <div class="setImg">
-                                    <img :src="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`">
+                                    <img v-lazy ="`/uploads/users/avatars/${item.avatar_profile}`" :alt="`${item.avatar}`">
                                 </div>
                             </a>
                         </div>
