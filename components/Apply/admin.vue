@@ -195,8 +195,9 @@
                                                     <tr v-for="(item, index) in AllApply" :key="index">
                                                         <td>{{item.id}}</td>
                                                         <td>                                                            
-                                                            <p v-if="item.job">{{item.job.title}}</p>
-                                                            <p v-else>Đang cập nhật</p>
+                                                            <p v-if="item.job" style="margin-bottom: 0px;">{{item.job.title}}</p>
+                                                            <span style="font-size: 12px;" v-if="item.cv_id != null"><i>Hồ sơ online</i></span>
+                                                            <span style="font-size: 12px;" v-if="item.cv_file != null"><i>Hồ sơ đính kèm</i></span>
                                                         </td>
                                                         
                                                         <td>{{item.name}}</td>                                                        
@@ -387,14 +388,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
-                    <!-- <div class="add-data-btn">
-                        <button v-if="paper.status == 5" @click="approve()" class="btn bg-netbee">Duyệt giấy tờ</button>
-                    </div> -->
+                <!-- <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
                     <div class="cancel-data-btn" @click="closeShowFile()">
                         <button class="btn btn-outline-danger">Đóng</button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- add new sidebar ends -->
