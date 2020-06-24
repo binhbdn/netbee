@@ -77,21 +77,25 @@ class NbCompanyInfoService extends BaseService {
                     'username' => $username,
                 ]);
             })
-        ->whereHas('companyFeedback', function($q){
-            $q->where('approve_feed', self::ACTIVE);
-        })
+        // ->whereHas('companyFeedback', function($q){
+        //     $q->where('approve_feed', self::ACTIVE);
+        // })
             ->where('block', self::UN_BLOCK)
             ->where('status', self::ACTIVE)
         ->first();
-        foreach($datas->companyFeedback as $key=>$data){
-            $datas['rate'] = $this->getRate($data);
+        if(isset($datas->companyFeedback)) {
+            foreach($datas->companyFeedback as $key=>$data){
+                $datas['rate'] = $this->getRate($data);
+            }
         }
+
         return [
             'status' => 200,
             'message' => 'Thành công',
             'data' => $datas
         ];
     }
+    
     public function postCompanyFeedback($request){
         if(Auth::check()){
             $user = Auth::user();
