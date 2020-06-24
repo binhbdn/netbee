@@ -26,13 +26,9 @@
                 </div>
                 <div class="item-quantity mb-1">
                     <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="">
-                        <a :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
-                            <span class="badge border-netbee badge-sm" style="width: 100px">
-                                {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
-                            </span>
-                        </a>
-                    </p>
+                    <a class="delivery-date mb-0 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
+                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
+                    </a>
                 </div>
             </div>
         </div>
