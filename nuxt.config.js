@@ -38,7 +38,7 @@ module.exports = {
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
             { hid: 'description', name: 'description', content: 'Kênh du học quốc tế - Trang kết nối du học của các trung tâm tuyển sinh.' },
-            { hid: 'robots', name: 'robots', content: 'follow' },
+            { hid: 'robots', name: 'robots', content: 'index,follow' },
             { hid: 'revisit-after', name: 'revisit-after', content: '1 days' },
             { hid: 'og:type', name: 'og:type', content: 'website' },
             { hid: 'og:locale', name: 'og:locale', content: 'vi' },
@@ -67,9 +67,9 @@ module.exports = {
 
         ],
         script: [
-            { hid: 'stripe', src: '/app-assets/vendors/js/vendors.min.js', defer: true },
-            { hid: 'stripe', src: '/app-assets/js/core/app-menu.js', defer: true },
-            { hid: 'stripe', src: '/app-assets/js/core/app.js', defer: true },
+            // { hid: 'stripe', src: '/app-assets/vendors/js/vendors.min.js', defer: true },
+            // { hid: 'stripe', src: '/app-assets/js/core/app-menu.js', defer: true },
+            // { hid: 'stripe', src: '/app-assets/js/core/app.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/scripts/components.js', defer: true },
             // { src: '/app-assets/vendors/js/forms/select/select2.full.min.js', },
             // { src: '/app-assets/js/scripts/forms/select/form-select2.js', },
