@@ -176,7 +176,9 @@
                                         </div>
                                         <div class="timeline-info">
                                             <p class="font-weight-bold mb-0">CMND mặt trước</p>
-                                            <a target="_blank" :href="`/uploads/apply/files/${paper.front_id_card}`" class="font-small-3">Xem trước</a>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.front_id_card}`" class="font-small-3">
+                                                <img :src="`/uploads/apply/files/${paper.front_id_card}`" alt="" width="70px" height="70px">
+                                            </a>
                                         </div>
                                     </li>
                                     <li>
@@ -185,7 +187,9 @@
                                         </div>
                                         <div class="timeline-info">
                                             <p class="font-weight-bold mb-0">CMND mặt sau</p>
-                                            <a target="_blank" :href="`/uploads/apply/files/${paper.back_id_card}`" class="font-small-3">Xem trước</a>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.back_id_card}`" class="font-small-3">
+                                                <img :src="`/uploads/apply/files/${paper.back_id_card}`" alt="" width="70px" height="70px">
+                                            </a>
                                         </div>
                                     </li>
                                     <li>
@@ -194,7 +198,9 @@
                                         </div>
                                         <div class="timeline-info">
                                             <p class="font-weight-bold mb-0">Ảnh chân dung</p>
-                                            <a target="_blank" :href="`/uploads/apply/files/${paper.card_photo}`" class="font-small-3">Xem trước</a>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.card_photo}`" class="font-small-3">
+                                                <img :src="`/uploads/apply/files/${paper.card_photo}`" alt="" width="70px" height="70px">
+                                            </a>
                                         </div>
                                     </li>
                                     <li>
@@ -203,7 +209,9 @@
                                         </div>
                                         <div class="timeline-info">
                                             <p class="font-weight-bold mb-0">Bằng tốt nghiệp</p>
-                                            <a target="_blank" :href="`/uploads/apply/files/${paper.high_school_diploma}`" class="font-small-3">Xem trước</a>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.high_school_diploma}`" class="font-small-3">
+                                                <img :src="`/uploads/apply/files/${paper.high_school_diploma}`" alt="" width="70px" height="70px">
+                                            </a>
                                         </div>
                                     </li>
                                     <li>
@@ -212,7 +220,9 @@
                                         </div>
                                         <div class="timeline-info">
                                             <p class="font-weight-bold mb-0">Giấy khai sinh</p>
-                                            <a target="_blank" :href="`/uploads/apply/files/${paper.birth_certificate}`" class="font-small-3">Xem trước</a>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.birth_certificate}`" class="font-small-3">
+                                                <img :src="`/uploads/apply/files/${paper.birth_certificate}`" alt="" width="70px" height="70px">
+                                            </a>
                                         </div>
                                     </li>
                                     <li>
@@ -221,7 +231,9 @@
                                         </div>
                                         <div class="timeline-info">
                                             <p class="font-weight-bold mb-0">Sơ yếu lí lịch</p>
-                                            <a target="_blank" :href="`/uploads/apply/files/${paper.curriculum_vitae}`" class="font-small-3">Xem trước</a>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.curriculum_vitae}`" class="font-small-3">
+                                                <img :src="`/uploads/apply/files/${paper.curriculum_vitae}`" alt="" width="70px" height="70px">
+                                            </a>
                                         </div>
                                     </li>
                                     <li>
@@ -230,7 +242,9 @@
                                         </div>
                                         <div class="timeline-info">
                                             <p class="font-weight-bold mb-0">Giấy khám sức khỏe</p>
-                                            <a target="_blank" :href="`/uploads/apply/files/${paper.health_certification}`" class="font-small-3">Xem trước</a>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.health_certification}`" class="font-small-3">
+                                                <img :src="`/uploads/apply/files/${paper.health_certification}`" alt="" width="70px" height="70px">
+                                            </a>
                                         </div>
                                     </li>
                                     <li>
@@ -239,7 +253,9 @@
                                         </div>
                                         <div class="timeline-info">
                                             <p class="font-weight-bold mb-0">Hộ chiếu</p>
-                                            <a target="_blank" :href="`/uploads/apply/files/${paper.passport}`" class="font-small-3">Xem trước</a>
+                                            <a target="_blank" :href="`/uploads/apply/files/${paper.passport}`" class="font-small-3">
+                                                <img :src="`/uploads/apply/files/${paper.passport}`" alt="" width="70px" height="70px">
+                                            </a>
                                         </div>
                                     </li>
                                 </ul>
@@ -313,7 +329,6 @@ export default {
         fetch() {
             this.$axios.$get('apply/getAllApply').then((response)=>{
                 this.AllApply=response.data;
-                console.log(this.AllApply)
 	        });
 
         },
