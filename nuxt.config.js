@@ -67,7 +67,7 @@ module.exports = {
 
         ],
         script: [
-            // { hid: 'stripe', src: '/app-assets/vendors/js/vendors.min.js', defer: true },
+            { hid: 'stripe', src: '/app-assets/vendors/js/vendors.min.js', defer: true },
             // { hid: 'stripe', src: '/app-assets/js/core/app-menu.js', defer: true },
             // { hid: 'stripe', src: '/app-assets/js/core/app.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/scripts/components.js', defer: true },
