@@ -59,8 +59,11 @@ class NbCompanyInfoService extends BaseService {
         else{
             $getData = $datas->paginate($perPage);
         }
+        
         foreach($getData as $key=>$data){
-            $getData[$key]['rate'] = $this->getRate($data->companyFeedback);
+            if(isset($data->companyFeedback)){
+                $getData[$key]['rate'] = $this->getRate($data->companyFeedback);
+            }
         }
         return [
             'status' => 200,
@@ -95,7 +98,7 @@ class NbCompanyInfoService extends BaseService {
             'data' => $datas
         ];
     }
-    
+
     public function postCompanyFeedback($request){
         if(Auth::check()){
             $user = Auth::user();

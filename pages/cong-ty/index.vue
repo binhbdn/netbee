@@ -199,8 +199,7 @@ export default {
                 this.$axios
                 .get('getListCompany?perPage=3'+ '&page='+this.page)
                  .then((response) => {
-                   console.log(response)
-                    if (response.data.data.data.length > 1) {
+                    if (response.data.data.data.length >= 1) {
                         response.data.data.data.forEach((item) => this.listAllCompany.push(item))
                         $state.loaded()
                     } else {
