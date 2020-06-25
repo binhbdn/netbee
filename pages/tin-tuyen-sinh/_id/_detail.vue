@@ -693,17 +693,18 @@ export default {
     margin: 0;
     padding-bottom: 7px;
     position: relative;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #f7f7f7;
     margin-bottom: 12px;
 }
 
 .line1::before,.line2::before,.line3::before,.line4::before,.line5::before,.line6::before{
     position: absolute;
-  background: #ffb701;
-  height: 2px;
-  content: '';  
-  bottom: -2px;
-  left: 0;
+    background: #ffb701;
+    height: 2px;
+    content: '';  
+    bottom: -2px;
+    left: 0;
+    border-radius: 12px;
 }
 .line1::before{
     width: 265px;
