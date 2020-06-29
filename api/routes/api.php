@@ -161,6 +161,13 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('ApprovedApplyHoSoDinhKem/{id}', 'Admin\ApplyManageController@ApprovedApplyHoSoDinhKem');
         Route::post('getDowloadFile', 'Admin\ApplyManageController@getDowloadFile');
       });
+      Route::prefix('advertisement')->group(function () {
+        Route::get('getAdvertisement', 'AdvertisementController@getAdvertisement');
+        Route::post('updateAdvertisement', 'AdvertisementController@updateAdvertisement');
+        Route::post('insertAdvertisement', 'AdvertisementController@insertAdvertisement');
+        Route::post('changeStatus', 'AdvertisementController@changeStatus');
+        Route::post('deleted', 'AdvertisementController@deleted');
+      });
   });
 });
 
