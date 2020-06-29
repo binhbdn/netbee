@@ -58,6 +58,23 @@ class AdvertisementService extends BaseService {
         }
     }
 
+    public function listAdvertisement(){
+        try {
+            $advertisement = $this->advertisement->orderBy('id', 'DESC')->where('deleted',self::INACTIVE)->where('status',self::ACTIVE)->get();
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $advertisement
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
     public function dataAdvertisement($request)
     {
         $uploadPath = '/home/netbee.vn/html/static/uploads/news/';

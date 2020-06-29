@@ -28,6 +28,12 @@ class AdvertisementController extends Controller
         return response()->json($response);
     }
 
+    public function listAdvertisement()
+    {
+        $response = $this->advertisement->listAdvertisement();
+        return response()->json($response);
+    }
+
     public function updateAdvertisement(Request $request)
     {
         $response = $this->advertisement->updateAdvertisement($request);

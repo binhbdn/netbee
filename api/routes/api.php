@@ -59,6 +59,7 @@ Route::namespace('API')->group(function () {
   Route::post('ktintroduce', 'Auth\UserController@ktintroduce');     
   Route::post('getProfileUserId', 'Admin\TeamplateCvController@getProfileUserId');
   Route::get('getTagAll', 'TagController@getAllTag');
+  Route::get('listAdvertisement', 'AdvertisementController@listAdvertisement');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
