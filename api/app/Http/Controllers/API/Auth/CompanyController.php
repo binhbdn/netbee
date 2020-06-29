@@ -84,7 +84,8 @@ class CompanyController extends Controller
                 $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
                 $userId = Auth::user()->id;
                 if ($get) {
-                    $response = $this->nbCompanyInfoService->updateByUserId($data, $userId);            
+                    $file->move($uploadPath, $image);
+                    $response = $this->nbCompanyInfoService->updateByUserId($data, $userId);             
                 } else {         
                     $data['company_id'] = $userId;
                     

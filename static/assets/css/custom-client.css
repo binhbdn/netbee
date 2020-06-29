@@ -219,3 +219,15 @@
     height: 10px!important;
     border-radius: 50%;
 }
+.carousel-control-prev, .carousel-control-next {
+    width: 0;
+}
+@media only screen and (max-width: 600px) {
+    .ecommerce-application .list-view .ecommerce-card .card-content {
+        display: flex !important;
+        flex-direction: column;
+    }
+    .remove-border-right {
+        padding : 0 20px;
+    }
+}

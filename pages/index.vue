@@ -242,7 +242,7 @@
       </section>
     </div>
       <!-- banner quang cao -->
-      <section class="banner-ncd ftco-section services-section card why" v-lazy:background-image="`/assets/img/body-bg.jpg`">
+      <section class="banner-ncd ftco-section services-section card why">
         <div class="container">
           <div class="card-content collapse show">
             <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="10000">
@@ -381,12 +381,6 @@
   }
 </script>
 <style scoped>
-  .banner-ncd{
-    background-position: center center;
-    background-size: cover;
-    background-color: #1e1e1e;
-    height: auto;
-  }
   .main-bottom{
     text-align: right;
     padding-right: 15px;

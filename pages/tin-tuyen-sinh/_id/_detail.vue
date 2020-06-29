@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div class="row" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
+                            <div id="social" class="row " style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
                                 <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                     <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
@@ -37,7 +37,7 @@
                                     <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                 </div>
                             </div>
-                            <div class="row m-t-10" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
+                            <div class="row m-t-10" id="send-hoso" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
                                 <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal">
                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                 </div> 
@@ -693,17 +693,18 @@ export default {
     margin: 0;
     padding-bottom: 7px;
     position: relative;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #f7f7f7;
     margin-bottom: 12px;
 }
 
 .line1::before,.line2::before,.line3::before,.line4::before,.line5::before,.line6::before{
     position: absolute;
-  background: #ffb701;
-  height: 2px;
-  content: '';  
-  bottom: -2px;
-  left: 0;
+    background: #ffb701;
+    height: 2px;
+    content: '';  
+    bottom: -2px;
+    left: 0;
+    border-radius: 12px;
 }
 .line1::before{
     width: 265px;
@@ -835,5 +836,15 @@ export default {
     margin-bottom: 10px;
     margin-left: 0px;
 }
-
+@media only screen and (max-width: 600px) {
+    #social {
+        height: 45% !important;
+    }
+    #social >  div {
+        width: 33%;
+    }
+    #send-hoso {
+        height: 50% !important;
+    }
+}
 </style>

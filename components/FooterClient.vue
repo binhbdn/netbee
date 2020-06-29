@@ -67,7 +67,7 @@ export default {
 <style scoped>
 .line1,.line2,.line3,.line4{
     position: relative;
-    border-bottom: 2px solid darkgrey;
+    border-bottom: 2px solid #222831;
 }
 .line1:before,.line2:before,.line3:before,.line4:before{
      position: absolute;
@@ -76,6 +76,7 @@ export default {
     content: '';    
     left: 0;
     bottom: -2px;
+    border-radius: 12px;
 }
 .line1:before{
     width: 80px;
