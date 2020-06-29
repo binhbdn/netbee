@@ -64,7 +64,7 @@
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
                                                                         <a v-on:click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
-                                                                        <!-- <a v-on:click="updateId(item.id)" class="dropdown-item"> <i class="far fa-edit"></i>Sửa</a> -->
+                                                                        <a v-on:click="updateId(item.id)" class="dropdown-item"> <i class="far fa-edit"></i>Sửa</a>
                                                                         <a v-on:click="deleted(item.id)" class="dropdown-item" > <i class="far fa-times-circle"></i>Xóa</a>
                                                                     </div>
                                                                 </div>
@@ -120,6 +120,44 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="create_update" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header bg-netbee">
+                                <h4 class="modal-title text-dark">Cập nhật quảng cáo</h4>
+                                <button type="button" class="close ma-0" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="text-dark">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" id="modal_body">
+                                <ValidationObserver v-slot="{ inval }">
+                                    <form class="w-100 px-2" method="post">
+                                        <div class="row">
+                                            <div class="col-12" id="hegimg">
+                                                <fieldset class="form-group">
+                                                    <label for="basicInput">Ảnh quảng cáo</label>
+                                                    <ImgUploader :files="filesUp" :thuml="updateAdvertisement.picture"></ImgUploader>
+                                                </fieldset>
+                                            </div>
+                                            <div class="col-12" id="hegtitle">
+                                                <ValidationProvider rules="required" v-slot="{ errors }">
+                                                    <fieldset class="form-group">
+                                                        <label for="basicInput">Tên quảng cáo</label>
+                                                        <input type="text" class="form-control" id="basicInput" placeholder="Tên quảng cáo" v-model="updateAdvertisement.name">
+                                                        <span style="color: red">{{ errors[0] }}</span>
+                                                    </fieldset>
+                                                </ValidationProvider>
+                                            </div>
+                                            <div class="col-12 text-right">
+                                                <button type="submit" class="btn btn-warning" v-bind:disabled="inval" v-on:click="uploadUp">Tạo</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </ValidationObserver>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>  
@@ -142,12 +180,18 @@
        
         data(){
             return {
+                filesUp: [null],
                 files: [],
                 listAdvertisement:[],
                 insertAdvertisement:{
+                    id:'',
                     name:'',
                     picture: []
-                }
+                },
+                updateAdvertisement:{
+                    name:'',
+                    picture: ''
+                },
             }
         },        
         components:{
@@ -157,6 +201,32 @@
         },
         
         methods: {
+            updateId :function(id) {
+                try {
+                    this.$axios.post('advertisement/getIdAdvertisement',{id :id})
+                    .then(response => {   
+                        if(response.data.status == 200) {                                                       
+                            this.updateAdvertisement = response.data.data
+                            $('#create_update').modal();
+                        } else {
+                            this.$swal(
+                                'Lỗi',
+                                response.data.message,
+                                'error'
+                            )
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    });
+                } catch (error) {
+                    this.$swal(
+                        'Lỗi!',
+                        'Lỗi dữ liệu',
+                        'error'
+                    )
+                }
+            },
             changeStatus :function(id){
                 try {
                     this.$axios.post('advertisement/changeStatus',{id: id})
@@ -230,6 +300,44 @@
                         'Lỗi dữ liệu',
                         'error'
                     )
+                }
+            },
+            uploadUp :function(e){
+                try {
+                    e.preventDefault()
+                    var form = new FormData();
+                    if(this.filesUp[0]){
+                        form.append('picture' , this.filesUp[0])
+                    }
+                    form.append('id' , this.updateAdvertisement.id)
+                    form.append('name' , this.updateAdvertisement.name)
+                                                    
+                    this.$axios.post('advertisement/updateAdvertisement',form)
+                    .then(response => {
+                        if(response.data.status == 200) {
+                            this.$swal(
+                                'Thành công',
+                                response.data.message,
+                                'success'
+                            ).then( function (){
+                                window.location.reload()
+                            } )
+                        }else{
+                            this.$swal(
+                                'Lỗi',
+                                response.data.message,
+                                'error'
+                            )
+                        }
+                    }).catch(error => {
+                        console.log(error.response)
+                    });
+                }
+                catch(error){
+                    this.$swal(
+                        'Lỗi!',
+                        'Lỗi dữ liệu!',
+                        'error')
                 }
             },
             upload :function(e){

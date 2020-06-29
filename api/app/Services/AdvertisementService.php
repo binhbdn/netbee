@@ -23,6 +23,24 @@ class AdvertisementService extends BaseService {
         return $this->getAdvertisementById($id)->update($data);
     }
     
+    public function getIdAdvertisement($request){
+        $id = $request->id;
+        try {
+            $advertisement = $this->getAdvertisementById($id)->orderBy('id', 'DESC')->where('deleted',self::INACTIVE)->first();
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $advertisement
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
+    }
+
     public function getAdvertisement(){
         try {
             $advertisement = $this->advertisement->orderBy('id', 'DESC')->where('deleted',self::INACTIVE)->get();

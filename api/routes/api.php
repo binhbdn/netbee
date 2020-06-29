@@ -163,6 +163,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       });
       Route::prefix('advertisement')->group(function () {
         Route::get('getAdvertisement', 'AdvertisementController@getAdvertisement');
+        Route::post('getIdAdvertisement', 'AdvertisementController@getIdAdvertisement');
         Route::post('updateAdvertisement', 'AdvertisementController@updateAdvertisement');
         Route::post('insertAdvertisement', 'AdvertisementController@insertAdvertisement');
         Route::post('changeStatus', 'AdvertisementController@changeStatus');
