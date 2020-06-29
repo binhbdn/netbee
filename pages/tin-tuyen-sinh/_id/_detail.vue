@@ -223,7 +223,7 @@
                 <div class="modal-content">
                     <div class="col-md-12 col-lg-12 formlogin form-control" >
                     <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP ỨNG VIÊN</h2>
-                    <p class="text-center" style="margin-bottom:20px; font-size: 16px; "><a class="hover" href="dang-ky">Đăng ký tài khoản mới!</a>
+                    <p class="text-center" style="margin-bottom:20px; font-size: 16px; "><a class="hover" :href="`../../dang-ky/ung-vien`">Đăng ký tài khoản mới!</a>
                     </p>
                     <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px">
                         <ValidationObserver ref="observer" v-slot="{ valid }">

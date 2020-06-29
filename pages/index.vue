@@ -247,10 +247,10 @@
           <div class="card-content collapse show">
             <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="10000">
               <ol class="carousel-indicators">
-                  <li data-target="#carousel-interval-new" v-for="(companyInfo,index) in listVerifyCompany" :key="index" :data-slide-to="index" :class="{'active': index == 0}"></li>
+                  <li data-target="#carousel-interval-new" v-for="(item,key) in listAdver" :key="key" :data-slide-to="key" :class="{'active': key == 0}"></li>
               </ol>
               <div class="carousel-inner" role="listbox">
-                <div class="carousel-item" :class="{'active': index == 0}" v-for="(companyInfo,index) in listVerifyCompany" :key="index">
+                <div class="carousel-item" :class="{'active': key == 0}" v-for="(item,key) in listAdver" :key="key">
                   <div class="swiper-slide swiper-slide-next">
                     <div class="spotlightBlock">
                       <div class="spotlightBlock__wrapper">
@@ -318,6 +318,7 @@
             quocgia: [],
             tag:[],
             listVerifyCompany: [],
+            listAdver: []
         }
     },
     components: {
@@ -374,9 +375,28 @@
           this.listVerifyCompany = ress.data.data
         }) 
       },
+      listAdvertisement :function() {
+        try {
+          this.$axios.get(`listAdvertisement`)
+          .then(response => {                                                          
+              this.listAdver = response.data.data
+              console.log(this.listAdver)
+          })
+          .catch(error => {
+              console.log(error.response)
+          });
+        } catch (error) {
+            this.$swal(
+                'Lỗi!',
+                'Lỗi dữ liệu',
+                'error'
+            )
+        }
+      }
     },
     mounted() {
-        this.fetch();                            
+        this.fetch()
+        this.listAdvertisement()                         
     }
   }
 </script>
