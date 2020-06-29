@@ -60,6 +60,8 @@ Route::namespace('API')->group(function () {
   Route::post('getProfileUserId', 'Admin\TeamplateCvController@getProfileUserId');
   Route::get('getTagAll', 'TagController@getAllTag');
   Route::get('listAdvertisement', 'AdvertisementController@listAdvertisement');
+  Route::get('getTopNation', 'HomeController@getTopNation');
+  Route::get('getTopVisa', 'HomeController@getTopVisa');
 });
 Route::group(['middleware' => 'jwt.auth'], function () {
   Route::namespace('API')->group(function () {
