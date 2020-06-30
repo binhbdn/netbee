@@ -198,7 +198,7 @@
 
                         <div style="line-height: 35px">
 
-                            Nền tảng tuyển dụng đa quốc gia <span style="color: #ffb701;">Netbee</span>
+                            Nền tảng tuyển dụng đa quốc gia <span style="color: #ffb701;">Netbee.vn</span>
 
                         </div>
                     </td>
@@ -229,13 +229,13 @@
                                 <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
                                     <!-- section text ======-->
 
-                                    <h4 style="line-height: 24px; margin-bottom:15px;">
+                                    <h3 style="line-height: 24px; margin-bottom:15px;">
 
                                         Chào {{$data->name}},
 
-                                    </h4>
-                                    <p>{!!$data->content!!}</p>
-                                    <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="ffb701" style="margin-bottom:20px;border-radius: 6px; padding: 2px">
+                                    </h3>
+                                    <p style="font-size: 20px;">{!!$data->content!!}</p>
+                                    <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="ffb701" style="margin-bottom:15px;border-radius: 6px; padding: 2px; margin-top:15px;">
 
                                         <tr>
                                             <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>

@@ -1,28 +1,28 @@
 <template>
-    <div class="main" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
+    <div class="main" v-lazy:background-image="`/assets/img/login-netbee-6.jpg`" style="background-size: cover;">
         <div class="container">
             <div class="row">
-                <div class="col-md-7 hident-mobile">
+                <div class="col-md-8">
                     <div class="row text-center">
-                        <div style="padding: 20px" class="col-xs-6 col-sm-3">
+                        <div class="col-xs-6 col-sm-3 pd-20-lg">
                             <div class=" round stat pricing-round">
                                 <h4>+10K</h4>
                                 <p class="pl-15 pr-15">HR Freelancer</p>
                             </div>
                         </div>
-                        <div style="padding: 20px" class="col-xs-6 col-sm-3">
+                        <div class="col-xs-6 col-sm-3 pd-20-lg">
                             <div class="round stat pricing-round">
                                 <h4>+500</h4>
                                 <p class="pl-15 pr-15">Nhà tuyển dụng</p>
                             </div>
                         </div>
-                        <div style="padding: 20px" class="col-xs-6 col-sm-3">
+                        <div class="col-xs-6 col-sm-3 pd-20-lg">
                             <div class="round stat pricing-round">
                                 <h4>+1K</h4>
                                 <p class="pl-15 pr-15">Việc làm <br></p>
                             </div>
                         </div>
-                        <div style="padding: 20px" class="col-xs-6 col-sm-3">
+                        <div class="col-xs-6 col-sm-3 pd-20-lg">
                             <div class="round stat pricing-round">
                                 <h4>+500</h4>
                                 <p class="pl-15 pr-15">CV</p>
@@ -30,94 +30,84 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6" style="text-align: center">
+                        <div class="col-md-5">
                             <div class="qr-code">
-                                <img src="https://devwork.vn//public/images/devwork-mobile-qr.png" alt="Devwork" style="width: 300px">
+                                <img src="https://devwork.vn//public/images/devwork-mobile-qr.png" alt="Devwork" class="w-img-qr">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <ul style="margin-top: 50px;font-size: 15px;padding: 0px; list-style: none;">
+                        <div class="col-md-7">
+                            <ul class="ul-text-lg">
                                 <li><i class="fad fa-check-circle"></i> Tiếp cận 10K CTV tuyển dụng toàn quốc</li>
                                 <li><i class="fad fa-check-circle"></i> Chỉ thanh toán khi ứng viên đóng tiền</li>
                                 <li><i class="fad fa-check-circle"></i> Đơn giản và thân thiện người dùng</li>
                                 <li><i class="fad fa-check-circle"></i> Tối ưu chi phí và nguồn lực</li>
                             </ul>
                         </div>
-                        <div class="col-md-12">
-                            <div class="hotline">
-                                <div class="well pricing-hotline"><a href="tel:02462900388" style="color: #000;margin-left: 55px;">Hotline
-                                        hỗ trợ (024) 629 00 388</a>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="hotline">
+                            <a href="tel:02462900388">
+                                Hotline hỗ trợ (024) 629 00 388
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 col-lg-5 formlogin form-control" >
-                    <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP</h2>
-                    <p class="text-center" style="margin-bottom:25px; font-size: 16px; "><a class="hover" href="dang-ky">Đăng ký tài khoản mới!</a>
-                    </p>
-                    <div class="form-group-1 input-login" v-on:keyup.enter="login">
-                        <ValidationObserver ref="observer" v-slot="{ valid }">
-                            <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
+                <div class="col-md-4 col-lg-4">
+                    <div class="col-md-12 formlogin">
+                        <h3 class="text-center" style="margin-bottom: 25px;">ĐĂNG NHẬP</h3>
+                        <div class="form-group-1 input-login" v-on:keyup.enter="login">
+                            <ValidationObserver ref="observer" v-slot="{ valid }">
+                                <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
+                                    <div class="__email">
+                                        <fieldset class="form-label-group position-relative has-icon-left">
+                                            <input type="text" class="form-control mb-0" id="email" placeholder="Email" v-model="userForm.email" style="margin-bottom: 0!important;">
+                                            <div class="form-control-position" style="top: 4px;">
+                                                <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                            </div>
+                                            <label for="email">Email</label>
+                                            <p v-for="(error, index) in errors" :key="index" class="login-error">{{ error }}</p>
+                                        </fieldset>
+                                    </div>
+                                </ValidationProvider>
+                            <div style="position: relative">
+                                <ValidationProvider name="Mật khẩu" ref="password" rules="required|customPassword" v-slot="{ errors }">
                                 <div class="__email">
-                                    <fieldset class="form-label-group form-group position-relative has-icon-left mb-0">
-                                        <input type="text" class="form-control mb-0" id="email" placeholder="Email" v-model="userForm.email" style="margin-bottom:20px !important; margin-top:2px">
-                                        <div class="form-control-position">
-                                            <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                    <div style="text-align:right">
+                                        <i  class="showpass">
+                                            <i @click="showPassword()" :class="show ?'fad fa-eye':'fas fa-eye-slash'" style="top: -4px;"></i>
+                                        </i>
+                                    </div>
+                                    <fieldset class="form-label-group position-relative has-icon-left">
+                                        <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom: 0 !important;">
+                                        <div class="form-control-position" style="top: 4px;">
+                                            <i class="fad fa-key" style="color: rgba(34, 41, 47, 0.4)!important;"></i>
                                         </div>
-                                        <label for="email">Email</label>
-                                        <ul style="color:red" class="overline text-left">
-                                        <li v-for="(error, index) in errors" :key="index">
-                                        <span style="left:0; padding-top: 14px;"><i>{{ error }}</i></span>
-                                        </li>
-                                    </ul>
+                                        <label for="password">Mật khẩu</label>
+                                        <p v-for="(error, index) in errors" :key="index" class="login-error">{{ error }}</p>
                                     </fieldset>
                                 </div>
-                            </ValidationProvider>
-                        <div style="position: relative">
-                            <ValidationProvider
-                                name="Mật khẩu"
-                                ref="password"
-                                rules="required|customPassword"
-                                v-slot="{ errors }"
-                            >
-                            <div class="__email">
-                                <div style="text-align:right">
-                                    <i  class="showpass">
-                                        <i @click="showPassword()" :class="show ?'fad fa-eye':'fas fa-eye-slash'"></i>
-                                    </i>
-                                    
+                                </ValidationProvider>
+                                <div class="lopgin-c">
+                                    <button @click="login()" id="submit" class="btn btn-warning">Đăng nhập</button>
                                 </div>
-                                <fieldset class="form-label-group position-relative has-icon-left mb-0">
-                                    <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom:0px !important; margin-top:2px">
-                                    <div class="form-control-position">
-                                        <i class="fad fa-key" style="color: rgba(34, 41, 47, 0.4)!important"></i>
-                                    </div>
-                                    <label for="password">Mật khẩu</label>
-                                    <ul style="color:red" class="overline text-left">
-                                        <li v-for="(error, index) in errors" :key="index">
-                                        <span style="top: 53%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
-                                        </li>
-                                    </ul>
-                                    <p class="text-right mb-0"><a href="/quen-mat-khau" class="remember hover" style="font-size: 15px;color:black!important;">Quên mật khẩu?</a></p>
-                                </fieldset>
+                                <hr>
+                                <a @click="loginfb()" class="btn btn-outline-info fb col-md-12" >
+                                    <i class="fab fa-facebook login-gg-fa"></i> Đăng nhập bằng Facebook
+                                </a>
+                                <a @click="logingg()" class="btn btn-outline-info gg col-md-12" style="margin-top: 15px;">
+                                    <img class="login-gg-fa" src="assets/img/logo-google.png"> Đăng nhập bằng Google
+                                </a>
+                                <p class="text-center" style="margin-top: 10px; margin-bottom: 0;"><a href="/quen-mat-khau">Quên mật khẩu ?</a></p>
                             </div>
-                            </ValidationProvider>
-                            <div class="lopgin-c" style="padding-top:10px">
-                                <button @click="login()" id="submit" class="submit btn">ĐĂNG NHẬP</button>
-                            </div>
-                            <hr>
-                            <div class="lopgin-c" style="position:relative">
-                                <i class="fab fa-facebook" style="position: absolute; left: 106px; top: 9px; color: white; font-size: 18px; z-index:5"></i>
-                                <a @click="loginfb()" class="btn btn-outline-info fb" style="">Đăng nhập bằng
-                                    Facebook</a> &nbsp;&nbsp;
-                            </div>
-                            <div class="lopgin-c" style="position:relative">
-                                <img src="assets/img/logo-google.png" style="height:15px;position: absolute; left: 106px; top: 11px; color: blue; font-size: 18px;">
-                                <a @click="logingg()" class="btn btn-outline-info gg">Đăng nhập bằng Google</a>
-                            </div>
+                            </ValidationObserver>
                         </div>
-                        </ValidationObserver>
+                    </div>
+                    <br>
+                    <div class="col-md-12 formlogin">
+                        <p class="text-center" style="margin: 0;">
+                            Bạn chưa có tài khoản?<a class="hover-link" href="dang-ky"> Đăng ký tài khoản mới!</a>
+                        </p>
+                        
                     </div>
                 </div>
             </div>
@@ -138,7 +128,7 @@ extend("email", {
   message: (field, values) => "Email không đúng định dạng"
 });
 var errorMessage =
-  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số";
 // create custom rule
 extend("customPassword", {
   message: field =>"Mật khẩu" + errorMessage,
@@ -147,15 +137,12 @@ extend("customPassword", {
     var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
-    if (containsRequiredChars && !containsForbiddenChars) {
+    if (!containsForbiddenChars) {
       return true;
     } else {
       if (containsForbiddenChars) {
         errorMessage =
-          ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
-      } else {
-        errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+          'không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       }
       return false;
     }
@@ -217,11 +204,7 @@ export default {
 }
 </script>
 <style scoped>
-    .col-md-5.col-lg-5.formlogin 
-    {
-        height: 460px;
-        width: 300px !important;
-    }
+
     .form-label-group>input:not(:focus):not(:placeholder-shown)~label, .form-label-group textarea:not(:focus):not(:placeholder-shown)~label{
         color:black!important;
         font-size: 14px;
@@ -235,11 +218,6 @@ export default {
         padding-top: 10px !important;
     }
 
-    .col-md-6 {
-        height: 250px;
-        width: 260px !important;
-    }
-
     .well.pricing-hotline {
         margin-top: 25px;
         margin-right: 5px !important;
@@ -248,10 +226,7 @@ export default {
     li {
         height: 50px;
     }
-    .col-md-5.col-lg-5.formlogin {
-    height: 460px;
-    width: 300px !important;
-}
+
 form#appointment-form {
     padding-bottom: 13px !important;
     padding-top: 10px !important;
@@ -295,12 +270,14 @@ form#appointment-form {
     margin-bottom: 3px;
 }
 .formlogin {
-    border-radius: 7px;
-    background: #ffffff85;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.86);
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .form-group-1 input {
     font-size: 15px !important;
-    border-radius: 5px;
+    border-radius: 3px;
 }
 input.input {
     padding-left: 48px;
@@ -377,10 +354,6 @@ input, select {
     border-radius: 0.25rem;
 }
 
-.col-md-6 {
-    height: 250px;
-    width: 260px !important;
-}
 ul {
     background: 0 0;
     z-index: 9;
@@ -403,5 +376,63 @@ ul li {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+.login-error {
+    color: #ff4a4a;
+    margin: 0;
+    font-size: 13px;
+}
+.login-gg-fa{
+    width: 15px;
+    height: 15px;
+    margin-right: -26px;
+    margin-left: 8px;
+    margin-top: 2px;
+    float: left;
+    font-size: 16.5px;
+}
+.hover-link{
+    color: #ffb701;
+}
+.hover-link:hover{
+    color: #ac7b00 !important;
+}
+.hotline{
+    border: 1px solid #1e1e1e;
+    border-radius: 3px;
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+    background: #ffffffb8;
+    margin-top: 15px;
+}
+.w-img-qr{
+    width: 300px;
+}
+.ul-text-lg{
+    margin-top: 50px;
+    font-size: 16px;
+    padding: 0px; 
+    list-style: none;
+}
+.pd-20-lg{
+    padding: 20px;
+}
+@media(max-width: 1199px) {
+    .w-img-qr{
+        width: 240px;
+    }
+    .ul-text-lg{
+        margin-top: 30px;
+    }
+}
+@media(max-width: 991px) {
+    .container{
+       display: contents;
+    }
+}
+@media(max-width: 768px) {
+    .pd-20-lg{
+       display: none;
+    }
+}
 </style>
