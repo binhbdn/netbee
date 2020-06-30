@@ -272,7 +272,8 @@ export default {
   .title-p-main{
     font-size: 15.5px;
     color: #ffb701!important;
-    margin-top: -8px;
+    margin-top: -10px;
+    padding-bottom: 6px;
   }
   .parti{
         max-height: 0px;
