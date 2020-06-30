@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../../public/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <!--<![endif]-->
 
-    <title>Xác nhận đăng kí tài khoản Netbee</title>
+    <title>Xác nhận đăng kí tài khoản Netbee.vn</title>
 
     <style type="text/css">
         body {
@@ -234,7 +234,7 @@
                                             Chào {{$data['name']}},
 
                                         </h3>
-                                        <p style="line-height: 24px;margin-bottom:15px;">
+                                        <p style="line-height: 24px;margin-bottom:15px; font-size: 20px;">
 
                                          Bạn chỉ còn một bước nữa là tạo tài khoản trên Netbee. Nhấp vào nút bên dưới để xác nhận địa chỉ email của bạn và bắt đầu.
 
@@ -281,7 +281,7 @@
                                             </tr>
 
                                         </table>
-                                        <p style="line-height: 24px; margin-bottom: 15px;">
+                                        <p style="line-height: 24px; margin-bottom: 15px; font-size: 20px;">
                                             Love,</br>
                                             Netbee team
                                         </p>
