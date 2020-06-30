@@ -68,7 +68,7 @@
             <div class="card-content collapse show">
               <div class="card-body">
                 <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
-                <infinite-loading
+                <!-- <infinite-loading
                     v-if="arrayJobNew.length"
                     spinner="bubbles"    
                     ref="infiniteLoading" 
@@ -76,7 +76,7 @@
                 >        
                   <div slot="no-more" style="font-size:15px; font-style: italic;">Không còn kết quả.</div>    
                   <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-                </infinite-loading>
+                </infinite-loading> -->
               </div>            
             </div>
           </div>
@@ -114,7 +114,7 @@ export default {
         {id: 2, name: 'Bán thời gian'},
         {id: 3, name: 'Vừa học vừa làm'}
       ],
-      page: 1
+      // page: 1
     }
   },
   created () {
@@ -127,7 +127,7 @@ export default {
     JobsList1ColNotCate, Multiselect
   },
   async asyncData({$axios, route}) {
-    let getTinTuyenDungNew = await $axios.$get('getTinTuyenDungNewPage?perPage=6')
+    let getTinTuyenDungNew = await $axios.$get('getTinTuyenDungNewPage?perPage=20')
     let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=20&type=1`)
     let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=2`)
     let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=3`)
@@ -152,24 +152,24 @@ export default {
   },
 
   methods: {
-    infiniteScroll($state) {     
-      setTimeout(() => {
-          this.page++
-          this.$axios
-          .get('getTinTuyenDungNewPage?perPage=6'+ '&page='+this.page)
-            .then((response) => {            
-              if (response.data.data.tintuyendung.length > 1) {
-                  response.data.data.tintuyendung.forEach((item) => this.arrayJobNew.push(item))
-                  $state.loaded()
-              } else {
-                  $state.complete()
-              }
-          })
-          .catch((err) => {
-              console.log(err)
-          })
-      }, 500)
-      },   
+    // infiniteScroll($state) {     
+    //   setTimeout(() => {
+    //       this.page++
+    //       this.$axios
+    //       .get('getTinTuyenDungNewPage?perPage=6'+ '&page='+this.page)
+    //         .then((response) => {            
+    //           if (response.data.data.tintuyendung.length > 1) {
+    //               response.data.data.tintuyendung.forEach((item) => this.arrayJobNew.push(item))
+    //               $state.loaded()
+    //           } else {
+    //               $state.complete()
+    //           }
+    //       })
+    //       .catch((err) => {
+    //           console.log(err)
+    //       })
+    //   }, 500)
+    //   },   
     nameWithLang ({ name, id }) {
             return `${name}`
         },

@@ -21,8 +21,17 @@
               </h4>
             </div>
             <div class="card-content collapse show">
-              <div class="card-body scrollbar">
+              <div class="card-body">
                 <CardInfo :DataList="arrayCvs"></CardInfo>
+                <infinite-loading
+                    v-if="arrayCvs.length"
+                    spinner="bubbles"    
+                    ref="infiniteLoading" 
+                    @infinite="infiniteScroll" style="padding:20px; width:100%"
+                >        
+                  <div slot="no-more" style="font-size:15px; font-style: italic;">Không còn kết quả.</div>    
+                  <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+                </infinite-loading>
               </div>
             </div>
           </div>
@@ -93,6 +102,7 @@ export default {
   },
   data() {
     return{
+      page: 1,
       listCvs: [],
       maleFemale: '',
       level_education: '',
@@ -122,7 +132,8 @@ export default {
       +(route.query.keyword != null ? route.query.keyword : '')
     )
     return {
-      arrayCvs: searchCvs.data
+      arrayCvs: searchCvs.data,
+      statusRoute: route.query.keyword
     }
   },
 
@@ -138,6 +149,26 @@ export default {
   },
 
   methods: {
+    infiniteScroll :function($state) {     
+      setTimeout(() => {
+          this.page++
+          this.$axios
+          .get('searchCvs?search='+(this.statusRoute != null ? this.statusRoute : '')+ '&page='+this.page)
+            .then((response) => {   
+              console.log(response)  
+              if (response.data.data.length > 1) {
+                  response.data.data.forEach((item) => this.arrayCvs.push(item))
+                  $state.loaded()
+              } else {
+                  $state.complete()
+              }       
+              
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+      }, 500)
+    }, 
     nameWithLang ({ name, id }) {
       return `${name}`
     },
