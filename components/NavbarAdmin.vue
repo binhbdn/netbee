@@ -2,10 +2,9 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" style="background-color: #2f3b4c;" data-scroll-to-active="true">
         <div class="navbar-header" style="height: 90px">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="/">
-                        <div>
-                          <img src="/assets/img/logo-netbee-2-ncd.png" alt="Smiley face" height="70" width="200">
-                        </div>
+                <li class="nav-item mr-auto"  style="margin: auto; margin-top: -10px;">
+                    <a class="navbar-brand" href="/">
+                        <img src="/assets/img/logo-netbee-2-ncd.png" alt="Smiley face" height="60" width="130">
                     </a>
                 </li>
             </ul>
