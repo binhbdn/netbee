@@ -14,6 +14,13 @@
                                     </a>
                                 </li>
                             </ul>
+                            <ul class="nav navbar-nav bookmark-icons" v-if="$auth.user.role == 3">
+                                <li class="nav-item d-none d-lg-block">
+                                    <a class="btn bg-netbee" href="/admin/ho-so/tao-ho-so" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
+                                        <span style="font-size:1rem">Tạo hồ sơ</span>
+                                    </a>
+                                </li>
+                            </ul>
                     </div>
                   <ul class="nav navbar-nav float-right">
                       <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
@@ -23,7 +30,7 @@
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
                                     <div class="dropdown-header m-0 p-2">
-                                        <h3 class="white">{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
+                                        <h3>{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
                                     </div>
                                 </li>
                                 
@@ -125,5 +132,18 @@ export default {
 <style scoped>
 .scrollable-container::-webkit-scrollbar {
   display: none;
+}
+.dropdown-notification .dropdown-menu-header {
+    background-color: #FFB701 !important;
+}
+.dropdown-notification .dropdown-menu.dropdown-menu-right::before {
+    background: #FFB701 !important;
+    border-color: #FFB701 !important;
+}
+.header-navbar .navbar-container ul.nav li i.ficon:hover {
+    color: #FFB701 !important;
+}
+.dropdown-notification .notification-title {
+    color: #000 !important;
 }
 </style>

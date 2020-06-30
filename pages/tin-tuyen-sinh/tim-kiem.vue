@@ -23,7 +23,7 @@
     </div> -->
     <section>
       <div class="row">
-        <div class="col-lg-4 col-12">
+        <div class="col-lg-4 col-12" style="padding-right: 4px;">
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
@@ -82,7 +82,7 @@
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
-                <i class="fad fa-bullhorn"></i> VIỆC LÀM MỚI
+                <i class="fad fa-bullhorn"></i> DANH SÁCH ĐƠN HÀNG
               </h4>
             </div>
             <div class="card-content collapse show">

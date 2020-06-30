@@ -47,13 +47,13 @@
                                                 <td>
                                                     <div class="action-btns">
                                                         <div>
-                                                            <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-danger py-75 waves-effect waves-light"  style="width: 100%;">
+                                                            <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-deleted py-75 waves-effect waves-light"  style="width: 100%;">
                                                             Hủy
                                                             </button>
                                                         </div>  
                                                         <div>
-                                                            <button type="button" data-toggle="modal" data-target="#chooseCalendarModal" @click="idRefuse = item.id" class="btn btn-info py-75 waves-effect waves-light" v-if="item.status == 5 && item.nb_paper != null" style="width: 100%;margin-top: 5px;">
-                                                            Chọn lịch PV
+                                                            <button type="button" data-toggle="modal" data-target="#chooseCalendarModal" @click="idRefuse = item.id" class="btn btn-phongvan py-75 waves-effect waves-light" v-if="item.status == 5 && item.nb_paper != null" style="width: 100%;margin-top: 5px;">
+                                                            Phỏng vấn
                                                             </button>
                                                         </div>                                                                                                              
                                                     </div>
@@ -449,6 +449,21 @@ export default {
 }
 </script>
 <style scoped>
+    .btn-phongvan, .btn-deleted {
+        background-color: #fff;
+        border: 1px solid rgb(255, 183, 1);
+        color: #000;
+    }
+    .btn-deleted:hover {
+        background-color: #E42728;
+        border: 1px solid #E42728;
+        color: #fff;
+    }
+    .btn-phongvan:hover {
+        background-color: #007bff;
+        border: 1px solid #007bff;
+        color: #fff;
+    }
     .tab-table{
         height: 630px;
         overflow: auto;

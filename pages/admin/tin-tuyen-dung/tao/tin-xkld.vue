@@ -391,7 +391,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="col-lg-3 col-sm-6 col-12" style="padding-left: 3px;">
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2" style=" color: #000;">

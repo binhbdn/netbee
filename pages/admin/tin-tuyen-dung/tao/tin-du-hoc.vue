@@ -369,7 +369,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="col-lg-3 col-sm-6 col-12" style="padding-left: 3px;">
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2">
@@ -496,8 +496,8 @@ export default {
             checked: true,
             guarantee: [
                 {id: 1, name: 'Ngay sau khi bay'},
-                {id: 2, name: 'Sau khi bay 30 ngày *1,5'},
-                {id: 3, name: 'Sau khi bay 60 ngày *2'}
+                {id: 2, name: 'Sau khi bay 30 ngày'},
+                {id: 3, name: 'Sau khi bay 60 ngày'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
             companies:[]

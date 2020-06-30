@@ -195,7 +195,10 @@
                                                     <tr v-for="(item, index) in AllApply" :key="index">
                                                         <td>{{item.id}}</td>
                                                         <td>                                                            
-                                                            <p v-if="item.job" style="margin-bottom: 0px;">{{item.job.title}}</p>
+                                                            <p v-if="item.job" style="margin-bottom: 0px;">
+                                                                <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.job.id}/${ChangeToSlug(item.job.title)}`" target="_blank">{{item.job.title}} 
+                                                                </a>
+                                                            </p>
                                                             <span style="font-size: 12px;" v-if="item.cv_id != null"><i>Hồ sơ online</i></span>
                                                             <span style="font-size: 12px;" v-if="item.cv_file != null"><i>Hồ sơ đính kèm</i></span>
                                                         </td>
@@ -215,7 +218,7 @@
                                                         <td>
                                                             <span v-if="item.bonus == null || item.bonus == 0">Không bonus</span>
                                                             <span v-else  style="color: #fc205c">
-                                                                {{item.bonus}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                                {{item.bonus}}{{ item.job.currency }}
                                                             </span>
                                                             <!-- <span v-else  style="color: #fc205c">
                                                                 {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>

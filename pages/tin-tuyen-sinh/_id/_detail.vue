@@ -175,7 +175,7 @@
             <div class="card">
                 <div class="card-header">
                 <h4 class="card-title">
-                    <i class="fad fa-business-time"></i> VIỆC LÀM CÙNG CÔNG TY
+                    <i class="fad fa-business-time"></i> TIN HOT
                 </h4>
                 </div>
                 <div class="card-content collapse show">
@@ -683,7 +683,7 @@ export default {
         }
     },
     mounted() {
-        this.$axios.$get(`getTinTuyenDungForCompany/${this.tintuyendung.nb_company.username}?limit=5`).then((response)=>{
+        this.$axios.$get(`getTinTuyenDungNew?limit=5&type=`+this.tintuyendung.type).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
         });
         if(this.$auth.loggedIn) {

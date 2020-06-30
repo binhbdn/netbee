@@ -3,7 +3,7 @@
     <!-- VIỆC LÀM MỚI -->
     <section>
       <div class="row">  
-        <div class="col-lg-4 col-12 pr-0">
+        <div class="col-lg-4 col-12 pr-0" style="padding-right: 4px;">
             <div class="card">
             <div class="card-header">
               <h4 class="card-title">
@@ -62,7 +62,7 @@
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
-                <i class="fad fa-business-time"></i> {{$t('job.title.new')}}
+                <i class="fad fa-business-time"></i> DANH SÁCH ĐƠN HÀNG
               </h4>
             </div>
             <div class="card-content collapse show">
