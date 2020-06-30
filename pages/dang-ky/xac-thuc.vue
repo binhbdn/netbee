@@ -3,44 +3,48 @@
         <div class="container my-3">
             <div class="row">
                 <div class="d-flex justify-content-center py-4 col-12">
-                <div class="logo logo--medium text-center"><a href="/" class="router-link-active"><img style="height: 95%; width: 30%" src="/assets/img/logo_no_bg.png" alt="Netbee Logo" class="logo-image"></a></div>
+                    <div class="logo logo--medium text-center">
+                        <a href="/" class="router-link-active">
+                            <img style="height: 95%; width: 30%" src="/assets/img/logo_no_bg.png" alt="Netbee Logo" class="logo-image">
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="mx-auto col-sm-12 col-md-10 col-lg-8 col-xl-6">
-                <div class="el-card is-always-shadow">
-                    <!---->
-                    <div class="el-card__body">
-                        <h1 class="card-title text-center">
-                            Kích hoạt tài khoản Netbee
-                        </h1>
-                        <p class="card-subtitle mt-2">
-                            Chào mừng bạn đến với <strong>nền tảng tuyển dụng Netbee</strong>!
-                            Tham gia với chúng tôi để tìm được việc làm ưng ý và thông tin hữu ích cần thiết cho bạn.
-                        </p>
-                        <div role="alert" class="el-alert my-4 pt-4 el-alert--success">
-                            <!---->
-                            <div class="el-alert__content">
-                            <!---->
-                            <div class="el-alert__description">
-                            <div>
-                                <p>
-                                    Chào mừng <strong>{{$route.query.username}}</strong>,
-                                    tài khoản của bạn đã được <strong>đăng kí thành công</strong>.
-                                    Chúng tôi đã gửi cho bạn 1 đường dẫn kích hoạt tài khoản tới <strong>{{$route.query.email}}</strong>.
-                                    Vui lòng kiểm tra hộp thư đến của bạn để hoàn tất đăng kí.
-                                </p>
-                                <p>
-                                    Nếu bạn không nhận được email kích hoạt từ chúng tôi, vui lòng nhấn vào 
-                                    <a @click="resentActivationEmail()" class=""><strong>gửi lại</strong></a>
-                                    email kích hoạt.
-                                </p>
-                            </div>
-                            </div><!----><i class="el-alert__closebtn el-icon-close" style="display: none;"></i>
+                    <div class="el-card is-always-shadow">
+                        <div class="el-card__body">
+                            <h1 class="card-title text-center">
+                                Kích hoạt tài khoản Netbee
+                            </h1>
+                            <p class="card-subtitle mt-2">
+                                Chào mừng bạn đến với <strong>nền tảng tuyển dụng Netbee</strong>! 
+                                Tham gia với chúng tôi để tìm được đơn hàng xuất khẩu và các học bổng mới nhất cập nhật liên tục hàng ngày nhé.
+                            </p>
+                            <div role="alert" class="el-alert my-4 pt-4 el-alert--success">
+                                <div class="el-alert__content">
+                                    <div class="el-alert__description">
+                                        <p>
+                                            Chào mừng <strong>{{$route.query.username}}</strong>,
+                                            tài khoản của bạn đã được <strong>đăng kí thành công</strong>.
+                                            Chúng tôi đã gửi cho bạn 1 đường dẫn kích hoạt tài khoản tới <strong>{{$route.query.email}}</strong>.
+                                            Vui lòng kiểm tra hộp thư đến của bạn để hoàn tất đăng kí.
+                                        </p>
+                                        <p>
+                                            Nếu bạn không nhận được email kích hoạt từ chúng tôi, vui lòng nhấn vào 
+                                            <strong>gửi lại</strong>
+                                            email kích hoạt.
+                                        </p>
+                                        <div style="text-align: center;">
+                                            <a @click="resentActivationEmail()" class="btn btn-warning">Gửi lại email</a>
+                                            <a href="/" class="btn btn-primary">Về trang chủ</a>
+                                        </div>
+                                    </div>
+                                    <i class="el-alert__closebtn el-icon-close" style="display: none;"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -52,7 +56,7 @@ export default {
     layout: 'no_layout',
     methods: {
         resentActivationEmail(){
-            this.$axios.get('resentActivationEmail',this.$route.query.email).then(response=> {
+            this.$axios.get('resentActivationByEmail',this.$route.query.email).then(response=> {
                 if(response.data.status == 200){
                     this.$swal('Thành công',response.data.message, 'success')
                 }
@@ -120,5 +124,22 @@ html {
 }
 .netbee{
     background-color: #F8F8F8;
+}
+.btn-warning{
+    background-color: #ffb701;
+    color: #fff !important;
+}
+.btn-warning:hover{
+    background-color: #e5a606 !important;
+}
+.btn-primary{
+    background-color: #007bff;
+    color: #fff !important;
+}
+.btn-primary:hover{
+    background-color: #0263ca !important;
+}
+.btn{
+    border-radius: 3px !important;
 }
 </style>

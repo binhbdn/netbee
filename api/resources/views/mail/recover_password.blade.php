@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../../public/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <!--<![endif]-->
 
-    <title>Xác nhận đăng kí tài khoản Netbee</title>
+    <title>Xác nhận đăng kí tài khoản Netbee.vn</title>
 
     <style type="text/css">
         body {
@@ -234,18 +234,18 @@
                                         Chào {{$data['name']}},
 
                                     </h3>
-                                    <p style="line-height: 24px;margin-bottom:15px;">
+                                    <p style="line-height: 24px;margin-bottom:15px; font-size: 20px;">
 
                                         Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu Netbee của bạn.<br>
                                         Nhập mã đặt lại mật khẩu sau đây:
 
                                     </p>
-                                    <p style="font-size: 16px; font-family: LucidaGrande,tahoma,verdana,arial,sans-serif; padding: 10px;
+                                    <p style="font-size: 20px; font-family: LucidaGrande,tahoma,verdana,arial,sans-serif; padding: 10px;
                                     background-color: #f2f2f2; border-left: 1px solid #ccc; border-right: 1px solid #ccc; border-top: 1px solid #ccc;
                                      border-bottom: 1px solid #ccc; width: 54px; margin-bottom: 15px">
                                         {{$data['codeRecover']}}
                                     </p>
-                                    <p style="line-height: 24px;margin-bottom:15px;">
+                                    <p style="line-height: 24px;margin-bottom:15px; font-size: 20px;">
                                         Ngoài ra, bạn có thể thay đổi trực tiếp mật khẩu của mình.
                                     </p>
                                     <table border="0" align="center" width="180" cellpadding="0" cellspacing="0" bgcolor="3869D4" style="margin-bottom:20px;border-radius: 6px; padding: 2px">
@@ -290,7 +290,7 @@
                                         </tr>
 
                                     </table>
-                                    <p style="line-height: 24px; margin-bottom: 15px;">
+                                    <p style="line-height: 24px; margin-bottom: 15px; font-size: 20px;">
                                         Love,</br>
                                         Netbee team
                                     </p>

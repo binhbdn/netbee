@@ -71,7 +71,7 @@
                                             <div class="col-12">
                                                 <div class="job-post-item-header d-flex align-items-center">
                                                     <a :href="`/tin-tuc/${ChangeToSlug(danhmuc.name)}`">
-                                                        <h2 class="mr-3 text-black h6 NB_title" ><i class="fa fa-arrow-right"></i>{{ danhmuc.name }}</h2>
+                                                        <h2 class="text-black h6 NB_title" style="margin: 0 !important;"><i class="fa fa-arrow-right"></i> {{ danhmuc.name }}</h2>
                                                     </a>
                                                 </div>
                                             </div>

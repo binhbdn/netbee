@@ -64,7 +64,7 @@
                                             <div class="form-control-position" style="top: 4px;">
                                                 <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important"></i>
                                             </div>
-                                            <label for="email">Email</label>
+                                            <!-- <label for="email">Email</label> -->
                                             <p v-for="(error, index) in errors" :key="index" class="login-error">{{ error }}</p>
                                         </fieldset>
                                     </div>
@@ -82,7 +82,7 @@
                                         <div class="form-control-position" style="top: 4px;">
                                             <i class="fad fa-key" style="color: rgba(34, 41, 47, 0.4)!important;"></i>
                                         </div>
-                                        <label for="password">Mật khẩu</label>
+                                        <!-- <label for="password">Mật khẩu</label> -->
                                         <p v-for="(error, index) in errors" :key="index" class="login-error">{{ error }}</p>
                                     </fieldset>
                                 </div>
