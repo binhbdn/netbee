@@ -186,7 +186,7 @@
                                                                     </div>
                                                                     <div class="col-9">
                                                                         <div class="form-control d-flex p-0" style="border-radius: 0">
-                                                                            <input style="border:none; color: #5F5F5F; padding-left: 7px!important;" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Biệt danh hoặc tên viết tắt duy nhất của công ty.">
+                                                                            <input style="border:none; color: #5F5F5F; padding-left: 7px!important;" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Tên viết tắt duy nhất của công ty.">
                                                                             <div class="col-1 text-center">
                                                                                 <i style="font-size:16px; padding-top: 10px" :class="checkUsername ? 'fas fa-check-circle success' : 'fas fa-times-circle danger'"></i>
                                                                             </div>
@@ -377,7 +377,7 @@
                                     <div class="card-body p-t-15 p-b-15">
                                         <div class="tab-content">
                                             <div class="card-header card-profile">
-                                                <p class="card-header-title is-uppercase">Đổi mật khẩu</p>
+                                                <p class="card-header-title1 is-uppercase">Đổi mật khẩu</p>
                                                 <div class="field is-horizontal">
                                                     <div class="field-body">
                                                         <div class="field">
@@ -855,6 +855,32 @@ export default {
 }
 </script>
 <style scoped>
+.card-header-title, .card-header-title1 {
+    position: relative;
+    border-bottom: 1px solid #eaeaea;
+    padding-left: 0px !important;
+    margin-left: 13px;
+}
+.card-header-title:before {
+    position: absolute;
+    background: rgb(255, 183, 1);
+    height: 2px;
+    content: '';    
+    left: 0;
+    width: 130px;
+    bottom: -2px;
+    border-radius: 12px;
+}
+.card-header-title1:before {
+    position: absolute;
+    background: rgb(255, 183, 1);
+    height: 2px;
+    content: '';    
+    left: 0;
+    width: 100px;
+    bottom: -2px;
+    border-radius: 12px;
+}
     ul{
         list-style: none;
         padding-left: 5px;
@@ -880,17 +906,17 @@ export default {
     color: #5F5F5F;
 }
 .card-header {
-    border-bottom: 1px solid #eaeaea;
+    /* border-bottom: 1px solid #eaeaea; */
     align-items: center;
     justify-content: space-between;
 }
-.card-profile {
+/* .card-profile {
     background: #eaeaea;
-}
+} */
 .card-header .card-profile {
     padding-top: 0;
 }
-.card-header-title {
+.card-header-title, .card-header-title1 {
     align-items: center;
     color: #363636;
     display: flex;
@@ -927,7 +953,7 @@ export default {
 .for-label label{
     font-weight: 600;
 }
-.card-header-title{
+.card-header-title, .card-header-title1{
     margin-bottom: 0;
 }
 .tab-content .card-header{
