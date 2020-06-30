@@ -198,7 +198,7 @@
 
                             <div style="line-height: 35px">
 
-                               Nền tảng tuyển dụng đa quốc gia <span style="color: #ffb701;">Netbee</span>
+                               Nền tảng tuyển dụng đa quốc gia <span style="color: #ffb701;">Netbee.vn</span>
 
                             </div>
                         </td>

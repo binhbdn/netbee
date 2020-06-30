@@ -197,7 +197,7 @@
 
                             <div style="line-height: 35px">
 
-                               Chào mừng bạn đến với <span style="color: #ffb701;">Netbee</span>
+                               Chào mừng bạn đến với <span style="color: #ffb701;">Netbee.vn</span>
 
                             </div>
                         </td>
