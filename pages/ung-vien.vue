@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="!loading" class="container">
     <!-- VIỆC LÀM MỚI -->
     <!-- <section class="category p-b-15">
         <div class="container">
@@ -102,6 +102,7 @@ export default {
   },
   data() {
     return{
+      loading: true, 
       page: 1,
       listCvs: [],
       maleFemale: '',
@@ -122,6 +123,11 @@ export default {
       ],
     }
   },
+  created () {
+        this.$nextTick(function () {
+           this.loading = false
+       })
+     },
   components: {
     CardInfo,
     Multiselect
@@ -136,7 +142,6 @@ export default {
       statusRoute: route.query.keyword
     }
   },
-
   computed: {
     getYears(){
       let yearStart = 1970;
