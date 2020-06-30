@@ -19,113 +19,87 @@
 	            Tu nghiệp sinh
 	          </span>
 	        </a>
-	        <a v-for="(item, index) in DataList" :key="index" :href="`/tin-tuyen-sinh/tim-kiem?keyword=${item.tag_name}`" style="margin:0 3px;">
+	        <a v-for="(item, key) in DataList" :key="key" :href="`/tin-tuyen-sinh/tim-kiem?keyword=${item.tag_name}`" style="margin:0 3px;">
               <span class="badge border-netbee badge-sm" style="width: 100px">
                 {{item.tag_name}}
               </span>
             </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?nation_id=1">
+	        <a v-for="(item, key) in listNation" :key="key" :href="`/tin-tuyen-sinh/tim-kiem?nation_id=${item.id}`" style="margin:0 3px;">
 	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Nhật Bản
+	            {{item.name}}
 	          </span>
 	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?nation_id=2">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Hàn Quốc
+	        <!-- <a v-for="(item, key) in listVisa" :key="key" :href="`/tin-tuyen-sinh/tim-kiem?id_visa=${item.id}`" style="margin:0 3px;">
+	          <span class="badge border-netbee badge-sm text-ove" style="width: 100px">
+	            {{item.profession}}
 	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?nation_id=3">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Trung Quốc
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?nation_id=4">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Anh
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?nation_id=5">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Mỹ
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?nation_id=6">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Đức
-	          </span>
-	        </a>
-
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=9">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Ngư nghiệp
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=8">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Công nghiệp vật liệu
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=7">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Hàng không
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=6">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Nông nghiệp
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=2">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Điện - điện tử
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=5">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Đóng tàu, hàng hải
-	          </span>
-	        </a>
-
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=10">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Dịch vụ ăn uống
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=11">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Vệ sinh các tòa nhà
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=12">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Chế tạo máy
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=13">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Khách sạn
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=14">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Sửa chữa ô tô
-	          </span>
-	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?id_visa=16">
-	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Hộ lý
-	          </span>
-	        </a>
+	        </a> -->
         </div>
       </div>
     </div>
 </div>
 </template>
 <script>
-export default {    
-    props: ['DataList']
+export default {  
+	name: 'topTuKhoa',  
+	props: ['DataList'],
+	data(){
+		return {
+			listNation:[],
+			listVisa:[]
+		}
+	},        
+	components:{
+
+	},
+	methods: {
+		fetchdataNa :function() {
+			try {
+				this.$axios.get('getTopNation')
+				.then(response => {                                                          
+					this.listNation = response.data.data
+				})
+				.catch(error => {
+					console.log(error.response)
+				});
+			}
+			catch (error) {
+				this.$swal(
+					'Lỗi!',
+					'Lỗi dữ liệu!',
+					'error'
+				)
+			}
+		},
+		fetchdataVi :function() {
+			try {
+				this.$axios.get('getTopVisa')
+				.then(response => {                                                          
+					this.listVisa = response.data.data
+				})
+				.catch(error => {
+					console.log(error.response)
+				});
+			}
+			catch (error) {
+				this.$swal(
+					'Lỗi!',
+					'Lỗi dữ liệu!',
+					'error'
+				)
+			}
+		},
+	},
+	mounted() {             
+		this.fetchdataNa()
+		this.fetchdataVi()
+	}
 }
 </script>
 <style scoped>
-
+	.text-ove{
+		width: 40px; 
+		overflow: hidden;
+		text-overflow: ellipsis; 
+	}
 </style>

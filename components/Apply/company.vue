@@ -379,10 +379,14 @@ export default {
             // } else {
             //     a = this.chooseCalendar
             // }
-            this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: c}).then((response) =>{
-                this.$swal('Thành công', response.message, 'success');
-                //location.reload()
-            })
+
+
+            console.log(c)
+
+            // this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: c}).then((response) =>{
+            //     this.$swal('Thành công', response.message, 'success');
+            //     //location.reload()
+            // })
         },
         showFile(id) {
             var a = document.querySelector('.overlay-bg');

@@ -114,4 +114,16 @@ class HomeController extends Controller
             $data = ['status'=> 400, 'message' => 'Lỗi', 'data' => null];
         return response()->json($data);
     }
+
+    public function getTopNation()
+    {
+        $response = $this->homeService->getTopNation();
+        return response()->json($response);
+    }
+
+    public function getTopVisa()
+    {
+        $response = $this->homeService->getTopVisa();
+        return response()->json($response);
+    }
 }

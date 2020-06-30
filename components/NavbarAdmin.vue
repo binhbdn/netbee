@@ -38,7 +38,7 @@
                 </li>
                 <li :class="[{'active' : this.$route.name == 'calendar'}, 'nav-item']"><a @click="$router.push('/admin/calendar')" ><i class="fa fa-calendar"></i><span class="menu-title" data-i18n="User">Lịch phỏng vấn</span></a>
                 <li :class="[{'active' : this.$route.name == 'call'}, 'nav-item']"><a @click="$router.push('/admin/call')" ><i class="fa fa-phone-square"></i><span class="menu-title" data-i18n="User">Phỏng vấn trực tuyến</span></a>
-                
+                <li :class="[{'active' : this.$route.name == 'quang-cao'}, 'nav-item']" v-if="$auth.user.role == 4"><a @click="$router.push('/admin/quang-cao')" ><i class="fa fa-camera-retro"></i><span class="menu-title" data-i18n="User">Quảng cáo</span></a>
                 <li :class="[{'active' : this.$route.name == 'quan-ly-ung-tuyen'}, 'nav-item']"><a @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fad fa-id-card-alt"></i><span class="menu-title" data-i18n="User"> Việc làm đã ứng tuyển</span></a>
                 </li>
 
