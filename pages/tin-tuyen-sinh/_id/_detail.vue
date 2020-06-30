@@ -150,12 +150,19 @@
                                 <!-- <hr class="hr-color" style="max-width: 216px;"> -->
                             </div>
                             <div class="row">
-                                
                                 <div class="col-lg-12">
                                     Ứng viên nộp hồ sơ trực tiếp tại văn phòng công ty hoặc nộp trực tuyến bằng cách bấm vào nút <b>Nộp hồ sơ</b>.<br>
                                     <div class="text-center">
                                         <i>Hạn nộp hồ sơ: {{ConvertDate(tintuyendung.expiration_date)}}</i><br>
                                     </div>
+                                    <center style="margin-top: 13px;">
+                                        <div v-if="!$auth.loggedIn" class="col-sm-3 col-xl-3 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
+                                            <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                        </div> 
+                                        <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-3 col-xl-3 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding-left: 0px;padding-right: 0px;"  data-target="#ApplyModal">
+                                            <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                        </div>
+                                    </center>
                                 </div>
                             </div>
                         </div>
