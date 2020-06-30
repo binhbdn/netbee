@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div id="social" class="row " style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
+                            <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row " style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 40%">
                                 <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                     <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
@@ -37,14 +37,28 @@
                                     <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                 </div>
                             </div>
-                            <div class="row m-t-10" id="send-hoso" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
-                                <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal">
+                            <div id="social" v-else class="row " style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
+                                <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                    <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                </div>
+                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
+                                    <a class="btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                </div>
+                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/tin-tuyen-sinh/99/xuat-khau-lao-dong&amp;src=sdkpreparse" class="btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
+                                </div>
+                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
+                                    <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
+                                </div>
+                            </div>
+                            <div class="row m-t-10" id="send-hoso" style="border-radius: 3px;height: 40%">
+                                <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                 </div> 
-                                <div v-if="$auth.loggedIn && $auth.user.role == 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center">                                    
-                                    <a  @click="warningModal()" class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                                                                                                                          
-                                </div>    
-                                <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#ApplyModal">
+                                <!-- <div v-if="$auth.loggedIn && $auth.user.role == 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" style="padding-left: 0px;padding-right: 0px;">                                    
+                                    <a  class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                                                                                                                          
+                                </div>     -->
+                                <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding-left: 0px;padding-right: 0px;"  data-target="#ApplyModal">
                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                 </div>                                                              
                             </div>
@@ -136,12 +150,19 @@
                                 <!-- <hr class="hr-color" style="max-width: 216px;"> -->
                             </div>
                             <div class="row">
-                                
                                 <div class="col-lg-12">
                                     Ứng viên nộp hồ sơ trực tiếp tại văn phòng công ty hoặc nộp trực tuyến bằng cách bấm vào nút <b>Nộp hồ sơ</b>.<br>
                                     <div class="text-center">
                                         <i>Hạn nộp hồ sơ: {{ConvertDate(tintuyendung.expiration_date)}}</i><br>
                                     </div>
+                                    <center style="margin-top: 13px;">
+                                        <div v-if="!$auth.loggedIn" class="col-sm-3 col-xl-3 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
+                                            <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                        </div> 
+                                        <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-3 col-xl-3 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding-left: 0px;padding-right: 0px;"  data-target="#ApplyModal">
+                                            <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                        </div>
+                                    </center>
                                 </div>
                             </div>
                         </div>
@@ -225,14 +246,14 @@
                     <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP ỨNG VIÊN</h2>
                     <p class="text-center" style="margin-bottom:20px; font-size: 16px; "><a class="hover" :href="`../../dang-ky/ung-vien`">Đăng ký tài khoản mới!</a>
                     </p>
-                    <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px">
+                    <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px;padding-left: 20px;padding-right: 20px;">
                         <ValidationObserver ref="observer" v-slot="{ valid }">
                             <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
                                 <div class="__email">
-                                    <fieldset class="form-label-group form-group position-relative has-icon-left mb-0">
+                                    <fieldset class="form-label-group form-group position-relative has-icon-left mb-0" style="max-height: 60px;">
                                         <input type="text" class="form-control mb-0" id="email" placeholder="Email" v-model="userForm.email" style="margin-bottom:37px !important; margin-top:2px">
                                         <div class="form-control-position">
-                                            <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                            <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important;padding-top: 13px;"></i>
                                         </div>
                                         <label for="email">Email</label>
                                         <ul style="color:red" class="overline text-left">
@@ -260,7 +281,7 @@
                                 <fieldset class="form-label-group position-relative has-icon-left mb-0">
                                     <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom:0px !important; margin-top:2px">
                                     <div class="form-control-position">
-                                        <i class="feather icon-lock" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                        <i class="fad fa-key" style="color: rgba(34, 41, 47, 0.4)!important;padding-top: 13px;"></i>
                                     </div>
                                     <label for="password">Mật khẩu</label>
                                     <ul style="color:red" class="overline text-left">
@@ -268,7 +289,7 @@
                                         <span style="top: 53%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
                                         </li>
                                     </ul>
-                                    <p class="text-right mb-0 mt-2"><a href="/quen-mat-khau" class="remember hover" style="font-size: 15px;color:black!important;">Quên mật khẩu?</a></p>
+                                    <p class="text-right mb-0"><a href="/quen-mat-khau" class="remember hover" style="font-size: 15px;color:black!important;">Quên mật khẩu?</a></p>
                                 </fieldset>
                             </div>
                             </ValidationProvider>
@@ -280,8 +301,8 @@
                                 <span>Hoặc</span>
                             </div>
                             <div class="lopgin-c" style="position:relative">
-                                <i class="fab fa-facebook" style="position: absolute; left: 106px; top: 10px; color: white; font-size: 18px; z-index:5"></i>
-                                <a @click="loginfb()" class="btn btn-outline-info fb" style="padding: 10px!important" >Đăng nhập bằng
+                                <i class="fab fa-facebook" style="position: absolute; left: 106px; top: 8px; color: white; font-size: 18px; z-index:5"></i>
+                                <a @click="loginfb()" class="btn btn-outline-info fb" style="padding: 10px!important" > Đăng nhập bằng
                                     Facebook</a> &nbsp;&nbsp;
                             </div>
                             <div class="lopgin-c" style="position:relative">
@@ -502,13 +523,6 @@ export default {
         }
     },
     methods: {
-        warningModal(){
-            this.$swal(
-                'Cảnh báo!',
-                'Bạn cần đăng nhập tài khoản Hr hoặc Ứng viên để ứng tuyển',
-                'warning'
-            );
-        },
         changeStateTab(state){
             this.stateTab = state
             this.resetData()
