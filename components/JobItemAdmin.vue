@@ -27,11 +27,11 @@
                     <a :href="`/cong-ty/${job.user ? job.user.name : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.user.name }}</span></a>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
-                    <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-location-arrow"></i> {{ job.nation.name }}</p>
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
+                    <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fa fa-map-marker-alt"></i> {{ job.nation.name }}</p>
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</p>
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" >Chi phí: <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</span></p>
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
                         <span class="badge border-netbee badge-sm" style="width: 100px">
                             {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
@@ -43,8 +43,8 @@
                 </div>
             </div>
             <div class="item-options text-center" >
+                <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper mt-1">
-                    <span class="item-hot" v-if="job.highlight_job == 2"><i class="fas fa-star" style="color: gold; "></i> Hot</span>
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null">
                         <p class="m-0">Tiền thưởng</p>
                         <h3>
@@ -68,9 +68,13 @@ export default {
 }
 </script>
 <style scoped>
+.fa, .fas {
+    font-family: 'Font Awesome 5 Pro';
+    font-weight: 900;
+}
 .item-vip-a{
     font-weight: 600;
-    font-size: 20px;
+    font-size: 16px;
 }
 /* .item-vip-a:hover{
     color: #000 !important;
@@ -88,4 +92,23 @@ export default {
     grid-template-columns: 1fr 4fr 2fr;
 }
 
+.hot{
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 2;
+    font-size: 9px;
+    border-radius: 2px;
+    right: 10px;
+    font-weight: 700;
+}
+.hot img {
+    width: 3%;
+    float: right;
+    position: absolute;
+    right: 15px;
+    top: 0;
+}
+.p-r-0 .hot img{
+    right: 0;
+}
 </style>
