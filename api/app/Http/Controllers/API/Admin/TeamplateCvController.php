@@ -60,16 +60,17 @@ class TeamplateCvController extends Controller
             'maleFemale' => 'required',
             'address_profile' => 'required',           
             'email_profile' => 'required', 
-            'note_profile' => 'required',
-            'title_target_profile' => 'required',
-            'note_target_profile' => 'required',
-            'skill_communication_profile' => 'required',
-            'skill_information_profile' => 'required',
-            'skill_logic_profile' => 'required',
-            'certificate_profile' => 'required',
-            'level_education' => 'required',
-            'name_education' => 'required',
-            'specialized_education' => 'required'           
+            'link_facebook' => 'required',
+            // 'note_profile' => 'required',
+            // 'title_target_profile' => 'required',
+            // 'note_target_profile' => 'required',
+            // 'skill_communication_profile' => 'required',
+            // 'skill_information_profile' => 'required',
+            // 'skill_logic_profile' => 'required',
+            // 'certificate_profile' => 'required',
+            // 'level_education' => 'required',
+            // 'name_education' => 'required',
+            // 'specialized_education' => 'required'           
         ];
         $messages = [
             'required' => 'Không được để trống',           
@@ -82,7 +83,8 @@ class TeamplateCvController extends Controller
             'maleFemale' => $request->maleFemale,
             'address_profile' => $request->address_profile,
             'phone_profile' => $request->phone_profile,
-            'email_profile' => $request->email_profile,                          
+            'email_profile' => $request->email_profile,
+            'link_facebook' => $request->link_facebook,                          
             'note_profile' => $request->note_profile,
             'title_target_profile' => $request->title_target_profile,
             'note_target_profile' => $request->note_target_profile,
@@ -108,13 +110,13 @@ class TeamplateCvController extends Controller
                 'data' => null
             ]);
         }
-        if($request->avatar_profile == 'undefined' || $request->avatar_profile == ''){
-            return response()->json([
-                'status' => 400,
-                'message' => 'Ảnh đại diện không được bỏ trống',
-                'data' => null
-            ]);
-        }
+        // if($request->avatar_profile == 'undefined' || $request->avatar_profile == ''){
+        //     return response()->json([
+        //         'status' => 400,
+        //         'message' => 'Ảnh đại diện không được bỏ trống',
+        //         'data' => null
+        //     ]);
+        // }
         $daystime = Carbon::parse($request->birthday_profile)->format('Y-m-d');
         $timedays = Carbon::now()->format('Y-m-d');
         if($daystime >=  $timedays){
