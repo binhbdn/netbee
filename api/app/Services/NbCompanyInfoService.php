@@ -52,12 +52,12 @@ class NbCompanyInfoService extends BaseService {
                 $datas->orderBy('id','DESC');
             }
             if($limit != self::UN_LIMIT){
-                $datas->limit($limit);
+                $datas->orderBy('id','DESC')->limit($limit);
             }
-            $getData = $datas->get();
+            $getData = $datas->orderBy('id','DESC')->get();
         }
         else{
-            $getData = $datas->paginate($perPage);
+            $getData = $datas->orderBy('id','DESC')->paginate($perPage);
         }
         
         foreach($getData as $key=>$data){
