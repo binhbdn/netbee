@@ -1,7 +1,7 @@
 <template>
-    <div class="container" style="padding-top:100px; position: relative">
+    <div class="container" style="padding-top:65px; position: relative">
         <div class="bk-auto" v-if="congty.nb_company != null && congty.nb_company.image_cover != null" role="img" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${congty.nb_company.image_cover}` + ')' }"></div>
-        <div class="bk-auto" v-else role="img" :style="{ 'background-image': 'url(' + `/assets/img/cover-netbee.jpg` + ')' }"></div>
+        <div class="bk-auto" v-if="congty.nb_company != null && congty.nb_company.image_cover == null" role="img" :style="{ 'background-image': 'url(' + `/assets/img/back-companyId.jpg` + ')' }"></div>
       <section>
         <div class="row">
           <div class="col-lg-12 col-12">
@@ -16,21 +16,28 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="company-job-title">
-                                <h2 class="font-weight-bold text-uppercase"><span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${detailCompany.name}`"> {{ detailCompany.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h2>
-                                <p><span class="font-weight-600"><i class="fad fa-map-marked-alt"></i> Địa chỉ: {{ detailCompany.address_detail ? detailCompany.address_detail: 'Đang cập nhật' }}</span></p>
-                                <p><span class="font-weight-600"><i class="fad fa-phone-office"></i> Hotline: {{ detailCompany.nb_company.company_hotline ? detailCompany.nb_company.company_hotline: 'Đang cập nhật' }}</span></p>
-                                <p><span class="font-weight-600"><i class="fad fa-link"></i> Website: {{ detailCompany.nb_company.company_link ? detailCompany.nb_company.company_link: 'Đang cập nhật' }}</span></p>
-                                <p><span class="font-weight-600"><i class="fad fa-calendar-minus"></i> Ngày thành lập: {{ congty.birth_of_date ? ConvertDate(congty.birth_of_date): 'Đang cập nhật' }}</span></p>
+                                <h2 class="font-weight-bold text-uppercase"><span style="font-size: 16px;" class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${detailCompany.name}`"> {{ detailCompany.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h2>
+                                <p><span class="font-weight-400"><i class="fad fa-map-marked-alt"></i> <span class="font-weight-600">Địa chỉ:</span> {{ detailCompany.address_detail ? detailCompany.address_detail: 'Đang cập nhật' }}</span></p>
+                                <p><span class="font-weight-400"><i class="fad fa-phone-office"></i> <span class="font-weight-600">Hotline:</span> {{ detailCompany.nb_company.company_hotline ? detailCompany.nb_company.company_hotline: 'Đang cập nhật' }}</span></p>
+                                <p><span class="font-weight-400"><i class="fad fa-link"></i> <span class="font-weight-600">Website:</span> {{ detailCompany.nb_company.company_link ? detailCompany.nb_company.company_link: 'Đang cập nhật' }}</span></p>
+                                <p><span class="font-weight-400"><i class="fad fa-link"></i> <span class="font-weight-600">Facebook:</span> {{ detailCompany.nb_company.company_link_fb ? detailCompany.nb_company.company_link_fb: 'Đang cập nhật' }}</span></p>
+                                <p><span class="font-weight-400"><i class="fad fa-calendar-minus"></i> <span class="font-weight-600">Ngày thành lập:</span> {{ congty.birth_of_date ? ConvertDate(congty.birth_of_date): 'Đang cập nhật' }}</span></p>
                             </div>
                         </div>
                         <div class="col-lg-2 ">
-                            <div class="count-job">
+                            <div class="count-job" style="margin-top: 6px;">
                                 <h1 style="font-size: 70px;color: #ffb701;">{{ countJob.length ? countJob.length : '0' }}</h1>
                                 <h2>Việc làm</h2>
                             </div>
-                            <div>
-                                <button v-if="!$auth.loggedIn" class="btn btn-hover-netbee mt-2" data-toggle="modal" data-target="#loginModal">Theo dõi ({{followers}})</button>
-                                <button v-else class="btn btn-hover-netbee mt-2" @click="followCompany()">{{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}} ({{followers}})</button>
+                            <div class="count-job" style="margin-top: 18px;">
+                                <a v-if="!$auth.loggedIn"  data-toggle="modal" data-target="#loginModal" style="text-align: center;">
+                                    <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p>
+                                    <p>Theo dõi</p>
+                                </a>
+                                <a v-else @click="followCompany()" style="text-align: center;">
+                                    <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p>
+                                    <p>{{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}}</p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -94,7 +101,7 @@
             <div class="card">
                 <div class="card-header">
                 <h3 class="card-title">
-                    Công việc đang tuyển
+                    Đơn hàng đang tuyển
                 </h3>
                 </div>
                 <div class="card-content collapse show">
@@ -353,7 +360,7 @@
 </template>
 <script>
 import JobsList1Col from '~/components/Jobs/JobsList1Col'
-import StarRating from 'vue-star-rating'
+// import StarRating from 'vue-star-rating'
 import {
   ValidationProvider,
   extend
@@ -395,7 +402,7 @@ extend("customPassword", {
 export default {
     layout: 'no_banner',
     components: {
-        JobsList1Col,StarRating,
+        JobsList1Col,
         ValidationProvider,
         ValidationObserver,
     },
@@ -671,7 +678,7 @@ export default {
 }
 .bk-auto{
     width: 100%;
-    height: 455px;
+    height: 326px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
