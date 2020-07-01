@@ -274,7 +274,7 @@
                                                                 </div>
                                                                 </ValidationProvider>
                                                             </div>
-                                                            <div class="col-12">
+                                                            <!-- <div class="col-12">
                                                                 <ValidationProvider
                                                                     name="companyBenefit"
                                                                     ref="companyBenefit"
@@ -339,7 +339,7 @@
                                                                         </div>
                                                                 </div>
                                                                 </ValidationProvider>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="col-12">
                                                                 <ValidationProvider
                                                                     name="companyLink"
@@ -744,70 +744,63 @@ export default {
             }
         },
         async changeInfoCompany() {
-            console.log(this.changeInfoCompanyForm.files[0])
-            if(this.changeInfoCompanyForm.files.length == 0) {
-                this.$swal(
-                    'Lỗi!',
-                    'Chưa chọn ảnh bìa',
-                    'error'
-                    )
-            }else {
-                const isValid = await this.$refs.observerChangeInfoCompany.validate();
-                var form = new FormData();
-                if(isValid){
-                    form.append('company_about',this.changeInfoCompanyForm.companyAbout);
-                    form.append('username',this.changeInfoCompanyForm.username);
-                    form.append('company_hotline',this.changeInfoCompanyForm.companyHotline);
-                    form.append('company_tax',this.changeInfoCompanyForm.companyTax);
-                    form.append('company_benefit',this.changeInfoCompanyForm.companyBenefit);
-                    form.append('company_policy',this.changeInfoCompanyForm.companyPolicy);
-                    form.append('company_chance',this.changeInfoCompanyForm.companyChance);
-                    form.append('company_link',this.changeInfoCompanyForm.companyLink);
+            const isValid = await this.$refs.observerChangeInfoCompany.validate();
+            var form = new FormData();
+            if(isValid){
+                form.append('company_about',this.changeInfoCompanyForm.companyAbout);
+                form.append('username',this.changeInfoCompanyForm.username);
+                form.append('company_hotline',this.changeInfoCompanyForm.companyHotline);
+                form.append('company_tax',this.changeInfoCompanyForm.companyTax);
+                // form.append('company_benefit',this.changeInfoCompanyForm.companyBenefit);
+                // form.append('company_policy',this.changeInfoCompanyForm.companyPolicy);
+                // form.append('company_chance',this.changeInfoCompanyForm.companyChance);
+                form.append('company_link',this.changeInfoCompanyForm.companyLink);
+                if(this.changeInfoCompanyForm.files.length == 0){
+                    form.append('image_cover',null);
+                }else{
                     form.append('image_cover',this.changeInfoCompanyForm.files[0]);
-
-                    console.log(form)
-                    try {
-                        this.$axios.post('changeInfoCompany',form).then((response) => {
-                            if(response.data.status == 200){
-                                this.$swal({
-                                titile: 'Thành công',
-                                text: response.data.message,
-                                icon: 'success',
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'OK',
-                                }).then( async (result) => {
-                                if (result.value) {
-                                        window.location.href = "/admin";
-                                    }
-                                })
-                            }
-                            else{
-                                this.$swal(
-                                'Lỗi!',
-                                response.data.message,
-                                'error'
-                                )
-                            }
-                        }).catch ((error)=> {
-                                this.$swal(
-                                    'Lỗi!',
-                                    'Có lỗi xảy ra'+error,
-                                    'error'
-                                    )
+                }
+                try {
+                    this.$axios.post('changeInfoCompany',form).then((response) => {
+                        if(response.data.status == 200){
+                            this.$swal({
+                            titile: 'Thành công',
+                            text: response.data.message,
+                            icon: 'success',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'OK',
+                            }).then( async (result) => {
+                            if (result.value) {
+                                    window.location.href = "/admin";
+                                }
                             })
-                    } catch (error) {
-                        this.$swal(
+                        }
+                        else{
+                            this.$swal(
                             'Lỗi!',
-                            'Có lỗi xảy ra'+error,
+                            response.data.message,
                             'error'
                             )
-                    }
-                    // reset validation
-                    // You should call it on the next frame
-                    requestAnimationFrame(() => {
-                    this.$refs.observer.reset();
-                    });
+                        }
+                    }).catch ((error)=> {
+                            this.$swal(
+                                'Lỗi!',
+                                'Có lỗi xảy ra'+error,
+                                'error'
+                                )
+                        })
+                } catch (error) {
+                    this.$swal(
+                        'Lỗi!',
+                        'Có lỗi xảy ra'+error,
+                        'error'
+                        )
                 }
+                // reset validation
+                // You should call it on the next frame
+                requestAnimationFrame(() => {
+                this.$refs.observer.reset();
+                });
             }
         },
         checkUsernameCompany($username){
