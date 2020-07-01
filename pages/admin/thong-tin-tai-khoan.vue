@@ -362,6 +362,28 @@
                                                                 </div>
                                                                 </ValidationProvider>
                                                             </div>
+                                                            <div class="col-12">
+                                                                <ValidationProvider
+                                                                    name="companyLinkFb"
+                                                                    ref="companyLinkFb"
+                                                                    rules="required"
+                                                                    v-slot="{ errors }"
+                                                                > 
+                                                                <div class="form-group row">
+                                                                    <div class="col-3 text-right for-label">
+                                                                    <label for="account-website">Facebook công ty:</label>
+                                                                    </div>
+                                                                    <div class="col-9">
+                                                                    <input type="text" class="form-control" id="account-website" name="companyLinkFb" v-model="changeInfoCompanyForm.companyLinkFb" placeholder="Địa chỉ facebook của công ty">
+                                                                        <ul style="color:red" class="overline text-left">
+                                                                            <li v-for="(error, index) in errors" :key="index">
+                                                                            <span>{{ error }}</span>
+                                                                            </li>
+                                                                        </ul>
+                                                                        </div>
+                                                                </div>
+                                                                </ValidationProvider>
+                                                            </div>
                                                         </ValidationObserver>
                                                     </form>
                                                 </div>
@@ -563,6 +585,7 @@ export default {
                     companyPolicy: "",
                     companyChance: "",
                     companyLink: "",
+                    companyLinkFb: "",
                     imageCover: ""
                 },
                 images: [],
@@ -755,6 +778,7 @@ export default {
                 // form.append('company_policy',this.changeInfoCompanyForm.companyPolicy);
                 // form.append('company_chance',this.changeInfoCompanyForm.companyChance);
                 form.append('company_link',this.changeInfoCompanyForm.companyLink);
+                form.append('company_link_fb',this.changeInfoCompanyForm.companyLinkFb);
                 if(this.changeInfoCompanyForm.files.length == 0){
                     form.append('image_cover',null);
                 }else{
@@ -823,6 +847,7 @@ export default {
                 this.changeInfoCompanyForm.companyPolicy = dataInforCompany.data.data.company_policy;
                 this.changeInfoCompanyForm.companyChance = dataInforCompany.data.data.company_chance;
                 this.changeInfoCompanyForm.companyLink = dataInforCompany.data.data.company_link;
+                this.changeInfoCompanyForm.companyLinkFb = dataInforCompany.data.data.company_link_fb;
                 this.changeInfoCompanyForm.username = dataInforCompany.data.data.username;
                 this.changeInfoCompanyForm.imageCover = dataInforCompany.data.data.image_cover;
             }

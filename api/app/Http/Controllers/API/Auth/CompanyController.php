@@ -46,7 +46,8 @@ class CompanyController extends Controller
                 // 'company_benefit' => 'required',
                 // 'company_policy' => 'required',
                 // 'company_chance' => 'required',
-                'company_link' => 'required'
+                'company_link' => 'required',
+                'company_link_fb' => 'required'
         ];
         $messages = [
                 'required' => 'Không được để trống',
@@ -71,6 +72,7 @@ class CompanyController extends Controller
             // 'company_policy' => $request->company_policy,
             // 'company_chance' => $request->company_chance,
             'company_link' => $request->company_link,
+            'company_link_fb' => $request->company_link_fb,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ];        
@@ -113,7 +115,7 @@ class CompanyController extends Controller
                 ];
             }           
         }else {
-            $data['image_cover'] = $request->image_cover; 
+            
             $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
             $userId = Auth::user()->id;
             if ($get) {
