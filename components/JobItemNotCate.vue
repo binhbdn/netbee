@@ -24,7 +24,7 @@
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="item-quantity d-flex justify-content-between">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fa fa-dollar-sign"></i> {{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</p>
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" >Chi phí: <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</span></p>
                     <!-- <p class="delivery-date m-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển"><i class="fad fa-user-friends"></i> {{job.quantity}}</p> -->
                 </div>
                 <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>

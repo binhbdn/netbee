@@ -49,7 +49,7 @@
                                                         <span><img v-lazy="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>
                                                     </td>                                                  
                                                     <td v-if="item.status == 0">
-                                                        <div class="chip-text"><i style="font-size: 20px;" class="far fa-times-circle danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
+                                                        <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
                                                     <td v-if="item.status == 1">
                                                         <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>

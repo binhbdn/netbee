@@ -55,7 +55,7 @@
                                                     <td>{{item.email_profile}}</td>
                                                     <td>{{item.phone_profile}}</td>                                                    
                                                     <td v-if="item.status == 0">
-                                                        <div class="chip-text"><i style="font-size: 20px;" class="far fa-times-circle danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
+                                                        <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
                                                     <td v-if="item.status == 1">
                                                         <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
