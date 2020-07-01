@@ -535,8 +535,8 @@ export default {
             checked: false,
             guarantee: [
                 {id: 1, name: 'Ngay sau khi bay'},
-                {id: 2, name: 'Sau khi bay 30 ngày *1,5'},
-                {id: 3, name: 'Sau khi bay 60 ngày *2'}
+                {id: 2, name: 'Sau khi bay 30 ngày'},
+                {id: 3, name: 'Sau khi bay 60 ngày'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
             optionsVisa: [],

@@ -43,10 +43,11 @@ class CompanyController extends Controller
                 'company_about' => 'required',
                 'username' => 'required',
                 'company_tax' => 'required|numeric',
-                'company_benefit' => 'required',
-                'company_policy' => 'required',
-                'company_chance' => 'required',
-                'company_link' => 'required'
+                // 'company_benefit' => 'required',
+                // 'company_policy' => 'required',
+                // 'company_chance' => 'required',
+                'company_link' => 'required',
+                'company_link_fb' => 'required'
         ];
         $messages = [
                 'required' => 'Không được để trống',
@@ -67,10 +68,11 @@ class CompanyController extends Controller
             'company_about' => $request->company_about,
             'username' => $request->username,
             'company_tax' => $request->company_tax,
-            'company_benefit' => $request->company_benefit,
-            'company_policy' => $request->company_policy,
-            'company_chance' => $request->company_chance,
+            // 'company_benefit' => $request->company_benefit,
+            // 'company_policy' => $request->company_policy,
+            // 'company_chance' => $request->company_chance,
             'company_link' => $request->company_link,
+            'company_link_fb' => $request->company_link_fb,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ];        
@@ -112,7 +114,25 @@ class CompanyController extends Controller
                     'data' => $e->getMessage()
                 ];
             }           
-        }       
+        }else {
+            
+            $get = $this->nbCompanyInfoService->getInfoByUserId(Auth::user()->id)->first();
+            $userId = Auth::user()->id;
+            if ($get) {
+                $response = $this->nbCompanyInfoService->updateByUserId($data, $userId);             
+            } else {         
+                $data['company_id'] = $userId;
+                $response = $this->nbCompanyInfoService->store($data);   
+            }
+
+            if ($response) {
+                return [
+                    'status' => 200,
+                    'message' => 'Cập nhật tin thành công',
+                    'data' => null
+                ];
+            }
+        }     
         return [
             'status' => 400,
             'message' => 'Có lỗi xảy ra',

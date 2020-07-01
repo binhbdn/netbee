@@ -45,7 +45,7 @@
             <div class="item-options text-center" >
                 <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper mt-1">
-                    <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null">
+                    <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
                         <p class="m-0">Tiền thưởng</p>
                         <h3>
                             <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>

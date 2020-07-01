@@ -17,6 +17,7 @@ class NbCompanyInfo extends Model
         'comnpany_policy',
         'company_chance',
         'company_link',
+        'company_link_fb',
         'company_verify',
         'image_cover',
         'username'

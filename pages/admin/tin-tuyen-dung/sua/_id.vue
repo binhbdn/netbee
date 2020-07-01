@@ -513,8 +513,8 @@ export default {
             checked: false,
             guarantee: [
                 {id: 1, name: 'Ngay sau khi bay'},
-                {id: 2, name: 'Sau khi bay 30 ngày *1,5'},
-                {id: 3, name: 'Sau khi bay 60 ngày *2'}
+                {id: 2, name: 'Sau khi bay 30 ngày'},
+                {id: 3, name: 'Sau khi bay 60 ngày'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
             optionsVisa: [],
@@ -576,11 +576,11 @@ export default {
             this.data.age_start = job.data.age_start
             this.data.age_late = job.data.age_late
             if(job.data.time_bonus == 1){
-                this.data.time_bonus = {id: 1, name: '30 ngày *1'}
+                this.data.time_bonus = {id: 1, name: '30 ngày'}
             }else if(job.data.time_bonus == 2){
-                this.data.time_bonus = {id: 2, name: 'Hoàn tất nhập cảnh *1,5'}
+                this.data.time_bonus = {id: 2, name: 'Hoàn tất nhập cảnh'}
             } else if(job.data.time_bonus == 3) {
-                this.data.time_bonus = {id: 3, name: 'Sau nhập cảnh 30 ngày *2'}
+                this.data.time_bonus = {id: 3, name: 'Sau nhập cảnh 30 ngày'}
             }
             job.data.bonus == 0 ? this.data.bonus = null : this.data.bonus = job.data.bonus
             if(job.data.bonus){
