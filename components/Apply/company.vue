@@ -168,7 +168,7 @@
                 <div class="data-items pb-3">
                     <div class="card">
                         <div class="card-content">
-                            <div class="card-body m-t-15">
+                            <div class="card-body m-t-15 scrollTop">
                                 <ul class="activity-timeline timeline-left list-unstyled">
                                     <li>
                                         <div class="timeline-icon bg-netbee">
@@ -449,6 +449,11 @@ export default {
 }
 </script>
 <style scoped>
+    .scrollTop{
+        overflow: scroll;
+        height: 580px;
+        overflow-x: hidden;
+    }
     .btn-status{
         padding: 5px;
         width: 180px;
