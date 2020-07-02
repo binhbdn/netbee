@@ -132,7 +132,7 @@ class TinTuyenService extends BaseService {
     {
         $rules = [
             'title' => 'required',
-            'address' => 'required',
+            // 'address' => 'required',
             'nation_id' => 'required',
             'expiration_date' => 'required',
             'description' => 'required',
@@ -160,7 +160,9 @@ class TinTuyenService extends BaseService {
             $rules['id_visa'] = 'required';
             $rules['form_work'] = 'required';
         }
-
+        if (!empty($request->id)){
+            $rules['address'] = 'required';
+        }
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return [
