@@ -34,7 +34,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-12">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Tên công ty
@@ -45,12 +45,12 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-12">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Địa điểm
                                                                 </label>
-                                                                <input type="text" class="form-control required" v-model="data.address">
+                                                                <input type="text" class="form-control" v-model="data.address">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
