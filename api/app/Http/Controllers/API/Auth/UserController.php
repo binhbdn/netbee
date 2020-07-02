@@ -135,7 +135,16 @@ class UserController extends Controller
         $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
         //Notification End
         $store = $this->userService->store($users);
+
         if ($store) {
+            $firstUserStore = $this->userService->firstEmailUsers($request->email);
+            $notification1 = [
+                'content' => 'Bạn cần hoàn thiện hồ sơ để đăng tin',
+                'ids' => $this->userService->getIdUserDk($firstUserStore->id)->id,
+                'url' => 'https://netbee.vn/admin/thong-tin-tai-khoan'
+            ];
+            $res = $this->notificationService->store($notification1['content'], $notification1['ids'], $notification1['url']);
+
             $dataEmail = (object)[
                 'name' => $users['name'],
                 'title' => 'Kích hoạt tài khoản Netbee',

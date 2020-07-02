@@ -117,7 +117,7 @@ export default {
                 console.log(dataInforCompany)
                 if(dataInforCompany.data.data == null){
                     this.$swal({
-                    title: 'Bạn phải cập nhật thông tin',
+                    title: 'Bạn cần hoàn thiện hồ sơ để đăng tin',
                     icon: 'warning',
                     confirmButtonText: 'OK',
                     showLoaderOnConfirm: true,
@@ -131,7 +131,7 @@ export default {
             }catch(error) {
                 this.$swal(
                     'Cảnh báo',
-                    'Bạn phải cập nhật thông tin',
+                    'Bạn cần hoàn thiện hồ sơ để đăng tin',
                     'warning'
                 )
             }            
