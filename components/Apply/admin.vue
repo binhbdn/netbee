@@ -205,8 +205,8 @@
                                                         
                                                         <td>{{item.name}}</td>                                                        
                                                         <td>
-                                                            <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" style="text-decoration: underline;">Xem hồ sơ</a>
-                                                            <a v-if="item.nb_paper != null" @click="showFile(item.id)" style="text-decoration: underline;">Xem giấy tờ đính kèm</a>
+                                                            <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" class="btn btn-status">Xem hồ sơ</a>
+                                                            <a v-if="item.nb_paper != null" @click="showFile(item.id)" class="btn btn-status">Xem giấy tờ đính kèm</a>
                                                             <p v-if="item.status == 1">Chưa duyệt</p>
                                                             <p v-else-if="item.status == 2 && item.nb_paper == null">Đã duyệt hồ sơ</p>
                                                             <p v-else-if="item.status == 3">Đã tuyển hồ sơ</p>
@@ -615,6 +615,18 @@ export default {
 }
 </script>
 <style scoped>
+    .btn-status{
+        padding: 5px;
+        width: 180px;
+        background-color: #fff;
+        border: 1px solid rgba(128, 128, 128, 0.192);
+        color: #000;
+        text-decoration: none;
+        margin-bottom: 5px;
+    }
+    .btn-status:hover{
+        border: 1px solid rgb(255, 183, 1);
+    }
     .tab-table{
         height: 630px;
         overflow: auto;

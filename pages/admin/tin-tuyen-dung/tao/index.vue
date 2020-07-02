@@ -121,9 +121,35 @@ export default {
     },
 
     methods:{
-
+        async dailogCompany(){
+            try {
+                let dataInforCompany = await this.$axios.get('getInfoCompany');
+                console.log(dataInforCompany)
+                if(dataInforCompany.data.data == null){
+                    this.$swal({
+                    title: 'Bạn phải cập nhật thông tin',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false
+                    }).then(async (result) => {
+                        if(result.value) {
+                            window.location.href = "/admin/thong-tin-tai-khoan"
+                        }
+                    })
+                }
+            }catch(error) {
+                this.$swal(
+                    'Cảnh báo',
+                    'Bạn phải cập nhật thông tin',
+                    'warning'
+                )
+            }            
+        }
     },
     mounted () {
+        if(this.$auth.user.role == 2){
+            this.dailogCompany();
+        }
     }
   
 }
