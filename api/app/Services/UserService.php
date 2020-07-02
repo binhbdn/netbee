@@ -60,6 +60,11 @@ class UserService extends BaseService {
         return $this->getid($id)->first();
     }
 
+    public function firstEmailUsers($email)
+    {
+        return $this->user->whereEmail($email)->first();
+    }
+
     public function loginWithOAuth($request, $typeOAuth)
     {
         $token = $request->token;
@@ -222,6 +227,11 @@ class UserService extends BaseService {
     public function getIdAdmin()
     {
         return $this->user->whereBlock(self::UN_BLOCK)->whereRole(self::ROLE_ADMIN)->get();
+    }
+
+    public function getIdUserDk($id)
+    {
+        return $this->user->whereBlock(self::UN_BLOCK)->whereId($id)->first();
     }
 
     public function get()
