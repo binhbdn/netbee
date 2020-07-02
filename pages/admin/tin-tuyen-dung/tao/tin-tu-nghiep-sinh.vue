@@ -34,7 +34,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-12">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Tên công ty
