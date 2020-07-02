@@ -1,5 +1,5 @@
 <template>
-    <div class="ecommerce-card border-job-item make-it-sl" style="height:140px;margin-bottom: 15px;border-radius: 3px;" :class="job.highlight_job ? 'highlight' : ''">
+    <div class="ecommerce-card border-job-item make-it-sl" style="height:140px;margin-bottom: 15px;border-radius: 3px;background: #fff" :class="job.highlight_job ? 'highlight' : ''">
         <!-- <div class="card-content">
             <div class="remove-border-right" style="width: 60vh;padding: 5px 25px;">
                 <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">{{ job.title }}</a>
