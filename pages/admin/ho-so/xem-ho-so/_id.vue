@@ -3,7 +3,7 @@
          <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <br><br><br><br>        
-        <div class="container" >   
+        <div class="col-12" >   
             <div class="content-header row">
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
@@ -25,7 +25,142 @@
                     </div>
                 </div>
             </div>
-            <div class="main-cv">                 
+            <section id="page-account-settings">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="col-md-12">
+                                    <div style="padding: 15 5px; margin: 15px 5px 5px; border: 1px solid #FFB701; border-radius: 3px;">
+                                        <div class="row" style="padding: 10px;">
+                                            <h4 style="margin-left: 10px;">THÔNG TIN BẮT BUỘC</h4>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <center>
+                                                            <div style="background-color: #fff;" class="img-cv">
+                                                                <div class="imgg" v-if="status == 0">
+                                                                    <label>
+                                                                        <img v-lazy="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`">
+                                                                    </label>                                                                                                                          
+                                                                </div>     
+                                                                <div class="imgg" v-if="status == 1">
+                                                                    <label for="files">
+                                                                        <img v-lazy="images[0]"  v-if="images.length > 0">
+                                                                        <img v-lazy="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`" v-else>
+                                                                    </label>
+                                                                    <input type="file" id="files" class="hidden"  @change="previewFiles" multiple>                                          
+                                                                </div>  
+                                                            </div>                        
+                                                        </center>     
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        Họ và tên <span style="color: red; font-size: 20px;">*</span>
+                                                        <input type="text" class="form-control" v-model="info_frofile_user.fullname_profile" placeholder="Nguyễn Văn A">   
+                                                        Ngày sinh <span style="color: red; font-size: 20px;">*</span>
+                                                        <input v-model="info_frofile_user.birthday_profile" type="date" class="form-control" placeholder="VD: 0000/00/00"/>
+                                                        Giới tính <span style="color: red; font-size: 20px;">*</span>
+                                                        <div class="radio-MaleFemale">
+                                                            <input v-model="info_frofile_user.maleFemale" type="radio" id="Nam" value="Nam"/>
+                                                            <label for="Nam" style="color: #000;">Nam</label>
+                                                            <input v-model="info_frofile_user.maleFemale" type="radio" id="Nu" value="Nữ" style="margin-left: 20px;" />
+                                                            <label for="Nu" style="color: #000;">Nữ</label>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                Số điện thoại <span style="color: red; font-size: 20px;">*</span>
+                                                <input v-model="info_frofile_user.phone_profile" class="form-control" placeholder="VD: +84 985372***"> 
+                                            </div>
+                                            <div class="col-md-6">
+                                                Email <span style="color: red; font-size: 20px;">*</span>
+                                                <input v-model="info_frofile_user.email_profile" class="form-control" placeholder="VD: netbee@gmail.com"/>
+                                            </div>
+                                            <div class="col-md-12">
+                                                Địa chỉ <span style="color: red; font-size: 20px;">*</span>
+                                                <textarea v-model="info_frofile_user.address_profile" class="form-control" placeholder="VD: 234 Phạm Văn Đồng, Cổ Nhuế, Từ Liêm, thành phố Hà Nội."  style="overflow:hidden;" rows="2"></textarea>
+                                            </div>
+                                            <div class="col-md-6">
+                                                Link Facebook <span style="color: red; font-size: 20px;">*</span>
+                                                <input v-model="info_frofile_user.link_facebook" class="form-control" placeholder="VD: https://www.facebook.com/netbee.vn/" />
+                                            </div>
+                                            <div class="col-md-6">
+                                                Hình thức <span style="color: red; font-size: 20px;">*</span>
+                                                <select class="form-control" v-model="info_frofile_user.type">
+                                                    <option disabled value="">Chọn Hình thức</option>
+                                                    <option value="1">Xuất khẩu lao động</option>
+                                                    <option value="2">Du học sinh</option>
+                                                    <option value="3">Tu nghiệp sinh</option>
+                                                </select>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- hết -->
+                                    <!-- Thông tin thêm -->
+                                     <div style="padding: 15 5px; margin: 15px 5px 5px; border: 1px solid #FFB701; border-radius: 3px;">
+                                        <div class="row" style="padding: 10px;">
+                                            <h4 style="margin-left: 10px;">THÔNG TIN KHÁC VỀ BẢN THÂN</h4>
+                                            <div class="col-md-12" style="margin-bottom: 10px;">
+                                                Kỹ năng bản thân
+                                                <input v-model="info_frofile_user.note_profile" class="form-control" placeholder="VD: Áp dụng những kinh nghiệm về kỹ năng làm việc nhóm và sự hiểu biết của bản thân, mang đến nhiều giá trị cho khách hàng. Từ đó Công ty tăng số lượng khách hàng.">
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom: 10px;">
+                                                Mục tiêu nghề nghiệp
+                                                <input v-model="info_frofile_user.title_target_profile" class="form-control" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY HACHINET" style="margin-bottom: 10px;" rows="1">
+                                                <textarea v-model="info_frofile_user.note_target_profile" class="form-control" placeholder="VD: Mong muốn làm việc trong một môi trường năng động, vui vẻ, thỏa sức đưa ra các ý tưởng, sự sáng tạo và đặc biệt là được theo đuổi ngành nghề yêu thích của mình. Đưa bản thân vào một môi trường làm việc có kỷ luật, nâng cao tinh thần trách nhiệm và khả năng chịu áp lực, giải quyết vấn đề một cách sáng tạo và hiệu quả ở một vị trí đầy thách thức." rows="5"></textarea>        
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom: 10px;">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        Kỹ năng giao tiếp
+                                                        <input v-model="info_frofile_user.skill_communication_profile" class="form-control" placeholder="VD: Tốt">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        Tin học văn phòng(Word, Excel, Power Point)
+                                                        <input v-model="info_frofile_user.skill_information_profile" class="form-control" placeholder="VD: Tốt"> 
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        Tư duy logic
+                                                        <input v-model="info_frofile_user.skill_logic_profile" @click="text()" class="form-control" placeholder="VD: Tốt">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom: 10px;">
+                                                <h5>Chứng chỉ</h5>
+                                                <input v-model="info_frofile_user.certificate_profile" class="form-control" placeholder="VD: - MS Office Khóa học (2018)">
+                                            </div>
+                                            <div class="col-md-12" style="margin-bottom: 10px;">
+                                                <h5>Học vấn</h5>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <input v-model="info_frofile_user.level_education" class="form-control" placeholder="VD: 12/12">  
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input v-model="info_frofile_user.name_education" class="form-control" placeholder="VD: ĐẠI HỌC AB">
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <input v-model="info_frofile_user.specialized_education" class="form-control" placeholder="VD: Chuyên ngành CNTT">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="text-align: right;">
+                                        <button  v-if="status == 1" class="btn btn-add bg-netbee"  @click="update">Cập nhật</button>                               
+                                        <button class="btn btn-add bg-netbee" v-if="status == 1" @click="canle()">Hủy</button>  
+                                        <div v-if="$auth.user.role == 4 || $auth.user.role == 3 || $auth.user.role == 1">
+                                            <button class="btn btn-add bg-netbee" v-if="status == 0" @click="statust()">Sửa hồ sơ</button>                
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- <div class="main-cv">                 
                 <div class="row">
                     <div class="col-md-10" style="background-color: #fff;box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);">                                
                         <div class="row" id="cv">
@@ -64,7 +199,6 @@
                                     </div>                                  
                                 </div>
                                 <div v-bind:class="{'skill-cv': status == 0, 'skill-cv1': status == 1}">
-                                    <!--Học vấn-->
                                     <div class="skill-mn-cv" style="padding-left:10px;">
                                         <div class="row">
                                             <div class="col-md-4">
@@ -73,8 +207,7 @@
                                             
                                         </div>                                                   
                                     </div>                                    
-                                    <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
-                                        <div class="communication">
+                                    <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">    <div class="communication">
                                             <div class="row">
                                                 <div class="col-md-2">
                                                     <p>Giao tiếp:</p>
@@ -106,11 +239,10 @@
                                                     <textarea v-if="status == 1" v-model="info_frofile_user.skill_logic_profile"  class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                                 </div>
                                             </div>                                            
-                                        </div>                                                                                                                                                
+                                        </div> 
                                     </div>
                                 </div> 
                                 <div class="skill-cv">
-                                    <!--Học vấn-->
                                     <div class="skill-mn-cv" style="padding-left:10px;">
                                         <div class="row">
                                             <div class="col-md-4">
@@ -119,19 +251,18 @@
                                             
                                         </div>                                                   
                                     </div>                                    
-                                    <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
+                                    <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">
                                         <div class="communication">
                                             <div class="row">                                             
                                                 <div class="col-md-12">
-                                                    <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.certificate_profile}}</p>                                                     
+                                                    <p class="main-text textarea" v-if="status == 0">{{info_frofile_user.certificate_profile}}</p>
                                                     <textarea v-if="status == 1" v-model="info_frofile_user.certificate_profile"  class="main-text textarea" placeholder="VD: - MS Office Khóa học (2018)"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                                 </div>
                                             </div>            
-                                        </div>                                                                                                                                                                                      
+                                        </div>
                                     </div>
                                 </div> 
                                 <div v-bind:class="{'edu-cv': status == 0, 'edu-cv1': status == 1}">
-                                    <!--Học vấn-->
                                     <div class="education-cv" style="padding-left:10px;">
                                         <div class="row">
                                             <div class="col-md-4">
@@ -144,7 +275,7 @@
                                             <textarea  v-if="status == 1" v-model="info_frofile_user.name_education" class="main-text textarea" placeholder="VD: ĐẠI HỌC ABC"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                             <textarea  v-if="status == 1" v-model="info_frofile_user.specialized_education" class="main-text textarea" placeholder="VD: Chuyên ngành CNTT"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
                                         </div>                                                   
-                                    </div>                                                                                                                                                                              
+                                    </div>
                                 </div>                                
                             </div>
                             <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
@@ -239,7 +370,6 @@
                                                 <i class="fa fa-envelope-o"></i>
                                             </div>
                                             <div class="col-md-10">
-                                                <!-- <textarea class="hovertexta main-text textarea" v-model="info_frofile_user.email_profile" v-if="status == 0" style="overflow:hidden;"  rows="2" disabled></textarea> -->
                                                 <p class="hovertexta main-text textarea" v-if="status == 0" style="overflow:hidden;" >{{info_frofile_user.email_profile}}</p>
                                                 <textarea v-if="status == 1" v-model="info_frofile_user.email_profile" class="main-text textarea" placeholder="VD: netbee@gmail.com"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="2"></textarea>
                                             </div>                            
@@ -270,7 +400,7 @@
                     <button class="btn btn-add bg-netbee" v-if="status == 0" @click="statust()">Sửa hồ sơ</button>                
                 </div>
                 <button class="btn btn-add bg-netbee" v-if="status == 0" @click="dowload()">Xuất PDF</button>               
-            </div>   
+            </div>  -->  
         </div>  
         <br>
                                           
@@ -301,6 +431,7 @@
                         address_profile:'',
                         phone_profile:'',
                         email_profile:'',
+                        link_facebook:'',
                         note_profile:'',
                         title_target_profile:'',
                         note_target_profile:'',
@@ -335,7 +466,8 @@
                 form.append('maleFemale' , this.info_frofile_user.maleFemale)
                 form.append('address_profile' , this.info_frofile_user.address_profile)
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
-                form.append('email_profile' , this.info_frofile_user.email_profile)                            
+                form.append('email_profile' , this.info_frofile_user.email_profile)  
+                form.append('link_facebook' , this.info_frofile_user.link_facebook)                            
                 form.append('note_profile' , this.info_frofile_user.note_profile)
                 form.append('title_target_profile' , this.info_frofile_user.title_target_profile)
                 form.append('note_target_profile' , this.info_frofile_user.note_target_profile)
@@ -632,8 +764,9 @@ textarea:hover, input:hover {
         padding: 30px;
     }
     .img-cv .imgg img {
-        width: 238px;
-        height: 238px;       
+        /*width: 238px;
+        height: 238px;  */
+        width: 40%;     
         border-radius: 50%;
     }    
     .briday-cv ,.gioitinh-cv, .Cmnd-cv,.address-cv, .phone-cv, .email-cv, .note-cv {
