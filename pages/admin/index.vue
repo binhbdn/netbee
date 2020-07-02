@@ -138,9 +138,9 @@ export default {
         }
     },
     mounted(){
-        if(this.$auth.user.role == 2){
-            this.dailogCompany();
-        }
+        // if(this.$auth.user.role == 2){
+        //     this.dailogCompany();
+        // }
     }
 }
 </script>
