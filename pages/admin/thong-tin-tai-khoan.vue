@@ -56,7 +56,7 @@
                                                                                 <label v-if="$auth.user.role != 2" for="account-username">Họ tên</label>
                                                                                 <label v-if="$auth.user.role == 2" for="account-username">Tên công ty</label>
                                                                             </div>
-                                                                            <div class="col-9">
+                                                                            <div class="col-7">
                                                                                 <input type="text" class="form-control" name="name" v-model="changeInfoUser.name">
                                                                                 <ul style="color:red" class="overline text-left">
                                                                                     <li v-for="(error, index) in errors" :key="index">
@@ -69,51 +69,48 @@
                                                                 </ValidationProvider>
                                                             </div>
                                                             <div class="col-12">
-                                                                <ValidationProvider rules="required" v-slot="{ errors }">
-                                                                    <div class="form-group">
-                                                                        <div class="controls row">
-                                                                            <div class="col-3 text-right for-label">
-                                                                                <label v-if="$auth.user.role != 2" for="account-name">Ngày sinh</label>
-                                                                                <label v-if="$auth.user.role == 2" for="account-name">Ngày thành lập</label>
-                                                                            </div>
-                                                                            <div class="col-9">
-                                                                            <input type="date" class="form-control" v-model="changeInfoUser.birth">
-                                                                            <ul style="color:red" class="overline text-left">
-                                                                                <li v-for="(error, index) in errors" :key="index">
-                                                                                <span>{{ error }}</span>
-                                                                                </li>
-                                                                            </ul>
-                                                                            </div>
+                                                                <div class="form-group">
+                                                                    <div class="controls row">
+                                                                        <div class="col-3 text-right for-label">
+                                                                            <label v-if="$auth.user.role != 2" for="account-name">Ngày sinh</label>
+                                                                            <label v-if="$auth.user.role == 2" for="account-name">Ngày thành lập</label>
+                                                                        </div>
+                                                                        <div class="col-2">
+                                                                        <input type="date" class="form-control" v-model="changeInfoUser.birth">
+                                                                        </div>
+                                                                        <div class="col-5">
+                                                                             <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                                <div class="form-group">
+                                                                                    <div class="controls row" >
+                                                                                        <div class="col-5 for-label text-right">
+                                                                                            <label for="account-e-mail">Số điện thoại</label>
+                                                                                        </div>
+                                                                                        <div class="col-7">
+                                                                                            <input type="number" class="form-control" v-model="changeInfoUser.phone">
+                                                                                            <ul style="color:red" class="overline text-left">
+                                                                                                <li v-for="(error, index) in errors" :key="index">
+                                                                                                <span>{{ error }}</span>
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ValidationProvider>
                                                                         </div>
                                                                     </div>
-                                                                </ValidationProvider>
+                                                                </div>
+                                                               
+                                                                    
+                                                                   
                                                             </div>
-                                                            <div class="col-12">
-                                                                <ValidationProvider rules="required" v-slot="{ errors }">
-                                                                    <div class="form-group">
-                                                                        <div class="controls row" >
-                                                                            <div class="col-3 for-label text-right">
-                                                                                <label for="account-e-mail">Số điện thoại</label>
-                                                                            </div>
-                                                                            <div class="col-9">
-                                                                                <input type="number" class="form-control" v-model="changeInfoUser.phone">
-                                                                                <ul style="color:red" class="overline text-left">
-                                                                                    <li v-for="(error, index) in errors" :key="index">
-                                                                                    <span>{{ error }}</span>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </ValidationProvider>
-                                                            </div>
+                                                          
                                                             <div class="col-12">
                                                                 <ValidationProvider rules="required" v-slot="{ errors }">
                                                                     <div class="form-group row">
                                                                             <div class="col-3 for-label text-right">
                                                                                 <label for="account-company">Địa chỉ</label>
                                                                             </div>
-                                                                            <div class="col-9">
+                                                                            <div class="col-7">
                                                                                 <input type="text" class="form-control" v-model="changeInfoUser.address">
                                                                                 <ul style="color:red" class="overline text-left">
                                                                                         <li v-for="(error, index) in errors" :key="index">
@@ -156,7 +153,7 @@
                                                                     <div class="col-3 text-right for-label">
                                                                         <label>Ảnh bìa công ty</label>
                                                                     </div>
-                                                                    <div class="col-9">
+                                                                    <div class="col-7">
                                                                         <div class="media pl-1">
                                                                         <a href="javascript: void(0);">
                                                                             <img v-lazy="imagesCover[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="imagesCover.length > 0">
@@ -184,7 +181,7 @@
                                                                     <div class="col-3 text-right for-label">
                                                                         <label for="accountTextarea1">Username</label>
                                                                     </div>
-                                                                    <div class="col-9">
+                                                                    <div class="col-7">
                                                                         <div class="form-control d-flex p-0" style="border-radius: 0">
                                                                             <input style="border:none; color: #5F5F5F; padding-left: 7px!important;" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Tên viết tắt duy nhất của công ty.">
                                                                             <div class="col-1 text-center">
@@ -193,7 +190,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-3"></div>
-                                                                    <div class="col-9">
+                                                                    <div class="col-7">
                                                                         <ul style="color:red" class="overline text-left">
                                                                                 <li v-for="(error, index) in errors" :key="index">
                                                                                 <span>{{ error }}</span>
@@ -215,7 +212,7 @@
                                                                     <div class="col-3 text-right for-label">
                                                                         <label for="accountTextarea1">Giới thiệu</label>
                                                                     </div>
-                                                                    <div class="col-9">
+                                                                    <div class="col-7">
                                                                         <textarea class="form-control" id="accountTextarea1" rows="4" name="companyAbout" v-model="changeInfoCompanyForm.companyAbout" placeholder="Thông tin cơ bản của công ty..."></textarea>
                                                                             <ul style="color:red" class="overline text-left">
                                                                                         <li v-for="(error, index) in errors" :key="index">
@@ -227,52 +224,28 @@
                                                             </ValidationProvider>
                                                             </div>
                                                             <div class="col-12">
-                                                                <ValidationProvider
-                                                                    name="companyAbout"
-                                                                    ref="companyAbout"
-                                                                    rules="required|integer"
-                                                                    v-slot="{ errors }"
-                                                                > 
                                                                 <div class="form-group">
                                                                     <div class="controls row">
                                                                         <div class="col-3 text-right for-label">
                                                                         <label for="account-phone">Đường dây nóng</label>
                                                                         </div>
-                                                                        <div class="col-9">
+                                                                        <div class="col-7">
                                                                             <input type="text" class="form-control" id="company-hotline" name="companyHotline" v-model="changeInfoCompanyForm.companyHotline"  required placeholder="Hotline">
-                                                                                <ul style="color:red" class="overline text-left">
-                                                                                    <li v-for="(error, index) in errors" :key="index">
-                                                                                    <span>{{ error }}</span>
-                                                                                    </li>
-                                                                                </ul>
                                                                             </div>
                                                                     </div>
                                                                 </div>
-                                                                </ValidationProvider>
                                                             </div>
                                                             <div class="col-12">
-                                                                <ValidationProvider
-                                                                    name="companyTax"
-                                                                    ref="companyTax"
-                                                                    rules="required|integer"
-                                                                    v-slot="{ errors }"
-                                                                > 
                                                                 <div class="form-group">
                                                                     <div class="controls row">
                                                                         <div class="col-3 text-right for-label">
                                                                             <label for="account-phone">Mã số thuế</label>
                                                                         </div>
-                                                                        <div class="col-9">
+                                                                        <div class="col-7">
                                                                             <input type="text" class="form-control" id="account-phone" name="companyTax" v-model="changeInfoCompanyForm.companyTax" required placeholder="Tax">
-                                                                            <ul style="color:red" class="overline text-left">
-                                                                                <li v-for="(error, index) in errors" :key="index">
-                                                                                <span>{{ error }}</span>
-                                                                                </li>
-                                                                            </ul>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                </ValidationProvider>
                                                             </div>
                                                             <!-- <div class="col-12">
                                                                 <ValidationProvider
@@ -351,7 +324,7 @@
                                                                     <div class="col-3 text-right for-label">
                                                                     <label for="account-website">Website chính thức</label>
                                                                     </div>
-                                                                    <div class="col-9">
+                                                                    <div class="col-7">
                                                                     <input type="text" class="form-control" id="account-website" name="companyLink" v-model="changeInfoCompanyForm.companyLink" placeholder="Địa chỉ website của công ty">
                                                                         <ul style="color:red" class="overline text-left">
                                                                             <li v-for="(error, index) in errors" :key="index">
@@ -363,26 +336,15 @@
                                                                 </ValidationProvider>
                                                             </div>
                                                             <div class="col-12">
-                                                                <ValidationProvider
-                                                                    name="companyLinkFb"
-                                                                    ref="companyLinkFb"
-                                                                    rules="required"
-                                                                    v-slot="{ errors }"
-                                                                > 
                                                                 <div class="form-group row">
                                                                     <div class="col-3 text-right for-label">
                                                                     <label for="account-website">Facebook công ty:</label>
                                                                     </div>
-                                                                    <div class="col-9">
+                                                                    <div class="col-7">
                                                                     <input type="text" class="form-control" id="account-website" name="companyLinkFb" v-model="changeInfoCompanyForm.companyLinkFb" placeholder="Địa chỉ facebook của công ty">
-                                                                        <ul style="color:red" class="overline text-left">
-                                                                            <li v-for="(error, index) in errors" :key="index">
-                                                                            <span>{{ error }}</span>
-                                                                            </li>
-                                                                        </ul>
                                                                         </div>
                                                                 </div>
-                                                                </ValidationProvider>
+                                                               
                                                             </div>
                                                         </ValidationObserver>
                                                     </form>
@@ -424,7 +386,7 @@
                                                                     <div class="col-3 text-right for-label">
                                                                         <label for="account-old-password">Mật khẩu cũ</label>
                                                                     </div>
-                                                                    <div class="col-9">
+                                                                    <div class="col-7">
                                                                         <input type="password" class="form-control" id="oldPassword" name="oldPassword" v-model="changePasswordForm.oldPassword" placeholder="Nhập vào mật khẩu cũ">
                                                                     <ul style="color:red" class="overline text-left">
                                                                         <li v-for="(error, index) in errors" :key="index">
@@ -449,7 +411,7 @@
                                                                     <div class="col-3 text-right for-label">
                                                                     <label for="account-new-password">Mật khẩu mới</label>
                                                                     </div>
-                                                                    <div class="col-9">
+                                                                    <div class="col-7">
                                                                         <input type="password" class="form-control" id="account-new-password" name="newPassword" v-model="changePasswordForm.newPassword" placeholder="Nhập vào mật khẩu mới" >
                                                                             <ul style="color:red" class="overline text-left">
                                                                                 <li v-for="(error, index) in errors" :key="index">
@@ -473,7 +435,7 @@
                                                                     <div class="col-3 text-right for-label">
                                                                         <label for="account-retype-new-password">Nhập lại mật khẩu</label>
                                                                     </div>
-                                                                    <div class="col-9">
+                                                                    <div class="col-7">
                                                                             <input type="password" class="form-control" name="retypePassword"  id="account-retype-new-password" v-model="changePasswordForm.retypePassword" placeholder="Nhập lại mật khẩu mới">
                                                                             <ul style="color:red" class="overline text-left">
                                                                                 <li v-for="(error, index) in errors" :key="index">
@@ -873,6 +835,10 @@ export default {
 }
 </script>
 <style scoped>
+.form-group{
+    margin-bottom: 0.5rem;
+}
+
 .card-header-title, .card-header-title1 {
     position: relative;
     border-bottom: 1px solid #eaeaea;
@@ -976,9 +942,6 @@ export default {
 }
 .tab-content .card-header{
     padding: 5px 0 !important;
-}
-.form-group{
-    margin-bottom: 0.5rem;
 }
 </style>>
 

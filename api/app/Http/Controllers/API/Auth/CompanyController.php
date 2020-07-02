@@ -39,19 +39,19 @@ class CompanyController extends Controller
     public function changeInfoCompany(Request $request)
     {
         $rules = [
-                'company_hotline' => 'required|numeric',
+                'company_hotline' => 'numeric',
                 'company_about' => 'required',
                 'username' => 'required',
-                'company_tax' => 'required|numeric',
+                'company_tax' => 'numeric',
                 // 'company_benefit' => 'required',
                 // 'company_policy' => 'required',
                 // 'company_chance' => 'required',
                 'company_link' => 'required',
-                'company_link_fb' => 'required'
+                // 'company_link_fb' => 'required'
         ];
         $messages = [
                 'required' => 'Không được để trống',
-                'numeric' => 'Số điện thoại không được chứa kí tự'
+                'numeric' => 'Không được chứa kí tự'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);

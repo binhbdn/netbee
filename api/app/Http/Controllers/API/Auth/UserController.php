@@ -320,7 +320,7 @@ class UserController extends Controller
     public function changeInfo(Request $request)
     {
         $rules = [
-            'birth_of_date' => 'required',
+            // 'birth_of_date' => 'required',
             'address_detail' => 'required',
             'phone' => 'required|numeric',
             'name' => 'required',
@@ -338,7 +338,7 @@ class UserController extends Controller
         ];
 
         if ($request->file('avatar')) {
-            $rules['avatar'] = 'required|image';
+            $rules['avatar'] = 'image';
             $messages['image'] = 'Định dạng ảnh không phù hợp';
         }
 
