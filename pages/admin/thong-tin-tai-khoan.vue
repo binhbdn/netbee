@@ -133,12 +133,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" v-if="$auth.user.role == 2">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body p-t-15 p-b-15">
                                         <div class="tab-content">                                          
-                                            <div v-if="$auth.user.role == 2">
+                                            <div>
                                                 <div class="card-header card-profile">
                                                     <p class="card-header-title is-uppercase">Thông tin công ty</p>
                                                     <div class="field is-horizontal">
@@ -976,6 +976,9 @@ export default {
 }
 .tab-content .card-header{
     padding: 5px 0 !important;
+}
+.form-group{
+    margin-bottom: 0.5rem;
 }
 </style>>
 
