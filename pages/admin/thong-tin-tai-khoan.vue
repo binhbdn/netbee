@@ -943,5 +943,8 @@ export default {
 .tab-content .card-header{
     padding: 5px 0 !important;
 }
+.content-wrapper{
+    padding-bottom: 0 !important;
+}
 </style>>
 
