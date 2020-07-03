@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="row text-center">
+                    <div class="row text-center circle-box">
                         <div class="col-xs-6 col-sm-3 pd-20-lg">
                             <div class=" round stat pricing-round">
                                 <h4>+10K</h4>
@@ -416,6 +416,15 @@ ul li {
 }
 .pd-20-lg{
     padding: 20px;
+}
+.circle-box .pd-20-lg:last-child {
+    padding-right: 0px!important;
+}
+.form-control:focus {
+    border-color: #fff;
+}
+input:focus {
+    border: none !important;
 }
 @media(max-width: 1199px) {
     .w-img-qr{
