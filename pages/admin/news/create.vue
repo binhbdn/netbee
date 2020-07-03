@@ -266,4 +266,8 @@ export default {
     background: #ffb701;
     color: #000;
 }
+html body .content .content-wrapper {
+    margin-top: 62px;
+    padding: 15px 15px 50px 15px;
+}
 </style>
