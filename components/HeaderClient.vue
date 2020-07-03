@@ -82,7 +82,7 @@
             </a>
             <div class="dropdown-menu" style="top: 102%!important;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
-              <a class="dropdown-item" href="/admin">{{ this.$auth.user.name }}</a>
+              <a class="dropdown-item overflow" href="/admin">{{ this.$auth.user.name }}</a>
               <a class="dropdown-item" @click="logout()">{{ $t('logout') }}</a>
             </div>
           </li>
@@ -152,3 +152,11 @@ export default {
       },
 }
 </script>
+<style scoped>
+.overflow{
+    max-width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+</style>
