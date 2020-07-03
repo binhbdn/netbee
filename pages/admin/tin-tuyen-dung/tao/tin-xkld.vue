@@ -79,7 +79,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                 </div>
-                                            </ValidationObserver>   
+                                            </ValidationObserver>
                                         </tab-content>
                                         <tab-content :before-change="checkValidateStep2" title="Chi tiết">
                                             <ValidationObserver ref="step2" v-slot="{ valid2 }">
@@ -158,7 +158,7 @@
                                                             </ValidationProvider>
                                                         </div>
                                                     <div class="col-12">
-                                                        
+
                                                         <div class="form-group">
                                                             <label for="firstName3">
                                                                 Tuổi
@@ -177,7 +177,7 @@
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -201,7 +201,7 @@
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
-                                                                    
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -290,14 +290,14 @@
                                                                 <span class="">Bonus</span>
                                                             </div>
                                                         </fieldset>
-                                                    </div>  
+                                                    </div>
                                                     <div class="col-6" v-if="checked">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }" >
                                                                 <div class="form-group">
                                                                     <label for="firstName3">
                                                                         Thời gian thanh toán phí
                                                                     </label>
-                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" 
+                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :allow-empty="false"
                                                                         :show-labels="false" placeholder="Thời gian thanh toán phí" :disabled="!checked"></multiselect>
                                                                     <span style="color: red">{{ errors[0] }}</span>
                                                                 </div>
@@ -556,8 +556,8 @@ export default {
     },
     methods:{
         async fetch (route) {
-            this.data.expiration_date = moment(Date.now()).add(90, 'days').format("YYYY-MM-DD"); 
-            this.data.date_start = moment(Date.now()).format("YYYY-MM-DD"); 
+            this.data.expiration_date = moment(Date.now()).add(90, 'days').format("YYYY-MM-DD");
+            this.data.date_start = moment(Date.now()).format("YYYY-MM-DD");
             let res = await this.$axios.$get(`getQuocGia`)
             this.options = res.data
             let visa = await this.$axios.$get(`getVisa`)
@@ -680,7 +680,7 @@ export default {
     mounted () {
         this.fetch()
     }
-  
+
 }
 </script>
 
@@ -708,7 +708,7 @@ export default {
     width: 40px !important;
     height: 40px !important;
     font-size: 24px;
-} 
+}
 
 .wizard-header{
     display: none;
