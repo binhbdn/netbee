@@ -50,7 +50,7 @@
                                                         <div class="row">
                                                             <div class="col-12">
                                                                 <ValidationProvider rules="required" ref="name" name="name" v-slot="{ errors }">
-                                                                    <div class="form-group">
+                                                                    <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                         <div class="controls row">
                                                                             <div class="col-3 text-right for-label">
                                                                                 <label v-if="$auth.user.role != 2" for="account-username">Họ tên</label>
@@ -69,7 +69,7 @@
                                                                 </ValidationProvider>
                                                             </div>
                                                             <div class="col-12">
-                                                                <div class="form-group">
+                                                                <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                     <div class="controls row">
                                                                         <div class="col-3 text-right for-label">
                                                                             <label v-if="$auth.user.role != 2" for="account-name">Ngày sinh</label>
@@ -80,7 +80,7 @@
                                                                         </div>
                                                                         <div class="col-5">
                                                                              <ValidationProvider rules="required" v-slot="{ errors }">
-                                                                                <div class="form-group">
+                                                                                <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                                     <div class="controls row" >
                                                                                         <div class="col-5 for-label text-right">
                                                                                             <label for="account-e-mail">Số điện thoại</label>
@@ -99,11 +99,17 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                               
-                                                                    
-                                                                   
                                                             </div>
-                                                          
+                                                            <div class="col-12">
+                                                                <div class="form-group row" style="margin-bottom: 1.5rem !important;">
+                                                                    <div class="col-3 for-label text-right">
+                                                                        <label for="account-company">Email</label>
+                                                                    </div>
+                                                                    <div class="col-7">
+                                                                        <input type="text" class="form-control" v-model="changeInfoUser.email" readonly>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <div class="col-12">
                                                                 <ValidationProvider rules="required" v-slot="{ errors }">
                                                                     <div class="form-group row">
@@ -208,16 +214,16 @@
                                                                     rules="required"
                                                                     v-slot="{ errors }"
                                                                 > 
-                                                                <div class="form-group row">
+                                                                <div class="form-group row" style="margin-bottom: 0rem !important;">
                                                                     <div class="col-3 text-right for-label">
                                                                         <label for="accountTextarea1">Giới thiệu</label>
                                                                     </div>
                                                                     <div class="col-7">
                                                                         <textarea class="form-control" id="accountTextarea1" rows="4" name="companyAbout" v-model="changeInfoCompanyForm.companyAbout" placeholder="Thông tin cơ bản của công ty..."></textarea>
                                                                             <ul style="color:red" class="overline text-left">
-                                                                                        <li v-for="(error, index) in errors" :key="index">
-                                                                                        <span>{{ error }}</span>
-                                                                                        </li>
+                                                                                <li v-for="(error, index) in errors" :key="index">
+                                                                                    <span>{{ error }}</span>
+                                                                                </li>
                                                                             </ul>
                                                                     </div>
                                                                 </div>
@@ -320,7 +326,7 @@
                                                                     rules="required"
                                                                     v-slot="{ errors }"
                                                                 > 
-                                                                <div class="form-group row">
+                                                                <div class="form-group row" style="margin-bottom: 0rem !important;">
                                                                     <div class="col-3 text-right for-label">
                                                                     <label for="account-website">Website chính thức</label>
                                                                     </div>
@@ -381,7 +387,7 @@
                                                                     rules="required"
                                                                     v-slot="{ errors }"
                                                                 >
-                                                            <div class="form-group">
+                                                            <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                 <div class="controls row">
                                                                     <div class="col-3 text-right for-label">
                                                                         <label for="account-old-password">Mật khẩu cũ</label>
@@ -406,7 +412,7 @@
                                                                     rules="required|customPassword|min:8"
                                                                     v-slot="{ errors }"
                                                                 >
-                                                            <div class="form-group">
+                                                            <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                 <div class="controls row">
                                                                     <div class="col-3 text-right for-label">
                                                                     <label for="account-new-password">Mật khẩu mới</label>
@@ -430,7 +436,7 @@
                                                                 rules="required|retypePassword:@newPassword"
                                                                 v-slot="{ errors }"
                                                             >
-                                                            <div class="form-group">
+                                                            <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                 <div class="controls row">
                                                                     <div class="col-3 text-right for-label">
                                                                         <label for="account-retype-new-password">Nhập lại mật khẩu</label>
@@ -555,6 +561,7 @@ export default {
                 checkUsername: null,
                 changeInfoUser: {
                     files: [],
+                    email: this.$auth.user.email,
                     name: this.$auth.user.name,
                     birth: this.$auth.user.birth_of_date,
                     phone: this.$auth.user.phone,
@@ -835,9 +842,9 @@ export default {
 }
 </script>
 <style scoped>
-.form-group{
+/* .form-group{
     margin-bottom: 0.5rem;
-}
+} */
 
 .card-header-title, .card-header-title1 {
     position: relative;
@@ -943,8 +950,8 @@ export default {
 .tab-content .card-header{
     padding: 5px 0 !important;
 }
-.content-wrapper{
+/* .content-wrapper{
     padding-bottom: 0 !important;
-}
+} */
 </style>>
 
