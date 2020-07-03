@@ -143,4 +143,10 @@ class TinTuyenController extends Controller
     public function sendNotification($notification){
         $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
     }
+
+    public function getJobByRoleCompanyDash()
+    {
+        $response = $this->tinTuyenService->getJobByRoleCompanyDash();
+        return response()->json($response);
+    }
 }

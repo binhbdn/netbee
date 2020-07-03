@@ -416,6 +416,11 @@ class TinTuyenService extends BaseService {
             ->groupBy('nb_joblists.id');
     }
 
+    public function getJobByRoleCompanyDash()
+    {
+        return $this->getJobByRoleCompany()->get();
+    }
+
     private function getJobByRoleAdminSearch()
     {
         return $this->nbJobList->where('nb_joblists.deleted', self::INACTIVE)
