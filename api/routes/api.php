@@ -172,6 +172,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changeStatus', 'AdvertisementController@changeStatus');
         Route::post('deleted', 'AdvertisementController@deleted');
       });
+      Route::get('getJobByRoleCompanyDash', 'Admin\TinTuyenController@getJobByRoleCompanyDash');
+      Route::get('CountCreateCall', 'Admin\ApplyManageController@CountCreateCall');
   });
 });
 
