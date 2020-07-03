@@ -52,7 +52,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header col-12" style="padding-left:15px;">
+                                <div class="card-header col-12" style="padding-left:0px;padding-right: 15px;">
                                     <form class="col-9" action="/admin/tin-tuyen-dung/tao" method="">
                                         <button class="btn-add btn bg-netbee text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
                                     </form>
@@ -103,10 +103,10 @@
                                                             </fieldset>
                                                         </li>
                                                         ID</th>
-                                                    <th style="width:45%;">Tiêu đề</th>
+                                                    <th style="width:40%;">Tiêu đề</th>
                                                     <th style="width:20%;">Thống kê</th>
                                                     <th style="width:10%">Ngày tạo</th>
-                                                    <th style="width:10%;">Trạng thái</th>
+                                                    <th style="width:15%;">Trạng thái</th>
                                                     <!-- <th style="width:10%;">Thể loại</th>
                                                     <th style="width:10%;">Loại tin</th> -->
                                                     <th style="width:10%;">Thao tác</th>
