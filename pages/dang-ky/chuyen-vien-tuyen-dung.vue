@@ -5,10 +5,10 @@
             <div class="col-7" style="padding:100px 15px;">
                 <h3 style="color:black;"><b>Đăng kí chuyên viên tuyển sinh</b></h3>
                 <ul class="list">
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận hàng triệu ứng viên hoàn toàn miễn phí</li>
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Ứng tuyển nhanh chóng, dễ dàng</li>
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận bản tin công việc phù hợp định kỳ</li>
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nâng cao cơ hội tìm ứng viên</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận đơn hàng trên toàn quốc hàng giờ</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận tất cả các đơn hàng một cách đơn giản</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận tiền thưởng ngay lập tức khi giới thiệu thành công</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hoàn toàn bảo mật thông tin cá nhân</li>
                 </ul>
             </div>
             <div class="col-5" style="padding:0px 15px;">
