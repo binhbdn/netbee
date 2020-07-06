@@ -133,9 +133,13 @@
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-if="!$auth.loggedIn">
             <a href="#" class="nav-link header-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  >
-              <i class="fa fa-user-circle"></i>
-              <br />{{ $t('nav.become_partner.title') }}
-              <i class="fas fa-caret-down" style="padding-left:2px"></i>
+              <div class="nav-icon">
+                <i class="fa fa-user-circle"></i>
+              </div>
+              <div class="nav-title">
+                {{ $t('nav.become_partner.title') }}
+                <i class="fas fa-caret-down"></i>
+              </div>
             </a>
             <div class="dropdown-menu" style="top: 102%!important;top: 102%!important;border-radius: 9px;box-shadow: none;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
