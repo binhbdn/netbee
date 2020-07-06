@@ -67,10 +67,12 @@ a.navbar-brandd {
 .nav-icon {
   font-size: 22px;
   margin-bottom: 4px;
+  margin-top: 4px;
 }
 
 .cta img{
   height: 30px;
   width: 30px;
   object-fit: cover;
+  border-radius: 50%;
 }
