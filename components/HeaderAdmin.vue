@@ -14,7 +14,7 @@
                                     </a>
                                 </li>
                             </ul>
-                            <ul class="nav navbar-nav bookmark-icons" v-if="$auth.user.role == 3">
+                            <ul class="nav navbar-nav bookmark-icons" v-if="$auth.user.role == 3 || $auth.user.role == 1">
                                 <li class="nav-item d-none d-lg-block">
                                     <a class="btn bg-netbee" href="/admin/ho-so/tao-ho-so" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
                                         <span style="font-size:1rem">Tạo hồ sơ</span>
@@ -30,20 +30,22 @@
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
                                     <div class="dropdown-header m-0 p-2">
-                                        <h3>{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
+                                        <h3 class="h3-size">{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
                                     </div>
                                 </li>
                                 
                                 <li class="scrollable-container media-list scrollbar">
-                                    <a :style="notification.status_notification ? '' : 'background: #e0e0e0'" class="d-flex justify-content-between" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
+                                    <a :style="notification.status_notification ? '' : 'background: #e0e0e0'" class="d-flex justify-content-between border-bot" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
                                       <div class="media d-flex align-items-start">
-                                          <div class="media-left">
-                                              <img src="/assets/img/logo.png" width="30">
-                                          </div>
-                                          <div class="media-body">
+                                        <div class="media-left">
+                                            <img src="/assets/img/logo.png" width="30">
+                                        </div>
+                                        <div class="media-body">
                                             <small class="notification-text">{{ notification.content }}</small>
-                                          </div><small>
-                                              <time class="media-meta">{{ revertTime(notification.created_at) }}</time></small>
+                                        </div>
+                                        <small class="small-pdt">
+                                            <time class="media-meta">{{ revertTime(notification.created_at) }}</time>
+                                        </small>
                                       </div>
                                     </a>
                                         <infinite-loading
@@ -130,6 +132,15 @@ export default {
 }
 </script>
 <style scoped>
+.h3-size {
+    font-size: 23px;
+}
+.media-body, .small-pdt {
+    padding-top: 6px;
+}
+.border-bot {
+    border: 1px solid rgba(128, 128, 128, 0.192);
+}
 .scrollable-container::-webkit-scrollbar {
   display: none;
 }

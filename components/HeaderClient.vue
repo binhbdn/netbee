@@ -58,34 +58,6 @@
               <br />{{ $t('nav.contact') }}
             </a>
           </li>
-          
-          <li class="nav-item cta mr-md-2 dropdown" v-if="!$auth.loggedIn">
-            <a href="#" class="nav-link header-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  >
-              <i class="fa fa-user-circle"></i>
-              <br />{{ $t('nav.become_partner.title') }}
-              <i class="fas fa-caret-down" style="padding-left:2px"></i>
-            </a>
-            <div class="dropdown-menu" style="top: 102%!important;top: 102%!important;border-radius: 9px;box-shadow: none;" aria-labelledby="navbarDropdown">
-              <div id="login-up"></div>
-              <a class="dropdown-item" href="/dang-ky/ung-vien">{{ $t('nav.become_partner.user') }}</a>
-              <a class="dropdown-item" href="/dang-ky/nha-tuyen-dung">{{ $t('nav.become_partner.company') }}</a>
-              <a class="dropdown-item" href="/dang-ky/chuyen-vien-tuyen-dung">{{ $t('nav.become_partner.hr') }}</a>
-              <a class="dropdown-item" href="/dang-nhap">{{ $t('login') }}</a>
-            </div>
-          </li>
-          <li class="nav-item cta mr-md-2 dropdown" v-else>
-            <img :alt="this.$auth.user.avatar" v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`"
-            style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; object-fit: cover; border-radius: 50%;">
-            <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
-              <br />{{ $t('account') }}
-              <i class="fas fa-caret-down" style="padding-left:2px"></i>
-            </a>
-            <div class="dropdown-menu" style="top: 102%!important;" aria-labelledby="navbarDropdown">
-              <div id="login-up"></div>
-              <a class="dropdown-item" href="/admin">{{ this.$auth.user.name }}</a>
-              <a class="dropdown-item" @click="logout()">{{ $t('logout') }}</a>
-            </div>
-          </li>
           <!-- <li class="nav-item cta cta-colored mr-md-2">
             <a href="#" class="nav-link header-nav-link">
               <i class="fa fa-user-plus"></i>
@@ -127,6 +99,33 @@
               </a>
             </div>
           </li>
+          <li class="nav-item cta mr-md-2 dropdown" v-if="!$auth.loggedIn">
+            <a href="#" class="nav-link header-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  >
+              <i class="fa fa-user-circle"></i>
+              <br />{{ $t('nav.become_partner.title') }}
+              <i class="fas fa-caret-down" style="padding-left:2px"></i>
+            </a>
+            <div class="dropdown-menu" style="top: 102%!important;top: 102%!important;border-radius: 9px;box-shadow: none;" aria-labelledby="navbarDropdown">
+              <div id="login-up"></div>
+              <a class="dropdown-item" href="/dang-ky/ung-vien">{{ $t('nav.become_partner.user') }}</a>
+              <a class="dropdown-item" href="/dang-ky/nha-tuyen-dung">{{ $t('nav.become_partner.company') }}</a>
+              <a class="dropdown-item" href="/dang-ky/chuyen-vien-tuyen-dung">{{ $t('nav.become_partner.hr') }}</a>
+              <a class="dropdown-item" href="/dang-nhap">{{ $t('login') }}</a>
+            </div>
+          </li>
+          <li class="nav-item cta mr-md-2 dropdown" v-else>
+            <img :alt="this.$auth.user.avatar" v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`"
+            style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; object-fit: cover; border-radius: 50%;">
+            <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
+              <br />{{ $t('account') }}
+              <i class="fas fa-caret-down" style="padding-left:2px"></i>
+            </a>
+            <div class="dropdown-menu" style="top: 102%!important;" aria-labelledby="navbarDropdown">
+              <div id="login-up"></div>
+              <a class="dropdown-item overflow" href="/admin">{{ this.$auth.user.name }}</a>
+              <a class="dropdown-item" @click="logout()">{{ $t('logout') }}</a>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -152,3 +151,11 @@ export default {
       },
 }
 </script>
+<style scoped>
+.overflow{
+    max-width: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+</style>

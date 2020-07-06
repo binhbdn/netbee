@@ -1,19 +1,19 @@
 <template>
-    
-    <div  class="hero-wrap js-fullheight m-b-15"  v-lazy:background-image="'/assets/img/banner-danh-01aa.jpg'"  style="position: relative;background-position: center; " >        
+
+    <div  class="hero-wrap js-fullheight m-b-15"  v-lazy:background-image="'/assets/img/banner-danh-01aa.jpg'"  style="position: relative;background-position: center; " >
 
     <div class="section-intro" :class="show ? 'section-intro-active' : ''">
       <vue-particles color="#dedede"
         :particleOpacity="0.9"
-        :particlesNumber="130" class="parti"></vue-particles>  
-      <div class="container">                      
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">         
+        :particlesNumber="130" class="parti"></vue-particles>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-xl-12 ftco-animate mb-5 pb-5 container" data-scrollax=" properties: { translateY: '70%' }">
             <p class="mb-4 mt-5 " data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></p>
-            <div class="ftco-search container pl-0 pr-0">                         
+            <div class="ftco-search container pl-0 pr-0">
               <div class="row">
                 <div class="card-content col-md-12 pl-0 pr-0" style="padding-top: 70px!important">
-                  
+
                   <div class="card-body search ">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
@@ -21,16 +21,15 @@
                         <a class="nav-link" href="/" :class="{'active': $route.name != 'cong-ty' && $route.name != 'tim-cong-ty' && $route.name != 'ung-vien' && $route.name != 'tin-tuyen-sinh' && $route.name != 'tim-viec-lam'}" id="v-pills-33-tab" style="font-weight: 400 !important;">{{ $t('banner.jobs.tab') }}</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="/cong-ty" :class="{'active': $route.name == 'cong-ty' || $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" style="font-weight: 400 !important;">{{$t('banner.company.tab')}}</a>
+                        <a class="nav-link" :class="{'active': $route.name == 'tin-tuyen-sinh'}" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
+                           role="tab" aria-controls="profile-fill" aria-selected="false" style="font-weight: 400 !important;">Săn học bổng</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="/ung-vien" :class="{'active': $route.name == 'ung-vien' || $route.name == 'tim-ung-vien'}" id="v-pills-22-tab" style="font-weight: 400 !important;">{{$t('banner.candidates.tab')}}</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" :class="{'active': $route.name == 'tin-tuyen-sinh'}" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
-                           role="tab" aria-controls="profile-fill" aria-selected="false" style="font-weight: 400 !important;">Săn học bổng</a>
+                        <a class="nav-link" href="/cong-ty" :class="{'active': $route.name == 'cong-ty' || $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" style="font-weight: 400 !important;">{{$t('banner.company.tab')}}</a>
                       </li>
-                      
                     </ul>
                     <!-- Tab panes -->
                     <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;padding-left: 15px !important;padding-right: 15px !important;">
@@ -169,7 +168,17 @@
                           </div>
                         </form>
                       </div>
-                      <p class="title-p-main">Dành cho du học sinh và các trung tâm du học...</p>
+                      <div class="search-footer d-flex justify-content-between">
+                        <div>
+                          <p class="title-p-main">Dành cho du học sinh và các trung tâm du học...</p>
+                        </div>
+                        <div class="advanced-search">
+                          <label class="text-advance-search" data-toggle="collapse" data-target="#advanced">
+                            <i class="fa fa-angle-down" id="icon_advanced"></i> Tìm kiếm nâng cao
+                          </label>
+                          <div id="advanced" class="collapse"></div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -178,9 +187,9 @@
           </div>
         </div>
       </div>
-    </div>            
-      
-   </div>     
+    </div>
+
+   </div>
 </template>
 <script>
 import Vue from 'vue'
@@ -191,7 +200,7 @@ Vue.use(VueParticles)
 export default {
    name: 'Header',
     data () {
-      return {        
+      return {
         keysearch: '',
         keyJobs: '',
         keyCvs: '',
@@ -226,7 +235,7 @@ export default {
     },
     components:{
       Multiselect,
-    },  
+    },
     methods: {
       async fetch (route) {
         let res = await this.$axios.$get(`getQuocGia`)
@@ -264,16 +273,24 @@ export default {
 }
 </script>
 <style>
-  .particles-js-canvas-el{  
+  .particles-js-canvas-el{
   height: 300px !important;
 }
 </style>
 <style scoped>
+  .search-footer {
+    margin-top: -10px;
+  }
+  .text-advance-search {
+    cursor: pointer;
+    color: white;
+  }
   .title-p-main{
     font-size: 15.5px;
-    color: #ffb701!important;
-    margin-top: -10px;
+    color: white !important;
+    margin-bottom: 5px;
     padding-bottom: 6px;
+    font-weight: bold;
   }
   .parti{
         max-height: 0px;
@@ -550,6 +567,6 @@ export default {
   .pb-5{
     padding-bottom: 0px !important;
   }
-  
+
 }
 </style>

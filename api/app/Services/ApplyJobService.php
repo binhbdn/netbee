@@ -506,4 +506,12 @@ class ApplyJobService extends BaseService {
             ->orderBy('created_at', 'DESC')
             ->get();
     }
+
+    public function CountCreateCall()
+    {
+        return $this->nbCreateCall
+        ->where('id_user' ,Auth::user()->id)
+        ->count();
+    }
+
 }

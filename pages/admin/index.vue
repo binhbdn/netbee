@@ -16,7 +16,7 @@
                                                 <i class="feather icon-users text-primary font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">234</h2>
+                                        <h2 class="text-bold-700 mt-1">{{CountCompany.length}}</h2>
                                         <p class="mb-0">Số tin tuyển dụng</p>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
                                                 <i class="feather icon-credit-card text-success font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">56</h2>
+                                        <h2 class="text-bold-700 mt-1">{{sumview}}</h2>
                                         <p class="mb-0">Số lượt xem</p>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                                 <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">45</h2>
+                                        <h2 class="text-bold-700 mt-1">{{sumapp}}</h2>
                                         <p class="mb-0">Số lượt ứng tuyển</p>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                                 <i class="feather icon-package text-warning font-medium-5"></i>
                                             </div>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">34</h2>
+                                        <h2 class="text-bold-700 mt-1">{{CountCall}}</h2>
                                         <p class="mb-0">Phỏng vấn online</p>
                                     </div>
                                 </div>
@@ -89,7 +89,11 @@ export default {
         }
       ],
       labels: ["Foo", "Bar", "Baz"],
-      option: {}
+      option: {},
+      CountCompany: [],
+      sumview:'',
+      sumapp:'',
+      CountCall:''
     };
   },
     name: 'Dashboard',
@@ -109,6 +113,76 @@ export default {
         DashboardAdmin,
         companyApplyManage,
         DashboardNTD
+    },
+    methods: {
+        dailogCompany: async function(){
+            try {
+                let dataInforCompany = await this.$axios.get('getInfoCompany');
+                console.log(dataInforCompany)
+                if(dataInforCompany.data.data == null){
+                    this.$swal({
+                    title: 'Bạn cần hoàn thiện hồ sơ để đăng tin',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: false
+                    }).then(async (result) => {
+                        if(result.value) {
+                            window.location.href = "/admin/thong-tin-tai-khoan"
+                        }
+                    })
+                }
+            }catch(error) {
+                this.$swal(
+                    'Cảnh báo',
+                    'Bạn cần hoàn thiện hồ sơ để đăng tin',
+                    'warning'
+                )
+            }            
+        },
+        CompanyDash: function(){
+            try {
+                this.$axios.get('getJobByRoleCompanyDash')
+                .then(response => {  
+                    this.CountCompany = response.data
+                    this.sumview = this.CountCompany.reduce((acc, item) => acc + item.viewers, 0)
+                    this.sumapp = this.CountCompany.reduce((acc, item) => acc + item.applyers, 0)
+                })
+                .catch(error => {
+                    console.log(error.response)
+                });
+            }
+            catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi dữ liệu!',
+                    'error')
+            } 
+        },
+        CallDash: function(){
+            try {
+                this.$axios.get('CountCreateCall')
+                .then(response => {  
+                    this.CountCall = response.data
+                })
+                .catch(error => {
+                    console.log(error.response)
+                });
+            }
+            catch (error) {
+                this.$swal(
+                    'Lỗi!',
+                    'Lỗi dữ liệu!',
+                    'error')
+            } 
+        }
+    },
+    mounted(){
+        if(this.$auth.user.role == 2){
+            // this.dailogCompany()
+            this.CompanyDash()
+            this.CallDash()
+        }
     }
 }
 </script>

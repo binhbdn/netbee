@@ -199,4 +199,10 @@ class ApplyManageController extends Controller
         $file_path = '/home/netbee.vn/html/static/uploads/apply/'.$request->filename;   
         return response()->download($file_path);
     }
+
+    public function CountCreateCall()
+    {
+        $response = $this->applyJobService->CountCreateCall();
+        return response()->json($response);
+    }
 }

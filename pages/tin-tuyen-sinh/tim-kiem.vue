@@ -136,7 +136,11 @@ export default {
                                                 +(route.query.keyword != null ? route.query.keyword : '')
                                                 +(route.query.type != null ? '&type='+ route.query.type : '')
                                                 +(route.query.nation_id != null ? '&nation_id='+route.query.nation_id : '')
-                                                +(route.query.id_visa != null ?  '&id_visa='+route.query.id_visa : ''))
+                                                +(route.query.id_visa != null ?  '&id_visa='+route.query.id_visa : '')
+                                                +(route.query.currency != null ?  '&currency='+route.query.currency : '')
+                                                +(route.query.work_form != null ?  '&work_form='+route.query.work_form : '')
+                                                +(route.query.salary_start != null ?  '&salary_start='+route.query.salary_start : '')
+                                                +(route.query.salary_end != null ?  '&salary_end='+route.query.salary_end : ''))
     let getVisa = await $axios.$get(`getVisa`)
     return {
         arrayJobNew: getTinTuyenDungNew.data,
@@ -150,15 +154,12 @@ export default {
     nameWithLang1 ({ profession, id }) {
             return `${profession}`
         },
-    async search() {
-      this.arrayJobNew = []
-      console.log(this.work_form.length)
-      let getTinTuyenDungNew = await this.$axios.$get('searchJobs?currency='+(this.currency == '' || this.currency == null ? '' : this.currency)
+    search() {
+            window.location.href = '/tin-tuyen-sinh/tim-kiem?id_visa=&currency='+(this.currency == '' || this.currency == null ? '' : this.currency)
                                                   +(this.chooseWork != '' && this.chooseWork != null ? '&work_form='+this.chooseWork.id : '')
                                                   +(this.salary_start != '' ? '&salary_start='+this.salary_start : '')
                                                   +(this.salary_end != '' ? '&salary_end='+this.salary_end : '')
-                                                  +(this.chooseVisa != '' && this.chooseVisa != null ? '&id_visa='+this.chooseVisa.id : ''))
-      this.arrayJobNew = getTinTuyenDungNew.data
+                                                  +(this.chooseVisa != '' && this.chooseVisa != null ? '&id_visa='+this.chooseVisa.id : '');
     }
   },
   mounted(){

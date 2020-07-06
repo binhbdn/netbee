@@ -3665,4 +3665,6 @@ tr.group {
   margin-left: -1rem;
   margin-top: -1rem;
 }
-
+.vue-form-wizard.md .wizard-navigation .wizard-progress-with-circle {
+  border-radius: 2px;
+}

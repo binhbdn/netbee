@@ -135,7 +135,16 @@ class UserController extends Controller
         $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
         //Notification End
         $store = $this->userService->store($users);
+
         if ($store) {
+            $firstUserStore = $this->userService->firstEmailUsers($request->email);
+            $notification1 = [
+                'content' => 'Bạn cần hoàn thiện hồ sơ để đăng tin',
+                'ids' => $this->userService->getIdUserDk($firstUserStore->id)->id,
+                'url' => 'https://netbee.vn/admin/thong-tin-tai-khoan'
+            ];
+            $res = $this->notificationService->store($notification1['content'], $notification1['ids'], $notification1['url']);
+
             $dataEmail = (object)[
                 'name' => $users['name'],
                 'title' => 'Kích hoạt tài khoản Netbee',
@@ -311,7 +320,7 @@ class UserController extends Controller
     public function changeInfo(Request $request)
     {
         $rules = [
-            'birth_of_date' => 'required',
+            // 'birth_of_date' => 'required',
             'address_detail' => 'required',
             'phone' => 'required|numeric',
             'name' => 'required',
@@ -329,7 +338,7 @@ class UserController extends Controller
         ];
 
         if ($request->file('avatar')) {
-            $rules['avatar'] = 'required|image';
+            $rules['avatar'] = 'image';
             $messages['image'] = 'Định dạng ảnh không phù hợp';
         }
 
