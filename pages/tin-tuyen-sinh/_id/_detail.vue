@@ -343,7 +343,7 @@
                             <div class="tab-pane active" v-if="stateTab == true" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-11-tab">
                                 <ValidationObserver  ref="applyJobFile" v-slot="{ valid }">
                                     <div class="row">
-                                        <div class="col-12">
+                                        <!-- <div class="col-12">
                                             <ValidationProvider
                                             rules="required"
                                             v-slot="{ errors }">
@@ -358,16 +358,50 @@
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
-                                        </div>
+                                        </div> -->
                                         
                                         <div class="col-12">
-                                            <ValidationProvider
-                                            rules="required"
-                                            v-slot="{ errors }">
+                                            <ValidationProvider rules="required" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="name">Họ tên</label>
-                                                        <input type="text" id="name" class="form-control" v-model="nameFile">
+                                                        <input type="text" id="name" class="form-control" v-model="nameCv">
+                                                        <span style="color: red">{{errors[0]}}</span>
+                                                    </div>
+                                                </div>
+                                            </ValidationProvider>
+                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                                <div class="form-group">
+                                                    <div class="form-field">
+                                                        <label for="birth_day">Ngày sinh</label>
+                                                        <input type="date" id="birth_day" class="form-control" v-model="birth_day">
+                                                        <span style="color: red">{{errors[0]}}</span>
+                                                    </div>
+                                                </div>
+                                            </ValidationProvider>
+                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                                <div class="form-group">
+                                                    <div class="form-field">
+                                                        <label for="phone">Số điện thoại</label>
+                                                        <input type="text" id="phone" class="form-control" v-model="phone">
+                                                        <span style="color: red">{{errors[0]}}</span>
+                                                    </div>
+                                                </div>
+                                            </ValidationProvider>
+                                            <ValidationProvider rules="" v-slot="{ errors }">
+                                                <div class="form-group">
+                                                    <div class="form-field">
+                                                        <label for="email">Email</label>
+                                                        <input type="text" id="email" class="form-control" v-model="email">
+                                                        <span style="color: red">{{errors[0]}}</span>
+                                                    </div>
+                                                </div>
+                                            </ValidationProvider>
+                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                                <div class="form-group">
+                                                    <div class="form-field">
+                                                        <label for="address">Địa chỉ</label>
+                                                        <input type="text" id="address" class="form-control" v-model="address">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
@@ -485,13 +519,17 @@ export default {
                 email: '',
                 password: ''
             },
-            file_cv: [],
+            // file_cv: [],
             id_cv: '',
             show: true,
             value: [],
             chooseNation: [],
-            nameFile: '',
+            // nameFile: '',
             nameCv: '',
+            birth_day: '',
+            phone: '',
+            email: '',
+            address: '',
             listProfileUsers: []
         }
     },
@@ -572,6 +610,9 @@ export default {
         },
         loginfb() {
             this.$auth.loginWith('facebook')
+
+
+
         },
         logingg() {
             this.$auth.loginWith('google')
@@ -599,18 +640,18 @@ export default {
                 );
             });
         },
-        onInputChange(e){
-            if(this.file_cv != null && this.file_cv.length > 0){
-                this.file_cv = []
-            }
-            e.preventDefault()
-            e.stopPropagation()
-            const file = e.target.files[0]
-            this.addfile(file)
-        },
-        addfile(file){      
-            this.file_cv.push(file)
-        },
+        // onInputChange(e){
+        //     if(this.file_cv != null && this.file_cv.length > 0){
+        //         this.file_cv = []
+        //     }
+        //     e.preventDefault()
+        //     e.stopPropagation()
+        //     const file = e.target.files[0]
+        //     this.addfile(file)
+        // },
+        // addfile(file){      
+        //     this.file_cv.push(file)
+        // },
         nameWithLang ({ profession, id }) {
             return `${profession}`
         },
@@ -618,38 +659,41 @@ export default {
             return `${name}`
         },
         resetData(){
-            this.file_cv = []
-            this.nameFile = ''
-            this.nameCv = ''
-            this.value = []
-            this.chooseNation = []
-            this.id_cv = ''
+            // this.file_cv = []
+            // this.nameFile = ''
+            this.nameCv = '';
+            this.birth_day = '';
+            this.phone = '';
+            this.email = '';
+            this.address = '';
+            this.value = [];
+            this.chooseNation = [];
+            this.id_cv = '';
         },
         async applyJob(){            
             var data = new FormData()                     
-            if(this.file_cv.length > 0){
-                data.append('file_cv', this.file_cv[0])
-            }
+            // if(this.file_cv.length > 0){
+            //     data.append('file_cv', this.file_cv[0])
+            // }
             if(this.id_cv != ''){
                 data.append('id_cv', this.id_cv)
             }
-            data.append('job_id', this.$route.params.id)
-            if(this.stateTab == true){
-                data.append('name', this.nameFile)
-                if(this.file_cv.length == 0){
-                    this.$swal(
-                        'Cảnh báo!',
-                        'Yêu cầu nhập file',
-                        'warning'
-                    );
-                }else{
-                    let isValid = this.$refs.applyJobFile.validate()
-                    if(isValid) {
-                        this.toApiApplyJob(data)
-                    }
-                }                             
+            data.append('job_id', this.$route.params.id)                                              
+            if(this.stateTab == true)
+            {
+                let isValid = this.$refs.applyJobFile.validate()
+                if(isValid) {
+                    // data.name = this.nameCv;
+                    data.append('name', this.nameCv);
+                    data.append('birth_day', this.birth_day);
+                    data.append('phone', this.phone);
+                    data.append('email', this.email);
+                    data.append('address', this.address);
+                    // console.log(data);
+                    this.toApiApplyJob(data)
+                }                          
             }else if(this.stateTab == false){
-                data.append('name', this.nameCv)
+                data.append('name', this.nameCv);
                 let isValid = this.$refs.applyJobCv.validate()
                 if(isValid) {
                     this.toApiApplyJob(data)
