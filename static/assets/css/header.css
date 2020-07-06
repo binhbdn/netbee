@@ -1,45 +1,6 @@
 a.navbar-item {
     color: yellow;
 }
-
-  i.ionicons.ion-ios-paper {
-    font-size: 24px;
-    margin-left: 14px;
-  }
-
-  i.fa.fa-server {
-    font-size: 18px;
-    margin-left: 34px;
-    margin-bottom: 4px;
-  }
-
-  i.fa.fa-home {
-    font-size: 22px;
-    margin-left: 22px;
-  }
-
-  i.fa.fa-table {
-    font-size: 18px;
-    margin-left: 13px;
-    margin-bottom: 4px;
-  }
-
-  i.fa.fa-id-card {
-    font-size: 17px;
-    margin-left: 21px;
-    margin-bottom: 5px;
-  }
-
-  i.fa.fa-window-restore {
-    font-size: 18px;
-    margin-left: 11px;
-    margin-bottom: 4px;
-  }
-  i.fa.fa-user-circle {
-    font-size: 18px;
-    margin-left: 43px;
-    margin-bottom: 4px;
-  }
 .header-nav-link {
   color: black !important;
   margin-right: 5px;
@@ -77,7 +38,7 @@ a.navbar-brandd {
 .ftco-navbar-light .navbar-nav>.nav-item.cta>a {
   color: #000!important;
   /* border: 1px solid #ffb701; */
-  padding-top: .5rem;
+  padding-top: 0;
   padding-bottom: .5rem;
   padding-left: 20px;
   padding-right: 20px;
@@ -97,4 +58,19 @@ a.navbar-brandd {
   background: #fff !important;
   -webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.nav-icon, .nav-title {
+  text-align: center;
+}
+
+.nav-icon {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.cta img{
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
 }
