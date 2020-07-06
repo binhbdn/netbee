@@ -18,44 +18,72 @@
         <ul class="navbar-nav ml-auto">
           <li class="nav-item " style="padding-top:3px" :class="{active : this.$route.path == '/'}">
             <a href="/" class="nav-link header-nav-link">
-              <i class="fa fa-home"></i>
-              <br />{{ $t('nav.home') }}
+              <div class="nav-icon">
+                <i class="fa fa-home"></i>
+              </div>
+              <div class="nav-title">
+                {{ $t('nav.home') }}
+              </div>
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuyen-sinh'}">
             <a href="/tin-tuyen-sinh" class="nav-link header-nav-link">
-              <i class="fa fa-server"></i>
-              <br />Tin tuyển sinh
+              <div class="nav-icon">
+                <i class="fa fa-server"></i>
+              </div>
+              <div class="nav-title">
+                Tin tuyển sinh
+              </div>
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/cong-ty'}">
             <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center">
-              <i class="fa fa-building" style="font-size: 21px"></i>
-              <br />{{ $t('nav.company') }}
+              <div class="nav-icon">
+                <i class="fa fa-building"></i>
+              </div>
+              <div class="nav-title">
+                {{ $t('nav.company') }}
+              </div>
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ung-vien'}">
             <a href="/ung-vien" class="nav-link header-nav-link" style="text-align: center">
-              <i class="fas fa-id-badge" style="font-size: 21px"></i>
-              <br />{{ $t('nav.candidates') }}
+              <div class="nav-icon">
+                <i class="fas fa-id-badge"></i>
+              </div>
+              <div class="nav-title">
+                {{ $t('nav.candidates') }}
+              </div>
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
             <a href="/tin-tuc" class="nav-link header-nav-link" >
-              <i class="fa fa-table" style="font-size"></i>
-              <br />{{ $t('nav.news') }}
+              <div class="nav-icon">
+                <i class="fa fa-table"></i>
+              </div>
+              <div class="nav-title">
+                {{ $t('nav.news') }}
+              </div>
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ve-netbee'} " >
             <a href="/ve-netbee" class="nav-link header-nav-link">
-              <i class="fa fa-id-card"></i>
-              <br />{{ $t('nav.about') }}
+              <div class="nav-icon">
+                <i class="fa fa-id-card"></i>
+              </div>
+              <div class="nav-title">
+                {{ $t('nav.about') }}
+              </div>
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/lien-he'} " >
             <a href="/lien-he" class="nav-link header-nav-link">
-              <i class="fa fa-window-restore"></i>
-              <br />{{ $t('nav.contact') }}
+              <div class="nav-icon">
+                <i class="fa fa-window-restore"></i>
+              </div>
+              <div class="nav-title">
+                {{ $t('nav.contact') }}
+              </div>
             </a>
           </li>
           <!-- <li class="nav-item cta cta-colored mr-md-2">
@@ -66,9 +94,13 @@
           </li> -->
           <li class="nav-item cta dropdown">
             <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-              <img style="margin-left: 19px;margin-bottom: -2px;" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="25px" alt="netbee việt nam"/>
-              <br />{{ $t('nav.languages') }}
-              <i class="fas fa-caret-down" style="padding-left:2px"></i>
+              <div class="nav-icon">
+                <img src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
+              </div>
+              <div class="nav-title">
+                {{ $t('nav.languages') }}
+                <i class="fas fa-caret-down"></i>
+              </div>
             </a>
             <div
               class="dropdown-menu sticky text-center"
@@ -114,11 +146,13 @@
             </div>
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-else>
-            <img :alt="this.$auth.user.avatar" v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`"
-            style="height:30px; width:30px; position: absolute; left:41px;padding-top: 1px; object-fit: cover; border-radius: 50%;">
-            <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding-top: 15px;">
-              <br />{{ $t('account') }}
-              <i class="fas fa-caret-down" style="padding-left:2px"></i>
+            <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="nav-icon">
+                <img :alt="this.$auth.user.avatar" v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`">
+              </div>
+              <div class="nav-title">
+                {{ $t('account') }} <i class="fas fa-caret-down" style="padding-left:2px"></i>
+              </div>
             </a>
             <div class="dropdown-menu" style="top: 102%!important;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
