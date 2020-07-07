@@ -42,7 +42,7 @@ class CompanyController extends Controller
                 'company_hotline' => 'numeric',
                 'company_about' => 'required',
                 'username' => 'required',
-                'company_tax' => 'numeric',
+                // 'company_tax' => 'numeric',
                 // 'company_benefit' => 'required',
                 // 'company_policy' => 'required',
                 // 'company_chance' => 'required',
