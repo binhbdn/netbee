@@ -36,7 +36,8 @@ class NbCompanyInfoService extends BaseService {
     public function getListCompany($type, $limit, $perPage){
         $datas = $this->nbCompanyInfo
         ->with(['user'=> function($q){
-            $q->select('id','name','avatar')->whereStatus(1)->whereBlock(0);
+            // $q->select('id','name','avatar')->whereStatus(1)->whereBlock(0);
+            $q->select('id','name','avatar')->whereBlock(0);
         }])
         ->with(['companyFeedback'=> function($q){
             $q->select('company_id', 'rate_feed');
