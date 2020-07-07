@@ -4,373 +4,140 @@
         <div class="header-navbar-shadow"></div>
         <br><br><br><br>
         <div class="col-12">  
-            <div class="content-header row">
-                <div class="content-header-left col-md-9 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0" style="padding-right: 15px;">Danh sách hồ sơ ứng tuyển</h2>
-                            <div class="breadcrumb-wrapper col-12">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Trang chủ</a>
-                                    </li>
-                                    <li class="breadcrumb-item"><a href="/">Hồ sơ ứng tuyển</a>
-                                    </li>
-                                    <li class="breadcrumb-item active"> Tạo hồ sơ ứng tuyển
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
             <section id="page-account-settings">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-content">
                                 <div class="col-md-12">
-                                    <div style="padding: 15 5px; margin: 15px 5px 5px; border: 1px solid #FFB701; border-radius: 3px;">
-                                        <div class="row" style="padding: 10px;">
-                                            <h4 style="margin-left: 10px;">THÔNG TIN BẮT BUỘC</h4>
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <center>
-                                                            <div style="background-color: #fff;" class="img-cv">
-                                                                Hình ảnh đại diện
-                                                                <div class="imgg">
-                                                                    <label for="files">                 
-                                                                        <img v-lazy="images[0]" v-if="images.length > 0">
-                                                                        <img v-lazy="img" v-else>
-                                                                    </label>
-                                                                    <input type="file" id="files" class="hidden" @change="previewFiles" multiple>                                          
-                                                                </div>                                        
-                                                            </div>                        
-                                                        </center>
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        Họ và tên <span style="color: red; font-size: 20px;">*</span>
-                                                        <input type="text" class="form-control" v-model="info_frofile_user.fullname_profile" placeholder="Nguyễn Văn A">   
-                                                        Ngày sinh <span style="color: red; font-size: 20px;">*</span>
-                                                        <input v-model="info_frofile_user.birthday_profile" type="date" class="form-control" placeholder="VD: 0000/00/00"/>
-                                                        Giới tính <span style="color: red; font-size: 20px;">*</span>
-                                                        <div class="radio-MaleFemale">
-                                                            <input v-model="info_frofile_user.maleFemale" type="radio" id="Nam" value="Nam"/>
-                                                            <label for="Nam" style="color: #000;">Nam</label>
-                                                            <input v-model="info_frofile_user.maleFemale" type="radio" id="Nu" value="Nữ" style="margin-left: 20px;" />
-                                                            <label for="Nu" style="color: #000;">Nữ</label>
-                                                        </div> 
+                                    <ValidationObserver v-slot="{ inval }">
+                                        <div style="padding: 15 5px; margin: 15px 5px 5px;border-radius: 3px;">
+                                            <div class="row" style="padding: 10px;">
+                                                <div class="col-md-12 h4_title">
+                                                    <h4>TẠO HỒ SƠ ỨNG TUYỂN</h4>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <center>
+                                                                <div style="background-color: #fff;" class="img-cv">
+                                                                    Hình ảnh đại diện
+                                                                    <div class="imgg">
+                                                                        <label for="files">                 
+                                                                            <img v-lazy="images[0]" v-if="images.length > 0">
+                                                                            <img v-lazy="img" v-else>
+                                                                        </label>
+                                                                        <input type="file" id="files" class="hidden" @change="previewFiles" multiple>                                          
+                                                                    </div>                                        
+                                                                </div>                        
+                                                            </center>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                <fieldset class="form-group">
+                                                                    <label class="title-label" for="basicInput">Họ và tên <span style="color: red; font-size: 20px;">*</span></label>
+                                                                    <input type="text" class="form-control" v-model="info_frofile_user.fullname_profile">
+                                                                    <span style="color: red">{{ errors[0] }}</span>
+                                                                </fieldset> 
+                                                            </ValidationProvider>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                        <fieldset class="form-group">
+                                                                            <label class="title-label" for="basicInput">Ngày sinh <span style="color: red; font-size: 20px;">*</span></label>
+                                                                            <input type="date" class="form-control" v-model="info_frofile_user.birthday_profile"/>
+                                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                                        </fieldset> 
+                                                                    </ValidationProvider> 
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                     <label class="title-label" style="margin-top: 5px;margin-bottom: 5px;">Giới tính</label>
+                                                                    <div class="radio-MaleFemale">
+                                                                        <input v-model="info_frofile_user.maleFemale" type="radio" id="Nam" value="Nam"/>
+                                                                        <label for="Nam" style="color: #000;">Nam</label>
+                                                                        <input v-model="info_frofile_user.maleFemale" type="radio" id="Nu" value="Nữ" style="margin-left: 20px;" />
+                                                                        <label for="Nu" style="color: #000;">Nữ</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                Số điện thoại <span style="color: red; font-size: 20px;">*</span>
-                                                <input v-model="info_frofile_user.phone_profile" class="form-control" placeholder="VD: +84 985372***"> 
-                                            </div>
-                                            <div class="col-md-6">
-                                                Email <span style="color: red; font-size: 20px;">*</span>
-                                                <input v-model="info_frofile_user.email_profile" class="form-control" placeholder="VD: netbee@gmail.com"/>
-                                            </div>
-                                            <div class="col-md-12">
-                                                Địa chỉ <span style="color: red; font-size: 20px;">*</span>
-                                                <textarea v-model="info_frofile_user.address_profile" class="form-control" placeholder="VD: 234 Phạm Văn Đồng, Cổ Nhuế, Từ Liêm, thành phố Hà Nội."  style="overflow:hidden;" rows="2"></textarea>
-                                            </div>
-                                            <div class="col-md-6">
-                                                Link Facebook <span style="color: red; font-size: 20px;">*</span>
-                                                <input v-model="info_frofile_user.link_facebook" class="form-control" placeholder="VD: https://www.facebook.com/netbee.vn/" />
-                                            </div>
-                                            <div class="col-md-6">
-                                                Hình thức <span style="color: red; font-size: 20px;">*</span>
-                                                <select class="form-control" v-model="info_frofile_user.type">
-                                                    <option disabled value="">Chọn Hình thức</option>
-                                                    <option value="1">Xuất khẩu lao động</option>
-                                                    <option value="2">Du học sinh</option>
-                                                    <option value="3">Tu nghiệp sinh</option>
-                                                </select>    
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- hết -->
-                                    <!-- Thông tin thêm -->
-                                     <div style="padding: 15 5px; margin: 15px 5px 5px; border: 1px solid #FFB701; border-radius: 3px;">
-                                        <div class="row" style="padding: 10px;">
-                                            <h4 style="margin-left: 10px;">THÔNG TIN KHÁC VỀ BẢN THÂN</h4>
-                                            <div class="col-md-12" style="margin-bottom: 10px;">
-                                                Kỹ năng bản thân
-                                                <input v-model="info_frofile_user.note_profile" class="form-control" placeholder="VD: Áp dụng những kinh nghiệm về kỹ năng làm việc nhóm và sự hiểu biết của bản thân, mang đến nhiều giá trị cho khách hàng. Từ đó Công ty tăng số lượng khách hàng.">
-                                            </div>
-                                            <div class="col-md-12" style="margin-bottom: 10px;">
-                                                Mục tiêu nghề nghiệp
-                                                <input v-model="info_frofile_user.title_target_profile" class="form-control" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY HACHINET" style="margin-bottom: 10px;" rows="1">
-                                                <textarea v-model="info_frofile_user.note_target_profile" class="form-control" placeholder="VD: Mong muốn làm việc trong một môi trường năng động, vui vẻ, thỏa sức đưa ra các ý tưởng, sự sáng tạo và đặc biệt là được theo đuổi ngành nghề yêu thích của mình. Đưa bản thân vào một môi trường làm việc có kỷ luật, nâng cao tinh thần trách nhiệm và khả năng chịu áp lực, giải quyết vấn đề một cách sáng tạo và hiệu quả ở một vị trí đầy thách thức." rows="5"></textarea>        
-                                            </div>
-                                            <div class="col-md-12" style="margin-bottom: 10px;">
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        Kỹ năng giao tiếp
-                                                        <input v-model="info_frofile_user.skill_communication_profile" class="form-control" placeholder="VD: Tốt">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        Tin học văn phòng(Word, Excel, Power Point)
-                                                        <input v-model="info_frofile_user.skill_information_profile" class="form-control" placeholder="VD: Tốt"> 
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        Tư duy logic
-                                                        <input v-model="info_frofile_user.skill_logic_profile" @click="text()" class="form-control" placeholder="VD: Tốt">
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="title-label" style="margin-top: 7px;" for="basicInput">Số điện thoại</label>
+                                                    <input v-model="info_frofile_user.phone_profile" class="form-control"/> 
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <fieldset class="form-group">
+                                                            <label class="title-label" for="basicInput">Email <span style="color: red; font-size: 20px;">*</span></label>
+                                                            <input type="text" class="form-control" v-model="info_frofile_user.email_profile">
+                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                        </fieldset> 
+                                                    </ValidationProvider> 
                                                 </div>
                                             </div>
-                                            <div class="col-md-12" style="margin-bottom: 10px;">
-                                                <h5>Chứng chỉ</h5>
-                                                <input v-model="info_frofile_user.certificate_profile" class="form-control" placeholder="VD: - MS Office Khóa học (2018)">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <fieldset class="form-group">
+                                                            <label class="title-label" for="basicInput">Địa chỉ <span style="color: red; font-size: 20px;">*</span></label>
+                                                            <textarea v-model="info_frofile_user.address_profile" class="form-control" style="overflow:hidden;" rows="2"></textarea>
+                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                        </fieldset> 
+                                                    </ValidationProvider> 
+                                                </div>
                                             </div>
-                                            <div class="col-md-12" style="margin-bottom: 10px;">
-                                                <h5>Học vấn</h5>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                        <input v-model="info_frofile_user.level_education" class="form-control" placeholder="VD: 12/12">  
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <input v-model="info_frofile_user.name_education" class="form-control" placeholder="VD: ĐẠI HỌC AB">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <input v-model="info_frofile_user.specialized_education" class="form-control" placeholder="VD: Chuyên ngành CNTT">
-                                                    </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <fieldset class="form-group">
+                                                            <label class="title-label" for="basicInput">Học vấn <span style="color: red; font-size: 20px;">*</span></label>
+                                                            <input v-model="info_frofile_user.name_education" class="form-control" />
+                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                        </fieldset> 
+                                                    </ValidationProvider> 
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="title-label" for="basicInput">Link Facebook</label>
+                                                    <input v-model="info_frofile_user.link_facebook" class="form-control" />
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="title-label" for="basicInput">Hình thức</label>
+                                                    <select class="form-control" v-model="info_frofile_user.type">
+                                                        <option disabled value="">Chọn Hình thức</option>
+                                                        <option value="1">Xuất khẩu lao động</option>
+                                                        <option value="2">Du học sinh</option>
+                                                        <option value="3">Tu nghiệp sinh</option>
+                                                    </select>    
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12" style="text-align: right;">
-                                        <button class="btn btn-add bg-netbee" @click="insert">Tạo hồ sơ</button>
-                                    </div>
+                                        <!-- hết -->
+                                        <div class="col-md-12" style="text-align: right;">
+                                            <button class="btn btn-add bg-netbee" v-bind:disabled="inval" v-on:click="insert">Tạo hồ sơ</button>
+                                        </div>
+                                    </ValidationObserver>
                                     <br>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- <div class="main-cv">                 
-                <div class="row">
-                    <div class="col-md-10" style="background-color: #fff;box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);">                                
-                        <div class="row">
-                            <div class="col-md-8">
-                                <br>
-                                <div class="title-h3-cv">                                    
-                                    <textarea @click="text()" v-model="info_frofile_user.fullname_profile" class="main-text textarea" placeholder="VD: NGUYỄN VĂN A"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>
-                                </div>
-                                
-                                <br>
-                                <div class="target-main-cv">
-                                    <div class="target-cv">
-                                        <div class="row">
-                                            <div class="col-md-6" >
-                                                <h5>MỤC TIÊU NGHỀ NGHIỆP</h5>
-                                            </div>
-                                        </div>                                                                        
-                                    </div>
-                                    <div class="target-ngan">                                
-                                        <div class="target-Short-term-cv" >
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <h6>MỤC TIÊU CỦA BẠN</h6>
-                                                </div>                                              
-                                            </div>                        
-                                        </div>
-                                        <div class="target-company-cv">
-                                            <textarea v-model="info_frofile_user.title_target_profile"  @click="text()" class="main-text textarea" placeholder="VD: NHÂN VIÊN XUẤT KHẨU LAO ĐỘNG TẠI CÔNG TY HACHINET"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>                                    
-                                        </div>
-                                        <div class="target-Short-term-note-cv">
-                                            <textarea v-model="info_frofile_user.note_target_profile" @click="text()" class="main-text textarea" placeholder="VD: Mong muốn làm việc trong một môi trường năng động, vui vẻ, thỏa sức đưa ra các ý tưởng, sự sáng tạo và đặc biệt là được theo đuổi ngành nghề yêu thích của mình. Đưa bản thân vào một môi trường làm việc có kỷ luật, nâng cao tinh thần trách nhiệm và khả năng chịu áp lực, giải quyết vấn đề một cách sáng tạo và hiệu quả ở một vị trí đầy thách thức."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="5"></textarea>        
-                                        </div>
-                                    </div>                                  
-                                </div>
-                                <div class="skill-cv">
-                                    
-                                    <div class="skill-mn-cv" style="padding-left:10px;">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <h5>KỸ NĂNG</h5>
-                                            </div>
-                                            
-                                        </div>                                                   
-                                    </div>                                    
-                                    <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
-                                        <div class="communication">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <p>Giao tiếp:</p>
-                                                </div>
-                                                <div class="col-md-10">
-                                                  <textarea v-model="info_frofile_user.skill_communication_profile" @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                                </div>
-                                            </div>            
-                                        </div>
-                                        <div class="Information">
-                                            <div class="row">
-                                                <div class="col-md-7">
-                                                    <p>Tin học văn phòng(Word, Excel, Power Point):</p>
-                                                </div>
-                                                <div class="col-md-5">
-                                                  <textarea v-model="info_frofile_user.skill_information_profile" @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                                </div>
-                                            </div>                                            
-                                        </div>     
-                                        <div class="logic">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <p>Tư duy logic:</p>
-                                                </div>
-                                                <div class="col-md-9">
-                                                  <textarea v-model="info_frofile_user.skill_logic_profile" @click="text()" class="main-text textarea" placeholder="VD: Tốt"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                                </div>
-                                            </div>                                            
-                                        </div>                                                                                                                                                
-                                    </div>
-                                </div> 
-                                <div class="skill-cv">
-                                    
-                                    <div class="skill-mn-cv" style="padding-left:10px;">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <h5>CHỨNG CHỈ</h5>
-                                            </div>
-                                            
-                                        </div>                                                   
-                                    </div>                                    
-                                    <div style="padding-left:10px;padding-right:10px;" class="main-skill-cv">                                                                                                                           
-                                        <div class="communication">
-                                            <div class="row">                                             
-                                                <div class="col-md-12">
-                                                  <textarea v-model="info_frofile_user.certificate_profile"  @click="text()" class="main-text textarea" placeholder="VD: - MS Office Khóa học (2018)"  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                                </div>
-                                            </div>            
-                                        </div>                                                                                                                                                                                      
-                                    </div>
-                                </div> 
-                                <div class="edu-cv">
-                                    
-                                    <div class="education-cv" style="padding-left:10px;">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <h5>HỌC VẤN</h5>
-                                            </div>
-                                            <textarea v-model="info_frofile_user.level_education"  @click="text()" class="main-text textarea" placeholder="VD: 12/12"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                            <textarea v-model="info_frofile_user.name_education"  @click="text()" class="main-text textarea" placeholder="VD: ĐẠI HỌC ABC"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                            <textarea v-model="info_frofile_user.specialized_education"  @click="text()" class="main-text textarea" placeholder="VD: Chuyên ngành CNTT"  style="overflow:hidden;margin: 0 15px;" @input="mixin_autoResize_resize" rows="1"></textarea>  
-                                        </div>                                                   
-                                    </div>                                                                                                                                                                              
-                                </div>                                
-                            </div>
-                            <div class="col-md-4" style="background-color: #28bb9c;padding:0;">
-                                <center>
-                                    <div style="background-color: #029c7c;" class="img-cv">
-                                        <div class="imgg">
-                                            <label for="files">                                                
-                                                <img v-lazy="images[0]"  v-if="images.length > 0">
-                                                <img v-lazy="img" v-else>
-                                            </label>
-                                            <input type="file" id="files" class="hidden"  @change="previewFiles" multiple>                                          
-                                        </div>                                        
-                                    </div>                        
-                                </center>     
-                                <br> 
-                                <div style="padding-left:25px;padding-right: 10px;">  
-                                    <div class="briday-cv">
-                                        <div class="row">
-                                            <div class="col-md-2 icon-cv-profile">
-                                                <i class="fa fa-book"></i>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <select class="main-select" v-model="info_frofile_user.type">
-                                                    <option disabled value="">Chọn Hình thức</option>
-                                                    <option value="1">Xuất khẩu lao động</option>
-                                                    <option value="2">Du học sinh</option>
-                                                    <option value="3">Tu nghiệp sinh</option>
-                                                </select>                                                
-                                            </div>                            
-                                        </div>                                             
-                                    </div>                    
-                                    <div class="briday-cv">
-                                        <div class="row">
-                                            <div class="col-md-2 icon-cv-profile">
-                                                <i class="fa fa-calendar"></i>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <input v-model="info_frofile_user.birthday_profile" @click="text()" type="date" class="main-text textarea" placeholder="VD: 0000/00/00"  style="overflow:hidden;"/>
-                                            </div>                            
-                                        </div>                                             
-                                    </div> 
-                                    <div class="gioitinh-cv">
-                                        <div class="row">
-                                            <div class="col-md-2 icon-cv-profile">
-                                                <i class="fa fa-venus-mars"></i>
-                                            </div>
-                                            <div class="col-md-10">    
-                                                <div class="radio-MaleFemale">
-                                                    <input v-model="info_frofile_user.maleFemale" type="radio" id="Nam" value="Nam"/>
-                                                    <label for="Nam">Nam</label>
-                                                    <input v-model="info_frofile_user.maleFemale" type="radio" id="Nu" value="Nữ" style="margin-left: 20px;" />
-                                                    <label for="Nu">Nữ</label>
-                                                </div>                                                                                           
-                                            </div>                            
-                                        </div>                                             
-                                    </div> 
-                                    <div class="address-cv">
-                                        <div class="row">
-                                            <div class="col-md-2 icon-cv-profile">
-                                                <i class="fa fa-location-arrow"></i>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.address_profile" @click="text()" class="main-text textarea" placeholder="VD: 234 Phạm Văn Đồng, Cổ Nhuế, Từ Liêm, thành phố Hà Nội."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="3"></textarea>
-                                            </div>                            
-                                        </div>                                             
-                                    </div>                 
-                                    <div class="phone-cv">
-                                        <div class="row">
-                                            <div class="col-md-2 icon-cv-profile">
-                                                <i class="fa fa-phone"></i>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <input v-model="info_frofile_user.phone_profile" @click="text()" class="main-text textarea" placeholder="VD: +84 985372***"  style="overflow:hidden;">  
-                                            </div>                            
-                                        </div>                                             
-                                    </div>
-                                    <div class="email-cv">
-                                        <div class="row">
-                                            <div class="col-md-2 icon-cv-profile">
-                                                <i class="fa fa-envelope-o"></i>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <input v-model="info_frofile_user.email_profile" @click="text()" class="main-text textarea" placeholder="VD: netbee@gmail.com"  style="overflow:hidden;"/>
-                                            </div>                            
-                                        </div>                           
-                                    </div>                                   
-                                    <div class="note-cv" style="margin-bottom: 16px;">
-                                        <div class="row">
-                                            <div class="col-md-2 icon-cv-profile">
-                                                <i class="fas fa-briefcase"></i>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <textarea v-model="info_frofile_user.note_profile" @click="text()" class="main-text textarea" placeholder="VD: Áp dụng những kinh nghiệm về kỹ năng làm việc nhóm và sự hiểu biết của bản thân, mang đến nhiều giá trị cho khách hàng. Từ đó Công ty tăng số lượng khách hàng."  style="overflow:hidden;" @input="mixin_autoResize_resize" rows="7"></textarea>
-                                            </div>                            
-                                        </div>                         
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <button class="btn btn-add bg-netbee" @click="insert">Tạo hồ sơ</button>               
-            </div> -->   
+            </section> 
         </div>  
         <br>
                                           
     </div>
 </template>
 
-<script>                       
+<script>      
+    import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+    import {ValidationProvider, extend} from "vee-validate/dist/vee-validate.full";                 
     export default {        
         name: 'Teamplate1',
         layout: 'admin',
@@ -388,25 +155,16 @@
                         phone_profile:'',
                         email_profile:'',
                         link_facebook:'',
-                        note_profile:'',
-                        title_target_profile:'',
-                        note_target_profile:'',
-                        skill_communication_profile:'',
-                        skill_information_profile:'',
-                        skill_logic_profile:'',
-                        certificate_profile:'',
-                        level_education:'',
-                        name_education:'',
-                        specialized_education:'',
+                        name_education:''
                     },  
                     img:'https://www.topcv.vn/upload/images/avatars/no_avatar.jpg', 
                     fileImg:[], 
-                    images: [], 
-                           
+                    images: [],   
                 }         
         },        
         components:{
-            
+            ValidationObserver,
+            ValidationProvider
         },
         
         methods: {
@@ -462,16 +220,7 @@
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
                 form.append('email_profile' , this.info_frofile_user.email_profile)
                 form.append('link_facebook' , this.info_frofile_user.link_facebook)                   
-                form.append('note_profile' , this.info_frofile_user.note_profile)
-                form.append('title_target_profile' , this.info_frofile_user.title_target_profile)
-                form.append('note_target_profile' , this.info_frofile_user.note_target_profile)
-                form.append('skill_communication_profile' , this.info_frofile_user.skill_communication_profile)
-                form.append('skill_information_profile' , this.info_frofile_user.skill_information_profile)
-                form.append('skill_logic_profile' , this.info_frofile_user.skill_logic_profile)
-                form.append('certificate_profile' , this.info_frofile_user.certificate_profile)
-                form.append('level_education' , this.info_frofile_user.level_education)
-                form.append('name_education' , this.info_frofile_user.name_education)
-                form.append('specialized_education' , this.info_frofile_user.specialized_education)                
+                form.append('name_education' , this.info_frofile_user.name_education)             
                 this.$axios.post('hoso/insertProfileUser',form)
                 .then(response => {                                                           
                     if(response.data.status == 200) {
@@ -509,6 +258,28 @@
     };
 </script>
 <style>
+    .h4_title {
+        position: relative;
+        border-bottom: 1px solid #eaeaea;
+        padding-left: 0px !important;
+        margin-left: 13px;
+       
+        margin-bottom: 17px;
+       padding-right: 0px;
+    }
+    .h4_title:before {
+        position: absolute;
+        background: rgb(255, 183, 1);
+        height: 2px;
+        content: '';    
+        left: 0;
+        width: 220px;
+        bottom: -2px;
+        border-radius: 12px;
+    }
+    .title-label {
+        margin-bottom: 10px;
+    }
     .your-class::-webkit-input-placeholder {
         color: crimson !important;
     }
