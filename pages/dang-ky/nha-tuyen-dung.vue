@@ -2,30 +2,30 @@
     <section class="hero-wraps js-fullheight" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
     <div class="container">
         <div class="row ">
-            <div class="col-7" style="padding:95px 15px;">
+            <div class="intro-netbee col-md-7 col-sm-12" style="padding:95px 15px;">
                 <!-- <div style="font-size: 24px;">
                     <span style="margin-right: 190px;">Đăng tin tuyển dụng</span>
                     <span>Tìm kiếm ứng viên</span>
                 </div> -->
-                <div style="margin-top: 0px;">
+                <div class="circle-area">
                     <div class="round stat rounded-circle">
-                        <h4 class="pt-4">+3000</h4>
+                        <h4 class="pt-4 header-circle-box">+3000</h4>
                         <p>Ứng viên</p>
                     </div>
                     <div class="round stat rounded-circle">
-                        <h4 class="pt-4">+1000</h4>
+                        <h4 class="pt-4 header-circle-box">+1000</h4>
                         <p>Tin</p>
                     </div>
                     <div class="round stat rounded-circle">
-                        <h4 class="pt-4">+4000</h4>
+                        <h4 class="pt-4 header-circle-box">+4000</h4>
                         <p style="font-size: 14px !important;">Chuyên viên tuyển sinh</p>
                     </div>
                     <div class="round stat rounded-circle">
-                        <h4 class="pt-4">+500</h4>
+                        <h4 class="pt-4 header-circle-box">+500</h4>
                         <p>đối tác</p>
                     </div>
                 </div>
-                <div style="margin-top: 12em !important;    line-height: 40px;">
+                <div class="text-content-circle">
                     <ul>
                         <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> +3,000 ứng viên tiếp cận thông tin tuyển dụng</li>
                         <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hơn 20 hồ sơ ứng tuyển cho 1 việc làm đăng tuyển tại Netbee</li>
@@ -34,7 +34,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-5" style="padding:0px 15px; ">
+            <div class="col-md-5 col-sm-12" style="padding:0px 15px; ">
                 <div class="style-backrou">
                     <div class="text-center" style="background: #ffb701;padding:10px;margin-bottom:10px;">
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN NHÀ TUYỂN DỤNG</span>
@@ -384,5 +384,53 @@ export default {
     ul li span{
       font-style: italic;
     }
+.circle-area {
+    margin-top: 0px;
+}
+.text-content-circle {
+    margin-top: 12em !important;
+    line-height: 40px;
+}
+@media screen and (max-width: 1199px) {
+    /* .intro-netbee {
+        display: flex;
+
+    } */
+    .header-circle-box {
+        padding-top: 20px !important;
+    }
+    .round.stat{
+        width: 22%;
+        height: 120px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .intro-netbee {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .text-content-circle {
+        margin-top: 0em !important;
+        line-height: 40px;
+    }
+    .circle-area {
+        display: flex;
+        flex-direction: row;
+    }
+    .circle-area .stat h4{
+        font-size: 20px !important;
+    }
+    .circle-area .stat p{
+        font-size: 14px !important;
+    }
+    .header-circle-box {
+        padding-top: 10px !important;
+    }
+    .round.stat{
+        width: 25%;
+        height: 100px;
+        margin-right: 0px;
+    }
+}
 </style>
     

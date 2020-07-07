@@ -2,7 +2,7 @@
     <section class="hero-wraps js-fullheight" style="background-size: cover;" v-lazy:background-image="`/assets/img/dk-NTD.png`">
     <div class="container">
         <div class="row ">
-            <div class="col-7 pt-4" style="padding-top: 90px !important;">
+            <div class="col-md-7 col-sm-12  pt-4" style="padding-top: 90px !important;">
                 <h3 style="color:black;"><b>Đăng kí ứng viên</b></h3>
                 <ul class="list">
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tếp cận hàng triệu công việc hoàn toàn miễn phí</li>
@@ -11,7 +11,7 @@
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nâng cao cơ hội tìm việc với chương trình ứng viên năng động</li>
                 </ul>
             </div>
-            <div class="col-5" style="padding:0px 15px;">
+            <div class="col-md-5 col-sm-12" style="padding:0px 15px;">
               <div class="style-backrou">
                 <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN ỨNG VIÊN</span>

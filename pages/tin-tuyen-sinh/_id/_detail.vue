@@ -894,6 +894,14 @@ export default {
     margin-bottom: 10px;
     margin-left: 0px;
 }
+.modal .modal-header {
+    border-radius: 0px;
+    border-top-left-radius: 0.42rem;
+    border-top-right-radius: 0.42rem;
+}
+.modal .modal-header .close span {
+    color: #000;
+}
 @media only screen and (max-width: 600px) {
     #social {
         height: 45% !important;
