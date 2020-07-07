@@ -271,15 +271,15 @@
                                                     </div>  
                                                     <div class="col-6" v-if="checked">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }" >
-                                                                <div class="form-group">
-                                                                    <label for="firstName3">
-                                                                        Thời gian thanh toán phí
-                                                                    </label>
-                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" 
-                                                                        :allow-empty="false" :show-labels="false" placeholder="Thời gian thanh toán phí" :disabled="!checked"></multiselect>
-                                                                    <span style="color: red">{{ errors[0] }}</span>
-                                                                </div>
-                                                            </ValidationProvider>
+                                                            <div class="form-group">
+                                                                <label for="firstName3">
+                                                                    Thời gian thanh toán phí
+                                                                </label>
+                                                                <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" 
+                                                                    :allow-empty="false" :show-labels="false" placeholder="Thời gian thanh toán phí" :disabled="!checked"></multiselect>
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
                                                     </div>
                                                     <div class="col-6" v-if="checked">
                                                         <ValidationProvider rules="required" v-slot="{ errors }" >
@@ -750,5 +750,15 @@ display: block;
 }
 #goi3:hover .detail-active{
 display: block;
+}
+.form-group label {
+    font-weight: 700;
+    padding-bottom: 4px;
+}
+.form-control {
+    font-size: 15px;
+}
+.multiselect__single {
+    font-size: 15px !important;
 }
 </style>

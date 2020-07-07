@@ -794,5 +794,15 @@ display: block;
 #goi3:hover .detail-active{
 display: block;
 }
+.form-group label {
+    font-weight: 700;
+    padding-bottom: 4px;
+}
+.form-control {
+    font-size: 15px;
+}
+.multiselect__single {
+    font-size: 15px !important;
+}
 
 </style>
