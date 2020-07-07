@@ -40,8 +40,7 @@
                                                     <th>ID</th>
                                                     <th>Họ tên</th>
                                                     <th>Ngày sinh</th>                                                   
-                                                    <th>Email</th>
-                                                    <th>Số điện thoại</th>                                                    
+                                                    <th>Email</th>                                               
                                                     <th>Trạng thái</th>  
                                                     <th>Ngày tạo</th>  
                                                     <th>Hành động</th>                                               
@@ -52,8 +51,7 @@
                                                     <td>{{item.id}}</td>
                                                     <td>{{item.fullname_profile}}</td>
                                                     <td>{{ConvertDate(item.birthday_profile)}}</td>                                                    
-                                                    <td>{{item.email_profile}}</td>
-                                                    <td>{{item.phone_profile}}</td>                                                    
+                                                    <td>{{item.email_profile}}</td>                                                   
                                                     <td v-if="item.status == 0">
                                                         <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
