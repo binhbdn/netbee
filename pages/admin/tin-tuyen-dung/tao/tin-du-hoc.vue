@@ -281,7 +281,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6" v-if="checked">
+                                                    <div class="col-6 mb-3" v-if="checked">
                                                         <ValidationProvider rules="required" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -479,8 +479,8 @@ export default {
                 request: '',
                 cv_content: '',
                 benefit: '',
-                age_start: null,
-                age_late: null,
+                age_start: '18',
+                age_late: '30',
                 quantity:'',
                 salary_start: '',
                 salary_end: '',
@@ -760,5 +760,11 @@ display: block;
 }
 .multiselect__single {
     font-size: 15px !important;
+}
+.multiselect__tags {
+    padding: 8px 40px 8px 8px;
+}
+.wizard-icon-circle:focus {
+    outline: none;
 }
 </style>

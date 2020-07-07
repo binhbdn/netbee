@@ -1,8 +1,8 @@
 <template>
     <section class="hero-wraps js-fullheight" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
     <div class="container">
-        <div class="row ">
-            <div class="col-7" style="padding:100px 15px;">
+        <div class="row">
+            <div class="col-md-7 col-sm-12" style="padding:100px 15px;">
                 <h3 style="color:black;"><b>Đăng kí chuyên viên tuyển sinh</b></h3>
                 <ul class="list">
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận đơn hàng trên toàn quốc hàng giờ</li>
@@ -11,7 +11,7 @@
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hoàn toàn bảo mật thông tin cá nhân</li>
                 </ul>
             </div>
-            <div class="col-5" style="padding:0px 15px;">
+            <div class="col-md-5 col-sm-12" style="padding:0px 15px;">
               <div class="style-backrou">
                    <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN CHUYÊN VIÊN TUYỂN SINH</span>
