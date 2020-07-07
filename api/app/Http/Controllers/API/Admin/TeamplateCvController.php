@@ -137,22 +137,9 @@ class TeamplateCvController extends Controller
         $rules = [
             'fullname_profile' => 'required',
             'birthday_profile' => 'required',
-            'type' => 'required',
-            'maleFemale' => 'required',
             'address_profile' => 'required',
-            'phone_profile' => 'required',
-            'email_profile' => 'required',  
-            'link_facebook' => 'required',                   
-            // 'note_profile' => 'required',
-            // 'title_target_profile' => 'required',
-            // 'note_target_profile' => 'required',
-            // 'skill_communication_profile' => 'required',
-            // 'skill_information_profile' => 'required',
-            // 'skill_logic_profile' => 'required',
-            // 'certificate_profile' => 'required',
-            // 'level_education' => 'required',
-            // 'name_education' => 'required',
-            // 'specialized_education' => 'required' 
+            'email_profile' => 'required',   
+            'name_education' => 'required'                    
         ];
         $messages = [
             'required' => 'Không được để trống',           
@@ -161,25 +148,27 @@ class TeamplateCvController extends Controller
             'id_user'=> Auth::user()->id,
             'fullname_profile' => $request->fullname_profile,
             'birthday_profile' => $request->birthday_profile,
-            'type' => $request->type,
-            'maleFemale' => $request->maleFemale,
             'address_profile' => $request->address_profile,
-            'phone_profile' => $request->phone_profile,
-            'email_profile' => $request->email_profile,
-            'link_facebook' => $request->link_facebook,                         
-            'note_profile' => $request->note_profile,
-            'title_target_profile' => $request->title_target_profile,
-            'note_target_profile' => $request->note_target_profile,
-            'skill_communication_profile' => $request->skill_communication_profile,
-            'skill_information_profile' => $request->skill_information_profile,
-            'skill_logic_profile' => $request->skill_logic_profile,
-            'certificate_profile' => $request->certificate_profile,
-            'level_education' => $request->level_education,
-            'name_education' => $request->name_education,
-            'specialized_education' => $request->specialized_education,            
+            'email_profile' => $request->email_profile,                        
+            'name_education' => $request->name_education,    
             'updated_at' => Carbon::now(),
         ];
 
+        if($request->type) {
+            $update['type'] = $request->type;
+        }
+
+        if($request->maleFemale) {
+            $update['maleFemale'] = $request->maleFemale;
+        }
+
+        if($request->phone_profile) {
+            $update['phone_profile'] = $request->phone_profile;
+        }
+
+        if($request->link_facebook) {
+            $update['link_facebook'] = $request->link_facebook;
+        }
         if ($request->file('avatar_profile')) {
             $rules['avatar_profile'] = 'required|image';
             $messages['image'] = 'Định dạng ảnh không phù hợp';

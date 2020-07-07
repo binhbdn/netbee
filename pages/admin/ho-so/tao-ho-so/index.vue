@@ -28,8 +28,8 @@
                                                                             <img v-lazy="img" v-else>
                                                                         </label>
                                                                         <input type="file" id="files" class="hidden" @change="previewFiles" multiple>                                          
-                                                                    </div>                                        
-                                                                </div>                        
+                                                                    </div>                   
+                                                                </div>
                                                             </center>
                                                         </div>
                                                         <div class="col-md-8">
@@ -119,7 +119,7 @@
                                         </div>
                                         <!-- hết -->
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button class="btn btn-add bg-netbee" v-bind:disabled="inval" v-on:click="insert">Tạo hồ sơ</button>
+                                            <button class="btn btn-add bg-netbee" style="margin-top: 15px" v-bind:disabled="inval" v-on:click="insert">Tạo hồ sơ</button>
                                         </div>
                                     </ValidationObserver>
                                     <br>
@@ -130,8 +130,7 @@
                 </div>
             </section> 
         </div>  
-        <br>
-                                          
+        <br>                                    
     </div>
 </template>
 
