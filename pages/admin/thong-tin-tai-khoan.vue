@@ -15,13 +15,6 @@
                                         <div class="tab-content">
                                             <div class="card-header card-profile">
                                                 <p class="card-header-title is-uppercase">Thông tin chung</p>
-                                                <div class="field is-horizontal">
-                                                    <div class="field-body">
-                                                        <div class="field">
-                                                        <div class="control"><button type="button" class="btn bg-netbee mr-sm-1 mb-1 mb-sm-0" @click="actionInfoUser()">Cập nhật</button></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div role="tabpanel" class="tab-pane active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
                                                 <form method="post">
@@ -127,6 +120,17 @@
                                                                     </div>
                                                                 </ValidationProvider>
                                                             </div>
+                                                            <div class="col-10 d-flex justify-content-end">
+                                                                <div class="field is-horizontal">
+                                                                    <div class="field-body">
+                                                                        <div class="field">
+                                                                            <div class="control">
+                                                                                <button type="button" class="btn bg-netbee mb-1 mb-sm-0" @click="actionInfoUser()">Cập nhật</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </ValidationObserver>
                                                 </form>
@@ -144,13 +148,6 @@
                                             <div>
                                                 <div class="card-header card-profile">
                                                     <p class="card-header-title is-uppercase">Thông tin công ty</p>
-                                                    <div class="field is-horizontal">
-                                                        <div class="field-body">
-                                                            <div class="field">
-                                                            <div class="control"><button type="button" class="btn bg-netbee mr-sm-1 mb-1 mb-sm-0" @click="changeInfoCompany()">Cập nhật</button></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="tab-pane fade active show" :class="{'active': classInfoMore, 'show': classInfoMore} " id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info" aria-expanded="false">
                                                     <form method="POST" v-on:keyup.enter = "changeInfoCompany">
@@ -352,7 +349,19 @@
                                                                 </div>
                                                                
                                                             </div>
+                                                            <div class="col-10 d-flex justify-content-end">
+                                                               <div class="field is-horizontal">
+                                                                    <div class="field-body">
+                                                                        <div class="field">
+                                                                            <div class="control">
+                                                                                <button type="button" class="btn bg-netbee mb-1 mb-sm-0" @click="changeInfoCompany()">Cập nhật</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </ValidationObserver>
+                                                        
                                                     </form>
                                                 </div>
                                             </div>
@@ -368,13 +377,6 @@
                                         <div class="tab-content">
                                             <div class="card-header card-profile">
                                                 <p class="card-header-title1 is-uppercase">Đổi mật khẩu</p>
-                                                <div class="field is-horizontal">
-                                                    <div class="field-body">
-                                                        <div class="field">
-                                                        <div class="control"><button type="button" class="btn bg-netbee mr-sm-1 mb-1 mb-sm-0" @click="changePassword()">Cập nhật</button></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div class="tab-pane fade active show" id="account-vertical-password" role="tabpanel" aria-labelledby="account-pill-password" aria-expanded="false">
                                                 <form method="POST" v-on:keyup.enter="changePassword">
@@ -452,6 +454,17 @@
                                                                 </div>
                                                             </div>
                                                             </ValidationProvider>
+                                                        </div>
+                                                        <div class="col-10 d-flex justify-content-end">
+                                                            <div class="field is-horizontal">
+                                                                <div class="field-body">
+                                                                    <div class="field">
+                                                                        <div class="control">
+                                                                            <button type="button" class="btn bg-netbee mb-1 mb-sm-0" @click="changePassword()">Cập nhật</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     </ValidationObserver>

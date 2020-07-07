@@ -817,4 +817,10 @@ display: block;
 .multiselect__single {
     font-size: 15px !important;
 }
+.multiselect__tags {
+    padding: 8px 40px 8px 8px;
+}
+.wizard-icon-circle:focus {
+    outline: none;
+}
 </style>
