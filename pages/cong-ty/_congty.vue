@@ -1,7 +1,7 @@
 <template>
     <div class="container" style="padding-top:65px; position: relative">
         <div class="bk-auto" v-if="congty.nb_company != null && congty.nb_company.image_cover != null" role="img" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${congty.nb_company.image_cover}` + ')' }"></div>
-        <div class="bk-auto" v-if="congty.nb_company != null && congty.nb_company.image_cover == null" role="img" :style="{ 'background-image': 'url(' + `/assets/img/back-companyId.jpg` + ')' }"></div>
+        <div class="bk-auto" v-if="congty.nb_company != null && congty.nb_company.image_cover == null" role="img" :style="{ 'background-image': 'url(' + `/assets/img/BgBanner.png` + ')' }"></div>
       <section>
         <div class="row">
           <div class="col-lg-12 col-12">
