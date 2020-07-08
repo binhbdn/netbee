@@ -143,5 +143,18 @@ h4{
   font-size: 27px;
   font-weight: 600;
 }
+
+@media screen and (max-width: 767px) {
+  .formlogin {
+    padding: 10px;
+  }
+  .circle {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 </style>
 
