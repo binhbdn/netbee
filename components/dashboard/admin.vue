@@ -18,43 +18,49 @@
                             </div>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="card">
-                                <div class="card-header d-flex flex-column align-items-start pb-0">
-                                    <div class="avatar bg-rgba-success p-50 m-0">
-                                        <div class="avatar-content">
-                                            <i class="feather icon-credit-card text-success font-medium-5"></i>
+                            <a href="/admin/quan-ly-tai-khoan?role=3">
+                                <div class="card">
+                                    <div class="card-header d-flex flex-column align-items-start pb-0">
+                                        <div class="avatar bg-rgba-success p-50 m-0">
+                                            <div class="avatar-content">
+                                                <i class="feather icon-credit-card text-success font-medium-5"></i>
+                                            </div>
                                         </div>
+                                        <h2 class="text-bold-700 mt-1">{{ countUserHr }}</h2>
+                                        <p class="mb-0">Số lượng HR</p>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1">{{ countUserHr }}</h2>
-                                    <p class="mb-0">Số lượng HR</p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="card">
-                                <div class="card-header d-flex flex-column align-items-start pb-0">
-                                    <div class="avatar bg-rgba-danger p-50 m-0">
-                                        <div class="avatar-content">
-                                            <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
+                            <a href="/admin/quan-ly-tai-khoan?role=2">
+                                <div class="card">
+                                    <div class="card-header d-flex flex-column align-items-start pb-0">
+                                        <div class="avatar bg-rgba-danger p-50 m-0">
+                                            <div class="avatar-content">
+                                                <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
+                                            </div>
                                         </div>
+                                        <h2 class="text-bold-700 mt-1">{{ countUserCompany }}</h2>
+                                        <p class="mb-0">Số lượng công ty</p>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1">{{ countUserCompany }}</h2>
-                                    <p class="mb-0">Số lượng công ty</p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="card">
-                                <div class="card-header d-flex flex-column align-items-start pb-0">
-                                    <div class="avatar bg-rgba-warning p-50 m-0">
-                                        <div class="avatar-content">
-                                            <i class="feather icon-package text-warning font-medium-5"></i>
+                            <a href="/admin/quan-ly-tai-khoan?role=1">
+                                <div class="card">
+                                    <div class="card-header d-flex flex-column align-items-start pb-0">
+                                        <div class="avatar bg-rgba-warning p-50 m-0">
+                                            <div class="avatar-content">
+                                                <i class="feather icon-package text-warning font-medium-5"></i>
+                                            </div>
                                         </div>
+                                        <h2 class="text-bold-700 mt-1">{{ countUserUser }}</h2>
+                                        <p class="mb-0">Số lượng ứng viên</p>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1">{{ countUserUser }}</h2>
-                                    <p class="mb-0">Số lượng ứng viên</p>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                     <div class="row">

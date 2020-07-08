@@ -30,10 +30,12 @@ a.navbar-brandd {
 }
 
 .ftco-navbar-light .navbar-nav>.nav-item.active>a {
-  color: #ffb701 !important;
+  /* color: #000 !important; */
+  border-bottom: 4px solid #ffb701;
 }
 .ftco-navbar-light .navbar-nav>.nav-item>.nav-link:hover {
-  color: #ffb701!important;
+  border-bottom: 4px solid #ffb701;
+  /* color: #ffb701!important; */
 }
 .ftco-navbar-light .navbar-nav>.nav-item.cta>a {
   color: #000!important;
