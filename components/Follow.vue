@@ -10,7 +10,7 @@
                 <p>{{$t('follow.decs')}}</p>
                 <form class="appointment-form" id="appointment-form-2" style="margin-top:10px;">
                   <ValidationObserver ref="observer" v-slot="{ valid }">
-                    <div style="width: 80%">   
+                    <div class="form-contact">   
                       <ValidationProvider name="Họ và tên" ref="name" rules="required" v-slot="{ errors }"> 
                         <div class="col-md-12 form-group" style="padding-left: 0;">
                           <input type="text" class="form-control"  :placeholder="$t('follow.name')"  name="name" v-model="dataForm.name">
@@ -168,5 +168,13 @@ export default {
 } 
 .text{
     color: #fff;
+}
+.form-contact {
+  width: 80%;
+}
+@media screen and (max-width: 767px) {
+  .form-contact {
+    width: 100%;
+  }
 }
 </style>
