@@ -51,7 +51,7 @@ class UserService extends BaseService {
 
     public function getIdAfterStore($data)
     {
-        return $this->user->insertGetId($data);
+        return $this->user->create($data)->id;
     }
 
     public function getidintroduce()
