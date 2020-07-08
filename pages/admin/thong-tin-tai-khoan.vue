@@ -227,16 +227,26 @@
                                                             </ValidationProvider>
                                                             </div>
                                                             <div class="col-12">
-                                                                <div class="form-group">
-                                                                    <div class="controls row">
-                                                                        <div class="col-3 text-right for-label">
-                                                                        <label for="account-phone">Đường dây nóng</label>
-                                                                        </div>
-                                                                        <div class="col-7">
-                                                                            <input type="text" class="form-control" id="company-hotline" name="companyHotline" v-model="changeInfoCompanyForm.companyHotline"  required placeholder="Hotline">
+                                                                <ValidationProvider name="account-phone" ref="account-phone" rules="numeric" v-slot="{ errors }">
+                                                                    <div class="form-group">
+                                                                        <div class="controls row">
+                                                                            <div class="col-3 text-right for-label">
+                                                                                <label for="account-phone">Đường dây nóng</label>
                                                                             </div>
+                                                                            <div class="col-7">
+                                                                                <input type="text" class="form-control" id="company-hotline" name="companyHotline" v-model="changeInfoCompanyForm.companyHotline"  required placeholder="Hotline">
+                                                                            </div>
+                                                                            <div class="col-3"></div>
+                                                                            <div class="col-7">
+                                                                                <ul style="color:red" class="overline text-left">
+                                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                                    <span>{{ error }}</span>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
+                                                                </ValidationProvider>
                                                             </div>
                                                             <div class="col-12">
                                                                 <div class="form-group">
@@ -497,6 +507,9 @@ extend('retypePassword', {
 })
 extend("required", {
   message: (field, values) => "Dữ liệu nhập vào không được để trống.",
+});
+extend("numeric", {
+  message: (field, values) => "Dữ liệu nhập vào phải là số.",
 });
 extend("integer", {
   message: (field, values) => "Dữ liệu nhập vào phải là số"
