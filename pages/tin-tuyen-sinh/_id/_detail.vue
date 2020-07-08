@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="tintuyendung != null">
       <section>
         <div class="row">
           <div class="col-lg-12 col-12">
@@ -534,21 +534,22 @@ export default {
         }
     },
     async asyncData({$axios, route}) {
-        let detailRes = await $axios.$get(`getDetailTinTuyenDung/${route.params.id}`)
-        let getTinTuyenDungHot = await $axios.$get(`getTinTuyenDungHot?limit=10`)
-        let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=5&type=1`)
-        let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=2`)
-        let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
-        return {
-            tintuyendung: detailRes.data,
-            arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
-            arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
-            arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
-            arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
-        }
+            let detailRes = await $axios.$get(`getDetailTinTuyenDung/${route.params.id}`)
+            let getTinTuyenDungHot = await $axios.$get(`getTinTuyenDungHot?limit=10`)
+            let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=5&type=1`)
+            let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=2`)
+            let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
+            return {
+                tintuyendung: detailRes.data,
+                arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
+                arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
+                arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
+                arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
+            }
     },
     head() {
-        return {
+        if(this.tintuyendung != null){
+            return {
             title: this.tintuyendung.title,
             meta: [
                 { hid: 'description', name: 'description', content: this.tintuyendung.title },
@@ -557,7 +558,8 @@ export default {
                 { hid: 'og:title', name: 'og:title', content: this.tintuyendung.title},
                 { hid: 'og:description', name: 'og:description', content: this.tintuyendung.title},
                 { hid: 'og:image', name: 'og:image', content: this.tintuyendung.user.avatar},
-            ]
+                ]
+            }
         }
     },
     methods: {
@@ -727,15 +729,20 @@ export default {
         }
     },
     mounted() {
-        this.$axios.$get(`getTinTuyenDungNew?limit=5&type=`+this.tintuyendung.type).then((response)=>{
-            this.arrayForCompany = response.data.tintuyendung
-        });
-        if(this.$auth.loggedIn) {
-            this.$axios.$post(`tintuyendung/postView`,{id_job: this.tintuyendung.id}).then((response)=>{});
-            this.$axios.$get(`tintuyendung/getSave`,{id_job: this.tintuyendung.id}).then((response)=>{
-                this.save = response.data
+        if(this.tintuyendung != null){
+            this.$axios.$get(`getTinTuyenDungNew?limit=5&type=`+this.tintuyendung.type).then((response)=>{
+                this.arrayForCompany = response.data.tintuyendung
             });
+            if(this.$auth.loggedIn) {
+                this.$axios.$post(`tintuyendung/postView`,{id_job: this.tintuyendung.id}).then((response)=>{});
+                this.$axios.$get(`tintuyendung/getSave`,{id_job: this.tintuyendung.id}).then((response)=>{
+                    this.save = response.data
+                });
+            }
+        } else {
+            window.location.href = '/tin-tuyen-sinh'
         }
+        
     }
 }
 </script>
