@@ -2,7 +2,7 @@
     <section class="hero-wraps js-fullheight" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
     <div class="container">
         <div class="row ">
-            <div class="intro-netbee col-md-7 col-sm-12" style="padding:95px 15px;">
+            <div class="intro-netbee col-md-7 col-sm-12">
                 <!-- <div style="font-size: 24px;">
                     <span style="margin-right: 190px;">Đăng tin tuyển dụng</span>
                     <span>Tìm kiếm ứng viên</span>
@@ -391,6 +391,9 @@ export default {
     margin-top: 12em !important;
     line-height: 40px;
 }
+.intro-netbee {
+    padding: 95px 15px;
+}
 @media screen and (max-width: 1199px) {
     /* .intro-netbee {
         display: flex;
@@ -412,6 +415,9 @@ export default {
     .text-content-circle {
         margin-top: 0em !important;
         line-height: 40px;
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-top: 20px;
     }
     .circle-area {
         display: flex;
@@ -430,6 +436,9 @@ export default {
         width: 25%;
         height: 100px;
         margin-right: 0px;
+    }
+    .intro-netbee {
+        padding: 20px 15px;
     }
 }
 </style>

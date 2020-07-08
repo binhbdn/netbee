@@ -160,7 +160,8 @@
             </a>
             <div class="dropdown-menu" style="top: 102%!important;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
-              <a class="dropdown-item overflow" href="/admin">{{ this.$auth.user.name }}</a>
+              <a class="dropdown-item overflow" href="/admin" v-if="this.$auth.user.nb_company">{{ this.$auth.user.nb_company.username }}</a>
+              <a class="dropdown-item overflow" href="/admin" v-else>{{ this.$auth.user.name }}</a>
               <a class="dropdown-item" @click="logout()">{{ $t('logout') }}</a>
             </div>
           </li>
@@ -186,7 +187,7 @@ export default {
           this.$store.commit('SET_LANG', lang)
           this.$router.push({ path: `${this.$router.currentRoute.path}?lang=${lang}` })
         }
-      },
+      }
 }
 </script>
 <style scoped>
