@@ -9,17 +9,19 @@
                     <section id="dashboard-ecommerce">
                         <div class="row">
                             <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="card" style="margin-bottom: 0px;">
-                                    <div class="card-header d-flex flex-column align-items-start pb-0">
-                                        <div class="avatar bg-rgba-primary p-50 m-0">
-                                            <div class="avatar-content">
-                                                <i class="feather icon-users text-primary font-medium-5"></i>
+                                <a href="/admin/tin-tuyen-dung">
+                                    <div class="card" style="margin-bottom: 0px;">
+                                        <div class="card-header d-flex flex-column align-items-start pb-0">
+                                            <div class="avatar bg-rgba-primary p-50 m-0">
+                                                <div class="avatar-content">
+                                                    <i class="feather icon-users text-primary font-medium-5"></i>
+                                                </div>
                                             </div>
+                                            <h2 class="text-bold-700 mt-1">{{CountCompany.length}}</h2>
+                                            <p class="mb-0">Số tin tuyển dụng</p>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">{{CountCompany.length}}</h2>
-                                        <p class="mb-0">Số tin tuyển dụng</p>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <div class="card" style="margin-bottom: 0px;">
@@ -35,30 +37,34 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="card" style="margin-bottom: 0px;">
-                                    <div class="card-header d-flex flex-column align-items-start pb-0">
-                                        <div class="avatar bg-rgba-danger p-50 m-0">
-                                            <div class="avatar-content">
-                                                <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
+                                <a href="/admin/quan-ly-ung-tuyen">
+                                    <div class="card" style="margin-bottom: 0px;">
+                                        <div class="card-header d-flex flex-column align-items-start pb-0">
+                                            <div class="avatar bg-rgba-danger p-50 m-0">
+                                                <div class="avatar-content">
+                                                    <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
+                                                </div>
                                             </div>
+                                            <h2 class="text-bold-700 mt-1">{{sumapp}}</h2>
+                                            <p class="mb-0">Số lượt ứng tuyển</p>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">{{sumapp}}</h2>
-                                        <p class="mb-0">Số lượt ứng tuyển</p>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="card" style="margin-bottom: 0px;">
-                                    <div class="card-header d-flex flex-column align-items-start pb-0">
-                                        <div class="avatar bg-rgba-warning p-50 m-0">
-                                            <div class="avatar-content">
-                                                <i class="feather icon-package text-warning font-medium-5"></i>
+                                <a href="/admin/calendar">
+                                    <div class="card" style="margin-bottom: 0px;">
+                                        <div class="card-header d-flex flex-column align-items-start pb-0">
+                                            <div class="avatar bg-rgba-warning p-50 m-0">
+                                                <div class="avatar-content">
+                                                    <i class="feather icon-package text-warning font-medium-5"></i>
+                                                </div>
                                             </div>
+                                            <h2 class="text-bold-700 mt-1">{{CountCall}}</h2>
+                                            <p class="mb-0">Phỏng vấn online</p>
                                         </div>
-                                        <h2 class="text-bold-700 mt-1">{{CountCall}}</h2>
-                                        <p class="mb-0">Phỏng vấn online</p>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </section>
