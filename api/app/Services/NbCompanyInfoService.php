@@ -35,13 +35,19 @@ class NbCompanyInfoService extends BaseService {
     }
     public function getListCompany($type, $limit, $perPage){
         $datas = $this->nbCompanyInfo
+
         ->with(['user'=> function($q){
-            // $q->select('id','name','avatar')->whereStatus(1)->whereBlock(0);
-            $q->select('id','name','avatar')->whereBlock(0);
+            $q->select('id','name','avatar');
         }])
-        ->with(['companyFeedback'=> function($q){
-            $q->select('company_id', 'rate_feed');
-        }])
+        ->whereHas('user', function ($query) {
+            $query->where([
+                'block' => self::UN_BLOCK,
+                'status' => self::ACTIVE
+            ]);
+        })
+        // ->with(['companyFeedback'=> function($q){
+        //     $q->select('company_id', 'rate_feed');
+        // }])
         ->select('id','company_id','company_about','username','image_cover','company_verify');
         $getData = null;
         if($perPage == self::NO_PAGINATION){

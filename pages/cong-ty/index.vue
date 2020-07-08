@@ -185,7 +185,7 @@ export default {
     this.fetch();
   },
   methods: {
-    async fetch(){
+    fetch: async function(){
       let getAllCompany = await this.$axios.get('getListCompany?perPage=3');
       this.listAllCompany = getAllCompany.data.data.data;
       let getVerifyCompany = await this.$axios.get('getListCompany?type=2&limit=5&perPage=0');
