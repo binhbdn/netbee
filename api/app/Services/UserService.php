@@ -41,6 +41,8 @@ class UserService extends BaseService {
     }
     public function login($data)
     {
+        $user = $this->user->where('email', $data['email'])->first();
+        $this->update(['count_login' => (int)$user->count_login + 1], $user->id);
         return JWTAuth::attempt($data);
     }
 
@@ -99,6 +101,8 @@ class UserService extends BaseService {
             $info = $this->getUserById($checkProvider->user_id)->first();
             if ($jwtToken = JWTAuth::fromUser($info)) {
                 if ($info) {
+                    $user = $this->user->where('email', $info['email'])->first();
+                    $this->update(['count_login' => (int)$user->count_login + 1], $user->id);
                     return [
                         'status'  => 200,
                         'message' => 'Đăng nhập thành công',
@@ -124,6 +128,8 @@ class UserService extends BaseService {
             if($queryEmail->first() !=null){
                 $jwtToken = JWTAuth::fromUser($queryEmail->first());
                 if ($queryEmail->exists() && $jwtToken) {
+                    $user = $this->user->where('email', $infoResult['email'])->first();
+                    $this->update(['count_login' => (int)$user->count_login + 1], $user->id);
                     return [
                         'status'  => 200,
                         'message' => 'Đăng nhập thành công',
