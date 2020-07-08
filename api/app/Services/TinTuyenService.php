@@ -149,6 +149,7 @@ class TinTuyenService extends BaseService {
             'expected_date' => 'required',
             'salary_start' => 'required',
             'salary_end' => 'required',
+            'time_contract' => 'required',
         ];
         $messages = [
             'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
@@ -200,7 +201,8 @@ class TinTuyenService extends BaseService {
             'highlight_job' => $request->highlight_job,
             'type' => $request->type,           
             'school_name' => $request->school_name,
-            'status' => self::INACTIVE
+            'status' => self::INACTIVE,
+            'time_contract' => $request->time_contract,
         ];
 
         if ($request->type != self::JOB_OVERSEAS_STUDENT) {
@@ -238,7 +240,8 @@ class TinTuyenService extends BaseService {
             'type' => $request->type,
             'id_created' => $request->has('id_created') ? $request->id_created : Auth::user()->id,
             'school_name' => $request->school_name,
-            'status' => self::INACTIVE
+            'status' => self::INACTIVE,
+            'time_contract' => $request->time_contract,
         ];
 
         if ($request->type != self::JOB_OVERSEAS_STUDENT) {

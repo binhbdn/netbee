@@ -39,6 +39,7 @@ class NbJoblist extends Model
         'deleted',
         'isPublic',
         'isDraft',
+        'time_contract'
     ];
 
     public function Apply()
