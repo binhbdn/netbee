@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="padding-left: 14px">
                         <div class="col-md-5">
                             <div class="qr-code">
                                 <img src="https://devwork.vn//public/images/devwork-mobile-qr.png" alt="Devwork" class="w-img-qr">
@@ -54,7 +54,7 @@
                 </div>
                 <div class="col-md-4 col-lg-4">
                     <div class="col-md-12 formlogin">
-                        <h3 class="text-center" style="margin-bottom: 25px;">ĐĂNG NHẬP</h3>
+                        <h3 class="text-center" style="margin-bottom: 25px; font-weight: bold;">ĐĂNG NHẬP</h3>
                         <div class="form-group-1 input-login" v-on:keyup.enter="login">
                             <ValidationObserver ref="observer" v-slot="{ valid }">
                                 <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
@@ -401,7 +401,7 @@ ul li {
     border-radius: 3px;
     padding: 15px;
     text-align: center;
-    font-size: 20px;
+    font-size: 18px;
     background: #ffffffb8;
     margin-top: 15px;
 }
