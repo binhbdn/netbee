@@ -209,13 +209,14 @@
                               </fieldset>
                             </li>
                             ID
-                          </th>
-                          <th>Tên</th>
+                          </th>                          
                           <th style="width:14%;">Avatar</th>
-                          <th>Ngày tạo</th>
-                          <th>Trạng thái</th>
+                          <th>Tên</th>
                           <th style="width:100px;">Email</th>
                           <th>Số điện thoại</th>
+                          <th>Ngày tạo</th>
+                          <th>Trạng thái</th>
+                          <th>Login</th>
                           <th>Thao tác</th>
                         </tr>
                       </thead>
@@ -236,6 +237,16 @@
                             </li>
                             {{item.id}}
                           </td>
+                          <td>
+                            <span>
+                              <img
+                                v-lazy="`/uploads/users/avatars/${item.avatar}`"
+                                style="object-fit: cover;"
+                                width="55"
+                                height="55"
+                              />
+                            </span>
+                          </td>
                           <td class="text-left">
                             <a
                               class="highlight"
@@ -246,15 +257,21 @@
                               target="_blank"
                             >{{item.name}}</a>
                           </td>
-                          <td>
-                            <span>
-                              <img
-                                v-lazy="`/uploads/users/avatars/${item.avatar}`"
-                                style="object-fit: cover;"
-                                width="55"
-                                height="55"
-                              />
-                            </span>
+                          <td class="text-left" style="width: 100px; height: 100px">
+                            <a style="line-height: 1.5em; height: 3em; overflow: hidden; width: 100px;"
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              :title="item.email"
+                              target="_blank"
+                            >{{item.email}}</a>
+                          </td>
+                          <td class="text-left">
+                            <a
+                              data-toggle="tooltip"
+                              data-placement="top"
+                              :title="item.phone"
+                              target="_blank"
+                            >{{item.phone}}</a>
                           </td>
                           <td :title="item.created_at">{{ConvertDate(item.created_at)}}</td>
                           <td v-if="item.status == 0">
@@ -279,21 +296,13 @@
                               ></i>
                             </div>
                           </td>
-                          <td class="text-left" style="width: 100px; height: 100px">
-                            <a style="line-height: 1.5em; height: 3em; overflow: hidden; width: 100px;"
-                              data-toggle="tooltip"
-                              data-placement="top"
-                              :title="item.email"
-                              target="_blank"
-                            >{{item.email}}</a>
-                          </td>
                           <td class="text-left">
                             <a
                               data-toggle="tooltip"
                               data-placement="top"
-                              :title="item.phone"
+                              :title="item.count_login"
                               target="_blank"
-                            >{{item.phone}}</a>
+                            >{{item.count_login}}</a>
                           </td>
                           <td>
                             <div class="action-btns">
