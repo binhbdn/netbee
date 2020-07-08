@@ -49,7 +49,6 @@ export default {
             const urlParams = (this.$route.hash);
             let token = urlParams.split('=')[1]
             if(token) {
-                console.log(token)
                 this.$axios.$post(`loginfb`,{token: token,role: role}).then((response)=>{
                     if(response.status == 200) {
                         this.$auth.setToken('local', 'Bearer ' +response.data.token);
