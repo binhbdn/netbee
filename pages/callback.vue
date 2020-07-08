@@ -63,13 +63,15 @@ export default {
                         this.$auth.logout();
                         $('#chooseRole').modal({backdrop: 'static', keyboard: false});
                     }
-                }).catch(()=> {
-                    this.$swal(
-                        'Lỗi!',
-                        'Token không hợp lệ',
-                        'error'
-                    )
-                });
+                }).catch(error => {
+                        console.log(error.response)
+                        this.$swal(
+                            'Lỗi!',
+                            'Token không hợp lệ',
+                            'error'
+                        );
+                    })
+                    
             }
         }
     },

@@ -51,7 +51,7 @@ class UserService extends BaseService {
 
     public function getIdAfterStore($data)
     {
-        return $this->user->insertGetId($data);
+        return $this->user->create($data)->id;
     }
 
     public function getidintroduce()
@@ -117,23 +117,24 @@ class UserService extends BaseService {
                 'data' => null,
             ];
         }
-
         if (isset($request->role)) {
             $role = !in_array($request->role, [self::ROLE_HR, self::ROLE_COMPANY]) ? self::ROLE_STAFF : $request->role;
             //check unique email,phone
             $queryEmail = $this->user->whereEmail($infoResult->email);
-            $jwtToken = JWTAuth::fromUser($queryEmail->first());
-
-            if ($queryEmail->exists() && $jwtToken) {
-                return [
-                    'status'  => 200,
-                    'message' => 'Đăng nhập thành công',
-                    'data' => [
-                        'user' => Auth::user(),
-                        'token' => $jwtToken
-                    ],
-                ];
+            if($queryEmail->first() !=null){
+                $jwtToken = JWTAuth::fromUser($queryEmail->first());
+                if ($queryEmail->exists() && $jwtToken) {
+                    return [
+                        'status'  => 200,
+                        'message' => 'Đăng nhập thành công',
+                        'data' => [
+                            'user' => Auth::user(),
+                            'token' => $jwtToken
+                        ],
+                    ];
+                }
             }
+            
             $avatar = $typeOAuth == self::FACEBOOK ? $infoResult->picture->data->url : $infoResult->picture;
             $users = [
                 'email' => $infoResult->email,
@@ -145,8 +146,7 @@ class UserService extends BaseService {
                 'role' => $role
             ];
             $userId = $this->getIdAfterStore($users);
-            $info = $this->getUserById($userId)->fitst();
-
+            $info = $this->getUserById($userId)->first();
             if ($userId) {
                 $this->socialAccountService->store([
                     'user_id' => $userId,
