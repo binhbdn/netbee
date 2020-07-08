@@ -1,9 +1,9 @@
 <template>
     <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px; border-radius: 3px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content h-100">
-            <div class="text-center p-1 ab">
+            <div class="text-center card-avatar p-1">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 85px; max-width: 100%;">
+                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
             </div>
             <div class="remove-border-right " style="margin: auto; width: 100%;">
@@ -15,8 +15,8 @@
                     <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fa fa-map-marker-alt"></i> {{ job.nation.name }}</p>
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
-                <div >                   
-                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="top" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fa fa-dollar-sign"></i> {{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</p>                                                                                 
+                <div class="item-price">                  
+                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="top" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><label class="title">Chi phí: </label> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</p>                                                                                 
                 </div>        
             </div>
             <div class="item-options text-center mt-1" >
@@ -88,6 +88,14 @@ export default {
 .p-r-0 .hot img{
     right: 0;
 }
+.card-avatar img {
+    object-fit: scale-down;
+    width: 85px;
+    height: 85px;
+}
+.item-price .title {
+    font-size: 14px;
+}
 @media(max-width: 991px) {
     .p-r-0 .hot img{
         right: 15px;
@@ -105,7 +113,7 @@ export default {
   .border-netbee{
       padding: 6px;
   }
-  .ab{
+  .card-avatar{
       width: 0px;
       padding: 4px !important;
   }
