@@ -131,6 +131,9 @@
                                                     <td class="text-left">
                                                         <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}} 
                                                         </a>
+                                                        <p style="font-size: 12px" v-if="item.username != null">
+                                                            <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết công ty`" :href="`/cong-ty/${item.username}`" target="_blank"><i>{{item.namecompany}}</i></a>
+                                                        </p>
                                                         <!-- <hr style="border-top: 1px dotted black;"><p class="text-center font-italic">{{item.name}}</p> -->
                                                     </td>
                                                     <td>
@@ -554,7 +557,7 @@ export default {
             + '&searchCompany='+ ((this.cardSearch.searchCompany.id !=null)?this.cardSearch.searchCompany.id:'')
             ).then((response)=>{                 
                  this.tinTuyenDung=response.data;     
-                //  console.log(this.tinTuyenDung)                                
+                 console.log(this.tinTuyenDung)                                
             });
         },
         async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){

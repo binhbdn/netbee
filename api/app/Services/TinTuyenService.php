@@ -430,8 +430,9 @@ class TinTuyenService extends BaseService {
             ->leftJoin('nb_applies', 'nb_applies.job_id', '=', 'nb_joblists.id')
             ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
             ->leftJoin('users','users.id','=','nb_joblists.id_created')
+            ->leftJoin('nb_companies_info','nb_companies_info.company_id','=','nb_joblists.id_created')
             ->orderBy('nb_joblists.id', 'DESC')
-            ->select('nb_joblists.*','users.name as namecompany',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
+            ->select('nb_joblists.*','users.name as namecompany','username',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
             ->groupBy('nb_joblists.id');
     }
 
