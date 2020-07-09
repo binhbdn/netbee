@@ -273,7 +273,7 @@
                                                             <label for="firstName3">
                                                                 Thời gian thanh toán phí
                                                             </label>
-                                                            <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :allow-empty="false"
+                                                            <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :preselect-first="true"
                                                                 :show-labels="false" placeholder="Thời gian thanh toán phí" :disabled="!checked"></multiselect>
                                                         </div>
                                                     </div>
@@ -477,8 +477,8 @@ export default {
                 request: '',
                 cv_content: '',
                 benefit: '',
-                age_start: null,
-                age_late: null,
+                age_start: '18',
+                age_late: '35',
                 quantity:'',
                 salary_start: '',
                 salary_end: '',
@@ -487,7 +487,7 @@ export default {
                 date_start: '',
                 date_test: '',
                 expected_date: '',
-                time_bonus: '',
+                time_bonus: {id: 1, name: 'Ngay sau khi bay'},
                 bonus: null,
                 highlight_job: 1,
                 visa: '',
@@ -802,5 +802,24 @@ display: block;
 }
 #goi3:hover .detail-active{
 display: block;
+}
+.form-group label {
+    font-weight: 700;
+    padding-bottom: 4px;
+}
+.form-control {
+    font-size: 15px;
+}
+.multiselect__single {
+    font-size: 15px !important;
+}
+.multiselect__tags {
+    padding: 8px 40px 8px 8px;
+}
+.wizard-icon-circle:focus {
+    outline: none;
+}
+.form-group label::after {
+    content: ":";
 }
 </style>
