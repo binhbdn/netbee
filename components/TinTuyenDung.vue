@@ -556,8 +556,7 @@ export default {
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
             + '&searchCompany='+ ((this.cardSearch.searchCompany.id !=null)?this.cardSearch.searchCompany.id:'')
             ).then((response)=>{                 
-                 this.tinTuyenDung=response.data;     
-                 console.log(this.tinTuyenDung)                                
+                 this.tinTuyenDung=response.data;                                  
             });
         },
         async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){
