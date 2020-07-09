@@ -248,7 +248,7 @@
                                                                 <label for="firstName3">
                                                                     Thời gian thanh toán phí
                                                                 </label>
-                                                                <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" 
+                                                                <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :preselect-first="true"
                                                                     :allow-empty="false" :show-labels="false" placeholder="Thời gian thanh toán phí" :disabled="!checked"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
