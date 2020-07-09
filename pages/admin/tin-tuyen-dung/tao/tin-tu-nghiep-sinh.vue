@@ -483,7 +483,7 @@ export default {
                 date_start: '',
                 date_test: '',
                 expected_date: '',
-                time_bonus: {id: 0, name: ''},
+                time_bonus: {id: 1, name: 'Ngay sau khi bay'},
                 bonus: null,
                 highlight_job: 1,
                 visa: {id: null, profession: ''},
@@ -491,9 +491,8 @@ export default {
                 school_name: '',
                 time_contract: 3
             },
-            checked: false,
+            checked: true,
             guarantee: [
-                {id: 1, name: 'Ngay sau khi bay'},
                 {id: 2, name: 'Sau khi bay 30 ngày'},
                 {id: 3, name: 'Sau khi bay 60 ngày'}
             ],
