@@ -15,8 +15,8 @@
                     <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fa fa-map-marker-alt"></i> {{ job.nation.name }}</p>
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
-                <div class="item-quantity d-flex justify-content-between">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương">Chi phí: <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</span></p>
+                <div class="item-price d-flex justify-content-between">
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="chi phí"><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                 </div>
             </div>
             <div class="item-options text-center mt-1" >
@@ -84,6 +84,9 @@ export default {
     object-fit: scale-down;
     height: 85px; 
     width: 85px;
+}
+.item-price .title {
+    font-size: 14px;
 }
 @media(max-width: 768px) {
     .item-vip-a{

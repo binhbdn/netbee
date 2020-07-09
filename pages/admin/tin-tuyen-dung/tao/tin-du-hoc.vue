@@ -248,7 +248,7 @@
                                                                 <label for="firstName3">
                                                                     Thời gian thanh toán phí
                                                                 </label>
-                                                                <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" 
+                                                                <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :preselect-first="true"
                                                                     :allow-empty="false" :show-labels="false" placeholder="Thời gian thanh toán phí" :disabled="!checked"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -462,7 +462,7 @@ export default {
                 date_start: '',
                 date_test: '',
                 expected_date: '',
-                time_bonus: {id: 0, name: ''},
+                time_bonus: {id: 1, name: 'Ngay sau khi bay'},
                 bonus: null,
                 highlight_job: 1,
                 time_contract: 3

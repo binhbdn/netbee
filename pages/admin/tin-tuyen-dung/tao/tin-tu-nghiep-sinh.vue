@@ -263,7 +263,7 @@
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }" >
                                                                 <div class="form-group">
                                                                     <label for="firstName3">Thời gian thanh toán phí</label>
-                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" 
+                                                                    <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :preselect-first="true"
                                                                         :show-labels="false" placeholder="Thời gian thanh toán phí" :disabled="!checked"></multiselect>
                                                                     <span style="color: red">{{ errors[0] }}</span>
                                                                 </div>
@@ -473,8 +473,8 @@ export default {
                 request: '',
                 cv_content: '',
                 benefit: '',
-                age_start: null,
-                age_late: null,
+                age_start: '18',
+                age_late: '35',
                 quantity:'',
                 salary_start: '',
                 salary_end: '',
@@ -483,7 +483,7 @@ export default {
                 date_start: '',
                 date_test: '',
                 expected_date: '',
-                time_bonus: {id: 0, name: ''},
+                time_bonus: {id: 1, name: 'Ngay sau khi bay'},
                 bonus: null,
                 highlight_job: 1,
                 visa: {id: null, profession: ''},
@@ -776,5 +776,8 @@ display: block;
 }
 .wizard-icon-circle:focus {
     outline: none;
+}
+.form-group label::after {
+    content: ":";
 }
 </style>
