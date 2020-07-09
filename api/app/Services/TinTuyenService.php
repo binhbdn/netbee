@@ -134,35 +134,35 @@ class TinTuyenService extends BaseService {
             'title' => 'required',
             // 'address' => 'required',
             'nation_id' => 'required',
-            'expiration_date' => 'required',
-            'description' => 'required',
+            // 'expiration_date' => 'required',
+            // 'description' => 'required',
             'request' => 'required',
-            'cv_content' => 'required',
+            // 'cv_content' => 'required',
             'benefit' => 'required',
             'age_start' => 'required',
             'age_late' => 'required',
             'quantity' => 'required',
-            'subsidy' => 'required',
+            // 'subsidy' => 'required',
             'currency' => "required",
-            'date_start' => 'required',
-            'date_test' => 'required',
-            'expected_date' => 'required',
+            // 'date_start' => 'required',
+            // 'date_test' => 'required',
+            // 'expected_date' => 'required',
             'salary_start' => 'required',
             'salary_end' => 'required',
-            'time_contract' => 'required',
+            // 'time_contract' => 'required',
         ];
         $messages = [
             'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
         ];
 
         if ($request->type == self::JOB_OVERSEAS_STUDENT) {
-            $rules['school_name'] = 'required';
+            // $rules['school_name'] = 'required';
         } else {
             $rules['id_visa'] = 'required';
             $rules['form_work'] = 'required';
         }
         if (!empty($request->id)){
-            $rules['address'] = 'required';
+            // $rules['address'] = 'required';
         }
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
