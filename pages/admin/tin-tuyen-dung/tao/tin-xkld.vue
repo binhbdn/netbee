@@ -12,6 +12,12 @@
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
                                                     <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Tên công ty</label>
+                                                            <input type="text" class="form-control" v-model="data.school_name" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="title">Tiêu đề</label>
@@ -28,12 +34,6 @@
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Tên công ty</label>
-                                                            <input type="text" class="form-control" v-model="data.school_name">
-                                                        </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
@@ -463,17 +463,16 @@ export default {
                 date_start: '',
                 date_test: '',
                 expected_date: '',
-                time_bonus: {id: 0, name: ''},
+                time_bonus: {id: 1, name: 'Ngay sau khi bay'},
                 bonus: null,
                 highlight_job: 1,
                 visa: {id: null, profession: ''},
                 form_work: {id: null, name: ''},
-                school_name: '',
+                school_name: this.$auth.user.name,
                 time_contract: 3
             },
-            checked: false,
+            checked: true,
             guarantee: [
-                {id: 1, name: 'Ngay sau khi bay'},
                 {id: 2, name: 'Sau khi bay 30 ngày'},
                 {id: 3, name: 'Sau khi bay 60 ngày'}
             ],
