@@ -12,6 +12,15 @@
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
                                                     <div class="col-12">
+                                                        <ValidationProvider v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Tên công ty</label>
+                                                                <input type="text" class="form-control" v-model="data.school_name" readonly>
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-12">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="title">Tiêu đề</label>
@@ -25,15 +34,6 @@
                                                             <div class="form-group">
                                                                 <label for="firstName3">Đăng hộ</label>
                                                                 <multiselect :options="companies" v-model="data.company" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn công ty"></multiselect>
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <ValidationProvider v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Tên công ty</label>
-                                                                <input type="text" class="form-control" v-model="data.school_name">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -488,7 +488,7 @@ export default {
                 highlight_job: 1,
                 visa: {id: null, profession: ''},
                 form_work: {id: null, name: ''},
-                school_name: '',
+                school_name: this.$auth.user.name,
                 time_contract: 3
             },
             checked: true,
