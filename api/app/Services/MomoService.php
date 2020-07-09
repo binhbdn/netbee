@@ -4,6 +4,8 @@ namespace App\Services;
 use App\Models\NbDiscountCode;
 use App\Models\NbHistoryTransaction;
 use App\Models\NbJoblist;
+use App\User;
+use App\Models\NbCompanyInfo;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -13,15 +15,21 @@ class MomoService extends BaseService {
     protected $nbDiscountCode;
     protected $nbJoblist;
     protected $nbHistoryTransaction;
+    protected $user;
+    protected $nbCompanyInfo;
 
     public function __construct(
         NbDiscountCode $nbDiscountCode,
         NbJoblist $nbJoblist,
-        NbHistoryTransaction $nbHistoryTransaction
+        NbHistoryTransaction $nbHistoryTransaction,
+        User $user,
+        NbCompanyInfo $nbCompanyInfo
     ) {
         $this->nbDiscountCode = $nbDiscountCode;
         $this->nbJoblist = $nbJoblist;
         $this->nbHistoryTransaction = $nbHistoryTransaction;
+        $this->user = $user;
+        $this->nbCompanyInfo = $nbCompanyInfo;
     }
 
     public function getDiscountCodeByCode($code)
@@ -179,6 +187,111 @@ class MomoService extends BaseService {
                 'id_user_payment' => $requestId,
                 'content' => 'Thanh toán gói đăng tin cho id việc: '.$jobId,
                 'using_discount' => $request->orderInfo,
+                'price' => $jsonResult['amount'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
+            $msg = [];
+        }else{
+            $msg = $jsonResult;
+        }
+        return response()->json($msg);
+    }
+
+    public function pricing_verify($request, $type)
+    {
+        $endPoint = "https://payment.momo.vn/gw_payment/transactionProcessor";
+        $secretKey = "TR5EkmDsdECTZNms1SkoF2Ix4sWNw52u";
+
+        $partnerCode = "MOMOOMRU20191003";
+        $accessKey = "ndQI1iiCLFR3EhIZ";
+        $orderInfo = Auth::user()->id."";
+        $returnUrl = "https://netbee.vn/".$request->url;
+        $notifyUrl = "https://netbee.vn/api/pricing_momo_verify_bank_checking";
+        $orderId = time()."";
+        $requestId = '0';
+        $amount = "50000";
+        $requestType = $type == self::BANK ? 'payWithMoMoATM' : "captureMoMoWallet";
+        $extraData = (string)$jobId;
+        if ($type == self::BANK) {
+            $bank = $request->bank;
+        }
+
+        //before sign HMAC SHA256 signature
+        $rawHash = "partnerCode=".$partnerCode.
+            "&accessKey=".$accessKey.
+            "&requestId=".$requestId.
+            "&amount=".$amount.
+            "&orderId=".$orderId.
+            "&orderInfo=".$orderInfo.
+            "&returnUrl=".$returnUrl.
+            "&notifyUrl=".$notifyUrl.
+            "&extraData=".$extraData;
+        if ($type == self::BANK) {
+            $rawHash .= "&bankCode=".$bank;
+        }
+
+
+        // echo "Raw signature: ".$rawHash."\n";
+        $signature = hash_hmac("sha256", $rawHash, $secretKey);
+        $data =  [
+            'partnerCode' => $partnerCode,
+            'accessKey' => $accessKey,
+            'requestId' => $requestId,
+            'amount' => $amount,
+            'orderId' => $orderId,
+            'orderInfo' => $orderInfo,
+            'returnUrl' => $returnUrl,
+            'notifyUrl' => $notifyUrl,
+            'extraData' => $extraData,
+            'requestType' => $requestType,
+            'signature' => $signature
+        ];
+        if ($type == self::BANK) {
+            $data['bankCode'] = $bank;
+        }
+
+        $result = $this->execRequest($endPoint, json_encode($data));
+        $jsonResult = json_decode($result,true);
+        return [
+            'status' => 200,
+            'message' => 'Thanh toán thành công',
+            'data' => $jsonResult['payUrl']
+        ];
+    }
+
+    public function checkPricingVerify($request)
+    {
+        $endPoint = "https://payment.momo.vn/gw_payment/transactionProcessor";
+        $partnerCode = $request->partnerCode;
+        $accessKey = $request->accessKey;
+        $orderId = $request->orderId;
+        $orderInfo = $request->orderInfo;
+        $secretKey = "TR5EkmDsdECTZNms1SkoF2Ix4sWNw52u";
+        $requestId = $request->requestId;
+        $requestType = "transactionStatus";
+        $rawHash = "partnerCode=".$partnerCode.
+            "&accessKey=".$accessKey.
+            "&requestId=".$requestId.
+            "&orderId=".$orderId.
+            "&requestType=".$requestType;
+        $signature = hash_hmac("sha256", $rawHash, $secretKey);
+        $data =  array('partnerCode' => $partnerCode,
+            'accessKey' => $accessKey,
+            'requestId' => $requestId,
+            'orderId' => $orderId,
+            'requestType' => $requestType,
+            'signature' => $signature);
+        $result = $this->execRequest($endPoint, json_encode($data));
+        $jsonResult = json_decode($result,true);  // decode json
+
+        if($jsonResult['errorCode'] == 0 ){
+            $jobId = $request->extraData;
+            $this->nbCompanyInfo->where('company_id', $orderInfo)->update(['company_verify' => self::ACTIVE]);
+            $this->nbHistoryTransaction->insert([
+                'id_user_payment' => $requestId,
+                'content' => 'Thanh toán gói xác thực nhà tuyển dụng '.$orderInfo,
+                'using_discount' => $requestId,
                 'price' => $jsonResult['amount'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

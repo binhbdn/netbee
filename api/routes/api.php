@@ -46,6 +46,7 @@ Route::namespace('API')->group(function () {
   Route::get('getCompanyHot', 'Auth\UserController@getCompanyHot');
   Route::get('getCompanyNew', 'Auth\UserController@getCompanyNew');
   Route::post('pricing_momo_bank_checking', 'MomoController@pricing_momo_bank_checking');
+  Route::post('pricing_momo_verify_bank_checking', 'MomoController@pricing_momo_verify_bank_checking');
   Route::get('checkDiscountCode', 'MomoController@checkDiscountCode');
   //tìm kiếm
   Route::get('searchCompany', 'TimKiemController@searchCompany');
@@ -81,6 +82,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::get('logout', 'Auth\UserController@logout');
       Route::post('pricing_momo_bank', 'MomoController@pricing_momo_bank');
       Route::post('pricing_momo', 'MomoController@pricing_momo');
+      Route::post('pricing_momo_verify', 'MomoController@pricing_momo_verify');
       //export excel
 //      Route::get('usersExport','Auth\UserController@export');
       Route::prefix('user/{userRole}')->group(function () {
