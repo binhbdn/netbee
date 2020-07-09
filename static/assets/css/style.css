@@ -215,7 +215,9 @@ select:focus {
     line-height: 1;
     font-size: 1.51rem;
 }
-
+span.stepTitle,i.wizard-icon {
+    color: #464646;
+}
 
 /* @media (min-width: 850px) {
     .modal-dialog {
