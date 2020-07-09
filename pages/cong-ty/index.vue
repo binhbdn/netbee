@@ -220,6 +220,7 @@ img.img-fluid {
     width: 423px;
     height: 88px;
     margin-bottom: 14px;
+    object-fit: contain;
 }
 .card-title {
   margin-bottom: 6px !important;

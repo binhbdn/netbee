@@ -356,10 +356,10 @@
                                     <div>
                                       <div class="row">
                                         <div class="col-lg-4" >
-                                          <img
-                                            v-lazy="`/uploads/users/avatars/${userDetail.avatar}`"
-                                            style="object-fit: cover; width: 226px; height: 226px;"
-                                          />
+                                          <label for="account-upload"><i class="fa fa-pencil is-show-edit" ></i></label>
+                                          <input type="file" id="account-upload" @change="onInputChange" hidden>
+                                            <img v-if="images.length == 0" v-lazy="`/uploads/users/avatars/${userDetail.avatar}`" style="object-fit: cover; width: 226px; height: 226px;" >
+                                            <img v-else v-lazy="images[0]" style="object-fit: cover; width: 226px; height: 226px;" >
                                         </div>
                                         <div class="col-lg-8">
                                             <div class="row modal-item">
@@ -449,7 +449,7 @@
                                             </div>
                                             <div class="row modal-item has-update">
                                                 <div class="col-sm-4 col-lg-4">
-                                                    <label>Ngày sinh</label>
+                                                    <label>{{ userDetail.role == 2 ? 'Ngày thành lập' : 'Ngày sinh' }}</label>
                                                 </div>
                                                 <div class="col-sm-8 col-lg-8 d-flex">
                                                     <div class="d-flex" v-if="elementUpdate.birth_of_date">
@@ -775,6 +775,7 @@ export default {
   },
   data() {
     return {
+      images: [],
       elementUpdate: this.defaultValue(),
       userDetail: [],
       userRole: 0,
@@ -821,6 +822,38 @@ export default {
       $('.title-page').text(titles[+role - 1]);
   },
   methods: {
+    //update avatar
+    onInputChange(e){
+      if(this.images.length > 0){
+          this.$delete(this.images, 0)
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      this.isDragging = false;
+      const files = e.target.files;
+      console.log(files)
+      if(files.length >0)
+        this.addImage(files[0]);
+    },
+    addImage(file){
+      if( !file.type.match('image.*') ){
+          this.$swal(
+                  'Lỗi',
+                  'File không đúng định dạng',
+                  'error'
+              )
+          return;
+      }
+      this.userDetail.avatar = file;
+
+      const img = new Image();
+      const reader = new FileReader();
+
+      reader.onload = (e) => this.images.push(e.target.result);
+
+      reader.readAsDataURL(file);
+      this.actionUpdate();
+    },
     async createUser() {
       const isValid = await this.$refs.observer.validate();
       if (isValid) {
@@ -863,12 +896,22 @@ export default {
     actionUpdate() {
       $('#overlay_update').show();
       let className = 'text-danger';
+      var form = new FormData();
+      if(this.userDetail.avatar != null) {
+        form.append('avatar' , this.userDetail.avatar)
+      }
+      form.append('name' , this.userDetail.name)
+      form.append('id' , this.userDetail.id)
+      form.append('phone' , this.userDetail.phone)
+      form.append('birth_of_date' , this.userDetail.birth_of_date)
+      form.append('address_detail' , this.userDetail.address_detail)
       this.$axios
-        .$post("user/" + this.userRole + "/update", this.userDetail)
+        .$post("user/" + this.userRole + "/update", form)
         .then(response => {
           if (response.status == 200) {
             this.elementUpdate = this.defaultValue();
             className = 'text-success';
+            this.userDetail.avatar = null;
           }
           $('#message_update').attr('class', className).show().text(response.message).fadeOut(4500);
           $('#overlay_update').hide();

@@ -136,6 +136,19 @@ export default {
                             window.location.href = "/admin/thong-tin-tai-khoan"
                         }
                     })
+                }else {
+                    if(this.$auth.user.status == 0){
+                        this.$swal({
+                            title: 'Bạn cần phải vào mail kích hoạt tài khoản để đăng tin',
+                            icon: 'warning',
+                            confirmButtonText: 'OK',
+                            allowOutsideClick: false
+                        }).then(async (result) => {
+                        if(result.value) {
+                            window.location.href = "/admin"
+                        }
+                    })
+                    }
                 }
             }catch(error) {
                 this.$swal(

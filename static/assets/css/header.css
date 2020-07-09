@@ -28,7 +28,9 @@ a.navbar-brandd {
 .navbar-brandd div{
   color: black!important;
 }
-
+.ftco-navbar-light .navbar-nav>.nav-item>a {
+  border-bottom: 4px solid #ffffff;
+}
 .ftco-navbar-light .navbar-nav>.nav-item.active>a {
   /* color: #000 !important; */
   border-bottom: 4px solid #ffb701;

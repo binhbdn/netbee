@@ -469,7 +469,6 @@ export default {
             },
             checked: true,
             guarantee: [
-                {id: 1, name: 'Ngay sau khi bay'},
                 {id: 2, name: 'Sau khi bay 30 ngày'},
                 {id: 3, name: 'Sau khi bay 60 ngày'}
             ],

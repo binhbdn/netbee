@@ -100,7 +100,11 @@ module.exports = {
         hostname: 'https://netbee.vn',
         gzip: true,
         exclude: [
-            '/admin/**'
+            '/admin/**',
+            '/admin',
+            '/callback',
+            '/callbackgg',
+            '/dang-ky/xac-thuc',
         ],
         routes: async() => {
             const tintuc = await axios.get('https://netbee.vn/api/getTinTucSiteMap')

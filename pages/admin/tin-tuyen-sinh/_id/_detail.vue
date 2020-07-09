@@ -15,8 +15,8 @@
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="company-job-title">
-                                            <h1 class="">{{ tintuyendung.title }}</h1>
-                                            <a :href="`/cong-ty/${tintuyendung.nb_company.username}`"><h4 class=" text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
+                                            <h1 class="" style="font-size: 20px">{{ tintuyendung.title }}</h1>
+                                            <a :href="`/cong-ty/${tintuyendung.nb_company.username}`"><h4 class=" text-uppercase" style="font-size: 17px"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
                                             <p><span class="font-weight-600">Loại tin: </span><span class="badge border-netbee badge-md">{{ tintuyendung.type == 3 ? 'Tu nghiệp sinh' : tintuyendung.type == 2 ? 'Du học sinh' : 'Xuất khẩu lao động' }}</span></p>
                                             <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuyendung.nation.name }}</p>
                                             <p><span class="font-weight-600" v-if="tintuyendung.type != 2">Mức lương: </span> <span class="font-weight-600" v-if="tintuyendung.type == 2">Học phí: </span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
@@ -448,8 +448,8 @@
                             </div>
                         </div>
                         <div class="text-right mt-1">
-                            <button type="button" class="btn btn-warning" @click="resetData">Reset</button>
-                            <button type="button" class="btn btn-warning" @click="applyJob">Ứng tuyển</button>
+                            <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="resetData">Reset</button>
+                            <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="applyJob">Ứng tuyển</button>
                         </div>
                     </div>
                 </div>
@@ -904,6 +904,9 @@ export default {
 }
 .modal .modal-header .close span {
     color: #000;
+}
+.company-job-title p{
+    line-height: 1rem;
 }
 @media only screen and (max-width: 600px) {
     #social {

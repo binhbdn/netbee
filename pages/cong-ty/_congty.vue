@@ -9,20 +9,22 @@
               <div class="card-content collapse show">
                 <div class="card-body" v-if="detailCompany != null">
                     <div class="row p-1">
-                        <div class="col-lg-2 d-flex align-items-center">
-                            <div class="avatar-company">
-                                <img v-lazy="`/uploads/users/avatars/${detailCompany.avatar}`" :alt="`${detailCompany.avatar}`" width="100%">
-                            </div>
+                        <div class="col-lg-2 d-flex align-items-center avt-company">
+                            <img v-lazy="`/uploads/users/avatars/${detailCompany.avatar}`" :alt="`${detailCompany.avatar}`" width="100%">
                         </div>
-                        <div class="col-lg-8">
+                        <div class="col-lg-8 d-flex align-items-center">
                             <div class="company-job-title">
-                                <h2 class="font-weight-bold text-uppercase"><span style="font-size: 16px;" class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${detailCompany.name}`"> {{ detailCompany.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h2>
+                                <h2 class="font-weight-bold text-uppercase"><span style="font-size: 16px;" class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${detailCompany.name}`"> {{ detailCompany.name }} </span></h2>
                                 <p><span class="font-weight-400"><i class="fad fa-map-marked-alt"></i> <span class="font-weight-600">Địa chỉ:</span> {{ detailCompany.address_detail ? detailCompany.address_detail: 'Đang cập nhật' }}</span></p>
-                                <p><span class="font-weight-400"><i class="fad fa-phone-office"></i> <span class="font-weight-600">Hotline:</span> {{ detailCompany.nb_company.company_hotline ? detailCompany.nb_company.company_hotline: 'Đang cập nhật' }}</span></p>
+                                <!--<p><span class="font-weight-400"><i class="fad fa-phone-office"></i> <span class="font-weight-600">Hotline:</span> {{ detailCompany.nb_company.company_hotline ? detailCompany.nb_company.company_hotline: 'Đang cập nhật' }}</span></p>
                                 <p><span class="font-weight-400"><i class="fad fa-link"></i> <span class="font-weight-600">Website:</span> {{ detailCompany.nb_company.company_link ? detailCompany.nb_company.company_link: 'Đang cập nhật' }}</span></p>
-                                <p><span class="font-weight-400"><i class="fad fa-link"></i> <span class="font-weight-600">Facebook:</span> {{ detailCompany.nb_company.company_link_fb ? detailCompany.nb_company.company_link_fb: 'Đang cập nhật' }}</span></p>
+                                <p><span class="font-weight-400"><i class="fad fa-link"></i> <span class="font-weight-600">Facebook:</span> {{ detailCompany.nb_company.company_link_fb ? detailCompany.nb_company.company_link_fb: 'Đang cập nhật' }}</span></p> -->
                                 <p><span class="font-weight-400"><i class="fad fa-calendar-minus"></i> <span class="font-weight-600">Ngày thành lập:</span> {{ congty.birth_of_date ? ConvertDate(congty.birth_of_date): 'Đang cập nhật' }}</span></p>
                             </div>
+                        </div>
+                        <div class="col-lg-2 d-flex align-items-center verify-img">
+                            <img v-if="detailCompany.nb_company.company_verify" v-lazy="`/assets/img/verify.png`" data-toggle="tooltip" data-placement="top" :title="'Đã xác thực'">
+                            <img v-else v-lazy="`/assets/img/nonverify.png`"  data-toggle="tooltip" data-placement="top" :title="'Xác thực ngay'" @click="verifyModal()">
                         </div>
                         <div class="col-lg-2 ">
                             <div class="count-job" style="margin-top: 6px;">
@@ -30,13 +32,13 @@
                                 <h2>Việc làm</h2>
                             </div>
                             <div class="count-job" style="margin-top: 18px;">
-                                <a v-if="!$auth.loggedIn"  data-toggle="modal" data-target="#loginModal" style="text-align: center;">
-                                    <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p>
-                                    <p>Theo dõi</p>
+                                <a v-if="!$auth.loggedIn"  data-toggle="modal" data-target="#loginModal" style="text-align: center;padding: 10px;">
+                                    <!-- <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p> -->
+                                    Theo dõi
                                 </a>
-                                <a v-else @click="followCompany()" style="text-align: center;">
-                                    <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p>
-                                    <p>{{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}}</p>
+                                <a v-else @click="followCompany()" style="text-align: center;padding: 10px;">
+                                    <!-- <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p> -->
+                                    {{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}}
                                 </a>
                             </div>
                         </div>
@@ -356,6 +358,116 @@
             </div>
         </div>
         <!-- end Modal Feedback -->
+        <!-- modal thanh toán xác thực -->
+        <div class="modal fade" id="verify" tabindex="-1" role="dialog" aria-labelledby="verify" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <section class="todo-form">
+                        <form id="form-edit-todo" class="todo-input">
+                            <div class="modal-header  bg-netbee white">
+                                <h5 class="modal-title" id="verify">Xác thực tài khoản tuyển dụng - Gói 50,000đ</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" >
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="MOMO">
+                                            <input type="radio" id="MOMO" @click="payWithMomo()">
+                                            <img src="/assets/img/bank/logo-momo.jfif" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="ABBank">
+                                            <input type="radio"  id="ABB" value="ABB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_ABBank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="ACB">
+                                            <input type="radio" id="ACB" value="ACB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_ACB_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="AgriBank">
+                                            <input type="radio" id="VARB" value="VARB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Agribank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="BacABank">
+                                            <input type="radio" id="NASB" value="NASB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_BacaBank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Techcombank">
+                                            <input type="radio" id="TCB" value="TCB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Techcombank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="BIDV">
+                                            <input type="radio" id="BIDV" value="BIDV" v-model="bank">
+                                            <img src="/assets/img/bank/ic_BIDV_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="DongABank">
+                                            <input type="radio" id="DAB" value="DAB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_dongabank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Eximbank">
+                                            <input type="radio" id="EIB" value="EIB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Eximbank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="HDBank">
+                                            <input type="radio" id="HDB" value="HDB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_HDBank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="LienVietPostBank">
+                                            <input type="radio" id="LPB" value="LPB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_Lienvietpost_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Maritime Bank">
+                                            <input type="radio" id="MSB" value="MSB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_maritimeBank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="MBBank">
+                                            <input type="radio" id="MB" value="MB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_MBBank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="OceanBank">
+                                            <input type="radio" id="OJB" value="OJB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_oceanbank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Sacombank">
+                                            <input type="radio" id="STB" value="STB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Sacombank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="VIB Bank">
+                                            <input type="radio" id="VIB" value="VIB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_VIBank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="VietcomBank">
+                                            <input type="radio" id="VCB" value="VCB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_Vietcombank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Vietinbank">
+                                            <input type="radio" id="CTG" value="CTG" v-model="bank">
+                                            <img src="/assets/img/bank/ic_Viettinban_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="VPBank">
+                                            <input type="radio" id="VPB" value="VPB" v-model="bank">
+                                            <img src="/assets/img/bank/Ic_VPbank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                        <div class="col-3 d-flex justify-content-center m-b-10" data-toggle="tooltip" data-placement="top" title="Seabank">
+                                            <input type="radio" id="SEAB" value="SEAB" v-model="bank">
+                                            <img src="/assets/img/bank/ic_seabank_4@2x.png" style="width: 60px;height: 60px">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <fieldset class="form-group position-relative has-icon-left mb-0">
+                                    <button type="button" @click="pay()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
+                                        <span class="d-none d-lg-block">Thanh toán</span>
+                                    </button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -441,7 +553,8 @@ export default {
                 content: ''
             },
             isFollow: false,
-            followers: 0
+            followers: 0,
+            bank: '',
         }
     },
     async asyncData (context) {
@@ -466,6 +579,62 @@ export default {
         }        
     },
     methods: {
+        payWithMomo() {
+            this.$axios.$post('/pricing_momo_verify',{url: this.$route.fullPath}).then((response)=>{
+                if(response.status == 200) {
+                    if(response.data != null) {
+                        window.location.href = response.data;
+                    }else {
+                        this.$swal(
+                            'Thành công!',
+                            'Thanh toán thành công',
+                            'success'
+                        )
+                    }
+                }else {
+                    this.$swal(
+                        'Lỗi!',
+                        response.message,
+                        'error'
+                    )
+                }
+            });
+        },
+        pay() {
+            if(this.bank) {
+                this.$axios.$post('/pricing_momo_bank',{code: this.discount,idJob: this.selectPay.id,bank: this.bank}).then((response)=>{
+                    if(response.status == 200) {
+                        if(response.data != null) {
+                            window.location.href = response.data;
+                        }else {
+                            this.$swal(
+                                'Thành công!',
+                                'Thanh toán thành công',
+                                'success'
+                            )
+                        }
+                    }else {
+                        this.$swal(
+                            'Lỗi!',
+                            response.message,
+                            'error'
+                        )
+                    }
+                });
+            }else {
+                this.$swal(
+                    'Lỗi!',
+                    'Bạn chưa chọn ngân hàng',
+                    'error'
+                )
+            }
+
+        },
+        verifyModal() {
+            if(this.$auth.loggedIn && this.$auth.user.id == this.detailCompany.id) {
+                $('#verify').modal(); 
+            }
+        },
         saveJob() {
             this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuc.id}).then((response)=>{
                 if(response.status == 200) {
@@ -570,7 +739,22 @@ export default {
             this.formFeedback.rating= rating;
         }
     },      
-    mounted() {        
+    mounted() {
+        if(typeof this.$route.query.errorCode !== 'undefined' ) {
+            if(this.$route.query.errorCode == 0) {
+                this.$swal(
+                    'Thành công!',
+                    'Thanh toán thành công',
+                    'success'
+                )
+            }else {
+                this.$swal(
+                    'Thất bại!',
+                    'Thanh toán thất bại',
+                    'error'
+                ) 
+            }
+        }
         this.$axios.$get(`getTinTuyenDungForCompany/${this.$route.params.congty}?limit=5`).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
             this.countJob = response.data.count
@@ -682,5 +866,49 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+[type=radio] { 
+  position: absolute;
+  opacity: 0;
+  width: 100px;
+  height: 100px;
+}
+
+/* IMAGE STYLES */
+[type=radio] + img {
+  cursor: pointer;
+}
+
+/* CHECKED STYLES */
+[type=radio]:checked + img {
+  background: #ffb701;
+}
+.modal .modal-footer {
+    border-color: #ffb701 !important;
+}
+.avt-company {
+    position: absolute;
+    top: -100px;
+    background: #fff;
+    border: 1px solid #c1c1c1;
+    width: 150px;
+    height: 150px;
+}
+.verify-img img{
+    width: 100%;
+}
+@media screen and (max-width: 480px) {
+    .avt-company {
+        position: unset;
+    }
+    .verify-img {
+        position: absolute;
+        justify-content: flex-end;
+        right: 10px;
+        align-items: center;
+    }
+    .verify-img img {
+        width: 100px;
+    }
 }
 </style>

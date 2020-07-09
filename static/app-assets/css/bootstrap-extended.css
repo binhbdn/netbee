@@ -4071,8 +4071,8 @@ _:-ms-lang(x),
 
 .modal .modal-header[class*='bg-'] {
     color: #FFFFFF;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 .modal .modal-header[class*='bg-'] .modal-title {

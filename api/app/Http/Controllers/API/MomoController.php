@@ -45,5 +45,16 @@ class MomoController extends Controller
         $response = $this->momoService->checkPricing($request);
         return response()->json($response);
     }
+    public function pricing_momo_verify_bank_checking(Request $request)
+    {
+        $response = $this->momoService->checkPricingVerify($request);
+        return response()->json($response);
+    }
+
+    public function pricing_momo_verify(Request $request)
+    {
+        $response = $this->momoService->pricing_verify($request, MomoService::DEFAULT);
+        return response()->json($response);
+    }
 
 }

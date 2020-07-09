@@ -185,7 +185,29 @@ class UserController extends Controller
                 'data' => null
             ]);
         }
-        $update = $this->userService->update($request->all(), $request->id);
+        if($request->file('avatar')) {
+            try {
+                $file = $request->file('avatar');
+                $fileinfo = pathinfo($file->getClientOriginalName());
+                $image = time().'.'.seoname($fileinfo['filename']).'.'.strtoupper($file->getClientOriginalExtension());
+                $uploadPath = '/home/netbee.vn/html/static/uploads/users/avatars';
+                //remove file old
+                if(Auth::user()->avatar != NULL && file_exists($uploadPath.Auth::user()->avatar))
+                {
+                    unlink($uploadPath.Auth::user()->avatar);
+                }
+                $file->move($uploadPath, $image);
+                $update = $this->userService->update(['avatar' => $image], $request->id);
+            } catch (\Exception $e) {
+                return [
+                    'status'=> 400,
+                    'message' => 'Có lỗi xảy ra',
+                    'data' => $e->getMessage()
+                ];
+            }
+        }else {
+            $update = $this->userService->update($request->all(), $request->id);
+        }
         if ($update) {
             return response()->json([
                 'status'=> 200,
