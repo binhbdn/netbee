@@ -130,7 +130,6 @@ export default {
   methods: {
     changePassword(){
         const isValid = this.$refs.observer.validate();
-        console.log(this.password, 'asdasd11');
         if(isValid){
             this.$axios.post('changePasswordForgot', {email: this.$route.query.email, password: this.password}).then(response => {
             if(response.data.status == 200){
