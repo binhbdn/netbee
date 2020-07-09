@@ -1,5 +1,5 @@
 <template>
-    <div class="ecommerce-card border-job-item make-it-sl" style="height:140px;margin-bottom: 15px;border-radius: 3px;background: #fff" :class="job.highlight_job ? 'highlight' : ''">
+    <div class="ecommerce-card border-job-item make-it-sl" style="height:105px;margin-bottom: 15px;border-radius: 3px;background: #fff" :class="job.highlight_job ? 'highlight' : ''">
         <!-- <div class="card-content">
             <div class="remove-border-right" style="width: 60vh;padding: 5px 25px;">
                 <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">{{ job.title }}</a>
@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div class="remove-border-right" style="width: 550px;">
-                <div class="remove-border-right" style="padding: 20px 0 0 0;width: 550px;">
+                <div class="remove-border-right" style="padding: 5px 0 0 0;width: 550px;">
                     <a class="item-vip-a" :href="`/admin/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 </div>
                 <div class="item-quantity row" style="height: 21px">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <div class="item-options text-center" style="padding: 2rem">
+            <div class="item-options text-center" style="padding: 1rem">
                 <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper mt-1">
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
