@@ -901,6 +901,7 @@ export default {
         form.append('avatar' , this.userDetail.avatar)
       }
       form.append('name' , this.userDetail.name)
+      form.append('id' , this.userDetail.id)
       form.append('phone' , this.userDetail.phone)
       form.append('birth_of_date' , this.userDetail.birth_of_date)
       form.append('address_detail' , this.userDetail.address_detail)
