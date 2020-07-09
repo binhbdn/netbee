@@ -217,12 +217,9 @@ class TinTuyenService extends BaseService {
     {
         $response = [
             'title' => $request->title,
-            'workplace' => $request->address,
             'nation_id' => $request->nation_id,
             'expiration_date' => $request->expiration_date,
-            'description' => $request->description,
             'request' => $request->get('request'),
-            'cv_content' => $request->cv_content,
             'benefit' => $request->benefit,
             'age_start' => $request->age_start,
             'age_late' => $request->age_late,
@@ -232,14 +229,10 @@ class TinTuyenService extends BaseService {
             'subsidy' => $request->subsidy,
             'currency' => $request->currency,
             'date_start' => $request->date_start,
-            'date_test' => $request->date_test,
-            'expected_date' => $request->expected_date,
             'time_bonus' => $request->time_bonus,
-            'bonus' => $request->bonus,
             'highlight_job' => $request->highlight_job,
             'type' => $request->type,
             'id_created' => $request->has('id_created') ? $request->id_created : Auth::user()->id,
-            'school_name' => $request->school_name,
             'status' => self::INACTIVE,
             'time_contract' => $request->time_contract,
         ];
@@ -247,6 +240,28 @@ class TinTuyenService extends BaseService {
         if ($request->type != self::JOB_OVERSEAS_STUDENT) {
             $response['work_form'] = $request->work_form;
             $response['id_visa'] = $request->id_visa;
+        }
+
+        if($request->description != 'null'){
+            $response['description'] = $request->description;
+        }
+        if($request->date_test != 'null'){
+            $response['date_test'] = $request->date_test;
+        }
+        if($request->expected_date != 'null'){
+            $response['expected_date'] = $request->expected_date;
+        }
+        if($request->address != 'null'){
+            $response['workplace'] = $request->address;
+        }
+        if($request->cv_content != 'null'){
+            $response['cv_content'] = $request->cv_content;
+        }
+        if($request->bonus != 'null'){
+            $response['bonus'] = $request->bonus;
+        }
+        if($request->school_name != 'null'){
+            $response['school_name'] = $request->school_name;
         }
 
         return $response;
@@ -430,8 +445,9 @@ class TinTuyenService extends BaseService {
             ->leftJoin('nb_applies', 'nb_applies.job_id', '=', 'nb_joblists.id')
             ->leftJoin('nb_job_views','nb_job_views.id_job','=','nb_joblists.id')
             ->leftJoin('users','users.id','=','nb_joblists.id_created')
+            ->leftJoin('nb_companies_info','nb_companies_info.company_id','=','nb_joblists.id_created')
             ->orderBy('nb_joblists.id', 'DESC')
-            ->select('nb_joblists.*','users.name as namecompany',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
+            ->select('nb_joblists.*','users.name as namecompany','username',DB::raw('count(nb_job_views.id_job) as viewers, count(nb_applies.job_id) as applyers'))
             ->groupBy('nb_joblists.id');
     }
 
