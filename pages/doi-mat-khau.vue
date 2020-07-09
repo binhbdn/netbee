@@ -10,10 +10,7 @@
             <h4>Chọn mật khẩu mới</h4>
             </div>
             <hr>
-            <p
-                    class="px-2 mb-2"
-                  >
-                  Tạo mật khẩu mới có tối thiểu 6 ký tự. Mật khẩu mạnh là mật khẩu được kết hợp từ các ký tự, số và dấu câu.
+            <p class="px-2 mb-2">Tạo mật khẩu mới có tối thiểu 8 ký tự. Mật khẩu mạnh là mật khẩu được kết hợp từ các ký tự, số và dấu câu.</p>
             <div class="row m-0">
               <div class="col-lg-8 d-lg-block d-none text-left align-self-center">
                 <div class="card rounded-0 mb-0" style="margin-bottom: 8px">
@@ -35,7 +32,7 @@
                             :type="show ? 'text' : 'password'"
                             class="form-control" style="margin-top: 5px"
                             placeholder="Mật khẩu mới"
-                            v-model="passoword"
+                            v-model="password"
                           />
                           <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
@@ -45,7 +42,6 @@
                         </ValidationProvider>
                         </div>
                       </form>
-                      
                     </div>
                     </ValidationObserver>
                   </div>
@@ -97,13 +93,13 @@ extend("required", {
 
 // create custom error message for custom rule
 var errorMessage =
-  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
+  " phải chứa ít nhất 8 ký tự";
 // create custom rule
 extend("customPassword", {
-  message: field =>"Mật khẩu" + errorMessage,
+  message: field =>"Mật khẩu " + errorMessage,
   validate: value => {
     var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+    var mustContainTheseChars = /^(?=.{8,})/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
     if (containsRequiredChars && !containsForbiddenChars) {
@@ -114,7 +110,7 @@ extend("customPassword", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       } else {
         errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+          "phải chứa ít nhất 8 ký tự và không bao gồm ký tự đặc biệt.";
       }
       return false;
     }
@@ -134,6 +130,7 @@ export default {
   methods: {
     changePassword(){
         const isValid = this.$refs.observer.validate();
+        console.log(this.password, 'asdasd11');
         if(isValid){
             this.$axios.post('changePasswordForgot', {email: this.$route.query.email, password: this.password}).then(response => {
             if(response.data.status == 200){

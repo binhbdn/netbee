@@ -909,6 +909,13 @@ export default {
 .modal .modal-header .close span {
     color: #000;
 }
+.modal .form-group {
+    margin-bottom: 1rem;
+}
+.modal .form-control {
+    font-size: 14px;
+}
+
 @media only screen and (max-width: 600px) {
     #social {
         height: 45% !important;
