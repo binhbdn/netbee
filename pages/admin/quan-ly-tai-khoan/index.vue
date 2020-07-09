@@ -449,7 +449,7 @@
                                             </div>
                                             <div class="row modal-item has-update">
                                                 <div class="col-sm-4 col-lg-4">
-                                                    <label>Ngày sinh</label>
+                                                    <label>{{ userDetail.role == 2 ? 'Ngày thành lập' : 'Ngày sinh' }}</label>
                                                 </div>
                                                 <div class="col-sm-8 col-lg-8 d-flex">
                                                     <div class="d-flex" v-if="elementUpdate.birth_of_date">
