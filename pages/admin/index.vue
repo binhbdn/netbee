@@ -3,14 +3,14 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div v-if="$auth.user.role == 2" >
-            <div class="content-wrapper">
+            <div class="content-wrapper" style="padding-bottom: 0">
                 <div class="content-body">
                     <!-- Dashboard Ecommerce Starts -->
                     <section id="dashboard-ecommerce">
                         <div class="row">
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <a href="/admin/tin-tuyen-dung">
-                                    <div class="card" style="margin-bottom: 0px;">
+                                    <div class="card" style="margin-bottom: 15px;">
                                         <div class="card-header d-flex flex-column align-items-start pb-0">
                                             <div class="avatar bg-rgba-primary p-50 m-0">
                                                 <div class="avatar-content">
@@ -24,7 +24,7 @@
                                 </a>
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
-                                <div class="card" style="margin-bottom: 0px;">
+                                <div class="card" style="margin-bottom: 15px;">
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-success p-50 m-0">
                                             <div class="avatar-content">
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <a href="/admin/quan-ly-ung-tuyen">
-                                    <div class="card" style="margin-bottom: 0px;">
+                                    <div class="card" style="margin-bottom: 15px;">
                                         <div class="card-header d-flex flex-column align-items-start pb-0">
                                             <div class="avatar bg-rgba-danger p-50 m-0">
                                                 <div class="avatar-content">
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-lg-3 col-sm-6 col-12">
                                 <a href="/admin/calendar">
-                                    <div class="card" style="margin-bottom: 0px;">
+                                    <div class="card" style="margin-bottom: 15px;">
                                         <div class="card-header d-flex flex-column align-items-start pb-0">
                                             <div class="avatar bg-rgba-warning p-50 m-0">
                                                 <div class="avatar-content">

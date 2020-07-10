@@ -52,37 +52,42 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header col-12" style="padding-left:0px;padding-right: 15px;">
-                                    <form class="col-9" action="/admin/tin-tuyen-dung/tao" method="">
-                                        <button class="btn-add btn bg-netbee text-dark "><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
-                                    </form>
-                                    <div class="action-btns">
-                                        <div class="btn-dropdown ">
-                                            <div class="btn-group dropdown actions-dropodown">
-                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Sắp xếp
-                                                </button>
-                                                <div class="dropdown-menu" style="left: -25px!important;">
-                                                    <a class="dropdown-item" @click="sortAscendingID()"><i class="feather icon-trash-2"></i>ID tăng dần</a>
-                                                    <a class="dropdown-item" @click="sortDecreaseID()"><i class="feather icon-clipboard"></i>ID giảm dần</a>
+                                <div class="card-header col-12" style="padding-left:0px;padding-right: 0px;">
+                                    <div class="col-xl-8 col-lg-7 col-md-5 col-sm-4 col-12 btn-add">
+                                        <form action="/admin/tin-tuyen-dung/tao" method="" class="form-add">
+                                            <button class="btn-add btn bg-netbee text-dark mx-auto"><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
+                                        </form>
+                                    </div>
+                                    <div class="row col-xl-4 col-lg-5 col-md-7 col-sm-8 col-12 button-dropdown">
+                                        <div class="action-btns col-6">
+                                            <div class="btn-dropdown btn-dropdown-left" style="float: right">
+                                                <div class="btn-group dropdown actions-dropodown">
+                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Sắp xếp
+                                                    </button>
+                                                    <div class="dropdown-menu" style="left: -25px!important;">
+                                                        <a class="dropdown-item" @click="sortAscendingID()"><i class="feather icon-trash-2"></i>ID tăng dần</a>
+                                                        <a class="dropdown-item" @click="sortDecreaseID()"><i class="feather icon-clipboard"></i>ID giảm dần</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="action-btns col-6">
+                                            <div class="btn-dropdown" style="float: right">
+                                                <div class="btn-group dropdown actions-dropodown">
+                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Hành động
+                                                    </button>
+                                                    <div class="dropdown-menu" style="left: -25px!important;">
+                                                        <a class="dropdown-item" @click="deleteMultipleTinTuyenDung()"><i class="feather icon-trash-2"></i>Xóa</a>
+                                                        <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(1)"><i class="far fa-check-circle"></i>Kích hoạt</a>
+                                                        <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(0)"><i class="far fa-times-circle"></i>Bỏ kích hoạt</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="action-btns">
-                                        <div class="btn-dropdown ">
-                                            <div class="btn-group dropdown actions-dropodown">
-                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Hành động
-                                                </button>
-                                                <div class="dropdown-menu" style="left: -25px!important;">
-                                                    <a class="dropdown-item" @click="deleteMultipleTinTuyenDung()"><i class="feather icon-trash-2"></i>Xóa</a>
-                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(1)"><i class="far fa-check-circle"></i>Kích hoạt</a>
-                                                    <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(0)"><i class="far fa-times-circle"></i>Bỏ kích hoạt</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive list-data">
@@ -103,18 +108,18 @@
                                                             </fieldset>
                                                         </li>
                                                         ID</th>
-                                                    <th style="width:40%;">Tiêu đề</th>
-                                                    <th style="width:20%;">Thống kê</th>
-                                                    <th style="width:10%">Ngày tạo</th>
-                                                    <th style="width:15%;">Trạng thái</th>
+                                                    <th class="title-style" style="width:40%;">Tiêu đề</th>
+                                                    <th class="statistical-none" style="width:20%;">Thống kê</th>
+                                                    <th class="date-none" style="width:10%">Ngày tạo</th>
+                                                    <th class="status-none" style="width:15%;">Trạng thái</th>
                                                     <!-- <th style="width:10%;">Thể loại</th>
                                                     <th style="width:10%;">Loại tin</th> -->
-                                                    <th style="width:10%;">Thao tác</th>
+                                                    <th class="manipulation-style" style="width:10%;">Thao tác</th>
                                                 </tr>
                                             </thead>
                                             <tbody v-if="tinTuyenDung.length > 0">
                                                 <tr v-for="(item, index) in tinTuyenDung" :key="index">
-                                                    <td style="display: flex;padding-top: 35px;">
+                                                    <td class="mb-td" style="display: flex;padding-top: 35px;">
                                                         <li class="d-inline-block mr-1">
                                                             <fieldset>
                                                                 <div class="vs-checkbox-con vs-checkbox-primary">
@@ -136,7 +141,7 @@
                                                         </p>
                                                         <!-- <hr style="border-top: 1px dotted black;"><p class="text-center font-italic">{{item.name}}</p> -->
                                                     </td>
-                                                    <td>
+                                                    <td class="statistical-none">
                                                         <div class="row">
                                                             <div class="col-6 pr-0 pl-0">
                                                                 <h3 class="text-center">{{(item.viewers)}}</h3>
@@ -148,11 +153,11 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td>{{ConvertDate(item.created_at)}}</td>
-                                                    <td v-if="item.status == 0">
+                                                    <td class="date-none">{{ConvertDate(item.created_at)}}</td>
+                                                    <td v-if="item.status == 0" class="status-none">
                                                         <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i></div>
                                                     </td>
-                                                    <td v-if="item.status == 1">
+                                                    <td v-if="item.status == 1" class="status-none">
                                                         <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
                                                     </td>
                                                     <!-- <td style="white-space: nowrap;">
@@ -171,8 +176,8 @@
                                                         <div class="action-btns">
                                                             <div class="btn-dropdown ">
                                                                 <div class="btn-group dropdown actions-dropodown">
-                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        Chọn thao tác
+                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <span class="text-none">Chọn thao tác</span>
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
                                                                         <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
@@ -765,5 +770,44 @@ export default {
 }
 .modal .modal-footer {
     border-color: #ffb701 !important;
+}
+
+@media (max-width: 991px){
+    .statistical-none, .date-none{
+        display: none;
+    }
+    .mb-td{
+        padding-top: 22px !important;
+    }
+}
+
+@media (max-width: 575px){
+    .btn-add{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    .form-add{
+        text-align: center;
+    }
+    .status-none, .text-none{
+        display: none;
+    }
+    .title-style{
+        width: 0 !important;
+    }
+    .manipulation-style{
+        vertical-align: top !important;
+    }
+    .action-dropdown{
+        padding-left: 1rem !important;
+    }
+    .button-dropdown{
+        margin: auto;
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .btn-dropdown-left{
+        float: left !important;
+    }
 }
 </style>
