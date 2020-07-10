@@ -5,17 +5,17 @@
               <div class="navbar-collapse" id="navbar-mobile">
                     <div class="mr-auto float-left bookmark-wrapper d-flex align-items-center">
                             <ul class="nav navbar-nav">
-                                <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
+                                <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
                             </ul>
                             <ul class="nav navbar-nav bookmark-icons" v-if="$auth.user.role == 2 || $auth.user.role == 4">
-                                <li class="nav-item d-none d-lg-block">
+                                <li class="nav-item d-none d-md-block">
                                     <a class="btn bg-netbee" href="/admin/tin-tuyen-dung/tao" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
                                         <span style="font-size:1rem">Tạo tin tuyển dụng</span>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav bookmark-icons" v-if="$auth.user.role == 3 || $auth.user.role == 1">
-                                <li class="nav-item d-none d-lg-block">
+                                <li class="nav-item d-none d-md-block">
                                     <a class="btn bg-netbee" href="/admin/ho-so/tao-ho-so" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
                                         <span style="font-size:1rem">Tạo hồ sơ</span>
                                     </a>
@@ -164,5 +164,10 @@ export default {
 }
 .dropdown-notification .notification-title {
     color: #000 !important;
+}
+@media (max-width: 991px) and (min-width: 768px) {
+    .bookmark-wrapper{
+        margin-top: 11px;
+    }
 }
 </style>
