@@ -357,9 +357,9 @@ export default {
   }
   #ftco-nav > ul {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 33% 33% 33%;
   }
-  #ftco-nav > ul > li:last-child {
+  #ftco-nav > ul > li:nth-child(10) {
     display: none;
   }
   #menu-toggle:checked+.menu-button-container .menu-button::before {
@@ -372,6 +372,14 @@ export default {
   }
   #menu-toggle:checked+.menu-button-container .menu-button {
     background: rgba(255, 255, 255, 0);
+  }
+  .dropdown-menu {
+    position: absolute;
+    left: -120px;
+    width: 235px;
+  }
+  .dropdown .dropdown-menu::before {
+    left: 14.2rem;
   }
 }
 
