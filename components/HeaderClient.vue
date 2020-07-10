@@ -197,4 +197,7 @@ export default {
     overflow: hidden;
     white-space: nowrap;
 }
+.cta .nav-icon img {
+    border-radius: 1.5rem;
+}
 </style>
