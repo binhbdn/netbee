@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row ">
             <div class="col-7 pt-4" style="padding-top: 90px !important;">
-                <h3 style="color:black;"><b>Đăng kí ứng viên</b></h3>
+                <h3 style="color:black;"><b>Đăng ký ứng viên</b></h3>
                 <ul class="list">
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận hàng triệu công việc hoàn toàn miễn phí</li>
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Ứng tuyển nhanh chóng, dễ dàng</li>
@@ -107,7 +107,7 @@
                         </div>
                     </ValidationProvider>
                         <div class="form-check pl-0" style="margin-bottom:0px;">
-                            <label for="agree-term" style="padding-bottom: 10px;" class="label-agree-term">Bằng việc nhấn nút đăng kí bạn đã đồng ý với <a href=""  class="term-service"><b>Thỏa thuận sử dụng</b></a> của Netbee.</label>
+                            <label for="agree-term" style="padding-bottom: 10px;" class="label-agree-term">Bằng việc nhấn nút đăng ký bạn đã đồng ý với <a href=""  class="term-service"><b>Thỏa thuận sử dụng</b></a> của Netbee.</label>
                         </div>
                     <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
                         <button type="button" @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Đăng ký ngay</button>
