@@ -46,26 +46,26 @@ class TinTuyenService extends BaseService {
         $user = $this->user->whereId($id_created)->first();
         try {
             $this->nbJobList->insert($data);
-            $dataEmail = (object)[
-                'name' => $user->name,
-                'title' => '[THÔNG BÁO] Tin '. $request->title . ' của bạn đang chờ để được phê duyệt!',
-                'content' => 'Chúc mừng tin ' . $request->title . ' của bạn đã được tạo thành công. <br> Chúng tôi sẽ phản hồi yêu cầu phê duyệt trong thời gian sớm nhất.',
-                'textButton' => 'Về Netbee',
-                'url' => 'https://netbee.vn/dang-nhap'
-            ];
-            dispatch(new SendMailJobQueue($user->email, $dataEmail));
-            $userAdmins = User::where('role',4)->get();
+            // $dataEmail = (object)[
+            //     'name' => $user->name,
+            //     'title' => '[THÔNG BÁO] Tin '. $request->title . ' của bạn đang chờ để được phê duyệt!',
+            //     'content' => 'Chúc mừng tin ' . $request->title . ' của bạn đã được tạo thành công. <br> Chúng tôi sẽ phản hồi yêu cầu phê duyệt trong thời gian sớm nhất.',
+            //     'textButton' => 'Về Netbee',
+            //     'url' => 'https://netbee.vn/dang-nhap'
+            // ];
+            // dispatch(new SendMailJobQueue($user->email, $dataEmail));
+            // $userAdmins = User::where('role',4)->get();
             
-            foreach ($userAdmins as $userAdmin){
-                    $dataEmail = (object)[
-                        'name' => $userAdmin->name,
-                        'title' => '[THÔNG BÁO] Tin '. $request->title . ' cần được phê duyệt!',
-                        'content' => 'Tin tuyển dụng ' . $request->title . ' cần được phê duyệt. <br> Đăng nhập Netbee ngay để phê duyệt tin.',
-                        'textButton' => 'Về Netbee',
-                        'url' => 'https://netbee.vn/dang-nhap'
-                    ];
-            dispatch(new SendMailJobQueue($userAdmin->email, $dataEmail));
-            }
+            // foreach ($userAdmins as $userAdmin){
+            //         $dataEmail = (object)[
+            //             'name' => $userAdmin->name,
+            //             'title' => '[THÔNG BÁO] Tin '. $request->title . ' cần được phê duyệt!',
+            //             'content' => 'Tin tuyển dụng ' . $request->title . ' cần được phê duyệt. <br> Đăng nhập Netbee ngay để phê duyệt tin.',
+            //             'textButton' => 'Về Netbee',
+            //             'url' => 'https://netbee.vn/dang-nhap'
+            //         ];
+            // dispatch(new SendMailJobQueue($userAdmin->email, $dataEmail));
+            // }
             return [
                 'status' => 200,
                 'message' => 'Tạo tin thành công',
