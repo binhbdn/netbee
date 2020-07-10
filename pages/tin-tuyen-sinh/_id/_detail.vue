@@ -557,7 +557,7 @@ export default {
                 { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn'+this.$route.path},
                 { hid: 'og:title', name: 'og:title', content: this.tintuyendung.title},
                 { hid: 'og:description', name: 'og:description', content: this.tintuyendung.title},
-                { hid: 'og:image', name: 'og:image', content: this.tintuyendung.user.avatar},
+                { hid: 'og:image', name: 'og:image', content: 'https://netbee.vn/uploads/users/avatars/'+this.tintuyendung.user.avatar},
                 ]
             }
         }

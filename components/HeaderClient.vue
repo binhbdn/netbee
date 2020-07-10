@@ -79,7 +79,7 @@
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/lien-he'} " >
             <a href="/lien-he" class="nav-link header-nav-link">
               <div class="nav-icon">
-                <i class="fa fa-window-restore"></i>
+                <i class="fad fa-phone-office"></i>
               </div>
               <div class="nav-title">
                 {{ $t('nav.contact') }}
@@ -165,6 +165,37 @@
               <a class="dropdown-item" @click="logout()">{{ $t('logout') }}</a>
             </div>
           </li>
+          
+          <li class="dropdown dropdown-notification nav-item" v-if="$auth.loggedIn">
+            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" style="margin-top: 20px;">
+              <i class="fa fa-bell" style="color:#000 !important;font-size: 17px;padding:0px;margin-right:0px;"></i>
+              <span class="badge badge-pill badge-danger badge-up" style="background-color: #EA5455;right: -0.3rem;top: -0.7rem;" v-if="countNoti>0">{{ countNoti }}</span>
+            </a>
+              <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" style="width: 400px;">
+                    <li class="dropdown-menu-header">
+                        <div class="dropdown-header m-0">
+                            <h3 class="h3-size">{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
+                        </div>
+                    </li>
+                    <li class="scrollable-container media-list scrollbar" style="height: 400px;">
+                      <a :style="notification.status_notification ? '' : 'background: #e0e0e0'" class="d-flex justify-content-between border-bot" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
+                        <div class="media d-flex align-items-start">
+                          <div class="media-left">
+                              <img src="/assets/img/logo.png" width="30">
+                          </div>
+                          <div class="media-body">
+                              <small class="notification-text">{{ notification.content }}</small>
+                          </div>
+                          <small class="small-pdt">
+                             <small class="notification-text">{{ revertTime(notification.created_at) }}</small>
+                          </small>
+                        </div>
+                      </a>
+                  </li>
+                  <li class="dropdown-menu-footer" @click="updateStatusAll()"><a class="dropdown-item p-1 text-center">Xem tất cả</a></li>
+              </ul>
+          </li>
+         
         </ul>
       </div>
     </div>
@@ -174,23 +205,77 @@
 import Vue from 'vue';
 import i18n from '@/plugins/i18n';
 import VueLocalStorage from 'vue-localstorage'
+import moment from 'moment'
 
 Vue.use(VueLocalStorage)
 
 export default {
-      methods: {
-        async logout() {
-          this.$auth.logout()
-        },
-        changeLang (lang) {
-          this.$localStorage.set("lang", lang)
-          this.$store.commit('SET_LANG', lang)
-          this.$router.push({ path: `${this.$router.currentRoute.path}?lang=${lang}` })
-        }
-      }
+  data () {
+    return {
+        notifications: [],
+        countNoti: 0,
+        page:1
+    }
+  },
+  methods: {
+    updateStatusAll: function() {
+        this.$axios.$post('readNotificationAll').then((response) => {
+            this.countNoti = 0;
+            window.location.href = '/admin/thong-bao'
+        })
+    },
+    revertTime: function(time) {
+        return moment(time).fromNow(true);
+    },
+    infiniteScroll: function($state) {
+        setTimeout(() => {
+            this.page++
+            this.$axios
+            .get('/getNotification?page='+ this.page)
+            .then((response) => {
+                if (response.data.data.notifications.data.length > 1) {
+                    response.data.data.notifications.data.forEach((item) => this.notifications.push(item))
+                    $state.loaded()
+                } else {
+                    $state.complete()
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        }, 500)
+    },
+    async logout() {
+      this.$auth.logout()
+    },
+    changeLang (lang) {
+      this.$localStorage.set("lang", lang)
+      this.$store.commit('SET_LANG', lang)
+      this.$router.push({ path: `${this.$router.currentRoute.path}?lang=${lang}` })
+    }
+  },
+  mounted() {
+      this.$axios.$get('getNotification?page='+this.page).then((response) => {
+          this.notifications = response.data.notifications.data,
+          this.countNoti = response.data.countNotRead
+      })
+      
+  }
 }
 </script>
+<style>
+  .ps--active-x>.ps__rail-x, .ps--active-y>.ps__rail-y {
+    display: none !important;
+  }
+</style>
 <style scoped>
+.dropdown-menu-footer {
+  background-color: #ABB2B9;
+  color: #000 !important;
+}
+.dropdown-menu-footer a {
+  color: #000 !important;
+}
 .overflow{
     max-width: 200px;
     text-overflow: ellipsis;
@@ -199,5 +284,21 @@ export default {
 }
 .cta .nav-icon img {
     border-radius: 1.5rem;
+}
+.border-bot {
+    border: 1px solid rgba(128, 128, 128, 0.192);
+}
+.dropdown-notification .dropdown-menu-header {
+    background-color: #FFB701 !important;
+}
+.dropdown-notification .dropdown-menu.dropdown-menu-right::before {
+    background: #FFB701 !important;
+    border-color: #FFB701 !important;
+}
+.header-navbar .navbar-container ul.nav li i.ficon:hover {
+    color: #FFB701 !important;
+}
+.dropdown-notification .notification-title {
+    color: #000 !important;
 }
 </style>

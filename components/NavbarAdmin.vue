@@ -61,6 +61,8 @@
                         </li>
                     </ul>
                 </li>
+                <li :class="[{'active' : this.$route.name == 'notification'}, 'nav-item']"><a @click="$router.push('/admin/thong-bao')"><i class="ficon feather icon-bell"></i><span class="menu-title" data-i18n="User">Thông báo</span></a>                
+                </li>
             </ul>
         </div>
     </div>
