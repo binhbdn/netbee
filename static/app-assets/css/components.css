@@ -3668,3 +3668,31 @@ tr.group {
 .vue-form-wizard.md .wizard-navigation .wizard-progress-with-circle {
   border-radius: 2px;
 }
+
+@media (max-width: 1199px){
+  .main-menu .navbar-header{
+    width: 220px;
+  }
+  .header-navbar.floating-nav {
+    width: calc( 100vw - (100vw - 100%) - calc(2.2rem * 2) - 165px);
+  }
+  html body .content{
+    margin-left: 225px;
+  }
+}
+
+@media (max-width: 767px){
+  .header-navbar.floating-nav {
+    width: 100%;
+  }
+  html body .content{
+    margin-left: 0;
+  }
+}
+@media (max-width: 575.98px){
+  .header-navbar.floating-nav {
+    width: 100% !important;
+    margin: 0;
+  }
+}
+
