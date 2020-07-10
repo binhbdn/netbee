@@ -67,7 +67,7 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body">
-                <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
+                <JobsList1Col :DataList="arrayJobNew" type=""></JobsList1Col>
                 <!-- <infinite-loading
                     v-if="arrayJobNew.length"
                     spinner="bubbles"    

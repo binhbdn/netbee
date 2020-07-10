@@ -1,7 +1,7 @@
 <template>
 <div class="row ecommerce-application">
     <div class="col-lg-12 col-12 list-view" v-for="(item, index) in DataList" :key="index">
-        <JobItem :job="item"/>
+        <JobItem :job="item" :type="type"/>
     </div>
 </div>
 </template>
@@ -11,6 +11,6 @@ export default {
     components: {
         JobItem
     },
-    props: ['DataList']
+    props: ['DataList', 'type']
 }
 </script>
