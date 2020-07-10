@@ -14,7 +14,7 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Tên công ty</label>
-                                                            <input type="text" class="form-control" v-model="data.school_name" readonly>
+                                                            <input type="text" class="form-control" v-model="data.school_name">
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -60,44 +60,8 @@
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content :before-change="checkValidateStep2" title="Chi tiết">
+                                        <tab-content :before-change="checkValidateStep2" title="Yêu cầu">
                                             <ValidationObserver ref="step2" v-slot="{ valid2 }">
-                                                <div class="row">
-                                                    <div class="col-12">                                                     
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Lộ trình</label>
-                                                            <textarea rows="3" class="form-control" v-model="data.description"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Yêu cầu</label>
-                                                                <textarea rows="3" class="form-control" v-model="data.request"></textarea>
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Hồ sơ cần chuẩn bị</label>
-                                                            <textarea rows="3" class="form-control" v-model="data.cv_content"></textarea>
-                                                        </div>                                             
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Quyền lợi</label>
-                                                                <textarea rows="3" class="form-control"  v-model="data.benefit"></textarea>
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                </div>
-                                            </ValidationObserver>
-                                        </tab-content>
-                                        <tab-content :before-change="checkValidateStep3" title="Yêu cầu">
-                                            <ValidationObserver ref="step3" v-slot="{ valid3 }">
                                                 <div class="row">
                                                     <div class="col-6">
                                                             <ValidationProvider rules="required" v-slot="{ errors }">
@@ -138,36 +102,24 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12">
+                                                    
+                                                    <div class="col-6">
                                                         <div class="form-group">
-                                                            <label for="firstName3">Lương</label>
-                                                            <div class="container-fluid">
-                                                                <div class="row">
-                                                                    <div class="col-6" style="padding-left:0px">
-                                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
-                                                                            <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
-                                                                            <span style="color: red">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                    <div class="col-6" style="padding-right: 0px">
-                                                                        <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
-                                                                            <input type="txt" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
-                                                                            <span style="color: red">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
+                                                            <label for="firstName3">Chiều cao (cm)</label>
+                                                            <input type="number" class="form-control" v-model="data.height">
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Số lượng tuyển</label>
-                                                                <input type="number" class="form-control" v-model="data.quantity">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Cân nặng (kg)</label>
+                                                            <input type="number" class="form-control" v-model="data.weight">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Trình độ học vấn</label>
+                                                            <multiselect :options="levelEx" v-model="data.academicLevel" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
+                                                        </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
@@ -217,9 +169,118 @@
                                                             <input type="text" class="form-control required" v-model="data.time_contract">
                                                         </div>
                                                     </div>
+                                                    <div class="col-6">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Số lượng tuyển</label>
+                                                                <input type="number" class="form-control" v-model="data.quantity">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Yêu cầu thêm</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.request"></textarea>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
+                                        <tab-content :before-change="checkValidateStep3" title="Quyền lợi">
+                                            <ValidationObserver ref="step3" v-slot="{ valid3 }">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Thu nhập hàng tháng</label>
+                                                            <div class="container-fluid">
+                                                                <div class="row">
+                                                                    <div class="col-6" style="padding-left:0px">
+                                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
+                                                                            <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
+                                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                                        </ValidationProvider>
+                                                                    </div>
+                                                                    <div class="col-6" style="padding-right: 0px">
+                                                                        <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
+                                                                            <input type="txt" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
+                                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                                        </ValidationProvider>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Thời gian lao động</label>
+                                                            <div class="container-fluid">
+                                                                <div class="row">
+                                                                    <div class="col-6" style="padding-left:0px">
+                                                                        <input class="form-control" type="time" v-model="data.startTimeLabor"  min="01:00" max="23:00">
+                                                                                                                    
+                                                                    </div>
+                                                                    <div class="col-6" style="padding-right: 0px">
+                                                                        <input class="form-control" type="time" v-model="data.endTimeLabor"  min="01:00" max="23:00">
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   <div class="col-6">
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label for="firstName3">Bảo hiểm lao động</label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <input class="form-check-input" type="checkbox" v-model="data.insurrance">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <label for="firstName3">Trang phục lao động</label>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                     <input class="form-check-input" type="checkbox" v-model="data.skin">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Ký túc xá</label>
+                                                            <multiselect :options="valueEx" v-model="data.dormitory" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Bữa ăn</label>
+                                                            <multiselect :options="valueEx" v-model="data.meal" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Phụ cấp ngoài</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.allowance"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Quyền lợi khác</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.benefits"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ValidationObserver>
+                                        </tab-content>
+                                        
                                         <tab-content title="Hoàn thành">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
@@ -247,10 +308,13 @@
                                                             
                                                     </div>
                                                     <div class="col-6"  v-if="checked">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Tiền thưởng</label>
-                                                            <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
-                                                        </div>
+                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Tiền thưởng</label>
+                                                                <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
                                                     </div>
                                                     <!-- <div class="col-4" v-if="checked">
                                                         <div class="form-group">
@@ -449,10 +513,6 @@ export default {
                 address: '',
                 nation: {id: null, name: ''},
                 expiration_date: '',
-                description: '',
-                request: '',
-                cv_content: '',
-                benefit: '',
                 age_start: '18',
                 age_late: '35',
                 quantity:'',
@@ -467,9 +527,21 @@ export default {
                 bonus: null,
                 highlight_job: 1,
                 visa: {id: null, profession: ''},
-                form_work: {id: null, name: ''},
+                form_work: {id: 1, name: 'Toàn thời gian'},
                 school_name: this.$auth.user.name,
-                time_contract: 3
+                time_contract: 3,
+                height:'',
+                weight:'',
+                academicLevel: {id: 1, name: 'Trung học phổ thông'},
+                insurrance:'',
+                skin:'',
+                dormitory:{id: 1, name: 'Công ty chuẩn bị'},
+                meal:{id: 1, name: 'Công ty chuẩn bị'},
+                startTimeLabor:'',
+                endTimeLabor:'',
+                allowance:'',
+                benefits:'',
+                request:''
             },
             checked: true,
             guarantee: [
@@ -479,9 +551,16 @@ export default {
             money: ['$', 'VND', '€', '¥', '₩'],
             optionsVisa: [],
             optionsFormWork: [
-                {id: 1, name: 'Toàn thời gian'},
                 {id: 2, name: 'Bán thời gian'},
                 {id: 3, name: 'Vừa học vừa làm'}
+            ],
+            levelEx: [
+                {id: 2, name: 'Cao đẳng'},
+                {id: 3, name: 'Đại học'},
+                {id: 4, name: 'Trên đại học'}
+            ],
+            valueEx: [
+                {id: 2, name: 'Ứng viên tự chuẩn bị'},
             ],
             companies:[]
         }
@@ -494,7 +573,7 @@ export default {
     },
     methods:{
         async fetch (route) {
-            this.data.expiration_date = moment(Date.now()).add(90, 'days').format("YYYY-MM-DD");
+            this.data.expiration_date = moment(Date.now()).add(3, 'M').format("YYYY-MM-DD");
             this.data.date_start = moment(Date.now()).format("YYYY-MM-DD");
             let res = await this.$axios.$get(`getQuocGia`)
             this.options = res.data
@@ -550,6 +629,7 @@ export default {
         },
 
         async onComplete() {
+            console.log("thành đẹp trai ")
             let isValid = await this.$refs.step4.validate();
             var form = new FormData();
             if(isValid){
@@ -558,16 +638,11 @@ export default {
                     form.append('id_created' , this.data.company.id)
                 }
                 form.append('title' , this.data.title)
-                form.append('company_name' , this.data.company_name)
                 form.append('address' , this.data.address)
                 form.append('nation_id' , this.data.nation.id)
                 form.append('expiration_date' , this.data.expiration_date)
-                form.append('description' , this.data.description)
-                form.append('request' , this.data.request)
-                form.append('cv_content' , this.data.cv_content)
                 form.append('salary_start' , this.data.salary_start.split(',').join(''))
                 form.append('salary_end' , this.data.salary_end.split(',').join(''))
-                form.append('benefit' , this.data.benefit)
                 form.append('age_start' , this.data.age_start)
                 form.append('age_late' , this.data.age_late)
                 form.append('quantity' , this.data.quantity)
@@ -589,8 +664,29 @@ export default {
                 form.append('id_visa' , this.data.visa.id)
                 form.append('form_work' , this.data.form_work.id)
                 form.append('type' , 1)
+                form.append('height' , this.data.height)
+                form.append('weight' , this.data.weight)
+                form.append('academicLevel' , this.data.academicLevel.id)
+                if(this.data.insurrance == true){
+                    form.append('insurrance' , 1)
+                }else {
+                     form.append('insurrance' , 0)
+                }
+                if(this.data.skin == true){
+                    form.append('skin' , 1)
+                }else {
+                    form.append('skin' , 0)
+                }
+                form.append('dormitory' , this.data.dormitory.id)
+                form.append('meal' , this.data.meal.id)
+                form.append('startTimeLabor' , this.data.startTimeLabor)
+                form.append('endTimeLabor' , this.data.endTimeLabor)    
+                form.append('allowance' , this.data.allowance)
+                form.append('benefits' , this.data.benefits)
+                form.append('request' , this.data.request)
                 this.$axios.post('tintuyendung/createTinTuyen',form)
                 .then(response => {
+                    console.log(response)
                     if(response.data.status == 200) {
                         this.$swal(
                             'Thành công',
@@ -607,6 +703,7 @@ export default {
                         )
                     }
                 }).catch((e) => {
+                    console.log(e)
                     this.$swal(
                             'Lỗi',
                             e,
