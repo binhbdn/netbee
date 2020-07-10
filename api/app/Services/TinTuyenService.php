@@ -36,7 +36,7 @@ class TinTuyenService extends BaseService {
             ->get();
     }
     public function store($request)
-    {
+    {   
         $validate = $this->jobRequest($request);
         if ($validate) {
             return $validate;
@@ -45,27 +45,27 @@ class TinTuyenService extends BaseService {
         $id_created = $request->has('id_created') ? $request->id_created : Auth::user()->id;
         $user = $this->user->whereId($id_created)->first();
         try {
-            $this->nbJobList->create($data);
-            $dataEmail = (object)[
-                'name' => $user->name,
-                'title' => '[THÔNG BÁO] Tin '. $request->title . ' của bạn đang chờ để được phê duyệt!',
-                'content' => 'Chúc mừng tin ' . $request->title . ' của bạn đã được tạo thành công. <br> Chúng tôi sẽ phản hồi yêu cầu phê duyệt trong thời gian sớm nhất.',
-                'textButton' => 'Về Netbee',
-                'url' => 'https://netbee.vn/dang-nhap'
-            ];
-            dispatch(new SendMailJobQueue($user->email, $dataEmail));
-            $userAdmins = User::where('role',4)->get();
+            $this->nbJobList->insert($data);
+            // $dataEmail = (object)[
+            //     'name' => $user->name,
+            //     'title' => '[THÔNG BÁO] Tin '. $request->title . ' của bạn đang chờ để được phê duyệt!',
+            //     'content' => 'Chúc mừng tin ' . $request->title . ' của bạn đã được tạo thành công. <br> Chúng tôi sẽ phản hồi yêu cầu phê duyệt trong thời gian sớm nhất.',
+            //     'textButton' => 'Về Netbee',
+            //     'url' => 'https://netbee.vn/dang-nhap'
+            // ];
+            // dispatch(new SendMailJobQueue($user->email, $dataEmail));
+            // $userAdmins = User::where('role',4)->get();
             
-            foreach ($userAdmins as $userAdmin){
-                    $dataEmail = (object)[
-                        'name' => $userAdmin->name,
-                        'title' => '[THÔNG BÁO] Tin '. $request->title . ' cần được phê duyệt!',
-                        'content' => 'Tin tuyển dụng ' . $request->title . ' cần được phê duyệt. <br> Đăng nhập Netbee ngay để phê duyệt tin.',
-                        'textButton' => 'Về Netbee',
-                        'url' => 'https://netbee.vn/dang-nhap'
-                    ];
-            dispatch(new SendMailJobQueue($userAdmin->email, $dataEmail));
-            }
+            // foreach ($userAdmins as $userAdmin){
+            //         $dataEmail = (object)[
+            //             'name' => $userAdmin->name,
+            //             'title' => '[THÔNG BÁO] Tin '. $request->title . ' cần được phê duyệt!',
+            //             'content' => 'Tin tuyển dụng ' . $request->title . ' cần được phê duyệt. <br> Đăng nhập Netbee ngay để phê duyệt tin.',
+            //             'textButton' => 'Về Netbee',
+            //             'url' => 'https://netbee.vn/dang-nhap'
+            //         ];
+            // dispatch(new SendMailJobQueue($userAdmin->email, $dataEmail));
+            // }
             return [
                 'status' => 200,
                 'message' => 'Tạo tin thành công',
@@ -132,24 +132,13 @@ class TinTuyenService extends BaseService {
     {
         $rules = [
             'title' => 'required',
-            // 'address' => 'required',
             'nation_id' => 'required',
-            // 'expiration_date' => 'required',
-            // 'description' => 'required',
-            'request' => 'required',
-            // 'cv_content' => 'required',
-            'benefit' => 'required',
             'age_start' => 'required',
             'age_late' => 'required',
             'quantity' => 'required',
-            // 'subsidy' => 'required',
             'currency' => "required",
-            // 'date_start' => 'required',
-            // 'date_test' => 'required',
-            // 'expected_date' => 'required',
             'salary_start' => 'required',
             'salary_end' => 'required',
-            // 'time_contract' => 'required',
         ];
         $messages = [
             'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
@@ -182,10 +171,6 @@ class TinTuyenService extends BaseService {
             'workplace' => $request->address,
             'nation_id' => $request->nation_id,
             'expiration_date' => $request->expiration_date,
-            'description' => $request->description,
-            'request' => $request->get('request'),
-            'cv_content' => $request->cv_content,
-            'benefit' => $request->benefit,
             'age_start' => $request->age_start,
             'age_late' => $request->age_late,
             'quantity' => $request->quantity,
@@ -203,6 +188,8 @@ class TinTuyenService extends BaseService {
             'school_name' => $request->school_name,
             'status' => self::INACTIVE,
             'time_contract' => $request->time_contract,
+            'request' => $request->get('request'),
+            
         ];
 
         if ($request->type != self::JOB_OVERSEAS_STUDENT) {
@@ -214,13 +201,11 @@ class TinTuyenService extends BaseService {
     }
 
     private function getOnlyRequest($request)
-    {
+    {   
         $response = [
             'title' => $request->title,
             'nation_id' => $request->nation_id,
             'expiration_date' => $request->expiration_date,
-            'request' => $request->get('request'),
-            'benefit' => $request->benefit,
             'age_start' => $request->age_start,
             'age_late' => $request->age_late,
             'quantity' => $request->quantity,
@@ -235,15 +220,37 @@ class TinTuyenService extends BaseService {
             'id_created' => $request->has('id_created') ? $request->id_created : Auth::user()->id,
             'status' => self::INACTIVE,
             'time_contract' => $request->time_contract,
+            'academicLevel' => $request->academicLevel,
+            'insurrance' => $request->insurrance,
+            'skin' => $request->skin,
+            'dormitory' => $request->dormitory,
+            'meal' => $request->meal
         ];
 
         if ($request->type != self::JOB_OVERSEAS_STUDENT) {
             $response['work_form'] = $request->work_form;
             $response['id_visa'] = $request->id_visa;
         }
-
-        if($request->description != 'null'){
-            $response['description'] = $request->description;
+        if($request->get('request') != 'null'){
+            $response['date_test'] = $request->date_test;
+        }
+        if($request->height != 0){
+            $response['height'] = $request->height;
+        }
+        if($request->weight != 0){
+            $response['weight'] = $request->weight;
+        }
+        if($request->startTimeLabor != 'null'){
+            $response['startTimeLabor'] = $request->startTimeLabor;
+        }
+        if($request->endTimeLabor != 'null'){
+            $response['endTimeLabor'] = $request->endTimeLabor;
+        }
+        if($request->allowance != 'null'){
+            $response['allowance'] = $request->allowance;
+        }
+        if($request->benefits != 'null'){
+            $response['benefits'] = $request->benefits;
         }
         if($request->date_test != 'null'){
             $response['date_test'] = $request->date_test;
@@ -253,9 +260,6 @@ class TinTuyenService extends BaseService {
         }
         if($request->address != 'null'){
             $response['workplace'] = $request->address;
-        }
-        if($request->cv_content != 'null'){
-            $response['cv_content'] = $request->cv_content;
         }
         if($request->bonus != 'null'){
             $response['bonus'] = $request->bonus;
