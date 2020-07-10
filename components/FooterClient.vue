@@ -51,11 +51,14 @@
                 </div>
             </div>
         </div>
-        <div class="copyright" style="font-size: 15px;">
-            Copyright &copy;
+        <div class="copyright" style="font-size: 12px; height: 30px; padding-top: 7px">
+            Copyright &copy; 2020
             <script>
                 document.write(new Date().getFullYear());
-            </script> All rights reserved | This template is made with <i class="fas fa-heart text-danger" aria-hidden="true"></i> by <a href="https://netbee.vn" target="_blank">Netbee.vn</a>
+            </script>
+            All Rights Reserved 
+            <a href="https://netbee.vn" target="_blank">Netbee.vn</a> 
+            <!-- </script> All rights reserved | This template is made with <i class="fas fa-heart text-danger" aria-hidden="true"></i> by <a href="https://netbee.vn" target="_blank">Netbee.vn</a> -->
         </div>
     </footer>
 </template>

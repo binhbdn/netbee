@@ -180,7 +180,7 @@
                 </div>
                 <div class="card-content collapse show">
                 <div class="card-body">
-                    <JobsList1ColNotCate :DataList="arrayForCompany"></JobsList1ColNotCate>
+                    <JobsList1ColNotCate :DataList="arrayForCompany" type=""></JobsList1ColNotCate>
                 </div>
                 </div>
             </div>
@@ -193,12 +193,12 @@
             <div class="card">
                 <div class="card-header">
                 <h4 class="card-title">
-                    <i class="fad fa-business-time"></i> TIN CỦA CÔNG TY
+                    <i class="fad fa-business-time"></i> LOẠI TIN TƯƠNG TỰ
                 </h4>
                 </div>
                 <div class="card-content collapse show">
                 <div class="card-body">
-                    <JobsList1Col :DataList="tintuyendung.type == 1 ? arrayJobXKLD : tintuyendung.type == 2 ? arrayJobDHS : arrayJobTNS"></JobsList1Col>
+                    <JobsList1Col :DataList="tintuyendung.type == 1 ? arrayJobXKLD : tintuyendung.type == 2 ? arrayJobDHS : arrayJobTNS" type=""></JobsList1Col>
                 </div>
                 </div>
             </div>
