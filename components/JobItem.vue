@@ -116,8 +116,7 @@ export default {
         display: none;
     }
     .remove-border-right {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding: 10px 10px 10px 0px;
     }
 }
 @media(max-width: 320px) {
