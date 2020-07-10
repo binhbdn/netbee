@@ -19,7 +19,7 @@
                     <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="top" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><label class="title">Chi phí: </label> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</p>                                                                                 
                 </div>        
             </div>
-            <div class="item-options text-center mt-1" >
+            <div class="item-options text-center mt-1 mb-1" >
                 <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper" style="margin-top: -5px;">
                     <a class="delivery-date mb-0 mt-1 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
@@ -58,8 +58,9 @@ export default {
 .mg-b{
     margin-bottom: 0px;
 }
-.border-job-item:hover{
+.border-job-item{
     /* background-color: #ffb7012b; */
+    margin-bottom: 0px;
 }
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
@@ -88,6 +89,9 @@ export default {
 .p-r-0 .hot img{
     right: 0;
 }
+.card-avatar {
+    margin: auto;
+}
 .card-avatar img {
     object-fit: scale-down;
     width: 60px;
@@ -103,10 +107,16 @@ export default {
 }
 @media(max-width: 768px) {
     .item-vip-a{
-        max-width: 140px;
+        max-width: 200px;
     }
     .p-r-0 .hot img{
         right: 15px;
+    }
+    .item-options {
+        display: none;
+    }
+    .remove-border-right {
+        padding: 10px 10px 10px 0px;
     }
 }
 @media(max-width: 320px) {
