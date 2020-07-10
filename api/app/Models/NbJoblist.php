@@ -17,6 +17,7 @@ class NbJoblist extends Model
         'id_visa',
         'request',
         'quantity',
+        'currency',
         'work_form',
         'age_start',
         'age_late',
