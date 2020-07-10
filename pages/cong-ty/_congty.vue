@@ -570,7 +570,7 @@ export default {
                     title: detailRes.data.name,
                     url: `https://netbee.vn${context.app.router.currentRoute.path}`,
                     description: detailRes.data.nb_company.company_about,
-                    image: `https://netbee.vn/uploads/users/avatars${detailRes.data.avatar}`
+                    image: `https://netbee.vn/uploads/users/avatars/${detailRes.data.avatar}`
 				}
             })        
         return { congty: detailRes.data }
