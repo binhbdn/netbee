@@ -108,6 +108,7 @@
 export default {
     name: 'CreateIndexJob',
     layout: 'admin',
+    middleware: 'verify_company',
     head: {
         title: 'Home page 🚀',
         script: [
