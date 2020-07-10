@@ -63,7 +63,7 @@
                                                                 <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
                                                             </div>
                                                             <div class="item-quantity d-flex justify-content-between">
-                                                                <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-funnel-dollar"></i> {{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</p>
+                                                                <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><label class="title">Chi phí: </label> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</p>
                                                                 <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
                                                                     <span class="badge border-netbee badge-sm" style="width: 100px">
                                                                         {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
@@ -227,5 +227,8 @@ export default {
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
     grid-template-columns: 1fr 4fr 2fr 0.1fr;
+}
+.item-price .title {
+    font-size: 14px;
 }
 </style>
