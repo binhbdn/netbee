@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="app-content content">
     <!-- VIỆC LÀM MỚI -->
     <!-- <div class="banner-tt">
       <div class="litss">
@@ -21,7 +21,7 @@
         </div>
       </div>
     </div> -->
-    <section>
+    <div class="content-wrapper">
       <div class="row">
         <div class="col-lg-4 col-12" style="padding-right: 4px;">
           <div class="card">
@@ -87,13 +87,13 @@
             </div>
             <div class="card-content collapse show">
               <div class="card-body ">
-                <JobsList1Col :DataList="arrayJobNew" type=""></JobsList1Col>
+                <JobsList1Col :DataList="arrayJobNew" type="admin/"></JobsList1Col>
               </div>
             </div>
           </div>
         </div>        
       </div>
-    </section>
+    </div>
   </div>
 </template>
 <script>
@@ -110,6 +110,7 @@ export default {
       { hid: "description", name: "description", content: "Tin tuyển sinh mới nhất,tin tuyển dụng du học,tin xuất khẩu lao động mới nhất" }
     ]
   },
+  layout: 'admin',
   data() {
     return{
       currency: '',
@@ -155,7 +156,7 @@ export default {
             return `${profession}`
         },
     search() {
-            window.location.href = '/tin-tuyen-sinh/tim-kiem?id_visa=&currency='+(this.currency == '' || this.currency == null ? '' : this.currency)
+            window.location.href = `/${type}tin-tuyen-sinh/tim-kiem?id_visa=&currency=`+(this.currency == '' || this.currency == null ? '' : this.currency)
                                                   +(this.chooseWork != '' && this.chooseWork != null ? '&work_form='+this.chooseWork.id : '')
                                                   +(this.salary_start != '' ? '&salary_start='+this.salary_start : '')
                                                   +(this.salary_end != '' ? '&salary_end='+this.salary_end : '')

@@ -181,7 +181,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <JobsList1ColNotCate :DataList="arrayForCompany"></JobsList1ColNotCate>
+                                    <JobsList1ColNotCate :DataList="arrayForCompany" type="admin/"></JobsList1ColNotCate>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +199,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <JobsList1Col :DataList="tintuyendung.type == 1 ? arrayJobXKLD : tintuyendung.type == 2 ? arrayJobDHS : arrayJobTNS"></JobsList1Col>
+                                    <JobsList1Col :DataList="tintuyendung.type == 1 ? arrayJobXKLD : tintuyendung.type == 2 ? arrayJobDHS : arrayJobTNS" type="admin/"></JobsList1Col>
                                 </div>
                             </div>
                         </div>
