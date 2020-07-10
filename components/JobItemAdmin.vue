@@ -38,9 +38,9 @@
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                     </div>
                 </div>
-                <div class="item-quantity row">
+                <div class="item-price row">
                     <div class="col-9">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" >Chi phí: <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</span></p>
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><label class="title">Chi phí: </label><span :style="[job.highlight_job ? {'color': '#fc205c'} : '']"> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     </div>
                     <div class="col-3">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
@@ -98,7 +98,7 @@ export default {
 
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
-    grid-template-columns: 1fr 4fr 2fr;
+    grid-template-columns: 0.5fr 4fr 2fr;
 }
 
 .hot{
@@ -120,11 +120,15 @@ export default {
 .p-r-0 .hot img{
     right: 0;
 }
-.card-avatar {
-    height: 85px;
-    width: 85px;
+.card-avatar{
+    margin: auto;
 }
 .card-avatar img{
+    height: 60px;
+    width: 60px;
     object-fit: scale-down; 
+}
+.item-price .title {
+    font-size: 14px;
 }
 </style>

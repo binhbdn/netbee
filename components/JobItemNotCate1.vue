@@ -1,9 +1,9 @@
 <template>
     <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px;border-radius: 3px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content h-100">
-            <div class="text-center p-1">
+            <div class="text-center card-avatar p-1">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 100px; max-width: 100%;">
+                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
             </div>
             <div class="remove-border-right" style="width: 195px">
@@ -20,8 +20,8 @@
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-calendar-star"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div> -->
-                <div class="item-quantity d-flex justify-content-between">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" >Chi phí: <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</span></p>
+                <div class="item-price d-flex justify-content-between">
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     <!-- <p class="delivery-date m-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển"><i class="fad fa-user-friends"></i> {{job.quantity}}</p> -->
                 </div>
                 <div class="item-quantity mb-1">
@@ -63,7 +63,7 @@ export default {
 
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid !important;
-    grid-template-columns: 2fr 3fr !important;
+    grid-template-columns: 1fr 3fr !important;
 }
 
 .el-1{
@@ -90,5 +90,16 @@ export default {
     position: absolute;
     right: 14px;
     top: 0;
+}
+.item-price .title {
+    font-size: 14px;
+}
+.card-avatar {
+    margin: auto;
+}
+.card-avatar img {
+    object-fit: scale-down;
+    height: 60px; 
+    width: 60px;
 }
 </style>
