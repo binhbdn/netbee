@@ -26,9 +26,9 @@
                                     <div class="el-alert__description">
                                         <p>
                                             Chào mừng <strong>{{$route.query.username}}</strong>,
-                                            tài khoản của bạn đã được <strong>đăng kí thành công</strong>.
+                                            tài khoản của bạn đã được <strong>đăng ký thành công</strong>.
                                             Chúng tôi đã gửi cho bạn 1 đường dẫn kích hoạt tài khoản tới <strong>{{$route.query.email}}</strong>.
-                                            Vui lòng kiểm tra hộp thư đến của bạn để hoàn tất đăng kí.
+                                            Vui lòng kiểm tra hộp thư đến của bạn để hoàn tất đăng ký.
                                         </p>
                                         <p>
                                             Nếu bạn không nhận được email kích hoạt từ chúng tôi, vui lòng nhấn vào 

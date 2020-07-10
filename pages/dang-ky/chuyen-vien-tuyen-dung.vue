@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7 col-sm-12" style="padding:100px 15px;">
-                <h3 style="color:black;"><b>Đăng kí chuyên viên tuyển sinh</b></h3>
+                <h3 style="color:black;"><b>Đăng ký chuyên viên tuyển sinh</b></h3>
                 <ul class="list">
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận đơn hàng trên toàn quốc hàng giờ</li>
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận tất cả các đơn hàng một cách đơn giản</li>
@@ -16,7 +16,6 @@
                    <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN CHUYÊN VIÊN TUYỂN SINH</span>
                 </div>
-                <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap"><b>Tại đây</b></a></span>
                 <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
                     <ValidationObserver ref="observer" v-slot="{ valid }">
                      <ValidationProvider
@@ -106,13 +105,21 @@
                             </ul>
                         </div>
                     </ValidationProvider>
-                    <div class="form-check pl-0" style="margin-bottom:0px;">
-                            <label for="agree-term" style="padding-bottom: 10px;" class="label-agree-term">Bằng việc nhấn nút đăng kí bạn đã đồng ý với <a href="" class="term-service"><b>Thỏa thuận sử dụng</b></a> của Netbee.</label>
+                    <div class="form-group intro-code" style="margin-bottom:0px;">
+                        <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register">Nhập mã giới thiệu (Nếu có)</label>
+                        <input type="text" class="form-control" name="password_confirmation" v-model="userForm.intro_code" data-vv-as="password">
+                    </div>
+                    <!-- <div class="mb-1">
+                      <span>Nếu bạn có mã giới thiệu, xin vui lòng đăng ký <a @click="introduce()"><b>Tại đây</b></a></span>
+                    </div> -->
+                    <div class="form-check pl-0 pt-1" style="margin-bottom:0px;">
+                            <label for="agree-term" style="padding-bottom: 10px;" class="label-agree-term">Bằng việc nhấn nút đăng ký bạn đã đồng ý với <a href="" class="term-service"><b>Thỏa thuận sử dụng</b></a> của Netbee.</label>
                         </div>
                     <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
                         <button type="button" @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Đăng ký ngay</button>
                     </div>
                     </ValidationObserver>
+                    <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap"><b>Tại đây</b></a></span>
                 </form>
               </div>               
             </div>
@@ -190,6 +197,7 @@ export default {
         phone: "",
         password: "",
         password_confirmation: "",
+        intro_code: "",
         role: 3
      },
      show: true,
@@ -312,5 +320,8 @@ export default {
     }
     ul li span{
       font-style: italic;
+    }
+    .intro-code input {
+      /* width: 50%; */
     }
 </style>
