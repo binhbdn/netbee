@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-8 col-sm-6 col-12">
+                        <div class="col-xl-8 col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h3>Tổng lượt truy cập</h3>
@@ -95,18 +95,18 @@
                                 />
                             </div>
                         </div>
-                        <div class="col-md-4 col-12">
+                        <div class="col-xl-4 col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Nguồn truy cập</h4>
                                 </div>
                                 <div class="card-content">
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-between mb-25" v-for="(referrer,indexReferrer) in fetchTopReferrers" :key="indexReferrer">
-                                            <div class="browser-info">
+                                        <div class="row mb-25" v-for="(referrer,indexReferrer) in fetchTopReferrers" :key="indexReferrer">
+                                            <div class="browser-info col-10">
                                                 <p class="mb-25">{{ referrer.url }}</p>
                                             </div>
-                                            <div class="stastics-info text-right text-success">
+                                            <div class="stastics-info text-right text-success col-2 pl-0">
                                                 <span>{{ referrer.pageViews }}</span>
                                             </div>
                                         </div>
@@ -216,4 +216,9 @@ export default {
 }
 </script>
 <style>
+@media (max-width: 991px){
+    #dashboard-ecommerce .col-lg-3, #dashboard-ecommerce .col-lg-8, #dashboard-ecommerce .col-lg-7{
+        padding-right: 14px;
+    }
+}
 </style>

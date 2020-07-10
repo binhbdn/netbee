@@ -1,7 +1,10 @@
 <template>
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" style="background-color: #2f3b4c;" data-scroll-to-active="true">
-        <div class="navbar-header" style="height: 90px">
-            <ul class="nav navbar-nav flex-row">
+        <div class="navbar-header d-flex" style="height: 90px">
+            <ul class="nav navbar-nav" style="padding-top: 22px">
+                <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu fa-2x" style="color: #fff"></i></a></li>
+            </ul>
+            <ul class="nav navbar-nav" style="padding-left: 15px">
                 <li class="nav-item mr-auto"  style="margin: auto; margin-top: -10px;">
                     <a class="navbar-brand" href="/">
                         <img src="/assets/img/logo-netbee-2-ncd.png" alt="Smiley face" height="60" width="130">
