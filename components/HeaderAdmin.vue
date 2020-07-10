@@ -108,9 +108,10 @@ export default {
         updateStatusAll() {
             this.$axios.$post('readNotificationAll').then((response) => {
                 this.countNoti = 0;
+                window.location.href = '/admin/thong-bao'
             })
         },
-        infiniteScroll($state) {
+        infiniteScroll: function($state) {
             setTimeout(() => {
                 this.page++
                 this.$axios
