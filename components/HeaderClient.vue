@@ -199,6 +199,12 @@
         </ul>
       </div>
     </div>
+    <div class="icon-menu">
+      <input id="menu-toggle" type="checkbox" @click="changeMenu()"/>
+      <div class='menu-button-container' for="menu-toggle">
+          <div class='menu-button'></div>
+      </div>
+    </div>
   </nav>
 </template>
 <script>
@@ -218,6 +224,13 @@ export default {
     }
   },
   methods: {
+    changeMenu() {
+      if(document.getElementById("menu-toggle").checked) {
+        document.getElementById("ftco-nav").style.display = " block"
+      } else {
+        document.getElementById("ftco-nav").style.display = " none"
+      }
+    },
     updateStatusAll: function() {
         this.$axios.$post('readNotificationAll').then((response) => {
             this.countNoti = 0;
@@ -282,6 +295,35 @@ export default {
     overflow: hidden;
     white-space: nowrap;
 }
+
+.icon-menu {
+  opacity: 0;
+}
+#menu-toggle {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.menu-button::before {
+  content: '';
+  margin-top: -8px;
+}
+.menu-button::after {
+  content: '';
+  margin-top: 8px;
+}
+.menu-button, .menu-button::before, .menu-button::after {
+  display: block;
+  background-color: #674C28;
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 2px;
+}
+.cta .nav-icon img {
+    border-radius: 1.5rem;
+}
 .border-bot {
     border: 1px solid rgba(128, 128, 128, 0.192);
 }
@@ -298,4 +340,47 @@ export default {
 .dropdown-notification .notification-title {
     color: #000 !important;
 }
+@media only screen and (min-width: 320px) and (max-width: 779px){
+  .icon-menu {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    width: 55px;
+    height: 55px;
+    border: 1px solid #674C28;
+    opacity: 1;
+  }
+  .menu-button-container {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+  }
+  #ftco-nav > ul {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+  }
+  #ftco-nav > ul > li:nth-child(10) {
+    display: none;
+  }
+  #menu-toggle:checked+.menu-button-container .menu-button::before {
+    margin-top: 0px;
+    transform: rotate(405deg);
+  }
+  #menu-toggle:checked+.menu-button-container .menu-button::after {
+    margin-top: 0px;
+    transform: rotate(-405deg);
+  }
+  #menu-toggle:checked+.menu-button-container .menu-button {
+    background: rgba(255, 255, 255, 0);
+  }
+  .dropdown-menu {
+    position: absolute;
+    left: -120px;
+    width: 235px;
+  }
+  .dropdown .dropdown-menu::before {
+    left: 14.2rem;
+  }
+}
+
 </style>

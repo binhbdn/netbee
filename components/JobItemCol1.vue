@@ -82,8 +82,8 @@ export default {
 }
 .card-avatar img {
     object-fit: scale-down;
-    height: 85px; 
-    width: 85px;
+    height: 60px; 
+    width: 60px;
 }
 .item-price .title {
     font-size: 14px;

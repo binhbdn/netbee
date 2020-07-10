@@ -207,6 +207,7 @@
 }
 .carousel-indicators {
     bottom: -30px!important;
+    z-index: 1 !important;
 }
 .carousel-item {
     -webkit-transition: -webkit-transform .4s ease-in-out;
@@ -224,8 +225,13 @@
 }
 @media only screen and (max-width: 600px) {
     .ecommerce-application .list-view .ecommerce-card .card-content {
-        display: flex !important;
-        flex-direction: column;
+        grid-template-columns: 1fr 3fr !important;
+    }
+    .ecommerce-application .list-view .ecommerce-card .card-content:last-child div:last-child div:last-child{
+        display: none;
+    }
+    .ecommerce-application .list-view .ecommerce-card .card-content .item-options {
+        padding: 0 !important;
     }
     .remove-border-right {
         padding : 0 20px;
