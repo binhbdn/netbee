@@ -247,6 +247,7 @@ export default {
                     confirmButtonColor: '#3085d6',
                     confirmButtonText: 'OK'
                 }).then(async (result) => {
+                    let response = await this.$auth.loginWith('local',{ data: this.userForm });
                     if (result.value) {
                         window.location.href = '/dang-ky/xac-thuc?username=' + this.userForm.name + '&email=' + this.userForm.email;
                     }
