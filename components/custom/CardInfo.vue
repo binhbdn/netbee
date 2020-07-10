@@ -55,7 +55,7 @@ export default {
 
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr!important;
+    grid-template-columns: 0.5fr 3fr 2fr!important;
 }
 .item-vip-a{
     font-weight: 400;

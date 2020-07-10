@@ -1,9 +1,9 @@
 <template>
     <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px; border-radius: 3px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content h-100">
-            <div class="text-center p-1" style="margin: auto;">
+            <div class="text-center card-avatar p-1">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
-                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" :alt="`${job.user.avatar}`" style="object-fit: scale-down; max-height: 150px; max-width: 100%;">
+                    <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" :alt="`${job.user.avatar}`">
                 </a>
                 <a class="delivery-date mb-0 badge border-netbee badge-sm" style="width: 100px;margin-top: 6px;" :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
                     {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
@@ -23,8 +23,8 @@
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
-                <div class="item-quantity d-flex justify-content-between">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="mức lương" >Chi phí: <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.salary_start) }}{{ job.currency }} ~ {{ FormatPrice(job.salary_end) }}{{ job.currency }}</span></p>
+                <div class="item-price d-flex justify-content-between">
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     <!-- <p class="delivery-date m-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển"><i class="fad fa-user-friends"></i> {{job.quantity}}</p> -->
                 </div>
                 <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
@@ -88,5 +88,16 @@ export default {
     position: absolute;
     right: 15px;
     top: 0;
+}
+.item-price .title {
+    font-size: 14px;
+}
+.card-avatar {
+    margin: auto;
+}
+.card-avatar img {
+    object-fit: scale-down;
+    height: 60px; 
+    width: 60px;
 }
 </style>

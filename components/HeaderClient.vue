@@ -282,6 +282,9 @@ export default {
     overflow: hidden;
     white-space: nowrap;
 }
+.cta .nav-icon img {
+    border-radius: 1.5rem;
+}
 .border-bot {
     border: 1px solid rgba(128, 128, 128, 0.192);
 }
