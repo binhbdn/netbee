@@ -67,19 +67,23 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+        $email = $request->email;
+        $password = $request->password;
         $validator = Validator::make($request->all(),
         [
             'email' => 'required|email|unique:users',
             'password' => 'required',
             'name' => 'required',
-            'phone' => 'required|numeric',
-            'role' => 'required|numeric|between:1,3',           
+            'phone' => 'required|numeric|unique:users',
+            'role' => 'required|numeric|between:1,3',         
         ],
         [
             'required' => 'Không được để trống',
             'email' => 'Địa chỉ email không đúng định dạng',
             'numeric' => 'Số điện thoại không được chứa kí tự',
-            'unique' => 'Email đã tồn tại',
+            // 'unique' => '::attribute đã tồn tại',
+            'email.unique' =>  'Email đã tồn tại',
+            'phone.unique' =>  'Số điện thoại đã đăng ký',
             'between' => 'Role không hợp lệ'
         ]);
 
@@ -135,7 +139,27 @@ class UserController extends Controller
         $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
         //Notification End
         $store = $this->userService->store($users);
-
+        //Auto Login After Registration
+        $credentials = [
+            'email' => $email, 
+            'password' => $password
+        ];
+        $jwtToken = $this->userService->login($credentials);
+        // if (!$jwtToken) {
+        //     return response()->json([
+        //         'status' => 400,
+        //         'message' => 'Email hoặc mật khẩu không đúng',
+        //         'data' => null
+        //     ]);
+        // }
+        // return response()->json([
+        //     'status'  => 200,
+        //     'message' => 'Đăng nhập thành công',
+        //     'data' => [
+        //         'user' => Auth::user(),
+        //         'token' => $jwtToken
+        //     ],
+        // ]);
         if ($store) {
             $firstUserStore = $this->userService->firstEmailUsers($request->email);
             $notification1 = [
@@ -156,9 +180,9 @@ class UserController extends Controller
             return response()->json([
                 'status'=> 200,
                 'message' => 'Đăng ký thành công',
-                'data' => null
+                'data' => $jwtToken
             ]);
-        }
+        }        
 
         return response()->json([
             'status'=> 400,
@@ -409,14 +433,15 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required',
             'name' => 'required',
-            'phone' => 'required|numeric',
+            'phone' => 'required|numeric|unique:users',
             'role' => 'required|numeric|between:1,3',
         ];
         $messages = [
             'required' => 'Không được để trống',
             'email' => 'Địa chỉ email không đúng định dạng',
             'numeric' => 'Số điện thoại không được chứa kí tự',
-            'unique' => 'Email đã tồn tại',
+            'email.unique' =>  'Email đã tồn tại',
+            'phone.unique' =>  'Số điện thoại đã đăng ký',
             'between' => 'Role không hợp lệ'
         ];
 

@@ -37,7 +37,7 @@
                                         </p>
                                         <div style="text-align: center;">
                                             <a @click="resentActivationEmail()" class="btn btn-warning">Gửi lại email</a>
-                                            <a href="/" class="btn btn-primary">Về trang chủ</a>
+                                            <a href="/admin" class="btn btn-primary">Về trang chủ</a>
                                         </div>
                                     </div>
                                     <i class="el-alert__closebtn el-icon-close" style="display: none;"></i>
