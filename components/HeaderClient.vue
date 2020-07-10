@@ -79,7 +79,7 @@
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/lien-he'} " >
             <a href="/lien-he" class="nav-link header-nav-link">
               <div class="nav-icon">
-                <i class="fa fa-window-restore"></i>
+                <i class="fad fa-phone-office"></i>
               </div>
               <div class="nav-title">
                 {{ $t('nav.contact') }}
