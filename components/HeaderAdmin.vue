@@ -29,7 +29,7 @@
                       <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
-                                    <div class="dropdown-header m-0 p-2">
+                                    <div class="dropdown-header m-0">
                                         <h3 class="h3-size">{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
                                     </div>
                                 </li>
