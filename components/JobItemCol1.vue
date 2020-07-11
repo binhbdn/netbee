@@ -99,7 +99,18 @@ export default {
 }
 @media(max-width: 768px) {
     .item-vip-a{
-        max-width: 140px;
+        white-space: nowrap; 
+        max-width: 250px !important; 
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }
+    .item-options {
+        display: none;
+    }
+}
+@media(max-width: 376px) {
+    .item-vip-a{
+        max-width: 200px !important;
     }
 }
 </style>
