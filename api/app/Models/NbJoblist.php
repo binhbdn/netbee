@@ -23,6 +23,7 @@ class NbJoblist extends Model
         'age_late',
         'salary_start',
         'salary_end',
+        'salary_status',
         'subsidy',
         'date_start',
         'date_test',

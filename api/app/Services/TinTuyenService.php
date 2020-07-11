@@ -137,8 +137,7 @@ class TinTuyenService extends BaseService {
             'age_late' => 'required',
             'quantity' => 'required',
             'currency' => "required",
-            'salary_start' => 'required',
-            'salary_end' => 'required',
+            'salary_start' => 'required'
         ];
         $messages = [
             'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
@@ -211,6 +210,7 @@ class TinTuyenService extends BaseService {
             'quantity' => $request->quantity,
             'salary_start' => $request->salary_start,
             'salary_end' => $request->salary_end,
+            'salary_status' => $request->salary_status,
             'subsidy' => $request->subsidy,
             'currency' => $request->currency,
             'date_start' => $request->date_start,
@@ -267,6 +267,7 @@ class TinTuyenService extends BaseService {
         if($request->school_name != 'null'){
             $response['school_name'] = $request->school_name;
         }
+       
 
         return $response;
     }
