@@ -146,7 +146,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày thi tuyển</label>
                                                                 <input type="date" class="form-control" v-model="data.date_test">
@@ -155,7 +155,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày dự kiến nhập cảnh</label>
                                                                 <input type="date" class="form-control required" v-model="data.expected_date">
@@ -525,7 +525,7 @@ export default {
                 expected_date: '',
                 time_bonus: {id: 1, name: 'Ngay sau khi bay'},
                 bonus: null,
-                highlight_job: 1,
+                highlight_job: 0,
                 visa: {id: null, profession: ''},
                 form_work: {id: 1, name: 'Toàn thời gian'},
                 school_name: this.$auth.user.name,
@@ -545,21 +545,25 @@ export default {
             },
             checked: true,
             guarantee: [
+                {id: 1, name: 'Ngay sau khi bay'},
                 {id: 2, name: 'Sau khi bay 30 ngày'},
                 {id: 3, name: 'Sau khi bay 60 ngày'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
             optionsVisa: [],
             optionsFormWork: [
+                {id: 1, name: 'Toàn thời gian'},
                 {id: 2, name: 'Bán thời gian'},
                 {id: 3, name: 'Vừa học vừa làm'}
             ],
             levelEx: [
+                {id: 1, name: 'Trung học phổ thông'},
                 {id: 2, name: 'Cao đẳng'},
                 {id: 3, name: 'Đại học'},
                 {id: 4, name: 'Trên đại học'}
             ],
             valueEx: [
+                {id: 1, name: 'Công ty chuẩn bị'},
                 {id: 2, name: 'Ứng viên tự chuẩn bị'},
             ],
             companies:[]

@@ -113,20 +113,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Chiều cao (cm)</label>
-                                                            <input type="number" class="form-control" v-model="data.height">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Cân nặng (kg)</label>
-                                                            <input type="number" class="form-control" v-model="data.weight">
-                                                        </div>
-                                                    </div>
-                                                    
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Trình độ học vấn</label>
@@ -141,13 +127,16 @@
                                                     </div>
 
                                                     <div class="col-6">
+                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày thi tuyển</label>
-                                                                <input type="date" class="form-control" v-model="data.date_test">                                     
+                                                                <input type="date" class="form-control" v-model="data.date_test"> 
+                                                                <span style="color: red">{{ errors[0] }}</span>                                    
                                                             </div>
+                                                        </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày dự kiến nhập cảnh</label>
                                                                 <input type="date" class="form-control required" v-model="data.expected_date">
@@ -210,58 +199,14 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Thời gian lao động:</label>
-                                                            <div class="container-fluid">
-                                                                <div class="row">
-                                                                    <div class="col-6" style="padding-left:0px">
-                                                                        <input type="time" class="form-control" v-model="data.startTimeLabor"  min="01:00" max="23:00">                        
-                                                                    </div>
-                                                                    <div class="col-6" style="padding-right: 0px">
-                                                                        <input type="time" class="form-control" v-model="data.endTimeLabor"  min="01:00" max="23:00">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                   <div class="col-6">
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label for="firstName3">Bảo hiểm lao động</label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <input class="form-check-input" type="checkbox" v-model="data.insurrance">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                                <div class="col-md-8">
-                                                                    <label for="firstName3">Trang phục lao động</label>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                     <input class="form-check-input" type="checkbox" v-model="data.skin">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     
-                                                    <div class="col-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Ký túc xá</label>
                                                             <multiselect :options="valueEx" v-model="data.dormitory" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Bữa ăn</label>
-                                                            <multiselect :options="valueEx" v-model="data.meal" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
-                                                        </div>
-                                                    </div>
+                    
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Phụ cấp ngoài</label>
@@ -511,7 +456,7 @@ export default {
                 expected_date: '',
                 time_bonus: {id: 1, name: 'Ngay sau khi bay'},
                 bonus: null,
-                highlight_job: 1,
+                highlight_job: 0,
                 time_contract: 3,
                 height:'',
                 weight:'',
@@ -528,17 +473,20 @@ export default {
             },
             checked: true,
             guarantee: [
+                {id: 1, name: 'Ngay sau khi bay'},
                 {id: 2, name: 'Sau khi bay 30 ngày'},
                 {id: 3, name: 'Sau khi bay 60 ngày'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
             companies:[],
             levelEx: [
+                {id: 1, name: 'Trung học phổ thông'},
                 {id: 2, name: 'Cao đẳng'},
                 {id: 3, name: 'Đại học'},
                 {id: 4, name: 'Trên đại học'}
             ],
             valueEx: [
+                {id: 1, name: 'Công ty chuẩn bị'},
                 {id: 2, name: 'Ứng viên tự chuẩn bị'},
             ],
         }
