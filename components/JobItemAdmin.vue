@@ -98,7 +98,7 @@ export default {
 
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
-    grid-template-columns: 0.5fr 4fr 2fr;
+    grid-template-columns: 0.3fr 4fr 2fr;
 }
 
 .hot{
@@ -130,5 +130,10 @@ export default {
 }
 .item-price .title {
     font-size: 14px;
+}
+@media(max-width: 768px) {
+.remove-border-right {
+    padding: 0px;
+}
 }
 </style>
