@@ -107,7 +107,7 @@ export default {
 }
 @media(max-width: 768px) {
     .item-vip-a{
-        max-width: 200px;
+        max-width: 250px;
     }
     .p-r-0 .hot img{
         right: 15px;
@@ -117,6 +117,11 @@ export default {
     }
     .remove-border-right {
         padding: 10px 10px 10px 0px;
+    }
+}
+@media(max-width: 375px) {
+    .item-vip-a{
+        max-width: 200px;
     }
 }
 @media(max-width: 320px) {
