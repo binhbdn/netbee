@@ -14,9 +14,9 @@
                         </div>
                         <div class="col-lg-7">
                             <div class="company-job-title">
-                                <h1 class="">{{ tintuyendung.title }}</h1>
-                                <a :href="`/cong-ty/${tintuyendung.nb_company.username}`"><h4 class=" text-uppercase"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
-                                <p><span class="font-weight-600">Loại tin: </span><span class="badge border-netbee badge-md">{{ tintuyendung.type == 3 ? 'Tu nghiệp sinh' : tintuyendung.type == 2 ? 'Du học sinh' : 'Xuất khẩu lao động' }}</span></p>
+                                <h1 style="font-size: 20px;">{{ tintuyendung.title }}</h1>
+                                <a :href="`/cong-ty/${tintuyendung.nb_company.username}`"><h4 class=" text-uppercase" style="font-size: 15px;"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
+                                <p><span class="font-weight-600">Loại tin: </span><span class="badge border-netbee badge-md">{{ tintuyendung.type == 3 ? 'Tu nghiệp sinh' : tintuyendung.type == 2 ? 'Du học' : 'Xuất khẩu lao động' }}</span></p>
                                 <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuyendung.nation.name }}</p>
                                 <p><span class="font-weight-600" v-if="tintuyendung.type != 2">Mức lương: </span> <span class="font-weight-600" v-if="tintuyendung.type == 2">Học phí: </span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
                                 <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ ConvertDate(tintuyendung.expiration_date) }}</p>
@@ -102,22 +102,18 @@
                         </div>
                         <div class="col-12">
                             <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title line2"> LỘ TRÌNH</h5>
-                                <!-- <hr class="hr-color" style="max-width: 163px;"> -->
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p class="px-1" v-html="tintuyendung.description" style="white-space: pre-line;"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="col-12 p-l-0">
                                 <h5 class="font-weight-600 line-title line3"> YÊU CẦU</h5>
                                 <!-- <hr class="hr-color" style="max-width: 90px;"> -->
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
+                                    <div class="px-1">
+                                        <p v-if="tintuyendung.academicLevel == 1"><span class="font-weight-600">Trình độ học vấn:</span> Trung học phổ thông</p>
+                                        <p v-else-if ="tintuyendung.academicLevel == 2"><span class="font-weight-600">Trình độ học vấn:</span> Cao đẳng</p>
+                                        <p v-else-if ="tintuyendung.academicLevel == 3"><span class="font-weight-600">Trình độ học vấn:</span> Đại học</p>
+                                        <p v-else-if ="tintuyendung.academicLevel == 4"><span class="font-weight-600">Trình độ học vấn:</span> Trên đại học</p>
+                                        <p v-else ><span class="font-weight-600">Trình độ học vấn:</span> Đang cập nhật</p>
+                                    </div>
                                     <p class="px-1" v-html="tintuyendung.request" style="white-space: pre-line;"></p>
                                 </div>
                             </div>
@@ -129,18 +125,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p class="px-1" v-html="tintuyendung.benefit" style="white-space: pre-line;"></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="col-12 p-l-0">
-                                <h5 class="font-weight-600 line-title line5"> HỒ SƠ CẦN CHUẨN BỊ</h5>
-                                <!-- <hr class="hr-color" style="max-width: 194px;"> -->
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p class="px-1" v-html="tintuyendung.cv_content" style="white-space: pre-line;"></p>
+                                    <p class="px-1" v-if="tintuyendung.benefit != null" v-html="tintuyendung.benefits" style="white-space: pre-line;"></p>
+                                    <p class="px-1" v-else style="white-space: pre-line;">Đang cập nhật</p>
                                 </div>
                             </div>
                         </div>
