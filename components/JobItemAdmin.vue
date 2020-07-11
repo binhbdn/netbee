@@ -111,7 +111,7 @@ export default {
     font-weight: 700;
 }
 .hot img {
-    width: 3%;
+    width: 2%;
     float: right;
     position: absolute;
     right: 15px;
