@@ -115,13 +115,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-6" v-if="data.type != 2">
                                                         <div class="form-group">
                                                             <label for="firstName3">Chiều cao</label>
                                                             <input type="number" class="form-control" v-model="data.height">
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-6" v-if="data.type != 2">
                                                         <div class="form-group">
                                                             <label for="firstName3">Cân nặng</label>
                                                             <input type="number" class="form-control" v-model="data.weight">
@@ -164,7 +164,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Ngày thi tuyển
@@ -175,7 +175,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Ngày dự kiến nhập cảnh
@@ -238,7 +238,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12">
+                                                    <div class="col-12" v-if="data.type != 2">
                                                         <div class="form-group">
                                                             <label for="firstName3">Thời gian lao động</label>
                                                             <div class="container-fluid">
@@ -255,7 +255,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                   <div class="col-6">
+                                                   <div class="col-6" v-if="data.type != 2">
                                                         <div class="form-group">
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -267,7 +267,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-6" v-if="data.type != 2">
                                                         <div class="form-group">
                                                             <div class="row">
                                                                 <div class="col-md-8">
@@ -280,13 +280,19 @@
                                                         </div>
                                                     </div>
                                                     
-                                                    <div class="col-6">
+                                                    <div class="col-12" v-show="data.type == 2">
                                                         <div class="form-group">
                                                             <label for="firstName3">Ký túc xá</label>
                                                             <multiselect :options="valueEx" v-model="data.dormitory" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-6" v-show="data.type != 2">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Ký túc xá</label>
+                                                            <multiselect :options="valueEx" v-model="data.dormitory" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6" v-show="data.type != 2">
                                                         <div class="form-group">
                                                             <label for="firstName3">Bữa ăn</label>
                                                             <multiselect :options="valueEx" v-model="data.meal" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
@@ -535,7 +541,7 @@ export default {
                 expected_date: '',
                 time_bonus: {id: 1, name: 'Ngay sau khi bay'},
                 bonus: null,
-                highlight_job: 1,
+                highlight_job: 0,
                 visa: '',
                 form_work: '',
                 type: '',
@@ -566,11 +572,13 @@ export default {
                 {id: 3, name: 'Vừa học vừa làm'}
             ],
             levelEx: [
+                {id: 1, name: 'Trung học phổ thông'},
                 {id: 2, name: 'Cao đẳng'},
                 {id: 3, name: 'Đại học'},
                 {id: 4, name: 'Trên đại học'}
             ],
             valueEx: [
+                {id: 1, name: 'Công ty chuẩn bị'},
                 {id: 2, name: 'Ứng viên tự chuẩn bị'}
             ],
         }
