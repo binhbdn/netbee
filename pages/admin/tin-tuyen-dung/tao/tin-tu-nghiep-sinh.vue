@@ -135,7 +135,12 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Phí nhập cảnh</label>
-                                                            <input type="txt" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">
+                                                            <div class="input-group">
+                                                                <input type="txt" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">
+                                                                <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                    <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                </div>
+                                                            </div>          
                                                         </div>
                                                     </div>
                                                      <div class="col-6">
@@ -214,13 +219,23 @@
                                                                 <div class="row">
                                                                     <div class="col-6" style="padding-left:0px">
                                                                         <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
-                                                                            <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
+                                                                            <div class="input-group">
+                                                                                <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
+                                                                                <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                                    <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                                </div>
+                                                                            </div>                                                                      
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px">
                                                                         <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
-                                                                            <input type="txt" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
+                                                                            <div class="input-group">
+                                                                                <input type="txt" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
+                                                                                <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                                    <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                                </div>
+                                                                            </div>
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
@@ -275,13 +290,13 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Ký túc xá</label>
-                                                            <multiselect :options="valueEx" v-model="data.dormitory" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
+                                                            <multiselect :options="valueEx" v-model="data.dormitory" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Bữa ăn</label>
-                                                            <multiselect :options="valueEx" v-model="data.meal" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
+                                                            <multiselect :options="valueEx" v-model="data.meal" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
@@ -330,7 +345,12 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">Tiền thưởng</label>
-                                                                <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                <div class="input-group">
+                                                                    <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                    <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                        <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                    </div>
+                                                                </div>                                                               
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>

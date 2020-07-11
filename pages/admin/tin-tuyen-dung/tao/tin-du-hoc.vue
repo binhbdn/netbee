@@ -122,7 +122,12 @@
                                                     <div class="col-6">                       
                                                         <div class="form-group">
                                                             <label for="firstName3">Phí nhập cảnh</label>
-                                                            <input type="txt" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">                                                             
+                                                            <div class="input-group">
+                                                                <input type="txt" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">
+                                                                <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                    <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                </div>
+                                                            </div>                                                             
                                                         </div>                        
                                                     </div>
 
@@ -147,7 +152,7 @@
                                                     <div class="col-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
-                                                                <label for="firstName3">Thời gian hợp đồng (năm)</label>
+                                                                <label for="firstName3">Thời gian du học (năm)</label>
                                                                 <input type="text" class="form-control required" v-model="data.time_contract">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -175,24 +180,23 @@
                                             <ValidationObserver ref="step3" v-slot="{ valid3 }">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        
-                                                    </div>
-                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Học phí</label>
                                                             <div class="container-fluid">
                                                                 <div class="row">
                                                                     <div class="col-6" style="padding-left:0px">
                                                                         <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
-                                                                            <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
+                                                                            <div class="input-group">
+                                                                                <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start">
+                                                                                <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                                    <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                                </div>
+                                                                            </div>                                                                       
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
-                                                                    <div class="col-6" style="padding-right: 0px">
-                                                                        <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
-                                                                            <input type="txt" @input="data.salary_end = FormatPrice(data.salary_end)" class="form-control" v-model="data.salary_end" placeholder="Đến">
-                                                                            <span style="color: red">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
+                                                                    <div class="col-6" style="padding-right: 0px">                                       
+                                                                        <multiselect :options="salaryEx" v-model="data.salary_status" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                                     </div>
                                                                     
                                                                 </div>
@@ -203,7 +207,7 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Ký túc xá</label>
-                                                            <multiselect :options="valueEx" v-model="data.dormitory" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
+                                                            <multiselect :options="valueEx" v-model="data.dormitory" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" ></multiselect>
                                                         </div>
                                                     </div>
                     
@@ -256,19 +260,17 @@
                                                                 <label for="firstName3">
                                                                     Tiền thưởng
                                                                 </label>
-                                                                <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                <div class="input-group">
+                                                                    <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                    <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                        <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                    </div>
+                                                                </div> 
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <!-- <div class="col-4" v-if="checked">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">
-                                                                Tổng tiền thưởng
-                                                            </label>
-                                                            <input type="number" class="form-control" disabled :value=" data.time_bonus.id == 1 ? data.bonus : data.time_bonus.id == 2 ? data.bonus * 1.5 : data.bonus * 2">
-                                                        </div>
-                                                    </div> -->
+  
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi1">
                                                         <div class="card border-netbee text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
@@ -448,7 +450,7 @@ export default {
                 age_late: '30',
                 quantity:'',
                 salary_start: '',
-                salary_end: '',
+                salary_status: {id: 1, name: '/ 1 Năm'},
                 subsidy: '',
                 currency: null,
                 date_start: '',
@@ -489,6 +491,12 @@ export default {
                 {id: 1, name: 'Công ty chuẩn bị'},
                 {id: 2, name: 'Ứng viên tự chuẩn bị'},
             ],
+            salaryEx: [
+                {id: 1, name: '/ 1 Năm'},
+                {id: 2, name: '/ 6 Tháng'},
+                {id: 3, name: '/ 1 Tháng'},
+                {id: 4, name: '/ 1 Kỳ'}
+            ]
         }
     },
     components:{
@@ -549,6 +557,7 @@ export default {
         },
 
         async onComplete() {
+            console.log(this.data.salary_status.id)
             let isValid = await this.$refs.step4.validate();
             var form = new FormData();
             if(isValid){
@@ -563,7 +572,6 @@ export default {
                 form.append('nation_id' , this.data.nation.id)
                 form.append('expiration_date' , this.data.expiration_date)
                 form.append('salary_start' , this.data.salary_start.split(',').join(''))
-                form.append('salary_end' , this.data.salary_end.split(',').join(''))
                 form.append('age_start' , this.data.age_start)
                 form.append('age_late' , this.data.age_late)
                 form.append('quantity' , this.data.quantity)
@@ -602,6 +610,7 @@ export default {
                 form.append('allowance' , this.data.allowance)
                 form.append('benefits' , this.data.benefits)
                 form.append('request' , this.data.request)
+                form.append('salary_status' , this.data.salary_status.id)
                 this.$axios.post('tintuyendung/createTinTuyen',form)
                 .then(response => {
                     if(response.data.status == 200) {
