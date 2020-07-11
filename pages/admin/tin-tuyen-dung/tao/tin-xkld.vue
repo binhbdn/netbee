@@ -14,7 +14,7 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Tên công ty</label>
-                                                            <input type="text" class="form-control" v-model="data.school_name">
+                                                            <input type="text" class="form-control" v-model="data.school_name" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -533,8 +533,8 @@ export default {
                 address: '',
                 nation: {id: null, name: ''},
                 expiration_date: '',
-                age_start: '18',
-                age_late: '35',
+                age_start: '25',
+                age_late: '40',
                 quantity:'',
                 salary_start: '',
                 salary_end: '',

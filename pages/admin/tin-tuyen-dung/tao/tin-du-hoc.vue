@@ -15,7 +15,7 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="title">Tiêu đề</label>
-                                                                <input type="text" class="form-control" v-model="data.title">
+                                                                <input type="text" class="form-control" v-model="data.title" placeholder="Tuyển du học trường Tokyo kỳ bay tháng 10/2020">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -33,7 +33,7 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Tên trường</label>
-                                                                <input type="text" class="form-control" v-model="data.school_name">
+                                                                <input type="text" class="form-control" v-model="data.school_name" placeholder="Đại học Tokyo">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -42,7 +42,7 @@
                                                         <ValidationProvider v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Địa điểm</label>
-                                                                <input type="text" class="form-control" v-model="data.address">
+                                                                <input type="text" class="form-control" v-model="data.address" placeholder="Tokyo">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -170,7 +170,8 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Yêu cầu thêm</label>
-                                                            <textarea rows="3" class="form-control" v-model="data.request"></textarea>
+                                                            <textarea rows="3" class="form-control" v-model="data.request" placeholder="Đại học yêu cầu có 1,5 năm kinh nghiệm.
+Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -214,13 +215,13 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Phụ cấp ngoài</label>
-                                                            <textarea rows="3" class="form-control" v-model="data.allowance"></textarea>
+                                                            <textarea rows="3" class="form-control" v-model="data.allowance" placeholder="Miễn phí ký túc xá"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Quyền lợi khác</label>
-                                                            <textarea rows="3" class="form-control" v-model="data.benefits"></textarea>
+                                                            <textarea rows="3" class="form-control" v-model="data.benefits" placeholder="Giới thiệu việc làm thêm"></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
