@@ -83,6 +83,9 @@ export default {
     right: 15px;
     top: 0;
 }
+.exam-jobs .hot img {
+    width: 2.5%;
+}
 .card-avatar {
     margin: auto;
 }
