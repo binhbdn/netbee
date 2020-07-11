@@ -60,6 +60,9 @@ export default {
     display: grid;
     grid-template-columns: 1fr 3fr 2fr;
 }
+.exam-jobs .card-content{
+    grid-template-columns: 0.5fr 3fr 2fr !important;
+}
 .mg-top-5{
     margin-top: 5px;
     margin-bottom: 0px;
@@ -80,6 +83,9 @@ export default {
     right: 15px;
     top: 0;
 }
+.card-avatar {
+    margin: auto;
+}
 .card-avatar img {
     object-fit: scale-down;
     height: 60px; 
@@ -87,6 +93,9 @@ export default {
 }
 .item-price .title {
     font-size: 14px;
+}
+.remove-border-right {
+    padding: 10px 10px 10px 0px;
 }
 @media(max-width: 768px) {
     .item-vip-a{
