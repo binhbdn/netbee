@@ -58,10 +58,10 @@ export default {
 }
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 0.7fr 3fr 2fr;
 }
 .exam-jobs .card-content{
-    grid-template-columns: 0.5fr 3fr 2fr !important;
+    grid-template-columns: 0.26fr 3fr 2fr !important;
 }
 .mg-top-5{
     margin-top: 5px;
