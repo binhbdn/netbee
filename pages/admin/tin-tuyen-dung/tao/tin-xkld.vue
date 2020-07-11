@@ -123,7 +123,7 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                            <label for="firstName3">Phí nhập cảnh</label>
+                                                            <label for="firstName3">Phí xuất cảnh</label>
                                                             <div class="input-group">
                                                                 <input type="txt" class="form-control required" v-model="data.subsidy" @input="data.subsidy = FormatPrice(data.subsidy)">
                                                                 <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
