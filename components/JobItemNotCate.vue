@@ -9,7 +9,7 @@
                     {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
                 </a>
             </div>
-            <div class="remove-border-right" style="width: 195px">
+            <div class="remove-border-right" style="width: 220px">
                 <div class="remove-border-right title-job-hv" style="padding: 5px 0 0 0;">
                     
                     <a class="item-vip-a el-1" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>

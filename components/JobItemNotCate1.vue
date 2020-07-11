@@ -6,7 +6,7 @@
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
             </div>
-            <div class="remove-border-right" style="width: 195px">
+            <div class="remove-border-right">
                 <div class="remove-border-right" style="padding: 5px 0 0 0;">
                     
                     <a class="item-vip-a el-1" :href="`/${type}tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
@@ -63,7 +63,7 @@ export default {
 
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid !important;
-    grid-template-columns: 1fr 3fr !important;
+    grid-template-columns: 0.6fr 3fr !important;
 }
 
 .el-1{
@@ -77,7 +77,7 @@ export default {
 }
 .hot{
     color: #fff;
-    text-transform: uppercase;
+    text-transform: uppercase;  
     z-index: 2;
     font-size: 9px;
     border-radius: 2px;
@@ -101,5 +101,22 @@ export default {
     object-fit: scale-down;
     height: 60px; 
     width: 60px;
+}
+.remove-border-right {
+    width: 400px;
+}
+@media(max-width: 768px) {
+.card-avatar {
+    margin: 0px;
+}
+.remove-border-right {
+    padding: 0px;
+    width: 250px;
+}
+}
+@media(max-width: 376px) {
+.remove-border-right {
+    width: 220px;
+}
 }
 </style>
