@@ -136,7 +136,7 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">
-                                                                Phí nhập cảnh
+                                                                Phí xuất cảnh
                                                             </label>
                                                             <div class="input-group">
                                                                 <input type="txt" class="form-control required" v-model="data.subsidy" @input="data.subsidy = FormatPrice(data.subsidy)">
