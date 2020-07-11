@@ -58,7 +58,7 @@
                                             <i class="fas fa-angle-left"></i>
                                           </button>
                                       </a>
-                                      <a class="carousel-control-next" href="#carousel-interval-new" style="position: absolute;top: 34%; right: 36%;" role="button" data-slide="next">
+                                      <a class="carousel-control-next" href="#carousel-interval-new" style="position: absolute;top: 38%; right: 36%;" role="button" data-slide="next">
                                           <button class="el-carousel__arrow el-carousel__arrow--right">
                                             <i class="fas fa-angle-right"></i>
                                           </button>
@@ -382,8 +382,8 @@ ol.carousel-indicators {
 }
 .spotlightBlock__logo .image img {
     border-radius: 4px;
-    height: 70px;
-    width: auto;
+    height: 70%;
+    width: 100%;
     box-shadow: 0 0 4px 0 rgba(0,0,0,0.25);
 }
 .image img {
