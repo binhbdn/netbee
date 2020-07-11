@@ -197,7 +197,7 @@
                                     <i class="fad fa-business-time"></i> LOẠI TIN TƯƠNG TỰ
                                 </h4>
                             </div>
-                            <div class="card-content collapse show">
+                            <div class="exam-jobs card-content collapse show">
                                 <div class="card-body">
                                     <JobsList1Col :DataList="tintuyendung.type == 1 ? arrayJobXKLD : tintuyendung.type == 2 ? arrayJobDHS : arrayJobTNS" type="admin/"></JobsList1Col>
                                 </div>
@@ -908,6 +908,7 @@ export default {
 .company-job-title p{
     line-height: 1rem;
 }
+
 @media only screen and (max-width: 600px) {
     #social {
         height: 45% !important;
