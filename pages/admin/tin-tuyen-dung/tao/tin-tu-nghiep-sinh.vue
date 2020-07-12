@@ -552,7 +552,7 @@ export default {
                 salary_start: '',
                 salary_end: '',
                 subsidy: '',
-                currency: '',
+                currency: 'VND',
                 date_start: '',
                 date_test: '',
                 expected_date: '',
