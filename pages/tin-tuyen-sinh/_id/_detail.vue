@@ -131,8 +131,12 @@
                                     <div class="px-1">
                                         <p><span class="font-weight-600">Ngày thi tuyển:</span> {{ConvertDate(tintuyendung.date_test)}}</p>
                                     </div>
+                                    <div class="px-1"  v-if="tintuyendung.type != 2">
+                                        <p v-if="tintuyendung.job_description != null" style="white-space: pre-line;"><span class="font-weight-600">Mô tả công việc:</span><br>{{tintuyendung.job_description}}</p>
+                                        <p v-else><span class="font-weight-600">Mô tả công việc:</span> Đang cập nhật</p>
+                                    </div>
                                     <div class="px-1">
-                                        <p v-if="tintuyendung.request != null"><span class="font-weight-600">Yêu cầu thêm:</span> {{tintuyendung.request}}</p>
+                                        <p v-if="tintuyendung.request != null" style="white-space: pre-line;"><span class="font-weight-600">Yêu cầu thêm:</span><br>{{tintuyendung.request}}</p>
                                         <p v-else><span class="font-weight-600">Yêu cầu thêm:</span> Đang cập nhật</p>
                                     </div>
 
@@ -162,7 +166,7 @@
                                     </div>
                                     <div class="px-1">
                                         <p  v-if="tintuyendung.dormitory == 1"><span class="font-weight-600">Ký túc xá:</span> Công ty chuẩn bị</p>
-                                        <p  v-if="tintuyendung.dormitory == 2"><span class="font-weight-600">Ký túc xá:</span> Ứng viên tự chuẩn bị</p>
+                                        <p  v-else-if="tintuyendung.dormitory == 2"><span class="font-weight-600">Ký túc xá:</span> Ứng viên tự chuẩn bị</p>
                                         <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Ký túc xá:</span> Đang cập nhật</p>
                                     </div>
                                     <div class="px-1" v-if="tintuyendung.type != 2">
@@ -171,11 +175,11 @@
                                         <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Bữa ăn:</span> Đang cập nhật</p>
                                     </div>
                                     <div class="px-1">
-                                        <p  v-if="tintuyendung.allowance != null"><span class="font-weight-600">Phụ cấp ngoài:</span> {{tintuyendung.allowance}}</p>
+                                        <p  v-if="tintuyendung.allowance != null" style="white-space: pre-line;"><span class="font-weight-600">Phụ cấp ngoài:</span> {{tintuyendung.allowance}}</p>
                                         <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Phụ cấp ngoài:</span> Đang cập nhật</p>
                                     </div>
                                     <div class="px-1">
-                                        <p  v-if="tintuyendung.benefits != null"><span class="font-weight-600">Quyền lợi khác:</span> {{tintuyendung.benefits}}</p>
+                                        <p  v-if="tintuyendung.benefits != null" style="white-space: pre-line;"><span class="font-weight-600">Quyền lợi khác:</span><br>{{tintuyendung.benefits}}</p>
                                         <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Quyền lợi khác:</span> Đang cập nhật</p>
                                     </div>
                                 </div>

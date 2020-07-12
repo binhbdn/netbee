@@ -185,6 +185,12 @@
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
+                                                            <label for="firstName3">Mô tả công việc</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.job_description"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
                                                             <label for="firstName3">Yêu cầu thêm</label>
                                                             <textarea rows="3" class="form-control" v-model="data.request"></textarea>
                                                         </div>
@@ -561,7 +567,8 @@ export default {
                 endTimeLabor:'',
                 allowance:'',
                 benefits:'',
-                request:''
+                request:'',
+                job_description:''
             },
             checked: true,
             guarantee: [
@@ -653,7 +660,6 @@ export default {
         },
 
         async onComplete() {
-            console.log("thành đẹp trai ")
             let isValid = await this.$refs.step4.validate();
             var form = new FormData();
             if(isValid){
@@ -708,6 +714,7 @@ export default {
                 form.append('allowance' , this.data.allowance)
                 form.append('benefits' , this.data.benefits)
                 form.append('request' , this.data.request)
+                form.append('job_description' , this.data.job_description)
                 this.$axios.post('tintuyendung/createTinTuyen',form)
                 .then(response => {
                     console.log(response)
