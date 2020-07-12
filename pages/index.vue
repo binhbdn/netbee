@@ -180,7 +180,7 @@
               </div>
               <div class="card-content collapse show" style="padding: 13px;padding-bottom: 0px !important;">
                 <div>
-                   <JobsList1Col :DataList="arrayJobNew"></JobsList1Col>
+                   <JobsList1Col :DataList="arrayJobNew" type=""></JobsList1Col>
                 </div>              
               </div>
               <div class="main-bottom" style="padding-bottom: 15px;">
