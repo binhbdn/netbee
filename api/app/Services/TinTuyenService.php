@@ -147,7 +147,6 @@ class TinTuyenService extends BaseService {
             // $rules['school_name'] = 'required';
         } else {
             $rules['id_visa'] = 'required';
-            $rules['form_work'] = 'required';
         }
         if (!empty($request->id)){
             // $rules['address'] = 'required';
@@ -232,7 +231,7 @@ class TinTuyenService extends BaseService {
             $response['id_visa'] = $request->id_visa;
         }
         if($request->get('request') != 'null'){
-            $response['date_test'] = $request->date_test;
+            $response['request'] = $request->get('request');
         }
         if($request->height != 0){
             $response['height'] = $request->height;

@@ -145,7 +145,7 @@
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Hình thức làm việc</label>
-                                                                <multiselect :options="optionsFormWork" v-model="data.form_work" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn hình thức làm việc"></multiselect>
+                                                                <multiselect :options="optionsFormWork" v-model="data.work_form" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn hình thức làm việc"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -547,7 +547,7 @@ export default {
                 bonus: null,
                 highlight_job: 0,
                 visa: {id: null, profession: ''},
-                form_work: {id: 1, name: 'Toàn thời gian'},
+                work_form: {id: 1, name: 'Toàn thời gian'},
                 school_name: this.$auth.user.name,
                 time_contract: 3,
                 height:'',
@@ -686,7 +686,7 @@ export default {
                 }
                 form.append('highlight_job' , this.data.highlight_job)
                 form.append('id_visa' , this.data.visa.id)
-                form.append('form_work' , this.data.form_work.id)
+                form.append('work_form' , this.data.work_form.id)
                 form.append('type' , 1)
                 form.append('height' , this.data.height)
                 form.append('weight' , this.data.weight)
