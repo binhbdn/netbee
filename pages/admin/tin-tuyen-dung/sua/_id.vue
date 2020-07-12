@@ -163,7 +163,7 @@
                                                                 <label for="firstName3">
                                                                     Hình thức làm việc
                                                                 </label>
-                                                                <multiselect :options="optionsFormWork" v-model="data.form_work" :custom-label="nameWithLang" :allow-empty="false" :searchable="false" :show-labels="false" placeholder="Chọn hình thức làm việc" lable="id"></multiselect>
+                                                                <multiselect :options="optionsFormWork" v-model="data.work_form" :custom-label="nameWithLang" :allow-empty="false" :searchable="false" :show-labels="false" placeholder="Chọn hình thức làm việc" lable="id"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -564,7 +564,7 @@ export default {
                 bonus: null,
                 highlight_job: 0,
                 visa: '',
-                form_work: '',
+                work_form: '',
                 type: '',
                 height:'',
                 weight:'',
@@ -636,6 +636,7 @@ export default {
             this.data.expiration_date = job.data.expiration_date
             this.data.request = job.data.request
             this.data.height = job.data.height
+            this.data.weight = job.data.weight
             if(job.data.academicLevel ==  1){
                 this.data.academicLevel = {id: 1, name: 'Trung học phổ thông'}
             }else if(job.data.academicLevel ==  2){
@@ -680,12 +681,12 @@ export default {
                     this.data.visa = visa.data[indexVisa]
                 }  
             }
-            if(job.data.form_work == 1){
-                this.data.form_work = {id: 1, name: 'Toàn thời gian'}
-            }else if(job.data.form_work == 2){
-                this.data.form_work = {id: 2, name: 'Bán thời gian'}
+            if(job.data.work_form == 1){
+                this.data.work_form = {id: 1, name: 'Toàn thời gian'}
+            }else if(job.data.work_form == 2){
+                this.data.work_form = {id: 2, name: 'Bán thời gian'}
             } else {
-                this.data.form_work = {id: 3, name: 'Vừa học vừa làm'}
+                this.data.work_form = {id: 3, name: 'Vừa học vừa làm'}
             }
             this.data.currency = job.data.currency
             this.data.date_test = job.data.date_test
@@ -781,12 +782,12 @@ export default {
                 }
                 form.append('highlight_job' , this.data.highlight_job)
                 form.append('id_visa' , this.data.visa.id)
-                form.append('form_work' , this.data.form_work.id)
+                form.append('work_form' , this.data.work_form.id)
                 form.append('type' , this.data.type)
                 form.append('id' , this.$route.params.id)
                 form.append('height' , this.data.height)
                 form.append('weight' , this.data.weight)
-                form.append('academicLevel' , this.data.academicLevel)
+                form.append('academicLevel' , this.data.academicLevel.id)
                 if(this.data.insurrance == true){
                     form.append('insurrance' , 1)
                 }else {
@@ -797,7 +798,7 @@ export default {
                 }else {
                     form.append('skin' , this.data.skin)
                 }
-                form.append('dormitory' , this.data.dormitory)
+                form.append('dormitory' , this.data.dormitory.id)
                 form.append('meal' , this.data.meal)
                 form.append('startTimeLabor' , this.data.startTimeLabor)
                 form.append('endTimeLabor' , this.data.endTimeLabor)

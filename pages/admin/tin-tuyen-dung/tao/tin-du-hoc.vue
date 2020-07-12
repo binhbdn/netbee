@@ -604,7 +604,7 @@ export default {
                 }else {
                     form.append('skin' , 0)
                 }
-                form.append('dormitory' , this.data.dormitory)
+                form.append('dormitory' , this.data.dormitory.id)
                 form.append('meal' , this.data.meal)
                 form.append('startTimeLabor' , this.data.startTimeLabor)
                 form.append('endTimeLabor' , this.data.endTimeLabor)
@@ -644,6 +644,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+input::placeholder ,  textarea::placeholder{
+  color: #d0d2d6 !important;
+}
 #goi1 .border-netbee:hover ,#goi2 .border-netbee:hover,#goi3 .border-netbee:hover{
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1) !important;;
     background-color: #fff !important;
