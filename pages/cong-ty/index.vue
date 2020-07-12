@@ -40,7 +40,7 @@
                                                           <!-- <div class="spotlightBlock__message ellipsis">#ThriveOnChange #DigitalTransformation</div> -->
                                                           <div class="spotlightBlock__content">
                                                               <div class="clamp-lines ">
-                                                                <div id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
+                                                                <div style="text-align: left" id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
                                                               </div>
                                                           </div>
                                                           <div class="spotlightBlock__cta"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" class="button button_secondary is-outlined">Xem thêm</a></div>
