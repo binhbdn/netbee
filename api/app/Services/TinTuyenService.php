@@ -186,7 +186,7 @@ class TinTuyenService extends BaseService {
             'school_name' => $request->school_name,
             'status' => self::INACTIVE,
             'time_contract' => $request->time_contract,
-            'request' => $request->get('request'),
+            'request' => $request->get('request')
             
         ];
 
@@ -250,6 +250,9 @@ class TinTuyenService extends BaseService {
         }
         if($request->benefits != 'null'){
             $response['benefits'] = $request->benefits;
+        }
+        if($request->job_description != 'null'){
+            $response['job_description'] = $request->job_description;
         }
         if($request->date_test != 'null'){
             $response['date_test'] = $request->date_test;

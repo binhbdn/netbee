@@ -201,6 +201,12 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
+                                                    <div class="col-12" v-if="data.type != 2">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Mô tả công việc</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.job_description"></textarea>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Yêu cầu thêm</label>
@@ -577,7 +583,8 @@ export default {
                 endTimeLabor:'',
                 allowance:'',
                 benefits:'',
-                request:''
+                request:'',
+                job_description:''
             },
             checked: false,
             guarantee: [
@@ -635,6 +642,7 @@ export default {
             }
             this.data.expiration_date = job.data.expiration_date
             this.data.request = job.data.request
+            this.data.job_description = job.data.job_description
             this.data.height = job.data.height
             this.data.weight = job.data.weight
             if(job.data.academicLevel ==  1){
@@ -806,6 +814,7 @@ export default {
                 form.append('benefits' , this.data.benefits)
                 form.append('request' , this.data.request)
                 form.append('salary_status' , this.data.salary_status.id)
+                form.append('job_description' , this.data.job_description)
                 this.$axios.post('tintuyendung/updateTinTuyen',form)
                 .then(response => {
                     if(response.data.status == 200) {

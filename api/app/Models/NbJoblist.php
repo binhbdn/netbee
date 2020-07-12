@@ -48,7 +48,8 @@ class NbJoblist extends Model
         'startTimeLabor',
         'endTimeLabor',
         'allowance',
-        'benefits'
+        'benefits',
+        'job_description'
     ];
 
     public function Apply()
