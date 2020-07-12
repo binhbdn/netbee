@@ -556,7 +556,7 @@ export default {
                 salary_end: '',
                 salary_status: {id: 1, name: '/ 1 Năm'},
                 subsidy: '',
-                currency: '',
+                currency: 'VND',
                 date_start: '',
                 date_test: '',
                 expected_date: '',
@@ -791,7 +791,7 @@ export default {
                 if(this.data.insurrance == true){
                     form.append('insurrance' , 1)
                 }else {
-                     form.append('insurrance' , this.data.insurrance)
+                     form.append('insurrance' , 0)
                 }
                 if(this.data.skin == true){
                     form.append('skin' , 1)
@@ -799,7 +799,7 @@ export default {
                     form.append('skin' , this.data.skin)
                 }
                 form.append('dormitory' , this.data.dormitory.id)
-                form.append('meal' , this.data.meal)
+                form.append('meal' , this.data.meal.id)
                 form.append('startTimeLabor' , this.data.startTimeLabor)
                 form.append('endTimeLabor' , this.data.endTimeLabor)
                 form.append('allowance' , this.data.allowance)

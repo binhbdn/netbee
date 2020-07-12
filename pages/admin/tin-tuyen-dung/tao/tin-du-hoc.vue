@@ -453,7 +453,7 @@ export default {
                 salary_start: '',
                 salary_status: {id: 1, name: '/ 1 Năm'},
                 subsidy: '',
-                currency: null,
+                currency: 'VND',
                 date_start: '',
                 date_test: '',
                 expected_date: '',
