@@ -384,7 +384,7 @@ ol.carousel-indicators {
     border-radius: 4px;
     height: 70%;
     width: 100%;
-    box-shadow: 0 0 4px 0 rgba(0,0,0,0.25);
+    /* box-shadow: 0 0 4px 0 rgba(0,0,0,0.25); */
 }
 .image img {
     display: block;
