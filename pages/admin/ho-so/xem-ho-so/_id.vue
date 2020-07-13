@@ -71,13 +71,10 @@
                                                     <input v-model="info_frofile_user.phone_profile" class="form-control"/> 
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <ValidationProvider rules="required" v-slot="{ errors }">
-                                                        <fieldset class="form-group">
-                                                            <label class="title-label" for="basicInput">Email <span style="color: red; font-size: 20px;">*</span></label>
-                                                            <input type="text" class="form-control" v-model="info_frofile_user.email_profile">
-                                                            <span style="color: red">{{ errors[0] }}</span>
-                                                        </fieldset> 
-                                                    </ValidationProvider> 
+                                                    <fieldset class="form-group">
+                                                        <label class="title-label" for="basicInput">Email</label>
+                                                        <input type="text" class="form-control" v-model="info_frofile_user.email_profile">
+                                                    </fieldset> 
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -96,7 +93,7 @@
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
                                                             <label class="title-label" for="basicInput">Học vấn <span style="color: red; font-size: 20px;">*</span></label>
-                                                            <input v-model="info_frofile_user.name_education" class="form-control" />
+                                                            <multiselect :options="educationEx" v-model="name_education" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                             <span style="color: red">{{ errors[0] }}</span>
                                                         </fieldset> 
                                                     </ValidationProvider> 
@@ -135,7 +132,9 @@
     </div>
 </template>
 
-<script>                
+<script>     
+    import Multiselect from 'vue-multiselect'
+    import 'vue-multiselect/dist/vue-multiselect.min.css'           
     import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
     import {ValidationProvider, extend} from "vee-validate/dist/vee-validate.full";
     export default {
@@ -156,19 +155,29 @@
                         phone_profile:'',
                         email_profile:'',
                         link_facebook:'',
-                        name_education:'',
-                    },                      
+                        name_education:''
+                    },    
+                    name_education:{id: 1, name: 'Trung học phổ thông'},      
                     fileImg:[], 
                     images: [],                 
-                           
+                    educationEx: [
+                        {id: 1, name: 'Trung học phổ thông'},
+                        {id: 2, name: 'Cao đẳng'},
+                        {id: 3, name: 'Đại học'},
+                        {id: 4, name: 'Trên đại học'}
+                    ]
                 }         
         },        
         components:{
             ValidationObserver,
-            ValidationProvider
+            ValidationProvider,
+            Multiselect
         },
         
-        methods: {            
+        methods: {      
+            nameWithLang ({ name, id }) {
+                return `${name}`
+            },      
             update: async function(e, route){
                 e.preventDefault();                
                 var form = new FormData();                             
@@ -186,12 +195,14 @@
                 form.append('address_profile' , this.info_frofile_user.address_profile)
                 if(this.info_frofile_user.phone_profile != null) {
                     form.append('phone_profile' , this.info_frofile_user.phone_profile)
-                }
-                form.append('email_profile' , this.info_frofile_user.email_profile)  
+                }  
+                if(this.info_frofile_user.email_profile != null) {
+                    form.append('email_profile' , this.info_frofile_user.email_profile)
+                } 
                 if(this.info_frofile_user.link_facebook != null) {
                     form.append('link_facebook' , this.info_frofile_user.link_facebook)
                 }                            
-                form.append('name_education' , this.info_frofile_user.name_education)           
+                form.append('name_education' , this.name_education.id)           
                 this.$axios.post('hoso/updateProfileUser',form)
                 .then(response => {   
                     console.log(response);                                     
@@ -270,7 +281,15 @@
                 this.$axios.post('hoso/getProfileUserId',{'id': this.$route.params.id})
                 .then(response => {                    
                     this.info_frofile_user = response.data;
-                     console.log(this.info_frofile_user)
+                    if(response.data.name_education == 1) {
+                        this.name_education = {id: 1, name: 'Trung học phổ thông'}
+                    } else if(response.data.name_education == 2) {
+                        this.name_education = {id: 2, name: 'Cao đẳng'}
+                    } else if(response.data.name_education == 3) {
+                        this.name_education = {id: 3, name: 'Đại học'}
+                    } else if(response.data.name_education == 4) {
+                        this.name_education = {id: 4, name: 'Trên đại học'}
+                    } 
                  })
                  .catch(error => {
                     console.log(error.response);
