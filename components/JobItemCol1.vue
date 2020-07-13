@@ -19,8 +19,8 @@
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                     </div>
                 </div>
-                <div class="item-price d-flex justify-content-between">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="chi phí"><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
+                <div class="d-flex justify-content-between">
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="chi phí"><i class="fa fa-dollar-sign" style="color: #000"></i><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                 </div>
             </div>
             <div class="item-options text-center mt-1" >
