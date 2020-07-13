@@ -138,7 +138,7 @@
                 <p style="padding: 5px 0; font-size: 18px; line-height: 1.4;"><i class="fa fa-check-circle"></i> Cơ hội nhận Bonus tới 40 triệu đồng/ứng viên giới thiệu thành công.</p>
               </div>
               <div class="col-md-5">
-                <img style="max-width: 100%" src="~/static/assets/img/dk-CTV.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%" src="/assets/img/dk-CTV.png" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
@@ -150,7 +150,7 @@
               <div class="col-md-6">
                 <div style="float: left;width: 80px;color: #FFB701">
                       <span class="img-item">
-                      <img style="max-width: 100%" src="~/static/assets/img/dk-CTV-07.png">
+                      <img style="max-width: 100%" src="/assets/img/dk-CTV-07.png">
                       </span>
                     </div>
                     <div class="text-item" style="float: left;width: calc(100% - 80px)">
@@ -184,7 +184,7 @@
                 </ul>
               </div>
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 30px;" src="~/static/assets/img/dk-CTV-02.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 30px;" src="/assets/img/dk-CTV-02.png" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
@@ -193,12 +193,12 @@
         <div class="container">
           <div class="row">
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 30px;" src="~/static/assets/img/dk-CTV-03.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 30px;" src="/assets/img/dk-CTV-03.png" alt="Tuyển dụng NetBee">
               </div>
               <div class="col-md-6">
                 <div style="float: left;width: 80px;color: #FFB701;padding-bottom: 30px;">
                   <span class="img-item">
-                  <img src="~/static/assets/img/dk-CTV-08.png" style="max-width: 100%">
+                  <img src="/assets/img/dk-CTV-08.png" style="max-width: 100%">
                   </span>
                 </div>
                 <div class="text-item" style="float: left;width: calc(100% - 80px)">
@@ -234,7 +234,7 @@
               <div class="col-md-6">
                 <div style="float: left;width: 80px;color: #FFB701">
                   <span class="img-item">
-                    <img src="~/static/assets/img/dk-CTV-09.png" style="max-width: 100%">
+                    <img src="/assets/img/dk-CTV-09.png" style="max-width: 100%">
                   </span>
                 </div>
                 <div class="text-item" style="float: left;width: calc(100% - 80px)">
@@ -268,7 +268,7 @@
                 </ul>
               </div>
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 20px;" src="~/static/assets/img/dk-CTV-04.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 20px;" src="/assets/img/dk-CTV-04.png" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
@@ -277,12 +277,12 @@
         <div class="container">
           <div class="row">
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 10px;" src="~/static/assets/img/dk-CTV-05.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 10px;" src="/assets/img/dk-CTV-05.png" alt="Tuyển dụng NetBee">
               </div>
               <div class="col-md-6">
                 <div style="float: left;width: 80px;color: #FFB701">
                       <span class="img-item">
-                      <img src="~/static/assets/img/dk-CTV-10.png" style="max-width: 100%">
+                      <img src="/assets/img/dk-CTV-10.png" style="max-width: 100%">
                       </span>
                     </div>
                     <div class="text-item" style="float: left;width: calc(100% - 80px)">
@@ -343,7 +343,7 @@
                 <a href="#regregion" type="button" class="btn btn-default register" style="margin-left: 40px; background: linear-gradient(to right, #e68a00 0%, #FFB701 100%);">ĐĂNG KÝ NGAY</a>
               </div>
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 30px;" src="~/static/assets/img/dk-CTV-06.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 30px;" src="/assets/img/dk-CTV-06.png" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
