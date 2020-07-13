@@ -138,7 +138,7 @@
                 <p style="padding: 5px 0; font-size: 18px; line-height: 1.4;"><i class="fa fa-check-circle"></i> Cơ hội nhận Bonus tới 40 triệu đồng/ứng viên giới thiệu thành công.</p>
               </div>
               <div class="col-md-5">
-                <img style="max-width: 100%" src="/assets/img/dk-CTV.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%" v-lazy = "`/assets/img/dk-CTV.png`" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
@@ -150,7 +150,7 @@
               <div class="col-md-6">
                 <div style="float: left;width: 80px;color: #FFB701">
                       <span class="img-item">
-                      <img style="max-width: 100%" src="/assets/img/dk-CTV-07.png">
+                      <img style="max-width: 100%" v-lazy = "`/assets/img/dk-CTV-07.png`">
                       </span>
                     </div>
                     <div class="text-item" style="float: left;width: calc(100% - 80px)">
@@ -184,7 +184,7 @@
                 </ul>
               </div>
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 30px;" src="/assets/img/dk-CTV-02.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 30px;" v-lazy = "`/assets/img/dk-CTV-02.png`" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
@@ -193,12 +193,12 @@
         <div class="container">
           <div class="row">
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 30px;" src="/assets/img/dk-CTV-03.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 30px;" v-lazy = "`/assets/img/dk-CTV-03.png`" alt="Tuyển dụng NetBee">
               </div>
               <div class="col-md-6">
                 <div style="float: left;width: 80px;color: #FFB701;padding-bottom: 30px;">
                   <span class="img-item">
-                  <img src="/assets/img/dk-CTV-08.png" style="max-width: 100%">
+                  <img  v-lazy = "`/assets/img/dk-CTV-08.png`" style="max-width: 100%">
                   </span>
                 </div>
                 <div class="text-item" style="float: left;width: calc(100% - 80px)">
@@ -229,12 +229,12 @@
         </div>
       </section>
       <section class="section">
-        <div class="container" style="background-image:url('/assets/img/hachinet-03-02.png');">
+        <div class="container" v-lazy:background-image="`/assets/img/hachinet-03-02.png`">
           <div class="row">
               <div class="col-md-6">
                 <div style="float: left;width: 80px;color: #FFB701">
                   <span class="img-item">
-                    <img src="/assets/img/dk-CTV-09.png" style="max-width: 100%">
+                    <img  v-lazy = "`/assets/img/dk-CTV-09.png`" style="max-width: 100%">
                   </span>
                 </div>
                 <div class="text-item" style="float: left;width: calc(100% - 80px)">
@@ -268,7 +268,7 @@
                 </ul>
               </div>
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 20px;" src="/assets/img/dk-CTV-04.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 20px;" v-lazy = "`/assets/img/dk-CTV-04.png`"  alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
@@ -277,12 +277,12 @@
         <div class="container">
           <div class="row">
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 10px;" src="/assets/img/dk-CTV-05.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 10px;" v-lazy = "`/assets/img/dk-CTV-05.png`" alt="Tuyển dụng NetBee">
               </div>
               <div class="col-md-6">
                 <div style="float: left;width: 80px;color: #FFB701">
                       <span class="img-item">
-                      <img src="/assets/img/dk-CTV-10.png" style="max-width: 100%">
+                      <img v-lazy = "`/assets/img/dk-CTV-10.png`" style="max-width: 100%">
                       </span>
                     </div>
                     <div class="text-item" style="float: left;width: calc(100% - 80px)">
@@ -307,7 +307,7 @@
         </div>
       </section>
       <section class="section">
-        <div class="container" style="background-image:url('/assets/img/hachinet-03-02.png');">
+        <div class="container" v-lazy:background-image="`/assets/img/hachinet-03-02.png`">
           <h2 style="text-align: center; font-size: 2.5rem; font-weight: 700">CÁC BƯỚC ĐĂNG KÝ HR FREELANCER TRÊN NETBEE.VN?</h2>
           <div class="row" style="padding-top: 40px">
               <div class="col-md-6">
@@ -343,7 +343,7 @@
                 <a href="#regregion" type="button" class="btn btn-default register" style="margin-left: 40px; background: linear-gradient(to right, #e68a00 0%, #FFB701 100%);">ĐĂNG KÝ NGAY</a>
               </div>
               <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 30px;" src="/assets/img/dk-CTV-06.png" alt="Tuyển dụng NetBee">
+                <img style="max-width: 100%; padding-top: 30px;" v-lazy = "`/assets/img/dk-CTV-06.png`" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
