@@ -176,6 +176,12 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       });
       Route::get('getJobByRoleCompanyDash', 'Admin\TinTuyenController@getJobByRoleCompanyDash');
       Route::get('CountCreateCall', 'Admin\ApplyManageController@CountCreateCall');
+      Route::prefix('nganhang')->group(function () {
+        Route::get('getByIt', 'Admin\BankHrController@getByIt');
+        Route::post('store', 'Admin\BankHrController@store');
+        Route::post('updateData', 'Admin\BankHrController@updateData');
+        Route::post('EditData', 'Admin\BankHrController@EditData');
+      });
   });
 });
 

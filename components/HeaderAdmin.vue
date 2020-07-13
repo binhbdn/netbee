@@ -38,14 +38,13 @@
                                     <a :style="notification.status_notification ? '' : 'background: #e0e0e0'" class="d-flex justify-content-between border-bot" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
                                       <div class="media d-flex align-items-start">
                                         <div class="media-left">
-                                            <img src="/assets/img/logo.png" width="30">
+                                            <img src="/assets/img/logo.png" width="60">
                                         </div>
                                         <div class="media-body">
-                                            <p class="notification-text">{{ notification.content }}</p>
+                                            <p style="font-size: 13px;color: #626262;margin-bottom: 0px;" >{{ notification.content }}</p>
+                                            <p style="font-size: 13px;color: #626262;margin-bottom: 0px;">{{notification.created_at}}</p>
                                         </div>
-                                        <p class="small-pdt">
-                                            <time class="media-meta">{{ revertTime(notification.created_at) }}</time>
-                                        </p>
+                                        
                                       </div>
                                     </a>
                                         <infinite-loading

@@ -14,7 +14,7 @@
                                             <h3>Thông báo</h3>
                                         </div>
                                         <div class="list-data">
-                                            <a :style="notification.status_notification ? '' : 'background: #E5E7E9'" class="d-flex justify-content-between border-botom"  v-for="(notification,indexNotification) in notifications" :key="indexNotification">
+                                            <a :style="notification.status_notification ? '' : 'background: #E5E7E9'" class="d-flex justify-content-between border-botom" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
                                                 <div class="media d-flex align-items-start data-notification">
                                                     <div class="media-left">
                                                         <img src="/assets/img/logo.png" width="70">
@@ -81,6 +81,10 @@
                         console.log(err)
                     })
                 }, 500)
+            },
+            updateStatus(id) {
+                this.$axios.$post('readNotification',{id_notification: id}).then((response) => {
+                })
             },
             fetchdata :function(){
                 try {
