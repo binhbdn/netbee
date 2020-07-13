@@ -70,13 +70,10 @@
                                                     <input v-model="info_frofile_user.phone_profile" class="form-control"/> 
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <ValidationProvider rules="required" v-slot="{ errors }">
-                                                        <fieldset class="form-group">
-                                                            <label class="title-label" for="basicInput">Email <span style="color: red; font-size: 20px;">*</span></label>
-                                                            <input type="text" class="form-control" v-model="info_frofile_user.email_profile">
-                                                            <span style="color: red">{{ errors[0] }}</span>
-                                                        </fieldset> 
-                                                    </ValidationProvider> 
+                                                    <fieldset class="form-group">
+                                                        <label class="title-label" for="basicInput">Email</label>
+                                                        <input type="text" class="form-control" v-model="info_frofile_user.email_profile">
+                                                    </fieldset> 
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -95,7 +92,7 @@
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
                                                             <label class="title-label" for="basicInput">Học vấn <span style="color: red; font-size: 20px;">*</span></label>
-                                                            <input v-model="info_frofile_user.name_education" class="form-control" />
+                                                            <multiselect :options="educationEx" v-model="name_education" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                             <span style="color: red">{{ errors[0] }}</span>
                                                         </fieldset> 
                                                     </ValidationProvider> 
@@ -135,6 +132,8 @@
 </template>
 
 <script>      
+    import Multiselect from 'vue-multiselect'
+    import 'vue-multiselect/dist/vue-multiselect.min.css'
     import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
     import {ValidationProvider, extend} from "vee-validate/dist/vee-validate.full";                 
     export default {        
@@ -158,15 +157,26 @@
                     },  
                     img:'https://www.topcv.vn/upload/images/avatars/no_avatar.jpg', 
                     fileImg:[], 
-                    images: [],   
+                    images: [],  
+                    name_education:{id: 1, name: 'Trung học phổ thông'},
+                    educationEx: [
+                        {id: 1, name: 'Trung học phổ thông'},
+                        {id: 2, name: 'Cao đẳng'},
+                        {id: 3, name: 'Đại học'},
+                        {id: 4, name: 'Trên đại học'}
+                    ]
                 }         
         },        
         components:{
             ValidationObserver,
-            ValidationProvider
+            ValidationProvider,
+            Multiselect
         },
         
         methods: {
+            nameWithLang ({ name, id }) {
+                return `${name}`
+            },
             previewFiles(e) {                
                 if(this.images.length > 0){
                 this.$delete(this.images, 0)
@@ -219,7 +229,7 @@
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
                 form.append('email_profile' , this.info_frofile_user.email_profile)
                 form.append('link_facebook' , this.info_frofile_user.link_facebook)                   
-                form.append('name_education' , this.info_frofile_user.name_education)             
+                form.append('name_education' , this.name_education.id)             
                 this.$axios.post('hoso/insertProfileUser',form)
                 .then(response => {                                                           
                     if(response.data.status == 200) {

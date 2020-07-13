@@ -56,9 +56,8 @@ class TeamplateCvController extends Controller
         $rules = [
             'fullname_profile' => 'required',
             'birthday_profile' => 'required',
-            'address_profile' => 'required',           
-            'email_profile' => 'required', 
-            'name_education' => 'required',         
+            'address_profile' => 'required',
+            'name_education' => 'required'    
         ];
         $messages = [
             'required' => 'Không được để trống',           
