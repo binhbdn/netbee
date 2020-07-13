@@ -30,6 +30,8 @@
                                                     spinner="bubbles"
                                                     @infinite="infiniteScroll" style=" width:100%"
                                                 >
+                                                <div slot="no-more" style="font-size:15px; font-style: italic;display: none;"></div>    
+                                                <div slot="no-results" style="font-size:15px; font-style: italic"></div>
                                             </infinite-loading>
                                         </div>
                                     </div>

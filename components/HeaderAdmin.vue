@@ -41,11 +41,11 @@
                                             <img src="/assets/img/logo.png" width="30">
                                         </div>
                                         <div class="media-body">
-                                            <small class="notification-text">{{ notification.content }}</small>
+                                            <p class="notification-text">{{ notification.content }}</p>
                                         </div>
-                                        <small class="small-pdt">
+                                        <p class="small-pdt">
                                             <time class="media-meta">{{ revertTime(notification.created_at) }}</time>
-                                        </small>
+                                        </p>
                                       </div>
                                     </a>
                                         <infinite-loading
@@ -53,6 +53,8 @@
                                             spinner="bubbles"
                                             @infinite="infiniteScroll" style=" width:100%"
                                         >
+                                        <div slot="no-more" style="font-size:15px; font-style: italic;display: none;"></div>    
+                                        <div slot="no-results" style="font-size:15px; font-style: italic"></div>
                                     </infinite-loading>
                                 </li>
                                 
@@ -143,8 +145,8 @@ export default {
 .h3-size {
     font-size: 23px;
 }
-.media-body, .small-pdt {
-    padding-top: 6px;
+.notification-text {
+    font-size: 1rem !important;
 }
 .border-bot {
     border: 1px solid rgba(128, 128, 128, 0.192);
