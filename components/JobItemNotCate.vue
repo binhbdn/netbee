@@ -23,8 +23,8 @@
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
-                <div class="item-price d-flex justify-content-between">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
+                <div class="d-flex justify-content-between">
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fa fa-dollar-sign" style="color: #000"></i><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     <!-- <p class="delivery-date m-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển"><i class="fad fa-user-friends"></i> {{job.quantity}}</p> -->
                 </div>
                 <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
