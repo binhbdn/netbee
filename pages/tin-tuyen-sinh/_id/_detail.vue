@@ -238,7 +238,7 @@
                 </h4>
                 </div>
                 <div class="card-content collapse show">
-                <div class="card-body">
+                <div class="card-body exam-jobs-user">
                     <JobsList1Col :DataList="tintuyendung.type == 1 ? arrayJobXKLD : tintuyendung.type == 2 ? arrayJobDHS : arrayJobTNS" type=""></JobsList1Col>
                 </div>
                 </div>
