@@ -15,10 +15,10 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" style="background-color: #2f3b4c;color: #fff;">
-                <li :class="[{'active' : this.$route.name == 'admin'}, 'nav-item']"><a @click="$router.push('/admin')"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+                <li :class="[{'active' : this.$route.name == 'admin/'}, 'nav-item']"><a @click="$router.push('/admin')"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Trang chủ</span></a>
                 </li>
-                <li class=" navigation-header"><span style="color: #fff;">Apps</span>
-                </li>
+                <!-- <li class=" navigation-header"><span style="color: #fff;">Apps</span>
+                </li> -->
                 <li :class="[{'active' : (this.$route.name == 'admin-news') || (this.$route.name == 'admin-news-create')}, 'nav-item']" v-if="$auth.user.role == 4"><a href="#"><i class="far fa-copy"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
                     <ul class="menu-content">
                         <li><a href="/admin/news"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
