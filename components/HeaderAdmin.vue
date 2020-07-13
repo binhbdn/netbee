@@ -38,14 +38,13 @@
                                     <a :style="notification.status_notification ? '' : 'background: #e0e0e0'" class="d-flex justify-content-between border-bot" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
                                       <div class="media d-flex align-items-start">
                                         <div class="media-left">
-                                            <img src="/assets/img/logo.png" width="30">
+                                            <img src="/assets/img/logo.png" width="60">
                                         </div>
                                         <div class="media-body">
-                                            <small class="notification-text">{{ notification.content }}</small>
+                                            <p style="font-size: 13px;color: #626262;margin-bottom: 0px;" >{{ notification.content }}</p>
+                                            <p style="font-size: 13px;color: #626262;margin-bottom: 0px;">{{notification.created_at}}</p>
                                         </div>
-                                        <small class="small-pdt">
-                                            <time class="media-meta">{{ revertTime(notification.created_at) }}</time>
-                                        </small>
+                                        
                                       </div>
                                     </a>
                                         <infinite-loading
@@ -53,6 +52,8 @@
                                             spinner="bubbles"
                                             @infinite="infiniteScroll" style=" width:100%"
                                         >
+                                        <div slot="no-more" style="font-size:15px; font-style: italic;display: none;"></div>    
+                                        <div slot="no-results" style="font-size:15px; font-style: italic"></div>
                                     </infinite-loading>
                                 </li>
                                 
@@ -143,8 +144,8 @@ export default {
 .h3-size {
     font-size: 23px;
 }
-.media-body, .small-pdt {
-    padding-top: 6px;
+.notification-text {
+    font-size: 1rem !important;
 }
 .border-bot {
     border: 1px solid rgba(128, 128, 128, 0.192);

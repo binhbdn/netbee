@@ -2,12 +2,12 @@
     <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px; border-radius: 3px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content h-100">
             <div class="text-center card-avatar p-1">
-                <a :href="`/${type}tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
+                <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
             </div>
             <div class="remove-border-right">
-                <a class="item-vip-a" :href="`/${type}tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" style="max-width:100%;" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
+                <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" style="max-width:100%;" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 <div class="item-name">
                     <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company mb-0"><i class="fa fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company ? job.nb_company.username : job.user.name }}</span></a>
                 </div>
@@ -87,6 +87,9 @@ export default {
     right: 15px;
     top: 0;
 }
+.exam-jobs-user .hot img {
+    width: 4%;
+}
 .exam-jobs .hot img {
     width: 2.5%;
 }
@@ -125,7 +128,7 @@ export default {
 }
 @media(max-width: 376px) {
     .item-vip-a{
-        max-width: 200px !important;
+        max-width: 100% !important;
     }
 }
 </style>
