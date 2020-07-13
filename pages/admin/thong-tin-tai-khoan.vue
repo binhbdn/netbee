@@ -140,6 +140,114 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="col-md-12" v-if="$auth.user.role == 3">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body p-t-15 p-b-15">
+                                        <div class="tab-content">                                          
+                                            <div>
+                                                <div class="card-header card-profile">
+                                                    <p class="card-header-title is-uppercase">Thông tin ngân hàng</p>
+                                                </div>
+                                                <div class="tab-pane fade active show" :class="{'active': classInfoMore, 'show': classInfoMore} " id="account-vertical-info" role="tabpanel" aria-labelledby="account-pill-info" aria-expanded="false">
+                                                    <form method="POST" v-on:keyup.enter = "changeBankHr">
+                                                        <ValidationObserver ref="ChangeInfoBank" v-slot="{ inval }">
+                                                            <div class="col-12">
+                                                                <ValidationProvider rules="required"  v-slot="{ errors }">
+                                                                    <div class="form-group" style="margin-bottom: 0rem !important;">
+                                                                        <div class="controls row">
+                                                                            <div class="col-3 text-right for-label">
+                                                                                <label>Tên tài khoản</label>
+                                                                            </div>
+                                                                            <div class="col-7">
+                                                                                <input type="text" class="form-control" v-model="bankHr.name">
+                                                                                <ul style="color:red" class="overline text-left">
+                                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                                    <span>{{ error }}</span>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ValidationProvider>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <ValidationProvider rules="required"  v-slot="{ errors }">
+                                                                    <div class="form-group" style="margin-bottom: 0rem !important;">
+                                                                        <div class="controls row">
+                                                                            <div class="col-3 text-right for-label">
+                                                                                <label>Số tài khoản</label>
+                                                                            </div>
+                                                                            <div class="col-7">
+                                                                                <input type="text" class="form-control" v-model="bankHr.stk">
+                                                                                <ul style="color:red" class="overline text-left">
+                                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                                    <span>{{ error }}</span>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ValidationProvider>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <ValidationProvider rules="required"  v-slot="{ errors }">
+                                                                    <div class="form-group" style="margin-bottom: 0rem !important;">
+                                                                        <div class="controls row">
+                                                                            <div class="col-3 text-right for-label">
+                                                                                <label>Chi nhánh</label>
+                                                                            </div>
+                                                                            <div class="col-7">
+                                                                                <input type="text" class="form-control" v-model="bankHr.branch">
+                                                                                <ul style="color:red" class="overline text-left">
+                                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                                    <span>{{ error }}</span>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ValidationProvider>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <ValidationProvider rules="required"  v-slot="{ errors }">
+                                                                    <div class="form-group" style="margin-bottom: 0rem !important;">
+                                                                        <div class="controls row">
+                                                                            <div class="col-3 text-right for-label">
+                                                                                <label>Ngân hàng</label>
+                                                                            </div>
+                                                                            <div class="col-7">
+                                                                                <input type="text" class="form-control" v-model="bankHr.bankName">
+                                                                                <ul style="color:red" class="overline text-left">
+                                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                                    <span>{{ error }}</span>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </ValidationProvider>
+                                                            </div>
+                                                            <div class="col-10 d-flex justify-content-end">
+                                                                <div class="field is-horizontal">
+                                                                    <div class="field-body">
+                                                                        <div class="field">
+                                                                            <div class="control">
+                                                                                <button type="button" class="btn bg-netbee mb-1 mb-sm-0" v-bind:disabled="inval" v-on:click ="changeBankHr">Cập nhật</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </ValidationObserver>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-12" v-if="$auth.user.role == 2">
                             <div class="card">
                                 <div class="card-content">
@@ -595,7 +703,13 @@ export default {
                     avatar: this.$auth.user.avatar
                 },
                 classInfoCommon: true,
-                classInfoMore: false
+                classInfoMore: false,
+                bankHr:{
+                    name: '',
+                    stk: '',
+                    branch: '',
+                    bankName: ''
+                }
             };
         },
     methods: {
@@ -779,42 +893,36 @@ export default {
                 }else{
                     form.append('image_cover',this.changeInfoCompanyForm.files[0]);
                 }
-                try {
-                    this.$axios.post('changeInfoCompany',form).then((response) => {
-                        if(response.data.status == 200){
-                            this.$swal({
-                            titile: 'Thành công',
-                            text: response.data.message,
-                            icon: 'success',
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'OK',
-                            }).then( async (result) => {
+                this.$axios.post('changeInfoCompany',form).then((response) => {
+                    if(response.data.status == 200){
+                        this.$swal({
+                        titile: 'Thành công',
+                        text: response.data.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK',
+                        }).then( async (result) => {
                             if (result.value) {
-                                    window.location.href = "/admin";
-                                }
-                            })
-                        }
-                        else{
-                            this.$swal(
-                            'Lỗi!',
-                            response.data.message,
-                            'error'
-                            )
-                        }
-                    }).catch ((error)=> {
+                                window.location.href = "/admin";
+                            }
+                            else{
+                                this.$swal(
+                                'Lỗi!',
+                                response.data.message,
+                                'error'
+                                )
+                            }
+                        }).catch ((error)=> {
                             this.$swal(
                                 'Lỗi!',
                                 'Có lỗi xảy ra'+error,
                                 'error'
                                 )
                         })
-                } catch (error) {
-                    this.$swal(
-                        'Lỗi!',
-                        'Có lỗi xảy ra'+error,
-                        'error'
-                        )
-                }
+                    }
+                })
+                
+                
                 // reset validation
                 // You should call it on the next frame
                 requestAnimationFrame(() => {
@@ -846,6 +954,9 @@ export default {
                 this.changeInfoCompanyForm.username = dataInforCompany.data.data.username;
                 this.changeInfoCompanyForm.imageCover = dataInforCompany.data.data.image_cover;
             }
+            let databankHr = await this.$axios.get('nganhang/getByIt')
+            this.bankHr = databankHr.data
+
             
         },
         updateMoreInfo(){
@@ -853,12 +964,49 @@ export default {
             this.classInfoMore = true
             console.log(this.classInfoMore)
             console.log(this.classInfoCommon)
+        },
+        changeBankHr: async function() {
+            const isValid = await this.$refs.ChangeInfoBank.validate()
+            var form = new FormData()
+            if(isValid){
+                form.append('name',this.bankHr.name)
+                form.append('stk',this.bankHr.stk)
+                form.append('branch',this.bankHr.branch)
+                form.append('bankName',this.bankHr.bankName)
+
+                this.$axios.post('nganhang/EditData',form).then((response) => {
+                    if(response.data.status == 200){
+                        this.$swal({
+                        titile: 'Thành công',
+                        text: response.data.message,
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK',
+                        }).then( async (result) => {
+                        if (result.value) {
+                                window.location.href = "/admin";
+                            }
+                        }) .catch ((error)=> {
+                            this.$swal(
+                                'Lỗi!',
+                                'Có lỗi xảy ra'+error,
+                                'error'
+                                )
+                        })
+                    }
+                    else{
+                        this.$swal(
+                        'Lỗi!',
+                        response.data.message,
+                        'error'
+                        )
+                    }
+                })
+            }
         }
   },
   mounted() {
-      this.fetch();
-      console.log(this.classInfoMore)
-            console.log(this.classInfoCommon)
+      this.fetch()
   },
   watch: {
       checkUsername: function(){
