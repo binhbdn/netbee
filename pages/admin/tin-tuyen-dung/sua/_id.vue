@@ -225,7 +225,7 @@
                                                                 Thu nhập hàng tháng
                                                             </label>
                                                             <label for="firstName3" v-show="data.type == 2">
-                                                                Học phí:
+                                                                Học phí
                                                             </label>
                                                             <div class="container-fluid">
                                                                 <div class="row">

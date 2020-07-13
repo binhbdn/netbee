@@ -811,7 +811,7 @@ body.fixed-footer footer.footer-dark {
   overflow : hidden;
 }
 .navigation li a i {
-  font-size : 0.8rem;
+  font-size : 1rem;
   margin-right : 1.38rem;
 }
 .navigation li.disabled a {
