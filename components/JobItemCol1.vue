@@ -6,14 +6,18 @@
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
             </div>
-            <div class="remove-border-right" style="margin: auto; width: 100%;">
+            <div class="remove-border-right">
                 <a class="item-vip-a" :href="`/${type}tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" style="max-width:100%;" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 <div class="item-name">
                     <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company mb-0"><i class="fa fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company ? job.nb_company.username : job.user.name }}</span></a>
                 </div>
-                <div class="item-quantity d-flex justify-content-between">
-                    <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fa fa-map-marker-alt"></i> {{ job.nation.name }}</p>
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
+                <div class="item-quantity row">
+                    <div class="col-sm-7">
+                        <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fa fa-map-marker-alt"></i> {{ job.nation.name }}</p>
+                    </div>
+                    <div class="col-sm-5">
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
+                    </div>
                 </div>
                 <div class="item-price d-flex justify-content-between">
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="chi phí"><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
@@ -99,11 +103,19 @@ export default {
 }
 .remove-border-right {
     padding: 10px 10px 10px 0px;
+    width: 450px;
+    max-width: 100%;
 }
+@media(max-width: 1199px){
+    .remove-border-right{
+        width: 380px;
+    }
+}
+
 @media(max-width: 768px) {
     .item-vip-a{
         white-space: nowrap; 
-        max-width: 250px !important; 
+        max-width: 100% !important; 
         overflow: hidden;
         text-overflow: ellipsis; 
     }
