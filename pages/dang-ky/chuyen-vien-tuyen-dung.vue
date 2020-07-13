@@ -573,4 +573,7 @@ export default {
       line-height: 1;
       -webkit-font-smoothing: antialiased;
     }
+    .section:last-child{
+      padding-bottom: 100px;
+    }
 </style>
