@@ -56,16 +56,6 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-12">
-                                                        <ValidationProvider rules="ssdate" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Ngày hết hạn ứng tuyển</label>
-                                                                <!-- <datetime v-model="data.expiration_date" input-class="form-control"></datetime> -->
-                                                                <input type="date" class="form-control" v-model="data.expiration_date">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
                                                 </div>
                                             </ValidationObserver>   
                                         </tab-content>
@@ -83,15 +73,18 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmDateStart">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Ngày bắt đầu nhận hồ sơ</label>
-                                                                <input type="date" class="form-control" v-model="data.date_start">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Phí xuất cảnh</label>
+                                                            <div class="input-group">
+                                                                <input type="txt" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">
+                                                                <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                    <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                </div>
+                                                            </div>          
+                                                        </div>
                                                     </div>
-                                                    <div class="col-12">
+                                                
+                                                    <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Tuổi</label>
                                                             <div class="container-fluid">
@@ -113,7 +106,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Trình độ học vấn</label>
+                                                            <multiselect :options="levelEx" v-model="data.academicLevel" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Chiều cao (cm)</label>
@@ -127,23 +125,6 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Trình độ học vấn</label>
-                                                            <multiselect :options="levelEx" v-model="data.academicLevel" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Phí xuất cảnh</label>
-                                                            <div class="input-group">
-                                                                <input type="txt" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">
-                                                                <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
-                                                                    <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
-                                                                </div>
-                                                            </div>          
-                                                        </div>
-                                                    </div>
-                                                     <div class="col-6">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngành nghề xin visa</label>
@@ -161,6 +142,27 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
+                                                    
+                                                    <div class="col-6">
+                                                        <ValidationProvider rules="ssdate" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Ngày hết hạn ứng tuyển</label>
+                                                                <!-- <datetime v-model="data.expiration_date" input-class="form-control"></datetime> -->
+                                                                <input type="date" class="form-control" v-model="data.expiration_date">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmDateStart">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Ngày bắt đầu nhận hồ sơ</label>
+                                                                <input type="date" class="form-control" v-model="data.date_start">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                     
                                                     <div class="col-6">
                                                         <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
@@ -369,26 +371,6 @@
                                                             <input type="number" class="form-control" disabled :value=" data.time_bonus.id == 1 ? data.bonus : data.time_bonus.id == 2 ? data.bonus * 1.5 : data.bonus * 2">
                                                         </div>
                                                     </div> -->
-                                                    <div class="col-lg-4 col-md-6 col-sm-12" id="goi1">
-                                                        <div class="card border-netbee text-center bg-transparent" style="height: 100%">
-                                                            <div class="card-content">
-                                                                <div class="card-body p-t-10">
-                                                                    <label for="defaultGroupExample0" class="btn bg-netbee">TIN NỔI BẬT</label>
-                                                                     <input type="radio" class="custom-control-input"
-                                                                    id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
-                                                                    <i class="far fa-check fa-2x" v-if="data.highlight_job == 1" style="color: green"></i>
-                                                                    <div class="divider divider-default">
-                                                                        <div class="divider-text">Tin thường</div>
-                                                                    </div>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị ở box đầu tiên của trang chủ</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> 1,000,000 VND/ Tin</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi2">
                                                         <div class="card border-netbee text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
@@ -409,6 +391,27 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-12" id="goi1">
+                                                        <div class="card border-netbee text-center bg-transparent" style="height: 100%">
+                                                            <div class="card-content">
+                                                                <div class="card-body p-t-10">
+                                                                    <label for="defaultGroupExample0" class="btn bg-netbee">TIN NỔI BẬT</label>
+                                                                     <input type="radio" class="custom-control-input"
+                                                                    id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
+                                                                    <i class="far fa-check fa-2x" v-if="data.highlight_job == 1" style="color: green"></i>
+                                                                    <div class="divider divider-default">
+                                                                        <div class="divider-text">Tin thường</div>
+                                                                    </div>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị ở box đầu tiên của trang chủ</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
+                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> 1,000,000 VND/ Tin</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi3">
                                                         <div class="card border-netbee text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
@@ -587,7 +590,8 @@ export default {
             guarantee: [
                 {id: 1, name: 'Ngay sau khi bay'},
                 {id: 2, name: 'Sau khi bay 30 ngày'},
-                {id: 3, name: 'Sau khi bay 60 ngày'}
+                {id: 3, name: 'Sau khi bay 60 ngày'},
+                {id: 4, name: 'Hoàn tất nhập cảnh'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
             optionsVisa: [],
@@ -601,7 +605,9 @@ export default {
                 {id: 1, name: 'Trung học phổ thông'},
                 {id: 2, name: 'Cao đẳng'},
                 {id: 3, name: 'Đại học'},
-                {id: 4, name: 'Trên đại học'}
+                {id: 4, name: 'Trên đại học'},
+                {id: 5, name: 'Sau đại học'},
+                {id: 6, name: 'Không yêu cầu'}
             ],
             valueEx: [
                 {id: 1, name: 'Công ty chuẩn bị'},

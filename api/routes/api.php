@@ -20,6 +20,7 @@ Route::namespace('API')->group(function () {
   Route::post('saveEmail', 'HomeController@saveEmail');
   //Company
   Route::get('getListCompany','Customer\CompanyController@getListCompany');
+  Route::get('getListCompanyUser','Customer\CompanyController@getListCompanyUser');
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
   Route::get('countFollow','Customer\CompanyController@countFollow');
   //Mail
