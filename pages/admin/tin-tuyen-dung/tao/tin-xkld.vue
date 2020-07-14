@@ -137,6 +137,34 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
+                                                    
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Thời gian hợp đồng (năm)</label>
+                                                            <input type="text" class="form-control required" v-model="data.time_contract">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Số lượng tuyển</label>
+                                                                <input type="number" class="form-control" v-model="data.quantity">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Mô tả công việc</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.job_description"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Yêu cầu thêm</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.request"></textarea>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Ngày hết hạn ứng tuyển</label>
@@ -167,33 +195,6 @@
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Thời gian hợp đồng (năm)</label>
-                                                            <input type="text" class="form-control required" v-model="data.time_contract">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Số lượng tuyển</label>
-                                                                <input type="number" class="form-control" v-model="data.quantity">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Mô tả công việc</label>
-                                                            <textarea rows="3" class="form-control" v-model="data.job_description"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Yêu cầu thêm</label>
-                                                            <textarea rows="3" class="form-control" v-model="data.request"></textarea>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </ValidationObserver>
@@ -286,13 +287,13 @@
                                                             <multiselect :options="valueEx" v-model="data.meal" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Phụ cấp ngoài</label>
                                                             <textarea rows="3" class="form-control" v-model="data.allowance"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Quyền lợi khác</label>
                                                             <textarea rows="3" class="form-control" v-model="data.benefits"></textarea>

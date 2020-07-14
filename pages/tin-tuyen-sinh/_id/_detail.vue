@@ -19,7 +19,7 @@
                                 <p><span class="font-weight-600">Loại tin: </span><span class="badge border-netbee badge-md">{{ tintuyendung.type == 3 ? 'Tu nghiệp sinh' : tintuyendung.type == 2 ? 'Du học' : 'Xuất khẩu lao động' }}</span></p>
                                 <p><span class="font-weight-600">Quốc gia: </span>{{ tintuyendung.nation.name }}</p>
                                 <p><span class="font-weight-600">Chi phí xuất cảnh:</span> {{ FormatPrice(tintuyendung.subsidy) }} {{ tintuyendung.currency }}</p>
-                                <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ ConvertDate(tintuyendung.expiration_date) }}</p>
+                                
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -93,8 +93,8 @@
                                         <!-- <p v-if="tintuyendung.time_bonus"><span class="font-weight-600">Bonus:</span> {{ tintuyendung.time_bonus == 1 ? tintuyendung.bonus : tintuyendung.time_bonus == 2 ? tintuyendung.bonus * 1.5 : tintuyendung.bonus * 3 }}{{ tintuyendung.currency }}</p> -->
                                         <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Thu nhập hàng tháng:</span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
                                         <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuyendung.salary_start) }} {{ tintuyendung.currency }} <span v-if="tintuyendung.salary_status == 1">/ 1 Năm</span><span v-else-if="tintuyendung.salary_status == 2">/ 6 Tháng</span><span v-else-if="tintuyendung.salary_status == 3">/ 1 Tháng</span><span v-else-if="tintuyendung.salary_status == 4">/ 1 Kỳ</span><span v-else>/ Đang cập nhật</span></p>
-                                        <p><span class="font-weight-600">Ngày bắt đầu nhận hồ sơ:</span> {{ ConvertDate(tintuyendung.date_start) }}</p>
-                                        <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuyendung.expected_date) }}</p>
+                                        
+                                        
                                         <p><span class="font-weight-600">Số lượng:</span> {{ tintuyendung.quantity }}</p>
                                     </div>
                                 </div>
@@ -128,9 +128,6 @@
                                         <p v-else-if ="tintuyendung.work_form == 3"><span class="font-weight-600">Hình thức làm việc:</span> Vừa học vừa làm</p>
                                         <p v-else ><span class="font-weight-600">Hình thức làm việc:</span> Đang cập nhật</p>
                                     </div>
-                                    <div class="px-1">
-                                        <p><span class="font-weight-600">Ngày thi tuyển:</span> {{ConvertDate(tintuyendung.date_test)}}</p>
-                                    </div>
                                     <div class="px-1"  v-if="tintuyendung.type != 2">
                                         <p v-if="tintuyendung.job_description != null" style="white-space: pre-line;"><span class="font-weight-600">Mô tả công việc:</span><br>{{tintuyendung.job_description}}</p>
                                         <p v-else><span class="font-weight-600">Mô tả công việc:</span> Đang cập nhật</p>
@@ -139,7 +136,33 @@
                                         <p v-if="tintuyendung.request != null" style="white-space: pre-line;"><span class="font-weight-600">Yêu cầu thêm:</span><br>{{tintuyendung.request}}</p>
                                         <p v-else><span class="font-weight-600">Yêu cầu thêm:</span> Đang cập nhật</p>
                                     </div>
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="col-12 p-l-0">
+                                <h5 class="font-weight-600 line-title line3"> LỘ TRÌNH</h5>
+                                <!-- <hr class="hr-color" style="max-width: 90px;"> -->
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    
                                     <div class="px-1">
+                                        <p><span class="font-weight-600">Ngày thi tuyển:</span> {{ConvertDate(tintuyendung.date_test)}}</p>
+                                    </div>
+                                    <div class="px-1">
+                                        <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ ConvertDate(tintuyendung.expiration_date) }}</p>
+                                    </div>
+                                    <div class="px-1">
+                                        <p><span class="font-weight-600">Ngày bắt đầu nhận hồ sơ:</span> {{ ConvertDate(tintuyendung.date_start) }}</p>
+                                    </div>
+                                    <div class="px-1">
+                                        <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuyendung.expected_date) }}</p>
+                                    </div>
+                                
+                                    <div class="px-1"  v-if="tintuyendung.type == 2">
                                         <p v-if="tintuyendung.route != null" style="white-space: pre-line;"><span class="font-weight-600">Lộ trình:</span><br>{{tintuyendung.route}}</p>
                                         <p v-else><span class="font-weight-600">Lộ trình:</span> Đang cập nhật</p>
                                     </div>
