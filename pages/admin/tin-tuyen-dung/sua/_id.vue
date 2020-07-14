@@ -130,16 +130,13 @@
                                                     </div>
                                                     
                                                     
-                                                     <div class="col-6" v-if="data.type != 2">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
-                                                            <div class="form-group">
-                                                                <label for="firstName3">
-                                                                    Ngành nghề xin visa
-                                                                </label>
-                                                                <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :allow-empty="false" :searchable="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa" label="id"></multiselect>
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
+                                                     <div class="col-6" v-if="data.type != 2">         
+                                                        <div class="form-group">
+                                                            <label for="firstName3">
+                                                                Ngành nghề xin visa
+                                                            </label>
+                                                            <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :allow-empty="false" :searchable="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa" label="id"></multiselect>
+                                                        </div>   
                                                     </div>
                                                      <div class="col-6" v-if="data.type != 2">
                                                         <ValidationProvider rules="required" v-slot="{ errors }" >
