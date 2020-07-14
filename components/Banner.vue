@@ -24,9 +24,9 @@
                         <a class="nav-link" :class="{'active': $route.name == 'tin-tuyen-sinh'}" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
                            role="tab" aria-controls="profile-fill" aria-selected="false" style="font-weight: 400 !important;">Săn học bổng</a>
                       </li>
-                      <li class="nav-item">
+                      <!-- <li class="nav-item">
                         <a class="nav-link" href="/ung-vien" :class="{'active': $route.name == 'ung-vien' || $route.name == 'tim-ung-vien'}" id="v-pills-22-tab" style="font-weight: 400 !important;">{{$t('banner.candidates.tab')}}</a>
-                      </li>
+                      </li> -->
                       <li class="nav-item">
                         <a class="nav-link" href="/cong-ty" :class="{'active': $route.name == 'cong-ty' || $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" style="font-weight: 400 !important;">{{$t('banner.company.tab')}}</a>
                       </li>
@@ -137,7 +137,7 @@
                           </div>
                         </form>
                       </div>
-                      <div v-bind:class="{active : this.$route.path == '/ung-vien'}"class="tab-pane" >
+                      <!-- <div v-bind:class="{active : this.$route.path == '/ung-vien'}" class="tab-pane" >
                         <form action="" class="search-job">
                           <div class="row">
                             <div class="col-md-3">
@@ -167,7 +167,7 @@
                             </div>
                           </div>
                         </form>
-                      </div>
+                      </div> -->
                       <div class="search-footer d-flex justify-content-between">
                         <div>
                           <p class="title-p-main">Dành cho du học sinh và các trung tâm du học...</p>
