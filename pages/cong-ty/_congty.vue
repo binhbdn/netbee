@@ -29,6 +29,7 @@
                                         <span class="fa fa-star" :class="rate_score > 3 ? 'checked' : ''"></span>
                                         <span class="fa fa-star" :class="rate_score > 4 ? 'checked' : ''"></span>
                                     </div>
+                                    <div class="" v-if="rate_score">({{rate_score}}/5 sao)</div>
                                     <div class="pl-1" v-if="!rate_score">
                                         Chưa có đánh giá
                                     </div>
@@ -331,7 +332,7 @@
                         <div class="modal-title">
                             <h4>Hãy chia sẻ ý kiến của bạn về {{name_company}}:</h4>
                             <button type="button" class="close" data-dismiss="modal">×</button>
-                            <span class="">xin chào, {{this.$auth.user.name}}!</span>
+                            <span v-if="$auth.loggedIn" class="">Xin chào, {{$auth.user.name}}!</span>
                         </div>
                         <div class="form-group-1 input-login input-comment pt-1" v-on:keyup.enter="login">
                             <!-- <div class="star-rating pb-1">
@@ -586,7 +587,6 @@ export default {
         }
     },
     async asyncData (context) {
-      
         try {  
         let detailRes = await context.app.$axios.$get(`getDetailCompanyById/${context.app.router.currentRoute.params.congty}`)      
         context.seo({
