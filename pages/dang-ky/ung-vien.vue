@@ -2,19 +2,10 @@
     <section class="hero-wraps js-fullheight" style="background-size: cover;" v-lazy:background-image="`/assets/img/dk-NTD.png`">
     <div class="container">
         <div class="row ">
-            <div class="col-md-7 col-sm-12  pt-4" style="padding-top: 90px !important;">
-                <h3 style="color:black;"><b>Đăng ký ứng viên</b></h3>
-                <ul class="list">
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận hàng triệu công việc hoàn toàn miễn phí</li>
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Ứng tuyển nhanh chóng, dễ dàng</li>
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận bản tin công việc phù hợp định kỳ</li>
-                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nâng cao cơ hội tìm việc với chương trình ứng viên năng động</li>
-                </ul>
-            </div>
             <div class="col-md-5 col-sm-12" style="padding:0px 15px;">
               <div class="style-backrou">
                 <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
-                    <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN ỨNG VIÊN</span>
+                    <span style="color:#000; font-weight: bold;">ĐĂNG KÝ ỨNG VIÊN</span>
                 </div>
                <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
                     <ValidationObserver ref="observer" v-slot="{ valid }">
@@ -115,6 +106,15 @@
                     <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap"><b>Tại đây</b></a></span>
                 </form>
               </div>                           
+            </div>
+            <div class="col-md-7 col-sm-12 content-right  pt-4">
+                <h3 style="color:black;"><b>Đăng ký ứng viên</b></h3>
+                <ul class="list">
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận hàng triệu công việc hoàn toàn miễn phí</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Ứng tuyển nhanh chóng, dễ dàng</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận bản tin công việc phù hợp định kỳ</li>
+                    <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nâng cao cơ hội tìm việc với chương trình ứng viên năng động</li>
+                </ul>
             </div>            
         </div>
         <!-- ma gioi thieu -->
@@ -352,5 +352,17 @@ export default {
     }
     ul li span{
       font-style: italic;
+    }
+    .content-right{
+      padding-top: 90px !important;
+    }
+    @media (max-width: 767px){
+      .style-backrou{
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .content-right{
+        padding-top: 30px !important;
+      }
     }
 </style>
