@@ -65,7 +65,7 @@ class NbCompanyInfoService extends BaseService {
         }
         else{
             $getData = $datas->orderBy('id','DESC')->paginate($perPage);
-        }
+        }   
         
         foreach($getData as $key=>$data){
             if(isset($data->companyFeedback)){
@@ -77,6 +77,38 @@ class NbCompanyInfoService extends BaseService {
             'message' => 'Thành công',
             'data' => $getData
         ];
+    }
+
+    public function getListCompanyUser($type, $limit, $perPage){
+        $datas = $this->user
+        ->with(['nbCompany'=> function($q){
+            $q->select('id','company_id','company_about','username','image_cover','company_verify');
+        }])
+        ->where('block',self::UN_BLOCK)
+        ->where('status',self::ACTIVE)
+        ->where('role',2)
+        ->orderBy('id','DESC')
+        ->select('id','name','avatar');
+        $getData = null;
+        try {
+            $getData = $datas->orderBy('id','DESC')->paginate($perPage);
+            foreach($getData as $key=>$data){
+                if(isset($data->companyFeedback)){
+                    $getData[$key]['rate'] = $this->getRate($data->companyFeedback);
+                }
+            }
+            return [
+                'status'=> 200,
+                'message' => 'Thành công',
+                'data' => $getData
+            ];
+        } catch (\Exception $e) {
+            return [
+                'status'=> 400,
+                'message' => 'Có lỗi xảy ra',
+                'data' => $e->getMessage()
+            ];
+        }
     }
 
     public function getDetailCompanyById($username){
