@@ -224,6 +224,12 @@
                                                             <textarea rows="3" class="form-control" v-model="data.request"></textarea>
                                                         </div>
                                                     </div>
+                                                    <div class="col-12" v-if="data.type == 2">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Lộ trình</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.route"></textarea>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
@@ -597,7 +603,8 @@ export default {
                 benefits:'',
                 request:'',
                 job_description:'',
-                time_contract:''
+                time_contract:'',
+                route:''
             },
             checked: false,
             guarantee: [
@@ -658,6 +665,7 @@ export default {
             }
             this.data.expiration_date = job.data.expiration_date
             this.data.request = job.data.request
+            this.data.route = job.data.route
             this.data.job_description = job.data.job_description
             this.data.height = job.data.height
             this.data.weight = job.data.weight
@@ -837,6 +845,7 @@ export default {
                 form.append('allowance' , this.data.allowance)
                 form.append('benefits' , this.data.benefits)
                 form.append('request' , this.data.request)
+                form.append('route' , this.data.route)
                 form.append('salary_status' , this.data.salary_status.id)
                 form.append('job_description' , this.data.job_description)
                 this.$axios.post('tintuyendung/updateTinTuyen',form)
