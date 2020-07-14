@@ -112,13 +112,13 @@
             <div class="content-box">
               <div v-if="companyInfo.nb_company != null" class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
                 <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" rel="nofollow" target="_blank">
-                  <img v-if="companyInfo.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="`/uploads/users/avatars/${companyInfo.avatar}`">
+                  <img v-if="companyInfo.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="companyInfo.avatar.startsWith('https') ? companyInfo.avatar :`/uploads/users/avatars/${companyInfo.avatar}`">
                   <img v-else class=" ls-is-cached lazyloaded" v-lazy="`https://netbee.vn/_nuxt/img/377bc00.png`">
                 </a>
               </div>
               <div v-else class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
                 <a data-controller="utm-tracking" rel="nofollow" target="_blank">
-                  <img v-if="companyInfo.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="`/uploads/users/avatars/${companyInfo.avatar}`">
+                  <img v-if="companyInfo.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="companyInfo.avatar.startsWith('https') ? companyInfo.avatar :`/uploads/users/avatars/${companyInfo.avatar}`">
                   <img v-else class=" ls-is-cached lazyloaded" v-lazy="`https://netbee.vn/_nuxt/img/377bc00.png`">
                 </a>
               </div>
