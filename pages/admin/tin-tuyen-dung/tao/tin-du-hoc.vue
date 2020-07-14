@@ -174,6 +174,12 @@
 Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         </div>
                                                     </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Lộ trình</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.route"></textarea>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
@@ -472,7 +478,8 @@ export default {
                 endTimeLabor:'',
                 allowance:'',
                 benefits:'',
-                request:''
+                request:'',
+                route:''
             },
             checked: true,
             guarantee: [
@@ -614,6 +621,7 @@ export default {
                 form.append('allowance' , this.data.allowance)
                 form.append('benefits' , this.data.benefits)
                 form.append('request' , this.data.request)
+                form.append('route' , this.data.route)
                 form.append('salary_status' , this.data.salary_status.id)
                 this.$axios.post('tintuyendung/createTinTuyen',form)
                 .then(response => {

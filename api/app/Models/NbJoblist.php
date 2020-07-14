@@ -49,7 +49,8 @@ class NbJoblist extends Model
         'endTimeLabor',
         'allowance',
         'benefits',
-        'job_description'
+        'job_description',
+        'route'
     ];
 
     public function Apply()

@@ -251,6 +251,9 @@ class TinTuyenService extends BaseService {
         if($request->benefits != 'null'){
             $response['benefits'] = $request->benefits;
         }
+        if($request->route != 'null'){
+            $response['route'] = $request->route;
+        }
         if($request->job_description != 'null'){
             $response['job_description'] = $request->job_description;
         }
