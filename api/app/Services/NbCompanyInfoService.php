@@ -130,7 +130,6 @@ class NbCompanyInfoService extends BaseService {
                 $datas['rate'] = $this->getRate($data);
             }
         }
-
         return [
             'status' => 200,
             'message' => 'Thành công',
@@ -274,5 +273,15 @@ class NbCompanyInfoService extends BaseService {
     public function checkUsernameCompany($username)
     {
         return $this->nbCompanyInfo->where('username', $username)->exists();
+    }
+    public function getRating($company_id) 
+    {
+        $rate_score = $this->nbCompanyFeedback->where('company_id', $company_id)->pluck('rate_feed')->toArray();
+        $total_score = empty($rate_score) ? 0 : round(array_sum($rate_score)/count($rate_score), 1);
+        return [
+            'status'=> 200,
+            'message'=> 'Thành công.',
+            'total_score'=> $total_score
+        ];
     }
 }
