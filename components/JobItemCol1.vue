@@ -88,7 +88,7 @@ export default {
     top: 0;
 }
 .exam-jobs-user .hot img {
-    width: 4%;
+    width: 3%;
 }
 .exam-jobs .hot img {
     width: 2.5%;

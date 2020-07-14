@@ -20,6 +20,19 @@
                                 <p><span class="font-weight-400"><i class="fad fa-link"></i> <span class="font-weight-600">Website:</span> {{ detailCompany.nb_company.company_link ? detailCompany.nb_company.company_link: 'Đang cập nhật' }}</span></p>
                                 <p><span class="font-weight-400"><i class="fad fa-link"></i> <span class="font-weight-600">Facebook:</span> {{ detailCompany.nb_company.company_link_fb ? detailCompany.nb_company.company_link_fb: 'Đang cập nhật' }}</span></p> -->
                                 <p><span class="font-weight-400"><i class="fad fa-calendar-minus"></i> <span class="font-weight-600">Ngày thành lập:</span> {{ congty.birth_of_date ? ConvertDate(congty.birth_of_date): 'Đang cập nhật' }}</span></p>
+                                <div class="rating d-flex justify-content-start">
+                                    <div class="font-weight-400"><span class="font-weight-600">Đánh giá:</span></div>
+                                    <div class="pl-1" v-if="rate_score">
+                                        <span class="fa fa-star" :class="rate_score > 0 ? 'checked' : ''"></span>
+                                        <span class="fa fa-star" :class="rate_score > 1 ? 'checked' : ''"></span>
+                                        <span class="fa fa-star" :class="rate_score > 2 ? 'checked' : ''"></span>
+                                        <span class="fa fa-star" :class="rate_score > 3 ? 'checked' : ''"></span>
+                                        <span class="fa fa-star" :class="rate_score > 4 ? 'checked' : ''"></span>
+                                    </div>
+                                    <div class="pl-1" v-if="!rate_score">
+                                        Chưa có đánh giá
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-2 d-flex align-items-center verify-img">
@@ -135,9 +148,9 @@
             </div>
             <div class="card p-1">
                 <div class="card-header pl-0">
-                <h2 class="w-100">
-                    Top đánh giá
-                </h2>
+                    <h2 class="w-100">
+                        Nhận xét
+                    </h2>
                 </div>
                 <br>
                 <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
@@ -176,7 +189,7 @@
                     <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
                 </div>
                 <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
-                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
+                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết đánh giá</a>
                 </div>
             </div>
           </div>
@@ -266,94 +279,107 @@
             <div class="modal-dialog modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="card p-1">
-                <div class="card-header pl-0">
-                <h2 class="w-100">
-                    Tất cả đánh giá
-                </h2>
-                </div>
-                <br>
-                <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
-                <div class="row">
-                    <div class="col-4">
-                        <img v-lazy="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`"
-                        style="height:80px; width:80px; padding-top: 1px; padding-left: 20px; object-fit: cover; border-radius: 50%;">
-                        
+                        <div class="card-header pl-0">
+                            <h2 class="w-100">
+                                Tất cả đánh giá
+                            </h2>
+                        </div>
+                        <br>
+                        <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
+                        <div class="row">
+                            <div class="col-4">
+                                <img v-lazy="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`"
+                                style="height:80px; width:80px; padding-top: 1px; padding-left: 20px; object-fit: cover; border-radius: 50%;">
+                            </div>
+                            <div class="col-8">
+                            <div class="star-rating">
+                            <star-rating 
+                            :rating="item.rate_feed" 
+                            :increment="0.1"
+                            :star-size="25"
+                            :read-only="true"
+                            ></star-rating>
+                            </div>
+                            <h6 class="text-left pt-1 pl-0">{{item.name_feed}} _ {{ ConvertDate(item.created_at) }}</h6>
+                        </div>
+                        <hr>
+                        </div>
+                        <div class="row pl-2">
+                            <div class="view-more pt-1">
+                                <p style="style-loadmore" data-toggle="tooltip"  data-placement="top" data-trigger="hover" :data-original-title="item.content_feed">{{item.content_feed}}</p>
+                            </div>
+                            
+                        </div>
+                        <hr>
+                        </div>
+                        <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
+                            <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'" data-dismiss="modal">Viết phản hồi</a>
+                        </div>
+                        <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
+                            <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" data-dismiss="modal" >Viết phản hồi</a>
+                        </div>
                     </div>
-                    <div class="col-8">
-                    <div class="star-rating">
-                      <star-rating 
-                      :rating="item.rate_feed" 
-                      :increment="0.1"
-                      :star-size="25"
-                      :read-only="true"
-                      ></star-rating>
-                    </div>
-                    <h6 class="text-left pt-1 pl-0">{{item.name_feed}} _ {{ ConvertDate(item.created_at) }}</h6>
-                </div>
-                <hr>
-                </div>
-                <div class="row pl-2">
-                    <div class="view-more pt-1">
-                        <p style="style-loadmore" data-toggle="tooltip"  data-placement="top" data-trigger="hover" :data-original-title="item.content_feed">{{item.content_feed}}</p>
-                    </div>
-                    
-                </div>
-                <hr>
-                </div>
-                <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
-                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'" data-dismiss="modal">Viết phản hồi</a>
-                </div>
-                <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
-                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" data-dismiss="modal" >Viết phản hồi</a>
-                </div>
-            </div>
                 </div>
             </div>
         </div>
         <!-- end Modal login -->
-        <!-- Modal form feedback -->
+        <!-- Modal form feedback (Vote stars)-->
         <div class="modal fade text-left" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered ">
-                <div class="modal-content">
-                    <div class="col-md-12 col-lg-12 formlogin form-control" >
-                    <h2 class="text-center mt-1" style="margin-bottom:15px">Viết phản hồi</h2>
-                    <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px">
-                        <div class="star-rating pb-1">
-                        <star-rating 
-                            @rating-selected ="setRating"
-                            :rating="4.3" 
-                            :increment="0.1"
-                            :star-size="30"
-                        ></star-rating>
+                <div class="modal-content vote-company">
+                    <div class="col-md-12 col-lg-12 formlogin form-control card-content" >
+                        <div class="modal-title">
+                            <h4>Hãy chia sẻ ý kiến của bạn về {{name_company}}:</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <span class="">xin chào, {{this.$auth.user.name}}!</span>
                         </div>
-                        <ValidationObserver ref="observer" v-slot="{ valid }">
-                        <div style="position: relative">
-                            <ValidationProvider
-                                name="content"
-                                ref="content"
-                                rules="required"
-                                v-slot="{ errors }"
-                            >
-                            <div class="__email">
-                                <fieldset class="form-label-group position-relative has-icon-left mb-0 pt-1">
-                                    <textarea class="form-control mb-0" id="content" placeholder="Nội dung phản hồi" v-model="formFeedback.content" style="padding-left:10px;margin-bottom:0px !important; margin-top:2px"></textarea>
-                                    <label style="font-size: 15px; padding-top:12px; color: black " for="content">Nội dung</label>
-                                    <ul style="color:red" class="overline text-left">
-                                        <li v-for="(error, index) in errors" :key="index">
-                                        <span style="top: 53%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
-                                        </li>
-                                    </ul>
-                                </fieldset>
-                            </div>
-                            </ValidationProvider>
-                            <div class="lopgin-c" style="padding-top:20px">
-                                <button @click="sendFeedback()" id="submit" class="submit btn" style="height:100%; line-height: unset; padding:10px!important">Gửi phản hồi</button>
-                            </div>
-                            
+                        <div class="form-group-1 input-login input-comment pt-1" v-on:keyup.enter="login">
+                            <!-- <div class="star-rating pb-1">
+                                <star-rating 
+                                    @rating-selected ="setRating"
+                                    :rating="4.3" 
+                                    :increment="0.1"
+                                    :star-size="30"
+                                ></star-rating>
+                            </div> -->
+                            <span class="title-input">Nhận xét</span>
+                            <ValidationObserver ref="observer" v-slot="{ valid }">
+                                <div style="position: relative">
+                                    <div class="__email">
+                                        <textarea class="form-control" id="content" placeholder="Nhận xét của bạn về công ty ít nhất 10 ký tự" v-model="formFeedback.content"></textarea>
+                                        <!-- <ul style="color:red" class="overline text-left">
+                                            <li v-for="(error, index) in errors" :key="index">
+                                            <span><i>{{ error }}</i></span>
+                                            </li>
+                                        </ul> -->
+                                    </div>
+                                    <div class="vote-star">
+                                        <div class="stars">
+                                            <label class="star-label">Đánh giá</label>
+                                            <input class="star star-5" id="star-5" type="radio" name="star" v-model="star" value="5"/>
+                                            <label class="star star-5" for="star-5"></label>
+                                            <input class="star star-4" id="star-4" type="radio" name="star" v-model="star" value="4"/>
+                                            <label class="star star-4" for="star-4"></label>
+                                            <input class="star star-3" id="star-3" type="radio" name="star" v-model="star" value="3"/>
+                                            <label class="star star-3" for="star-3"></label>
+                                            <input class="star star-2" id="star-2" type="radio" name="star" v-model="star" value="2"/>
+                                            <label class="star star-2" for="star-2"></label>
+                                            <input class="star star-1" id="star-1" type="radio" name="star" v-model="star" value="1"/>
+                                            <label class="star star-1" for="star-1"></label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between btn-area">
+                                        <div class="btn-send">
+                                            <button @click="sendFeedback()" class="submit btn">Bình luận</button>
+                                        </div>
+                                        <div class="btn-close">
+                                            <button class="submit btn" data-dismiss="modal">Đóng</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ValidationObserver>
                         </div>
-                        </ValidationObserver>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -479,8 +505,6 @@ import {
 } from "vee-validate/dist/vee-validate.full";
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 
-
-
 extend("required", {
   message: (field, values) => "Dữ liệu nhập vào không được để trống.",
 });
@@ -555,6 +579,10 @@ export default {
             isFollow: false,
             followers: 0,
             bank: '',
+            rate_score: 3,
+            id_company: '',
+            name_company: '',
+            star: 0,
         }
     },
     async asyncData (context) {
@@ -686,7 +714,8 @@ export default {
         },
         sendFeedback(){
             var form = new FormData();
-            form.append('rate_feed',this.formFeedback.rating);
+            // form.append('rate_feed',this.formFeedback.rating);
+            form.append('rate_feed',this.star);
             form.append('company_id',this.detailCompany.id);
             form.append('content_feed',this.formFeedback.content);
             form.append('name_feed',this.$auth.user.name);
@@ -696,7 +725,7 @@ export default {
             this.$axios.post('postCompanyFeedback',form).then((response)=>{
                 if(response.data.status == 200) {
                     this.$swal(
-                        'Chờ xét duyệt!',
+                        'Đã ghi nhận phản hồi của bạn!',
                         response.data.message,
                         'success'
                     ).then( function (){
@@ -737,6 +766,18 @@ export default {
         },
         setRating: function(rating){
             this.formFeedback.rating= rating;
+        },
+        async getRating() {
+            const id_company = await this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
+                this.detailCompany = response.data;
+                this.id_company = this.detailCompany.nb_company.company_id;
+                this.name_company = this.detailCompany.nb_company.username;
+            });
+            this.$axios.get(`getRating/${this.id_company}`).then(response => {
+                if(response.status == 200){
+                    this.rate_score = response.data.total_score;
+                }
+            });
         }
     },      
     mounted() {
@@ -774,6 +815,7 @@ export default {
                 this.followers = response.data.data;
             }
         });
+        this.getRating();
     },
     jsonld() {
         return {
@@ -897,6 +939,90 @@ export default {
 .verify-img img{
     width: 100%;
 }
+
+.vote-company .form-control {
+    border-radius: 5px;
+}
+
+/* Css star vote */
+.vote-star div.stars {
+  display: inline-block;
+}
+ 
+.vote-star input.star { display: none; }
+ 
+.vote-star label.star {
+    float: right;
+    padding: 3px 8px;
+    font-size: 20px;
+    color: #444;
+    transition: all .2s;
+}
+ 
+.vote-star input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+ 
+.vote-star input.star-5:checked ~ label.star:before {
+    color: #ffb701;
+    text-shadow: 0 0 20px #952;
+}
+ 
+.vote-star input.star-1:checked ~ label.star:before { color: #F62; }
+ 
+.vote-star label.star:hover { transform: rotate(-15deg) scale(1.3); }
+ 
+.vote-star label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+.vote-star .star-label {
+    font-weight: bold;
+    font-size: 15px;
+    float: left;
+    margin-top: 0.5rem;
+}
+/* End Css star vote */
+.vote-company .card-content{
+    padding: 24px !important;
+}
+.modal-title .close{
+    color: #000000;
+    font-size: 18px;
+    margin-top: -40px;
+    margin-right: -10px;
+}
+.modal-title h4{
+    font-weight: 700;
+    color: #5F5F5F;
+}
+.input-comment .title-input {
+    font-weight: 700;
+}
+.modal-dialog {
+    max-width: 600px;
+}
+.vote-company .form-control {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+.vote-company textarea {
+    margin-top: 5px;
+    height: 100px;
+}
+.btn-area .btn {
+    margin: 15px 0 0 0 !important;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.rating .checked {
+  color: orange;
+}
+
+
 @media screen and (max-width: 480px) {
     .avt-company {
         position: unset;
