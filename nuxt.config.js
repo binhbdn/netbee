@@ -65,6 +65,7 @@ module.exports = {
             // { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' , defer: true},
             // { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
             { rel: 'stylesheet', href: '/assets/fontawesome-pro/css/all.css', async: true },
+            { rel: 'stylesheet', href: '/app-assets/fonts/font-awesome/css/font-awesome.min.css', async: true },
 
         ],
         script: [
