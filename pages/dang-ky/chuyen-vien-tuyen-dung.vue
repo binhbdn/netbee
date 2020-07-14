@@ -1,9 +1,9 @@
 <template>
   <div>
-      <section class="hero-wraps js-fullheight" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
+      <section class="hero-wraps js-fullheight section-1" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
         <div class="container">
             <div class="row">
-                <div class="col-md-7 col-sm-12" style="padding:100px 15px;">
+                <div class="col-md-7 col-sm-12 content-left">
                     <h3 style="color:black;"><b>Đăng ký chuyên viên tuyển sinh</b></h3>
                     <ul class="list">
                         <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận đơn hàng trên toàn quốc hàng giờ</li>
@@ -12,7 +12,7 @@
                         <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hoàn toàn bảo mật thông tin cá nhân</li>
                     </ul>
                 </div>
-                <div class="col-md-5 col-sm-12" style="padding:0px 15px;">
+                <div class="col-md-5 col-sm-12 content-right">
                   <div class="style-backrou">
                       <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
                         <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN CHUYÊN VIÊN TUYỂN SINH</span>
@@ -127,223 +127,239 @@
             </div>
         </div>
       </section>
-      <section class="section">
+      <section class="section-2">
         <div class="container">
-          <div class="row">
-              <div class="col-md-7">
-                <h1 style="padding-bottom: 1rem; line-height: 1.4; font-size: 2.75rem; font-weight: 700">NetBee tặng ngay 1.000.000đ Phí Đăng ký tài khoản HR Freelance ngay trong tháng 7.</h1>
-                <p style="padding: 0 0 1em 0;  font-size: 24px; line-height: 1.4;">Đăng ký ngay! tiếp cận 2000 jobs từ 800 công ty Công nghệ thông tin toàn quốc.</p>
-                <p style="padding: 5px 0; font-size: 18px; line-height: 1.4;"><i class="fa fa-check-circle"></i> Không áp lực KPI</p>
-                <p style="padding: 5px 0; font-size: 18px; line-height: 1.4;"><i class="fa fa-check-circle"></i> Làm việc tại nhà chống Corona</p>
-                <p style="padding: 5px 0; font-size: 18px; line-height: 1.4;"><i class="fa fa-check-circle"></i> Cơ hội nhận Bonus tới 40 triệu đồng/ứng viên giới thiệu thành công.</p>
+          <div class="row mb-responsive">
+              <div class="col-md-7 content-left">
+                <h1>NetBee tặng ngay 1.000.000đ Phí Đăng ký tài khoản HR ngay trong tháng 7.</h1>
+                <p>Đăng ký ngay! tiếp cận 2000 jobs từ 800 công ty Công nghệ thông tin toàn quốc.</p>
+                <p><i class="fa fa-check-circle"></i> Không áp lực KPI</p>
+                <p><i class="fa fa-check-circle"></i> Làm việc tại nhà chống Corona</p>
+                <p><i class="fa fa-check-circle"></i> Cơ hội nhận Bonus tới 40 triệu đồng/ứng viên giới thiệu thành công.</p>
               </div>
-              <div class="col-md-5">
-                <img style="max-width: 100%" v-lazy = "`/assets/img/dk-CTV.png`" alt="Tuyển dụng NetBee">
+              <div class="col-md-5 content-right">
+                <img class="img" v-lazy = "`/assets/img/dk-CTV.png`" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
       </section>
-      <section class="section">
+      <section class="section-3">
         <div class="container">
-          <h2 style="text-align: center; font-size: 2.5rem">VÌ SAO NÊN ĐĂNG KÝ HR FREELANCER TRÊN NETBEE.VN?</h2>
-          <div class="row" style="padding-top: 80px">
-              <div class="col-md-6">
-                <div style="float: left;width: 80px;color: #FFB701">
-                      <span class="img-item">
-                      <img style="max-width: 100%" v-lazy = "`/assets/img/dk-CTV-07.png`">
-                      </span>
-                    </div>
-                    <div class="text-item" style="float: left;width: calc(100% - 80px)">
-                      <p class="content-1" style="line-height: 40px; margin: 20px;">Tiếp cận nặc danh </p>
-                    </div>
-                <ul class="ul" style="margin-top:6rem;">
-                  <li>
-                    <div>
-                      <h5 class="content-text" style="color: #FFB701; font-size: 18px">Bảo mật</h5>
-                      <p class="content-2">Tài khoản và thông tin của bạn hoàn toàn bí mật</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <h5 class="content-text" style="color: #FFB701; font-size: 18px">Người giới thiệu ẩn danh</h5>
-                      <p class="content-2">Hashtag có thể được dùng để tìm kiếm dễ dàng hơn với từng chủ đề nhất định</p>
-                    </div>
-                  </li>
-                  <li>
+          <h2>VÌ SAO NÊN ĐĂNG KÝ HR FREELANCER TRÊN NETBEE.VN?</h2>
+          <div class="row mb-responsive">
+              <div class="col-md-6 content-left">
+                <div class="title">
+                  <div  class="img-item">
+                    <span>
+                      <img class="img img-icon" v-lazy = "`/assets/img/dk-CTV-07.png`">
+                    </span>
+                  </div>
+                  <div class="text-item">
+                    <p class="content-1">Tiếp cận nặc danh </p>
+                  </div>
+                </div>
+                <div class="description">
+                  <ul class="ul">
+                    <li>
                       <div>
-                        <h5 class="content-text" style="color: #FFB701; font-size: 18px">Thanh toán</h5>
-                        <p class="content-2">Thanh toán qua tài khoản ngân hàng cá nhân</p>
+                        <h5 class="content-text">Bảo mật</h5>
+                        <p class="content-2">Tài khoản và thông tin của bạn hoàn toàn bí mật</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <h5 class="content-text">Người giới thiệu ẩn danh</h5>
+                        <p class="content-2">Hashtag có thể được dùng để tìm kiếm dễ dàng hơn với từng chủ đề nhất định</p>
                       </div>
                     </li>
                     <li>
                         <div>
-                          <h5 class="content-text" style="color: #FFB701">Người bạn đồng hành tin cậy</h5>
+                          <h5 class="content-text">Thanh toán</h5>
+                          <p class="content-2">Thanh toán qua tài khoản ngân hàng cá nhân</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                          <h5 class="content-text">Người bạn đồng hành tin cậy</h5>
                           <p class="content-2">Luôn luôn bên cạnh và thấu hiểu HR</p>
                         </div>
-                      </li>
-                </ul>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 30px;" v-lazy = "`/assets/img/dk-CTV-02.png`" alt="Tuyển dụng NetBee">
+              <div class="col-md-6 content-right">
+                <img class="img" v-lazy = "`/assets/img/dk-CTV-02.png`" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
       </section>
-      <section class="section">
+      <section class="section-4">
         <div class="container">
-          <div class="row">
-              <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 30px;" v-lazy = "`/assets/img/dk-CTV-03.png`" alt="Tuyển dụng NetBee">
+          <div class="row mb-responsive">
+              <div class="col-md-6 content-right">
+                <img class="img" v-lazy = "`/assets/img/dk-CTV-03.png`" alt="Tuyển dụng NetBee">
               </div>
-              <div class="col-md-6">
-                <div style="float: left;width: 80px;color: #FFB701;padding-bottom: 30px;">
-                  <span class="img-item">
-                  <img  v-lazy = "`/assets/img/dk-CTV-08.png`" style="max-width: 100%">
-                  </span>
+              <div class="col-md-6 content-left">
+                <div class="title">
+                  <div class="img-item">
+                    <span>
+                      <img class="img img-icon" v-lazy = "`/assets/img/dk-CTV-08.png`">
+                    </span>
+                  </div>
+                  <div class="text-item">
+                    <p class="content-1">Nguồn khách hàng đa dạng</p>
+                  </div>
                 </div>
-                <div class="text-item" style="float: left;width: calc(100% - 80px)">
-                  <p class="content-1" style="line-height: 55px; margin: 15px;">Nguồn khách hàng đa dạng</p>
-                </div>
-                <ul class="ul" style="clear: both">
-                  <li>
-                    <div>
-                      <h5 class="content-text" style="color: #FFB701; font-size: 18px">Khách hàng đa dạng</h5>
-                      <p class="content-2">Với một nguồn khách hàng đa dạng khiến cho HR có thể thường xuyên thấy số lượng việc được cập nhật liên tục và thường xuyên</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <h5 class="content-text" style="color: #FFB701; font-size: 18px">Tối ưu CV</h5>
-                      <p class="content-2">Tối ưu các CV mà HR đã khai thác được cho nhiều vị trí ở nhiều công ty</p>
-                    </div>
-                  </li>
-                  <li>
+                <div class="description">
+                  <ul class="ul">
+                    <li>
                       <div>
-                        <h5 class="content-text" style="color: #FFB701 font-size: 18px;">Cân bằng bonus</h5>
-                        <p class="content-2">Luôn có sự so sánh mức bonus cũng như môi trường làm việc của Ứng viên</p>
+                        <h5 class="content-text">Khách hàng đa dạng</h5>
+                        <p class="content-2">Với một nguồn khách hàng đa dạng khiến cho HR có thể thường xuyên thấy số lượng việc được cập nhật liên tục và thường xuyên</p>
                       </div>
                     </li>
-                </ul>
-              </div>
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="container" v-lazy:background-image="`/assets/img/hachinet-03-02.png`">
-          <div class="row">
-              <div class="col-md-6">
-                <div style="float: left;width: 80px;color: #FFB701">
-                  <span class="img-item">
-                    <img  v-lazy = "`/assets/img/dk-CTV-09.png`" style="max-width: 100%">
-                  </span>
-                </div>
-                <div class="text-item" style="float: left;width: calc(100% - 80px)">
-                  <p class="content-1" style="margin: 15px;">Chủ động thời gian làm việc</p>
-                </div>
-                <ul class="ul" style="margin-top:6rem;">
-                  <li>
-                    <div>
-                      <h5 class="content-text">Chủ động</h5>
-                      <p class="content-2">Bạn có thể làm việc ở mọi lúc và mọi nơi</p>
-                    </div>
-                  </li>
-                  <li>
+                    <li>
                       <div>
-                        <h5 class="content-text" style="color: #FFB701; font-size: 18px">Thoải mái</h5>
-                        <p class="content-2">Không cần văn phòng và không cần máy tính</p>
+                        <h5 class="content-text">Tối ưu CV</h5>
+                        <p class="content-2">Tối ưu các CV mà HR đã khai thác được cho nhiều vị trí ở nhiều công ty</p>
                       </div>
                     </li>
                     <li>
                         <div>
-                          <h5 class="content-text" style="color: #FFB701; font-size: 18px">Nguồn ứng viên tiềm năng</h5>
-                          <p class="content-2">Bạn có thể làm việc dựa trên số ứng viên mà bạn khai thác được</p>
+                          <h5 class="content-text">Cân bằng bonus</h5>
+                          <p class="content-2">Luôn có sự so sánh mức bonus cũng như môi trường làm việc của Ứng viên</p>
                         </div>
                       </li>
-                  <li>
-                    <div>
-                      <h5 class="content-text" style="color: #FFB701;">Tiện lợi</h5>
-                      <p class="content-2">Hoàn toàn không có KPI và luôn tiện lợi</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 20px;" v-lazy = "`/assets/img/dk-CTV-04.png`"  alt="Tuyển dụng NetBee">
+                  </ul>
+                </div>
               </div>
           </div>
         </div>
       </section>
-      <section class="section">
-        <div class="container">
-          <div class="row">
-              <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 10px;" v-lazy = "`/assets/img/dk-CTV-05.png`" alt="Tuyển dụng NetBee">
-              </div>
-              <div class="col-md-6">
-                <div style="float: left;width: 80px;color: #FFB701">
-                      <span class="img-item">
-                      <img v-lazy = "`/assets/img/dk-CTV-10.png`" style="max-width: 100%">
-                      </span>
-                    </div>
-                    <div class="text-item" style="float: left;width: calc(100% - 80px)">
-                <p class="content-1" style="line-height: 40px; margin-left: 15px">Minh bạch trong thanh toán và thu nhập của tất cả HR</p>
-                    </div>
-                <ul class="ul">
-                  <li>
-                    <div>
-                      <h5 class="content-text" style="color: #FFB701">Rõ ràng</h5>
-                      <p class="content-2">Khi ứng viên pv thành công và đi làm sau 5 ngày , bạn có thể yêu cầu khách hàng xác nhận đơn hàng , và bạn sẽ được thanh toán ngay lập tức.</p>
-                    </div>
-                  </li>
-                  <li>
-                    <div>
-                      <h5 class="content-text" style="color: #FFB701;">Minh bạch</h5>
-                      <p class="content-2">Mọi thanh toán đều ghi lại lịch sử và minh bạch quản lý để bạn có thể nắm bắt thông tin chính xác</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-          </div>
-        </div>
-      </section>
-      <section class="section">
+      <section class="section-5">
         <div class="container" v-lazy:background-image="`/assets/img/hachinet-03-02.png`">
-          <h2 style="text-align: center; font-size: 2.5rem; font-weight: 700">CÁC BƯỚC ĐĂNG KÝ HR FREELANCER TRÊN NETBEE.VN?</h2>
-          <div class="row" style="padding-top: 40px">
-              <div class="col-md-6">
+          <div class="row mb-responsive">
+              <div class="col-md-6 content-left">
+                <div class="title"> 
+                  <div class="img-item">
+                    <span>
+                      <img class="img img-icon" v-lazy = "`/assets/img/dk-CTV-09.png`">
+                    </span>
+                  </div>
+                  <div class="text-item">
+                    <p class="content-1">Chủ động thời gian làm việc</p>
+                  </div>
+                </div>
+                <div class="descripton">
+                  <ul class="ul">
+                    <li>
+                      <div>
+                        <h5 class="content-text">Chủ động</h5>
+                        <p class="content-2">Bạn có thể làm việc ở mọi lúc và mọi nơi</p>
+                      </div>
+                    </li>
+                    <li>
+                        <div>
+                          <h5 class="content-text">Thoải mái</h5>
+                          <p class="content-2">Không cần văn phòng và không cần máy tính</p>
+                        </div>
+                      </li>
+                      <li>
+                          <div>
+                            <h5 class="content-text">Nguồn ứng viên tiềm năng</h5>
+                            <p class="content-2">Bạn có thể làm việc dựa trên số ứng viên mà bạn khai thác được</p>
+                          </div>
+                        </li>
+                    <li>
+                      <div>
+                        <h5 class="content-text">Tiện lợi</h5>
+                        <p class="content-2">Hoàn toàn không có KPI và luôn tiện lợi</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6 content-right">
+                <img class="img" v-lazy = "`/assets/img/dk-CTV-04.png`"  alt="Tuyển dụng NetBee">
+              </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-6">
+        <div class="container">
+          <div class="row mb-responsive">
+              <div class="col-md-6 content-right">
+                <img class="img" v-lazy = "`/assets/img/dk-CTV-05.png`" alt="Tuyển dụng NetBee">
+              </div>
+              <div class="col-md-6 content-left">
+                <div class="title">
+                  <div class="img-item">
+                    <span>
+                      <img class="img img-icon" v-lazy = "`/assets/img/dk-CTV-10.png`">
+                    </span>
+                  </div>
+                  <div class="text-item">
+                    <p class="content-1">Minh bạch trong thanh toán và thu nhập của tất cả HR</p>
+                  </div>
+                </div>
+                <div class="description">
+                  <ul class="ul">
+                    <li>
+                      <div>
+                        <h5 class="content-text">Rõ ràng</h5>
+                        <p class="content-2">Khi ứng viên pv thành công và đi làm sau 5 ngày , bạn có thể yêu cầu khách hàng xác nhận đơn hàng , và bạn sẽ được thanh toán ngay lập tức.</p>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <h5 class="content-text">Minh bạch</h5>
+                        <p class="content-2">Mọi thanh toán đều ghi lại lịch sử và minh bạch quản lý để bạn có thể nắm bắt thông tin chính xác</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-7">
+        <div class="container" v-lazy:background-image="`/assets/img/hachinet-03-02.png`">
+          <h2>CÁC BƯỚC ĐĂNG KÝ HR FREELANCER TRÊN NETBEE.VN?</h2>
+          <div class="row mb-responsive">
+              <div class="col-md-6 content-left">
                 <ul>
-                  <li style="list-style-type: none; margin-bottom: 15px;">
+                  <li>
                     <div style="float: left;">
                       <span class="glyphicon glyphicon-pencil"></span>
                     </div>
-                    <div style="display: inline-block;margin-left: 10px;">
+                    <div class="inline-block">
                       <h3>Đăng ký HR</h3>
-                      <p style="font-size: 20px;">Truy cập trang đăng ký HR</p>
+                      <p>Truy cập trang đăng ký HR</p>
                     </div>
                   </li>
-                  <li style="list-style-type: none; margin-bottom: 15px;">
+                  <li>
                     <div style="float: left;">
                       <span class="glyphicon glyphicon-pencil"></span>
                     </div>
-                    <div style="display: inline-block;margin-left: 10px;">
+                    <div class="inline-block">
                       <h3>Điền thông tin</h3>
-                      <p style="font-size: 20px;">Điền thông tin đầy đủ</p>
+                      <p>Điền thông tin đầy đủ</p>
                     </div>
                   </li>
-                  <li style="list-style-type: none;">
+                  <li>
                     <div style="float: left;">
                       <span class="glyphicon glyphicon-pencil"></span>
                     </div>
-                    <div style="display: inline-block;margin-left: 10px;">
+                    <div class="inline-block">
                       <h3>Check mail</h3>
-                      <p style="font-size: 20px;">Truy cập mail xác nhận tài khoản</p>
+                      <p>Truy cập mail xác nhận tài khoản</p>
                     </div>
                   </li>
                 </ul>
-                <a href="#regregion" type="button" class="btn btn-default register" style="margin-left: 40px; background: linear-gradient(to right, #e68a00 0%, #FFB701 100%);">ĐĂNG KÝ NGAY</a>
+                <a href="#" type="button" class="btn btn-default register">ĐĂNG KÝ NGAY</a>
               </div>
-              <div class="col-md-6">
-                <img style="max-width: 100%; padding-top: 30px;" v-lazy = "`/assets/img/dk-CTV-06.png`" alt="Tuyển dụng NetBee">
+              <div class="col-md-6 content-right">
+                <img class="img" v-lazy = "`/assets/img/dk-CTV-06.png`" alt="Tuyển dụng NetBee">
               </div>
           </div>
         </div>
@@ -498,82 +514,257 @@ export default {
         position: inherit;
         background-color: #ffb701 !important;
     }
-    .no-gutters {
-        margin-right: 0;
-        margin-left: 0;
-        height: 80px !important;
-    }
-    .hero-wraps {
-        width: 100%;
-        /* height: 700px !important; */
-        position: inherit;
-        margin-top: 66px;
-    }
-    .bg-dark.ftco-navbar-light.ftco_navbar.navbar.navbar-dark.navbar-expand-lg{
-        top: 0;
-    }
-    .nav-link.dropdown-toggle{
-        border: 1px solid #fff !important;
-        border-radius: 3px !important;
-        padding-top: 7px !important;
-        padding-bottom: 7px !important;
-        padding-left: 20px !important;
-        padding-right: 20px !important;
-    }
-    .list{
-        line-height: 40px;
-        font-size: 20px;
-    }
-    .btn-outline-warning:hover {
-    color: #212529;
-    background-color: #ffc107;
-    border-color: #ffc107;
-    }
-    label span{
-        padding-right: 3px;
-        font-size: 14px;
-    }
-    label{
-        font-size: 15px;
-    }
-    ul{
-        list-style: none;
-        padding-left: 5px;
-        padding-top: 5px;
-    }
-    ul li span{
-      font-style: italic;
-    }
-    .intro-code input {
-      /* width: 50%; */
-    }
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+    height: 80px !important;
+}
+.hero-wraps {
+    width: 100%;
+    /* height: 700px !important; */
+    position: inherit;
+    margin-top: 66px;
+}
+.bg-dark.ftco-navbar-light.ftco_navbar.navbar.navbar-dark.navbar-expand-lg{
+    top: 0;
+}
+.nav-link.dropdown-toggle{
+    border: 1px solid #fff !important;
+    border-radius: 3px !important;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+.list{
+    line-height: 40px;
+    font-size: 20px;
+}
+.btn-outline-warning:hover {
+color: #212529;
+background-color: #ffc107;
+border-color: #ffc107;
+}
+label span{
+    padding-right: 3px;
+    font-size: 14px;
+}
+label{
+    font-size: 15px;
+}
+ul{
+    list-style: none;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+ul li span{
+  font-style: italic;
+}
+.intro-code input {
+  /* width: 50%; */
+}
 
-    .section{
-      padding-top: 100px
-    }
-    .content-1{
-      font-size: 30px;
-      color: #5c5c3d;
-    }
-    .content-text{
-      color: #FFB701;
-      font-size: 18px;
-    }
-    .ul{
-      list-style-type: disc;
-      padding-left: 3rem
-    }
-    .glyphicon{
-      position: relative;
-      top: 1px;
-      display: inline-block;
-      font-family: 'Glyphicons Halflings';
-      font-style: normal;
-      font-weight: 400;
-      line-height: 1;
-      -webkit-font-smoothing: antialiased;
-    }
-    .section:last-child{
-      padding-bottom: 100px;
-    }
+section{
+  padding-top: 70px
+}
+.hero-wraps{
+  padding-top: 0;
+}
+h1{
+  line-height: 1.4;
+  font-size: 2.75rem;
+  font-weight: 700
+}
+h2{
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding-bottom: 50px
+}
+.content-1{
+  line-height: 40px;
+  margin: 15px;
+  font-size: 30px;
+  color: #5c5c3d;
+}
+.content-text{
+  color: #FFB701;
+  font-size: 18px;
+}
+.ul{
+  list-style-type: disc;
+  padding-top: 0.5rem;
+  padding-left: 1.5rem;
+  clear: both;
+}
+.img{
+  max-width: 100%;
+}
+.content-left .title div{
+  float: left;
+}
+.content-left .title .img-item{
+  width: 80px;
+  color: #FFB701
+}
+.content-left .title .text-item{
+  width: calc(100% - 80px);
+}
+.section-1 .content-left{
+  padding: 100px 15px;
+}
+.section-1 .content-left p:first-child{
+  padding: 0 0 1em 0;
+  font-size: 24px;
+}
+.section-1 .content-right{
+  padding:0px 15px;
+}
+.section-2 .content-left p{
+  padding: 5px 0;
+  font-size: 18px;
+  line-height: 1.4
+}
+.content-right .img{
+  padding-top: 25px;
+}
+.section-6 .title .text-item .content-1{
+  margin: 0 15px;
+}
+.section-7 .content-left ul li{
+  margin-bottom: 15px;
+}
+.section-7 .content-left ul li div:first-child{
+  float: left;
+}
+.section-7 .content-left ul li .inline-block{
+  display: inline-block;
+}
+.section-7 h3{
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.section-7 .content-left{
+  padding-left: 3rem;
+}
+.section-7{
+  padding-bottom: 100px;
+}
+.section-7 .register{
+    background: linear-gradient(to right, #e68a00 0%, #FFB701 100%);
+}
+.section-7 .inline-block p{
+  font-size: 18px;
+}
+.section-7 .content-right .img, .section-6 .content-right .img{
+  padding-top: 0;
+}
+.glyphicon{
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  padding-right: 10px;
+}
+.glyphicon::before{
+  content: "\270f";
+}
+@media (max-width: 1199px){
+  section{
+    padding-top: 50px;
+  }
+  .content-1{
+    line-height: 25px;
+    font-size: 25px;
+    margin: 10px;
+  }
+  .content-left .title .img-item{
+  width: 60px;
+  }
+  h1{
+    line-height: 1.4;
+    font-size: 2rem;
+    font-weight: 700
+  }
+  .content-right .img{
+    padding-top: 15px;
+  }
+  .section-7 .content-right .img{
+    padding-top: 0px
+  }
+  .section-7 .inline-block h3{
+    font-size: 18px
+  }
+  .section-7 .inline-block p{
+    font-size: 16px;
+  }
+  .section-7 .content-left ul li{
+  margin-bottom: 10px;
+}
+  h2{
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 991px){
+  .section-6 .content-1{
+    margin: 0 10px;
+  }
+}
+@media (max-width: 767px){
+  section{
+    padding-top: 30px;
+  }
+  .content-left{
+    order: 1;
+  }
+  .content-right{
+    order: 2;
+  }
+  h2{
+    padding-bottom: 20px;
+    font-size: 1.75rem
+  }
+  .content-1{
+    line-height: 22px;
+    font-size: 22px;
+    margin: 5px;
+  }
+  .section-1 .content-left{
+    padding: 20px 15px;
+    line-height: 20px;
+  }
+  .section-1 .content-left ul{
+    line-height: 25px;
+  }
+  .section-1 .content-right .style-backrou{
+    margin: 0;
+  }
+  .section-1 .content-left p:first-child{
+    padding: 0 0 0.5rem 0;
+    font-size: 20px;
+  }
+  .section-1 .content-left h1{
+    font-size: 1.75rem;
+  }
+  .section-2 .content-left p{
+    padding: 0;
+  }
+  .section-7 .content-left{
+    padding-left: 2rem;
+    padding-bottom: 30px;
+  }
+  .section-7 .register{
+    display: block;
+    margin: auto;
+    text-align: center;
+  }
+  section:last-child{
+    padding-bottom: 50px;
+  }
+}
 </style>
