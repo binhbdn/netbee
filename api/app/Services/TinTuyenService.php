@@ -146,7 +146,7 @@ class TinTuyenService extends BaseService {
         if ($request->type == self::JOB_OVERSEAS_STUDENT) {
             // $rules['school_name'] = 'required';
         } else {
-            $rules['id_visa'] = 'required';
+            // $rules['id_visa'] = 'required';
         }
         if (!empty($request->id)){
             // $rules['address'] = 'required';

@@ -125,13 +125,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="checkSelect" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Ngành nghề xin visa</label>
-                                                                <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa"></multiselect>
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Ngành nghề xin visa</label>
+                                                            <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa"></multiselect>
+                                                        </div>
                                                     </div>
                                                      <div class="col-6">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }">
