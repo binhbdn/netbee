@@ -112,7 +112,33 @@
                                                             <multiselect :options="levelEx" v-model="data.academicLevel" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
                                                         </div>
                                                     </div>
+                                                   
                                                     <div class="col-6">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Thời gian du học (năm)</label>
+                                                                <input type="text" class="form-control required" v-model="data.time_contract">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Số lượng tuyển</label>
+                                                                <input type="number" class="form-control" v-model="data.quantity">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Yêu cầu thêm</label>
+                                                            <textarea rows="3" class="form-control" v-model="data.request" placeholder="Đại học yêu cầu có 1,5 năm kinh nghiệm.
+Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
+                                                        </div>
+                                                    </div>
+                                                     <div class="col-6">
                                                         <ValidationProvider rules="ssdate" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày hết hạn ứng tuyển</label>
@@ -148,31 +174,6 @@
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Thời gian du học (năm)</label>
-                                                                <input type="text" class="form-control required" v-model="data.time_contract">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Số lượng tuyển</label>
-                                                                <input type="number" class="form-control" v-model="data.quantity">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Yêu cầu thêm</label>
-                                                            <textarea rows="3" class="form-control" v-model="data.request" placeholder="Đại học yêu cầu có 1,5 năm kinh nghiệm.
-Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
-                                                        </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
@@ -218,13 +219,13 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         </div>
                                                     </div>
                     
-                                                    <div class="col-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Phụ cấp ngoài</label>
                                                             <textarea rows="3" class="form-control" v-model="data.allowance" placeholder="Miễn phí ký túc xá"></textarea>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Quyền lợi khác</label>
                                                             <textarea rows="3" class="form-control" v-model="data.benefits" placeholder="Giới thiệu việc làm thêm"></textarea>
