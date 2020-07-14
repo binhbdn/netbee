@@ -46,7 +46,7 @@
               </div>
             </a>
           </li>
-          <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ung-vien'}">
+          <!-- <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ung-vien'}">
             <a href="/ung-vien" class="nav-link header-nav-link" style="text-align: center">
               <div class="nav-icon">
                 <i class="fas fa-id-badge"></i>
@@ -55,7 +55,7 @@
                 {{ $t('nav.candidates') }}
               </div>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
             <a href="/tin-tuc" class="nav-link header-nav-link" >
               <div class="nav-icon">
