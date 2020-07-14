@@ -44,11 +44,10 @@ export default {
 </script>
 <style scoped>
 .item-vip-a{
-    max-width: 250px;
+    max-width: 300px;
     font-weight: 500;
     font-size: 14px;
 }
-
 .item-name .item-vip-a:hover{
     color: #ffb701 !important;
 }
@@ -64,7 +63,7 @@ export default {
 }
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 1fr 3fr 1fr;
 }
 .mg-top-5{
     margin-top: 5px;
@@ -100,6 +99,7 @@ export default {
 .item-price .title {
     font-size: 14px;
 }
+
 @media(max-width: 991px) {
     .p-r-0 .hot img{
         right: 15px;
