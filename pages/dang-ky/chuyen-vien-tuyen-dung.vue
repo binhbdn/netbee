@@ -3,16 +3,7 @@
       <section class="hero-wraps js-fullheight section-1" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
         <div class="container">
             <div class="row">
-                <div class="col-md-7 col-sm-12 content-left">
-                    <h3 style="color:black;"><b>Đăng ký chuyên viên tuyển sinh</b></h3>
-                    <ul class="list">
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận đơn hàng trên toàn quốc hàng giờ</li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận tất cả các đơn hàng một cách đơn giản</li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận tiền thưởng ngay lập tức khi giới thiệu thành công</li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hoàn toàn bảo mật thông tin cá nhân</li>
-                    </ul>
-                </div>
-                <div class="col-md-5 col-sm-12 content-right">
+                <div class="col-md-5 col-sm-12 content-left">
                   <div class="style-backrou">
                       <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
                         <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN CHUYÊN VIÊN TUYỂN SINH</span>
@@ -124,20 +115,36 @@
                     </form>
                   </div>               
                 </div>
+                <div class="col-md-7 col-sm-12 content-right">
+                    <h3 style="color:black;"><b>Đăng ký chuyên viên tuyển sinh</b></h3>
+                    <ul class="list">
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận đơn tuyển sinh trên toàn quốc hàng giờ.</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Làm việc ở bất kỳ đâu với Laptop hoặc điện thoại.</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận tiền thưởng ngay lập tức khi giới thiệu thành công</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hoàn toàn bảo mật thông tin cá nhân</li>
+                    </ul>
+                    <div class="col-md-12" style="padding: 0">
+                      <div class="hotline">
+                        <a href="tel:02462900388">
+                              Hotline hỗ trợ (024) 629 00 388
+                        </a>
+                      </div>
+                    </div>
+                </div>
             </div>
         </div>
       </section>
       <section class="section-2">
         <div class="container">
           <div class="row mb-responsive">
-              <div class="col-md-7 content-left">
-                <h1>NetBee tặng ngay 1.000.000đ Phí Đăng ký tài khoản HR ngay trong tháng 7.</h1>
-                <p>Đăng ký ngay! tiếp cận 2000 jobs từ 800 công ty Công nghệ thông tin toàn quốc.</p>
+              <div class="col-md-8 content-left">
+                <h1>Tặng 1.000.000đ phí tạo tài khoản.</h1>
+                <p>Miễn phí phí tạo tài khoản và phí duy trì tài khoản đến 31/08/2020.</p>
                 <p><i class="fa fa-check-circle"></i> Không áp lực KPI</p>
                 <p><i class="fa fa-check-circle"></i> Làm việc tại nhà chống Corona</p>
-                <p><i class="fa fa-check-circle"></i> Cơ hội nhận Bonus tới 40 triệu đồng/ứng viên giới thiệu thành công.</p>
+                <p><i class="fa fa-check-circle"></i> Cơ hội nhận hoa hồng lên tới 40 triệu đồng.</p>
               </div>
-              <div class="col-md-5 content-right">
+              <div class="col-md-4 content-right">
                 <img class="img" v-lazy = "`/assets/img/dk-CTV.png`" alt="Tuyển dụng NetBee">
               </div>
           </div>
@@ -145,9 +152,9 @@
       </section>
       <section class="section-3">
         <div class="container">
-          <h2>VÌ SAO NÊN ĐĂNG KÝ HR FREELANCER TRÊN NETBEE.VN?</h2>
+          <h2>VÌ SAO NÊN ĐĂNG KÝ CỘNG TÁC VIÊN TUYỂN SINH TRÊN NETBEE.VN?</h2>
           <div class="row mb-responsive">
-              <div class="col-md-6 content-left">
+              <div class="col-md-7 content-left">
                 <div class="title">
                   <div  class="img-item">
                     <span>
@@ -155,7 +162,7 @@
                     </span>
                   </div>
                   <div class="text-item">
-                    <p class="content-1">Tiếp cận nặc danh </p>
+                    <p class="content-1">Bảo mật thông tin cá nhân</p>
                   </div>
                 </div>
                 <div class="description">
@@ -168,8 +175,8 @@
                     </li>
                     <li>
                       <div>
-                        <h5 class="content-text">Người giới thiệu ẩn danh</h5>
-                        <p class="content-2">Hashtag có thể được dùng để tìm kiếm dễ dàng hơn với từng chủ đề nhất định</p>
+                        <h5 class="content-text">Cập nhật liên tục</h5>
+                        <p class="content-2">Các đơn hàng của các công ty được cập nhật đăng ký liên tục.</p>
                       </div>
                     </li>
                     <li>
@@ -181,13 +188,13 @@
                     <li>
                         <div>
                           <h5 class="content-text">Người bạn đồng hành tin cậy</h5>
-                          <p class="content-2">Luôn luôn bên cạnh và thấu hiểu HR</p>
+                          <p class="content-2">Kết nối an toàn và minh bạch.</p>
                         </div>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div class="col-md-6 content-right">
+              <div class="col-md-5 content-right">
                 <img class="img" v-lazy = "`/assets/img/dk-CTV-02.png`" alt="Tuyển dụng NetBee">
               </div>
           </div>
@@ -215,19 +222,19 @@
                     <li>
                       <div>
                         <h5 class="content-text">Khách hàng đa dạng</h5>
-                        <p class="content-2">Với một nguồn khách hàng đa dạng khiến cho HR có thể thường xuyên thấy số lượng việc được cập nhật liên tục và thường xuyên</p>
+                        <p class="content-2">Netbee.vn là đối tác tin cậy của hơn 100 công ty Du học,XKLD trên toàn quốc có giấy phép uy tion của bộ thương binh và xã hội.</p>
                       </div>
                     </li>
                     <li>
                       <div>
-                        <h5 class="content-text">Tối ưu CV</h5>
-                        <p class="content-2">Tối ưu các CV mà HR đã khai thác được cho nhiều vị trí ở nhiều công ty</p>
+                        <h5 class="content-text">Nhiều lựa chọn</h5>
+                        <p class="content-2">Sẽ là các lựa chọn tối ưu phù hợp nhất với từng cá nhân ứng viên, khi phù hợp với chi phí và văn hóa cũng như mong muốn của người đi.</p>
                       </div>
                     </li>
                     <li>
                         <div>
-                          <h5 class="content-text">Cân bằng bonus</h5>
-                          <p class="content-2">Luôn có sự so sánh mức bonus cũng như môi trường làm việc của Ứng viên</p>
+                          <h5 class="content-text">Tối ưu chi phí</h5>
+                          <p class="content-2">Netbee.vn đưa công nghệ là giải pháp để kết nối nhanh nhất là cầu nối cho trường học,doanh nghiệp và CTV.</p>
                         </div>
                       </li>
                   </ul>
@@ -273,7 +280,7 @@
                     <li>
                       <div>
                         <h5 class="content-text">Tiện lợi</h5>
-                        <p class="content-2">Hoàn toàn không có KPI và luôn tiện lợi</p>
+                        <p class="content-2">Không áp lực doanh số và luôn tiện lợi</p>
                       </div>
                     </li>
                   </ul>
@@ -288,10 +295,10 @@
       <section class="section-6">
         <div class="container">
           <div class="row mb-responsive">
-              <div class="col-md-6 content-right">
+              <div class="col-md-5 content-right">
                 <img class="img" v-lazy = "`/assets/img/dk-CTV-05.png`" alt="Tuyển dụng NetBee">
               </div>
-              <div class="col-md-6 content-left">
+              <div class="col-md-7 content-left">
                 <div class="title">
                   <div class="img-item">
                     <span>
@@ -299,15 +306,15 @@
                     </span>
                   </div>
                   <div class="text-item">
-                    <p class="content-1">Minh bạch trong thanh toán và thu nhập của tất cả HR</p>
+                    <p class="content-1">Minh bạch trong thanh toán và thu nhập</p>
                   </div>
                 </div>
                 <div class="description">
                   <ul class="ul">
                     <li>
                       <div>
-                        <h5 class="content-text">Rõ ràng</h5>
-                        <p class="content-2">Khi ứng viên pv thành công và đi làm sau 5 ngày , bạn có thể yêu cầu khách hàng xác nhận đơn hàng , và bạn sẽ được thanh toán ngay lập tức.</p>
+                        <h5 class="content-text">Nhanh chóng</h5>
+                        <p class="content-2">Khi ứng viên pv thành công có COE , bạn có thể yêu cầu khách hàng xác nhận đơn hàng , và bạn sẽ được thanh toán ngay lập tức.</p>
                       </div>
                     </li>
                     <li>
@@ -324,7 +331,7 @@
       </section>
       <section class="section-7">
         <div class="container" v-lazy:background-image="`/assets/img/hachinet-03-02.png`">
-          <h2>CÁC BƯỚC ĐĂNG KÝ HR FREELANCER TRÊN NETBEE.VN?</h2>
+          <h2>CÁC BƯỚC ĐĂNG KÝ CỘNG TÁC VIÊN TRÊN NETBEE.VN?</h2>
           <div class="row mb-responsive">
               <div class="col-md-6 content-left">
                 <ul>
@@ -333,8 +340,8 @@
                       <span class="glyphicon glyphicon-pencil"></span>
                     </div>
                     <div class="inline-block">
-                      <h3>Đăng ký HR</h3>
-                      <p>Truy cập trang đăng ký HR</p>
+                      <h3>Đăng ký CTV Tuyển sinh</h3>
+                      <p>Truy cập trang đăng ký CTV</p>
                     </div>
                   </li>
                   <li>
@@ -343,7 +350,7 @@
                     </div>
                     <div class="inline-block">
                       <h3>Điền thông tin</h3>
-                      <p>Điền thông tin đầy đủ</p>
+                      <p>Điền thông tin cá nhân</p>
                     </div>
                   </li>
                   <li>
@@ -351,7 +358,7 @@
                       <span class="glyphicon glyphicon-pencil"></span>
                     </div>
                     <div class="inline-block">
-                      <h3>Check mail</h3>
+                      <h3>Xác nhận qua email</h3>
                       <p>Truy cập mail xác nhận tài khoản</p>
                     </div>
                   </li>
@@ -588,7 +595,7 @@ h2{
   color: #5c5c3d;
 }
 .content-text{
-  color: #FFB701;
+  color: #000;
   font-size: 18px;
 }
 .ul{
@@ -610,22 +617,31 @@ h2{
 .content-left .title .text-item{
   width: calc(100% - 80px);
 }
+.hotline{
+  border: 1px solid #1e1e1e;
+  border-radius: 3px;
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  background: hsla(0,0%,100%,.72157);
+  margin-top: 15px;
+}
 .section-1 .content-left{
-  padding: 100px 15px;
+  padding: 0px 15px;
 }
 .section-1 .content-left p:first-child{
   padding: 0 0 1em 0;
   font-size: 24px;
 }
 .section-1 .content-right{
-  padding:0px 15px;
+  padding: 50px 15px;
 }
 .section-2 .content-left p{
   padding: 5px 0;
   font-size: 18px;
   line-height: 1.4
 }
-.content-right .img{
+.section-4 .content-right .img{
   padding-top: 25px;
 }
 .section-6 .title .text-item .content-1{
@@ -690,7 +706,7 @@ h2{
     font-size: 2rem;
     font-weight: 700
   }
-  .content-right .img{
+  .section-4 .content-right .img{
     padding-top: 15px;
   }
   .section-7 .content-right .img{
@@ -741,7 +757,7 @@ h2{
   .section-1 .content-left ul{
     line-height: 25px;
   }
-  .section-1 .content-right .style-backrou{
+  .section-1 .style-backrou{
     margin: 0;
   }
   .section-1 .content-left p:first-child{
@@ -750,6 +766,9 @@ h2{
   }
   .section-1 .content-left h1{
     font-size: 1.75rem;
+  }
+  .section-1 .content-right{
+    padding: 20px 15px;
   }
   .section-2 .content-left p{
     padding: 0;
