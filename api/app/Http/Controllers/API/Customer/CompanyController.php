@@ -21,6 +21,12 @@ class CompanyController extends Controller
         return response()->json($response);
     }
 
+    public function getListCompanyUser(Request $request){
+        $response = $this->nbCompanyInfoService->getListCompanyUser($request->type, $request->limit, $request->perPage);
+
+        return response()->json($response);
+    }
+
     public function getDetailCompanyByID(Request $request)
     {
         $response = $this->nbCompanyInfoService->getDetailCompanyById($request->id);

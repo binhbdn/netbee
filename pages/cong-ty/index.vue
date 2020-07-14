@@ -95,21 +95,32 @@
       </div>
     </section>
     <section class="list-company" style="background-color:#fff; padding: 15px">
-      <div class="list-company-item" v-for="(companyInfo,index) in listAllCompany" :key="`companyInfo-${index}`">
-        <div class="row">
-          <div class="col-12">
-            <a :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`"><h4>#{{companyInfo.id}} {{companyInfo.user.name}}.</h4>
+      <div class="list-company-item" v-for="(companyInfo,index) in listAllCompany" :key="index">
+        <div class="row" >
+          <div class="col-12" v-if="companyInfo.nb_company != null">
+            <a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`"><h4>#{{companyInfo.id}} {{companyInfo.name}}.</h4>
             </a>
-            </div>  
+        
+          </div> 
+          <div class="col-12" v-else>
+            <a><h4>#{{companyInfo.id}} {{companyInfo.name}}.</h4>
+            </a>
+          </div>  
         </div>
         <div class="row">
           <div class="col-3">
             <div class="content-box">
-            <div class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
-              <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`" rel="nofollow" target="_blank">
-                <img v-if="companyInfo.user.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`">
-                <img v-else class=" ls-is-cached lazyloaded" v-lazy="`https://netbee.vn/_nuxt/img/377bc00.png`">
-              </a>
+              <div v-if="companyInfo.nb_company != null" class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
+                <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" rel="nofollow" target="_blank">
+                  <img v-if="companyInfo.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="`/uploads/users/avatars/${companyInfo.avatar}`">
+                  <img v-else class=" ls-is-cached lazyloaded" v-lazy="`https://netbee.vn/_nuxt/img/377bc00.png`">
+                </a>
+              </div>
+              <div v-else class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
+                <a data-controller="utm-tracking" rel="nofollow" target="_blank">
+                  <img v-if="companyInfo.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="`/uploads/users/avatars/${companyInfo.avatar}`">
+                  <img v-else class=" ls-is-cached lazyloaded" v-lazy="`https://netbee.vn/_nuxt/img/377bc00.png`">
+                </a>
               </div>
             </div>
           </div>
@@ -134,15 +145,20 @@
             </div> 
             <div class="row">
             <div class="review_headline">
-              <p>
-                <i style="margin-right: 5px" class="fas fa-quote-left"></i>{{companyInfo.company_about}}
+              <p v-if="companyInfo.nb_company != null">
+                <i style="margin-right: 5px" class="fas fa-quote-left"></i>{{companyInfo.nb_company.company_about}}
+              </p>
+              <p v-else>
+                <i style="margin-right: 5px" class="fas fa-quote-left"></i> Đang cập nhật
               </p>
             </div>
             </div> 
-            <div class="row text-right">
+            <div class="row text-right" v-if="companyInfo.nb_company != null">
               <p style="width:100%; padding-right: 30px; font-size: 18px">
-                <span class="action-link"><a :href="`/cong-ty/${companyInfo.username ? companyInfo.username : '#'}`" class="btn btn-bg-edit">Xem chi tiết</a></span></p>
-          </div>
+                <span class="action-link"><a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" class="btn btn-bg-edit">Xem chi tiết</a></span>
+              </p>
+            </div>
+            
           </div>  
       </div> 
       </div>
@@ -186,7 +202,7 @@ export default {
   },
   methods: {
     fetch: async function(){
-      let getAllCompany = await this.$axios.get('getListCompany?perPage=3');
+      let getAllCompany = await this.$axios.get('getListCompanyUser?perPage=3');
       this.listAllCompany = getAllCompany.data.data.data;
       let getVerifyCompany = await this.$axios.get('getListCompany?type=2&limit=5&perPage=0');
       this.listVerifyCompany = getVerifyCompany.data.data;
@@ -197,7 +213,7 @@ export default {
             setTimeout(() => {
                 this.page++
                 this.$axios
-                .get('getListCompany?perPage=3'+ '&page='+this.page)
+                .get('getListCompanyUser?perPage=3'+ '&page='+this.page)
                  .then((response) => {
                     if (response.data.data.data.length >= 1) {
                         response.data.data.data.forEach((item) => this.listAllCompany.push(item))
