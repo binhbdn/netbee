@@ -6,7 +6,7 @@
             <div class="content-body">
                 <section id="News"> 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body card-dashboard" style="padding: 0px !important">
                                     <div class="main-body">
