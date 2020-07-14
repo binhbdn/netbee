@@ -79,7 +79,7 @@
                     <div class="row p-t-10">
                         <div class="col-12">
                             <div class="col-12 p-l-0 p-t-5">
-                                <h5 class="font-weight-600 line-title line1"> THÔNG TIN TUYỂN DỤNG NHANH</h5>
+                                <h5 class="font-weight-600 line-title line1"> THÔNG TIN</h5>
                                 <!-- <hr class="hr-color" style="max-width: 284px;"> -->
                             </div>
                             <div class="row">
@@ -138,6 +138,10 @@
                                     <div class="px-1">
                                         <p v-if="tintuyendung.request != null" style="white-space: pre-line;"><span class="font-weight-600">Yêu cầu thêm:</span><br>{{tintuyendung.request}}</p>
                                         <p v-else><span class="font-weight-600">Yêu cầu thêm:</span> Đang cập nhật</p>
+                                    </div>
+                                    <div class="px-1">
+                                        <p v-if="tintuyendung.route != null" style="white-space: pre-line;"><span class="font-weight-600">Lộ trình:</span><br>{{tintuyendung.route}}</p>
+                                        <p v-else><span class="font-weight-600">Lộ trình:</span> Đang cập nhật</p>
                                     </div>
 
                                 </div>
@@ -813,7 +817,7 @@ export default {
     border-radius: 12px;
 }
 .line1::before{
-    width: 265px;
+    width: 75px;
 }
 .line2::before{
     width: 75px;
