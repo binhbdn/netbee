@@ -173,7 +173,7 @@
                           <p class="title-p-main">Dành cho du học sinh và các trung tâm du học...</p>
                         </div>
                         <div class="advanced-search">
-                          <label class="text-advance-search" data-toggle="collapse" data-target="#advanced">
+                          <label class="text-advance-search" data-toggle="collapse" data-target="#advanced" style="text-align: right">
                             <i class="fa fa-angle-down" id="icon_advanced"></i> Tìm kiếm nâng cao
                           </label>
                           <div id="advanced" class="collapse"></div>
@@ -539,7 +539,7 @@ export default {
     padding-right: 13px;
   }
 }
-@media(max-width: 768px) {
+@media(max-width: 767px) {
   .aa {
     padding-left: 13px;
     padding-right: 13px;
@@ -552,7 +552,7 @@ export default {
     padding-right: 13px;
   }
   .nav-item{
-    width: 50%;
+    /* width: 50%; */
     padding: 1px;
   }
   .nav-item a{
@@ -567,6 +567,11 @@ export default {
   .pb-5{
     padding-bottom: 0px !important;
   }
-
+  .nav-fill{
+    width: 100%;
+  }
+  .title-p-main{
+    font-size: 14px
+  }
 }
 </style>
