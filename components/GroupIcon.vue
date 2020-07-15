@@ -5,7 +5,7 @@
         <i class="fa fa-angle-up"></i>
       </a>
     </div>
-    <div class="icon-f" style="position: absolute;top: 35%;margin-left: 6px;">
+    <div class="icon-f" style="position: absolute;top: 35%;margin-left: 4px;">
       <a class="btn btn-warningg" href="https://www.facebook.com/NetBeevn-107178937322342/" target="_blank" style="border-radius: 20%; font-size: 22px; padding: 0; margin: inherit;">
         <i class="fab fa-facebook-f" style="color: #fff;"></i>
       </a>
