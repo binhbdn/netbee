@@ -148,6 +148,16 @@
                         <div class="card-content collapse show">
                             <div class="card-body">
                                 <JobsList1Col :DataList="arrayForCompany"></JobsList1Col>
+                                <infinite-loading
+                                    v-if="arrayForCompany.length"
+                                    spinner="bubbles"    
+                                    ref="infiniteLoading" 
+                                    @infinite="infiniteScroll" style=" width:100%"
+                                >        
+                                    <div slot="no-more" style="font-size:15px; font-style: italic;display: none;"></div>    
+                                    <div slot="no-results" style="font-size:15px; font-style: italic"></div>
+                                </infinite-loading>
+
                             </div>
                         </div>
                     </div>
