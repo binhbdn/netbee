@@ -7,7 +7,7 @@
             <div class="col-md-12" style="border-left: 1px solid hsla(0, 0%, 80%, .8); margin-top: 14px;">
                 <div class="row">
                     <div class="col-md-3 mt-1 py-1 make-it-slow" style="border: 1px solid hsla(0, 0%, 80%, .8); border-left: 0; margin: 0 !important"  v-for="(item, index) in DataList.slice(1)" :key="index">
-                        <div style="height: 190px;">
+                        <div class="item-new">
                             <NewsItem1 :id="item.id" :title="item.title" :short_content="item.short_content" :created_at="item.updated_at" :thuml="item.thuml"></NewsItem1>
                         </div>                
                     </div>
@@ -30,5 +30,7 @@ export default {
 }
 </script>
 <style>
-
+.item-new{
+    height: 190px;
+}
 </style>

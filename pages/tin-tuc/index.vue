@@ -13,7 +13,7 @@
         <section class="bg-white" style="background-color: #f6f6f6!important;">
             <div class="container">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-lg-8 content-left">
                         <div class="card" v-if="tintucNew.length > 0">
                             <div class="card-header">
                                 <h4><i class="fad fa-newspaper"></i> Tin mới</h4>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 p-0">
+                    <div class="col-lg-4 content-right">
                         <div class="card">
                             <div class="card-header">
                                 <h4>Danh mục</h4>
@@ -157,5 +157,12 @@ export default {
 }
 </script>
 <style>
-
+.content-right{
+    padding: 0;
+}
+@media (max-width: 767px){
+    .content-right{
+        padding: 1rem !important;
+    }
+}
 </style>

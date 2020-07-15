@@ -9,7 +9,7 @@
                     {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
                 </a>
             </div>
-            <div class="remove-border-right" style="width: 220px">
+            <div class="remove-border-right">
                 <div class="remove-border-right title-job-hv" style="padding: 5px 0 0 0;">
                     
                     <a class="item-vip-a el-1" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
@@ -23,7 +23,7 @@
                 <div class="item-quantity d-flex justify-content-between">
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between" style="overflow: hidden">
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fa fa-dollar-sign" style="color: #000"></i><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     <!-- <p class="delivery-date m-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển"><i class="fad fa-user-friends"></i> {{job.quantity}}</p> -->
                 </div>
@@ -99,5 +99,13 @@ export default {
     object-fit: scale-down;
     height: 60px; 
     width: 60px;
+}
+@media (max-width: 575px){
+    .card-avatar{
+        padding: 0.5rem !important;
+    }
+    .remove-border-right{
+        padding-left: 0;
+    }
 }
 </style>
