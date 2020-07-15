@@ -9,13 +9,13 @@
 			          	<div class="col-md-12">
 			          		<div class="header-ncd">
 				          		<img src="/assets/img/logo-netbee-ncd.png" alt="logo netbee" height="50" width="130">
-								<h1 class="in-hoa" style="margin-top: 5px;"><i class="fa fa-shield-alt"></i> Cơ chế giải quyết tranh chấp</h1>
+								<h1 class="in-hoa" style="margin-top: 5px;"><i class="fab fa-get-pocket"></i> Cơ chế giải quyết tranh chấp</h1>
 								<div class="col-md-12"><p class="line1a"></p></div>
 							</div>
 						</div>
 					</div>
 					<br>
-		            <p>
+		            <p style="text-indent: 30px;">
 		                Khi phát sinh tranh chấp, Netbee.vn đề cao giải pháp thương lượng, hòa giải giữa các bên nhằm duy trì sự tin cậy của thành viên vào chất lượng dịch vụ của Công ty và thực hiện theo các bước sau:</p>
 	                <p>
 	                	Bước 1: Thành viên phản ánh về dịch vụ Website cung cấp, các thông tin đăng tải về việc làm không chính xác qua email.</p>

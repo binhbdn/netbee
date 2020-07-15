@@ -41,7 +41,7 @@
                                             <div class="b1">
                                                 <center>
                                                     <img v-lazy="`/assets/img/friend2.png`">
-                                                    <h3><b>Bước 2: Người được giới thiệu<br> đã đăng ký</b></h3>
+                                                    <h3>Bước 2: Người được giới thiệu đã đăng ký</h3>
                                                     <p>và tiến hành làm việc</p>
                                                 </center>                                                
                                             </div>
