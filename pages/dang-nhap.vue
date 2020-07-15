@@ -1,7 +1,7 @@
 <template>
     <div class="main" v-lazy:background-image="`/assets/img/login-netbee-6.jpg`" style="background-size: cover;">
         <div class="container">
-            <div class="row">
+            <div class="row" style="margin: 0">
                 <div class="col-md-8 content-left">
                     <div class="row text-center circle-box">
                         <div class="col-xs-6 col-sm-3 pd-20-lg">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="padding-left: 14px">
+                    <div class="row">
                         <div class="col-sm-5">
                             <div class="qr-code">
                                 <img src="https://devwork.vn//public/images/devwork-mobile-qr.png" alt="Devwork" class="w-img-qr">
@@ -454,7 +454,6 @@ input:focus {
     }
     .content-right{
         order: 1;
-        margin: 0 15px;
     }
     .main{
         padding: 100px 0;
