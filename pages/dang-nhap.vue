@@ -275,7 +275,7 @@ form#appointment-form {
 }
 .formlogin {
     border-radius: 3px;
-    background: rgba(255, 255, 255, 0.86);
+    background: rgba(229, 226, 226, 0.86);
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -291,7 +291,7 @@ input, select {
     width: 100%;
     display: block;
     border: none;
-    border-bottom: 2px solid #ebebeb;
+    /* border-bottom: 2px solid #ebebeb; */
     padding: 5px 0;
     color: #222 !important;
     margin-bottom: 31px !important;
