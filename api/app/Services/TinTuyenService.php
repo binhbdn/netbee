@@ -807,7 +807,7 @@ class TinTuyenService extends BaseService {
         $query = $this->getJobValidForCompany($username)
             ->where('isPublic',self::ACTIVE);
         if (!empty($limit)) {
-            $query->limit($limit);
+            $query->paginate($limit);
         }
         return $query->orderBy('id','desc')->get();
     }
