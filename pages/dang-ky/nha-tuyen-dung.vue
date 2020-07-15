@@ -2,7 +2,39 @@
     <section class="hero-wraps js-fullheight" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
     <div class="container">
         <div class="row ">
-            <div class="col-md-5 col-sm-12" style="padding:0px 15px; ">
+            <div class="intro-netbee col-md-7 col-sm-12 content-left">
+                <!-- <div style="font-size: 24px;">
+                    <span style="margin-right: 190px;">Đăng tin tuyển dụng</span>
+                    <span>Tìm kiếm ứng viên</span>
+                </div> -->
+                <div class="circle-area">
+                    <div class="round stat rounded-circle">
+                        <h4 class="pt-4 header-circle-box">+3000</h4>
+                        <p>Ứng viên</p>
+                    </div>
+                    <div class="round stat rounded-circle">
+                        <h4 class="pt-4 header-circle-box">+1000</h4>
+                        <p>Tin</p>
+                    </div>
+                    <div class="round stat rounded-circle">
+                        <h4 class="pt-4 header-circle-box">+4000</h4>
+                        <p style="font-size: 14px !important;">Cộng tác viên</p>
+                    </div>
+                    <div class="round stat rounded-circle">
+                        <h4 class="pt-4 header-circle-box">+500</h4>
+                        <p>đối tác</p>
+                    </div>
+                </div>
+                <div class="text-content-circle">
+                    <ul>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> +3,000 ứng viên tiếp cận thông tin tuyển dụng</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hơn 20 hồ sơ ứng tuyển cho 1 việc làm đăng tuyển tại Netbee</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tăng hiệu quả 4 - 5 lần so với các phương thức tuyển dụng khác</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> +2,000 lượt xem trung bình cho 1 việc làm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-12 content-right" style="padding:0px 15px; ">
                 <div class="style-backrou">
                     <div class="text-center" style="background: #ffb701;padding:10px;margin-bottom:10px;">
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ NHÀ TUYỂN DỤNG</span>
@@ -106,38 +138,6 @@
                         <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap"><b>Tại đây</b></a></span>
                     </form>
                 </div>                
-            </div>
-            <div class="intro-netbee col-md-7 col-sm-12 content-right">
-                <!-- <div style="font-size: 24px;">
-                    <span style="margin-right: 190px;">Đăng tin tuyển dụng</span>
-                    <span>Tìm kiếm ứng viên</span>
-                </div> -->
-                <div class="circle-area">
-                    <div class="round stat rounded-circle">
-                        <h4 class="pt-4 header-circle-box">+3000</h4>
-                        <p>Ứng viên</p>
-                    </div>
-                    <div class="round stat rounded-circle">
-                        <h4 class="pt-4 header-circle-box">+1000</h4>
-                        <p>Tin</p>
-                    </div>
-                    <div class="round stat rounded-circle">
-                        <h4 class="pt-4 header-circle-box">+4000</h4>
-                        <p style="font-size: 14px !important;">Cộng tác viên</p>
-                    </div>
-                    <div class="round stat rounded-circle">
-                        <h4 class="pt-4 header-circle-box">+500</h4>
-                        <p>đối tác</p>
-                    </div>
-                </div>
-                <div class="text-content-circle">
-                    <ul>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> +3,000 ứng viên tiếp cận thông tin tuyển dụng</li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hơn 20 hồ sơ ứng tuyển cho 1 việc làm đăng tuyển tại Netbee</li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tăng hiệu quả 4 - 5 lần so với các phương thức tuyển dụng khác</li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> +2,000 lượt xem trung bình cho 1 việc làm</li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
@@ -406,6 +406,7 @@ export default {
     .round.stat{
         width: 22%;
         height: 120px;
+        margin-right: 0;
     }
 }
 @media screen and (max-width: 767px) {
@@ -435,7 +436,7 @@ export default {
     }
     .round.stat{
         width: 25%;
-        height: 100px;
+        height: 90px;
         margin-right: 0px;
     }
     .intro-netbee {
@@ -450,7 +451,11 @@ export default {
         margin-bottom: 20px;
       }
       .content-right{
-        padding-top: 30px !important;
+        padding-top: 0 !important;
+        order: 1;
+      }
+      .content-left{
+        order:2;
       }
     }
 }
