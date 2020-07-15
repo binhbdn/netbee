@@ -59,9 +59,179 @@
                                             <!-- <div v-if="$auth.loggedIn && $auth.user.role == 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" style="padding-left: 0px;padding-right: 0px;">                                    
                                                 <a  class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                                                                                                                          
                                             </div>     -->
-                                            <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding-left: 0px;padding-right: 0px;"  data-target="#ApplyModal">
-                                                <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
-                                            </div>                                                              
+                                            <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding: 0;"  data-target="#ApplyModal">
+                                                <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px; padding: 5px 0;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                            </div> 
+                                            <button v-if="$auth.loggedIn && $auth.user.role != 2" type="button" class="btn btn-primary btn-sm col-md-12" style="border-radius: 3px;" data-toggle="modal" data-target=".bd-example-modal-xl">Tải đơn hàng</button> 
+                                            <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                                              <div class="modal-dialog modal-xl" role="document">
+                                                <div class="modal-content" style="padding: 15px;">
+                                                    <div class="modal-header" style="background-color: #e8e8e8;">
+                                                        <div class="col-md-12" style="text-align: center;">
+                                                            Bạn có chắc chắn muốn tải đơn hàng này ?
+                                                            <button class="btn btn-primary" @click="downloadWithCSS()">Tải đơn hàng</button>
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                              <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="row" id="ok1">
+                                                            <div class="col-md-4" style="text-align: center; background-color: #FFB701;">
+                                                                <img v-lazy="`/uploads/users/avatars/${tintuyendung.user.avatar}`" :alt="`${tintuyendung.user.avatar}`" width="60%">
+                                                                <div class="company-job-title">
+                                                                    <h1>{{ tintuyendung.title }}</h1>
+                                                                    <br>
+                                                                    <h4 class=" text-uppercase" style="font-size: 17px"><span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} </span></h4>
+                                                                    <br>
+                                                                    <div style="text-align: left;">
+                                                                        <p><span class="font-weight-600">Loại tin: </span><span>{{ tintuyendung.type == 3 ? 'Tu nghiệp sinh' : tintuyendung.type == 2 ? 'Du học' : 'Xuất khẩu lao động' }}</span></p>
+                                                                        <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuyendung.nation.name }}</p>
+                                                                        <p><span class="font-weight-600">Chi phí xuất cảnh:</span> {{ FormatPrice(tintuyendung.subsidy) }}{{ tintuyendung.currency }}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="row p-t-10">
+                                                                    <div class="col-12">
+                                                                        <div class="col-12 p-l-0 p-t-5">
+                                                                            <h5 class="font-weight-600 line-title line1"> THÔNG TIN</h5>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-xl-12">
+                                                                                <div class="px-1">
+                                                                                    <p><span class="font-weight-600">Địa điểm:</span> {{ tintuyendung.workplace }}</p>
+                                                                                    <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Trường:</span> {{ tintuyendung.school_name }}</p>
+                                                                                    <p><span class="font-weight-600">Tuổi:</span> {{ tintuyendung.age_start }} {{ tintuyendung.age_late? ' - '+tintuyendung.age_late+' tuổi' : ' tuổi trở lên' }}</p>
+                                                                                    <p v-if="tintuyendung.visa_profession != null"><span class="font-weight-600">Visa:</span> {{ tintuyendung.visa_profession.profession }} </p>
+                                                                                    <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Hình thức làm việc:</span> {{ tintuyendung.form_work == 1 ? 'Toàn thời gian' : tintuyendung.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
+                                                                                    <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Thu nhập hàng tháng:</span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
+                                                                                    <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuyendung.salary_start) }} {{ tintuyendung.currency }} <span v-if="tintuyendung.salary_status == 1">/ 1 Năm</span><span v-else-if="tintuyendung.salary_status == 2">/ 6 Tháng</span><span v-else-if="tintuyendung.salary_status == 3">/ 1 Tháng</span><span v-else-if="tintuyendung.salary_status == 4">/ 1 Kỳ</span><span v-else>/ Đang cập nhật</span></p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="col-12 p-l-0">
+                                                                            <h5 class="font-weight-600 line-title line3"> YÊU CẦU</h5>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <div class="px-1">
+                                                                                    <p v-if="tintuyendung.academicLevel == 1"><span class="font-weight-600">Trình độ học vấn:</span> Trung học phổ thông</p>
+                                                                                    <p v-else-if ="tintuyendung.academicLevel == 2"><span class="font-weight-600">Trình độ học vấn:</span> Cao đẳng</p>
+                                                                                    <p v-else-if ="tintuyendung.academicLevel == 3"><span class="font-weight-600">Trình độ học vấn:</span> Đại học</p>
+                                                                                    <p v-else-if ="tintuyendung.academicLevel == 4"><span class="font-weight-600">Trình độ học vấn:</span> Trên đại học</p>
+                                                                                    <p v-else ><span class="font-weight-600">Trình độ học vấn:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1" v-if="tintuyendung.type != 2">
+                                                                                    <p v-if="tintuyendung.height"><span class="font-weight-600">Chiều cao:</span> {{tintuyendung.height}} cm</p>
+                                                                                    <p v-else ><span class="font-weight-600">Chiều cao:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1" v-if="tintuyendung.type != 2">
+                                                                                    <p v-if="tintuyendung.weight"><span class="font-weight-600">Cân nặng:</span> {{tintuyendung.weight}} kg</p>
+                                                                                    <p v-else ><span class="font-weight-600">Cân nặng:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1" v-if="tintuyendung.type != 2">
+                                                                                    <p v-if="tintuyendung.work_form == 1"><span class="font-weight-600">Hình thức làm việc:</span> Toàn thời gian</p>
+                                                                                    <p v-else-if ="tintuyendung.work_form == 2"><span class="font-weight-600">Hình thức làm việc:</span> Bán thời gian</p>
+                                                                                    <p v-else-if ="tintuyendung.work_form == 3"><span class="font-weight-600">Hình thức làm việc:</span> Vừa học vừa làm</p>
+                                                                                    <p v-else ><span class="font-weight-600">Hình thức làm việc:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                               
+                                                                                <div class="px-1"  v-if="tintuyendung.type != 2">
+                                                                                    <p v-if="tintuyendung.job_description != null" style="white-space: pre-line;"><span class="font-weight-600">Mô tả công việc:</span><br>{{tintuyendung.job_description}}</p>
+                                                                                    <p v-else><span class="font-weight-600">Mô tả công việc:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1">
+                                                                                    <p v-if="tintuyendung.request != null" style="white-space: pre-line;"><span class="font-weight-600">Yêu cầu thêm:</span><br>{{tintuyendung.request}}</p>
+                                                                                    <p v-else><span class="font-weight-600">Yêu cầu thêm:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1">
+                                                                                    <p v-if="tintuyendung.route != null" style="white-space: pre-line;"><span class="font-weight-600">Lộ trình:</span><br>{{tintuyendung.route}}</p>
+                                                                                    <p v-else><span class="font-weight-600">Lộ trình:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="col-12 p-l-0">
+                                                                            <h5 class="font-weight-600 line-title line3"> LỘ TRÌNH</h5>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <div class="px-1">
+                                                                                    <p><span class="font-weight-600">Ngày thi tuyển:</span> {{ConvertDate(tintuyendung.date_test)}}</p>
+                                                                                </div>
+                                                                                <div class="px-1">
+                                                                                    <p><span class="font-weight-600">Hạn nộp hồ sơ: </span>{{ ConvertDate(tintuyendung.expiration_date) }}</p>
+                                                                                </div>
+                                                                                <div class="px-1">
+                                                                                    <p><span class="font-weight-600">Ngày bắt đầu nhận hồ sơ:</span> {{ ConvertDate(tintuyendung.date_start) }}</p>
+                                                                                </div>
+                                                                                <div class="px-1">
+                                                                                    <p><span class="font-weight-600">Ngày dự kiến nhập cảnh:</span> {{ ConvertDate(tintuyendung.expected_date) }}</p>
+                                                                                </div>
+                                      
+                                                                            
+                                                                                <div class="px-1" v-if="tintuyendung.type == 2">
+                                                                                    <p v-if="tintuyendung.route != null" style="white-space: pre-line;"><span class="font-weight-600">Lộ trình:</span><br>{{tintuyendung.route}}</p>
+                                                                                    <p v-else><span class="font-weight-600">Lộ trình:</span> Đang cập nhật</p>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="col-12 p-l-0">
+                                                                            <h5 class="font-weight-600 line-title line4"> QUYỀN LỢI</h5>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12">
+                                                                                <div class="px-1" v-if="tintuyendung.type != 2">
+                                                                                    <p v-if="tintuyendung.startTimeLabor != null && tintuyendung.endTimeLabor != null"><span class="font-weight-600">Thời gian lao động:</span> {{ tintuyendung.startTimeLabor }} ~ {{ tintuyendung.endTimeLabor }}</p>
+                                                                                    <p v-else style="white-space: pre-line;"><span class="font-weight-600">Thời gian lao động:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1" v-if="tintuyendung.type != 2">
+                                                                                    <p  v-if="tintuyendung.insurrance == 1"><span class="font-weight-600">Bảo hiểm lao động:</span> Được hỗ trợ</p>
+                                                                                    <p  v-else-if ="tintuyendung.insurrance == 0"><span class="font-weight-600">Bảo hiểm lao động:</span> Không được hỗ trợ</p>
+                                                                                    <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Bảo hiểm lao động:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1" v-if="tintuyendung.type != 2">
+                                                                                    <p  v-if="tintuyendung.skin == 1"><span class="font-weight-600">Trang phục lao động:</span> Được hỗ trợ</p>
+                                                                                    <p  v-else-if ="tintuyendung.skin == 0"><span class="font-weight-600">Trang phục lao động:</span> Không được hỗ trợ</p>
+                                                                                    <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Trang phục lao động:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1">
+                                                                                    <p  v-if="tintuyendung.dormitory == 1"><span class="font-weight-600">Ký túc xá:</span> Công ty chuẩn bị</p>
+                                                                                    <p  v-else-if="tintuyendung.dormitory == 2"><span class="font-weight-600">Ký túc xá:</span> Ứng viên tự chuẩn bị</p>
+                                                                                    <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Ký túc xá:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1" v-if="tintuyendung.type != 2">
+                                                                                    <p  v-if="tintuyendung.meal == 1"><span class="font-weight-600">Bữa ăn:</span> Công ty chuẩn bị</p>
+                                                                                    <p  v-else-if="tintuyendung.meal == 2"><span class="font-weight-600">Bữa ăn:</span> Ứng viên tự chuẩn bị</p>
+                                                                                    <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Bữa ăn:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1">
+                                                                                    <p  v-if="tintuyendung.allowance != null" style="white-space: pre-line;"><span class="font-weight-600">Phụ cấp ngoài:</span> {{tintuyendung.allowance}}</p>
+                                                                                    <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Phụ cấp ngoài:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                                <div class="px-1">
+                                                                                    <p  v-if="tintuyendung.benefits != null" style="white-space: pre-line;"><span class="font-weight-600">Quyền lợi khác:</span><br>{{tintuyendung.benefits}}</p>
+                                                                                    <p  v-else style="white-space: pre-line;"><span class="font-weight-600">Quyền lợi khác:</span> Đang cập nhật</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
+                                                            </div>
+                                                        </div>
+                                                        <div id="pdf"></div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>                                              
                                         </div>
                                     </div>
                                 </div>
@@ -542,6 +712,13 @@ import {
   extend
 } from "vee-validate/dist/vee-validate.full";
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+let html2canvas = null
+let JsPDF = null
+if (process.browser) {
+    html2canvas = require('html2canvas')   
+    JsPDF = require('jspdf')
+}
+
 
 extend("required", {
   message: (field, values) => "Dữ liệu nhập vào không được để trống.",
@@ -797,8 +974,35 @@ export default {
             this.$axios.$get(`hoso/listProfileUser`).then((response)=>{
                 this.listProfileUsers = response
             });
-        }
-    },
+        },
+        downloadWithCSS(){  
+            this.$swal({
+                title: 'Bạn có chắc chắn?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Xuất Pdf!',
+                cancelButtonText: 'Hủy!',
+                showCloseButton: true,
+                showLoaderOnConfirm: true
+                }).then(async (result) => {
+                    if(result.value) {
+                       html2canvas(document.querySelector('#ok1'), {scrollX : 0,scrollY : -scrollY,logging: true, letterRendering: true, allowTaint: false, useCORS: true, scale: 1920*2/window.innerWidth}).then(canvas => {
+                                document.getElementById('pdf').appendChild(canvas) 
+                                const imgData = canvas.toDataURL('image/png')
+                                let img = canvas.toDataURL('image/jpeg')   
+                                let pdf = new JsPDF('p','in',[480, 490])
+                                const imgProps= pdf.getImageProperties(imgData)
+                                var width = pdf.internal.pageSize.getWidth()
+                                var height = pdf.internal.pageSize.getHeight()                                        
+                                pdf.addImage(img, 'JPEG', 0, 0,width, height) 
+                                pdf.save('Xuatpdf.pdf')
+                                document.getElementById('pdf').innerHTML = ''
+                        })      
+                    }
+                })                                                                               
+            }, 
+
+        },
     mounted() {
         this.$axios.$get(`getTinTuyenDungNew?limit=5&type=`+this.tintuyendung.type).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
