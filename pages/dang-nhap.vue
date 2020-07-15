@@ -275,7 +275,7 @@ form#appointment-form {
 }
 .formlogin {
     border-radius: 3px;
-    background: rgba(229, 226, 226, 0.86);
+    background: hsla(0,0%,100%,.52157);
     padding-top: 20px;
     padding-bottom: 20px;
 }
