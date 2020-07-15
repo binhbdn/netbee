@@ -38,7 +38,11 @@ Vue.mixin({
             return moment(String(date)).format('DD/MM/YYYY')
         },
         FormatPrice(price) {
-            return price.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            if(price == null){
+                return "Đang cập nhật"
+            } else {
+                return price.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
         }
     }
 })
