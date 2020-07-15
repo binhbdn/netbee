@@ -2,7 +2,7 @@
     <div class="main" v-lazy:background-image="`/assets/img/login-netbee-6.jpg`" style="background-size: cover;">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 content-left">
                     <div class="row text-center circle-box">
                         <div class="col-xs-6 col-sm-3 pd-20-lg">
                             <div class=" round stat pricing-round">
@@ -30,12 +30,12 @@
                         </div>
                     </div>
                     <div class="row" style="padding-left: 14px">
-                        <div class="col-md-5">
+                        <div class="col-sm-5">
                             <div class="qr-code">
                                 <img src="https://devwork.vn//public/images/devwork-mobile-qr.png" alt="Devwork" class="w-img-qr">
                             </div>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-sm-7">
                             <ul class="ul-text-lg">
                                 <li><i class="fad fa-check-circle"></i> Tiếp cận 10K CTV tuyển dụng toàn quốc</li>
                                 <li><i class="fad fa-check-circle"></i> Chỉ thanh toán khi ứng viên đóng tiền</li>
@@ -52,40 +52,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4">
+                <div class="col-md-4 col-lg-4 content-right">
                     <div class="col-md-12 formlogin">
                         <h3 class="text-center" style="margin-bottom: 25px; font-weight: bold;">ĐĂNG NHẬP</h3>
                         <div class="form-group-1 input-login" v-on:keyup.enter="login">
                             <ValidationObserver ref="observer" v-slot="{ valid }">
                                 <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
-                                    <div class="__email">
-                                        <fieldset class="form-label-group position-relative has-icon-left">
-                                            <input type="text" class="form-control mb-0" id="email" placeholder="Email" v-model="userForm.email" style="margin-bottom: 0!important;">
-                                            <div class="form-control-position" style="top: 4px;">
-                                                <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important"></i>
-                                            </div>
-                                            <!-- <label for="email">Email</label> -->
-                                            <p v-for="(error, index) in errors" :key="index" class="login-error">{{ error }}</p>
-                                        </fieldset>
+                                    <div class="form-group">
+                                        <div class="__email">
+                                            <fieldset class="form-label-group position-relative has-icon-left">
+                                                <input type="text" class="form-control mb-0" id="email" placeholder="Email" v-model="userForm.email" style="margin-bottom: 0!important;">
+                                                <div class="form-control-position" style="top: 4px;">
+                                                    <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important"></i>
+                                                </div>
+                                                <!-- <label for="email">Email</label> -->
+                                                <p v-for="(error, index) in errors" :key="index" class="login-error">{{ error }}</p>
+                                            </fieldset>
+                                        </div>
                                     </div>
                                 </ValidationProvider>
                             <div style="position: relative">
                                 <ValidationProvider name="Mật khẩu" ref="password" rules="required|customPassword" v-slot="{ errors }">
-                                <div class="__email">
-                                    <div style="text-align:right">
-                                        <i  class="showpass">
-                                            <i @click="showPassword()" :class="show ?'fad fa-eye':'fas fa-eye-slash'" style="top: -4px;"></i>
-                                        </i>
-                                    </div>
-                                    <fieldset class="form-label-group position-relative has-icon-left">
-                                        <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom: 0 !important;">
-                                        <div class="form-control-position" style="top: 4px;">
-                                            <i class="fad fa-key" style="color: rgba(34, 41, 47, 0.4)!important;"></i>
+                                    <div class="form-group">
+                                        <div class="__email">
+                                            <div style="text-align:right">
+                                                <i  class="showpass">
+                                                    <i @click="showPassword()" :class="show ?'fad fa-eye':'fas fa-eye-slash'" style="top: -4px;"></i>
+                                                </i>
+                                            </div>
+                                            <fieldset class="form-label-group position-relative has-icon-left">
+                                                <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom: 0 !important;">
+                                                <div class="form-control-position" style="top: 4px;">
+                                                    <i class="fad fa-key" style="color: rgba(34, 41, 47, 0.4)!important;"></i>
+                                                </div>
+                                                <!-- <label for="password">Mật khẩu</label> -->
+                                                <p v-for="(error, index) in errors" :key="index" class="login-error">{{ error }}</p>
+                                            </fieldset>
                                         </div>
-                                        <!-- <label for="password">Mật khẩu</label> -->
-                                        <p v-for="(error, index) in errors" :key="index" class="login-error">{{ error }}</p>
-                                    </fieldset>
-                                </div>
+                                    </div>
                                 </ValidationProvider>
                                 <div class="lopgin-c">
                                     <button @click="login()" id="submit" class="btn btn-warning">Đăng nhập</button>
@@ -406,7 +410,7 @@ ul li {
     margin-top: 15px;
 }
 .w-img-qr{
-    width: 300px;
+    width: 100%;
 }
 .ul-text-lg{
     margin-top: 50px;
@@ -427,9 +431,9 @@ input:focus {
     border: none !important;
 }
 @media(max-width: 1199px) {
-    .w-img-qr{
+    /* .w-img-qr{
         width: 240px;
-    }
+    } */
     .ul-text-lg{
         margin-top: 30px;
     }
@@ -442,6 +446,18 @@ input:focus {
 @media(max-width: 768px) {
     .pd-20-lg{
        display: none;
+    }
+}
+@media(max-width: 767px){
+    .content-left{
+        order: 2;
+    }
+    .content-right{
+        order: 1;
+        margin: 0 15px;
+    }
+    .main{
+        padding: 100px 0;
     }
 }
 </style>

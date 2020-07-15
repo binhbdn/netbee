@@ -6,7 +6,7 @@
                 <div class="col-md-5 col-sm-12 content-left">
                   <div class="style-backrou">
                       <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
-                        <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN CHUYÊN VIÊN TUYỂN SINH</span>
+                        <span style="color:#000; font-weight: bold;">ĐĂNG KÝ CHUYÊN VIÊN TUYỂN SINH</span>
                     </div>
                     <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
                         <ValidationObserver ref="observer" v-slot="{ valid }">
