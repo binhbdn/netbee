@@ -40,7 +40,7 @@ Route::namespace('API')->group(function () {
   Route::get('getTinTuyenDungNew', 'TinTuyenDungController@getTinTuyenDungNew');
   Route::get('getTinTuyenDungNewPage', 'TinTuyenDungController@getTinTuyenDungNewPage');
   Route::get('getTinTuyenDungNewCarousel', 'TinTuyenDungController@getTinTuyenDungNewCarousel');
-  Route::get('getTinTuyenDungForCompany/{id}', 'TinTuyenDungController@getTinTuyenDungForCompany');
+  Route::get('getTinTuyenDungForCompany', 'TinTuyenDungController@getTinTuyenDungForCompany');
   Route::get('getTinTuyenDungHot', 'TinTuyenDungController@getTinTuyenDungHot');
   Route::get('getTinTuyenDungHotCarousel', 'TinTuyenDungController@getTinTuyenDungHotCarousel');
   Route::get('getDetailTinTuyenDung/{id}', 'TinTuyenDungController@getDetailTinTuyenDung');
