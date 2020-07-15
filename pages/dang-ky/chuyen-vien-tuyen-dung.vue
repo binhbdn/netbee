@@ -3,10 +3,26 @@
       <section class="hero-wraps js-fullheight section-1" v-lazy:background-image="`/assets/img/dk-NTD.png`" style="background-size: cover;">
         <div class="container">
             <div class="row">
+                <div class="col-md-7 col-sm-12 content-right">
+                    <h3 style="color:black;"><b>Đăng ký chuyên viên tuyển sinh</b></h3>
+                    <ul class="list">
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận đơn tuyển sinh trên toàn quốc hàng giờ.</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Làm việc ở bất kỳ đâu với Laptop hoặc điện thoại.</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận tiền thưởng ngay lập tức khi giới thiệu thành công</li>
+                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hoàn toàn bảo mật thông tin cá nhân</li>
+                    </ul>
+                    <div class="col-md-9" style="padding: 0">
+                      <div class="hotline">
+                        <a href="tel:02462900388">
+                              Hotline hỗ trợ (024) 629 00 388
+                        </a>
+                      </div>
+                    </div>
+                </div>
                 <div class="col-md-5 col-sm-12 content-left">
                   <div class="style-backrou">
                       <div class="text-center" style="background: #ffb701;padding:10px; margin-bottom:10px;">
-                        <span style="color:#000; font-weight: bold;">ĐĂNG KÝ TÀI KHOẢN CHUYÊN VIÊN TUYỂN SINH</span>
+                        <span style="color:#000; font-weight: bold;">ĐĂNG KÝ CHUYÊN VIÊN TUYỂN SINH</span>
                     </div>
                     <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
                         <ValidationObserver ref="observer" v-slot="{ valid }">
@@ -114,22 +130,6 @@
                         <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap"><b>Tại đây</b></a></span>
                     </form>
                   </div>               
-                </div>
-                <div class="col-md-7 col-sm-12 content-right">
-                    <h3 style="color:black;"><b>Đăng ký chuyên viên tuyển sinh</b></h3>
-                    <ul class="list">
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Tiếp cận đơn tuyển sinh trên toàn quốc hàng giờ.</li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Làm việc ở bất kỳ đâu với Laptop hoặc điện thoại.</li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận tiền thưởng ngay lập tức khi giới thiệu thành công</li>
-                        <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Hoàn toàn bảo mật thông tin cá nhân</li>
-                    </ul>
-                    <div class="col-md-12" style="padding: 0">
-                      <div class="hotline">
-                        <a href="tel:02462900388">
-                              Hotline hỗ trợ (024) 629 00 388
-                        </a>
-                      </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -667,7 +667,11 @@ h2{
   padding-bottom: 100px;
 }
 .section-7 .register{
-    background: linear-gradient(to right, #e68a00 0%, #FFB701 100%);
+    background: #FFB701;
+    color: #000;
+}
+.section-7 .register:hover{
+    color: #ffffff;
 }
 .section-7 .inline-block p{
   font-size: 18px;

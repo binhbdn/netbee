@@ -11,7 +11,7 @@
                 <span class="circle danger" style="margin: 0 auto;"><i class="fa fa-list-alt" style="color:white"></i></span>
               </div>
               <div class="col-8">
-                <h4 class="" style="color: #f61100;">Đăng ký chuyển viên tuyển sinh</h4>
+                <h4 class="" style="color: #f61100;">Đăng ký chuyên viên tuyển sinh</h4>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Tiếp cận hàng triệu ứng viên hoàn toàn miễn phí</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Ứng tuyển nhanh chóng, dễ dàng</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Nhận bản tin công việc phù hợp định kỳ</p>

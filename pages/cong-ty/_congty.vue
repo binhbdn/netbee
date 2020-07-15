@@ -123,6 +123,15 @@
                 <div class="card-content collapse show">
                 <div class="card-body">
                     <JobsList1Col :DataList="arrayForCompany"></JobsList1Col>
+                    <infinite-loading
+                        v-if="arrayForCompany.length"
+                        spinner="bubbles"    
+                        ref="infiniteLoading" 
+                        @infinite="infiniteScroll" style=" width:100%"
+                    >        
+                    <div slot="no-more" style="font-size:15px; font-style: italic;display: none;"></div>    
+                    <div slot="no-results" style="font-size:15px; font-style: italic"></div>
+                </infinite-loading>
                 </div>
                 </div>
             </div>
@@ -584,6 +593,7 @@ export default {
             id_company: '',
             name_company: '',
             star: 0,
+            page: 1
         }
     },
     async asyncData (context) {
@@ -607,6 +617,25 @@ export default {
         }        
     },
     methods: {
+        infiniteScroll : function($state) {
+            setTimeout(() => {
+                this.page++
+                this.$axios
+                .get('getTinTuyenDungForCompany?id='+this.$route.params.congty+'&limit=5'+'&page='+this.page)
+                    .then((response) => {
+                        console.log(response)
+                        if (response.data.data.tintuyendung.length >= 1) {
+                            response.data.data.tintuyendung.forEach((item) => this.arrayForCompany.push(item))
+                            $state.loaded()
+                        } else {
+                            $state.complete()
+                        }
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }, 500)
+        },
         payWithMomo() {
             this.$axios.$post('/pricing_momo_verify',{url: this.$route.fullPath}).then((response)=>{
                 if(response.status == 200) {
@@ -796,9 +825,9 @@ export default {
                 ) 
             }
         }
-        this.$axios.$get(`getTinTuyenDungForCompany/${this.$route.params.congty}?limit=5`).then((response)=>{
-            this.arrayForCompany = response.data.tintuyendung
-            this.countJob = response.data.count
+        this.$axios.get('getTinTuyenDungForCompany?id='+this.$route.params.congty+'&limit=5').then((response)=>{
+            this.arrayForCompany = response.data.data.tintuyendung
+            this.countJob = response.data.data.count
         });
         this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
             this.detailCompany = response.data;
