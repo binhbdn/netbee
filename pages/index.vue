@@ -62,7 +62,7 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                  <h4 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_hot')}}</h4>
+                                  <h2 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_hot')}}</h2>
                                   <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>                                  
                                 </div>
                                 <div class="card-content" style="position:relative">
@@ -175,7 +175,7 @@
           <div class="col-lg-8 col-12 p-r-0">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_new')}}</h4>
+                <h2 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_new')}}</h2>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>                
               </div>
               <div class="card-content collapse show" style="padding: 13px;padding-bottom: 0px !important;">
@@ -281,7 +281,7 @@
           <div class="col-lg-12 col-12">
             <div class="card">
               <div class="card-header">
-                <h4><i class="fad fa-newspaper"></i> {{$t('home.title.news')}}</h4>                
+                <h2 class="card-title"><i class="fad fa-newspaper"></i> {{$t('home.title.news')}}</h2>                
               </div>
               <div class="card-content collapse show news">
                 <div class="card-body">
