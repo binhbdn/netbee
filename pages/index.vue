@@ -38,7 +38,7 @@
           <a class="col-md-3  align-self-stretch ftco-animate pd-l-0" href="/dang-ky/chuyen-vien-tuyen-dung">
             <div class="d_item v_block hover-ncd">
               <div class="icon text-center SB_bn_1">
-                <i class="fa fa-comments-dollar"></i>
+                <i class="fa fa-comments"></i>
               </div>
               <div class="media-body">
                 <h3 class="text-center" style="text-transform: uppercase; margin-bottom: 2px;">{{$t('home.banner.introduce')}}

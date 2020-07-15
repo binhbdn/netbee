@@ -36,7 +36,7 @@
                         <h2 class="ftco-heading-2 line4">{{$t('footer.contact_info.title')}}</h2>
                         <div class="block-23 ">
                             <ul>
-                                <li><span class="fa fa-map-marker-alt" style="color: #fff;"></span><span class="text pl-2" style="color: #fff;">{{$t('footer.contact_info.address')}}</span></li>
+                                <li><span class="fa fa-map-marker" style="color: #fff;"></span><span class="text pl-2" style="color: #fff;">{{$t('footer.contact_info.address')}}</span></li>
                                 <li><a href="tel:+842462900388" class="a_footer"><span class="fa fa-phone"></span><span class="pl-2 text">+842462900388</span></a></li>
                                 <li><a href="mailto:contact@netbee.vn" class="a_footer"><span class="fa fa-envelope"></span><span class="pl-2 text">Email: contact@netbee.vn</span></a></li>
                             </ul>
