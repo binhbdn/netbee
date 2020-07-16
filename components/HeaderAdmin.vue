@@ -22,9 +22,45 @@
                                 </li>
                             </ul>
                     </div>
-                  <ul class="nav navbar-nav float-right">
-                      <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
-                          <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item" href="#" data-language="fr"><i class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="#" data-language="de"><i class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="#" data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
+                    <ul class="nav navbar-nav float-right">
+                        <li class="dropdown dropdown-language nav-item">
+                            <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span v-if="$i18n.locale == 'vi'">
+                                    <img  src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="30px" alt="netbee việt nam"/>
+                                    Việt Nam
+                                </span>
+                                <span v-else-if="$i18n.locale == 'en'">
+                                    <img  src="/assets/img/iconfinder_United-Kingdom.png" width="30px" alt="netbee united kingdom"/>
+                                   English
+                                </span>
+                                <span v-else-if="$i18n.locale == 'jp'">
+                                    <img  src="/assets/img/iconfinder_Japan_92149.png" width="30px" alt="netbee japan"/>
+                                    Japan
+                                </span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+                                <a class="dropdown-item" @click="changeLang('vi')">
+                                    <img
+                                    src="/assets/img/iconfinder_Vietnam_flat_92420.png"
+                                    width="25px"
+                                    alt="netbee việt nam"
+                                    /> Việt Nam
+                                </a>
+                                <a class="dropdown-item" @click="changeLang('en')">
+                                    <img
+                                    src="/assets/img/iconfinder_United-Kingdom.png"
+                                    width="25px"
+                                    alt="netbee united kingdom" 
+                                    /> English
+                                </a>
+                                <a class="dropdown-item" @click="changeLang('jp')">
+                                    <img
+                                    src="/assets/img/iconfinder_Japan_92149.png"
+                                    width="25px"
+                                    alt="netbee japan"
+                                    /> Japan
+                                </a>
+                            </div>
                       </li>
                       <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon feather icon-bell"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
@@ -85,6 +121,7 @@
 </template>
 <script>
 import moment from 'moment'
+import i18n from '@/plugins/i18n'
 export default {
   name: 'Header',
   data () {
@@ -95,6 +132,11 @@ export default {
     }
   },
   methods:  {
+        changeLang(lang) {
+            this.$localStorage.set("lang", lang)
+            this.$store.commit('SET_LANG', lang)
+            this.$router.push({ path: `${this.$router.currentRoute.path}?lang=${lang}` })
+        },
         async logout() {
             this.$auth.logout();
             window.location.href = '/';
