@@ -210,6 +210,7 @@ class TinTuyenService extends BaseService {
             'salary_start' => $request->salary_start,
             'salary_end' => $request->salary_end,
             'salary_status' => $request->salary_status,
+            'request_cmnd' => $request->request_cmnd,
             'subsidy' => $request->subsidy,
             'currency' => $request->currency,
             'date_start' => $request->date_start,
