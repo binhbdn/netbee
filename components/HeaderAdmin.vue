@@ -25,18 +25,11 @@
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-language nav-item">
                             <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span v-if="$i18n.locale == 'vi'">
-                                    <img  src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="30px" alt="netbee việt nam"/>
-                                    Việt Nam
-                                </span>
-                                <span v-else-if="$i18n.locale == 'en'">
-                                    <img  src="/assets/img/iconfinder_United-Kingdom.png" width="30px" alt="netbee united kingdom"/>
-                                   English
-                                </span>
-                                <span v-else-if="$i18n.locale == 'jp'">
-                                    <img  src="/assets/img/iconfinder_Japan_92149.png" width="30px" alt="netbee japan"/>
-                                    Japan
-                                </span>
+                                
+                                    <img v-if="$i18n.locale == 'vi'"  src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="17px" alt="netbee việt nam"/>
+                                    <img v-else-if="$i18n.locale == 'en'"  src="/assets/img/iconfinder_United-Kingdom.png" width="17px" alt="netbee united kingdom"/>
+                                    <img v-else-if="$i18n.locale == 'jp'"  src="/assets/img/iconfinder_Japan_92149.png" width="17px" alt="netbee japan"/>
+                                    <img v-else  src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="17px" alt="netbee việt nam"/>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-flag">
                                 <a class="dropdown-item" @click="changeLang('vi')">

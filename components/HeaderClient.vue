@@ -98,6 +98,7 @@
                 <img v-if="$i18n.locale == 'vi'" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
                 <img v-else-if="$i18n.locale == 'en'" src="/assets/img/iconfinder_United-Kingdom.png" width="22px" alt="netbee united kingdom"/>
                 <img v-else-if="$i18n.locale == 'jp'" src="/assets/img/iconfinder_Japan_92149.png" width="22px" alt="netbee japan"/>
+                <img v-else src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
               </div>
               <div class="nav-title">
                 {{ $t('nav.languages') }}
