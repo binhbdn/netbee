@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Jobs\SendMailJobQueue;
 use App\Models\NbJoblist;
+use App\Models\NbSettingBonus;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -13,17 +14,22 @@ class TinTuyenService extends BaseService {
 
     protected $nbJobList;
     protected $user;
-    public function __construct(NbJoblist $nbJobList, User $user)
+    protected $nbSettingBonus;
+    public function __construct(NbJoblist $nbJobList, User $user, NbSettingBonus  $nbSettingBonus)
     {
         $this->nbJobList = $nbJobList;
         $this->user = $user;
+        $this->nbSettingBonus = $nbSettingBonus;
     }
 
     public function getJobById($id)
     {
         return $this->nbJobList->whereId($id);
     }
-
+    public function getSettingBonus()
+    {
+        return $this->nbSettingBonus->where('id',1)->first();
+    }
     public function update($data, $id)
     {
         return $this->getJobById($id)->update($data);
@@ -662,7 +668,8 @@ class TinTuyenService extends BaseService {
         $search = $data->search;
         $searchCompany = $data->searchCompany;
         $searchCategory = $data->searchCategory;
-        $searchStatus = $data->searchStatus;
+        // $searchStatus = $data->searchStatus;
+        $searchAddress = $data->searchAddress;
 
         if ($searchCompany != null) {
             $conditions[] = [
@@ -670,11 +677,18 @@ class TinTuyenService extends BaseService {
             ];
         }
 
-        if($searchStatus != null){
+        // if($searchStatus != null){
+        //     $conditions[] = [
+        //         'nb_joblists.status', '=', $searchStatus
+        //     ];
+        // }
+
+        if($searchAddress != null){
             $conditions[] = [
-                'nb_joblists.status', '=', $searchStatus
+                'nb_joblists.nation_id', '=', $searchAddress
             ];
         }
+        
 
         if($searchCategory != null){
             $conditions[] = [
@@ -711,7 +725,8 @@ class TinTuyenService extends BaseService {
         if ($search != '') {
             $query->where(function($q) use ($search){
                 $q->where('title', 'LIKE', '%'.$search.'%')
-                    ->orwhere('id','LIKE', '%'.$search.'%');
+                    ->orwhere('id','LIKE', '%'.$search.'%')
+                    ->orwhere('nb_company.username','LIKE', '%'.$search.'%');
             });
         }
         return $query->paginate($perPage);

@@ -150,7 +150,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     
-                                                    <div class="col-6">
+                                                    <div class="col-4">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3" v-if="data.type == 2">Thời gian du học (năm)</label>
@@ -160,7 +160,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-3">
+                                                    <div class="col-4">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -171,7 +171,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-3">  
+                                                    <div class="col-4">  
                                                         <div class="form-group">
                                                             <label for="firstName3">Chứng minh thu nhập</label>
                                                             <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
@@ -406,64 +406,64 @@
                                             <ValidationObserver ref="step5" v-slot="{ valid5 }">
                                                 <div class="row">
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi2">
-                                                        <div class="card border-netbee text-center bg-transparent" style="height: 100%">
+                                                        <div class="card border-netbee text-center bg-transparent" v-bind:class="{'brilliant':data.highlight_job == 0}" style="height: 100%">
                                                             <div class="card-content">
-                                                                <div class="card-body p-t-10">
+                                                                <div class="card-body p-t-30">
                                                                     <label for="defaultGroupExample1" class="btn bg-netbee">TIN THƯỜNG</label>
                                                                     <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
-                                                                    <i class="far fa-check fa-2x" v-if="data.highlight_job == 0" style="color: green"></i>
+                                                                   
                                                                     <div class="divider divider-warning">
-                                                                        <div class="divider-text"><img src="/assets/img/tinnoibat.jpg" style="height: 25px;"></div>
+                                                                        <div class="divider-text trial">|</div>
                                                                     </div>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị ở box tin mới</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Không có icon nổi bật</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Không có chuyên viên hỗ trợ hotline</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Miễn phí tin đăng</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box tin mới</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có icon nổi bật</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có chuyên viên hỗ trợ hotline</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Miễn phí tin đăng</p>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi1">
-                                                        <div class="card border-netbee text-center bg-transparent" style="height: 100%">
+                                                        <div class="card border-netbee text-center bg-transparent" v-bind:class="{'brilliant':data.highlight_job == 1}" style="height: 100%">
                                                             <div class="card-content">
-                                                                <div class="card-body p-t-10">
+                                                                <div class="card-body p-t-30">
                                                                     <label for="defaultGroupExample0" class="btn bg-netbee">TIN NỔI BẬT</label>
                                                                      <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
-                                                                    <i class="far fa-check fa-2x" v-if="data.highlight_job == 1" style="color: green"></i>
+                                                                    
                                                                     <div class="divider divider-default">
-                                                                        <div class="divider-text">Tin thường</div>
+                                                                        <div class="divider-text trial">Tin thường</div>
                                                                     </div>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị ở box đầu tiên của trang chủ</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> 1,000,000 VND/ Tin</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box đầu tiên của trang chủ</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,000,000 VND/ Tin</p>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi3">
-                                                        <div class="card border-netbee text-center bg-transparent" style="height: 100%">
+                                                        <div class="card border-netbee text-center bg-transparent" v-bind:class="{'brilliant':data.highlight_job == 2}" style="height: 100%">
                                                             <div class="card-content">
-                                                                <div class="card-body p-t-10">
+                                                                <div class="card-body p-t-30">
                                                                     <label for="defaultGroupExample2" class="btn bg-netbee">TIN VIP</label>
                                                                     <input type="radio" class="custom-control-input"
                                                                     id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
-                                                                    <i class="far fa-check fa-2x" v-if="data.highlight_job == 2" style="color: green"></i>
+                                                                   
                                                                     <div class="divider divider-danger">
-                                                                        <div class="divider-text"><img src="/assets/img/tinvip.jpg"></div>
+                                                                        <div class="divider-text trial">Hot</div>
                                                                     </div>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị ở box nổi bật của trang chủ</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị icon màu đỏ ở góc phải tin gây nổi bật</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Chi tiết tin hiển thị là tin đã xác thực</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
-                                                                    <p class="p-main"><i class="fa fa-minus" style="font-size: 9px;"></i> 1,500,000 VND/ Tin</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box nổi bật của trang chủ</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị icon màu đỏ ở góc phải tin gây nổi bật</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chi tiết tin hiển thị là tin đã xác thực</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
+                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,500,000 VND/ Tin</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -475,7 +475,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="col-lg-3 col-sm-6 col-12" style="padding-left: 2px;">
                             <div class="card text-center">
                                 <div class="card-content" style="background-color: #FFB701 !important;">
                                     <div class="card-body p-2">
@@ -592,7 +592,7 @@ export default {
                 date_start: '',
                 date_test: '',
                 expected_date: '',
-                time_bonus: {id: 1, name: 'Ngay sau khi bay'},
+                time_bonus: {id: 3, name: 'Ngay sau khi cọc'},
                 bonus: null,
                 highlight_job: 0,
                 visa: '',
@@ -617,9 +617,10 @@ export default {
             },
             checked: false,
             guarantee: [
+                {id: 3, name: 'Ngay sau khi cọc'},
+                {id: 5, name: 'Ngay sau khi có COE'},
                 {id: 1, name: 'Ngay sau khi bay'},
                 {id: 2, name: 'Sau khi bay 30 ngày'},
-                {id: 3, name: 'Sau khi bay 60 ngày'},
                 {id: 4, name: 'Hoàn tất nhập cảnh'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
@@ -752,13 +753,15 @@ export default {
             this.data.age_start = job.data.age_start
             this.data.age_late = job.data.age_late
             if(job.data.time_bonus == 1){
-                this.data.time_bonus = {id: 1, name: '30 ngày'}
+                this.data.time_bonus = {id: 1, name: 'Ngay sau khi bay'}
             }else if(job.data.time_bonus == 2){
-                this.data.time_bonus = {id: 2, name: 'Hoàn tất nhập cảnh'}
+                this.data.time_bonus = {id: 2, name: 'Sau khi bay 30 ngày'}
             } else if(job.data.time_bonus == 3) {
-                this.data.time_bonus = {id: 3, name: 'Sau nhập cảnh 30 ngày'}
+                this.data.time_bonus = {id: 3, name: 'Ngay sau khi cọc'}
             } else if(job.data.time_bonus == 4) {
                 this.data.time_bonus = {id: 4, name: 'Hoàn tất nhập cảnh'}
+            }else if(job.data.time_bonus == 5) {
+                this.data.time_bonus = {id: 5, name: 'Ngay sau khi có COE'}
             }
             job.data.bonus == 0 ? this.data.bonus = null : this.data.bonus = job.data.bonus
             if(job.data.bonus){
@@ -1037,5 +1040,45 @@ display: block;
 }
 .form-group label::after {
     content: ":";
+}
+.border-netbee:hover {
+    background-color: #fff !important;
+    box-shadow: 0 1px 4px #887e7e!important;
+}
+
+.brilliant::before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 64px 64px 0 0;
+    border-color: #ffc108 transparent transparent transparent;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: "";
+}
+.brilliant::after {
+    color: #fff;
+    position: absolute;
+    left: 9px;
+    top: 3px;
+    font-size: 1.4rem;
+}
+.brilliant::after {
+    font-family: "FontAwesome";
+    content: "\f00c";
+}
+.trial {
+    font-size: .9rem;
+    font-weight: 600;
+    padding: 2px 21px 2px 21px;
+    color: #ffc108;
+    border: 1px solid #e4e4e4;
+    border-radius: 15px;
+    background-color: white;
+}
+.wizard-tab-content {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
 }
 </style>

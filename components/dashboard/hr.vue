@@ -1,16 +1,15 @@
 <template>
     <div>
         <div class="content-wrapper">
-            <!-- tìm kiếm -->
-            <div class="card">
+            <div class="card" id="card">
                 <div class="card-header">
                     <h4 class="card-title">Tìm kiếm</h4>
-                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <!-- <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a> -->
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
                             <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
                             <li><a data-action=""><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
-                            <li><a data-action="close"><i class="feather icon-x"></i></a></li>
+                            <li><a @click="closeSearch()"><i class="feather icon-x" style="font-size: 18px"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -19,20 +18,20 @@
                         <div class="users-list-filter">
                             <form>
                                 <div class="row">
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                    <div class="col-12 col-sm-6 col-lg-4">
+                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Từ khóa...." />
                                     </div>
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-lg-3">
+                                    <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
                                             <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
-                                    <div class="col-12 col-sm-6 col-lg-3">
+                                    <!-- <div class="col-12 col-sm-6 col-lg-4">
+                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Nhập tiêu đề..." />
+                                    </div> -->
+                                    <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
-                                            <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
+                                            <multiselect @input="search()" v-model="cardSearch.searchAddress" :options="address" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn địa điểm"  style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -81,8 +80,8 @@ export default {
         return {
             cardSearch: {
                 search: "",
-                searchStatus: "",
-                searchTitle: "",
+                // searchStatus: "",
+                searchAdress: null,
                 searchCategory: null
             },
             categories: [
@@ -90,9 +89,19 @@ export default {
                 {id: 2, name: 'Du học'},
                 {id: 3, name: 'Tu nghiệp sinh'}
             ],
-            status: [
-                {id: 1, name: 'Đã kích hoạt'},
-                {id: 0, name: 'Chưa kích hoạt'},
+            // status: [
+            //     {id: 1, name: 'Đã kích hoạt'},
+            //     {id: 0, name: 'Chưa kích hoạt'},
+            // ],
+            address: [
+                {id: 1, name: 'Nhật Bản'},
+                {id: 2, name: 'Hàn Quốc'},
+                {id: 3, name: 'Trung Quốc'},
+                {id: 4, name: 'Anh'},
+                {id: 5, name: 'Mỹ'},
+                {id: 6, name: 'Đức'},
+                {id: 7, name: 'Canada'},
+                {id: 8, name: 'Quốc gia khác'},
             ],
             tinTuyenDung: [],
             page: 1
@@ -112,9 +121,9 @@ export default {
             this.$axios.$get(
             'tintuyendung/searchTinTuyenDung?searchCategory=' 
             + ((this.cardSearch.searchCategory != null && this.cardSearch.searchCategory.id != null)?this.cardSearch.searchCategory.id:'') 
-            + ((this.cardSearch.searchStatus != null && this.cardSearch.searchStatus.id !=null)? '&searchStatus='+this.cardSearch.searchStatus.id:'') 
+            // + ((this.cardSearch.searchStatus != null && this.cardSearch.searchStatus.id !=null)? '&searchStatus='+this.cardSearch.searchStatus.id:'') 
             + ((this.cardSearch.search)? '&search='+ this.cardSearch.search:'')
-            + ((this.cardSearch.searchTitle)? '&searchTitle='+ this.cardSearch.searchTitle:'')
+            + '&searchAddress='+ ((this.cardSearch.searchAddress != null && this.cardSearch.searchAddress.id != null)?this.cardSearch.searchAddress.id:'')
             ).then((response)=>{
                  this.tinTuyenDung=response.data;
                  this.page = 1;
@@ -129,9 +138,9 @@ export default {
                 this.$axios
                 .get('/tintuyendung/searchTinTuyenDung?page='+ this.page
                 + ((this.cardSearch.searchCategory != null && this.cardSearch.searchCategory.id != null)? '&searchCategory='+this.cardSearch.searchCategory.id:'') 
-                + ((this.cardSearch.searchStatus != null && this.cardSearch.searchStatus.id !=null)? '&searchStatus='+this.cardSearch.searchStatus.id:'') 
+                // + ((this.cardSearch.searchStatus != null && this.cardSearch.searchStatus.id !=null)? '&searchStatus='+this.cardSearch.searchStatus.id:'') 
                 + ((this.cardSearch.search)? '&search='+ this.cardSearch.search:'')
-                + ((this.cardSearch.searchTitle)? '&searchTitle='+ this.cardSearch.searchTitle:'')
+                + '&searchAdress='+((this.cardSearch.searchAdress != null && this.cardSearch.searchAdress.id != null)?this.cardSearch.searchAdress.id:'')
                 )
                 .then((response) => {
                     if (response.data.data.length > 1) {
@@ -145,11 +154,18 @@ export default {
                 })
             }, 500)
         },
+        closeSearch(){
+            document.getElementById('card').style.display = 'none';
+        }
     },
     mounted () {
         this.fetch()
     },
-
+    created(){
+        this.$bus.$on('showSearch', () => {
+            document.getElementById('card').style.display = 'block';
+        })
+    },
     computed: {
         selectAll: {
             get() {
@@ -176,5 +192,25 @@ export default {
 </script>
 
 <style scoped>
-
+.showSearch{
+    position: fixed;
+    top: 10px;
+    right: 100px;
+}
+.list-inline{
+    display: block;
+}
+@media (max-width: 767px){
+    .card{
+        display: none;
+    }
+}
+@media (max-width: 575px){
+    #filter-text-box{
+        margin-bottom: 20px;
+    }
+    .content-wrapper{
+        padding: 0 0 15px 0!important;
+    }
+}
 </style>

@@ -198,26 +198,42 @@
                 </div>
             </div>
           </div>
-          <div class="col-lg-4 col-12" v-if="detailCompany != null">
-
-            <div class="card card-comment p-1">
-                <div class="card-header pl-0 d-flex justify-content-center">
-                    <h5>
-                        Hãy chia sẻ ý kiến của bạn
-                    </h5>
+          <template v-if="!$auth.loggedIn">
+              <div class="col-lg-4 col-12" v-if="detailCompany != null">
+                <div class="card card-comment p-1">
+                    <div class="card-header pl-0 d-flex justify-content-center">
+                        <h5>
+                            Hãy chia sẻ ý kiến của bạn
+                        </h5>
+                    </div>
+                    <div class="sub-text">
+                        Đánh giá <span>{{detailCompany.name}}</span> ngay!
+                    </div>
+                    <br>
+                    <div class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
+                        <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
+                    </div>
                 </div>
-                <div class="sub-text">
-                    Đánh giá <span>{{detailCompany.name}}</span> ngay!
+              </div>
+          </template>
+          <template v-else>
+              <div class="col-lg-4 col-12" v-if="detailCompany != null && $auth.user.role != 2">
+                <div class="card card-comment p-1">
+                    <div class="card-header pl-0 d-flex justify-content-center">
+                        <h5>
+                            Hãy chia sẻ ý kiến của bạn
+                        </h5>
+                    </div>
+                    <div class="sub-text">
+                        Đánh giá <span>{{detailCompany.name}}</span> ngay!
+                    </div>
+                    <br>
+                    <div class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
+                        <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Thêm đánh giá</a>
+                    </div>
                 </div>
-                <br>
-                <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
-                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
-                </div>
-                <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
-                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Thêm đánh giá</a>
-                </div>
-            </div>
-          </div>
+              </div>
+          </template>
         </div>
       </section>
       <!-- Modal -->
@@ -371,11 +387,6 @@
                                 <div style="position: relative">
                                     <div class="__email">
                                         <textarea class="form-control" id="content" placeholder="Nhận xét của bạn về công ty ít nhất 10 ký tự" v-model="formFeedback.content"></textarea>
-                                        <!-- <ul style="color:red" class="overline text-left">
-                                            <li v-for="(error, index) in errors" :key="index">
-                                            <span><i>{{ error }}</i></span>
-                                            </li>
-                                        </ul> -->
                                     </div>
                                     <div class="vote-star">
                                         <div class="stars">

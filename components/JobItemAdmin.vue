@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class=" row" id="price">
-                    <div class="col-md-7 col-12">
+                    <div class="col-md-7 col-12 pr-0">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fad fa-dollar-sign"></i> Chi phí: <span class="item-price" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     </div>
                     <div class="col-md-5 col-12">
@@ -75,7 +75,7 @@
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
                         <i class="m-0">Tiền thưởng</i>
                         <h3 class="bonus">
-                            <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
+                            <span style="color: #fc205c">{{job.bonus - (job.bonus * settingBonus.percent_bonus /100)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                         </h3>
                     </div>
                 </div>
@@ -92,6 +92,25 @@ export default {
         ],
     },
     props: ['job'],
+    data () {
+        return {
+            settingBonus: [],
+        }
+    },
+    components:{
+
+    },
+
+    
+    mounted () {
+        this.$axios
+                .$get('/tintuyendung/getSettingBonus')
+                .then((response) => {
+                    this.settingBonus = response
+                })
+                .catch((err) => {
+                })
+    },
 }
 </script>
 <style scoped>
@@ -155,13 +174,18 @@ export default {
 
 @media(max-width: 1199px){
     .remove-border-right{
-        width: auto !important;
+        max-width: 550px !important;
     }
     .item-options{
         padding: 1rem 0;
     }
     .bonus{
         font-size: 1rem;
+    }
+}
+@media(max-width: 991px){
+    .remove-border-right{
+        max-width: 330px !important;
     }
 }
 

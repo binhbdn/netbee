@@ -141,19 +141,41 @@ class NbCompanyInfoService extends BaseService {
         if(Auth::check()){
             $user = Auth::user();
             $data = $this->getOnlyData($request,$user);
-            try {
+            if($request['content_feed'] == null || $request['content_feed'] == ' '){
+                return [
+                    'status' => 400,
+                    'message' => 'Bạn chưa nhận xét!',
+                    'data' => null
+                ];
+            }
+            else if(strlen($request['content_feed']) < 10){
+                return [
+                    'status' => 400,
+                    'message' => 'Nhận xét phải ít nhất 10 ký tự!',
+                    'data' => null
+                ];
+            }
+            else if($request['rate_feed'] == 0){
+                return [
+                    'status' => 400,
+                    'message' => 'Bạn chưa đánh giá!',
+                    'data' => null
+                ];
+            }else{
+                try {
                 $this->nbCompanyFeedback->insert($data);
                 return [
                     'status' => 200,
                     'message' => 'Cám ơn bạn đã phản hồi!',
                     'data' => null
                 ];
-            } catch (\Exception $e) {
-                return [
-                    'status'=> 400,
-                    'message' => 'Có lỗi xảy ra',
-                    'data' => $e->getMessage()
-                ];
+                } catch (\Exception $e) {
+                    return [
+                        'status'=> 400,
+                        'message' => 'Có lỗi xảy ra',
+                        'data' => $e->getMessage()
+                    ];
+                }
             }
         }else{
             return [
