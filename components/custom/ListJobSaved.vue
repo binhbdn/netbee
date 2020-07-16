@@ -78,7 +78,7 @@
                                                             <div class="item-wrapper mt-1">
                                                                 <span class="item-hot" v-if="job.highlight_job == 2"><i class="fas fa-star" style="color: gold; "></i> Hot</span>
                                                                 <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null">
-                                                                    <p class="m-0">Tiền thưởng</p>
+                                                                    <i class="m-0">TIỀN THƯỞNG</i>
                                                                     <h3>
                                                                         <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                                                                     </h3>

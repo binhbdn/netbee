@@ -13,10 +13,15 @@
             </div>
         </div> -->
         <div class="card-content h-100">
-            <div class="text-center card-avatar p-1">
+            <div class="text-center card-avatar">
                 <a :href="`/admin/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
+                <p class="delivery-date mb-0 cate-bottom-avt" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
+                    <span class="badge border-netbee badge-sm" style="width: 100px">
+                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
+                    </span>
+                </p>
             </div>
             <div class="remove-border-right" style="width: 620px; padding: 0.5rem">
                 <div class="hot-mb" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
@@ -39,15 +44,15 @@
                 </div>
                 <div class="item-quantity row">
                     <div class="col-md-7 col-12">
-                        <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fa fa-map-marker"></i> {{ job.nation.name }}</p>
+                        <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
                     </div>
                     <div class="col-md-5 col-12">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fa fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                     </div>
                 </div>
-                <div class=" row">
+                <div class=" row" id="price">
                     <div class="col-md-7 col-12">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fa fa-dollar-sign"></i><label class="title">Chi phí: </label><span class="item-price" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fad fa-dollar-sign"></i><label class="title">Chi phí: </label><span class="item-price" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     </div>
                     <div class="col-md-5 col-12">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
@@ -58,7 +63,7 @@
                     </div>
                 </div>
                 <div class="bonus-block">
-                    <p class="m-0">Tiền thưởng</p>
+                    <i class="m-0">TIỀN THƯỞNG</i>
                     <h3 class="bonus">
                         <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                     </h3>
@@ -68,7 +73,7 @@
                 <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper mt-1">
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
-                        <p class="m-0">TIỀN THƯỞNG</p>
+                        <i class="m-0">TIỀN THƯỞNG</i>
                         <h3 class="bonus">
                             <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                         </h3>
@@ -96,7 +101,7 @@ export default {
 }
 .item-vip-a{
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
 }
 /* .item-vip-a:hover{
     color: #000 !important;
@@ -124,7 +129,7 @@ export default {
     font-weight: 700;
 }
 .hot img, .hot-mb img {
-    width: 4%;
+    width: 2%;
     min-width: 35px;
     float: right;
     position: absolute;
@@ -134,13 +139,13 @@ export default {
 .p-r-0 .hot img{
     right: 0;
 }
-.card-avatar{
+.card-avatar {
     margin: auto;
 }
 .card-avatar img{
     height: 60px;
     width: 60px;
-    object-fit: scale-down; 
+    object-fit: scale-down;
 }
 .item-price .title {
     font-size: 14px;
@@ -151,7 +156,7 @@ export default {
 
 @media(max-width: 1199px){
     .remove-border-right{
-        width: 400px !important;
+        width: auto !important;
     }
     .item-options{
         padding: 1rem 0;
@@ -160,11 +165,7 @@ export default {
         font-size: 1rem;
     }
 }
-@media(max-width: 991px){
-    .remove-border-right{
-        width: 300px !important;
-    }
-}
+
 @media(max-width: 767px) and (min-width: 576px){
     #company{
         height: 42px !important;
@@ -193,12 +194,12 @@ export default {
         right: 15px;
     }
 }
-@media(max-width:575px){
-    #company{
-        height: 42px !important;
-    }
+
+.cate-bottom-avt {
+    display: none;
+}
+@media only screen and (max-width: 575px) {
     .remove-border-right{
-        max-width: 300px !important;
         overflow: hidden;
     }
     .bonus-block{
@@ -207,10 +208,36 @@ export default {
     .hot-mb{
         display: none;
     }
-}
-@media (max-width:450px) {
-    .remove-border-right{
-        max-width: 200px !important;
+    #company {
+        height: 42px !important;
+        display: none;
+    }
+    .ecommerce-card {
+        margin-bottom: 0 !important;
+        border-radius: 0 !important;
+    }
+    .border-job-item {
+        border: none;
+        border-bottom: 1px solid #ececec !important;
+    }
+    .hot img {
+        right: -1px;
+    }
+    .cate-bottom-avt {
+        display: block;
+    }
+    #price div:last-child {
+        display: none;
+    }
+    .card-avatar {
+        padding-left: 9px;
+    }
+    .item-vip-a {
+        overflow: hidden;
+        white-space: unset;
+    }
+    p {
+        font-size: 13px;
     }
 }
 </style>

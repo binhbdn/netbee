@@ -225,7 +225,7 @@
 }
 @media only screen and (max-width: 600px) {
     .ecommerce-application .list-view .ecommerce-card .card-content {
-        grid-template-columns: 1fr 3fr !important;
+        grid-template-columns: 1fr 4fr !important;
     }
     .ecommerce-application .list-view .ecommerce-card .card-content:last-child div:last-child div:last-child{
         display: none;
