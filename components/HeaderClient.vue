@@ -95,7 +95,9 @@
           <li class="nav-item cta dropdown">
             <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
               <div class="nav-icon">
-                <img src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
+                <img v-if="$store.state.locale == 'vi'" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
+                <img v-else-if="$store.state.locale == 'en'" src="/assets/img/iconfinder_United-Kingdom.png" width="22px" alt="netbee united kingdom"/>
+                <img v-else-if="$store.state.locale == 'jp'" src="/assets/img/iconfinder_Japan_92149.png" width="22px" alt="netbee japan"/>
               </div>
               <div class="nav-title">
                 {{ $t('nav.languages') }}
@@ -108,6 +110,13 @@
               aria-labelledby="navbarDropdown"
             >
               <div id="login-up"></div>
+              <a class="dropdown-item" @click="changeLang('vi')">
+                <img
+                  src="/assets/img/iconfinder_Vietnam_flat_92420.png"
+                  width="25px"
+                  alt="netbee việt nam"
+                />
+              </a>
               <a class="dropdown-item" @click="changeLang('en')">
                 <img
                   src="/assets/img/iconfinder_United-Kingdom.png"
@@ -122,13 +131,7 @@
                   alt="netbee japan"
                 />
               </a>
-              <a class="dropdown-item">
-                <img
-                  src="/assets/img/iconfinder_South-Korea_92351.png"
-                  width="25px"
-                  alt="netbee korea"
-                />
-              </a>
+              
             </div>
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-if="!$auth.loggedIn">
@@ -319,9 +322,7 @@ export default {
   transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
   border-radius: 2px;
 }
-.cta .nav-icon img {
-    border-radius: 1.5rem;
-}
+
 .border-bot {
     border: 1px solid rgba(128, 128, 128, 0.192);
 }
