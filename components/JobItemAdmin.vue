@@ -17,8 +17,8 @@
                 <a :href="`/admin/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
-                <p class="delivery-date mb-0 cate-bottom-avt" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
-                    <span class="badge border-netbee badge-sm" style="width: 100px">
+                <p class="delivery-date mb-0 cate-bottom-avt" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng">
+                    <span class="badge border-netbee badge-sm" style="width: 100px" :class="job.highlight_job ? 'bg-netbee' : ''">
                         {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                     </span>
                 </p>
@@ -55,8 +55,8 @@
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fad fa-dollar-sign"></i> Chi phí: <span class="item-price" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     </div>
                     <div class="col-md-5 col-12">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
-                            <span class="badge border-netbee badge-sm" style="width: 100px">
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng">
+                            <span class="badge border-netbee badge-sm" style="width: 100px" :class="job.highlight_job ? 'bg-netbee' : ''">
                                 {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                             </span>
                         </p>
@@ -65,7 +65,7 @@
                 <div class="bonus-block">
                     <i class="m-0">Tiền thưởng</i>
                     <h3 class="bonus">
-                        <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
+                        <p style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
                     </h3>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
                         <i class="m-0">Tiền thưởng</i>
                         <h3 class="bonus">
-                            <span style="color: #fc205c">{{job.bonus - (job.bonus * settingBonus.percent_bonus /100)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
+                            <p style="color: #fc205c">{{job.bonus - (job.bonus * settingBonus.percent_bonus /100)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
                         </h3>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ export default {
     min-width: 35px;
     float: right;
     position: absolute;
-    right: 15px;
+    right: 14px;
     top: 0;
 }
 .p-r-0 .hot img{
@@ -172,9 +172,10 @@ export default {
     display: none;
 }
 
-@media(max-width: 1199px){
+@media(max-width: 1199px) and (min-width: 768px){
     .remove-border-right{
-        max-width: 550px !important;
+
+        width: auto!important;
     }
     .item-options{
         padding: 1rem 0;
@@ -183,7 +184,7 @@ export default {
         font-size: 1rem;
     }
 }
-@media(max-width: 991px){
+@media(max-width: 991px) and (min-width: 768px){
     .remove-border-right{
         max-width: 330px !important;
     }
@@ -243,9 +244,6 @@ export default {
         border: none;
         border-bottom: 1px solid #ececec !important;
     }
-    .hot img {
-        right: -1px;
-    }
     .cate-bottom-avt {
         display: block;
     }
@@ -253,7 +251,7 @@ export default {
         display: none;
     }
     .card-avatar {
-        padding-left: 9px;
+        padding-left: 20px;
     }
     .item-vip-a {
         overflow: hidden;

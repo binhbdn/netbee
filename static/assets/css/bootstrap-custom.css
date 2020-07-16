@@ -212,7 +212,7 @@
 }
 .border-netbee {
     border: 1px solid #FFB701 !important;
-    background-color: #fff !important;
+    background-color: #fff;
     color: #000 !important;
 }
 .border-netbee:hover {
