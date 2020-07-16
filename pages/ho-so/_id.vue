@@ -146,7 +146,7 @@
                                             </div>
                                             <div class="col-md-10">
                                                    <p class="main-text textarea" v-if="info_frofile_user.type == 1">Xuất khẩu lao động</p>     
-                                                   <p class="main-text textarea" v-if="info_frofile_user.type == 2">Du học sinh</p>     
+                                                   <p class="main-text textarea" v-if="info_frofile_user.type == 2">Du học</p>     
                                                    <p class="main-text textarea" v-if="info_frofile_user.type == 3">Tu nghiệp sinh</p>                                            
                                             </div>                            
                                         </div>                                             

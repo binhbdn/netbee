@@ -11,7 +11,7 @@
 	        </a>
 	        <a href="/tin-tuyen-sinh/tim-kiem?keyword=&type=2">
 	          <span class="badge border-netbee badge-sm" style="width: 100px">
-	            Du học sinh
+	            Du học
 	          </span>
 	        </a>
 	        <a href="/tin-tuyen-sinh/tim-kiem?keyword=&type=3">

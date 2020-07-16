@@ -19,7 +19,7 @@
                 </a>
                 <p class="delivery-date mb-0 cate-bottom-avt" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
                     <span class="badge border-netbee badge-sm" style="width: 100px">
-                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
+                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                     </span>
                 </p>
             </div>
@@ -52,18 +52,18 @@
                 </div>
                 <div class=" row" id="price">
                     <div class="col-md-7 col-12">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fad fa-dollar-sign"></i><label class="title">Chi phí: </label><span class="item-price" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fad fa-dollar-sign"></i> Chi phí: <span class="item-price" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     </div>
                     <div class="col-md-5 col-12">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
                             <span class="badge border-netbee badge-sm" style="width: 100px">
-                                {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
+                                {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                             </span>
                         </p>
                     </div>
                 </div>
                 <div class="bonus-block">
-                    <i class="m-0">TIỀN THƯỞNG</i>
+                    <i class="m-0">Tiền thưởng</i>
                     <h3 class="bonus">
                         <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                     </h3>
@@ -73,7 +73,7 @@
                 <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper mt-1">
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
-                        <i class="m-0">TIỀN THƯỞNG</i>
+                        <i class="m-0">Tiền thưởng</i>
                         <h3 class="bonus">
                             <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                         </h3>

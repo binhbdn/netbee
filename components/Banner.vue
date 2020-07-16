@@ -211,7 +211,7 @@ export default {
         money: ['$', 'VND', '€', '¥', '₩'],
         jobs: [
           {id: 1, name: 'Xuất khẩu lao động'},
-          {id: 2, name: 'Du học sinh'},
+          {id: 2, name: 'Du học'},
           {id: 3, name: 'Tu nghiệp sinh'}
         ],
         searchLevel: '',

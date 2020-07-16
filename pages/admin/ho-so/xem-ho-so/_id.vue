@@ -109,7 +109,7 @@
                                                     <select class="form-control" v-model="info_frofile_user.type">
                                                         <option disabled value="null">Chọn Hình thức</option>
                                                         <option value="1">Xuất khẩu lao động</option>
-                                                        <option value="2">Du học sinh</option>
+                                                        <option value="2">Du học</option>
                                                         <option value="3">Tu nghiệp sinh</option>
                                                     </select>    
                                                 </div>

@@ -27,7 +27,7 @@
                 <div class="item-quantity mb-1">
                     <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div> 
                     <a class="delivery-date mb-0 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
-                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
+                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                     </a>
                 </div>
             </div>

@@ -66,7 +66,7 @@
                                                                 <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><label class="title">Chi phí: </label> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</p>
                                                                 <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển">
                                                                     <span class="badge border-netbee badge-sm" style="width: 100px">
-                                                                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học sinh' : 'Tu nghiệp sinh' }}
+                                                                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                                                                     </span>
                                                                 </p>
                                                             </div>
@@ -128,7 +128,7 @@ export default {
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
-                {id: 2, name: 'Du học sinh'},
+                {id: 2, name: 'Du học'},
                 {id: 3, name: 'Tu nghiệp sinh'}
             ],
             jobs_saver: [],

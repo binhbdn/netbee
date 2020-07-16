@@ -165,7 +165,7 @@
                                                     </td>
                                                     <!-- <td style="white-space: nowrap;">
                                                         <span v-if="item.type == 1">Xuất khẩu lao động</span>
-                                                        <span v-if="item.type == 2">Du học sinh</span>
+                                                        <span v-if="item.type == 2">Du học nh</span>
                                                         <span v-if="item.type == 3">Tu nghiệp sinh</span>
                                                     </td>
                                                     <td style="white-space: nowrap;">
@@ -368,7 +368,7 @@ export default {
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
-                {id: 2, name: 'Du học sinh'},
+                {id: 2, name: 'Du học'},
                 {id: 3, name: 'Tu nghiệp sinh'}
             ],
             status: [
