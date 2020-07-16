@@ -161,7 +161,7 @@
                                                     </div>
                                                     <div class="col-3">  
                                                         <div class="form-group">
-                                                            <label for="firstName3">Yêu cầu CMND</label>
+                                                            <label for="firstName3">Chứng minh thu nhập</label>
                                                             <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>                                     
                                                     </div>
@@ -587,7 +587,7 @@ export default {
                 benefits:'',
                 request:'',
                 job_description:'',
-                request_cmnd:{id: 1, name: 'Để trống'}
+                request_cmnd:{id: 3, name: 'Không'}
             },
             checked: true,
             guarantee: [
