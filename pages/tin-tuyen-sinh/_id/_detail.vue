@@ -124,9 +124,9 @@
                                         <p v-else ><span class="font-weight-600">Cân nặng:</span> Đang cập nhật</p>
                                     </div>
                                     <div class="px-1">
-                                        <p v-if="tintuyendung.work_form == 1"><span class="font-weight-600">Chứng minh thu nhập:</span> Đang cập nhật</p>
-                                        <p v-else-if ="tintuyendung.work_form == 2"><span class="font-weight-600">Chứng minh thu nhập:</span> Có</p>
-                                        <p v-else-if ="tintuyendung.work_form == 3"><span class="font-weight-600">Chứng minh thu nhập:</span> Không</p>
+                                        <p v-if="tintuyendung.request_cmnd == 1"><span class="font-weight-600">Chứng minh thu nhập:</span> Đang cập nhật</p>
+                                        <p v-else-if ="tintuyendung.request_cmnd == 2"><span class="font-weight-600">Chứng minh thu nhập:</span> Có</p>
+                                        <p v-else-if ="tintuyendung.request_cmnd == 3"><span class="font-weight-600">Chứng minh thu nhập:</span> Không</p>
                                     </div>
                                     <div class="px-1" v-if="tintuyendung.type != 2">
                                         <p v-if="tintuyendung.work_form == 1"><span class="font-weight-600">Hình thức làm việc:</span> Toàn thời gian</p>
