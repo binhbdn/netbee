@@ -23,6 +23,11 @@
                             </ul>
                     </div>
                   <ul class="nav navbar-nav float-right">
+                      <li v-if="($auth.user.role == 3 || $auth.user.role == 1) && ($route.name == 'admin' || $route.name == 'admin-quan-ly-viec-lam-viec-lam-da-luu') " class="dropdown nav-item search-icon">
+                          <a class="nav-link" href="#" data-toggle="dropdown" @click="showSearch()">
+                             <i class="fa fa-search" style="font-size: 18px"></i>
+                          </a>
+                      </li>
                       <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
                           <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item" href="#" data-language="fr"><i class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="#" data-language="de"><i class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="#" data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
                       </li>
@@ -130,6 +135,9 @@ export default {
                 })
             }, 500)
         },
+        showSearch(){
+            this.$bus.$emit('showSearch');
+        }
     },
     mounted() {
         this.$axios.$get('getNotification?page='+this.page).then((response) => {
@@ -166,9 +174,17 @@ export default {
 .dropdown-notification .notification-title {
     color: #000 !important;
 }
+.search-icon{
+    display: none;
+}
 @media (max-width: 991px) and (min-width: 768px) {
     .bookmark-wrapper{
         margin-top: 11px;
+    }
+}
+@media (max-width: 767px){
+    .search-icon{
+        display: block;
     }
 }
 </style>

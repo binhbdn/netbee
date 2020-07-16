@@ -662,7 +662,8 @@ class TinTuyenService extends BaseService {
         $search = $data->search;
         $searchCompany = $data->searchCompany;
         $searchCategory = $data->searchCategory;
-        $searchStatus = $data->searchStatus;
+        // $searchStatus = $data->searchStatus;
+        $searchAddress = $data->searchAddress;
 
         if ($searchCompany != null) {
             $conditions[] = [
@@ -670,11 +671,18 @@ class TinTuyenService extends BaseService {
             ];
         }
 
-        if($searchStatus != null){
+        // if($searchStatus != null){
+        //     $conditions[] = [
+        //         'nb_joblists.status', '=', $searchStatus
+        //     ];
+        // }
+
+        if($searchAddress != null){
             $conditions[] = [
-                'nb_joblists.status', '=', $searchStatus
+                'nb_joblists.nation_id', '=', $searchAddress
             ];
         }
+        
 
         if($searchCategory != null){
             $conditions[] = [
@@ -711,7 +719,8 @@ class TinTuyenService extends BaseService {
         if ($search != '') {
             $query->where(function($q) use ($search){
                 $q->where('title', 'LIKE', '%'.$search.'%')
-                    ->orwhere('id','LIKE', '%'.$search.'%');
+                    ->orwhere('id','LIKE', '%'.$search.'%')
+                    ->orwhere('nb_company.username','LIKE', '%'.$search.'%');
             });
         }
         return $query->paginate($perPage);
