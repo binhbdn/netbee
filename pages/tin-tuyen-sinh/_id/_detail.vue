@@ -7,7 +7,7 @@
               <div class="card-content collapse show">
                 <div class="card-body">
                     <div class="row p-1">
-                        <div class="col-lg-2 d-flex align-items-center">
+                        <div class="col-lg-2 d-flex align-items-center justify-content-center">
                             <div class="avatar-company">
                                 <img v-lazy="`/uploads/users/avatars/${tintuyendung.user.avatar}`" :alt="`${tintuyendung.user.avatar}`" width="100%">
                             </div>

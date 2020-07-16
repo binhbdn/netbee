@@ -8,7 +8,7 @@
                         <div class="card-content collapse show">
                             <div class="card-body">
                                 <div class="row p-1">
-                                    <div class="col-lg-2 d-flex align-items-center">
+                                    <div class="col-lg-2 d-flex align-items-center justify-content-center">
                                         <div class="avatar-company">
                                             <img v-lazy="`/uploads/users/avatars/${tintuyendung.user.avatar}`" :alt="`${tintuyendung.user.avatar}`" width="100%">
                                         </div>
@@ -24,7 +24,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-3">
-                                        <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row " style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 40%">
+                                        <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row m-l-0 m-r-0" style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 6Danh sách hồ sơ ứng tuyển0%">
                                             <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                                 <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                             </div>
@@ -38,7 +38,7 @@
                                                 <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                             </div>
                                         </div>
-                                        <div id="social" v-else class="row " style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
+                                        <div id="social" v-else class="row m-l-0 m-r-0" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 60%">
                                             <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                                 <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                             </div>
@@ -53,16 +53,19 @@
                                             </div>
                                         </div>
                                         <div class="row m-t-10" id="send-hoso" style="border-radius: 3px;height: 40%">
-                                            <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
+                                            <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-6 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
                                                 <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                             </div> 
                                             <!-- <div v-if="$auth.loggedIn && $auth.user.role == 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" style="padding-left: 0px;padding-right: 0px;">                                    
                                                 <a  class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                                                                                                                          
                                             </div>     -->
-                                            <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding: 0;"  data-target="#ApplyModal">
+                                            <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-6 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#ApplyModal">
                                                 <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px; padding: 5px 0;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                             </div> 
-                                            <button v-if="$auth.loggedIn && $auth.user.role != 2" type="button" class="btn btn-primary btn-sm col-md-12" style="border-radius: 3px;" data-toggle="modal" data-target=".bd-example-modal-xl">Tải đơn hàng</button> 
+                                            <div class="col-sm-12 col-xl-6 d-flex justify-content-center align-items-center" >
+                                                <a v-if="$auth.loggedIn && $auth.user.role != 2" class="btn-netbee" style="border-radius: 3px; padding: 5px 0;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fad fa-arrow-alt-to-bottom fa-2x p-10"></i> <b>Tải đơn hàng</b></a>
+                                            </div> 
+                                            
                                             <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                                               <div class="modal-dialog modal-xl" role="document">
                                                 <div class="modal-content" style="padding: 15px;">
@@ -1192,7 +1195,7 @@ export default {
 
 @media only screen and (max-width: 600px) {
     #social {
-        height: 45% !important;
+        height: 33% !important;
     }
     #social >  div {
         width: 33%;
