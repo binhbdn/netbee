@@ -50,7 +50,8 @@ class NbJoblist extends Model
         'allowance',
         'benefits',
         'job_description',
-        'route'
+        'route',
+        'request_cmnd'
     ];
 
     public function Apply()

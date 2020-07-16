@@ -122,7 +122,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-3">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Số lượng tuyển</label>
@@ -130,6 +130,12 @@
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-3">  
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Yêu cầu CMND</label>
+                                                            <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
+                                                        </div>                                     
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
@@ -234,7 +240,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content title="Hoàn thành">
+                                        <tab-content title="Tiền thưởng">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -278,6 +284,12 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
+                                                </div>
+                                            </ValidationObserver>
+                                        </tab-content>
+                                        <tab-content title="Hoàn thành">
+                                            <ValidationObserver ref="step5" v-slot="{ valid5 }">
+                                                <div class="row">
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi2">
                                                         <div class="card border-netbee text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
@@ -350,7 +362,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12" style="padding-left: 3px;">
                             <div class="card text-center">
-                                <div class="card-content">
+                                <div class="card-content" style="background-color: #FFB701 !important;">
                                     <div class="card-body p-2">
                                         <div class="text-center">
                                             <img src="../../../../static/assets/img/logo.png" width="70px">
@@ -358,9 +370,9 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                         </div>
                                         <div style="text-align: left;">
                                             <p>1. Tạo tin tuyển dụng</p>
-                                            <p>2. Chờ admin xét duyệt tin(Thông báo qua email)</p>
-                                            <p>3. Nhận hồ sơ giới thiệu từ chuyên viên tuyển sinh(Thông báo khi có lượt ứng tuyển)</p>
-                                            <p>4. Xét duyệt hồ sơ và book lịch phỏng vấn(Lượt ứng tuyển chỉ trong trạng thái chờ tối đa 3 ngày)</p>
+                                            <p>2. Chờ admin xét duyệt tin (Thông báo qua email)</p>
+                                            <p>3. Nhận hồ sơ giới thiệu từ chuyên viên tuyển sinh (Thông báo khi có lượt ứng tuyển)</p>
+                                            <p>4. Xét duyệt hồ sơ và book lịch phỏng vấn (Lượt ứng tuyển chỉ trong trạng thái chờ tối đa 3 ngày)</p>
                                             <p>5. Xác nhận thanh toán phần bonus giới thiệu cho Chuyên viên tuyển sinh</p>
                                         </div>
                                     </div>
@@ -480,7 +492,8 @@ export default {
                 allowance:'',
                 benefits:'',
                 request:'',
-                route:''
+                route:'',
+                request_cmnd:{id: 1, name: 'Để trống'}
             },
             checked: true,
             guarantee: [
@@ -508,6 +521,11 @@ export default {
                 {id: 2, name: '/ 6 Tháng'},
                 {id: 3, name: '/ 1 Tháng'},
                 {id: 4, name: '/ 1 Kỳ'}
+            ],
+            cmndEx: [
+                {id: 1, name: 'Để trống'},
+                {id: 2, name: 'Có'},
+                {id: 3, name: 'Không'}
             ]
         }
     },
@@ -570,7 +588,7 @@ export default {
 
         async onComplete() {
             console.log(this.data.salary_status.id)
-            let isValid = await this.$refs.step4.validate();
+            let isValid = await this.$refs.step5.validate();
             var form = new FormData();
             if(isValid){
                 if(this.data.company != null)
@@ -624,6 +642,7 @@ export default {
                 form.append('request' , this.data.request)
                 form.append('route' , this.data.route)
                 form.append('salary_status' , this.data.salary_status.id)
+                form.append('request_cmnd' , this.data.request_cmnd.id)
                 this.$axios.post('tintuyendung/createTinTuyen',form)
                 .then(response => {
                     if(response.data.status == 200) {
