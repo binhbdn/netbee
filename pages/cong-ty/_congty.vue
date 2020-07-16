@@ -65,7 +65,7 @@
       </section>
       <section v-if="detailCompany != null">
         <div class="row">
-          <div class="col-lg-8 col-12 p-r-0">
+          <div class="col-lg-8 col-12">
             <div class="card">
               <div class="card-content collapse show">
                 <div class="card-body">
@@ -114,11 +114,11 @@
                 </div>
               </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                <h3 class="card-title">
-                    Đơn hàng đang tuyển
-                </h3>
+            <div class="card card-jobs">
+                <!-- <div class="card-header">
+                    <div class="card-job">
+                        <h5>Đơn hàng đang tuyển</h5>
+                    </div>
                 </div>
                 <div class="card-content collapse show">
                 <div class="card-body">
@@ -133,73 +133,88 @@
                     <div slot="no-results" style="font-size:15px; font-style: italic"></div>
                 </infinite-loading>
                 </div>
+                    <div class="card-body">
+                        <JobsList1Col :DataList="arrayForCompany"></JobsList1Col>
+                    </div>
+                </div> -->
+                <nav class='pl-1 pt-1'>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><h5 class="font-weight-600">ĐƠN HÀNG ĐANG TUYỂN</h5></a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><h5 class="font-weight-600">Ý KIẾN ĐÁNH GIÁ</h5></a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <JobsList1Col :DataList="arrayForCompany"></JobsList1Col>
+                                <infinite-loading
+                                    v-if="arrayForCompany.length"
+                                    spinner="bubbles"    
+                                    ref="infiniteLoading" 
+                                    @infinite="infiniteScroll" style=" width:100%"
+                                >        
+                                    <div slot="no-more" style="font-size:15px; font-style: italic;display: none;"></div>    
+                                    <div slot="no-results" style="font-size:15px; font-style: italic"></div>
+                                </infinite-loading>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade pl-1 pr-1" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
+                            <div class="title-rating d-flex justify-content-between">
+                                <div class="name-rating">{{item.name_feed}}</div>
+                                <div class="date-rating">{{ (item.created_at) }}</div>
+                            </div>
+                            <div class="content-rating d-flex justify-content-start">
+                                <div class="img-coment">
+                                    <img v-lazy="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`">
+                                </div>
+                                <div class="text-content ml-1">
+                                    <div class="view-more">  
+                                        <p class="style-loadmore" data-toggle="tooltip" data-placement="top" data-trigger="hover" :data-original-title="item.content_feed">{{item.content_feed}}</p>
+                                        <!-- <p><a @click="loadMore()">Xem thêm</a></p> -->
+                                    </div>
+                                    <div class="rating d-flex justify-content-start">
+                                        <div class="font-weight-400"><span class="font-weight-600">Đánh giá:</span></div>
+                                        <div class="pl-1">
+                                            <span class="fa fa-star" :class="item.rate_feed > 0 ? 'checked' : ''"></span>
+                                            <span class="fa fa-star" :class="item.rate_feed > 1 ? 'checked' : ''"></span>
+                                            <span class="fa fa-star" :class="item.rate_feed > 2 ? 'checked' : ''"></span>
+                                            <span class="fa fa-star" :class="item.rate_feed > 3 ? 'checked' : ''"></span>
+                                            <span class="fa fa-star" :class="item.rate_feed > 4 ? 'checked' : ''"></span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="view-more pt-1" v-else>
+                                        <p :style="styleCollapse">{{item.content_feed}}</p>
+                                        <p><a @click="collapse()">Thu gọn</a></p>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <hr>
+                        </div>                                       
+                    </div>
                 </div>
             </div>
           </div>
           <div class="col-lg-4 col-12" v-if="detailCompany != null">
-              <div class="card p-1">
-                <div class="card-header pl-0">
-                <h3 class="card-title">
-                    Đánh giá tổng thể
-                </h3>
-                <div class="star-rating pt-1">
-                      <star-rating 
-                      :rating="detailCompany.rate" 
-                      :increment="0.1"
-                      :star-size="30"
-                      :read-only="true"
-                      ></star-rating>
-                    </div>
+
+            <div class="card card-comment p-1">
+                <div class="card-header pl-0 d-flex justify-content-center">
+                    <h5>
+                        Hãy chia sẻ ý kiến của bạn
+                    </h5>
                 </div>
-                <hr>
-                <div class="view-more">
-                    <a data-toggle="modal" :data-target="detailCompany.company_feedback.length >3 ? '#modal_feedback' : '#modal_no_feedback'">Xem tất cả đánh giá</a>
-                </div>
-            </div>
-            <div class="card p-1">
-                <div class="card-header pl-0">
-                    <h2 class="w-100">
-                        Nhận xét
-                    </h2>
+                <div class="sub-text">
+                    Đánh giá <span>{{detailCompany.name}}</span> ngay!
                 </div>
                 <br>
-                <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
-                <div class="row">
-                    <div class="col-4">
-                        <img v-lazy="item.avatar_feed != null && item.avatar_feed.startsWith('https') ? item.avatar_feed : `/uploads/users/avatars/${item.avatar_feed}`"
-                        style="height:80px; width:80px; padding-top: 1px; padding-left: 20px; object-fit: cover; border-radius: 50%;">
-                        
-                    </div>
-                    <div class="col-8">
-                    <div class="star-rating">
-                      <star-rating 
-                      :rating="item.rate_feed" 
-                      :increment="0.1"
-                      :star-size="25"
-                      :read-only="true"
-                      ></star-rating>
-                    </div>
-                    <h6 class="text-left pt-1 pl-0">{{item.name_feed}} _ {{ ConvertDate(item.created_at) }}</h6>
-                </div>
-                <hr>
-                </div>
-                <div class="row pl-2">
-                    <div class="view-more pt-1" >
-                        <p class="style-loadmore" data-toggle="tooltip" data-placement="top" data-trigger="hover" :data-original-title="item.content_feed">{{item.content_feed}}</p>
-                        <!-- <p><a @click="loadMore()">Xem thêm</a></p> -->
-                    </div>
-                    <!-- <div class="view-more pt-1" v-else>
-                        <p :style="styleCollapse">{{item.content_feed}}</p>
-                        <p><a @click="collapse()">Thu gọn</a></p>
-                    </div> -->
-                </div>
-                <hr>
-                </div>
                 <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
                     <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
                 </div>
                 <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
-                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết đánh giá</a>
+                    <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Thêm đánh giá</a>
                 </div>
             </div>
           </div>
@@ -240,10 +255,9 @@
                             >
                             <div class="__email">
                                 <div style="text-align:right">
-                                    <i  class="showpass">
+                                    <i class="showpass">
                                         <i @click="showPassword()" :class="show ?'fa fa-eye':'fas fa-eye-slash'"></i>
                                     </i>
-                                    
                                 </div>
                                 <fieldset class="form-label-group position-relative has-icon-left mb-0">
                                     <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom:0px !important; margin-top:2px">
@@ -799,6 +813,7 @@ export default {
         async getRating() {
             const id_company = await this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
                 this.detailCompany = response.data;
+                console.log('Company info: ', this.detailCompany);
                 this.id_company = this.detailCompany.nb_company.company_id;
                 this.name_company = this.detailCompany.nb_company.username;
             });
@@ -1049,6 +1064,67 @@ export default {
 }
 .rating .checked {
   color: orange;
+}
+.card-job {
+    padding: 10px 0 0 14px;
+    margin: 0;
+}
+.card-job h5{
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0px;
+}
+.card-header {
+    padding: 0;
+}
+.title-rating {
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+.date-rating {
+    color: #757575;
+}
+.img-coment img{
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+}
+.img-coment {
+    text-align: left;
+}
+.content-rating {
+    
+}
+.content-rating .text-content {
+    background-color: #d2d6de;
+    width: 100%;
+    padding-left: 20px;
+    border-radius: 5px;
+}
+.content-rating .text-content p {
+    margin-bottom: 5px;
+}
+.text-content {
+    padding: 10px 0px 5px 0px;
+}
+.title-rating .name-rating {
+    font-weight: 600;
+}
+.card-jobs .nav-item {
+    padding: 10px 10px 0px 10px;
+}
+.card-jobs .nav-item h5:hover {
+    color: #ffb701;
+}
+.card-comment h5{
+    font-weight: 700;
+    font-size: 24px;
+}
+.sub-text {
+    text-align: center;
+}
+.sub-text span{
+    font-weight: 700;
 }
 
 
