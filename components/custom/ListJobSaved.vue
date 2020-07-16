@@ -2,15 +2,15 @@
     <div>
         <div class="content-wrapper">
             <!-- tìm kiếm -->
-            <div class="card">
+            <div class="card" id="card">
                 <div class="card-header">
                     <h4 class="card-title">Tìm kiếm</h4>
-                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <!-- <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a> -->
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
                             <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
                             <li><a data-action=""><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
-                            <li><a data-action="close"><i class="feather icon-x"></i></a></li>
+                            <li><a @click="closeSearch()"><i class="feather icon-x"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -19,10 +19,10 @@
                         <div class="users-list-filter">
                             <form>
                                 <div class="row">
-                                    <div class="col-12 col-sm-6 col-lg-3">
+                                    <div class="col-12 col-sm-6 col-lg-4">
                                         <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                     </div>
-                                    <div class="col-12 col-sm-6 col-lg-3">
+                                    <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
                                             <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
                                         </fieldset>
@@ -142,6 +142,11 @@ export default {
     created() {
         this.getJob();
     },
+    created(){
+        this.$bus.$on('showSearch', () => {
+            document.getElementById('card').style.display = 'block';
+        })
+    },
     methods:{
         getJob(){
             this.$axios.get("/quanlyvieclam/getSaveBySaver")
@@ -204,6 +209,9 @@ export default {
                 });
             }, 500);
         },
+        closeSearch(){
+            document.getElementById('card').style.display = 'none';
+        },
     },
 }
 </script>
@@ -230,5 +238,26 @@ export default {
 }
 .item-price .title {
     font-size: 14px;
+}
+.showSearch{
+    position: fixed;
+    top: 10px;
+    right: 100px;
+}
+.list-inline{
+    display: block;
+}
+@media (max-width: 767px){
+    .card{
+        display: none;
+    }
+}
+@media (max-width: 575px){
+    #filter-text-box{
+        margin-bottom: 20px;
+    }
+    .content-wrapper{
+        padding: 0 0 15px 0!important;
+    }
 }
 </style>

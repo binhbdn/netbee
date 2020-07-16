@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class=" row" id="price">
-                    <div class="col-md-7 col-12">
+                    <div class="col-md-7 col-12 pr-0">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fad fa-dollar-sign"></i> Chi phí: <span class="item-price" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     </div>
                     <div class="col-md-5 col-12">
@@ -156,13 +156,18 @@ export default {
 
 @media(max-width: 1199px){
     .remove-border-right{
-        width: auto !important;
+        max-width: 550px !important;
     }
     .item-options{
         padding: 1rem 0;
     }
     .bonus{
         font-size: 1rem;
+    }
+}
+@media(max-width: 991px){
+    .remove-border-right{
+        max-width: 330px !important;
     }
 }
 
