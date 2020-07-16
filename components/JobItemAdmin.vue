@@ -46,7 +46,7 @@
                     <div class="col-md-7 col-12">
                         <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
                     </div>
-                    <div class="col-md-5 col-12">
+                    <div class="col-md-5 col-12" id="date-deline">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                     </div>
                 </div>
@@ -238,6 +238,9 @@ export default {
     }
     p {
         font-size: 13px;
+    }
+    #date-deline {
+        display: none;
     }
 }
 </style>
