@@ -623,7 +623,7 @@ export default {
                 form.append('type' , 2)
                 form.append('height' , this.data.height)
                 form.append('weight' , this.data.weight)
-                form.append('academicLevel' , this.data.academicLevel)
+                form.append('academicLevel' , this.data.academicLevel.id)
                 if(this.data.insurrance == true){
                     form.append('insurrance' , 1)
                 }else {
