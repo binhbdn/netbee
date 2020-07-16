@@ -51,11 +51,11 @@
                     <p style="text-indent: 30px;">
                         Chúng tôi có thể dùng thông tin thu thập được để thông báo cho bạn về những sản phẩm và dịch vụ do Website Netbee.vn hay các công ty đối tác cung cấp, hoặc để xin ý kiến của bạn về các sản phẩm và dịch vụ hiện tại hay những sản phẩm và dịch vụ tiềm năng mới.</p>
                     <p style="text-indent: 30px;">
-                        Chúng tôi có thể tiết lộ thông tin nếu có yêu cầu pháp lý, hay từ một cơ quan chính phủ hoặc nếu chúng tôi tin rằng hành động đó là cần thiết nhằm: <br/>
-                        a. Tuân theo các yêu cầu pháp lý hoặc chiếu theo quy trình của luật pháp.<br/>
-                        b. Bảo vệ các quyền hay tài sản của Hachinet Việt Nam, hoặc các công ty đối tác.<br/>
-                        c. Ngăn chặn tội phạm hoặc bảo vệ an ninh quốc gia.<br/>
-                        d. Bảo vệ an toàn cá nhân của những người sử dụng hay công chúng.</p>
+                        Chúng tôi có thể tiết lộ thông tin nếu có yêu cầu pháp lý, hay từ một cơ quan chính phủ hoặc nếu chúng tôi tin rằng hành động đó là cần thiết nhằm: </p>
+                        	<p style="margin: 0; margin-left: 5em;">a. Tuân theo các yêu cầu pháp lý hoặc chiếu theo quy trình của luật pháp.</p>
+                        	<p style="margin: 0; margin-left: 5em;">b. Bảo vệ các quyền hay tài sản của Hachinet Việt Nam, hoặc các công ty đối tác.</p>
+                        	<p style="margin: 0; margin-left: 5em;">c. Ngăn chặn tội phạm hoặc bảo vệ an ninh quốc gia.</p>
+                        	<p style="margin: 0; margin-left: 5em;">d. Bảo vệ an toàn cá nhân của những người sử dụng hay công chúng.</p><br>
                     <p style="text-indent: 30px;">
                        Netbee.vn có thể dùng tên bạn, tên hay logo của công ty bạn, hay thông tin khác về tài khoản cho tất cả các mục đích tiếp thị của Công ty Cổ phần thương mại giải pháp Hachinet Việt Nam. Ví dụ, các tên hay logo công ty có thể được dùng trong quảng cáo trên báo, thư gửi trực tiếp, phương tiện bán hàng, áp phích quảng cáo, video và các tài liệu khác liên quan đến Website Netbee.vn hay các tài sản khác của Công ty Cổ phần thương mại và giải pháp Hachinet Việt Nam.</p>
                     <p style="text-indent: 30px;" id="tc-cn">

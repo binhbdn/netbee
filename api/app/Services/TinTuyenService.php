@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Jobs\SendMailJobQueue;
 use App\Models\NbJoblist;
+use App\Models\NbSettingBonus;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -13,17 +14,22 @@ class TinTuyenService extends BaseService {
 
     protected $nbJobList;
     protected $user;
-    public function __construct(NbJoblist $nbJobList, User $user)
+    protected $nbSettingBonus;
+    public function __construct(NbJoblist $nbJobList, User $user, NbSettingBonus  $nbSettingBonus)
     {
         $this->nbJobList = $nbJobList;
         $this->user = $user;
+        $this->nbSettingBonus = $nbSettingBonus;
     }
 
     public function getJobById($id)
     {
         return $this->nbJobList->whereId($id);
     }
-
+    public function getSettingBonus()
+    {
+        return $this->nbSettingBonus->where('id',1)->first();
+    }
     public function update($data, $id)
     {
         return $this->getJobById($id)->update($data);

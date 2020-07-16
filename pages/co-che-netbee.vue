@@ -30,14 +30,14 @@
 						<p>Email: contact@netbee.vn.</p>
 					</p>
 
-                    <p>
+                    <p style="text-indent: 30px;">
                         Netbee.vn tôn trọng và nghiêm túc thực hiện các quy định của pháp luật về bảo vệ quyền lợi của ứng viên. Vì vậy, đề nghị các thành viên đăng tin tuyển dụng trên Website cung cấp đầy đủ, chính xác, trung thực và chi tiết các thông tin liên quan đến nội dung công việc. Mọi hành vi lừa đảo, gian lận đều bị lên án và chịu hoàn toàn trách nhiệm trước pháp luật.</p>
-                    <p>
+                    <p style="text-indent: 30px;">
                         Các bên bao gồm ứng viên, người tuyển dụng sẽ phải có vai trò trách nhiệm trong việc tích cực giải quyết vấn đề. Đối với người tuyển dụng cần có trách nhiệm cung cấp văn bản giấy tờ chứng thực thông tin liên quan đến sự việc đang gây mâu thuẫn với người tìm việc. Bên <a href="https://netbee.vn/">Netbee.vn</a> sẽ có trách nhiệm cung cấp những thông tin liên quan đến ứng viên và người tuyển dụng nếu được một trong hai bên(liên quan đến tranh chấp đó) yêu cầu.</p>
-                    <p>
+                    <p style="text-indent: 30px;">
                         Sau khi ứng viên, người tuyển dụng đã giải quyết xong tranh chấp phải có trách nhiệm báo lại cho ban quản trị <a href="https://netbee.vn/">Netbee.vn</a>. Trong trường hợp giao dịch phát sinh mâu thuẫn mà lỗi thuộc về bên tuyển dụng Netbee.vn sẽ có biện pháp cảnh cáo, khóa tài khoản hoặc chuyển cho cơ quan pháp luật có thẩm quyền tùy theo mức độ của sai phạm.</p>
-                    <p>
-                        Netbee.vn sẽ chấm dứt và gỡ bỏ toàn bộ tin bài về nội dung công việc của người tuyển dụng đó trên <a href="https://netbee.vn/">Netbee.vn</a>. Nếu thông qua hình thức thỏa thuận mà vẫn không giải quyết được mâu thuẫn phát sinh từ giao dịch giữa 2 bên ứng viên, nhà tuyển dụng thì một trong hai bên sẽ có quyền nhờ đến cơ quan pháp luật có thẩm quyền can thiệp nhằm đảm bảo lợi ích hợp pháp của các bên </p>
+                    <p style="text-indent: 30px;">
+                        Netbee.vn sẽ chấm dứt và gỡ bỏ toàn bộ tin bài về nội dung công việc của người tuyển dụng đó trên <a href="https://netbee.vn/">Netbee.vn</a>. Nếu thông qua hình thức thỏa thuận mà vẫn không giải quyết được mâu thuẫn phát sinh từ giao dịch giữa 2 bên ứng viên, nhà tuyển dụng thì một trong hai bên sẽ có quyền nhờ đến cơ quan pháp luật có thẩm quyền can thiệp nhằm đảm bảo lợi ích hợp pháp của các bên. </p>
                    
                     <br>
                     <div class="col-md-5 align-self-end" style="float: right; text-align: center;">

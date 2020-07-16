@@ -81,7 +81,11 @@ class TinTuyenController extends Controller
         $response = $this->tinTuyenService->searchJob($request);
         return response()->json($response);
     }
-
+    public function getSettingBonus()
+    {
+        $response = $this->tinTuyenService->getSettingBonus();
+        return response()->json($response);
+    }
     public function listcompany()
     {
         $response = $this->tinTuyenService->listcompany();
