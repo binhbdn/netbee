@@ -317,76 +317,83 @@
             <div class="modal-dialog modal-dialog-centered " role="document">
                 <div class="modal-content">
                     <div class="col-md-12 col-lg-12 formlogin form-control" >
-                    <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP ỨNG VIÊN</h2>
-                    <p class="text-center" style="margin-bottom:20px; font-size: 16px; "><a class="hover" :href="`../../dang-ky/ung-vien`">Đăng ký tài khoản mới!</a>
-                    </p>
-                    <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px;padding-left: 20px;padding-right: 20px;">
-                        <ValidationObserver ref="observer" v-slot="{ valid }">
-                            <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
-                                <div class="__email">
-                                    <fieldset class="form-label-group form-group position-relative has-icon-left mb-0" style="max-height: 60px;">
-                                        <input type="text" class="form-control mb-0" id="email" placeholder="Email" v-model="userForm.email" style="margin-bottom:37px !important; margin-top:2px">
-                                        <div class="form-control-position">
-                                            <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important;padding-top: 13px;"></i>
+                        <div class="modal-header">
+                            <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP ỨNG VIÊN</h2>
+                            <button type="button" class="close ma-0" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" class="text-dark">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-center" style="margin-bottom:20px; font-size: 16px; ">
+                                <a class="hover" :href="`../../dang-ky/ung-vien`">Đăng ký tài khoản mới!</a>
+                            </p>
+                            <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative;">
+                                <ValidationObserver ref="observer" v-slot="{ valid }">
+                                    <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
+                                        <div class="__email">
+                                            <fieldset class="form-label-group form-group position-relative has-icon-left mb-0" style="max-height: 60px;">
+                                                <input type="text" class="form-control mb-0" id="email" placeholder="Email" v-model="userForm.email" style="margin-bottom:37px !important; margin-top:2px">
+                                                <div class="form-control-position">
+                                                    <i class="far fa-envelope" style="color: rgba(34, 41, 47, 0.4)!important;padding-top: 13px;"></i>
+                                                </div>
+                                                <label for="email">Email</label>
+                                                <ul style="color:red" class="overline text-left">
+                                                <li v-for="(error, index) in errors" :key="index">
+                                                <span style="left:2px; position:absolute;top:53%!important; font-size:13px"><i>{{ error }}</i></span>
+                                                </li>
+                                            </ul>
+                                            </fieldset>
                                         </div>
-                                        <label for="email">Email</label>
-                                        <ul style="color:red" class="overline text-left">
-                                        <li v-for="(error, index) in errors" :key="index">
-                                        <span style="left:2px; position:absolute;top:42%!important; font-size:13px"><i>{{ error }}</i></span>
-                                        </li>
-                                    </ul>
-                                    </fieldset>
-                                </div>
-                            </ValidationProvider>
-                        <div style="position: relative">
-                            <ValidationProvider
-                                name="Mật khẩu"
-                                ref="password"
-                                rules="required|customPassword"
-                                v-slot="{ errors }"
-                            >
-                            <div class="__email">
-                                <div style="text-align:right">
-                                    <i  class="showpass">
-                                        <i @click="showPassword()" :class="show ?'fa fa-eye':'fas fa-eye-slash'"></i>
-                                    </i>
-                                    
-                                </div>
-                                <fieldset class="form-label-group position-relative has-icon-left mb-0">
-                                    <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom:0px !important; margin-top:2px">
-                                    <div class="form-control-position">
-                                        <i class="fad fa-key" style="color: rgba(34, 41, 47, 0.4)!important;padding-top: 13px;"></i>
+                                    </ValidationProvider>
+                                    <div style="position: relative" class="password">
+                                        <ValidationProvider
+                                            name="Mật khẩu"
+                                            ref="password"
+                                            rules="required|customPassword"
+                                            v-slot="{ errors }">
+                                        <div class="__email">
+                                            <div style="text-align:right">
+                                                <i  class="showpass">
+                                                    <i @click="showPassword()" :class="show ?'fa fa-eye':'fas fa-eye-slash'"></i>
+                                                </i>
+                                                
+                                            </div>
+                                            <fieldset class="form-label-group position-relative has-icon-left mb-0">
+                                                <input class="form-control mb-0" id="password" :type="show ? 'password' : 'text'" placeholder="Mật khẩu" v-model="userForm.password" style="margin-bottom:0px !important; margin-top:2px">
+                                                <div class="form-control-position">
+                                                    <i class="fad fa-key" style="color: rgba(34, 41, 47, 0.4)!important;padding-top: 13px;"></i>
+                                                </div>
+                                                <label for="password">Mật khẩu</label>
+                                                <ul style="color:red" class="overline text-left">
+                                                    <li v-for="(error, index) in errors" :key="index">
+                                                    <span style="top: 53%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
+                                                    </li>
+                                                </ul>
+                                                <p class="text-right mb-0 remember"><a href="/quen-mat-khau" class="hover" style="font-size: 15px;color:black!important;">Quên mật khẩu?</a></p>
+                                            </fieldset>
+                                        </div>
+                                        </ValidationProvider>
+                                        <div class="lopgin-c" style="padding-top:10px">
+                                            <button @click="login()" id="submit" class="submit btn" style="height:100%; line-height: unset; padding:10px!important">ĐĂNG NHẬP</button>
+                                        </div>
+                                        <div class="or-box">
+                                            <hr>
+                                            <span>Hoặc</span>
+                                        </div>
+                                        <div class="lopgin-c" style="position:relative">
+                                            <i class="fab fa-facebook login-facebook" style="position: absolute; left: 100px; top: 8px; color: white; font-size: 18px; z-index:5"></i>
+                                            <a @click="loginfb()" class="btn btn-outline-info fb" style="padding: 10px!important" > Đăng nhập bằng
+                                                Facebook</a> &nbsp;&nbsp;
+                                        </div>
+                                        <div class="lopgin-c" style="position:relative">
+                                            <img class="login-google" src="../../../static/assets/img/logo-google.png" style="height:15px;position: absolute; left: 100px; top: 11px; color: blue; font-size: 18px;">
+                                            <a @click="logingg()" class="btn btn-outline-info gg" style="padding: 10px!important">Đăng nhập bằng Google</a>
+                                        </div>
                                     </div>
-                                    <label for="password">Mật khẩu</label>
-                                    <ul style="color:red" class="overline text-left">
-                                        <li v-for="(error, index) in errors" :key="index">
-                                        <span style="top: 53%!important;left: 0px; font-size:15px;"><i>{{ error }}</i></span>
-                                        </li>
-                                    </ul>
-                                    <p class="text-right mb-0"><a href="/quen-mat-khau" class="remember hover" style="font-size: 15px;color:black!important;">Quên mật khẩu?</a></p>
-                                </fieldset>
-                            </div>
-                            </ValidationProvider>
-                            <div class="lopgin-c" style="padding-top:10px">
-                                <button @click="login()" id="submit" class="submit btn" style="height:100%; line-height: unset; padding:10px!important">ĐĂNG NHẬP</button>
-                            </div>
-                            <div class="or-box">
-                                <hr>
-                                <span>Hoặc</span>
-                            </div>
-                            <div class="lopgin-c" style="position:relative">
-                                <i class="fab fa-facebook" style="position: absolute; left: 106px; top: 8px; color: white; font-size: 18px; z-index:5"></i>
-                                <a @click="loginfb()" class="btn btn-outline-info fb" style="padding: 10px!important" > Đăng nhập bằng
-                                    Facebook</a> &nbsp;&nbsp;
-                            </div>
-                            <div class="lopgin-c" style="position:relative">
-                                <img src="../../../static/assets/img/logo-google.png" style="height:15px;position: absolute; left: 106px; top: 11px; color: blue; font-size: 18px;">
-                                <a @click="logingg()" class="btn btn-outline-info gg" style="padding: 10px!important">Đăng nhập bằng Google</a>
+                                </ValidationObserver>
                             </div>
                         </div>
-                        </ValidationObserver>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -988,6 +995,48 @@ export default {
 }
 .modal .form-control {
     font-size: 14px;
+}
+.modal .formlogin{
+    padding: 0;
+}
+.password{
+    padding-top: 20px
+}
+.showpass{
+    margin-top: 20px
+}
+.input-login{
+    padding: 0 20px 20px 20px;
+}
+@media (max-width: 767px){
+    .formlogin{
+        height: auto;
+    }
+    .remember{
+        padding-top: 20px;
+    }
+    .login-facebook, .login-google{
+        left: 10% !important;
+    }
+}
+@media (max-width: 379px){
+    .login-facebook, .login-google{
+        left: 5% !important;
+    }
+    .modal-header h2{
+        font-size: 1.25rem;
+    }
+    .input-login{
+        padding: 0 5px 5px 5px;
+    }
+}
+@media (max-width: 359px){
+    .password{
+        padding-top: 35px;
+    }
+    .showpass{
+        margin-top: 35px;
+    }
 }
 
 @media only screen and (max-width: 600px) {
