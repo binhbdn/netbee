@@ -96,6 +96,7 @@
                                         
                                         
                                         <p><span class="font-weight-600">Số lượng:</span> {{ tintuyendung.quantity }}</p>
+                                        <p><span class="font-weight-600">Thời gian hợp đồng:</span> {{ tintuyendung.time_contract }} Năm</p>
                                     </div>
                                 </div>
                             </div>
@@ -121,6 +122,11 @@
                                     <div class="px-1" v-if="tintuyendung.type != 2">
                                         <p v-if="tintuyendung.weight"><span class="font-weight-600">Cân nặng:</span> {{tintuyendung.weight}} kg</p>
                                         <p v-else ><span class="font-weight-600">Cân nặng:</span> Đang cập nhật</p>
+                                    </div>
+                                    <div class="px-1">
+                                        <p v-if="tintuyendung.work_form == 1"><span class="font-weight-600">Yêu cầu CMND:</span> Đang cập nhật</p>
+                                        <p v-else-if ="tintuyendung.work_form == 2"><span class="font-weight-600">Yêu cầu CMND:</span> Có</p>
+                                        <p v-else-if ="tintuyendung.work_form == 3"><span class="font-weight-600">Yêu cầu CMND:</span> Không</p>
                                     </div>
                                     <div class="px-1" v-if="tintuyendung.type != 2">
                                         <p v-if="tintuyendung.work_form == 1"><span class="font-weight-600">Hình thức làm việc:</span> Toàn thời gian</p>

@@ -160,7 +160,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-3">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -170,6 +170,12 @@
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
+                                                    </div>
+                                                    <div class="col-3">  
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Yêu cầu CMND</label>
+                                                            <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
+                                                        </div>                                     
                                                     </div>
                                                     <div class="col-12" v-if="data.type != 2">
                                                         <div class="form-group">
@@ -352,7 +358,7 @@
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content title="Hoàn thành">
+                                        <tab-content title="Tiền thưởng">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
                                                     <div class="col-12">
@@ -393,6 +399,12 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
+                                                </div>
+                                            </ValidationObserver>
+                                        </tab-content>
+                                        <tab-content title="Hoàn thành">
+                                            <ValidationObserver ref="step5" v-slot="{ valid5 }">
+                                                <div class="row">
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi2">
                                                         <div class="card border-netbee text-center bg-transparent" style="height: 100%">
                                                             <div class="card-content">
@@ -465,22 +477,17 @@
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="card text-center">
-                                <div class="card-content">
+                                <div class="card-content" style="background-color: #FFB701 !important;">
                                     <div class="card-body p-2">
-                                        <div class="avatar bg-rgba-info p-50 m-0 mb-1">
-                                            <div class="avatar-content">
-                                                <i class="feather icon-heart text-info font-medium-5"></i>
-                                            </div>
-                                        </div>
                                         <div class="text-center">
-                                            <img src="" width="70px">
+                                            <img src="../../../../static/assets/img/logo.png" width="70px">
                                             <p class="__title">Quy trình tuyển dụng tại Netbee</p>
                                         </div>
                                         <div style="text-align: left;">
                                             <p>1. Tạo tin tuyển dụng</p>
-                                            <p>2. Chờ admin xét duyệt tin(Thông báo qua email)</p>
-                                            <p>3. Nhận hồ sơ giới thiệu từ chuyên viên tuyển sinh(Thông báo khi có lượt ứng tuyển)</p>
-                                            <p>4. Xét duyệt hồ sơ và book lịch phỏng vấn(Lượt ứng tuyển chỉ trong trạng thái chờ tối đa 3 ngày)</p>
+                                            <p>2. Chờ admin xét duyệt tin (Thông báo qua email)</p>
+                                            <p>3. Nhận hồ sơ giới thiệu từ chuyên viên tuyển sinh (Thông báo khi có lượt ứng tuyển)</p>
+                                            <p>4. Xét duyệt hồ sơ và book lịch phỏng vấn (Lượt ứng tuyển chỉ trong trạng thái chờ tối đa 3 ngày)</p>
                                             <p>5. Xác nhận thanh toán phần bonus giới thiệu cho Chuyên viên tuyển sinh</p>
                                         </div>
                                     </div>
@@ -605,7 +612,8 @@ export default {
                 request:'',
                 job_description:'',
                 time_contract:'',
-                route:''
+                route:'',
+                request_cmnd:{id: 1, name: 'Để trống'}
             },
             checked: false,
             guarantee: [
@@ -638,7 +646,12 @@ export default {
                 {id: 2, name: '/ 6 Tháng'},
                 {id: 3, name: '/ 1 Tháng'},
                 {id: 4, name: '/ 1 Kỳ'}
-            ]
+            ],
+            cmndEx: [
+                {id: 1, name: 'Để trống'},
+                {id: 2, name: 'Có'},
+                {id: 3, name: 'Không'}
+            ],
         }
     },
     components:{
@@ -708,6 +721,13 @@ export default {
                 this.data.salary_status = {id: 3, name: '/ 1 Tháng'}
             }else if(job.data.salary_status ==  4){
                 this.data.salary_status = {id: 4, name: '/ 1 Kỳ'}
+            }
+            if(job.data.request_cmnd ==  1){
+                this.data.request_cmnd = {id: 1, name: 'Để trống'}
+            }else if(job.data.request_cmnd ==  2){
+                this.data.request_cmnd = {id: 2, name: 'Có'}
+            }else if(job.data.request_cmnd ==  3){
+                this.data.request_cmnd = {id: 3, name: 'Không'}
             }
             this.data.date_start = job.data.date_start
             this.data.quantity = job.data.quantity
@@ -795,7 +815,7 @@ export default {
 
         async onComplete() {
             console.log(this.data.startTimeLabor)
-            let isValid = await this.$refs.step4.validate();
+            let isValid = await this.$refs.step5.validate();
             var form = new FormData();
             if(isValid){
                 form.append('title' , this.data.title)
@@ -848,7 +868,8 @@ export default {
                 form.append('request' , this.data.request)
                 form.append('route' , this.data.route)
                 form.append('salary_status' , this.data.salary_status.id)
-                form.append('job_description' , this.data.job_description)
+                form.append('job_description' , this.data.job_description),
+                form.append('request_cmnd' , this.data.request_cmnd.id)
                 this.$axios.post('tintuyendung/updateTinTuyen',form)
                 .then(response => {
                     if(response.data.status == 200) {
