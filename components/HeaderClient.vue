@@ -32,7 +32,7 @@
                 <i class="fa fa-server"></i>
               </div>
               <div class="nav-title">
-                Tin tuyển sinh
+                {{ $t('nav.admission') }}
               </div>
             </a>
           </li>
@@ -95,9 +95,10 @@
           <li class="nav-item cta dropdown">
             <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
               <div class="nav-icon">
-                <img v-if="$store.state.locale == 'vi'" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
-                <img v-else-if="$store.state.locale == 'en'" src="/assets/img/iconfinder_United-Kingdom.png" width="22px" alt="netbee united kingdom"/>
-                <img v-else-if="$store.state.locale == 'jp'" src="/assets/img/iconfinder_Japan_92149.png" width="22px" alt="netbee japan"/>
+                <img v-if="$i18n.locale == 'vi'" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
+                <img v-else-if="$i18n.locale == 'en'" src="/assets/img/iconfinder_United-Kingdom.png" width="22px" alt="netbee united kingdom"/>
+                <img v-else-if="$i18n.locale == 'jp'" src="/assets/img/iconfinder_Japan_92149.png" width="22px" alt="netbee japan"/>
+                <img v-else src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
               </div>
               <div class="nav-title">
                 {{ $t('nav.languages') }}
@@ -265,10 +266,12 @@ export default {
     changeLang (lang) {
       this.$localStorage.set("lang", lang)
       this.$store.commit('SET_LANG', lang)
-      this.$router.push({ path: `${this.$router.currentRoute.path}?lang=${lang}` })
+      this.$router.push({ path: `${this.$router.currentRoute.path}?lang=${lang}`})
+      console.log(this.$i18n.locale)
     }
   },
   mounted() {
+    console.log(this.$i18n.locale)
       this.$axios.$get('getNotification?page='+this.page).then((response) => {
           this.notifications = response.data.notifications.data,
           this.countNoti = response.data.countNotRead
