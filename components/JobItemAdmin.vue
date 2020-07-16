@@ -75,7 +75,7 @@
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
                         <i class="m-0">Tiền thưởng</i>
                         <h3 class="bonus">
-                            <span style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
+                            <span style="color: #fc205c">{{job.bonus - (job.bonus * settingBonus.percent_bonus /100)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </span>
                         </h3>
                     </div>
                 </div>
@@ -92,6 +92,25 @@ export default {
         ],
     },
     props: ['job'],
+    data () {
+        return {
+            settingBonus: [],
+        }
+    },
+    components:{
+
+    },
+
+    
+    mounted () {
+        this.$axios
+                .$get('/tintuyendung/getSettingBonus')
+                .then((response) => {
+                    this.settingBonus = response
+                })
+                .catch((err) => {
+                })
+    },
 }
 </script>
 <style scoped>
