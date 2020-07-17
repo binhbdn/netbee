@@ -12,7 +12,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body p-t-15 p-b-15">
-                                        <!-- <div class="tab-content">
+                                        <div class="tab-content">
                                             <div class="card-header card-profile">
                                                 <p class="card-header-title is-uppercase">Thông tin chung</p>
                                             </div>
@@ -120,9 +120,9 @@
                                                     </ValidationObserver>
                                                 </form>
                                             </div>
-                                        </div> -->
+                                        </div>
                                         <!-- Test -->
-                                        <div class="tab-content">
+                                        <!-- <div class="tab-content">
                                             <div class="card-header card-profile">
                                                 <p class="card-header-title is-uppercase">Thông tin chung</p>
                                             </div>
@@ -251,7 +251,7 @@
                                                     </ValidationObserver>
                                                 </form>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- Het test -->
                                     </div>
                                 </div>
@@ -1301,9 +1301,9 @@ export default {
         width: 84px;
         height: 84px;
     }
-    .description-username{
+    /* .description-username{
         padding-left: 4rem;
-    }
+    } */
     .avatar-custom{
         margin: auto;
     }
