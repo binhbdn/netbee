@@ -172,7 +172,7 @@ export default {
     display: none;
 }
 
-@media(max-width: 1199px) and (min-width: 768px){
+@media(max-width: 1199px){
     .remove-border-right{
 
         width: auto!important;
