@@ -54,9 +54,9 @@
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:0px;padding-right: 0px;">
                                     <div class="col-xl-8 col-lg-7 col-md-5 col-sm-4 col-12 btn-add">
-                                        <form action="/admin/tin-tuyen-dung/tao" method="" class="form-add">
+                                        <!-- <form action="/admin/tin-tuyen-dung/tao" method="" class="form-add">
                                             <button class="btn-add btn bg-netbee text-dark mx-auto"><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
-                                        </form>
+                                        </form> -->
                                     </div>
                                     <div class="row col-xl-4 col-lg-5 col-md-7 col-sm-8 col-12 button-dropdown">
                                         <div class="action-btns col-6">

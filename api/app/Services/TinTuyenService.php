@@ -279,6 +279,9 @@ class TinTuyenService extends BaseService {
         if($request->school_name != 'null'){
             $response['school_name'] = $request->school_name;
         }
+        if($request->promotion_code != 'null'){
+            $response['promotion_code'] = $request->promotion_code;
+        }
        
 
         return $response;

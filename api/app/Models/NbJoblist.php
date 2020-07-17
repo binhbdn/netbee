@@ -51,7 +51,8 @@ class NbJoblist extends Model
         'benefits',
         'job_description',
         'route',
-        'request_cmnd'
+        'request_cmnd',
+        'promotion_code'
     ];
 
     public function Apply()
