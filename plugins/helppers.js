@@ -49,6 +49,14 @@ Vue.mixin({
                 return price.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
         },
+        formatPriceBonus(value) {
+            if(value == null){
+                return "Đang cập nhật"
+            } else {
+                let val = (value/1).toFixed().replace('.', ',')
+                return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        },
         FormatPriceMany(price) {
             if(price == null){
                 return "Miễn phí"

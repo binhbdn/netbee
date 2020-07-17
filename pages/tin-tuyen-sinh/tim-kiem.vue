@@ -84,6 +84,8 @@
               <h4 class="card-title">
                 <i class="fad fa-bullhorn"></i> DANH SÁCH ĐƠN HÀNG
               </h4>
+              <span v-if="countJob" style="color: red;">Có {{countJob}} kết quả tìm kiếm</span>
+              <span v-else style="color: red;">Không có kết quả phù hợp</span>
             </div>
             <div class="card-content collapse show">
               <div class="card-body ">
@@ -144,7 +146,8 @@ export default {
     let getVisa = await $axios.$get(`getVisa`)
     return {
         arrayJobNew: getTinTuyenDungNew.data,
-        visa: getVisa.data
+        visa: getVisa.data,
+        countJob : getTinTuyenDungNew.data.length
     }
   },
   methods: {
