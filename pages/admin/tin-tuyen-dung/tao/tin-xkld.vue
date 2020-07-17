@@ -138,12 +138,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     
-                                                    <div class="col-4">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Thời gian hợp đồng (năm)</label>
-                                                            <input type="text" class="form-control required" v-model="data.time_contract">
-                                                        </div>
-                                                    </div>
+                                    
                                                     <div class="col-4">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
@@ -158,6 +153,12 @@
                                                             <label for="firstName3">Chứng minh thu nhập</label>
                                                             <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>                                     
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Thời gian hợp đồng (năm)</label>
+                                                            <input type="text" class="form-control required" v-model="data.time_contract">
+                                                        </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
@@ -185,7 +186,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
+                                                        <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày thi tuyển</label>
                                                                 <input type="date" class="form-control" v-model="data.date_test">
@@ -194,7 +195,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
+                                                        <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày dự kiến nhập cảnh</label>
                                                                 <input type="date" class="form-control required" v-model="data.expected_date">

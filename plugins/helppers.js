@@ -35,7 +35,12 @@ Vue.mixin({
             return slug;
         },
         ConvertDate(date) {
-            return moment(String(date)).format('DD/MM/YYYY')
+            if(date == null){
+                return "Đang cập nhật"
+            } else {
+                return moment(String(date)).format('DD/MM/YYYY')
+            }
+            
         },
         FormatPrice(price) {
             if(price == null){
