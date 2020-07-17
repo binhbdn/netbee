@@ -20,10 +20,10 @@
                                                 <form method="post">
                                                     <ValidationObserver ref="InfoUser" v-slot="{ valid }">
                                                         <div class="row">
-                                                            <div class="col-3 text-right for-label">
+                                                            <div class="col-sm-3 text-right for-label avatar-label">
                                                                 <label for="account-username">Ảnh đại diện</label>
                                                             </div>
-                                                            <div class="col-7">
+                                                            <div class="col-sm-7">
                                                                 <div class="media">
                                                                     <a href="javascript: void(0);">
                                                                         <img v-lazy="images[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="images.length > 0">
@@ -45,7 +45,7 @@
                                                                 <ValidationProvider rules="required" ref="name" name="name" v-slot="{ errors }">
                                                                     <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                         <div class="controls row">
-                                                                            <div class="col-3 text-right for-label">
+                                                                            <div class="col-sm-3 col-5 text-right for-label">
                                                                                 <label v-if="$auth.user.role != 2" for="account-username">Họ tên</label>
                                                                                 <label v-if="$auth.user.role == 2" for="account-username">Tên công ty</label>
                                                                             </div>
@@ -64,18 +64,18 @@
                                                             <div class="col-12">
                                                                 <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                     <div class="controls row">
-                                                                        <div class="col-3 text-right for-label">
+                                                                        <div class="col-sm-3 col-5 text-right for-label">
                                                                             <label v-if="$auth.user.role != 2" for="account-name">Ngày sinh</label>
                                                                             <label v-if="$auth.user.role == 2" for="account-name">Ngày thành lập</label>
                                                                         </div>
-                                                                        <div class="col-2">
+                                                                        <div class="col-lg-2 col-7">
                                                                         <input type="date" class="form-control" v-model="changeInfoUser.birth">
                                                                         </div>
-                                                                        <div class="col-5">
+                                                                        <div class="col-lg-5 col-12 number-phone">
                                                                              <ValidationProvider rules="required" v-slot="{ errors }">
                                                                                 <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                                     <div class="controls row" >
-                                                                                        <div class="col-5 for-label text-right">
+                                                                                        <div class="col-lg-5 col-sm-3 col-5 for-label text-right">
                                                                                             <label for="account-e-mail">Số điện thoại</label>
                                                                                         </div>
                                                                                         <div class="col-7">
@@ -95,7 +95,7 @@
                                                             </div>
                                                             <div class="col-12">
                                                                 <div class="form-group row" style="margin-bottom: 1.5rem !important;">
-                                                                    <div class="col-3 for-label text-right">
+                                                                    <div class="col-sm-3 col-5 for-label text-right">
                                                                         <label for="account-company">Email</label>
                                                                     </div>
                                                                     <div class="col-7">
@@ -106,7 +106,7 @@
                                                             <div class="col-12">
                                                                 <ValidationProvider rules="required" v-slot="{ errors }">
                                                                     <div class="form-group row">
-                                                                            <div class="col-3 for-label text-right">
+                                                                            <div class="col-sm-3 col-5 for-label text-right">
                                                                                 <label for="account-company">Địa chỉ</label>
                                                                             </div>
                                                                             <div class="col-7">
@@ -156,7 +156,7 @@
                                                                 <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                     <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                         <div class="controls row">
-                                                                            <div class="col-3 text-right for-label">
+                                                                            <div class="col-sm-3 col-5 text-right for-label">
                                                                                 <label>Tên tài khoản</label>
                                                                             </div>
                                                                             <div class="col-7">
@@ -175,7 +175,7 @@
                                                                 <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                     <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                         <div class="controls row">
-                                                                            <div class="col-3 text-right for-label">
+                                                                            <div class="col-sm-3 col-5 text-right for-label">
                                                                                 <label>Số tài khoản</label>
                                                                             </div>
                                                                             <div class="col-7">
@@ -194,7 +194,7 @@
                                                                 <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                     <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                         <div class="controls row">
-                                                                            <div class="col-3 text-right for-label">
+                                                                            <div class="col-sm-3 col-5 text-right for-label">
                                                                                 <label>Chi nhánh</label>
                                                                             </div>
                                                                             <div class="col-7">
@@ -213,7 +213,7 @@
                                                                 <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                     <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                         <div class="controls row">
-                                                                            <div class="col-3 text-right for-label">
+                                                                            <div class="col-sm-3 col-5 text-right for-label">
                                                                                 <label>Ngân hàng</label>
                                                                             </div>
                                                                             <div class="col-7">
@@ -261,10 +261,10 @@
                                                     <form method="POST" v-on:keyup.enter = "changeInfoCompany">
                                                         <ValidationObserver ref="observerChangeInfoCompany" v-slot="{ valid }">
                                                                 <div class="row">
-                                                                    <div class="col-3 text-right for-label">
+                                                                    <div class="col-sm-3 text-right for-label avatar-label">
                                                                         <label>Ảnh bìa công ty</label>
                                                                     </div>
-                                                                    <div class="col-7">
+                                                                    <div class="col-sm-7">
                                                                         <div class="media pl-1">
                                                                         <a href="javascript: void(0);">
                                                                             <img v-lazy="imagesCover[0]" class="rounded mr-75" alt="profile image" height="64" width="64" style="object-fit: cover;" v-if="imagesCover.length > 0">
@@ -289,19 +289,17 @@
                                                                     v-slot="{ errors }"
                                                                 > 
                                                                 <div class="form-group row">
-                                                                    <div class="col-3 text-right for-label">
+                                                                    <div class="col-sm-3 col-5 text-right for-label">
                                                                         <label for="accountTextarea1">Username</label>
                                                                     </div>
                                                                     <div class="col-7">
                                                                         <div class="form-control d-flex p-0" style="border-radius: 0">
-                                                                            <input style="border:none; color: #5F5F5F; padding-left: 7px!important;" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Tên viết tắt duy nhất của công ty.">
-                                                                            <div class="col-1 text-center">
-                                                                                <i style="font-size:16px; padding-top: 10px" :class="checkUsername ? 'fas fa-check-circle success' : 'fas fa-times-circle danger'"></i>
-                                                                            </div>
+                                                                            <input style="border:none; color: #5F5F5F; padding-left: 7px!important; position: relative" type="text" class="col-11 input-username" id="accountTextarea1" @keyup="checkUsernameCompany(changeInfoCompanyForm.username)" name="username" v-model="changeInfoCompanyForm.username" placeholder="Tên viết tắt duy nhất của công ty.">
+                                                                            <i style="font-size:16px; padding-top: 10px; position:absolute; top-13px; right: 20px" :class="checkUsername ? 'fas fa-check-circle success' : 'fas fa-times-circle danger'"></i>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-3"></div>
-                                                                    <div class="col-7">
+                                                                    <div class="col-sm-3 col-"></div>
+                                                                    <div class="col-sm-7 col-12 description-username">
                                                                         <ul style="color:red" class="overline text-left">
                                                                                 <li v-for="(error, index) in errors" :key="index">
                                                                                 <span>{{ error }}</span>
@@ -320,7 +318,7 @@
                                                                     v-slot="{ errors }"
                                                                 > 
                                                                 <div class="form-group row" style="margin-bottom: 0rem !important;">
-                                                                    <div class="col-3 text-right for-label">
+                                                                    <div class="col-sm-3 col-5 text-right for-label">
                                                                         <label for="accountTextarea1">Giới thiệu</label>
                                                                     </div>
                                                                     <div class="col-7">
@@ -336,15 +334,15 @@
                                                             </div>
                                                             <div class="col-12">
                                                                 <ValidationProvider name="account-phone" ref="account-phone" rules="numeric" v-slot="{ errors }">
-                                                                    <div class="form-group">
+                                                                    <div class="form-group hotline">
                                                                         <div class="controls row">
-                                                                            <div class="col-3 text-right for-label">
+                                                                            <div class="col-sm-3 col-5 text-right for-label">
                                                                                 <label for="account-phone">Đường dây nóng</label>
                                                                             </div>
                                                                             <div class="col-7">
                                                                                 <input type="text" class="form-control" id="company-hotline" name="companyHotline" v-model="changeInfoCompanyForm.companyHotline"  required placeholder="Hotline">
                                                                             </div>
-                                                                            <div class="col-3"></div>
+                                                                            <div class="col-sm-3 col-5"></div>
                                                                             <div class="col-7">
                                                                                 <ul style="color:red" class="overline text-left">
                                                                                     <li v-for="(error, index) in errors" :key="index">
@@ -359,7 +357,7 @@
                                                             <div class="col-12">
                                                                 <div class="form-group">
                                                                     <div class="controls row">
-                                                                        <div class="col-3 text-right for-label">
+                                                                        <div class="col-sm-3 col-5 text-right for-label">
                                                                             <label for="account-phone">Mã số thuế</label>
                                                                         </div>
                                                                         <div class="col-7">
@@ -442,7 +440,7 @@
                                                                     v-slot="{ errors }"
                                                                 > 
                                                                 <div class="form-group row" style="margin-bottom: 0rem !important;">
-                                                                    <div class="col-3 text-right for-label">
+                                                                    <div class="col-sm-3 col-5 text-right for-label">
                                                                     <label for="account-website">Website chính thức</label>
                                                                     </div>
                                                                     <div class="col-7">
@@ -458,7 +456,7 @@
                                                             </div>
                                                             <div class="col-12">
                                                                 <div class="form-group row">
-                                                                    <div class="col-3 text-right for-label">
+                                                                    <div class="col-sm-3 col-5 text-right for-label">
                                                                     <label for="account-website">Facebook công ty:</label>
                                                                     </div>
                                                                     <div class="col-7">
@@ -509,7 +507,7 @@
                                                                 >
                                                             <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                 <div class="controls row">
-                                                                    <div class="col-3 text-right for-label">
+                                                                    <div class="col-sm-3 col-5 text-right for-label">
                                                                         <label for="account-old-password">Mật khẩu cũ</label>
                                                                     </div>
                                                                     <div class="col-7">
@@ -534,7 +532,7 @@
                                                                 >
                                                             <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                 <div class="controls row">
-                                                                    <div class="col-3 text-right for-label">
+                                                                    <div class="col-sm-3 col-5 text-right for-label">
                                                                     <label for="account-new-password">Mật khẩu mới</label>
                                                                     </div>
                                                                     <div class="col-7">
@@ -558,7 +556,7 @@
                                                             >
                                                             <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                 <div class="controls row">
-                                                                    <div class="col-3 text-right for-label">
+                                                                    <div class="col-sm-3 col-5 text-right for-label">
                                                                         <label for="account-retype-new-password">Nhập lại mật khẩu</label>
                                                                     </div>
                                                                     <div class="col-7">
@@ -1127,5 +1125,28 @@ export default {
 /* .content-wrapper{
     padding-bottom: 0 !important;
 } */
+.hotline{
+    margin-bottom: 0;
+}
+@media (max-width: 991px){
+    .number-phone{
+        padding-top: 18px
+    }
+    .for-label{
+        padding: 10px 0;
+    }
+}
+@media (max-width: 575px){
+    .avatar-label{
+        text-align: center !important;
+    }
+    .rounded{
+        width: 84px;
+        height: 84px;
+    }
+    .description-username{
+        padding-left: 4rem;
+    }
+}
 </style>>
 
