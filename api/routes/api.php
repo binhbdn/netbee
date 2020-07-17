@@ -132,7 +132,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('listcompany', 'Admin\TinTuyenController@listcompany');
       });
       Route::prefix('quanlyvieclam')->group(function(){
-        Route::get('getSaveBySaver', 'Admin\SaveController@getSaveBySaver');
+        Route::post('getSaveBySaver', 'Admin\SaveController@getSaveBySaver');
         Route::post('deleteJobSave', 'Admin\SaveController@deleteJobSave');
       });
       Route::prefix('hoso')->group(function () {

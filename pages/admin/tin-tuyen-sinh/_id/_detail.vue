@@ -1024,7 +1024,7 @@ export default {
         });
         if(this.$auth.loggedIn) {
             this.$axios.$post(`tintuyendung/postView`,{id_job: this.tintuyendung.id}).then((response)=>{});
-            this.$axios.$get(`tintuyendung/getSave`,{id_job: this.tintuyendung.id}).then((response)=>{
+            this.$axios.$post(`tintuyendung/getSave`,{id_job: this.tintuyendung.id}).then((response)=>{
                 this.save = response.data
             });
         }

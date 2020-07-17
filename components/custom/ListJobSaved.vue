@@ -139,10 +139,8 @@ export default {
     components:{
         Multiselect,
     },
-    created() {
-        this.getJob();
-    },
     created(){
+        this.getJob();
         this.$bus.$on('showSearch', () => {
             document.getElementById('card').style.display = 'block';
         })
