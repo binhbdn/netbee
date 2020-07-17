@@ -42,7 +42,6 @@ a.navbar-brandd {
 .ftco-navbar-light .navbar-nav>.nav-item.cta>a {
   color: #000!important;
   /* border: 1px solid #ffb701; */
-  padding-top: 0;
   padding-bottom: .5rem;
   padding-left: 20px;
   padding-right: 20px;
@@ -75,7 +74,7 @@ a.navbar-brandd {
 }
 
 .cta img{
-  height: 30px;
-  width: 30px;
+  height: 18px;
+  width: 18px;
   object-fit: cover;
 }

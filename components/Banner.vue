@@ -168,7 +168,7 @@
                           </div>
                         </form>
                       </div> -->
-                      <div class="search-footer d-flex justify-content-between">
+                      <!-- <div class="search-footer d-flex justify-content-between">
                         <div>
                           <p class="title-p-main">Dành cho du học sinh và các trung tâm du học...</p>
                         </div>
@@ -178,7 +178,7 @@
                           </label>
                           <div id="advanced" class="collapse"></div>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>

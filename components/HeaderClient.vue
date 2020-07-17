@@ -19,7 +19,7 @@
           <li class="nav-item " style="padding-top:3px" :class="{active : this.$route.path == '/'}">
             <a href="/" class="nav-link header-nav-link">
               <div class="nav-icon">
-                <i class="fa fa-home"></i>
+                <i class="fad fa-home"></i>
               </div>
               <div class="nav-title">
                 {{ $t('nav.home') }}
@@ -29,7 +29,7 @@
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuyen-sinh'}">
             <a href="/tin-tuyen-sinh" class="nav-link header-nav-link">
               <div class="nav-icon">
-                <i class="fa fa-server"></i>
+                <i class="fad fa-server"></i>
               </div>
               <div class="nav-title">
                 {{ $t('nav.admission') }}
@@ -39,7 +39,7 @@
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/cong-ty'}">
             <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center">
               <div class="nav-icon">
-                <i class="fa fa-building"></i>
+                <i class="fad fa-building"></i>
               </div>
               <div class="nav-title">
                 {{ $t('nav.company') }}
@@ -59,7 +59,7 @@
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
             <a href="/tin-tuc" class="nav-link header-nav-link" >
               <div class="nav-icon">
-                <i class="fa fa-table"></i>
+                <i class="fad fa-table"></i>
               </div>
               <div class="nav-title">
                 {{ $t('nav.news') }}
@@ -69,7 +69,7 @@
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ve-netbee'} " >
             <a href="/ve-netbee" class="nav-link header-nav-link">
               <div class="nav-icon">
-                <i class="fa fa-id-card"></i>
+                <i class="fad fa-id-card"></i>
               </div>
               <div class="nav-title">
                 {{ $t('nav.about') }}

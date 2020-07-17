@@ -3,17 +3,6 @@
          <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>           
         <div class="container" > 
-            <!-- <section class="category p-b-15">
-                <div class="container">
-                    <div class="row d-flex">
-                        <div class="col-md-6 pd-20 pl-0">
-                            <a href="/"><i class="fa fa-home m-0"></i> Trang chủ </a>
-                            <a href="/ung-vien"><i class="fa fa-caret-right"></i> Danh sách ứng viên</a>
-                            <a><i class="fa fa-caret-right"></i> Chi tiết ứng viên</a>
-                        </div>
-                    </div>
-                </div>
-            </section>              -->
             <div class="main-cv">                 
                 <div class="row">
                     <div class="col-md-10" style="background-color: #fff;box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);">                                

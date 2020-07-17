@@ -1,16 +1,5 @@
 <template>
     <div>
-        <section class="ftco-sectioncategory">
-            <div class="container">
-                <div class="row d-flex">
-                    <div class="col-md-6">
-                        <a href="/"><i class="fa fa-home"></i> Trang chủ </a>
-                        <a href="/tin-tuc"><i class="fa fa-caret-right"></i> Tin tức </a>
-
-                    </div>
-                </div>
-            </div>
-        </section>
         <section class="ftco-section bg-white" style="background-color: #f6f6f6!important; padding-top: 15px;">
             <div class="container">
                 <div class="row">
