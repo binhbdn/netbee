@@ -91,7 +91,35 @@ export default {
             { rel: 'stylesheet', href: '/app-assets/css/pages/app-ecommerce-shop.css' },
         ],
     },
-    props: ['job', 'settingBonus'],
+    props: ['job'],
+
+    data () {
+        return {
+            settingBonus: []
+        }
+    },
+    components:{
+        
+    },
+
+    methods:{
+        
+    },
+    mounted () {
+        this.$axios
+                .$get('/tintuyendung/getSettingBonus')
+                .then((response) => {
+                    this.settingBonus = response
+                })
+                .catch((err) => {
+                })
+    },
+    created(){
+        
+    },
+    computed: {
+        
+    }
 }
 </script>
 <style scoped>
