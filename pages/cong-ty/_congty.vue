@@ -43,7 +43,7 @@
                         <div class="col-lg-2 ">
                             <div class="count-job" style="margin-top: 6px;">
                                 <h1 style="font-size: 70px;color: #ffb701;">{{ countJob.length ? countJob.length : '0' }}</h1>
-                                <h2>Việc làm</h2>
+                                <h2>Tin</h2>
                             </div>
                             <div class="count-job" style="margin-top: 18px;">
                                 <a v-if="!$auth.loggedIn"  data-toggle="modal" data-target="#loginModal" style="text-align: center;padding: 10px;">

@@ -101,7 +101,7 @@ export default {
                 {id: 5, name: 'Mỹ'},
                 {id: 6, name: 'Đức'},
                 {id: 7, name: 'Canada'},
-                {id: 8, name: 'Quốc gia khác'},
+                {id: 8, name: 'Úc'},
             ],
             tinTuyenDung: [],
             page: 1

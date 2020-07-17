@@ -7107,7 +7107,9 @@ readers do not read off random characters that represent icons */
 .fad {
   position: relative;
   font-family: 'Font Awesome 5 Duotone';
-  font-weight: 900; }
+  font-weight: 900; 
+  font-size: 18px;
+}
 
 .fad:before {
   position: absolute;

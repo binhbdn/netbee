@@ -20,7 +20,7 @@
                 </div>        
             </div>
             <div class="item-options text-center mt-1 mb-1" >
-                <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
+                <div class="hot" v-if="job.highlight_job == 2" data-toggle="tooltip" data-placement="top" title="Được tài trợ"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper" style="margin-top: -5px;">
                     <a class="delivery-date mb-0 mt-1 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
                         {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}

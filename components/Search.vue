@@ -173,9 +173,9 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-12 advanced_search_box" id="advanced_search_box ">
+                  <!-- <div class="col-md-12 advanced_search_box" id="advanced_search_box ">
                     <a href="javascript:void();" id="advanced_search" class="pb-1"> <b>Tìm kiếm nâng cao</b> </a>
-                  </div>
+                  </div> -->
                   <div class="col-md-12 d-none" id="detail_search" style="padding-left: 15px; padding-top: 10px;">
                     <div class="row">
                       <div class="col-md-3">
@@ -292,9 +292,9 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-12 advanced_search_box" id="advanced_search_box">
+                  <!-- <div class="col-md-12 advanced_search_box" id="advanced_search_box">
                     <a href="javascript:void();" id="advanced_search"> <b>Tìm kiếm nâng cao</b> </a>
-                  </div>
+                  </div> -->
                   <div class="col-md-12 d-none" id="detail_search" style="padding-left: 15px; padding-top: 10px;">
                     <div class="row">
                       <div class="col-md-3">

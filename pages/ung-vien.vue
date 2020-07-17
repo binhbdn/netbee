@@ -1,16 +1,5 @@
 <template>
   <div v-if="!loading" class="container">
-    <!-- VIỆC LÀM MỚI -->
-    <!-- <section class="category p-b-15">
-        <div class="container">
-            <div class="row d-flex">
-                <div class="col-md-6 pd-20 pl-0">
-                    <a href="/"><i class="fa fa-home m-0"></i> Trang chủ </a>
-                    <a href="/ung-vien"><i class="fa fa-caret-right"></i> Danh sách ứng viên</a>
-                </div>
-            </div>
-        </div>
-    </section> -->
     <section>
       <div class="row">
         <div class="col-lg-8 col-12 p-r-0">

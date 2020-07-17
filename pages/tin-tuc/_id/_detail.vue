@@ -1,16 +1,5 @@
 <template>
     <div>
-        <section class="category p-b-15">
-            <div class="container">
-                <div class="row d-flex">
-                    <div class="col-md-12 pd-20">
-                        <a href="/"><i class="fa fa-home"></i> Trang chủ </a>
-                        <a href="/tin-tuc"><i class="fa fa-caret-right"></i> Tin tức</a>
-                        <a><i class="fa fa-caret-right"></i> {{ tintuc.title }}</a>
-                    </div>
-                </div>
-            </div>
-        </section>
         <section class="bg-white" style="background-color: #f6f6f6!important;">
             <div class="container">
                 <div class="row">
