@@ -48,7 +48,7 @@
                             <div class="">
                                 <div class="card-body card-dashboard p-0">
                                     <div class="table-responsive list-data">
-                                        <JobsList3Col :DataList="tinTuyenDung"></JobsList3Col>
+                                        <JobsList3Col :DataList="tinTuyenDung" :DataBonus="settingBonus"></JobsList3Col>
                                         <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
                                     </div>
                                 </div>
@@ -104,6 +104,7 @@ export default {
                 {id: 8, name: 'Úc'},
             ],
             tinTuyenDung: [],
+            settingBonus: [],
             page: 1
         }
     },
@@ -160,6 +161,13 @@ export default {
     },
     mounted () {
         this.fetch()
+        this.$axios
+                .$get('/tintuyendung/getSettingBonus')
+                .then((response) => {
+                    this.settingBonus = response
+                })
+                .catch((err) => {
+                })
     },
     created(){
         this.$bus.$on('showSearch', () => {

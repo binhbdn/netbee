@@ -64,6 +64,8 @@
                         </li>
                     </ul>
                 </li>
+                <li :class="[{'active' : this.$route.name == 'bonus'}, 'nav-item']"><a @click="$router.push('/admin/cai-dat/bonus')" v-if="$auth.user.role == 4"><i class="fa fa-cogs"></i><span class="menu-title" data-i18n="User">Cài đặt bonus</span></a>                
+                </li>
                 <li :class="[{'active' : this.$route.name == 'notification'}, 'nav-item']"><a @click="$router.push('/admin/thong-bao')"><i class="ficon feather icon-bell"></i><span class="menu-title" data-i18n="User">Thông báo</span></a>                
                 </li>
             </ul>
