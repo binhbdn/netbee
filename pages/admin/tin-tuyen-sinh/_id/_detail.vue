@@ -253,7 +253,7 @@
             </section>
             <section>
                 <div class="row">
-                    <div class="col-lg-8 col-12" style="padding-right: 2px;">
+                    <div class="col-lg-8 col-12 p-l-0-mb" style="padding-right: 2px;">
                         <div class="card">
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -444,7 +444,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">
-                                    <i class="fad fa-business-time"></i> LOẠI TIN TƯƠNG TỰ
+                                    <i class="fad fa-business-time"></i> TIN TƯƠNG TỰ
                                 </h4>
                             </div>
                             <div class="exam-jobs card-content collapse show">

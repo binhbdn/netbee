@@ -25,13 +25,13 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="chi phí"><i class="fad fa-dollar-sign" style="color: #000"></i><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="chi phí"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                 </div>
             </div>
             <div class="item-options text-center mt-1" >
                 <div class="hot" v-if="job.highlight_job == 2" data-toggle="tooltip" data-placement="top" title="Được tài trợ"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper" style="margin-top: -5px;">
-                    <a class="delivery-date mb-0 mt-1 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
+                    <a class="delivery-date mb-0 mt-1 badge border-netbee badge-sm" :class="job.highlight_job ? 'bg-netbee' : ''" style="width: 100px" :href="job.type == 1 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
                         {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                     </a>
                     <p class="delivery-date mg-top-5" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
@@ -54,10 +54,13 @@ export default {
 <style scoped>
 .item-vip-a{
     max-width: 250px;
-    font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
+    overflow: hidden;
+    white-space: unset;
 }
-
+p {
+    font-size: 13px;
+}
 .highlight{
     border-left: 2px solid #ffb701 !important;
 }
@@ -137,6 +140,9 @@ export default {
     }
     .hot img {
         width: 8%;
+    }
+    .exam-jobs-user .hot img {
+        width: 6%;
     }
 }
 @media(max-width: 575px) {

@@ -267,7 +267,7 @@
             <div class="card">
                 <div class="card-header">
                 <h4 class="card-title">
-                    <i class="fad fa-business-time"></i> LOẠI TIN TƯƠNG TỰ
+                    <i class="fad fa-business-time"></i> TIN TƯƠNG TỰ
                 </h4>
                 </div>
                 <div class="card-content collapse show">

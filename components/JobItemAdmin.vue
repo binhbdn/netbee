@@ -119,7 +119,10 @@ export default {
     font-weight: 900;
 }
 .item-vip-a{
-    font-size: 15px;
+    font-size: 13px;
+}
+p {
+    font-size: 13px;
 }
 /* .item-vip-a:hover{
     color: #000 !important;

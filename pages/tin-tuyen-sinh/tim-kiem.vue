@@ -78,7 +78,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-8 col-12 p-r-0">
+        <div class="col-lg-8 col-12 p-r-0 p-l-0-mb">
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">
@@ -215,5 +215,9 @@ select#cars :focus {
   border-color: #ffb701 !important;
   border-radius: 6px !important;
 }
-
+@media only screen and (max-width: 575px) {
+  #list-job-filter {
+    padding-left: 0;
+  }
+}
 </style>

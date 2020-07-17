@@ -58,7 +58,7 @@
             </div>
           </div>
         </div>      
-        <div class="col-lg-8 col-12 p-r-0">
+        <div class="col-lg-8 col-12 p-r-0 p-l-0-mb">
           <div class="card">
             <div class="card-header">
               <h4 class="card-title">

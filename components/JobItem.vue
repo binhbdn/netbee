@@ -21,7 +21,7 @@
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div>                  
-                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="top" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-dollar-sign" style="color: #000"></i><label class="title">Chi phí: </label><span class="item-price"> {{ FormatPrice(job.subsidy) }} {{ job.currency }} </span></p>                                                                                 
+                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="top" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span><span class="item-price"> {{ FormatPrice(job.subsidy) }} {{ job.currency }} </span></p>                                                                                 
                 </div>        
             </div>
             <div class="item-options text-center mt-1 mb-1" >
@@ -50,8 +50,10 @@ export default {
 <style scoped>
 .item-vip-a{
     max-width: 300px;
-    font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
+}
+p {
+    font-size: 13px;
 }
 .item-name .item-vip-a:hover{
     color: #ffb701 !important;
