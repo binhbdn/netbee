@@ -8,7 +8,7 @@
                             <div class="card">
                                 <div class="card-header"></div>
                                 <div class="card-body">
-                                    <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
+                                    <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất" style="padding-top: 7px;">
                                         <tab-content :before-change="checkValidateStep1" title="Tổng quan">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
@@ -191,7 +191,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="ssdate" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|ssdate" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Ngày hết hạn ứng tuyển
@@ -203,12 +203,15 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">
-                                                                Ngày bắt đầu nhận hồ sơ
-                                                            </label>
-                                                            <input type="date" class="form-control" v-model="data.date_start">
-                                                        </div>
+                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmDateStart">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">
+                                                                    Ngày bắt đầu nhận hồ sơ
+                                                                </label>
+                                                                <input type="date" class="form-control" v-model="data.date_start">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
                                                         <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
@@ -254,7 +257,7 @@
                                                             </label>
                                                             <div class="container-fluid">
                                                                 <div class="row">
-                                                                    <div class="col-6" style="padding-left:0px">
+                                                                    <div class="col-6" style="padding-left:0px" v-if="data.type != 2">
                                                                         <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
                                                                             <div class="input-group">
                                                                                 <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
@@ -275,6 +278,14 @@
                                                                             </div>                                                      
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
+                                                                    </div>
+                                                                    <div class="col-6" style="padding-left:0px" v-if="data.type == 2">
+                                                                        <div class="input-group">
+                                                                            <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start">
+                                                                            <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                                <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                            </div>
+                                                                        </div> 
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px" v-if="data.type == 2">
                                                                         <multiselect :options="salaryEx" v-model="data.salary_status" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
@@ -628,8 +639,8 @@ export default {
                 {id: 3, name: 'Ngay sau khi cọc'},
                 {id: 5, name: 'Ngay sau khi có COE'},
                 {id: 1, name: 'Ngay sau khi bay'},
-                {id: 2, name: 'Sau khi bay 30 ngày'},
-                {id: 4, name: 'Hoàn tất nhập cảnh'}
+                {id: 4, name: 'Hoàn tất nhập cảnh'},
+                {id: 2, name: 'Sau khi bay 30 ngày'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
             optionsVisa: [],
@@ -921,8 +932,10 @@ export default {
 <style>
 .bot {
     position: absolute;
-    bottom: 12px;
-    font-size: 20px;
+    bottom: 7px;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
 }
 .p-main{
     text-align: left;
@@ -1087,7 +1100,7 @@ display: block;
     font-size: .9rem;
     font-weight: 600;
     padding: 2px 21px 2px 21px;
-    color: #ffc108;
+    color: #000;
     border: 1px solid #e4e4e4;
     border-radius: 15px;
     background-color: white;
@@ -1101,5 +1114,8 @@ display: block;
 }
 .border-hove:hover {
     border: 1px solid #e4e4e4 !important;
+}
+.vue-form-wizard .wizard-card-footer {
+    padding: 0 3px !important;
 }
 </style>

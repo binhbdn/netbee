@@ -122,6 +122,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changePublic', 'Admin\TinTuyenController@changePublic');
         Route::get('searchTinTuyenDung', 'Admin\TinTuyenController@searchTinTuyenDung');
         Route::get('getSettingBonus', 'Admin\TinTuyenController@getSettingBonus');
+        Route::post('postSettingBonus', 'Admin\TinTuyenController@postSettingBonus');
         Route::post('createTinTuyen', 'Admin\TinTuyenController@createTinTuyen');
         Route::get('getDetailTinTuyen/{id}','Admin\TinTuyenController@getDetailTinTuyen');
         Route::post('updateTinTuyen', 'Admin\TinTuyenController@updateTinTuyen');
@@ -132,7 +133,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('listcompany', 'Admin\TinTuyenController@listcompany');
       });
       Route::prefix('quanlyvieclam')->group(function(){
-        Route::get('getSaveBySaver', 'Admin\SaveController@getSaveBySaver');
+        Route::post('getSaveBySaver', 'Admin\SaveController@getSaveBySaver');
         Route::post('deleteJobSave', 'Admin\SaveController@deleteJobSave');
       });
       Route::prefix('hoso')->group(function () {

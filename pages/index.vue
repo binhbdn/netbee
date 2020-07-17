@@ -172,7 +172,7 @@
       <!-- tin mới -->
       <section>
         <div class="row">
-          <div class="col-lg-8 col-12 p-r-0">
+          <div class="col-lg-8 col-12 p-r-0" id="fullwidth">
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_new')}}</h2>
@@ -183,7 +183,7 @@
                    <JobsList1Col :DataList="arrayJobNew" type=""></JobsList1Col>
                 </div>              
               </div>
-              <div class="main-bottom" style="padding-bottom: 15px;">
+              <div class="main-bottom" style="padding: 15px 15px;">
                 <a href="/tin-tuyen-sinh" class="btn border-netbee aa">{{$t('see_more')}}</a>
               </div>
             </div>
@@ -591,6 +591,10 @@
     }
     .m-r-bt-15{
       margin-right: 0px;
+    }
+    .slide-job-body {
+      padding-right: 0px;
+      padding-left: 0px;
     }
   }
   @media(max-width: 320px) {

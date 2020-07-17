@@ -30,6 +30,53 @@ class TinTuyenService extends BaseService {
     {
         return $this->nbSettingBonus->where('id',1)->first();
     }
+     public function postSettingBonus($request)
+    {
+        if(Auth::check()){
+            $data = $this->getOnlyBonusData($request);
+            if($request['percent_bonus'] == null || $request['percent_bonus'] == ' '){
+                return [
+                    'status' => 400,
+                    'message' => 'Xếp chưa nhập % bonus!',
+                    'data' => null
+                ];
+            }else if(strlen($request['percent_bonus']) > 2){
+                return [
+                    'status' => 400,
+                    'message' => 'Phần trăm bonus bé hơn 3 ký tự!',
+                    'data' => null
+                ];
+            }else{
+                try {
+                    $this->nbSettingBonus->where('id',1)->update($data);
+                    return [
+                        'status' => 200,
+                        'message' => 'Cập nhật bonus thành công!',
+                        'data' => null
+                ];
+                } catch (\Exception $e) {
+                    return [
+                        'status'=> 400,
+                        'message' => 'Có lỗi xảy ra!',
+                        'data' => $e->getMessage()
+                    ];
+                }
+            }
+        }else{
+            return [
+                'status' => 500,
+                'message' => 'Bạn chưa đăng nhập!',
+                'data' => null
+            ];
+        }
+    }
+    private function getOnlyBonusData($request)
+    {
+        return [
+            'percent_bonus' => $request->percent_bonus,
+            'updated_at' => Carbon::now()
+        ];
+    }
     public function update($data, $id)
     {
         return $this->getJobById($id)->update($data);
@@ -142,8 +189,7 @@ class TinTuyenService extends BaseService {
             'age_start' => 'required',
             'age_late' => 'required',
             'quantity' => 'required',
-            'currency' => "required",
-            'salary_start' => 'required'
+            'currency' => "required"
         ];
         $messages = [
             'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',
@@ -729,7 +775,7 @@ class TinTuyenService extends BaseService {
             $query->where(function($q) use ($search){
                 $q->where('title', 'LIKE', '%'.$search.'%')
                     ->orwhere('id','LIKE', '%'.$search.'%')
-                    ->orwhere('nb_company.username','LIKE', '%'.$search.'%');
+                    ->orwhere('nbCompany.username','LIKE', '%'.$search.'%');
             });
         }
         return $query->paginate($perPage);
