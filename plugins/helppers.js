@@ -49,7 +49,7 @@ Vue.mixin({
                 return price.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
         },
-        formatPriceBonus(value) {
+        FormatPriceBonus(value) {
             if(value == null){
                 return "Đang cập nhật"
             } else {
