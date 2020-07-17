@@ -1,10 +1,15 @@
 <template>
     <div class="ecommerce-card border-job-item make-it-sl" style="margin-bottom: 15px; border-radius: 3px;" :class="job.highlight_job ? 'highlight' : ''">
         <div class="card-content h-100">
-            <div class="text-center card-avatar p-1">
+            <div class="text-center card-avatar">
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
+                <p class="delivery-date mb-0 cate-bottom-avt" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng">
+                    <span class="badge border-netbee badge-sm" style="width: 100px" :class="job.highlight_job ? 'bg-netbee' : ''">
+                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
+                    </span>
+                </p>
             </div>
             <div class="remove-border-right">
                 <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" style="max-width:100%;" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
@@ -81,7 +86,7 @@ export default {
     font-weight: 700;
 }
 .hot img {
-    width: 5%;
+    width: 8%;
     float: right;
     position: absolute;
     right: 15px;
@@ -106,29 +111,40 @@ export default {
 }
 .remove-border-right {
     padding: 10px 10px 10px 0px;
-    width: 450px;
     max-width: 100%;
 }
-@media(max-width: 1199px){
-    .remove-border-right{
-        width: 380px;
-    }
-}
 
-@media(max-width: 768px) {
+@media(max-width: 767px) {
     .item-vip-a{
-        white-space: nowrap; 
         max-width: 100% !important; 
         overflow: hidden;
         text-overflow: ellipsis; 
+        white-space: unset;
     }
-    .item-options {
+    .item-options div:last-child{
         display: none;
     }
+    .card-body {
+        padding: 0px;
+    }
+    .card-avatar {
+        padding: 10px;
+    }
 }
-@media(max-width: 376px) {
+@media(max-width: 575px) {
     .item-vip-a{
         max-width: 100% !important;
+    }
+    .hot img {
+        right: 0;
+    }
+    .ecommerce-card {
+        margin-bottom: 0 !important;
+        border-radius: 0 !important;
+    }
+    .border-job-item {
+        border: none;
+        border-bottom: 1px solid #ececec !important;
     }
 }
 </style>
