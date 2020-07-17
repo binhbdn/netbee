@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class="item-options text-center" style="padding: 1rem">
-                <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
+                <div class="hot" v-if="job.highlight_job == 2" data-toggle="tooltip" data-placement="top" title="Được tài trợ"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper mt-1">
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
                         <i class="m-0">Tiền thưởng</i>
