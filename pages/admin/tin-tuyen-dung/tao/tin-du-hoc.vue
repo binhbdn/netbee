@@ -7,7 +7,7 @@
                         <div class="col-lg-9 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
+                                    <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất" style="padding-top: 7px;">
                                         <tab-content :before-change="checkValidateStep1" title="Tổng quan">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
@@ -146,7 +146,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         </div>
                                                     </div>
                                                      <div class="col-6">
-                                                        <ValidationProvider rules="ssdate" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|ssdate" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày hết hạn ứng tuyển</label>
                                                                 <!-- <datetime v-model="data.expiration_date" input-class="form-control"></datetime> -->
@@ -511,8 +511,8 @@ export default {
                 {id: 3, name: 'Ngay sau khi cọc'},
                 {id: 5, name: 'Ngay sau khi có COE'},
                 {id: 1, name: 'Ngay sau khi bay'},
-                {id: 2, name: 'Sau khi bay 30 ngày'},
-                {id: 4, name: 'Hoàn tất nhập cảnh'}
+                {id: 4, name: 'Hoàn tất nhập cảnh'},
+                {id: 2, name: 'Sau khi bay 30 ngày'}
             ],
             money: ['$', 'VND', '€', '¥', '₩'],
             companies:[],
@@ -860,7 +860,7 @@ display: block;
     font-size: .9rem;
     font-weight: 600;
     padding: 2px 21px 2px 21px;
-    color: #ffc108;
+    color: #000;
     border: 1px solid #e4e4e4;
     border-radius: 15px;
     background-color: white;
@@ -881,5 +881,8 @@ display: block;
     position: absolute;
     bottom: 12px;
     font-size: 20px;
+}
+.vue-form-wizard .wizard-card-footer {
+    padding: 0 3px !important;
 }
 </style>
