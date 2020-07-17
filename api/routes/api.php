@@ -122,6 +122,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('changePublic', 'Admin\TinTuyenController@changePublic');
         Route::get('searchTinTuyenDung', 'Admin\TinTuyenController@searchTinTuyenDung');
         Route::get('getSettingBonus', 'Admin\TinTuyenController@getSettingBonus');
+        Route::post('postSettingBonus', 'Admin\TinTuyenController@postSettingBonus');
         Route::post('createTinTuyen', 'Admin\TinTuyenController@createTinTuyen');
         Route::get('getDetailTinTuyen/{id}','Admin\TinTuyenController@getDetailTinTuyen');
         Route::post('updateTinTuyen', 'Admin\TinTuyenController@updateTinTuyen');
