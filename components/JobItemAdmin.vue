@@ -75,7 +75,7 @@
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
                         <i class="m-0">Tiền thưởng</i>
                         <h3 class="bonus">
-                            <p style="color: #fc205c">{{job.bonus - (job.bonus * settingBonus.percent_bonus /100)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
+                            <p style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
                         </h3>
                     </div>
                 </div>
