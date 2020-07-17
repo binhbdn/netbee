@@ -32,7 +32,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="qr-code">
-                                <img src="https://devwork.vn//public/images/devwork-mobile-qr.png" alt="Devwork" class="w-img-qr">
+                                <img v-lazy="`assets/img/qr-login.png`" alt="Devwork" class="w-img-qr">
                             </div>
                         </div>
                         <div class="col-sm-7">

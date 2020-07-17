@@ -86,7 +86,7 @@ export default {
     font-weight: 700;
 }
 .hot img {
-    width: 8%;
+    width: 6%;
     float: right;
     position: absolute;
     right: 15px;
@@ -113,7 +113,9 @@ export default {
     padding: 10px 10px 10px 0px;
     max-width: 100%;
 }
-
+.cate-bottom-avt {
+    display: none;
+}
 @media(max-width: 767px) {
     .item-vip-a{
         max-width: 100% !important; 
@@ -129,6 +131,12 @@ export default {
     }
     .card-avatar {
         padding: 10px;
+    }
+    .cate-bottom-avt {
+        display: block;
+    }
+    .hot img {
+        width: 8%;
     }
 }
 @media(max-width: 575px) {

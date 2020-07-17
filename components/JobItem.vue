@@ -5,6 +5,11 @@
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
+                <p class="delivery-date mb-0 cate-bottom-avt" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng">
+                    <span class="badge border-netbee badge-sm" style="width: 100px" :class="job.highlight_job ? 'bg-netbee' : ''">
+                        {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
+                    </span>
+                </p>
             </div>
             <div class="remove-border-right " style="margin: auto; width: 100%;">
                 <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
@@ -22,9 +27,9 @@
             <div class="item-options text-center mt-1 mb-1" >
                 <div class="hot" v-if="job.highlight_job == 2" data-toggle="tooltip" data-placement="top" title="Được tài trợ"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper" style="margin-top: -5px;">
-                    <a class="delivery-date mb-0 mt-1 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
+                    <!-- <a class="delivery-date mb-0 mt-1 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
                         {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
-                    </a>
+                    </a> -->
                      <p class="delivery-date mg-top-5" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
                 </div>
             </div>
@@ -79,7 +84,7 @@ export default {
     font-weight: 700;
 }
 .hot img {
-    width: 6%;
+    width: 8%;
     float: right;
     position: absolute;
     right: 15px;
@@ -108,11 +113,13 @@ export default {
 @media(max-width: 768px) {
     .item-vip-a{
         max-width: 250px;
+        overflow: hidden;
+        white-space: unset;
     }
     .p-r-0 .hot img{
         right: 15px;
     }
-    .item-options {
+    .item-options div:last-child {
         display: none;
     }
     .remove-border-right {
