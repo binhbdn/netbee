@@ -199,16 +199,13 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             <label for="firstName3">Học phí</label>
                                                             <div class="container-fluid">
                                                                 <div class="row">
-                                                                    <div class="col-6" style="padding-left:0px">
-                                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
-                                                                            <div class="input-group">
-                                                                                <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start">
-                                                                                <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
-                                                                                    <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
-                                                                                </div>
-                                                                            </div>                                                                       
-                                                                            <span style="color: red">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
+                                                                    <div class="col-6" style="padding-left:0px">                
+                                                                        <div class="input-group">
+                                                                            <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start">
+                                                                            <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                                <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                            </div>
+                                                                        </div>                                                                                   
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px">                                       
                                                                         <multiselect :options="salaryEx" v-model="data.salary_status" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
@@ -269,7 +266,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6 mb-3" v-if="checked">
+                                                    <div class="col-6" v-if="checked">
                                                         <ValidationProvider rules="required" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
