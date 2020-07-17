@@ -113,15 +113,7 @@
                                                         </div>
                                                     </div>
                                                    
-                                                    <div class="col-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Thời gian du học (năm)</label>
-                                                                <input type="text" class="form-control required" v-model="data.time_contract">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
+                                                    
                                                     <div class="col-4">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
@@ -136,6 +128,15 @@
                                                             <label for="firstName3">Chứng minh thu nhập</label>
                                                             <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>                                     
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Thời gian du học (năm)</label>
+                                                                <input type="text" class="form-control required" v-model="data.time_contract">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
@@ -164,7 +165,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
+                                                        <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày thi tuyển</label>
                                                                 <input type="date" class="form-control" v-model="data.date_test"> 
@@ -173,7 +174,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-6">
-                                                        <ValidationProvider rules="required|ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
+                                                        <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày dự kiến nhập cảnh</label>
                                                                 <input type="date" class="form-control required" v-model="data.expected_date">
@@ -243,7 +244,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                         <tab-content title="Tiền thưởng">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
-                                                    <div class="col-12">
+                                                    <!-- <div class="col-12">
                                                         <fieldset>
                                                             <div class="vs-checkbox-con vs-checkbox-warning">
                                                                 <input type="checkbox" v-model="checked" :checked="checked">
@@ -255,7 +256,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                                 <span class="">Bonus</span>
                                                             </div>
                                                         </fieldset>
-                                                    </div>  
+                                                    </div>   -->
                                                     <div class="col-6" v-if="checked">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }" >
                                                             <div class="form-group">
@@ -284,6 +285,12 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label for="firstName3">Mã khuyễn mãi (Nếu có)</label>
+                                                            <input type="text" class="form-control" v-model="data.promotion_code">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
@@ -291,56 +298,57 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                             <ValidationObserver ref="step5" v-slot="{ valid5 }">
                                                 <div class="row">
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi2">
-                                                        <div class="card border-netbee text-center bg-transparent" v-bind:class="{'brilliant':data.highlight_job == 0}" style="height: 100%">
+                                                        <div class="card border-netbee text-center bg-transparent border-hove" style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-30">
-                                                                    <label for="defaultGroupExample1" class="btn bg-netbee">TIN THƯỜNG</label>
-                                                                    <input type="radio" class="custom-control-input"
-                                                                    id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
+                                                                    <label for="defaultGroupExample1" class="btn bg-netbee">Miễn phí</label>
+                                                        
                                                                    
                                                                     <div class="divider divider-warning">
-                                                                        <div class="divider-text trial">|</div>
+                                                                        <div class="divider-text trial">Tin thường</div>
                                                                     </div>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box tin mới</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có icon nổi bật</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có chuyên viên hỗ trợ hotline</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Miễn phí tin đăng</p>
+                                                                    <input type="radio" class="form-check-input bot"
+                                                                    id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi1">
-                                                        <div class="card border-netbee text-center bg-transparent" v-bind:class="{'brilliant':data.highlight_job == 1}" style="height: 100%">
+                                                        <div class="card border-netbee text-center bg-transparent border-hove"  style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-30">
-                                                                    <label for="defaultGroupExample0" class="btn bg-netbee">TIN NỔI BẬT</label>
-                                                                     <input type="radio" class="custom-control-input"
-                                                                    id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
+                                                                    <label for="defaultGroupExample0" class="btn bg-netbee">1,000,000 VND</label>
+                                                                    
                                                                     
                                                                     <div class="divider divider-default">
-                                                                        <div class="divider-text trial">Tin thường</div>
+                                                                        <div class="divider-text trial">Tin nổi bật</div>
                                                                     </div>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box đầu tiên của trang chủ</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,000,000 VND/ Tin</p>
+                                                                    <input type="radio" class="form-check-input bot"
+                                                                    id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi3">
-                                                        <div class="card border-netbee text-center bg-transparent" v-bind:class="{'brilliant':data.highlight_job == 2}" style="height: 100%">
+                                                        <div class="card border-netbee text-center bg-transparent brilliant" style="height: 100%;border: 1px solid #ffc108 !important;">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-30">
-                                                                    <label for="defaultGroupExample2" class="btn bg-netbee">TIN VIP</label>
-                                                                    <input type="radio" class="custom-control-input"
-                                                                    id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
+                                                                    <label for="defaultGroupExample2" class="btn bg-netbee">1,500,000 VND</label>
+                                                                    
                                                                    
                                                                     <div class="divider divider-danger">
-                                                                        <div class="divider-text trial">Hot</div>
+                                                                        <div class="divider-text trial">Tin vip</div>
                                                                     </div>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box nổi bật của trang chủ</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị icon màu đỏ ở góc phải tin gây nổi bật</p>
@@ -349,6 +357,8 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
                                                                     <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,500,000 VND/ Tin</p>
+                                                                    <input type="radio" class="form-check-input bot"
+                                                                    id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -493,7 +503,8 @@ export default {
                 benefits:'',
                 request:'',
                 route:'',
-                request_cmnd:{id: 3, name: 'Không'}
+                request_cmnd:{id: 3, name: 'Không'},
+                promotion_code:''
             },
             checked: true,
             guarantee: [
@@ -644,6 +655,7 @@ export default {
                 form.append('route' , this.data.route)
                 form.append('salary_status' , this.data.salary_status.id)
                 form.append('request_cmnd' , this.data.request_cmnd.id)
+                form.append('promotion_code' , this.data.promotion_code)
                 this.$axios.post('tintuyendung/createTinTuyen',form)
                 .then(response => {
                     if(response.data.status == 200) {
@@ -682,7 +694,7 @@ input::placeholder ,  textarea::placeholder{
 #goi1 .border-netbee:hover ,#goi2 .border-netbee:hover,#goi3 .border-netbee:hover{
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1) !important;;
     background-color: #fff !important;
-    border: 1px solid #FFB701 !important;
+    border: 1px solid #FFB701;
 }
 .border-netbee{
     border: 1px solid hsla(0, 0%, 80%, .8)!important;
@@ -856,5 +868,18 @@ display: block;
 .wizard-tab-content {
     padding-left: 4px !important;
     padding-right: 4px !important;
+}
+.border-netbee {
+    border: 1px solid #e4e4e4 !important;
+}
+
+.border-hove:hover {
+    border: 1px solid #e4e4e4 !important;
+}
+
+.bot {
+    position: absolute;
+    bottom: 12px;
+    font-size: 20px;
 }
 </style>
