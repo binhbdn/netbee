@@ -3,7 +3,7 @@
         <section class="bg-white" style="background-color: #f6f6f6!important;">
             <div class="container">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-lg-8 content-left">
                         <div class="card">
                             <div class="card-header">
                                 <h2 class="font-weight-600">{{ tintuc.title }}</h2><br>
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 p-0">
+                    <div class="col-lg-4 p-0">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title"> Bài đọc mới nhất </h4>
@@ -58,12 +58,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        <div class="card introduce">
                             <div class="card-header">
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                   <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnetbee.vn%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1459241224260897" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                                   <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnetbee.vn%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1459241224260897" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -176,5 +176,20 @@ export default {
 p img{
     width: 100% !important;
     object-fit: scale-down;
+}
+@media (max-width: 1199px){
+    .introduce{
+        display: none;
+    }
+}
+@media (max-width: 991px){
+    .content-left{
+        padding: 0;
+    }
+}
+@media (max-width: 575px){
+    h2{
+        font-size: 1.25rem;
+    }
 }
 </style>
