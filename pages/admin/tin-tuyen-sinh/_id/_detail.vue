@@ -110,7 +110,7 @@
                                                                                     <p v-if="tintuyendung.visa_profession != null"><span class="font-weight-600">Visa:</span> {{ tintuyendung.visa_profession.profession }} </p>
                                                                                     <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Hình thức làm việc:</span> {{ tintuyendung.form_work == 1 ? 'Toàn thời gian' : tintuyendung.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
                                                                                     <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Thu nhập hàng tháng:</span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
-                                                                                    <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuyendung.salary_start) }} {{ tintuyendung.currency }} <span v-if="tintuyendung.salary_status == 1">/ 1 Năm</span><span v-else-if="tintuyendung.salary_status == 2">/ 6 Tháng</span><span v-else-if="tintuyendung.salary_status == 3">/ 1 Tháng</span><span v-else-if="tintuyendung.salary_status == 4">/ 1 Kỳ</span><span v-else>/ Đang cập nhật</span></p>
+                                                                                    <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPriceMany(tintuyendung.salary_start) }} <span v-if="tintuyendung.salary_start != null">{{ tintuyendung.currency }}</span> <span v-if="tintuyendung.salary_status == 1">/ 1 Năm</span><span v-else-if="tintuyendung.salary_status == 2">/ 6 Tháng</span><span v-else-if="tintuyendung.salary_status == 3">/ 1 Tháng</span><span v-else-if="tintuyendung.salary_status == 4">/ 1 Kỳ</span><span v-else>/ Đang cập nhật</span></p>
                                                                                     <p><span class="font-weight-600">Số lượng:</span> {{ tintuyendung.quantity }}</p>
                                                                                     <p><span class="font-weight-600">Thời gian hợp đồng:</span> {{ tintuyendung.time_contract }} Năm</p>
                                                                                 </div>
@@ -253,7 +253,7 @@
             </section>
             <section>
                 <div class="row">
-                    <div class="col-lg-8 col-12" style="padding-right: 2px;">
+                    <div class="col-lg-8 col-12 p-l-0-mb" style="padding-right: 2px;">
                         <div class="card">
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -273,7 +273,7 @@
                                                         <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Hình thức làm việc:</span> {{ tintuyendung.form_work == 1 ? 'Toàn thời gian' : tintuyendung.form_work == 2? 'Bán thời gian' : 'Vừa học vừa làm' }}</p>
                                                         <!-- <p v-if="tintuyendung.time_bonus"><span class="font-weight-600">Bonus:</span> {{ tintuyendung.time_bonus == 1 ? tintuyendung.bonus : tintuyendung.time_bonus == 2 ? tintuyendung.bonus * 1.5 : tintuyendung.bonus * 3 }}{{ tintuyendung.currency }}</p> -->
                                                         <p v-if="tintuyendung.type != 2"><span class="font-weight-600">Thu nhập hàng tháng:</span> {{ FormatPrice(tintuyendung.salary_start) }}{{ tintuyendung.currency }} ~ {{ FormatPrice(tintuyendung.salary_end) }}{{ tintuyendung.currency }}</p>
-                                                        <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPrice(tintuyendung.salary_start) }} {{ tintuyendung.currency }} <span v-if="tintuyendung.salary_status == 1">/ 1 Năm</span><span v-else-if="tintuyendung.salary_status == 2">/ 6 Tháng</span><span v-else-if="tintuyendung.salary_status == 3">/ 1 Tháng</span><span v-else-if="tintuyendung.salary_status == 4">/ 1 Kỳ</span><span v-else>/ Đang cập nhật</span></p>
+                                                        <p v-if="tintuyendung.type == 2"><span class="font-weight-600">Học phí:</span> {{ FormatPriceMany(tintuyendung.salary_start) }} {{ tintuyendung.currency }} <span v-if="tintuyendung.salary_status == 1">/ 1 Năm</span><span v-else-if="tintuyendung.salary_status == 2">/ 6 Tháng</span><span v-else-if="tintuyendung.salary_status == 3">/ 1 Tháng</span><span v-else-if="tintuyendung.salary_status == 4">/ 1 Kỳ</span><span v-else>/ Đang cập nhật</span></p>
                                                      
                                                       
                                                     </div>
@@ -444,7 +444,7 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">
-                                    <i class="fad fa-business-time"></i> LOẠI TIN TƯƠNG TỰ
+                                    <i class="fad fa-business-time"></i> TIN TƯƠNG TỰ
                                 </h4>
                             </div>
                             <div class="exam-jobs card-content collapse show">

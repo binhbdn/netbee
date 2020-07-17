@@ -57,5 +57,12 @@ Vue.mixin({
                 return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             }
         },
+        FormatPriceMany(price) {
+            if(price == null){
+                return "Miễn phí"
+            } else {
+                return price.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
+        }
     }
 })

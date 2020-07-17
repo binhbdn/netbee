@@ -189,8 +189,7 @@ class TinTuyenService extends BaseService {
             'age_start' => 'required',
             'age_late' => 'required',
             'quantity' => 'required',
-            'currency' => "required",
-            'salary_start' => 'required'
+            'currency' => "required"
         ];
         $messages = [
             'required' => 'Vui lòng nhập đầy đủ thông tin của tin tuyển dụng!',

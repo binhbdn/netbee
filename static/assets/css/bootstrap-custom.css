@@ -223,4 +223,7 @@
     .list-view-job-admin {
         padding: 0px !important;
     }
+    .p-l-0-mb {
+        padding-left: 0;
+    }
 }
