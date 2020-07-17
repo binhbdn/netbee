@@ -6,7 +6,7 @@
                     <div class="col-lg-8 content-left">
                         <div class="card" v-if="tintucNew.length > 0">
                             <div class="card-header">
-                                <h4><i class="fad fa-newspaper"></i> Tin mới</h4>
+                                <h2 class="card-title"><i class="fad fa-newspaper"></i> Tin mới</h2>
                                 <a href="/tin-tuc/tin-moi" class="btn border-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
@@ -17,7 +17,7 @@
                         </div>
                         <div class="card" v-if="tintucCamNang.length > 0">
                             <div class="card-header">
-                                <h4><i class="fad fa-newspaper"></i> Cẩm nang</h4>
+                                <h2 class="card-title"><i class="fad fa-newspaper"></i> Cẩm nang</h2>
                                 <a href="/tin-tuc/cam-nang" class="btn border-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="card" v-if="tintucDuHoc.length > 0">
                             <div class="card-header">
-                                <h4><i class="fad fa-newspaper"></i> Du học</h4>
+                                <h2 class="card-title"><i class="fad fa-newspaper"></i> Du học</h2>
                                 <a href="/tin-tuc/du-hoc" class="btn border-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
@@ -39,7 +39,7 @@
                         </div>
                         <div class="card" v-if="tintucXKLD.length > 0">
                             <div class="card-header">
-                                <h4><i class="fad fa-newspaper"></i> Xuất khẩu lao động</h4>
+                                <h2 class="card-title"><i class="fad fa-newspaper"></i> Xuất khẩu lao động</h2>
                                 <a href="/tin-tuc/xuat-khau-lao-dong" class="btn border-netbee">Xem thêm</a>
                             </div>
                             <div class="card-content collapse show">
@@ -52,7 +52,7 @@
                     <div class="col-lg-4 content-right">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Danh mục</h4>
+                                <h2 class="card-title">Danh mục</h2>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">

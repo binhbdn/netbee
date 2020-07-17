@@ -12,7 +12,7 @@
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body p-t-15 p-b-15">
-                                        <div class="tab-content">
+                                        <!-- <div class="tab-content">
                                             <div class="card-header card-profile">
                                                 <p class="card-header-title is-uppercase">Thông tin chung</p>
                                             </div>
@@ -135,7 +135,139 @@
                                                     </ValidationObserver>
                                                 </form>
                                             </div>
+                                        </div> -->
+                                        <!-- Test -->
+                                        <div class="tab-content">
+                                            <div class="card-header card-profile">
+                                                <p class="card-header-title is-uppercase">Thông tin chung</p>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane active" id="account-vertical-general" aria-labelledby="account-pill-general" aria-expanded="true">
+                                                <form method="post">
+                                                    <ValidationObserver ref="InfoUser" v-slot="{ valid }">
+                                                        <div class="row">
+                                                            <div class="col-md-3" style="text-align: center;">
+                                                                <div class="col-md-12 for-label avatar-label">
+                                                                    <label for="account-username">Ảnh đại diện</label>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                    <a href="javascript: void(0);">
+                                                                        <img v-lazy="images[0]" class="rounded" alt="profile image" style="object-fit: cover; width: 80%;" v-if="images.length > 0">
+                                                                        <img v-lazy="changeInfoUser.avatar != null && changeInfoUser.avatar.startsWith('https') ? changeInfoUser.avatar : `/uploads/users/avatars/${changeInfoUser.avatar}`" class="rounded" alt="profile image" style="object-fit: cover;" v-else>
+                                                                    </a>
+                                                                </div>
+                                                                <div class="col-md-12" style="margin-top: 0.5em;">
+                                                                    <div class="row">
+                                                                        <div class="col-md-7">
+                                                                            <label class="btn btn-sm bg-netbee" for="account-upload" style="width: 100%;">Đổi ảnh đại diện</label>
+                                                                            <input type="file" id="account-upload" @change="onInputChange" hidden>
+                                                                        </div>
+                                                                        <div class="col-md-5">
+                                                                            <button type="button" class="btn btn-sm btn-outline-warning" style="width: 100%;" @click="resetImg">Reset</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="text-muted"><small>Cho phép JPG, GIF or PNG.</small></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-9" style="padding-right: 28px;">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <ValidationProvider rules="required" ref="name" name="name" v-slot="{ errors }">
+                                                                            <div class="form-group" style="margin-bottom: 0rem !important;">
+                                                                                <div class="controls row">
+                                                                                    <div class="col-md-3 text-right for-label">
+                                                                                        <label v-if="$auth.user.role != 2" for="account-username">Họ tên</label>
+                                                                                        <label v-if="$auth.user.role == 2" for="account-username">Tên công ty</label>
+                                                                                    </div>
+                                                                                    <div class="col-md-9">
+                                                                                        <input type="text" class="form-control" name="name" v-model="changeInfoUser.name">
+                                                                                        <ul style="color:red" class="overline text-left">
+                                                                                            <li v-for="(error, index) in errors" :key="index">
+                                                                                            <span>{{ error }}</span>
+                                                                                            </li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </ValidationProvider>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group" style="margin-bottom: 0rem !important;">
+                                                                            <div class="controls row">
+                                                                                <div class="col-md-3 text-right for-label">
+                                                                                    <label v-if="$auth.user.role != 2" for="account-name">Ngày sinh</label>
+                                                                                    <label v-if="$auth.user.role == 2" for="account-name">Ngày thành lập</label>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <input type="date" class="form-control" v-model="changeInfoUser.birth">
+                                                                                </div>
+                                                                                <div class="col-md-6 number-phone">
+                                                                                     <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                                        <div class="form-group" style="margin-bottom: 0rem !important;">
+                                                                                            <div class="controls row" >
+                                                                                                <div class="col-md-5 for-label text-right">
+                                                                                                    <label for="account-e-mail">Điện thoại</label>
+                                                                                                </div>
+                                                                                                <div class="col-md-7">
+                                                                                                    <input type="number" class="form-control" v-model="changeInfoUser.phone">
+                                                                                                    <ul style="color:red" class="overline text-left">
+                                                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                                                        <span>{{ error }}</span>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </ValidationProvider>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group row" style="margin-bottom: 1.5rem !important;">
+                                                                            <div class="col-md-3 for-label text-right">
+                                                                                <label for="account-company">Email</label>
+                                                                            </div>
+                                                                            <div class="col-md-9">
+                                                                                <input type="text" class="form-control" v-model="changeInfoUser.email" readonly>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                            <div class="form-group row">
+                                                                                <div class="col-md-3 for-label text-right">
+                                                                                    <label for="account-company">Địa chỉ</label>
+                                                                                </div>
+                                                                                <div class="col-md-9">
+                                                                                    <input type="text" class="form-control" v-model="changeInfoUser.address">
+                                                                                    <ul style="color:red" class="overline text-left">
+                                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                                        <span>{{ error }}</span>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        </ValidationProvider>
+                                                                    </div>
+                                                                    <div class="col-md-12 d-flex justify-content-end">
+                                                                        <div class="field is-horizontal">
+                                                                            <div class="field-body">
+                                                                                <div class="field">
+                                                                                    <div class="control">
+                                                                                        <button type="button" class="btn bg-netbee mb-1 mb-sm-0" @click="actionInfoUser()">Cập nhật</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ValidationObserver>
+                                                </form>
+                                            </div>
                                         </div>
+                                        <!-- Het test -->
                                     </div>
                                 </div>
                             </div>

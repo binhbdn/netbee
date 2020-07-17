@@ -11,7 +11,7 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header mb-0">
-                                    <h4 style="text-transform: uppercase">công ty đã kiểm duyệt</h4>
+                                    <h2 class="card-title" style="text-transform: uppercase">công ty đã kiểm duyệt</h2>
                                 </div>
                                     <div class="card-content collapse show" style="padding: 13px; position:relative">
                                   <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="10000">
@@ -75,7 +75,7 @@
         <div class="col-4" style="padding-left: 4px;">
             <div class="card">
                 <div class="card-header">
-                    <h4 style="text-transform: uppercase">Công ty mới</h4>
+                    <h2 class="card-title" style="text-transform: uppercase">Công ty mới</h2>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -422,7 +422,7 @@ ol.carousel-indicators {
     line-height: 21px;
 }
 .button.button_secondary:hover {
-    background-color: #F7941D;
+    background-color: #FFB701;
     color: white;
 }
 .spotlightBlock__content {
@@ -438,7 +438,7 @@ ol.carousel-indicators {
     text-align: right;
 }
 .spotlightBlock__cta a.button_secondary:hover {
-    background-color: #d97b08;
+    background-color: #FFB701;
 }
 .spotlightBlock__cta a.button_secondary {
     color: #ff9900;
@@ -455,8 +455,8 @@ ol.carousel-indicators {
     max-width: 100%;
 } */
 .button.button_secondary {
-    border: 1px solid #F7941D;
-    color: #F7941D;
+    border: 1px solid #FFB701;
+    color: #FFB701;
     border-radius: 4px;
 }
 .content-box {
