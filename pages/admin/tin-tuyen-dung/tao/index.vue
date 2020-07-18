@@ -1,7 +1,7 @@
 <template>
     <div class="app-content content">
         <div class="content-wrapper container" style="padding-top:19px">
-            <div class="content-body">
+            <div class="content-body content-on">
                 <section id="dashboard-ecommerce">
                     <div class="row">
                         <div class="col-lg-4 col-sm-6 col-12 pl-0">
@@ -53,7 +53,7 @@
                     </div>
                 </section>
             </div>
-            <div class="content-body">
+            <div class="content-body content-below">
                 <section id="News"> 
                     <div class="row">
                         <div class="col-12 p-r-0 p-l-0">
@@ -63,36 +63,36 @@
                                 </div>
                                 <div class="card-body card-dashboard">
                                     <div class="row">
-                                    <div class="col-4">
-                                        <div class="card text-white bg-gradient-success text-center">
-                                            <div class="card-content">
-                                                <div class="card-body p-3">
-                                                    <h2 class="text-white">Tin Du Học</h2>
-                                                    <a href="/admin/tin-tuyen-dung/tao/tin-du-hoc" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>
+                                        <div class="col-xl-4">
+                                            <div class="card text-center">
+                                                <div class="card-content">
+                                                    <div class="card-body p-3">
+                                                        <h2>Tin Du Học</h2>
+                                                        <a href="/admin/tin-tuyen-dung/tao/tin-du-hoc" class="btn waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="card text-white bg-gradient-success text-center">
-                                            <div class="card-content">
-                                                <div class="card-body p-3">
-                                                    <h2 class="text-white">Tin Xuất Khẩu</h2>
-                                                    <a href="/admin/tin-tuyen-dung/tao/tin-xkld" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>
+                                        <div class="col-xl-4">
+                                            <div class="card text-center">
+                                                <div class="card-content">
+                                                    <div class="card-body p-3">
+                                                        <h2>Tin Xuất Khẩu</h2>
+                                                        <a href="/admin/tin-tuyen-dung/tao/tin-xkld" class="btn waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="card text-white bg-gradient-success text-center">
-                                            <div class="card-content">
-                                                <div class="card-body p-3">
-                                                    <h2 class="text-white">Tu Nghiệp Sinh</h2>
-                                                    <a href="/admin/tin-tuyen-dung/tao/tin-tu-nghiep-sinh" class="btn btn-warning waves-effect waves-light" style="color: #000">ĐĂNG TUYỂN NGAY</a>
+                                        <div class="col-xl-4">
+                                            <div class="card text-center">
+                                                <div class="card-content">
+                                                    <div class="card-body p-3">
+                                                        <h2>Tu Nghiệp Sinh</h2>
+                                                        <a href="/admin/tin-tuyen-dung/tao/tin-tu-nghiep-sinh" class="btn waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -174,5 +174,21 @@ export default {
 .bg-gradient-success{
     background: #ec36d6;
     background-image: -webkit-linear-gradient(60deg, #28C76F, rgba(40, 199, 111, 0.5));
+}
+.card-dashboard .card{
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+.waves-effect{
+    background-color: #ffb701;
+    color: #000;
+}
+.waves-effect:hover{
+    color: #ffffff;
+}
+@media (max-width: 1199px){
+    .content-on{
+        display: none;
+    }
 }
 </style>
