@@ -298,19 +298,19 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         <div class="card border-netbee text-center bg-transparent border-hove" style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-30">
-                                                                    <label for="defaultGroupExample1" class="btn bg-netbee">Miễn phí</label>
-                                                        
-                                                                   
-                                                                    <div class="divider divider-warning">
-                                                                        <div class="divider-text trial">Tin thường</div>
-                                                                    </div>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box tin mới</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có icon nổi bật</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có chuyên viên hỗ trợ hotline</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Miễn phí tin đăng</p>
-                                                                    <input type="radio" class="form-check-input bot"
-                                                                    id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
+                                                                    <label for="defaultGroupExample1">
+                                                                        <label for="defaultGroupExample1" class="btn bg-netbee">Miễn phí</label>
+                                                                        <div class="divider divider-warning">
+                                                                            <div class="divider-text trial">Tin thường</div>
+                                                                        </div>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box tin mới</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có icon nổi bật</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có chuyên viên hỗ trợ hotline</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Miễn phí tin đăng</p>
+                                                                        <input type="radio" class="form-check-input bot"
+                                                                        id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
+                                                                    </label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -319,19 +319,20 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         <div class="card border-netbee text-center bg-transparent border-hove"  style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-30">
-                                                                    <label for="defaultGroupExample0" class="btn bg-netbee">1,000,000 VND</label>
+                                                                    <label for="defaultGroupExample0">
+                                                                        <label for="defaultGroupExample0" class="btn bg-netbee">1,000,000 VND</label>
+                                                                        <div class="divider divider-default">
+                                                                            <div class="divider-text trial">Tin nổi bật</div>
+                                                                        </div>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box đầu tiên của trang chủ</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,000,000 VND/ Tin</p>
+                                                                        <input type="radio" class="form-check-input bot"
+                                                                        id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
+                                                                    </label>
                                                                     
-                                                                    
-                                                                    <div class="divider divider-default">
-                                                                        <div class="divider-text trial">Tin nổi bật</div>
-                                                                    </div>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box đầu tiên của trang chủ</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,000,000 VND/ Tin</p>
-                                                                    <input type="radio" class="form-check-input bot"
-                                                                    id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -341,21 +342,22 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         <div class="card border-netbee text-center bg-transparent brilliant" style="height: 100%;border: 1px solid #ffc108 !important;">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-30">
-                                                                    <label for="defaultGroupExample2" class="btn bg-netbee">1,500,000 VND</label>
+                                                                    <label for="defaultGroupExample2">
+                                                                        <label for="defaultGroupExample2" class="btn bg-netbee">1,500,000 VND</label>
+                                                                        <div class="divider divider-danger">
+                                                                            <div class="divider-text trial">Tin vip</div>
+                                                                        </div>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box nổi bật của trang chủ</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị icon màu đỏ ở góc phải tin gây nổi bật</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chi tiết tin hiển thị là tin đã xác thực</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
+                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,500,000 VND/ Tin</p>
+                                                                        <input type="radio" class="form-check-input bot"
+                                                                        id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
+                                                                    </label>
                                                                     
-                                                                   
-                                                                    <div class="divider divider-danger">
-                                                                        <div class="divider-text trial">Tin vip</div>
-                                                                    </div>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box nổi bật của trang chủ</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị icon màu đỏ ở góc phải tin gây nổi bật</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chi tiết tin hiển thị là tin đã xác thực</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hỗ trợ đăng tin và thông báo khi có ứng viên ứng tuyển</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị đầu tiên ở trang hiển thị tin của chuyên viên tuyển dụng</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Chuyên viên hỗ trợ hotline 24/7</p>
-                                                                    <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,500,000 VND/ Tin</p>
-                                                                    <input type="radio" class="form-check-input bot"
-                                                                    id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
                                                                 </div>
                                                             </div>
                                                         </div>

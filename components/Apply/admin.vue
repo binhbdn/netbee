@@ -43,151 +43,32 @@
                         <div class="card " style="margin-top: 10px;margin-bottom: 32px;">
                             <div class="card-content">
                                 <div class="card-body">
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <!-- <li class="nav-item">
-                                            <a class="nav-link  active" id="home-tab" data-toggle="tab" href="#home" aria-controls="home" role="tab" aria-selected="true" @click="fetch">Chờ duyệt</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" aria-controls="profile" role="tab" aria-selected="false" @click="getApplyApproved">Đã duyệt</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false" @click="getRefuseApply">Từ chối</a>
-                                        </li> -->
-                                        <!-- <li class="nav-item">
-                                            <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" aria-controls="about" role="tab" aria-selected="false">Đã tuyển</a>
-                                        </li> -->
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" aria-controls="about" role="tab" aria-selected="true" @click="getAllApply">Tất cả</a>
-                                        </li>
-                                    </ul>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <nav style="margin-top: 20px;margin-bottom: 20px;font-size: 16px;">
+                                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                    <a class="nav-item nav-link active" id="nav-home-tab" v-on:click="StatusChange(1)" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home" aria-selected="true">Tất cả</a>
+                                                    <a class="nav-item nav-link" id="nav-profile-tab" v-on:click="StatusChange(2)" data-toggle="tab" href="#chuapheduyet" role="tab" aria-controls="nav-profile" aria-selected="false">Chờ phê duyệt</a>
+                                                    <a class="nav-item nav-link" id="nav-contact-tab" v-on:click="StatusChange(3)" data-toggle="tab" href="#dapheduyet" role="tab" aria-controls="nav-contact" aria-selected="false">Đã phê duyệt</a>
+                                                    <a class="nav-item nav-link" id="nav-contact-tab" v-on:click="StatusChange(4)" data-toggle="tab" href="#lichphongvan" role="tab" aria-controls="nav-contact" aria-selected="false">Lịch phỏng vấn</a>
+                                                    <a class="nav-item nav-link" id="nav-contact-tab" v-on:click="StatusChange(5)" data-toggle="tab" href="#tuchoi" role="tab" aria-controls="nav-contact" aria-selected="false">Từ chối</a>
+                                                </div>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="tab-content ">
-                                        <!-- <div class="tab-pane active" id="home" aria-labelledby="home-tab" role="tabpanel">
+                                        <div class="tab-pane fade show active"  v-bind:id="idStatus" role="tabpanel" aria-labelledby="nav-home-tab">
                                             <table class="table table-hover mb-0 zero-configuration">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>Tên công việc</th>
                                                         <th>Tên ứng viên</th>
-                                                        <th>Nhà tuyển dụng</th>
-                                                        <th>Thời gian nộp</th>
-                                                        <th>Hành động</th>
-                                                    </tr>
-                                                </thead>
-                                                <tr v-for="(item, index) in ApplyWait" :key="index">
-                                                    <td>{{item.id}}</td>
-                                                    <td>{{item.title}}</td>
-                                                    <td>{{item.name}}</td>
-                                                    <td>{{item.name_company}}</td>
-                                                    <td>{{ConvertDate(item.created_at)}}</td>
-                                                    <td>
-                                                        <div class="action-btns">
-                                                            <div class="btn-dropdown ">
-                                                                <div class="btn-group dropdown actions-dropodown">
-                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        Chọn thao tác
-                                                                    </button>
-                                                                    <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)"><i class="far fa-check-circle"></i> Duyệt</a>
-                                                                        <a class="dropdown-item" style="margin-top:5px" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" ><i class="far fa-times-circle"></i> Từ chối</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                            <infinite-loading
-                                                v-if="ApplyWait.length"
-                                                spinner="bubbles"
-                                                @infinite="infiniteScroll" style="padding:20px; width:100%"
-                                            >
-                                                <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
-                                                <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
-                                            </infinite-loading>
-                                        </div> -->
-                                        <!-- <div class="tab-pane " id="profile" aria-labelledby="profile-tab" role="tabpanel">
-                                            <table class="table table-hover mb-0 zero-configuration">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Tên công việc</th>
-                                                        <th>Tên ứng viên</th>
-                                                        <th>Nhà tuyển dụng</th>
-                                                        <th>Thời gian nộp</th>
-                                                        <th>Hành động</th>
-                                                    </tr>
-                                                </thead>
-                                                <tr v-for="(item, index) in ApplyApproved" :key="index">
-                                                    <td>{{item.id}}</td>
-                                                    <td>{{item.title}}</td>
-                                                    <td>{{item.name}}</td>
-                                                    <td>{{item.name_company}}</td>
-                                                    <td>{{ConvertDate(item.created_at)}}</td>
-                                                    <td>
-                                                        <div class="action-btns">
-                                                            <div class="btn-dropdown ">
-                                                                <div class="btn-group dropdown actions-dropodown">
-                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        Chọn thao tác
-                                                                    </button>
-                                                                    <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a class="dropdown-item" style="margin-top:5px" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id"><i class="far fa-times-circle"></i> Từ chối</a>
-                                                                        <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
-                                                                        <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div> -->
-                                        <!-- <div class="tab-pane" id="about" aria-labelledby="about-tab" role="tabpanel">
-                                            <table class="table table-hover mb-0 zero-configuration">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Tên công việc</th>
-                                                        <th>Tên ứng viên</th>
-                                                        <th>Nhà tuyển dụng</th>
-                                                        <th>Thời gian nộp</th>
-                                                        <th>Hành động</th>
-                                                    </tr>
-                                                </thead>
-                                                <tr v-for="(item, index) in ApplyRefuse" :key="index">
-                                                    <td>{{item.id}}</td>
-                                                    <td>{{item.title}}</td>
-                                                    <td>{{item.name}}</td>
-                                                    <td>{{item.name_company}}</td>
-                                                    <td>{{ConvertDate(item.created_at)}}</td>
-                                                    <td>
-                                                        <div class="action-btns">
-                                                            <div class="btn-dropdown ">
-                                                                <div class="btn-group dropdown actions-dropodown">
-                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        Chọn thao tác
-                                                                    </button>
-                                                                    <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)"><i class="far fa-check-circle"></i> Duyệt lại</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div> -->
-                                        <div class="tab-pane active" id="all" aria-labelledby="all-tab" role="tabpanel">
-                                            <table class="table table-hover mb-0 zero-configuration">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Tên công việc</th>
-                                                        <th>Tên ứng viên</th>
-                                                        <th>Trạng thái</th>
                                                         <th>Nhà tuyển dụng</th>
                                                         <th>Bonus</th>
                                                         <th>Thời gian nộp</th>
+                                                        <th>Trạng thái</th>
                                                         <th>Hành động</th>
                                                     </tr>
                                                 </thead>                                                
@@ -204,16 +85,7 @@
                                                         </td>
                                                         
                                                         <td>{{item.name}}</td>                                                        
-                                                        <td>
-                                                            <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" class="btn btn-status">Xem hồ sơ</a>
-                                                            <a v-if="item.nb_paper != null" @click="showFile(item.id)" class="btn btn-status">Xem giấy tờ đính kèm</a>
-                                                            <p v-if="item.status == 1">Chưa duyệt</p>
-                                                            <p v-else-if="item.status == 2 && item.nb_paper == null">Đã duyệt hồ sơ</p>
-                                                            <p v-else-if="item.status == 3">Đã tuyển hồ sơ</p>
-                                                            <p v-else-if="item.status == 4">Đã từ chối hồ sơ</p>
-                                                            <p v-else-if="item.status == 5">Đã duyệt hồ sơ đính kèm</p>
-                                                            <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
-                                                        </td>
+                                        
                                                         <td>{{item.user.name}}</td>
                                                         <td>
                                                             <span v-if="item.bonus == null || item.bonus == 0">Không bonus</span>
@@ -225,6 +97,16 @@
                                                             </span> -->
                                                         </td>
                                                         <td>{{ConvertDate(item.created_at)}}</td>
+                                                        <td>
+                                                            <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" class="btn btn-status">Xem hồ sơ</a>
+                                                            <a v-if="item.nb_paper != null" @click="showFile(item.id)" class="btn btn-status">Xem giấy tờ đính kèm</a>
+                                                            <p v-if="item.status == 1">Chưa duyệt</p>
+                                                            <p v-else-if="item.status == 2 && item.nb_paper == null">Đã duyệt hồ sơ</p>
+                                                            <p v-else-if="item.status == 3">Đã tuyển hồ sơ</p>
+                                                            <p v-else-if="item.status == 4">Đã từ chối hồ sơ</p>
+                                                            <p v-else-if="item.status == 5">Đã duyệt hồ sơ đính kèm</p>
+                                                            <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
+                                                        </td>
                                                         <td>
                                                             <div class="action-btns">
                                                                 <div class="btn-dropdown ">
@@ -247,7 +129,7 @@
                                                     </tr>
                                                 </tbody>                                                
                                             </table>
-                                            <Center v-if="AllApply.length == 0"><i>Không có hồ sơ ứng tuyển</i></Center>
+                                            <Center style="padding: 10px;" v-if="AllApply.length == 0"><i>Không có hồ sơ ứng tuyển</i></Center>
                                             <!-- <infinite-loading
                                                 v-if="AllApply.length"
                                                 spinner="bubbles"
@@ -447,12 +329,31 @@ export default {
             id: null,
             pageAll: 1,
             active: 1,
+            statusTabs: 1,
+            idStatus: 'all'
         }
     },
     created() {
         this.getAllApply();
     },
     methods: {
+        StatusChange: function(status){
+            this.statusTabs = status
+            this.AllApply = []
+            this.pageAll = 1
+            if(status == 1){
+                this.idStatus = 'all'
+            } else if(status == 2) {
+                this.idStatus = 'chuapheduyet'
+            } else if(status == 3) {
+                this.idStatus = 'dapheduyet'
+            } else if(status == 4) {
+                this.idStatus = 'lichphongvan'
+            } else if(status == 5) {
+                this.idStatus = 'tuchoi'
+            }  
+            this.getAllApply()
+        },
         nameWithLang ({ name, id }) {
             return `${name}`
         },
@@ -473,7 +374,7 @@ export default {
 	        });
         },
         getAllApply(){
-            this.$axios.$get('apply/getAllApply').then((response)=>{
+            this.$axios.$get('apply/getAllApply'+ '?status='+this.statusTabs).then((response)=>{
                 this.AllApply=response.data;                
 	        });
         },
@@ -615,6 +516,53 @@ export default {
 }
 </script>
 <style scoped>
+    .nav.nav-tabs {
+    margin-bottom: 0px;
+    margin-left: 10px;
+    }
+    .nav-tabs {
+        border-bottom: 1px solid #DAE1E7 !important;
+        font-weight: 400;
+    }
+    .nav-tabs .nav-link:hover {
+        border-color: #fff !important;
+        border-bottom-color: #DAE1E7 !important;
+    }
+    .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+        color: #555;
+        cursor: default;
+        background-color: #fff;
+        border: 1px solid #ddd !important;
+        border-bottom-color: transparent;
+    }
+    .nav-tabs .nav-link {
+        border-radius: 0;
+        padding: 10px;
+    }
+    .nav-tabs .nav-link.active{
+        color: #4E5154;
+        background-color: #fff;
+        border-color: #DAE1E7 #DAE1E7 #F8F8F8 !important;
+        border-top: 2px solid #ffb701 !important;
+    }
+    .nav-tabs>li {
+        float: left;
+        margin-bottom: -1px;
+    }
+    .nav>li {
+        position: relative;
+        display: block;
+    }
+    .nav>li>a {
+        position: relative;
+        display: block;
+        padding: 10px 15px;
+    }
+    .nav-tabs>li>a {
+        margin-right: 2px;
+        line-height: 1.42857143;
+        border-radius: 4px 4px 0 0;
+    }
     .scrollTop{
         overflow: scroll;
         height: 580px;
@@ -635,6 +583,7 @@ export default {
     .tab-table{
         height: 630px;
         overflow: auto;
+        font-size: 13px;
     }
     .tab-table::-webkit-scrollbar {
         width: 3px;
