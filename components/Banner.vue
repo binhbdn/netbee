@@ -40,7 +40,7 @@
                               <div class="form-group" style="height: 74%;margin-bottom: 15px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.jobs.key')" name="keyword" v-model="keyJobs">
+                                  <input id="input_first" style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.jobs.key')" name="keyword" v-model="keyJobs">
                                 </div>
                               </div>
                             </div>
@@ -573,5 +573,9 @@ export default {
   .title-p-main{
     font-size: 14px
   }
+}
+#input_first::placeholder{
+  font-size: 14px;
+  color: #adadad !important;
 }
 </style>
