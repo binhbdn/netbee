@@ -67,25 +67,29 @@
                                 </div>
                                 <div class="card-content" style="position:relative">
                                     <div class="card-body">
-                                        <div id="carousel-interval" class="carousel slide" data-ride="carousel" :data-interval="(typeof(arrayJobHot2) !== 'undefined') ? 10000 : null">
+                                        <div id="carousel-interval" class="carousel slide" data-ride="carousel" :data-interval="(typeof(arrayJobHot3) !== 'undefined') ? 10000 : null">
                                             <ol class="carousel-indicators">
-                                                <li v-if="typeof(arrayJobHot2) !== 'undefined'" data-target="#carousel-interval" data-slide-to="0" class="active"></li>
-                                                <li v-if="typeof(arrayJobHot2) !== 'undefined'" data-target="#carousel-interval" data-slide-to="1"></li>
+                                                <li v-if="typeof(arrayJobHot3) !== 'undefined'" data-target="#carousel-interval" data-slide-to="0" class="active"></li>
+                                                <li v-if="typeof(arrayJobHot3) !== 'undefined'" data-target="#carousel-interval" data-slide-to="1"></li>
+                                                <li v-if="typeof(arrayJobHot3) !== 'undefined'" data-target="#carousel-interval" data-slide-to="2"></li>
                                             </ol>
                                             <div class="carousel-inner" role="listbox">
                                                 <div class="carousel-item active">
                                                     <JobsList2Col :DataList="arrayJobHot"></JobsList2Col>
                                                 </div>
-                                                <div class="carousel-item" v-if="typeof(arrayJobHot2) !== 'undefined'">
+                                                <div class="carousel-item">
                                                     <JobsList2Col :DataList="arrayJobHot2"></JobsList2Col>
                                                 </div>
+                                                <div class="carousel-item" v-if="typeof(arrayJobHot3) !== 'undefined'">
+                                                    <JobsList2Col :DataList="arrayJobHot3"></JobsList2Col>
+                                                </div>
                                             </div>
-                                            <a v-if="typeof(arrayJobHot2) !== 'undefined'" class="carousel-control-prev" href="#carousel-interval" role="button" data-slide="prev">
+                                            <a v-if="typeof(arrayJobHot3) !== 'undefined'" class="carousel-control-prev" href="#carousel-interval" role="button" data-slide="prev">
                                                 <button class="el-carousel__arrow el-carousel__arrow--left">
                                                   <i class="fas fa-angle-left"></i>
                                                 </button>
                                             </a>
-                                            <a v-if="typeof(arrayJobHot2) !== 'undefined'" class="carousel-control-next" href="#carousel-interval" role="button" data-slide="next">
+                                            <a v-if="typeof(arrayJobHot3) !== 'undefined'" class="carousel-control-next" href="#carousel-interval" role="button" data-slide="next">
                                                 <button class="el-carousel__arrow el-carousel__arrow--right">
                                                   <i class="fas fa-angle-right"></i>
                                                 </button>
@@ -312,6 +316,7 @@
             tintuc: [],
             arrayJobHot: [],
             arrayJobHot2: [],
+            arrayJobHot3: [],
             pageLoadingHot: 1,
             pageLoadingNew: 1,
             linhvuc: [],
@@ -349,13 +354,14 @@
           var arrayLength = myArray.length;
           var tempArray = [];
       
-          for (index = 0; index < arrayLength; index += 6) {
-              var myChunk = myArray.slice(index, index+6);
+          for (index = 0; index < arrayLength; index += 8) {
+              var myChunk = myArray.slice(index, index+8);
               tempArray.push(myChunk);
           }
           
           this.arrayJobHot = tempArray[0];
           this.arrayJobHot2 = tempArray[1];
+          this.arrayJobHot3 = tempArray[2];
           
         });
 
