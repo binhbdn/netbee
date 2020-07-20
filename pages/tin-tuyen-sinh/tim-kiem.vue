@@ -58,7 +58,7 @@
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <Multiselect :options="visa" v-model="chooseVisa" placeholder="Chọn lĩnh vực" :show-labels="false" :searchable="false" :custom-label="nameWithLang1"></Multiselect>
+                      <Multiselect :options="visa" v-model="chooseVisa" placeholder="Chọn lĩnh vực" :show-labels="false"  :custom-label="nameWithLang1"></Multiselect>
                     </div>
                   </div>
                   <div class="col-md-12">
@@ -69,7 +69,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <div class="form-field">
-                        <input type="button" value="Tìm ngay" class="form-control btn btn-warning text-dark" style="background-color: #ffb701 !important; border-color: #ffb701 !important" @click="search">
+                        <input type="button" value="Tìm ngay" class="form-control col-md-12 btn bg-netbee" @click="search">
                       </div>
                     </div>
                   </div>

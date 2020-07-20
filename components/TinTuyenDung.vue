@@ -122,11 +122,11 @@
                                                                 ID</th>
                                                             <th class="title-style" style="width:40%;">Tiêu đề</th>
                                                             <th class="statistical-none" style="width:20%;">Thống kê</th>
-                                                            <th class="date-none" style="width:10%">Ngày tạo</th>
+                                                            <th class="date-none" style="width:17%">Ngày tạo</th>
                                                             <th class="status-none" style="width:15%;">Trạng thái</th>
                                                             <!-- <th style="width:10%;">Thể loại</th>
                                                             <th style="width:10%;">Loại tin</th> -->
-                                                            <th class="manipulation-style" style="width:10%;">Thao tác</th>
+                                                            <th class="manipulation-style" style="width:8%;">Thao tác</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody v-if="tinTuyenDung.length > 0">
