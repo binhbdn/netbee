@@ -2,51 +2,51 @@
     <div>      
         <div class="content-wrapper" style="margin-top: 0px;padding-top: 0px;">    
             <!-- News filter start -->
-                    <div class="card" v-if="$auth.user.role == 4">
-                        <div class="card-header">
-                            <h4 class="card-title">Tìm kiếm</h4>
-                            <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                            <div class="heading-elements">
-                                <ul class="list-inline mb-0">
-                                    <li><a data-action="collapse" data-toggle="tooltip"  data-placement="top" :title="`Thu gọn tìm kiếm`"><i class="feather icon-chevron-down"></i></a></li>
-                                    <li><a @click="resetForm()" data-toggle="tooltip"  data-placement="top" :title="`Làm mới tìm kiếm`"><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
-                                    <li><a data-action="close" data-toggle="tooltip"  data-placement="top" :title="`Đóng tìm kiếm`"><i class="feather icon-x"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-content collapse show pb-2">
-                            <div class="card-body">
-                                <div class="users-list-filter">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-12 col-sm-6 col-lg-3">
-                                                <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
-                                            </div>
-                                            <!-- <div class="col-12 col-sm-6 col-lg-3">
-                                                <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
-                                            </div> -->
-                                            <div class="col-12 col-sm-6 col-lg-3">
-                                                <fieldset class="form-group">
-                                                    <multiselect @input="search()" v-model="cardSearch.searchCompany" :options="companylist" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn công ty" style="font-size:14px"></multiselect>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12 col-sm-6 col-lg-3">
-                                                <fieldset class="form-group">
-                                                    <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12 col-sm-6 col-lg-3">
-                                                <fieldset class="form-group">
-                                                    <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                    </form>
+            <div class="card" v-if="$auth.user.role == 4">
+                <div class="card-header">
+                    <h4 class="card-title">Tìm kiếm</h4>
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse" data-toggle="tooltip"  data-placement="top" :title="`Thu gọn tìm kiếm`"><i class="feather icon-chevron-down"></i></a></li>
+                            <li><a @click="resetForm()" data-toggle="tooltip"  data-placement="top" :title="`Làm mới tìm kiếm`"><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
+                            <li><a data-action="close" data-toggle="tooltip"  data-placement="top" :title="`Đóng tìm kiếm`"><i class="feather icon-x"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-content collapse show pb-2">
+                    <div class="card-body">
+                        <div class="users-list-filter">
+                            <form>
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 col-lg-3">
+                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                    </div>
+                                    <!-- <div class="col-12 col-sm-6 col-lg-3">
+                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
+                                    </div> -->
+                                    <div class="col-12 col-sm-6 col-lg-3">
+                                        <fieldset class="form-group">
+                                            <multiselect @input="search()" v-model="cardSearch.searchCompany" :options="companylist" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn công ty" style="font-size:14px"></multiselect>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-lg-3">
+                                        <fieldset class="form-group">
+                                            <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-lg-3">
+                                        <fieldset class="form-group">
+                                            <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
+                                        </fieldset>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
-                    <!-- News filter end -->
+                </div>
+            </div>
+            <!-- News filter end -->
             <div class="content-body">
                 <section id="News"> 
                     <div class="row">
@@ -57,6 +57,15 @@
                                         <!-- <form action="/admin/tin-tuyen-dung/tao" method="" class="form-add">
                                             <button class="btn-add btn bg-netbee text-dark mx-auto"><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
                                         </form> -->
+                                        <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-home-tab" v-on:click="StatusChange(1)" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home" aria-selected="true">Tất cả</a>
+                                            <a class="nav-item nav-link" id="nav-profile-tab" v-on:click="StatusChange(2)" data-toggle="tab" href="#chuapheduyet" role="tab" aria-controls="nav-profile" aria-selected="false">Chưa phê duyệt</a>
+                                            <a class="nav-item nav-link" id="nav-contact-tab" v-on:click="StatusChange(3)" data-toggle="tab" href="#dapheduyet" role="tab" aria-controls="nav-contact" aria-selected="false">Đã phê duyệt</a>
+                                            <a class="nav-item nav-link" id="nav-contact-tab" v-on:click="StatusChange(4)" data-toggle="tab" href="#tinan" role="tab" aria-controls="nav-contact" aria-selected="false">Tin ẩn</a>
+                                            <a class="nav-item nav-link" id="nav-profile-tab" v-on:click="StatusChange(5)" data-toggle="tab" href="#tinhien" role="tab" aria-controls="nav-profile" aria-selected="false">Tin hiện</a>
+                                        </div>
+                                    </nav>
                                     </div>
                                     <div class="row col-xl-4 col-lg-5 col-md-7 col-sm-8 col-12 button-dropdown">
                                         <div class="action-btns col-6">
@@ -90,113 +99,128 @@
                                     
                                 </div>
                                 <div class="card-body card-dashboard">
-                                    <div class="table-responsive list-data">
-                                        <table class="table table-hover mb-0 zero-configuration">
-                                            <thead class="custom-header">
-                                                <tr>
-                                                    <th class="width-id d-flex" style="width:5%;">
-                                                        <li class="d-inline-block mr-1">
-                                                            <fieldset>
-                                                                <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                    <input type="checkbox" v-model="selectAll">
-                                                                    <span class="vs-checkbox vs-checkbox-sm">
-                                                                        <span class="vs-checkbox--check">
-                                                                            <i class="vs-icon feather icon-check"></i>
-                                                                        </span>
-                                                                    </span>
-                                                                </div>
-                                                            </fieldset>
-                                                        </li>
-                                                        ID</th>
-                                                    <th class="title-style" style="width:40%;">Tiêu đề</th>
-                                                    <th class="statistical-none" style="width:20%;">Thống kê</th>
-                                                    <th class="date-none" style="width:10%">Ngày tạo</th>
-                                                    <th class="status-none" style="width:15%;">Trạng thái</th>
-                                                    <!-- <th style="width:10%;">Thể loại</th>
-                                                    <th style="width:10%;">Loại tin</th> -->
-                                                    <th class="manipulation-style" style="width:10%;">Thao tác</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody v-if="tinTuyenDung.length > 0">
-                                                <tr v-for="(item, index) in tinTuyenDung" :key="index">
-                                                    <td class="mb-td" style="display: flex;padding-top: 35px;">
-                                                        <li class="d-inline-block mr-1">
-                                                            <fieldset>
-                                                                <div class="vs-checkbox-con vs-checkbox-primary">
-                                                                    <input type="checkbox" v-model="selected" :value="item.id">
-                                                                    <span class="vs-checkbox vs-checkbox-sm">
-                                                                        <span class="vs-checkbox--check">
-                                                                            <i class="vs-icon feather icon-check"></i>
-                                                                        </span>
-                                                                    </span>
-                                                                </div>
-                                                            </fieldset>
-                                                        </li>
-                                                        {{item.id}}</td>
-                                                    <td class="text-left">
-                                                        <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}} 
-                                                        </a>
-                                                        <p style="font-size: 12px" v-if="item.username != null">
-                                                            <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết công ty`" :href="`/cong-ty/${item.username}`" target="_blank"><i>{{item.namecompany}}</i></a>
-                                                        </p>
-                                                        <!-- <hr style="border-top: 1px dotted black;"><p class="text-center font-italic">{{item.name}}</p> -->
-                                                    </td>
-                                                    <td class="statistical-none">
-                                                        <div class="row">
-                                                            <div class="col-6 pr-0 pl-0">
-                                                                <h3 class="text-center">{{(item.viewers)}}</h3>
-                                                                <p style="font-size:12px; text-align:center">Lượt xem</p>
-                                                            </div>
-                                                            <div class="col-6 pr-0 pl-0">
-                                                                <h3 class="text-center">{{(item.applyers)}}</h3>
-                                                                <p style="font-size:12px; text-align:center">Ứng tuyển</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="date-none">
-                                                        {{ConvertDate(item.created_at)}}<br>
-                                                        <span v-if="item.bonus && item.bonus != 0" style="color: red;">{{ FormatPrice(item.bonus) }} {{ item.currency }}</span>
-                                                    </td>
-                                                    <td v-if="item.status == 0" class="status-none">
-                                                        <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i></div>
-                                                    </td>
-                                                    <td v-if="item.status == 1" class="status-none">
-                                                        <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
-                                                    </td>
-                                                    <!-- <td style="white-space: nowrap;">
-                                                        <span v-if="item.type == 1">Xuất khẩu lao động</span>
-                                                        <span v-if="item.type == 2">Du học nh</span>
-                                                        <span v-if="item.type == 3">Tu nghiệp sinh</span>
-                                                    </td>
-                                                    <td style="white-space: nowrap;">
-                                                        <span v-if="item.highlight_job == 1">TIN NỔI BẬT</span>
-                                                        <span v-if="item.highlight_job == 2">TIN VIP</span>
-                                                        <span v-if="item.highlight_job == 0">TIN THƯỜNG</span>
-                                                        <br>
-                                                        <a v-if="!item.status" @click="selectPay = {id: item.id, highlight_job: item.highlight_job}" style="color: #2f80ed" data-toggle="modal" data-target="#reportModal" data-placement="right" :title="`Thanh toán để kích hoạt tin`">Thanh toán ngay</a>
-                                                    </td> -->
-                                                    <td>
-                                                        <div class="action-btns">
-                                                            <div class="btn-dropdown ">
-                                                                <div class="btn-group dropdown actions-dropodown">
-                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        <span class="text-none">Chọn thao tác</span>
-                                                                    </button>
-                                                                    <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
-                                                                        <a  @click="changePublic(item.id)" class="dropdown-item"><i :class="item.isPublic == 1 ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{ item.isPublic == 1 ? 'Ẩn tin' : 'Hiện tin' }}</a>
-                                                                        <a :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
-                                                                        <a v-on:click="deleteNews(item.id)" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
+                                    
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active"  v-bind:id="idStatus" role="tabpanel" aria-labelledby="nav-home-tab">
+                                            <div class="table-responsive list-data">
+                                                <table class="table table-hover mb-0 zero-configuration">
+                                                    <thead class="custom-header">
+                                                        <tr>
+                                                            <th class="width-id d-flex" style="width:5%;">
+                                                                <li class="d-inline-block mr-1">
+                                                                    <fieldset>
+                                                                        <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                            <input type="checkbox" v-model="selectAll">
+                                                                            <span class="vs-checkbox vs-checkbox-sm">
+                                                                                <span class="vs-checkbox--check">
+                                                                                    <i class="vs-icon feather icon-check"></i>
+                                                                                </span>
+                                                                            </span>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </li>
+                                                                ID</th>
+                                                            <th class="title-style" style="width:40%;">Tiêu đề</th>
+                                                            <th class="statistical-none" style="width:20%;">Thống kê</th>
+                                                            <th class="date-none" style="width:10%">Ngày tạo</th>
+                                                            <th class="status-none" style="width:15%;">Trạng thái</th>
+                                                            <!-- <th style="width:10%;">Thể loại</th>
+                                                            <th style="width:10%;">Loại tin</th> -->
+                                                            <th class="manipulation-style" style="width:10%;">Thao tác</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody v-if="tinTuyenDung.length > 0">
+                                                        <tr v-for="(item, index) in tinTuyenDung" :key="index">
+                                                            <td class="mb-td" style="display: flex;padding-top: 35px;">
+                                                                <li class="d-inline-block mr-1">
+                                                                    <fieldset>
+                                                                        <div class="vs-checkbox-con vs-checkbox-primary">
+                                                                            <input type="checkbox" v-model="selected" :value="item.id">
+                                                                            <span class="vs-checkbox vs-checkbox-sm">
+                                                                                <span class="vs-checkbox--check">
+                                                                                    <i class="vs-icon feather icon-check"></i>
+                                                                                </span>
+                                                                            </span>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </li>
+                                                                {{item.id}}</td>
+                                                            <td class="text-left">
+                                                                <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}} 
+                                                                </a>
+                                                                <p style="font-size: 12px" v-if="item.username != null">
+                                                                    <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết công ty`" :href="`/cong-ty/${item.username}`" target="_blank"><i>{{item.namecompany}}</i></a>
+                                                                </p>
+                                                                <!-- <hr style="border-top: 1px dotted black;"><p class="text-center font-italic">{{item.name}}</p> -->
+                                                            </td>
+                                                            <td class="statistical-none">
+                                                                <div class="row">
+                                                                    <div class="col-6 pr-0 pl-0">
+                                                                        <h3 class="text-center">{{(item.viewers)}}</h3>
+                                                                        <p style="font-size:12px; text-align:center">Lượt xem</p>
+                                                                    </div>
+                                                                    <div class="col-6 pr-0 pl-0">
+                                                                        <h3 class="text-center">{{(item.applyers)}}</h3>
+                                                                        <p style="font-size:12px; text-align:center">Ứng tuyển</p>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
+                                                            </td>
+                                                            <td class="date-none">
+                                                                {{ConvertDate(item.created_at)}}<br>
+                                                                <span v-if="item.bonus && item.bonus != 0" style="color: red;">{{ FormatPrice(item.bonus) }} {{ item.currency }}</span>
+                                                            </td>
+                                                            <td v-if="item.status == 0" class="status-none">
+                                                                <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i></div>
+                                                            </td>
+                                                            <td v-if="item.status == 1" class="status-none">
+                                                                <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
+                                                            </td>
+                                                            <!-- <td style="white-space: nowrap;">
+                                                                <span v-if="item.type == 1">Xuất khẩu lao động</span>
+                                                                <span v-if="item.type == 2">Du học nh</span>
+                                                                <span v-if="item.type == 3">Tu nghiệp sinh</span>
+                                                            </td>
+                                                            <td style="white-space: nowrap;">
+                                                                <span v-if="item.highlight_job == 1">TIN NỔI BẬT</span>
+                                                                <span v-if="item.highlight_job == 2">TIN VIP</span>
+                                                                <span v-if="item.highlight_job == 0">TIN THƯỜNG</span>
+                                                                <br>
+                                                                <a v-if="!item.status" @click="selectPay = {id: item.id, highlight_job: item.highlight_job}" style="color: #2f80ed" data-toggle="modal" data-target="#reportModal" data-placement="right" :title="`Thanh toán để kích hoạt tin`">Thanh toán ngay</a>
+                                                            </td> -->
+                                                            <td>
+                                                                <div class="action-btns">
+                                                                    <div class="btn-dropdown ">
+                                                                        <div class="btn-group dropdown actions-dropodown">
+                                                                            <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                <span class="text-none">Chọn thao tác</span>
+                                                                            </button>
+                                                                            <div class="dropdown-menu" style="left: -25px!important;">
+                                                                                <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
+                                                                                <a  @click="changePublic(item.id)" class="dropdown-item"><i :class="item.isPublic == 1 ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{ item.isPublic == 1 ? 'Ẩn tin' : 'Hiện tin' }}</a>
+                                                                                <a :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
+                                                                                <a v-on:click="deleteNews(item.id)" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
+                                            </div>
+                                            <infinite-loading
+                                                v-if="tinTuyenDung.length"
+                                                spinner="bubbles"    
+                                                ref="infiniteLoading"            
+                                                @infinite="infiniteScroll" style="padding:8px; width:100%"
+                                            >
+                                                <div slot="no-more" style="font-size:15px; font-style: italic"></div>
+                                                <div slot="no-results" style="font-size:15px; font-style: italic"></div>
+                                            </infinite-loading>
+                                        </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -326,15 +350,6 @@
                 </div>
             </div>
         </div>
-        <infinite-loading
-                v-if="tinTuyenDung.length"
-                spinner="bubbles"    
-                ref="infiniteLoading"            
-                @infinite="infiniteScroll" style="padding:20px; width:100%"
-            >
-            <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
-            <div slot="no-results" style="font-size:15px; font-style: italic"></div>
-        </infinite-loading>
     </div>
 </template>
 <script>
@@ -378,7 +393,9 @@ export default {
             companylist: [],
             id: null,
             selected: [],
-            page: 1
+            page: 1,
+            statusTabs: 1,
+            idStatus: 'all'
         }
     },
     created() {
@@ -402,6 +419,23 @@ export default {
         }                        
     },
     methods: {
+        StatusChange: function(status){
+            this.statusTabs = status
+            this.tinTuyenDung = []
+            this.page = 1
+            if(status == 1){
+                this.idStatus = 'all'
+            } else if(status == 2) {
+                this.idStatus = 'chuapheduyet'
+            } else if(status == 3) {
+                this.idStatus = 'dapheduyet'
+            } else if(status == 4) {
+                this.idStatus = 'tinan'
+            } else if(status == 5) {
+                this.idStatus = 'tinhien'
+            } 
+            this.search()
+        },
         listconpany(){
             this.$axios.$get(
             'tintuyendung/listcompany').then((response)=>{            
@@ -555,7 +589,6 @@ export default {
             this.tinTuyenDung.sort((a, b) => a.id < b.id ? 1 : -1);
         },
         search(){
-            // this.listconpany()
             this.listconpany()  
             this.$axios.$get(
             'tintuyendung/searchTinTuyenDung?searchCategory=' 
@@ -563,8 +596,13 @@ export default {
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
             + '&searchCompany='+ ((this.cardSearch.searchCompany.id !=null)?this.cardSearch.searchCompany.id:'')
-            ).then((response)=>{                 
-                 this.tinTuyenDung=response.data;                                  
+            + '&status='+this.statusTabs
+            ).then((response)=>{     
+                console.log(response)           
+                this.tinTuyenDung=response.data;    
+                                               
+            }).catch(error => {
+                console.log(error.response)
             });
         },
         async changeMultipleStatusTinTuyenDung(statusTinTuyenDung){
@@ -696,10 +734,12 @@ export default {
             + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
             + '&searchCompany='+ ((this.cardSearch.searchCompany.id !=null)?this.cardSearch.searchCompany.id:'')
+            + '&status='+this.statusTabs
             + '&page='+this.page
             )
                 .then((response) => {
-                    if (response.data.data.length > 1) {
+                    console.log(response)
+                    if (response.data.data.length >= 1) {
                         response.data.data.forEach((item) => this.tinTuyenDung.push(item))
                         $state.loaded()
                     } else {
@@ -752,6 +792,53 @@ export default {
 }
 </script>
 <style scoped>
+.nav.nav-tabs {
+    margin-bottom: 0px;
+    margin-left: 10px;
+}
+.nav-tabs {
+    border-bottom: 1px solid #DAE1E7 !important;
+    font-weight: 400;
+}
+.nav-tabs .nav-link:hover {
+    border-color: #fff !important;
+    border-bottom-color: #DAE1E7 !important;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd !important;
+    border-bottom-color: transparent;
+}
+.nav-tabs .nav-link {
+    border-radius: 0;
+    padding: 10px;
+}
+.nav-tabs .nav-link.active{
+    color: #4E5154;
+    background-color: #fff;
+    border-color: #DAE1E7 #DAE1E7 #F8F8F8 !important;
+    border-top: 2px solid #ffb701 !important;
+}
+.nav-tabs>li {
+    float: left;
+    margin-bottom: -1px;
+}
+.nav>li {
+    position: relative;
+    display: block;
+}
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+.nav-tabs>li>a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border-radius: 4px 4px 0 0;
+}
 .pagination .page-item.active .page-link{
     background-color: #ffb701 !important;
 }

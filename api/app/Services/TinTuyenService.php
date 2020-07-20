@@ -12,6 +12,13 @@ use Validator;
 
 class TinTuyenService extends BaseService {
 
+    const
+        ALL = 1,
+        CHUAPHEDUYET = 2,
+        DAPHEDUYET = 3,
+        TINAN = 4,
+        TINHIEN = 5;
+
     protected $nbJobList;
     protected $user;
     protected $nbSettingBonus;
@@ -719,6 +726,7 @@ class TinTuyenService extends BaseService {
         $searchCategory = $data->searchCategory;
         // $searchStatus = $data->searchStatus;
         $searchAddress = $data->searchAddress;
+        $status = $data->status;
 
         if ($searchCompany != null) {
             $conditions[] = [
@@ -749,8 +757,26 @@ class TinTuyenService extends BaseService {
             $perPage = 6;
             if ($userRole == self::ROLE_COMPANY) {
                 $query = $this->getJobByRoleCompanySearch();
+                if($status == self::CHUAPHEDUYET) {
+                    $query->where('nb_joblists.status',self::INACTIVE);
+                } else if($status == self::DAPHEDUYET) {
+                    $query->where('nb_joblists.status',self::ACTIVE);
+                } else if($status == self::TINAN) {
+                    $query->where('nb_joblists.isPublic',self::INACTIVE);
+                } else if($status == self::TINHIEN) {
+                    $query->where('nb_joblists.isPublic',self::ACTIVE);
+                }
             } else if ($userRole == self::ROLE_ADMIN) {
                 $query = $this->getJobByRoleAdminSearch();
+                if($status == self::CHUAPHEDUYET) {
+                    $query->where('nb_joblists.status',self::INACTIVE);
+                } else if($status == self::DAPHEDUYET) {
+                    $query->where('nb_joblists.status',self::ACTIVE);
+                } else if($status == self::TINAN) {
+                    $query->where('nb_joblists.isPublic',self::INACTIVE);
+                } else if($status == self::TINHIEN) {
+                    $query->where('nb_joblists.isPublic',self::ACTIVE);
+                }
             } else {
                 $query = $this->getJobByRoleOther();
             }
@@ -776,8 +802,9 @@ class TinTuyenService extends BaseService {
                 $q->where('title', 'LIKE', '%'.$search.'%')
                     ->orwhere('id','LIKE', '%'.$search.'%')
                     ->orwhere('nbCompany.username','LIKE', '%'.$search.'%');
-            });
+            }); 
         }
+        
         return $query->paginate($perPage);
     }
 
