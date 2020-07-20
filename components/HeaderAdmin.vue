@@ -8,14 +8,14 @@
                                 <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu"></i></a></li>
                             </ul>
                             <ul class="nav navbar-nav bookmark-icons" v-if="$auth.user.role == 2 || $auth.user.role == 4">
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item ">
                                     <a class="btn bg-netbee" href="/admin/tin-tuyen-dung/tao" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
-                                        <span style="font-size:1rem">Tạo tin tuyển dụng</span>
+                                        <span style="font-size:1rem" id="tao_tin">Tạo tin tuyển dụng</span>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav navbar-nav bookmark-icons" v-if="$auth.user.role == 3 || $auth.user.role == 1">
-                                <li class="nav-item d-none d-md-block">
+                                <li class="nav-item">
                                     <a class="btn bg-netbee" href="/admin/ho-so/tao-ho-so" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
                                         <span style="font-size:1rem">Tạo hồ sơ</span>
                                     </a>
@@ -219,6 +219,16 @@ export default {
 @media (max-width: 767px){
     .search-icon{
         display: block;
+    }
+}
+@media (max-width:575px){
+    .bookmark-icons li a{
+        padding: 0.5rem
+    }
+}
+@media (max-width: 349px){
+    .dropdown-notification{
+        display: none;
     }
 }
 </style>

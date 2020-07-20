@@ -4,7 +4,7 @@
             <div class="content-body">
                 <section id="dashboard-ecommerce">
                     <div class="row">
-                        <div class="col-lg-9 col-sm-6 col-12">
+                        <div class="col-lg-9 col-12">
                             <div class="card">
                                 <div class="card-body">
                                     <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất" style="padding-top: 7px;">
@@ -63,7 +63,7 @@
                                         <tab-content :before-change="checkValidateStep2" title="Yêu cầu">
                                             <ValidationObserver ref="step2" v-slot="{ valid2 }">
                                                 <div class="row">
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Loại tiền</label>
@@ -73,7 +73,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">                       
+                                                    <div class="col-sm-6">                       
                                                         <div class="form-group">
                                                             <label for="firstName3">Phí xuất cảnh</label>
                                                             <div class="input-group">
@@ -84,7 +84,7 @@
                                                             </div>                                                             
                                                         </div>                        
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Tuổi</label>
                                                             <div class="container-fluid">
@@ -106,7 +106,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Trình độ học vấn</label>
                                                             <multiselect :options="levelEx" v-model="data.academicLevel" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
@@ -114,7 +114,7 @@
                                                     </div>
                                                    
                                                     
-                                                    <div class="col-4">
+                                                    <div class="col-sm-4">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Số lượng tuyển</label>
@@ -123,13 +123,13 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-4">  
+                                                    <div class="col-sm-4 pl-sm-0">  
                                                         <div class="form-group">
                                                             <label for="firstName3">Chứng minh thu nhập</label>
                                                             <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>                                     
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-sm-4 pl-sm-0">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Thời gian du học (năm)</label>
@@ -145,7 +145,7 @@
 Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         </div>
                                                     </div>
-                                                     <div class="col-6">
+                                                     <div class="col-sm-6">
                                                         <ValidationProvider rules="required|ssdate" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày hết hạn ứng tuyển</label>
@@ -155,7 +155,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }" name="confirmDateStart">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày bắt đầu nhận hồ sơ</label>
@@ -164,7 +164,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày thi tuyển</label>
@@ -173,7 +173,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="ssdate|ssdate_start:@confirmDateStart" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Ngày dự kiến nhập cảnh</label>
@@ -254,7 +254,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             </div>
                                                         </fieldset>
                                                     </div>   -->
-                                                    <div class="col-6" v-if="checked">
+                                                    <div class="col-sm-6" v-if="checked">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -266,7 +266,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6" v-if="checked">
+                                                    <div class="col-sm-6" v-if="checked">
                                                         <ValidationProvider rules="required" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -282,7 +282,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Mã khuyễn mãi (Nếu có)</label>
                                                             <input type="text" class="form-control" v-model="data.promotion_code">
@@ -369,7 +369,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12" style="padding-left: 3px;">
+                        <div class="col-lg-3 col-12 pl-lg-0">
                             <div class="card text-center">
                                 <div class="card-content" style="background-color: #FFB701 !important;">
                                     <div class="card-body p-2">
@@ -883,5 +883,14 @@ display: block;
 }
 .vue-form-wizard .wizard-card-footer {
     padding: 0 3px !important;
+}
+.form-group label{
+    font-size: 1rem;
+    padding-left: 0;
+}
+@media (max-width: 799px) and (min-width: 768px){
+    .form-group label{
+        font-size: 13px;
+    }
 }
 </style>
