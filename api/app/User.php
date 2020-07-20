@@ -58,4 +58,8 @@ class User extends Authenticatable implements JWTSubject
     public function companyFeedback(){
         return $this->hasMany('App\Models\NbCompanyFeedback','company_id');
     }
+
+    public function document(){
+        return $this->hasMany('App\Models\Document','document_id');
+    }
 }
