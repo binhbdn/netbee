@@ -186,6 +186,14 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('updateData', 'Admin\BankHrController@updateData');
         Route::post('EditData', 'Admin\BankHrController@EditData');
       });
+      Route::prefix('document')->group(function () {
+        Route::get('getDocuments', 'Admin\DocumentController@getDocuments');
+        Route::get('getDocument/{id}', 'Admin\DocumentController@getDocumentById');
+        Route::post('changeStatusDocument', 'Admin\DocumentController@changeStatusDocument');
+        Route::post('deleteDocument', 'Admin\DocumentController@deleteDocument');
+        Route::post('createDocument', 'Admin\DocumentController@createDocument');
+        Route::post('updateDocument', 'Admin\DocumentController@updateDocument');
+      });
   });
 });
 
