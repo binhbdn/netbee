@@ -57,15 +57,15 @@
                                         <!-- <form action="/admin/tin-tuyen-dung/tao" method="" class="form-add">
                                             <button class="btn-add btn bg-netbee text-dark mx-auto"><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
                                         </form> -->
-                                        <nav>
-                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            <a class="nav-item nav-link active" id="nav-home-tab" v-on:click="StatusChange(1)" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home" aria-selected="true">Tất cả</a>
-                                            <a class="nav-item nav-link" id="nav-profile-tab" v-on:click="StatusChange(2)" data-toggle="tab" href="#chuapheduyet" role="tab" aria-controls="nav-profile" aria-selected="false">Chưa phê duyệt</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" v-on:click="StatusChange(3)" data-toggle="tab" href="#dapheduyet" role="tab" aria-controls="nav-contact" aria-selected="false">Đã phê duyệt</a>
-                                            <a class="nav-item nav-link" id="nav-contact-tab" v-on:click="StatusChange(4)" data-toggle="tab" href="#tinan" role="tab" aria-controls="nav-contact" aria-selected="false">Tin ẩn</a>
-                                            <a class="nav-item nav-link" id="nav-profile-tab" v-on:click="StatusChange(5)" data-toggle="tab" href="#tinhien" role="tab" aria-controls="nav-profile" aria-selected="false">Tin hiện</a>
-                                        </div>
-                                    </nav>
+                                        <nav style="font-size: 16px;">
+                                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                <a class="nav-item nav-link active" id="nav-home-tab" v-on:click="StatusChange(1)" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home" aria-selected="true">Tất cả</a>
+                                                <a class="nav-item nav-link" id="nav-profile-tab" v-on:click="StatusChange(2)" data-toggle="tab" href="#chuapheduyet" role="tab" aria-controls="nav-profile" aria-selected="false">Chưa phê duyệt</a>
+                                                <a class="nav-item nav-link" id="nav-contact-tab" v-on:click="StatusChange(3)" data-toggle="tab" href="#dapheduyet" role="tab" aria-controls="nav-contact" aria-selected="false">Đã phê duyệt</a>
+                                                <a class="nav-item nav-link" id="nav-contact-tab" v-on:click="StatusChange(4)" data-toggle="tab" href="#tinan" role="tab" aria-controls="nav-contact" aria-selected="false">Tin ẩn</a>
+                                                <a class="nav-item nav-link" id="nav-profile-tab" v-on:click="StatusChange(5)" data-toggle="tab" href="#tinhien" role="tab" aria-controls="nav-profile" aria-selected="false">Tin hiện</a>
+                                            </div>
+                                        </nav>
                                     </div>
                                     <div class="row col-xl-4 col-lg-5 col-md-7 col-sm-8 col-12 button-dropdown">
                                         <div class="action-btns col-6">

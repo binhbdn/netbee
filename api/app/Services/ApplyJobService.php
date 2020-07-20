@@ -14,6 +14,12 @@ use Carbon\Carbon;
 
 class ApplyJobService extends BaseService {
 
+    const
+        ALL = 1,
+        CHUAPHEDUYET = 2,
+        DAPHEDUYET = 3,
+        LICHPHONGVAN = 4,
+        HUY = 5;
     protected $nbJobList;
     protected $apply;
     protected $nbPaper;
@@ -34,11 +40,11 @@ class ApplyJobService extends BaseService {
         return Apply::insert($data);
     }
 
-    public function getApply($status)
+    public function getApply($request,$status)
     {
         $userRole = Auth::user()->role;
         if ($userRole == self::ROLE_ADMIN) {
-            $data = $this->getApplyAdmin($status);
+            $data = $this->getApplyAdmin($request,$status);
         } else if ($userRole == self::ROLE_COMPANY) {
             $data = $this->getApplyCompany();
         } else {
@@ -175,14 +181,24 @@ class ApplyJobService extends BaseService {
         return $this->nbPaper->where('apply_id', $id)->first();
     }
 
-    public function getApplyAdmin($status)
+    public function getApplyAdmin($request,$status)
     {
         $condition = [];
         if($status){
             $condition[] = ['nb_applies.status','=',$status];
         }
-        return $this->getApplyValid()
-                    ->where($condition)->get();
+        $query = $this->getApplyValid()
+                    ->where($condition);
+        if( $request->status == self::CHUAPHEDUYET) {
+            $query->where('nb_applies.status',self::CHO_DUYET);
+        } else if($request->status == self::DAPHEDUYET) {
+            $query->where('nb_applies.status',self::ADMIN_DUYET_CV);
+        } else if($request->status == self::LICHPHONGVAN) {
+            $query->where('nb_applies.status',self::NTD_DUYET_HO_SO);
+        } else if($request->status == self::HUY) {
+            $query->where('nb_applies.status',self::TU_CHOI);
+        }
+        return $query->get();
     }
 
     public function getApplyHr($status)

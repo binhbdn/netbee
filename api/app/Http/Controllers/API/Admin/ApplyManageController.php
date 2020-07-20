@@ -57,8 +57,8 @@ class ApplyManageController extends Controller
         return response()->json($data);
     }
 
-    public function getAllApply() {
-        $applys = $this->applyJobService->getApply($this->applyJobService::All);
+    public function getAllApply(Request $request) {
+        $applys = $this->applyJobService->getApply($request,$this->applyJobService::All);
         if($applys){
             $data = ['status' => 200, 'message' => 'thành công', 'data' => $applys];
         } else {
