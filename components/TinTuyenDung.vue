@@ -57,7 +57,7 @@
                                         <!-- <form action="/admin/tin-tuyen-dung/tao" method="" class="form-add">
                                             <button class="btn-add btn bg-netbee text-dark mx-auto"><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
                                         </form> -->
-                                        <nav style="font-size: 16px;">
+                                        <nav style="font-size: 16px;" v-if="$auth.user.role == 4">
                                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                                 <a class="nav-item nav-link active" id="nav-home-tab" v-on:click="StatusChange(1)" data-toggle="tab" href="#all" role="tab" aria-controls="nav-home" aria-selected="true">Tất cả</a>
                                                 <a class="nav-item nav-link" id="nav-profile-tab" v-on:click="StatusChange(2)" data-toggle="tab" href="#chuapheduyet" role="tab" aria-controls="nav-profile" aria-selected="false">Chưa phê duyệt</a>
