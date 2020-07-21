@@ -95,7 +95,7 @@ class SaveService extends BaseService {
         $perPage = 6;
         $search = $request->search;
         $searchCategory = $request->searchCategory;
-        $searchAddress = $data->searchAddress;
+        // $searchAddress = $data->searchAddress;
         $conditions =[];
 
         if($searchCategory != ''){
@@ -106,11 +106,11 @@ class SaveService extends BaseService {
             ];
         }
         
-        if($searchAddress != null){
-            $conditions[] = [
-                'nb_joblists.nation_id', '=', $searchAddress
-            ];
-        }
+        // if($searchAddress != null){
+        //     $conditions[] = [
+        //         'nb_joblists.nation_id', '=', $searchAddress
+        //     ];
+        // }
 
         $query = $this->nbJoblist->with('nbJobSave')
         ->whereHas('nbJobSave', function($q){

@@ -92,6 +92,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('pricing_momo', 'MomoController@pricing_momo');
       Route::post('pricing_momo_verify', 'MomoController@pricing_momo_verify');
       Route::get('getEmailCompany', 'Customer\CompanyController@getEmailCompany');
+      Route::post('suaEmailCompany','Customer\CompanyController@suaEmailCompany');
       Route::post('postEmailCompany', 'Customer\CompanyController@postEmailCompany');
       Route::post('postDeleteEmailCompany', 'Customer\CompanyController@postDeleteEmailCompany');
       Route::post('updateStatus0', 'Customer\CompanyController@updateStatus0');
@@ -145,7 +146,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::get('listcompany', 'Admin\TinTuyenController@listcompany');
       });
       Route::prefix('quanlyvieclam')->group(function(){
-        Route::post('getSaveBySaver', 'Admin\SaveController@getSaveBySaver');
+        Route::get('getSaveBySaver', 'Admin\SaveController@getSaveBySaver');
         Route::post('deleteJobSave', 'Admin\SaveController@deleteJobSave');
       });
       Route::prefix('hoso')->group(function () {
