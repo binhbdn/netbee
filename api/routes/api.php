@@ -4,6 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::namespace('API')->group(function () {
+
+
+
+  Route::get('qrCode', function () {
+    return QrCode::size(320)->generate('Xin Chào');
+  });
   Route::post('register', 'Auth\UserController@register');
   Route::post('login', 'Auth\UserController@login');
   Route::post('loginfb', 'Auth\UserController@loginWithFacebook');

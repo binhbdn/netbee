@@ -247,17 +247,41 @@
           </div>
           <div class="col-lg-4 col-12 mb-container-fluid">
             <div class="card">
-                <div class="card-header">
-                <h4 class="card-title">
-                    <i class="fad fa-business-time"></i> TIN HOT
-                </h4>
-                </div>
-                <div class="card-content collapse show">
-                <div class="card-body">
-                    <JobsList1ColNotCate :DataList="arrayForCompany" type=""></JobsList1ColNotCate>
-                </div>
+                <div class="card-content collapse show ">
+                    <div class="card-body" style="padding-top: 15px;">
+                        <div class="main-company">
+                            <div class="avatar-bia" style="padding-bottom: 70px;">
+                                <div class="bk-auto" v-if="congty.nb_company != null && congty.nb_company.image_cover != null" role="img" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${congty.nb_company.image_cover}` + ')' }"></div>
+                                <div class="bk-auto" v-if="congty.nb_company != null && congty.nb_company.image_cover == null" role="img" :style="{ 'background-image': 'url(' + `/assets/img/BgBanner.png` + ')' }"></div>
+                            </div>
+                            <div class="avt-company">
+                                <img v-lazy="`/uploads/users/avatars/${congty.avatar}`" :alt="`${congty.avatar}`" width="100%">
+                            </div>
+                            <div class="text-show">
+                                <p><span class="font-weight-400"><i class="fad fa-map-marked-alt"></i> <span class="font-weight-600">Địa chỉ:</span> {{ congty.address_detail ? congty.address_detail: 'Đang cập nhật' }}</span></p>
+                                <p><span class="font-weight-400"><i class="fa fa-users"></i> <span class="font-weight-600">Số lượng tin:</span> {{ countJob.length ? countJob.length : '0' }}</span></p>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
             </div>
+            <div class="card">
+                <div class="card-content collapse show ">
+                    <div class="card-body" style="padding-top: 15px;text-align: center !important;">
+                        <div class="main-company" v-html="qr_Code">
+                        </div>
+                        <p style="margin-top: -34px;font-weight: 400;text-align: center;">Scan để xem trên điện thoại</p>
+                        <p style="margin-top: 26px;margin-bottom: 5px;font-weight: 500;text-align: center;">Hotline: <a href="tel:+842462900388" >+842462900388</a></p>
+                        <p style="margin-top: 0px;font-weight: 500;text-align: center;">Email: <a href="mailto:contact@netbee.vn">contact@netbee.vn</a></p>
+                        <ul class="ftco-footer-social float-lft" style="margin-right:10px;">
+                            <li class="ftco-animate  ftco-animate-fb"><a href="#"><span class="fab fa-twitter"></span></a></li>
+                            <li class="ftco-animate ftco-animate-tw"><a href="https://www.facebook.com/NetBeevn-107178937322342/"><span class="fab fa-facebook-f"></span></a></li>
+                            <li class="ftco-animate ftco-animate-in"><a href="https://www.instagram.com/accounts/login/?next=/netbee.vn/"><span class="fab fa-instagram"></span></a></li>
+                        </ul>
+                    </div> 
+                </div>
+            </div>
+            
           </div>
         </div>
       </section>
@@ -542,7 +566,6 @@
 </template>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=1459241224260897&autoLogAppEvents=1"></script>
 <script>
-import JobsList1ColNotCate from '~/components/Jobs/JobsList2ColNotCate'
 import JobsList1Col from '~/components/Jobs/JobsList1Col'
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
@@ -584,7 +607,6 @@ extend("customPassword", {
 });
 export default {
     components: {
-        JobsList1ColNotCate,
         JobsList1Col,
         ValidationProvider,
         ValidationObserver,
@@ -611,7 +633,9 @@ export default {
             phone: '',
             email: '',
             address: '',
-            listProfileUsers: []
+            listProfileUsers: [],
+            countJob:'',
+            qr_Code: ''
         }
     },
     async asyncData({$axios, route}) {
@@ -620,12 +644,14 @@ export default {
             let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=5&type=1`)
             let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=2`)
             let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
+            let getCompany = await $axios.$get(`getDetailCompanyById/${detailRes.data.nb_company.username}`) 
             return {
                 tintuyendung: detailRes.data,
                 arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
                 arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
                 arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
                 arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
+                congty: getCompany.data
             }
     },
     head() {
@@ -810,6 +836,7 @@ export default {
         }
     },
     mounted() {
+        
         if(this.tintuyendung != null){
             this.$axios.$get(`getTinTuyenDungNew?limit=5&type=`+this.tintuyendung.type).then((response)=>{
                 this.arrayForCompany = response.data.tintuyendung
@@ -820,6 +847,12 @@ export default {
                     this.save = response.data
                 });
             }
+            this.$axios.get('getTinTuyenDungForCompany?id='+this.tintuyendung.nb_company.username+'&limit=5').then((response)=>{
+                this.countJob = response.data.data.count
+            });
+             this.$axios.get('qrCode').then((response)=>{
+                this.qr_Code = response.data
+            });
         } else {
             window.location.href = '/tin-tuyen-sinh'
         }
@@ -828,6 +861,41 @@ export default {
 }
 </script>
 <style scoped>
+.ftco-animate :hover{
+    background-color: rgb(255, 183, 1);
+}
+.ftco-animate{
+    border-radius: 50%;
+    color: #fff;
+}
+.ftco-animate span{
+    color: #fff;
+}
+.ftco-animate-fb{
+    background-color: #3b5998;
+}
+.ftco-animate-tw{
+    background-color: #55acee;
+}
+.ftco-animate-in{
+    background-color: #007bb5;
+}
+.bk-auto{
+    width: 100%;
+    height: 120px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.avt-company {
+    position: absolute;
+    top: 90px;
+    left: 35%;
+    background: #fff;
+    border: 1px solid #c1c1c1;
+    width: 100px;
+    height: 100px;
+}
 .card{
     border-radius: 3px;
 }
