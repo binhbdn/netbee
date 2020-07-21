@@ -20,7 +20,7 @@
                             <form>
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-lg-4">
-                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0 input_placehoder" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
@@ -261,6 +261,10 @@ export default {
 }
 .list-inline{
     display: block;
+}
+.input_placehoder::placeholder{
+  font-size: 14px;
+  color: #adadad !important;
 }
 @media (max-width: 767px){
     .card{

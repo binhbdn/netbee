@@ -40,7 +40,7 @@
                               <div class="form-group" style="height: 74%;margin-bottom: 15px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input id="input_first" style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.jobs.key')" name="keyword" v-model="keyJobs">
+                                  <input style="height: 100%;" type="text" class="form-control input_placehoder" :placeholder="$t('banner.jobs.key')" name="keyword" v-model="keyJobs">
                                 </div>
                               </div>
                             </div>
@@ -117,7 +117,7 @@
                               <div class="form-group" style="height: 74%;margin-bottom: 15px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.company.key')" name="keyword" value="" v-model="keysearch">
+                                  <input style="height: 100%;" type="text" class="form-control input_placehoder" :placeholder="$t('banner.company.key')" name="keyword" value="" v-model="keysearch">
                                 </div>
                               </div>
                             </div>
@@ -574,7 +574,7 @@ export default {
     font-size: 14px
   }
 }
-#input_first::placeholder{
+.input_placehoder::placeholder{
   font-size: 14px;
   color: #adadad !important;
 }
