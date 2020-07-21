@@ -100,12 +100,12 @@ export default {
     height: 60px; 
     width: 60px;
 }
-@media (max-width: 575px){
-    .card-avatar{
-        padding: 0.5rem !important;
+@media (max-width: 600px){
+    .hot{
+        display: block !important;
     }
     .remove-border-right{
-        padding-left: 0;
+        padding: 0;
     }
 }
 </style>
