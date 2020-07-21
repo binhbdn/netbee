@@ -603,6 +603,11 @@
       padding-left: 0px;
     }
   }
+  @media (max-width: 575px){
+    .match-height > div{
+      padding: 0;
+    }
+  }
   @media(max-width: 320px) {
   .aa{
       padding: 6px;

@@ -72,7 +72,7 @@
       </section>
       <section>
         <div class="row">
-          <div class="col-lg-8 col-12" style="padding-right: 2px;">
+          <div class="col-lg-8 col-12 pr-lg-0">
             <div class="card">
               <div class="card-content collapse show">
                 <div class="card-body">
@@ -245,7 +245,7 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-12">
+          <div class="col-lg-4 col-12 mb-container-fluid">
             <div class="card">
                 <div class="card-content collapse show ">
                     <div class="card-body" style="padding-top: 15px;">
@@ -287,7 +287,7 @@
       </section>
       <section>
         <div class="row">
-          <div class="col-lg-12 col-12">
+          <div class="col-lg-12 col-12 mb-container-fluid">
             <div class="card">
                 <div class="card-header">
                 <h4 class="card-title">
@@ -1117,6 +1117,11 @@ export default {
     }
     #send-hoso {
         height: 50% !important;
+    }
+}
+@media (max-width: 575px){
+    .mb-container-fluid{
+        padding: 0;
     }
 }
 </style>

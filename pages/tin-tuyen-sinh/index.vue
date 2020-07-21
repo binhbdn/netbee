@@ -22,7 +22,7 @@
                     <div class="form-group">
                       <div class="form-field">
                         <div class="select-wrap">
-                          <input name="salary_start" v-model="salary_start" type="text" class="form-control" placeholder="Mức lương tối thiểu....">
+                          <input name="salary_start" v-model="salary_start" type="text" class="form-control input_placaholder" placeholder="Mức lương tối thiểu....">
                         </div>
                       </div>
                     </div>
@@ -31,7 +31,7 @@
                     <div class="form-group">
                       <div class="form-field">
                         <div class="select-wrap">
-                          <input name="salary_end" v-model="salary_end" type="text" class="form-control" placeholder="Mức lương tối đa....">
+                          <input name="salary_end" v-model="salary_end" type="text" class="form-control input_placaholder" placeholder="Mức lương tối đa....">
                         </div>
                       </div>
                     </div>
@@ -235,5 +235,9 @@ a.btn.btn-outline-primary :active {
 select#cars :focus {
   border-color: #ffb701 !important;
   border-radius: 6px !important;
+}
+.input_placaholder::placeholder{
+  font-size: 14px;
+  color: #adadad !important;
 }
 </style>
