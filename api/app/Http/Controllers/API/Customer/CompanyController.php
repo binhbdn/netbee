@@ -58,4 +58,36 @@ class CompanyController extends Controller
         $response = $this->nbCompanyInfoService->getRating($request->company_id);
         return response()->json($response);
     }
+
+    public function getEmailCompany()
+    {
+        $response = $this->nbCompanyInfoService->getEmailCompany();
+        return response()->json($response);
+    }
+
+    public function postEmailCompany(Request $request)
+    {
+        $response = $this->nbCompanyInfoService->postEmailCompany($request);
+        return response()->json($response);
+    }
+    public function updateStatus0(Request $request)
+    {
+        $response = $this->nbCompanyInfoService->updateStatus0($request);
+        return response()->json($response);
+    }
+    public function updateStatus1(Request $request)
+    {
+        $response = $this->nbCompanyInfoService->updateStatus1($request);
+        return response()->json($response);
+    }
+    public function updateStatus2(Request $request)
+    {
+        $response = $this->nbCompanyInfoService->updateStatus2($request);
+        return response()->json($response);
+    }
+    public function postDeleteEmailCompany(Request $request)
+    {
+        $response = $this->nbCompanyInfoService->postDeleteEmailCompany($request);
+        return response()->json($response);
+    }
 }
