@@ -4,14 +4,14 @@
             <div class="content-body">
                 <section id="dashboard-ecommerce" v-if="paper == null">
                     <div class="row">
-                        <div class="col-lg-9 col-sm-6 col-12">
+                        <div class="col-lg-9">
                             <div class="card">
                                 <div class="card-body">
-                                    <form-wizard color="#FFB701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
+                                    <form-wizard class="for" color="#FFB701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất">
                                         <tab-content :before-change="checkValidateStep1" icon="fas fa-check">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="title">
@@ -22,7 +22,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -39,7 +39,7 @@
                                         <tab-content :before-change="checkValidateStep2" icon="fas fa-check">
                                             <ValidationObserver ref="step2" v-slot="{ valid2 }">
                                                 <div class="row">
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -50,7 +50,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -67,7 +67,7 @@
                                         <tab-content :before-change="checkValidateStep3" icon="fas fa-check">
                                             <ValidationObserver ref="step3" v-slot="{ valid3 }">
                                                 <div class="row">
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -78,7 +78,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -95,7 +95,7 @@
                                         <tab-content icon="fas fa-check">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -106,7 +106,7 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
@@ -124,15 +124,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12">
-                            <div class="card text-center">
+                        <div class="col-lg-3 pl-lg-0">
+                            <div class="card text-center bg-netbee">
                                 <div class="card-content">
                                     <div class="card-body p-2">
                                         <div class="text-center">
                                             <img src="/assets/img/logo.png" width="70px">
                                             <p class="__title">Quy trình tuyển dụng tại Netbee</p>
                                         </div>
-                                        <div>
+                                        <div class="text-left">
                                             <p>1. Tạo tin tuyển dụng</p>
                                             <p>2. Chờ admin xét duyệt tin(Thông báo qua email)</p>
                                             <p>3. Nhận hồ sơ giới thiệu từ chuyên viên tuyển sinh(Thông báo khi có lượt ứng tuyển)</p>
@@ -413,5 +413,16 @@ display: block;
 }
 #goi3:hover .detail-active{
 display: block;
+}
+.uploader .file-input{
+    width: auto !important;
+}
+.wizard-card-footer{
+    padding: 0 !important;
+}
+@media (max-width: 1199px){
+    h3{
+        font-size: 1.25rem;
+    }
 }
 </style>
