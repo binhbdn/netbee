@@ -85,6 +85,12 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       Route::post('pricing_momo_bank', 'MomoController@pricing_momo_bank');
       Route::post('pricing_momo', 'MomoController@pricing_momo');
       Route::post('pricing_momo_verify', 'MomoController@pricing_momo_verify');
+      Route::get('getEmailCompany', 'Customer\CompanyController@getEmailCompany');
+      Route::post('postEmailCompany', 'Customer\CompanyController@postEmailCompany');
+      Route::post('postDeleteEmailCompany', 'Customer\CompanyController@postDeleteEmailCompany');
+      Route::post('updateStatus0', 'Customer\CompanyController@updateStatus0');
+      Route::post('updateStatus1', 'Customer\CompanyController@updateStatus1');
+      Route::post('updateStatus2', 'Customer\CompanyController@updateStatus2');
       //export excel
 //      Route::get('usersExport','Auth\UserController@export');
       Route::prefix('user/{userRole}')->group(function () {
