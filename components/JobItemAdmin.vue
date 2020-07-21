@@ -23,38 +23,52 @@
                     </span>
                 </p>
             </div>
-            <div class="remove-border-right" style="width: 620px; padding: 0.5rem">
-                <div class="hot-mb" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
-                    <a class="item-vip-a" :href="`/admin/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
-                <div class="item-quantity row" id="company" style="height: 21px" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 3">
-                    <div class="col-md-7 col-12">
+            <div class="remove-border-right" style="padding: 0.5rem">
+                <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
+                <a class="item-vip-a" :href="`/admin/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
+                <div class="item-quantity row" id="company" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 3">
+                    <div class="col-lg-5 col-sm-5">
                         <a :href="`/cong-ty/${job.user ? job.user.name : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company.username }}</span></a>
                     </div>
-                    <div class="col-md-5 col-12">
-                        <p class="delivery-date" data-toggle="tooltip" data-placement="left" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
+                    <div class="col-lg-4 col-sm-3">
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
                     </div>
                 </div>
-                <div class="item-quantity row" id="company" style="height: 21px" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
-                    <div class="col-md-7 col-12">
+                <div class="item-quantity row" id="company" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
+                    <div class="col-lg-5 col-sm-5">
                         <a :href="`/cong-ty/${job.user ? job.user.name : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company.username }}</span></a>
                     </div>
-                    <div class="col-md-5 col-12">
-                        <p class="delivery-date" data-toggle="tooltip" data-placement="left" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
+                    <div class="col-lg-4 col-sm-3">
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 mb-block">
+                        <i class="m-0">Tiền thưởng</i>
                     </div>
                 </div>
-                <div class="item-quantity row">
-                    <div class="col-md-7 col-12">
+                <div class="item-quantity row" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 3">
+                    <div class="col-lg-5 col-sm-5">
                         <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
                     </div>
-                    <div class="col-md-5 col-12" id="date-deline">
+                    <div class="col-lg-4 col-sm-3 pr-0" id="date-deline">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                     </div>
                 </div>
+                <div class="item-quantity row" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
+                    <div class="col-lg-5 col-sm-5">
+                        <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
+                    </div>
+                    <div class="col-lg-4 col-sm-3 pr-0" id="date-deline">
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 pr-0 mb-block">
+                        <p class="mb-0" style="color: #fc205c">{{ FormatPriceBonus(job.bonus - (job.bonus * settingBonus.percent_bonus /100)) }}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
+                    </div>
+                </div>
                 <div class=" row" id="price">
-                    <div class="col-md-7 col-12 pr-0">
+                    <div class="col-lg-5 col-sm-5 pr-0">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fad fa-dollar-sign"></i> Chi phí: <span class="item-price" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"> {{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     </div>
-                    <div class="col-md-5 col-12">
+                    <div class="col-lg-4 col-sm-3 mb-block">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng">
                             <span class="badge border-netbee badge-sm" style="width: 100px" :class="job.highlight_job ? 'bg-netbee' : ''">
                                 {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
@@ -65,11 +79,11 @@
                 <div class="bonus-block">
                     <i class="m-0">Tiền thưởng</i>
                     <h3 class="bonus">
-                        <p style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
+                        <p class="mb-0" style="color: #fc205c">{{ FormatPriceBonus(job.bonus - (job.bonus * settingBonus.percent_bonus /100)) }}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
+                        <!-- <p style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p> -->
                     </h3>
                 </div>
-            </div>
-            <div class="item-options text-center" style="padding: 1rem">
+                <!-- <div class="item-options text-center" style="padding: 1rem">
                 <div class="hot" v-if="job.highlight_job == 2" data-toggle="tooltip" data-placement="top" title="Được tài trợ"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper mt-1">
                     <div class="item-cost mt-1" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
@@ -79,7 +93,9 @@
                         </h3>
                     </div>
                 </div>
+            </div> -->
             </div>
+            
         </div>
     </div>
 </template>
@@ -140,16 +156,19 @@ p {
     border-left: 2px solid #ffb701 !important;
 }
 
-.border-job-item:hover{
-    /* background-color: #ffb7012b; */
-}
+/* .border-job-item:hover{
+    background-color: #ffb7012b;
+} */
 
-.ecommerce-application .list-view .ecommerce-card .card-content {
+/* .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
     grid-template-columns: 0.3fr 4fr 2fr;
+} */
+.card-content{
+    display: flex !important;
 }
 
-.hot, .hot-mb{
+.hot-mb{
     color: #fff;
     text-transform: uppercase;
     z-index: 2;
@@ -158,15 +177,15 @@ p {
     right: 10px;
     font-weight: 700;
 }
-.hot img, .hot-mb img {
+.hot img {
     width: 2%;
     min-width: 35px;
     float: right;
     position: absolute;
-    right: 14px;
+    right: 0;
     top: 0;
 }
-.p-r-0 .hot img{
+.p-r-0{
     right: 0;
 }
 .card-avatar {
@@ -180,15 +199,18 @@ p {
 .item-price .title {
     font-size: 14px;
 }
-.bonus-block, .hot-mb{
+.bonus-block{
     display: none;
+}
+.remove-border-right{
+    width: 90%;
+    position: relative;
 }
 
 @media(max-width: 1199px){
-    .remove-border-right{
-
+    /* .remove-border-right{
         width: auto!important;
-    }
+    } */
     .item-options{
         padding: 1rem 0;
     }
@@ -196,13 +218,13 @@ p {
         font-size: 1rem;
     }
 }
-@media(max-width: 991px) and (min-width: 768px){
+/* @media(max-width: 991px) and (min-width: 768px){
     .remove-border-right{
         max-width: 330px !important;
     }
-}
+} */
 
-@media(max-width: 767px) and (min-width: 576px){
+/* @media(max-width: 767px) and (min-width: 576px){
     #company{
         height: 42px !important;
         position: relative;
@@ -229,20 +251,28 @@ p {
     .hot-mb img{
         right: 15px;
     }
-}
+} */
 
 .cate-bottom-avt {
     display: none;
+}
+@media (max-width: 600px){
+    .mb-block {
+        display: block !important;
+    }
+    .bonus-block{
+        display: none;
+    }
 }
 @media only screen and (max-width: 575px) {
     .remove-border-right{
         overflow: hidden;
     }
     .bonus-block{
-        display: block;
+        display: block !important;
     }
-    .hot-mb{
-        display: none;
+    .mb-block{
+        display: none !important;
     }
     #company {
         height: 42px !important;
@@ -266,6 +296,7 @@ p {
         padding-left: 20px;
     }
     .item-vip-a {
+        width: 95%;
         overflow: hidden;
         white-space: unset;
     }
@@ -274,6 +305,9 @@ p {
     }
     #date-deline {
         display: none;
+    }
+    .hot img{
+        right: 14px;
     }
 }
 </style>

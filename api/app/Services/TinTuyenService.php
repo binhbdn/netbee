@@ -800,9 +800,9 @@ class TinTuyenService extends BaseService {
         if ($search != '') {
             $query->where(function($q) use ($search){
                 $q->where('title', 'LIKE', '%'.$search.'%')
-                    ->orwhere('id','LIKE', '%'.$search.'%')
-                    ->orwhere('nbCompany.username','LIKE', '%'.$search.'%');
-            }); 
+                    ->orwhere('id','LIKE', '%'.$search.'%');
+                    // ->orwhere('id_created','LIKE', '%'.$search.'%');
+            });
         }
         
         return $query->paginate($perPage);

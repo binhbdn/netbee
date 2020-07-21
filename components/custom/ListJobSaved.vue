@@ -20,11 +20,16 @@
                             <form>
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-lg-4">
-                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0 input_placehoder" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
                                             <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-lg-4">
+                                        <fieldset class="form-group">
+                                            <multiselect @input="search()" v-model="cardSearch.searchAddress" :options="address" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn địa điểm"  style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -124,12 +129,23 @@ export default {
         return {
             cardSearch: {
                 search: "",
-                searchCategory: null
+                searchCategory: null,
+                searchAdress: null,
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
                 {id: 2, name: 'Du học'},
                 {id: 3, name: 'Tu nghiệp sinh'}
+            ],
+            address: [
+                {id: 1, name: 'Nhật Bản'},
+                {id: 2, name: 'Hàn Quốc'},
+                {id: 3, name: 'Trung Quốc'},
+                {id: 4, name: 'Anh'},
+                {id: 5, name: 'Mỹ'},
+                {id: 6, name: 'Đức'},
+                {id: 7, name: 'Canada'},
+                {id: 8, name: 'Úc'},
             ],
             jobs_saver: [],
             jobs: [],
@@ -157,6 +173,7 @@ export default {
             '/quanlyvieclam/getSaveBySaver?searchCategory=' 
             + ((this.cardSearch.searchCategory != null && this.cardSearch.searchCategory.id != null)?this.cardSearch.searchCategory.id:'')  
             + ((this.cardSearch.search)? '&search='+ this.cardSearch.search:'')
+            + '&searchAddress='+ ((this.cardSearch.searchAddress != null && this.cardSearch.searchAddress.id != null)?this.cardSearch.searchAddress.id:'')
             ).then((response)=>{
                  this.jobs_saver=response.data;
                  this.page = 1;
@@ -244,6 +261,10 @@ export default {
 }
 .list-inline{
     display: block;
+}
+.input_placehoder::placeholder{
+  font-size: 14px;
+  color: #adadad !important;
 }
 @media (max-width: 767px){
     .card{

@@ -16,7 +16,7 @@
                             </ul>
                             <ul class="nav navbar-nav bookmark-icons" v-if="$auth.user.role == 3 || $auth.user.role == 1">
                                 <li class="nav-item">
-                                    <a class="btn bg-netbee" href="/admin/ho-so/tao-ho-so" data-toggle="tooltip" data-placement="top" title="Tạo tin tuyển dụng">
+                                    <a class="btn bg-netbee" href="/admin/ho-so/tao-ho-so" data-toggle="tooltip" data-placement="top" title="Tạo hồ sơ">
                                         <span style="font-size:1rem">Tạo hồ sơ</span>
                                     </a>
                                 </li>
