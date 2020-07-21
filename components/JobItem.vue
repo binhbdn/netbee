@@ -11,28 +11,34 @@
                     </span>
                 </p>
             </div>
-            <div class="remove-border-right " style="margin: auto; width: 100%;">
+            <div class="remove-border-right" style="margin: auto; width: 100%;">
+                <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
                 <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
-                <div class="item-name">
-                    <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company item-vip-a mb-0" style="font-weight: 400 !important;font-size: 14px !important;"><i class="fa fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company ? job.nb_company.username : job.user.name }}</span></a>
+                <div class="item-name row">
+                    <div class="col-sm-7">
+                        <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company item-vip-a mb-0" style="font-weight: 400 !important;font-size: 14px !important;"><i class="fa fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company ? job.nb_company.username : job.user.name }}</span></a>
+                    </div>
+                    <div class="col-sm-5 mb-none">
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
+                    </div>
                 </div>
-                <div class="item-quantity d-flex justify-content-between">
-                    <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
+                <div class="item-quantity row">
+                    <p class="quantity-title mb-0 col-sm-7" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
+                    <p class="delivery-date mb-0 col-sm-5" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
-                <div>                  
+                <div class="mb-none">                  
                     <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="top" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span><span class="item-price"> {{ FormatPrice(job.subsidy) }} {{ job.currency }} </span></p>                                                                                 
                 </div>        
             </div>
-            <div class="item-options text-center mt-1 mb-1" >
+            <!-- <div class="item-options text-center mt-1 mb-1" >
                 <div class="hot" v-if="job.highlight_job == 2" data-toggle="tooltip" data-placement="top" title="Được tài trợ"><img src="/assets/img/hot.png"></div>
                 <div class="item-wrapper" style="margin-top: -5px;">
-                    <!-- <a class="delivery-date mb-0 mt-1 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
+                    <a class="delivery-date mb-0 mt-1 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=1' : job.type == 2 ? '/tin-tuyen-sinh/tim-kiem?keyword=&type=2' : '/tin-tuyen-sinh/tim-kiem?keyword=&type=3'">
                         {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
-                    </a> -->
+                    </a>
                      <p class="delivery-date mg-top-5" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -49,7 +55,7 @@ export default {
 </script>
 <style scoped>
 .item-vip-a{
-    max-width: 300px;
+    max-width: 350px;
     font-size: 13px;
 }
 p {
@@ -68,9 +74,12 @@ p {
     /* background-color: #ffb7012b; */
     margin-bottom: 0px;
 }
-.ecommerce-application .list-view .ecommerce-card .card-content {
+/* .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
+} */
+.card-content{
+    display: flex !important;
 }
 .mg-top-5{
     margin-top: 5px;
@@ -106,15 +115,26 @@ p {
 .item-price .title {
     font-size: 14px;
 }
+.remove-border-right{
+    width: 90%;
+}
+@media (max-width: 1199px) and (min-width: 992px){
+    .item-vip-a{
+        max-width: 285px;
+    }
+}
 
 @media(max-width: 991px) {
     .p-r-0 .hot img{
         right: 15px;
     }
-}
-@media(max-width: 768px) {
     .item-vip-a{
-        max-width: 250px;
+        max-width: 500px;
+    }
+}
+@media(max-width: 767px) {
+    .item-vip-a{
+        max-width: 400px;
         overflow: hidden;
         white-space: unset;
     }
@@ -128,11 +148,12 @@ p {
         padding: 10px 10px 10px 0px;
     }
 }
-@media(max-width: 375px) {
-    .item-vip-a{
-        max-width: 200px;
+@media (max-width: 600px){
+    .mb-none{
+        display: block !important;
     }
 }
+/* 
 @media(max-width: 320px) {
   .border-netbee{
       padding: 6px;
@@ -141,5 +162,5 @@ p {
       width: 0px;
       padding: 4px !important;
   }
-}
+} */
 </style>

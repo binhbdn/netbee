@@ -7,8 +7,8 @@
                 </a>
             </div>
             <div class="remove-border-right">
-                <div class="remove-border-right" style="padding: 5px 0 0 0;">
-                    
+                <div style="padding: 5px 0 0 0;">
+                    <div class="hot" v-if="job.highlight_job == 2" data-toggle="tooltip" data-placement="top" title="Được tài trợ"><img src="/assets/img/hot.png"></div> 
                     <a class="item-vip-a el-1" :href="`/${type}tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 </div>
                 <div class="item-name">
@@ -25,7 +25,6 @@
                     <!-- <p class="delivery-date m-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển"><i class="fad fa-user-friends"></i> {{job.quantity}}</p> -->
                 </div>
                 <div class="item-quantity mb-1">
-                    <div class="hot" v-if="job.highlight_job == 2" data-toggle="tooltip" data-placement="top" title="Được tài trợ"><img src="/assets/img/hot.png"></div> 
                     <a class="delivery-date mb-0 badge border-netbee badge-sm" style="width: 100px" :href="job.type == 1 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
                         {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                     </a>
@@ -57,15 +56,17 @@ export default {
     border-left: 2px solid #ffb701 !important;
 }
 
-.border-job-item:hover{
-    /* background-color: #ffb7012b; */
-}
+/* .border-job-item:hover{
+    background-color: #ffb7012b;
+} */
 
-.ecommerce-application .list-view .ecommerce-card .card-content {
+/* .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid !important;
     grid-template-columns: 0.6fr 3fr !important;
+} */
+.card-content{
+    display: flex !important;
 }
-
 .el-1{
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -85,7 +86,7 @@ export default {
     font-weight: 700;
 }
 .hot img {
-    width: 9%;
+    width: 40px;
     float: right;
     position: absolute;
     right: 14px;
@@ -102,21 +103,26 @@ export default {
     height: 60px; 
     width: 60px;
 }
-.remove-border-right {
+/* .remove-border-right {
     width: 400px;
+} */
+@media (max-width: 991px){
+    .item-vip-a{
+        max-width: 95%;
+    }
 }
 @media(max-width: 768px) {
 .card-avatar {
     margin: 0px;
 }
-.remove-border-right {
+/* .remove-border-right {
     padding: 0px;
     width: 250px;
+} */
 }
-}
-@media(max-width: 376px) {
+/* @media(max-width: 376px) {
 .remove-border-right {
     width: 220px;
 }
-}
+} */
 </style>
