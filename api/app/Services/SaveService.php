@@ -95,6 +95,7 @@ class SaveService extends BaseService {
         $perPage = 6;
         $search = $request->search;
         $searchCategory = $request->searchCategory;
+        $searchAddress = $data->searchAddress;
         $conditions =[];
 
         if($searchCategory != ''){
@@ -102,6 +103,12 @@ class SaveService extends BaseService {
                 'type',
                 '=',
                 $searchCategory
+            ];
+        }
+        
+        if($searchAddress != null){
+            $conditions[] = [
+                'nb_joblists.nation_id', '=', $searchAddress
             ];
         }
 
