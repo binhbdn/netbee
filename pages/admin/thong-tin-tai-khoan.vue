@@ -126,7 +126,7 @@
                             </div>
                         </div>
                         <!-- Vai trò trên trang -->
-                        <!-- <div class="col-md-12">
+                        <div class="col-md-12" v-if="$auth.user.role == 2">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body p-t-15 p-b-15">
@@ -135,13 +135,21 @@
                                                 <p class="card-header-title is-uppercase">Chỉ định một vai trò mới trên trang</p>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="row">
+                                                <div v-if="emailCompany.length < 5" class="row">
                                                     <div class="col-md-6">
-                                                        <label for="account-company">Email</label>
+                                                        <span>
+                                                            <div class="for-label pb-50">
+                                                                <label for="account-company">Email</label>
+                                                            </div> 
+                                                        </span>
                                                         <input class="form-control" type="email" id="email" placeholder="Nhập email" v-model="email_company">
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label for="account-company">Phân quyền</label>
+                                                        <span>
+                                                            <div class="for-label pb-50">
+                                                                <label for="account-company">Phân quyền</label>
+                                                            </div> 
+                                                        </span>
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <multiselect :options="levelEmail" v-model="status" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Phân quyền"></multiselect>
@@ -151,7 +159,11 @@
                                                     </div>
                                                 </div>
                                                 <template v-if="emailCompany.length != 0">
-                                                    Vai trò hiện tại trên trang
+                                                    <span>
+                                                        <div class="for-label pb-50">
+                                                            <label for="account-company">Vai trò hiện tại trên trang</label>
+                                                        </div> 
+                                                    </span>
                                                     <table class="table table-hover mb-0 zero-configuration">
                                                         <thead class="custom-header">
                                                             <tr>
@@ -171,13 +183,13 @@
                                                                             <div class="btn-group dropdown actions-dropodown">
                                                                                 <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                                     <span v-if="item.status == 0" class="text-none">Chưa phân quyền</span>
-                                                                                    <span v-if="item.status == 1" class="text-none">Quản trị viên</span>
-                                                                                    <span v-if="item.status == 2" class="text-none">Biên tập viên</span>
+                                                                                    <span v-if="item.status == 1" class="text-none"><i class="fa fa-check"></i> Quản trị viên</span>
+                                                                                    <span v-if="item.status == 2" class="text-none"><i class="fa fa-check"></i> Biên tập viên</span>
                                                                                 </button>
                                                                                 <div class="dropdown-menu" style="left: -25px!important;">
                                                                                     <a v-if="item.status != 0" @click="updateStatus0(item.id)" class="dropdown-item">Chưa phân quyền</a>
-                                                                                    <a v-if="item.status != 1" @click="updateStatus1(item.id)" class="dropdown-item">Quản trị viên</a>
-                                                                                    <a v-if="item.status != 2" @click="updateStatus2(item.id)" class="dropdown-item">Biên tập viên</a> 
+                                                                                    <a v-if="item.status != 1" @click="updateStatus1(item.id)" class="dropdown-item"><i class="far fa-check-circle"></i> Quản trị viên</a>
+                                                                                    <a v-if="item.status != 2" @click="updateStatus2(item.id)" class="dropdown-item"><i class="far fa-check-circle"></i> Biên tập viên</a> 
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -185,21 +197,49 @@
                                                                 </td>
                                                                 <td>
                                                                     <button class="btn btn-danger btn-sm" @click="deletedEmailCompany(item.id)">Xóa</button>
+                                                                    <button class="btn btn-primary btn-sm" @click="suaEmailCompanyModal(item.id)">Chỉnh sửa</button>
+                                                                    <div id="refuse_modal" class="modal fade" role="dialog">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                              <div class="modal-header">
+                                                                                <h4 class="modal-title" id="exampleModalLabel1">Cập nhật email</h4>
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                              </div>
+                                                                              <div class="modal-body">
+                                                                                <div class="form-group">
+                                                                                    <span>
+                                                                                        <div class="for-label pb-50">
+                                                                                            <label for="account-company">Email</label>
+                                                                                        </div> 
+                                                                                    </span>
+                                                                                    <input class="form-control" type="email" id="email" placeholder="Nhập email" v-model="email_company_edit">
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-danger close-modal" data-dismiss="modal">Đóng</button>
+                                                                                <button type="button" class="btn btn bg-netbee" @click="suaEmailCompany()">Cập nhật</button>
+                                                                              </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
                                                     </table> 
                                                 </template>
-                                                Ghi chú: <br>
+                                                <span>
+                                                    <div class="for-label pb-50">
+                                                        <label for="account-company">Ghi chú:</label>
+                                                    </div> 
+                                                </span>
                                                  - Quản trị viên: có quyền đăng nhập như tài khoản công ty.<br>
                                                  - Biên tập viên: có quyền nhận thông báo từ hệ thống.<br>
-                                                
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                         <!-- End vai trò trên trang -->
                          <div class="col-md-12" v-if="$auth.user.role == 3">
                             <div class="card">
@@ -812,6 +852,8 @@ export default {
                     {id: 1, name: 'Quản trị viên'},
                     {id: 2, name: 'Biên tập viên'}
                 ],
+                id_email:'',
+                email_company_edit:'',
             };
         },
     methods: {
@@ -1119,6 +1161,32 @@ export default {
             form.append('email_company',this.email_company);
             form.append('status',this.status.id);
             this.$axios.post('postEmailCompany',form).then((response)=>{
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Cập nhật thành công!',
+                        response.data.message,
+                        'success'
+                    ).then( function (){
+                            window.location.reload();
+                        } )
+                }else{
+                    this.$swal(
+                        'Lỗi',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
+        },
+        suaEmailCompanyModal(id){
+            this.id_email = id;
+            $("#refuse_modal").modal('show');
+        },
+        suaEmailCompany(){
+            var form = new FormData();
+            form.append('id',this.id_email);
+            form.append('email_company',this.email_company_edit);
+            this.$axios.post('suaEmailCompany',form).then((response)=>{
                 if(response.data.status == 200) {
                     this.$swal(
                         'Cập nhật thành công!',

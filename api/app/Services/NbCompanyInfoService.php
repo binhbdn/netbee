@@ -418,6 +418,32 @@ class NbCompanyInfoService extends BaseService {
             ];
         }
     }
+    public function suaEmailCompany($request)
+    {
+        if(Auth::check()){
+            $data = $this->getOnlySuaEmailCompanyData($request);
+                try {
+                    $this->nbEmailCompany->where('id', $request->id)->update($data);
+                    return [
+                        'status' => 200,
+                        'message' => 'Cập nhật email thành công!',
+                        'data' => null
+                ];
+                } catch (\Exception $e) {
+                    return [
+                        'status'=> 400,
+                        'message' => 'Có lỗi xảy ra!',
+                        'data' => $e->getMessage()
+                    ];
+                }
+        }else{
+            return [
+                'status' => 500,
+                'message' => 'Bạn chưa đăng nhập!',
+                'data' => null
+            ];
+        }
+    }
     public function postDeleteEmailCompany($request)
     {
         if(Auth::check()){
@@ -455,6 +481,13 @@ class NbCompanyInfoService extends BaseService {
     {
         return [
             'status' => $request->status,
+            'updated_at' => Carbon::now()
+        ];
+    }
+    private function getOnlySuaEmailCompanyData($request)
+    {
+        return [
+            'email_company' => $request->email_company,
             'updated_at' => Carbon::now()
         ];
     }
