@@ -892,7 +892,6 @@ export default {
     top: 90px;
     left: 35%;
     background: #fff;
-    border-radius: 50%;
     border: 1px solid #c1c1c1;
     width: 100px;
     height: 100px;
