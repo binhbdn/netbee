@@ -115,6 +115,7 @@ p {
 }
 .card-avatar {
     margin: auto;
+    padding: 0 10px;
 }
 .card-avatar img {
     object-fit: scale-down;

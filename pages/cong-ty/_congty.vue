@@ -139,7 +139,7 @@
                 </div> -->
                 <nav class='pl-1 pt-1'>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><h5 class="font-weight-600">ĐƠN HÀNG ĐANG TUYỂN</h5></a>
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><h5 class="font-weight-600">ĐANG TUYỂN</h5></a>
                         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false"><h5 class="font-weight-600">Ý KIẾN ĐÁNH GIÁ</h5></a>
                     </div>
                 </nav>
