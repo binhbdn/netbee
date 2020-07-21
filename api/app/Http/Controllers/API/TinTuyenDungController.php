@@ -41,7 +41,7 @@ class TinTuyenDungController extends Controller
 
     public function getTinTuyenDungNewCarousel(Request $request)
     {
-        $response = $this->tinTuyenService->getTinTuyenDungNewCarousel();
+        $response = $this->tinTuyenService->getTinTuyenDungNewCarousel(false);
         return response()->json($response);
     }
     public function getTinTuyenDungHotCarousel(Request $request)
