@@ -30,7 +30,4 @@ export default {
 }
 </script>
 <style>
-.item-new{
-    height: 190px;
-}
 </style>

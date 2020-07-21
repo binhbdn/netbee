@@ -1,12 +1,12 @@
 <template>
     <div class="ecommerce-application">
         <div class="row px-1 pb-1">
-            <div class="col-sm-5 py-1 make-it-slow" style="border: 1px solid hsla(0, 0%, 80%, .8);">
-                <div style="height: 305px;">
+            <div class="col-md-5 py-1 make-it-slow" style="border: 1px solid hsla(0, 0%, 80%, .8);">
+                <div>
                     <NewsItem1 :id="DataList[0].id" :title="DataList[0].title" :short_content="DataList[0].short_content" :created_at="DataList[0].updated_at" :thuml="DataList[0].thuml" :type=1></NewsItem1>
                 </div>                
             </div>
-            <div class="col-sm-7">
+            <div class="col-md-7 p-0 pt-md-0 pt-1">
                 <div class="row px-1">
                     <div class="col-12 make-it-slow py-1" style="border: 1px solid hsla(0, 0%, 80%, .8);" v-for="(item, index) in DataList.slice(1)" :key="index">
                         <NewsItem2 :id="item.id" :title="item.title" :short_content="item.short_content" :created_at="item.updated_at" :thuml="item.thuml"></NewsItem2>
@@ -31,12 +31,12 @@ export default {
 }
 </script>
 <style>
-@media (max-width: 575px){
+/* @media (max-width: 575px){
     .col-sm-5{
         padding-bottom: 2rem !important;
     }
-    .col-sm-7{
+    .col-md-7{
         padding: 0;
     }
-}
+} */
 </style>
