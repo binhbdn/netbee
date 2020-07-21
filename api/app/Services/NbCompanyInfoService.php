@@ -4,6 +4,7 @@ namespace App\Services;
 use App\Models\NbCompanyFeedback;
 use App\Models\NbCompanyFollows;
 use App\Models\NbCompanyInfo;
+use App\Models\NbEmailCompany;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -25,13 +26,15 @@ class NbCompanyInfoService extends BaseService {
     protected $nbCompanyFeedback;
     protected $user;
     protected $nbCompanyFollows;
+    protected $nbEmailCompany;
 
-    public function __construct(NbCompanyInfo $nbCompanyInfo, NbCompanyFeedback $companyFeedback, User $user, NbCompanyFollows $companyFollows)
+    public function __construct(NbCompanyInfo $nbCompanyInfo, NbCompanyFeedback $companyFeedback, User $user, NbCompanyFollows $companyFollows, NbEmailCompany $nbEmailCompany)
     {
         $this->nbCompanyInfo = $nbCompanyInfo;
         $this->nbCompanyFeedback = $companyFeedback;
         $this->user = $user;
         $this->nbCompanyFollows = $companyFollows;
+        $this->nbEmailCompany = $nbEmailCompany;
     }
     public function getListCompany($type, $limit, $perPage){
         $datas = $this->nbCompanyInfo
@@ -304,6 +307,155 @@ class NbCompanyInfoService extends BaseService {
             'status'=> 200,
             'message'=> 'Thành công.',
             'total_score'=> $total_score
+        ];
+    }
+    public function getEmailCompany()
+    {
+        return $this->nbEmailCompany->where('id_company', Auth::user()->id)->get();
+    }
+    public function postEmailCompany($request)
+    {
+        if(Auth::check()){
+            $data = $this->getOnlyEmailCompanyData($request);
+            
+                try {
+                    $this->nbEmailCompany->insert($data);
+                    return [
+                        'status' => 200,
+                        'message' => 'Thêm email thành công!',
+                        'data' => null
+                ];
+                } catch (\Exception $e) {
+                    return [
+                        'status'=> 400,
+                        'message' => 'Có lỗi xảy ra!',
+                        'data' => $e->getMessage()
+                    ];
+                }
+        }else{
+            return [
+                'status' => 500,
+                'message' => 'Bạn chưa đăng nhập!',
+                'data' => null
+            ];
+        }
+    }
+    public function updateStatus0($request)
+    {
+        if(Auth::check()){
+            $data = $this->getOnlyUpdateEmailCompanyData($request);
+                try {
+                    $this->nbEmailCompany->where('id', $request->id)->update($data);
+                    return [
+                        'status' => 200,
+                        'message' => 'Thay đổi quyền thành công!',
+                        'data' => null
+                ];
+                } catch (\Exception $e) {
+                    return [
+                        'status'=> 400,
+                        'message' => 'Có lỗi xảy ra!',
+                        'data' => $e->getMessage()
+                    ];
+                }
+        }else{
+            return [
+                'status' => 500,
+                'message' => 'Bạn chưa đăng nhập!',
+                'data' => null
+            ];
+        }
+    }
+    public function updateStatus1($request)
+    {
+        if(Auth::check()){
+            $data = $this->getOnlyUpdateEmailCompanyData($request);
+                try {
+                    $this->nbEmailCompany->where('id', $request->id)->update($data);
+                    return [
+                        'status' => 200,
+                        'message' => 'Thay đổi quyền thành công!',
+                        'data' => null
+                ];
+                } catch (\Exception $e) {
+                    return [
+                        'status'=> 400,
+                        'message' => 'Có lỗi xảy ra!',
+                        'data' => $e->getMessage()
+                    ];
+                }
+        }else{
+            return [
+                'status' => 500,
+                'message' => 'Bạn chưa đăng nhập!',
+                'data' => null
+            ];
+        }
+    }
+    public function updateStatus2($request)
+    {
+        if(Auth::check()){
+            $data = $this->getOnlyUpdateEmailCompanyData($request);
+                try {
+                    $this->nbEmailCompany->where('id', $request->id)->update($data);
+                    return [
+                        'status' => 200,
+                        'message' => 'Thay đổi quyền thành công!',
+                        'data' => null
+                ];
+                } catch (\Exception $e) {
+                    return [
+                        'status'=> 400,
+                        'message' => 'Có lỗi xảy ra!',
+                        'data' => $e->getMessage()
+                    ];
+                }
+        }else{
+            return [
+                'status' => 500,
+                'message' => 'Bạn chưa đăng nhập!',
+                'data' => null
+            ];
+        }
+    }
+    public function postDeleteEmailCompany($request)
+    {
+        if(Auth::check()){
+            $email = $this->nbEmailCompany->whereId($request->id)->first();
+            if($email) {
+                $email->delete();
+                return [
+                    'status'=> 200,
+                    'message' => 'Xóa thành công!',
+                ];
+            }else{
+                return [
+                    'status'=> 400,
+                    'message' => 'Có lỗi xảy ra!',
+                ];
+            }
+        }else{
+            return [
+                'status' => 500,
+                'message' => 'Bạn chưa đăng nhập!',
+                'data' => null
+            ];
+        }
+    }
+    private function getOnlyEmailCompanyData($request)
+    {
+        return [
+            'id_company' => Auth::user()->id,
+            'email_company' =>$request->email_company,
+            'status' => $request->status,
+            'created_at' => Carbon::now()
+        ];
+    }
+    private function getOnlyUpdateEmailCompanyData($request)
+    {
+        return [
+            'status' => $request->status,
+            'updated_at' => Carbon::now()
         ];
     }
 }

@@ -125,6 +125,82 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Vai trò trên trang -->
+                        <!-- <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body p-t-15 p-b-15">
+                                        <div class="tab-content">
+                                            <div class="card-header card-profile">
+                                                <p class="card-header-title is-uppercase">Chỉ định một vai trò mới trên trang</p>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="account-company">Email</label>
+                                                        <input class="form-control" type="email" id="email" placeholder="Nhập email" v-model="email_company">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="account-company">Phân quyền</label>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <multiselect :options="levelEmail" v-model="status" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Phân quyền"></multiselect>
+                                                            </div>
+                                                            <button class="btn bg-netbee" @click="updateEmailCompany()">Thêm</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <template v-if="emailCompany.length != 0">
+                                                    Vai trò hiện tại trên trang
+                                                    <table class="table table-hover mb-0 zero-configuration">
+                                                        <thead class="custom-header">
+                                                            <tr>
+                                                                <th>STT</th>
+                                                                <th>Email</th>
+                                                                <th>Vai trò</th>
+                                                                <th>Thao tác</th>                               
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody >                                               
+                                                            <tr v-for="(item, index) in emailCompany">
+                                                                <td>{{index + 1}}</td>
+                                                                <td>{{item.email_company}}</td>
+                                                                <td>
+                                                                    <div class="action-btns">
+                                                                        <div class="btn-dropdown ">
+                                                                            <div class="btn-group dropdown actions-dropodown">
+                                                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                    <span v-if="item.status == 0" class="text-none">Chưa phân quyền</span>
+                                                                                    <span v-if="item.status == 1" class="text-none">Quản trị viên</span>
+                                                                                    <span v-if="item.status == 2" class="text-none">Biên tập viên</span>
+                                                                                </button>
+                                                                                <div class="dropdown-menu" style="left: -25px!important;">
+                                                                                    <a v-if="item.status != 0" @click="updateStatus0(item.id)" class="dropdown-item">Chưa phân quyền</a>
+                                                                                    <a v-if="item.status != 1" @click="updateStatus1(item.id)" class="dropdown-item">Quản trị viên</a>
+                                                                                    <a v-if="item.status != 2" @click="updateStatus2(item.id)" class="dropdown-item">Biên tập viên</a> 
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-danger btn-sm" @click="deletedEmailCompany(item.id)">Xóa</button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table> 
+                                                </template>
+                                                Ghi chú: <br>
+                                                 - Quản trị viên: có quyền đăng nhập như tài khoản công ty.<br>
+                                                 - Biên tập viên: có quyền nhận thông báo từ hệ thống.<br>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- End vai trò trên trang -->
                          <div class="col-md-12" v-if="$auth.user.role == 3">
                             <div class="card">
                                 <div class="card-content">
@@ -269,7 +345,7 @@
                                                                                             <label for="account-phone">Đường dây nóng</label>
                                                                                         </div>
                                                                                         <div class="col-sm-8 pr-0">
-                                                                                            <input type="text" class="form-control" name="name" v-model="changeInfoUser.name">
+                                                                                            <input type="text" class="form-control" name="name" v-model="changeInfoCompanyForm.companyHotline">
                                                                                             <ul style="color:red" class="overline text-left">
                                                                                                 <li v-for="(error, index) in errors" :key="index">
                                                                                                  <span>{{ error }}</span>
@@ -620,6 +696,8 @@ import {
   ValidationProvider,
   extend
 } from "vee-validate/dist/vee-validate.full";
+import Multiselect from 'vue-multiselect'
+import 'vue-multiselect/dist/vue-multiselect.min.css'
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
 extend('retypePassword', {
   params: ['target'],
@@ -682,6 +760,7 @@ export default {
     name: 'Account',
     layout: 'admin',
     components: {
+        Multiselect,
         ValidationProvider,
         ValidationObserver
     },
@@ -724,10 +803,21 @@ export default {
                     stk: '',
                     branch: '',
                     bankName: ''
-                }
+                },
+                emailCompany: [],
+                email_company: ' ',
+                status: {id: 0, name: 'Chưa phân quyền'},
+                levelEmail: [
+                    {id: 0, name: 'Chưa phân quyền'},
+                    {id: 1, name: 'Quản trị viên'},
+                    {id: 2, name: 'Biên tập viên'}
+                ],
             };
         },
     methods: {
+        nameWithLang ({ id, name }) {
+            return `${name}`
+        },
         //update avatar
         onInputChange(e){
             if(this.images.length > 0){
@@ -972,6 +1062,11 @@ export default {
             let databankHr = await this.$axios.get('nganhang/getByIt')
             this.bankHr = databankHr.data
 
+            this.$axios.$get('getEmailCompany').then((response) => {
+                  this.emailCompany = response
+                  console.log(this.emailCompany.length)
+                })
+
             
         },
         updateMoreInfo(){
@@ -1018,6 +1113,115 @@ export default {
                     }
                 })
             }
+        },
+        updateEmailCompany(){
+            var form = new FormData();
+            form.append('email_company',this.email_company);
+            form.append('status',this.status.id);
+            this.$axios.post('postEmailCompany',form).then((response)=>{
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Cập nhật thành công!',
+                        response.data.message,
+                        'success'
+                    ).then( function (){
+                            window.location.reload();
+                        } )
+                }else{
+                    this.$swal(
+                        'Lỗi',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
+        },
+        deletedEmailCompany(id){
+            var form = new FormData();
+            form.append('id',id);
+            this.$axios.post('postDeleteEmailCompany',form).then((response)=>{
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Xóa thành công!',
+                        response.data.message,
+                        'success'
+                    ).then( function (){
+                            window.location.reload();
+                        } )
+                }else{
+                    this.$swal(
+                        'Lỗi nè',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
+        },
+        updateStatus0(id){
+            var form = new FormData();
+            form.append('id',id);
+            form.append('status',0);
+            this.$axios.post('updateStatus0',form).then((response)=>{
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Thành công!',
+                        response.data.message,
+                        'success'
+                    ).then( function (){
+                            window.location.reload();
+                        } )
+                }else{
+                    this.$swal(
+                        'Lỗi nè',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
+        },
+        updateStatus1(id){
+            var form = new FormData();
+            form.append('id',id);
+            form.append('status',1);
+            this.$axios.post('updateStatus1',form).then((response)=>{
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Thành công!',
+                        response.data.message,
+                        'success'
+                    ).then( function (){
+                            window.location.reload();
+                        } )
+                }else{
+                    this.$swal(
+                        'Lỗi nè',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
+        },
+        updateStatus2(id){
+            var form = new FormData();
+            form.append('id',id);
+            form.append('status',2);
+            this.$axios.post('updateStatus2',form).then((response)=>{
+                if(response.data.status == 200) {
+                    this.$swal(
+                        'Thành công!',
+                        response.data.message,
+                        'success'
+                    ).then( function (){
+                            window.location.reload();
+                        } )
+                }else{
+                    this.$swal(
+                        'Lỗi nè',
+                        response.data.message,
+                        'error'
+                    )
+                }
+            })
         }
   },
   mounted() {
