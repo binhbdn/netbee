@@ -112,11 +112,14 @@ class SaveService extends BaseService {
         //     ];
         // }
 
-        $query = $this->nbJoblist->with('nbJobSave')
-        ->whereHas('nbJobSave', function($q){
-            $q->where('id_saver', Auth::user()->id);
-        })
-        ->with('user')->with('nation');
+        $query = $this->nbJoblist
+        ->join('nb_job_saves','nb_job_saves.id_job','=','nb_joblists.id')
+        ->where('id_saver', Auth::user()->id)
+        ->select('nb_joblists.*')
+        ->orderBy('nb_job_saves.id', 'DESC')
+        ->with('nbJobSave')
+        ->with('user')
+        ->with('nation');
 
         if (!empty($conditions)) {
             $query->where($conditions);
@@ -127,7 +130,7 @@ class SaveService extends BaseService {
             });
         }
 
-        return $query->orderBy('id', 'DESC')->paginate($perPage);
+        return $query->paginate($perPage);
 
     }
 
