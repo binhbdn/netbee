@@ -107,7 +107,6 @@
             </a>
             <div
               class="dropdown-menu sticky text-center"
-              style="top: 102%!important;"
               aria-labelledby="navbarDropdown"
             >
               <div id="login-up"></div>
@@ -175,7 +174,7 @@
               <i class="fa fa-bell" style="color:#000 !important;font-size: 17px;padding:0px;margin-right:0px;"></i>
               <span class="badge badge-pill badge-danger badge-up" style="background-color: #EA5455;right: -0.3rem;top: -0.7rem;" v-if="countNoti>0">{{ countNoti }}</span>
             </a>
-              <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" style="width: 400px;">
+              <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                     <li class="dropdown-menu-header">
                         <div class="dropdown-header m-0">
                             <h3 class="h3-size">{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
@@ -342,7 +341,10 @@ export default {
 .dropdown-notification .notification-title {
     color: #000 !important;
 }
-@media only screen and (min-width: 320px) and (max-width: 779px){
+.dropdown-menu-right{
+  width: 400px;
+}
+@media (max-width: 991px){
   .icon-menu {
     position: absolute;
     right: 10px;
@@ -375,13 +377,26 @@ export default {
   #menu-toggle:checked+.menu-button-container .menu-button {
     background: rgba(255, 255, 255, 0);
   }
-  .dropdown-menu {
+  .dropdown-menu-right {
     position: absolute;
-    left: -120px;
-    width: 235px;
+    left: -85px;
+    width: 280px;
   }
   .dropdown .dropdown-menu::before {
     left: 14.2rem;
+  }
+}
+@media (max-width: 767px){
+  .dropdown-menu-right{
+    left: -115px;
+  }
+}
+@media (max-width: 575px){
+  .dropdown-menu-right{
+    width: 220px;
+  }
+  .dropdown .dropdown-menu::before {
+    left: 12.2rem;
   }
 }
 
