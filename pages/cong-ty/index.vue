@@ -3,7 +3,7 @@
     <section>
         <!-- <h1 class="text-center" style="margin-bottom: 15px">Nhà tuyển dụng nổi bật</h1> -->
       <div class="row">
-          <div class="col-8">
+        <div class="col-lg-8">
           <div class="card">
               <!-- Carousel Options start -->
                 <section id="carousel-options">
@@ -13,7 +13,7 @@
                                 <div class="card-header mb-0">
                                     <h2 class="card-title" style="text-transform: uppercase">công ty đã kiểm duyệt</h2>
                                 </div>
-                                    <div class="card-content collapse show" style="padding: 13px; position:relative">
+                                <div class="card-content collapse show" style="padding: 13px;">
                                   <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="10000">
                                       <ol class="carousel-indicators">
                                           <li data-target="#carousel-interval-new" v-for="(companyInfo,index) in listVerifyCompany" :key="index" :data-slide-to="index" :class="{'active': index == 0}"></li>
@@ -21,48 +21,50 @@
                                       <div class="carousel-inner" role="listbox">
                                           <div class="carousel-item" :class="{'active': index == 0}" v-for="(companyInfo,index) in listVerifyCompany" :key="index">
                                               <div class="swiper-slide swiper-slide-next">
-                                        <div class="spotlightBlock">
-                                            <div class="spotlightBlock__background" v-if="companyInfo.image_cover != null" role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${companyInfo.image_cover}` + ')' }"></div>
-                                            <div class="spotlightBlock__background" v-else role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/assets/img/cover-netbee.jpg` + ')' }"></div>
-                                            <div class="spotlightBlock__wrapper">
-                                              <div class="is-mobile is-centered">
-                                                  <div class="spotlightBlock__inner">
-                                                    <div class="columns spotlight-item is-vcentered">
-                                                        <div class="column is-3 spotlightBlock__logo">
-                                                          <figure class="image is-inline-block">
-                                                            <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" :alt="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`">
-                                                            <img v-else v-lazy = "`assets/img/logo.png`"></figure>
-                                                        </div>
-                                                        <div class="column is-8 spotlightBlock__content-wrapper">
-                                                          <div class="spotlightBlock__title">
-                                                              <h3>{{companyInfo.user.name}}</h3>
+                                                <div class="spotlightBlock">
+                                                    <div class="spotlightBlock__background" v-if="companyInfo.image_cover != null" role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${companyInfo.image_cover}` + ')' }"></div>
+                                                    <div class="spotlightBlock__background" v-else role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/assets/img/cover-netbee.jpg` + ')' }"></div>
+                                                    <div class="spotlightBlock__wrapper">
+                                                      <div class="is-mobile is-centered">
+                                                          <div class="spotlightBlock__inner">
+                                                            <div class="columns spotlight-item is-vcentered">
+                                                                <div class="column is-3 spotlightBlock__logo">
+                                                                  <figure class="image is-inline-block">
+                                                                    <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" :alt="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`">
+                                                                    <img v-else v-lazy = "`assets/img/logo.png`"></figure>
+                                                                </div>
+                                                                <div class="column is-8 spotlightBlock__content-wrapper">
+                                                                  <div class="spotlightBlock__title">
+                                                                      <h3>{{companyInfo.user.name}}</h3>
+                                                                  </div>
+                                                                  <!-- <div class="spotlightBlock__message ellipsis">#ThriveOnChange #DigitalTransformation</div> -->
+                                                                  <div class="spotlightBlock__content">
+                                                                      <div class="clamp-lines ">
+                                                                        <div style="text-align: left" id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="spotlightBlock__cta"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" class="button button_secondary is-outlined">Xem thêm</a></div>
+                                                                </div>
+                                                            </div>
                                                           </div>
-                                                          <!-- <div class="spotlightBlock__message ellipsis">#ThriveOnChange #DigitalTransformation</div> -->
-                                                          <div class="spotlightBlock__content">
-                                                              <div class="clamp-lines ">
-                                                                <div style="text-align: left" id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
-                                                              </div>
-                                                          </div>
-                                                          <div class="spotlightBlock__cta"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" class="button button_secondary is-outlined">Xem thêm</a></div>
-                                                        </div>
+                                                      </div>
                                                     </div>
-                                                  </div>
+                                                </div>
                                               </div>
-                                            </div>
-                                        </div>
+                                          </div>
                                       </div>
+                                      <div class="carousel-control" style="position: relative">
+                                        <a class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
+                                            <button class="el-carousel__arrow el-carousel__arrow--left">
+                                              <i class="fas fa-angle-left"></i>
+                                            </button>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
+                                            <button class="el-carousel__arrow el-carousel__arrow--right">
+                                              <i class="fas fa-angle-right"></i>
+                                            </button>
+                                        </a>
                                       </div>
-                                      </div>
-                                      <a class="carousel-control-prev" href="#carousel-interval-new" style="position: absolute; top: 101%; left: 37%;" role="button" data-slide="prev">
-                                          <button class="el-carousel__arrow el-carousel__arrow--left">
-                                            <i class="fas fa-angle-left"></i>
-                                          </button>
-                                      </a>
-                                      <a class="carousel-control-next" href="#carousel-interval-new" style="position: absolute;top: 38%; right: 36%;" role="button" data-slide="next">
-                                          <button class="el-carousel__arrow el-carousel__arrow--right">
-                                            <i class="fas fa-angle-right"></i>
-                                          </button>
-                                      </a>
                                   </div>
                                 </div>
                             </div>
@@ -72,7 +74,7 @@
                 <!-- Carousel Options end -->
             </div>
         </div>
-        <div class="col-4" style="padding-left: 4px;">
+        <div class="col-lg-4 pl-lg-0">
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title" style="text-transform: uppercase">Công ty mới</h2>
@@ -90,7 +92,7 @@
             </div>
         </div>
       </div>
-      <div class="row" style="padding:0 14px">
+      <div class="row p-0 pl-1">
         <p style="font-size: 18px">Dựa trên phản hồi của nhân viên Việt Nam từ 1/1/19 đến 12/12/19</p>
       </div>
     </section>
@@ -108,7 +110,7 @@
           </div>  
         </div>
         <div class="row">
-          <div class="col-3">
+          <div class="col-sm-3">
             <div class="content-box">
               <div v-if="companyInfo.nb_company != null" class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
                 <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" rel="nofollow" target="_blank">
@@ -124,9 +126,9 @@
               </div>
             </div>
           </div>
-          <div class="col-9">
+          <div class="col-sm-9">
             <div class="row">
-              <div class="col-6">
+              <div class="col-sm-6">
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="star-rating">
@@ -140,8 +142,7 @@
                   </div>
                 </div>
               </div>  
-              <div class="col-6">
-              </div>  
+              
             </div> 
             <div class="row">
             <div class="review_headline">
@@ -250,10 +251,10 @@ span.carousel-control-prev-icon :hover {
   color: #ffc107;
 }
 
-a.carousel-control-next {
+/* a.carousel-control-next {
   margin-right: 1px !important;
   margin-top: 280px;
-}
+} */
 span.carousel-control-prev-icon {
   margin-left: auto !important;
 }
@@ -289,12 +290,12 @@ span.carousel-control-prev-icon {
   border-radius: 3px;
   margin-bottom: 17px;
 }
-span.carousel-control-prev-icon {
+/* span.carousel-control-prev-icon {
   margin-left: -199px;
 }
 a.carousel-control-next {
   margin-right: -101px;
-}
+} */
 ol.carousel-indicators {
   margin-bottom: 8px;
   margin-left: 43%;
@@ -333,7 +334,6 @@ ol.carousel-indicators {
     transition: all 0.25s ease;
     padding: 10px;
     margin-bottom: -2px;
-    border-top: 1px solid #e7e7e7;
     position: relative;
 }
 .swiper-slide {
@@ -469,8 +469,8 @@ ol.carousel-indicators {
 }
 .company-logo {
     margin: 1em auto;
-    width: 168px;
-    height: 168px;
+    /* width: 168px; */
+    /* height: 168px; */
     line-height: 152px;
     background-color: #fff;
     padding: 5px;
@@ -520,14 +520,57 @@ ol.carousel-indicators {
   margin-top: 0;
   margin-bottom: 0;
 }
-.col-3 {
+/* .col-3 {
     max-width: 21%;
-}
+} */
 .btn-bg-edit {
   color: #000;
   border: 1px solid #ffc107;
 }
 .btn-bg-edit:hover {
   background:#ffc107 ;
+}
+.carousel-control-prev{
+  position: absolute;
+  top: 5px;
+  left: 37%;
+}
+.carousel-control-next{
+  position: absolute;
+  top: 5px;
+  left: 62%;
+}
+@media (max-width: 767px){
+  h4{
+    font-size: 18px !important;
+  }
+  .review_headline p{
+    font-size: 14px !important;
+  }
+  .vue-star-rating-rating-text {
+    font-size: 14px;
+  }
+  .company-logo{
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+@media (max-width: 575px){
+  .spotlightBlock__wrapper{
+    width: 100%;
+  }
+  .carousel-control-prev{
+    left: 32%;
+  }
+  .carousel-control-next{
+    left: 68%;
+  }
+  .vue-star-rating{
+    margin: auto;
+    padding-top: 0.5rem;
+  }
+  .review_headline{
+    padding-left: 1rem;
+  }
 }
 </style>

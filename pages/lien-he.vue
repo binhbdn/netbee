@@ -2,8 +2,8 @@
   <section class="section is-medium">
     <div class="container has-text-centered">
         <div class="row p-b-15">
-          <div class="col-md-12 order-md-last d-flex">
-            <div class="col-md-6 form-lienhe">
+          <div class="order-md-last d-flex row">
+            <div class="col-md-7 form-lienhe">
               <h2 class="h3 NB_main_title p-10">Thông tin liên hệ</h2>
                 <div class="row d-flex mb-5 contact-info">
                   <div class="col-md-12">
@@ -30,14 +30,12 @@
                   </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
               <a  href="https://www.google.com/maps/place/Hachinet/@21.052892,105.780003,15z/data=!4m5!3m4!1s0x0:0xdc6d73d2030fac0d!8m2!3d21.0528918!4d105.7800033?hl=vi" target="_blank">
-                <img v-lazy = "`/assets/img/mapimg1.png`" alt="Smiley face" height="470"  width="570">                        
+                <img v-lazy = "`/assets/img/mapimg1.png`" style="max-width: 100%" alt="Smiley face">                        
               </a>
             </div>
-
           </div>
-         
         </div>
     </div>
   </section>
@@ -48,5 +46,18 @@
   background-size: 230px 230px;
   background-repeat: no-repeat;
   background-position: right;
+}
+@media (max-width: 767px){
+  .col-md-7{
+    padding-top: 1rem;
+    order: 2;
+    border: 1px solid #fff;
+  }
+  .col-md-5{
+    order: 1;
+  }
+  .section{
+    padding: 0 1rem;
+  }
 }
 </style>

@@ -101,15 +101,15 @@ export default {
                     this.arrayNew = arrayNew.data.tintuc.data;
                     break;
                 case "cam-nang":
-                    let arrayCamNang = await this.$axios.$get('getTinTucNewLoading?category=3&page='+this.page);
+                    let arrayCamNang = await this.$axios.$get('getTinTucNewLoading?category=1&page='+this.page);
                     this.arrayNew = arrayCamNang.data.tintuc.data;
                     break;
                 case "du-hoc":
-                    let arrayDuHoc = await this.$axios.$get('getTinTucNewLoading?category=2&page='+this.page);
+                    let arrayDuHoc = await this.$axios.$get('getTinTucNewLoading?category=3&page='+this.page);
                     this.arrayNew = arrayDuHoc.data.tintuc.data;
                     break;
                 case "xuat-khau-lao-dong":
-                    let arrayXKLD = await this.$axios.$get('getTinTucNewLoading?category=1&page='+this.page);
+                    let arrayXKLD = await this.$axios.$get('getTinTucNewLoading?category=2&page='+this.page);
                     this.arrayNew = arrayXKLD.data.tintuc.data;
                     break;
                 default:
