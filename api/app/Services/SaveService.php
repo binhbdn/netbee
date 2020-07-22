@@ -95,7 +95,7 @@ class SaveService extends BaseService {
         $perPage = 6;
         $search = $request->search;
         $searchCategory = $request->searchCategory;
-        // $searchAddress = $data->searchAddress;
+        $searchAddress = $request->searchAddress;
         $conditions =[];
 
         if($searchCategory != ''){
@@ -106,11 +106,11 @@ class SaveService extends BaseService {
             ];
         }
         
-        // if($searchAddress != null){
-        //     $conditions[] = [
-        //         'nb_joblists.nation_id', '=', $searchAddress
-        //     ];
-        // }
+        if($searchAddress != null){
+            $conditions[] = [
+                'nation_id', '=', $searchAddress
+            ];
+        }
 
         $query = $this->nbJoblist
         ->join('nb_job_saves','nb_job_saves.id_job','=','nb_joblists.id')
@@ -126,7 +126,9 @@ class SaveService extends BaseService {
         }
         if ($search != '') {
             $query->where(function ($q) use ($search) {
-                $q->where('title', 'LIKE', '%'.$search.'%');
+                $q->where('title', 'LIKE', '%'.$search.'%')
+                ->orwhere('id', 'LIKE', '%'.$search.'%');
+                // ->orwhere('user.name', 'LIKE', '%'.$search.'%');
             });
         }
 

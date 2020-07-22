@@ -30,7 +30,7 @@
                     <div class="col-lg-5 col-sm-5">
                         <a :href="`/cong-ty/${job.user ? job.user.name : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company.username }}</span></a>
                     </div>
-                    <div class="col-lg-4 col-sm-3">
+                    <div class="col-lg-4 col-sm-3 mb-block">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     <div class="col-lg-5 col-sm-5">
                         <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
                     </div>
-                    <div class="col-lg-4 col-sm-3 pr-0" id="date-deline">
+                    <div class="col-lg-4 col-sm-3 pr-0 mb-block" id="date-deline">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                     </div>
                 </div>

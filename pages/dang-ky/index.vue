@@ -16,7 +16,7 @@
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Ứng tuyển nhanh chóng, dễ dàng</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Nhận bản tin công việc phù hợp định kỳ</p>
                 <p class="box-register_text"><i class="fa fa-check-circle"></i>&nbsp;Nâng cao cơ hội tìm ứng viên</p>
-                <p style="width: 100%;height: 46px;"><button class="btn btn-danger"><span>Chuyên viên tuyển sinh</span></button></p>
+                <p style="width: 100%;height: 46px;"><button class="btn btn-danger"><span>Đăng ký chuyên viên tuyển sinh</span></button></p>
               </div>
             </div>
           </a>
@@ -142,6 +142,12 @@
 h4{
   font-size: 27px;
   font-weight: 600;
+}
+.btn{
+  color: #000;
+}
+.btn:hover{
+  color: #fff;
 }
 
 @media screen and (max-width: 767px) {
