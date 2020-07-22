@@ -64,6 +64,8 @@
               <h4 class="card-title">
                 <i class="fad fa-business-time"></i> DANH SÁCH ĐƠN HÀNG
               </h4>
+              <span v-if="countJob" style="color: red;">Có {{countJob}} kết quả tìm kiếm</span>
+              <span v-else style="color: red;">Không có kết quả phù hợp</span>
             </div>
             <div class="card-content collapse show">
               <div class="card-body">
@@ -127,7 +129,7 @@ export default {
     JobsList1ColNotCate, Multiselect
   },
   async asyncData({$axios, route}) {
-    let getTinTuyenDungNew = await $axios.$get('getTinTuyenDungNewPage?perPage=20')
+    let getTinTuyenDungNew = await $axios.$get('getTinTuyenDungNewPage?perPage=30')
     let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=20&type=1`)
     let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=2`)
     let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=20&type=3`)
@@ -144,7 +146,8 @@ export default {
         arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
         arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
         arrayCvs: searchCvs.data,
-        visa: getVisa.data
+        visa: getVisa.data,
+        countJob: getTinTuyenDungNew.data.tintuyendung.length
     }
   },
   computed: {
@@ -184,6 +187,7 @@ export default {
                                                   +(this.salary_end != '' ? '&salary_end='+this.salary_end : '')
                                                   +(this.chooseVisa != '' && this.chooseVisa != null ? '&id_visa='+this.chooseVisa.id : ''))
       this.arrayJobNew = getTinTuyenDungNew.data
+      this.countJob = getTinTuyenDungNew.data.length
     },
   },
 };

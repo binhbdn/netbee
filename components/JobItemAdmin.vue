@@ -61,7 +61,7 @@
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                     </div>
                     <div class="col-lg-3 col-sm-4 pr-0 mb-block">
-                        <p class="mb-0" style="color: #fc205c">{{ FormatPriceBonus(job.bonus - (job.bonus * settingBonus.percent_bonus /100)) }}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
+                        <p class="mb-0" style="color: #fc205c">{{ FormatPriceBonus(job.bonus - (job.bonus * settingBonus.percent_bonus /100)) }} {{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
                     </div>
                 </div>
                 <div class=" row" id="price">
@@ -79,7 +79,7 @@
                 <div class="bonus-block">
                     <i class="m-0">Tiền thưởng</i>
                     <h3 class="bonus">
-                        <p class="mb-0" style="color: #fc205c">{{ FormatPriceBonus(job.bonus - (job.bonus * settingBonus.percent_bonus /100)) }}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
+                        <p class="mb-0" style="color: #fc205c">{{ FormatPriceBonus(job.bonus - (job.bonus * settingBonus.percent_bonus /100)) }} {{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
                         <!-- <p style="color: #fc205c">{{FormatPrice(job.bonus)}}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p> -->
                     </h3>
                 </div>

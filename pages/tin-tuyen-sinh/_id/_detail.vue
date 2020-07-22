@@ -268,9 +268,10 @@
             <div class="card">
                 <div class="card-content collapse show ">
                     <div class="card-body" style="padding-top: 15px;text-align: center !important;">
-                        <div class="main-company" v-html="qr_Code">
-                        </div>
-                        <p style="margin-top: -34px;font-weight: 400;text-align: center;">Scan để xem trên điện thoại</p>
+                        <!-- <div class="main-company" v-html="qr_Code">
+                        </div> -->
+                        <img v-lazy="`/assets/img/QR.png`" alt="Smiley face" style="width: 90%;">
+                        <p style="font-weight: 400;text-align: center;">Scan để xem trên điện thoại</p>
                         <p style="margin-top: 26px;margin-bottom: 5px;font-weight: 500;text-align: center;">Hotline: <a href="tel:+842462900388" >+842462900388</a></p>
                         <p style="margin-top: 0px;font-weight: 500;text-align: center;">Email: <a href="mailto:contact@netbee.vn">contact@netbee.vn</a></p>
                         <ul class="ftco-footer-social float-lft" style="margin-right:10px;">

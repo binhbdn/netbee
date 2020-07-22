@@ -317,14 +317,28 @@ class NbCompanyInfoService extends BaseService {
     {
         if(Auth::check()){
             $data = $this->getOnlyEmailCompanyData($request);
-            
+            if($request['email_company'] == null || $request['email_company'] == ''){
+                return [
+                    'status' => 400,
+                    'message' => 'Bạn chưa nhập email!',
+                    'data' => null
+                ];
+            }
+            elseif ($request['status'] == null || $request['status'] == '' || $request['status'] == 0) {
+                return [
+                    'status' => 400,
+                    'message' => 'Bạn chưa phân quyền cho email!',
+                    'data' => null
+                ];
+            }
+            else{
                 try {
                     $this->nbEmailCompany->insert($data);
                     return [
                         'status' => 200,
                         'message' => 'Thêm email thành công!',
                         'data' => null
-                ];
+                    ];
                 } catch (\Exception $e) {
                     return [
                         'status'=> 400,
@@ -332,6 +346,7 @@ class NbCompanyInfoService extends BaseService {
                         'data' => $e->getMessage()
                     ];
                 }
+            }
         }else{
             return [
                 'status' => 500,
@@ -422,6 +437,13 @@ class NbCompanyInfoService extends BaseService {
     {
         if(Auth::check()){
             $data = $this->getOnlySuaEmailCompanyData($request);
+            if($request['email_company'] == null || $request['email_company'] == ''){
+                return [
+                    'status' => 400,
+                    'message' => 'Bạn chưa nhập email!',
+                    'data' => null
+                ];
+            }else{
                 try {
                     $this->nbEmailCompany->where('id', $request->id)->update($data);
                     return [
@@ -436,6 +458,7 @@ class NbCompanyInfoService extends BaseService {
                         'data' => $e->getMessage()
                     ];
                 }
+            }
         }else{
             return [
                 'status' => 500,
