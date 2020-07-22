@@ -158,7 +158,7 @@ export default {
             cardSearch: {
                 search: "",
                 searchCategory: null,
-                searchAdress: null,
+                searchAddress: null,
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
