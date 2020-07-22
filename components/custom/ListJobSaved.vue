@@ -22,16 +22,16 @@
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0 input_placehoder" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                     </div>
-                                    <div class="col-12 col-sm-6 col-lg-4">
+                                    <div class="col-12 col-sm-6 col-lg-4 pt-sm-0 pt-2">
                                         <fieldset class="form-group">
                                             <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
-                                    <!-- <div class="col-12 col-sm-6 col-lg-4">
+                                    <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
                                             <multiselect @input="search()" v-model="cardSearch.searchAddress" :options="address" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn địa điểm"  style="font-size:14px"></multiselect>
                                         </fieldset>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -116,7 +116,7 @@
                                                                 <div class="col-lg-5 col-sm-5">
                                                                     <a :href="`/cong-ty/${job.user ? job.user.name : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.user.name }}</span></a>
                                                                 </div>
-                                                                <div class="col-lg-4 col-sm-3">
+                                                                <div class="col-lg-4 col-sm-3 mb-block">
                                                                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
                                                                 </div>
                                                             </div>
@@ -135,7 +135,7 @@
                                                                 <div class="col-lg-5 col-sm-5">
                                                                     <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
                                                                 </div>
-                                                                <div class="col-lg-4 col-sm-3 pr-0" id="date-deline">
+                                                                <div class="col-lg-4 col-sm-3 pr-0 mb-block" id="date-deline">
                                                                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                                                                 </div>
                                                             </div>
@@ -162,7 +162,7 @@
                                                                     </p>
                                                                 </div>
                                                             </div>
-                                                            <div class="bonus-block">
+                                                            <div class="bonus-block" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 1">
                                                                 <i class="m-0">Tiền thưởng</i>
                                                                 <h3 class="bonus">
                                                                     <p class="mb-0" style="color: #fc205c">{{ FormatPriceBonus(job.bonus - (job.bonus * settingBonus.percent_bonus /100)) }}{{ job.currency }} / <i class="fad fa-user-friends" title="1 người"></i> </p>
@@ -207,23 +207,23 @@ export default {
             cardSearch: {
                 search: "",
                 searchCategory: null,
-                // searchAdress: null,
+                searchAdress: null,
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
                 {id: 2, name: 'Du học'},
                 {id: 3, name: 'Tu nghiệp sinh'}
             ],
-            // address: [
-            //     {id: 1, name: 'Nhật Bản'},
-            //     {id: 2, name: 'Hàn Quốc'},
-            //     {id: 3, name: 'Trung Quốc'},
-            //     {id: 4, name: 'Anh'},
-            //     {id: 5, name: 'Mỹ'},
-            //     {id: 6, name: 'Đức'},
-            //     {id: 7, name: 'Canada'},
-            //     {id: 8, name: 'Úc'},
-            // ],
+            address: [
+                {id: 1, name: 'Nhật Bản'},
+                {id: 2, name: 'Hàn Quốc'},
+                {id: 3, name: 'Trung Quốc'},
+                {id: 4, name: 'Anh'},
+                {id: 5, name: 'Mỹ'},
+                {id: 6, name: 'Đức'},
+                {id: 7, name: 'Canada'},
+                {id: 8, name: 'Úc'},
+            ],
             jobs_saver: [],
             jobs: [],
             page: 1,
@@ -258,6 +258,7 @@ export default {
             '/quanlyvieclam/getSaveBySaver?searchCategory=' 
             + ((this.cardSearch.searchCategory != null && this.cardSearch.searchCategory.id != null)?this.cardSearch.searchCategory.id:'')  
             + ((this.cardSearch.search)? '&search='+ this.cardSearch.search:'')
+            + '&searchAddress='+ ((this.cardSearch.searchAddress != null && this.cardSearch.searchAddress.id != null)?this.cardSearch.searchAddress.id:'')
             ).then((response)=>{
                  this.jobs_saver=response.data;
                  this.page = 1;
