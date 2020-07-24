@@ -349,6 +349,10 @@ p {
     width: 90%;
     position: relative;
 }
+.input_placehoder::placeholder{
+  font-size: 14px;
+  color: #adadad !important;
+}
 
 @media(max-width: 1199px){
     /* .remove-border-right{

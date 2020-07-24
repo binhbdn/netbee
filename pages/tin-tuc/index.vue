@@ -44,7 +44,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
-                                    <NewListPage2 :DataList="tintucXKLD"></NewListPage2>
+                                    <NewListPage1 :DataList="tintucXKLD"></NewListPage1>
                                 </div>
                             </div>
                         </div>
@@ -131,8 +131,8 @@ export default {
         async fetch () {
             let getTinTucNew = await this.$axios.$get('getTinTucNew?limit=5')
             let tintucCamNang = await this.$axios.$get('getTinTucCate?category=1&limit=5')
-            let tintucDuHoc = await this.$axios.$get('getTinTucCate?category=2&limit=5')
-            let tintucXKLD = await this.$axios.$get('getTinTucCate?category=3&limit=5')
+            let tintucDuHoc = await this.$axios.$get('getTinTucCate?category=3&limit=5')
+            let tintucXKLD = await this.$axios.$get('getTinTucCate?category=2&limit=5')
             let getTinTuyenDungNew = await this.$axios.$get(`getTinTuyenDungNew?limit=5&type=0`)
             this.tintucNew = getTinTucNew.data.tintuc,
             this.tintucCamNang = tintucCamNang.data.tintuc,
