@@ -12,22 +12,22 @@
                 </p>
             </div>
             <div class="remove-border-right" style="margin: auto; width: 100%;">
-                <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
-                <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
+                <div class="hot" v-if="job.highlight_job == 2"><img data-toggle="tooltip" data-placement="top" title="Được tài trợ" src="/assets/img/hot.png"></div>
+                <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="left" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 <div class="item-name row">
                     <div class="col-sm-7">
                         <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company item-vip-a mb-0" style="font-weight: 400 !important;font-size: 14px !important;"><i class="fa fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company ? job.nb_company.username : job.user.name }}</span></a>
                     </div>
                     <div class="col-sm-5 mb-none">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
                     </div>
                 </div>
                 <div class="item-quantity row">
-                    <p class="quantity-title mb-0 col-sm-7" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
-                    <p class="delivery-date mb-0 col-sm-5" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
+                    <p class="quantity-title mb-0 col-sm-7" data-toggle="tooltip" data-placement="left" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
+                    <p class="delivery-date mb-0 col-sm-5" data-toggle="tooltip" data-placement="left" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="mb-none">                  
-                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="top" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span><span class="item-price"> {{ FormatPrice(job.subsidy) }} {{ job.currency }} </span></p>                                                                                 
+                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="left" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span><span class="item-price"> {{ FormatPrice(job.subsidy) }} {{ job.currency }} </span></p>                                                                                 
                 </div>        
             </div>
             <!-- <div class="item-options text-center mt-1 mb-1" >

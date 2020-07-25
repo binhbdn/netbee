@@ -158,7 +158,7 @@ export default {
             cardSearch: {
                 search: "",
                 searchCategory: null,
-                searchAdress: null,
+                searchAddress: null,
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
@@ -348,6 +348,10 @@ p {
 .remove-border-right{
     width: 90%;
     position: relative;
+}
+.input_placehoder::placeholder{
+  font-size: 14px;
+  color: #adadad !important;
 }
 
 @media(max-width: 1199px){
