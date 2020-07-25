@@ -3,7 +3,7 @@
         <section class="ftco-section bg-white" style="background-color: #f6f6f6!important; padding-top: 15px;">
             <div class="container">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-lg-8">
                         <div class="card">
                             <div class="card-header">
                                 <h4><i class="fad fa-newspaper"></i> TIN TỨC</h4>
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4 p-0">
+                    <div class="col-lg-4 p-lg-0">
                         <div class="card">
                             <div class="card-header">
                                 <h4>Danh mục</h4>

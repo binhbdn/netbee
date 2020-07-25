@@ -12,27 +12,27 @@
                 </p>
             </div>
             <div class="remove-border-right">
-                <div class="hot" v-if="job.highlight_job == 2" data-toggle="tooltip" data-placement="top" title="Được tài trợ"><img src="/assets/img/hot.png"></div>
+                <div class="hot" v-if="job.highlight_job == 2"><img data-toggle="tooltip" data-placement="top" title="Được tài trợ" src="/assets/img/hot.png"></div>
                 <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" style="max-width:100%;" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 <div class="item-name row">
                     <div class="col-sm-7">
                         <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company mb-0"><i class="fa fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company ? job.nb_company.username : job.user.name }}</span></a>
                     </div>
                     <div class="col-sm-5 mb-block">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
                     </div>
                 </div>
                 <div class="item-quantity row">
                     <div class="col-sm-7">
-                        <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="top" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
+                        <p class="quantity-title mb-0" data-toggle="tooltip" data-placement="left" title="địa điểm làm việc"><i class="fad fa-map-marker-alt"></i> {{ job.nation.name }}</p>
                     </div>
                     <div class="col-sm-5 mb-block">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                     </div>
                 </div>
                 <div class="row mb-block">
                     <div class="col-sm-7 mb-block">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="chi phí"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
+                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="chi phí"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
                     </div>
                     <div class="col-sm-5 mb-none">
                         <a class="delivery-date mb-0 badge border-netbee badge-sm" :class="job.highlight_job ? 'bg-netbee' : ''" style="width: 100px" :href="job.type == 1 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
