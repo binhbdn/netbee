@@ -92,7 +92,7 @@ module.exports = {
         ["nuxt-compress", { gzip: { cache: true }, brotli: { threshold: 10240 } }],
         '@nuxtjs/robots',
         ['@nuxtjs/pwa', { meta: false, icon: false, manifest: false }],
-        ['@nuxtjs/html-minifier', { log: 'once', logHtml: true }]
+        //['@nuxtjs/html-minifier', { log: 'once', logHtml: true }]
     ],
     robots: {   
         UserAgent: '*',
