@@ -3,12 +3,12 @@
     <section>
         <!-- <h1 class="text-center" style="margin-bottom: 15px">Nhà tuyển dụng nổi bật</h1> -->
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
           <div class="card">
               <!-- Carousel Options start -->
                 <section id="carousel-options">
                     <div class="row match-height">
-                        <div class="col-md-12 col-sm-12">
+                        <div class="col-md-12 col-sm-12 pb-1">
                             <div class="card">
                                 <div class="card-header mb-0">
                                     <h2 class="card-title" style="text-transform: uppercase">công ty đã kiểm duyệt</h2>
@@ -33,7 +33,7 @@
                                                                     <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" :alt="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`">
                                                                     <img v-else v-lazy = "`assets/img/logo.png`"></figure>
                                                                 </div>
-                                                                <div class="column is-8 spotlightBlock__content-wrapper">
+                                                                <div class="column is-9 spotlightBlock__content-wrapper">
                                                                   <div class="spotlightBlock__title">
                                                                       <h3>{{companyInfo.user.name}}</h3>
                                                                   </div>
@@ -43,7 +43,7 @@
                                                                         <div style="text-align: left" id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
                                                                       </div>
                                                                   </div>
-                                                                  <div class="spotlightBlock__cta"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" class="button button_secondary is-outlined">Xem thêm</a></div>
+                                                                  <div class="spotlightBlock__cta pb-1"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" class="button button_secondary is-outlined">Xem thêm</a></div>
                                                                 </div>
                                                             </div>
                                                           </div>
@@ -74,17 +74,17 @@
                 <!-- Carousel Options end -->
             </div>
         </div>
-        <div class="col-lg-4 pl-lg-0">
+        <div class="col-lg-3 pl-lg-0">
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title" style="text-transform: uppercase">Công ty mới</h2>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4 col-6 user-latest-img" v-for="(companyInfo,index) in listNewCompany" :key="index">
+                        <div class="col-lg-6 col-md-3 col-6 user-latest-img" v-for="(companyInfo,index) in listNewCompany" :key="index">
                             <a :href="`cong-ty/${companyInfo.username}`">
-                              <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid mb-1 rounded-sm" alt="avtar img holder">
-                              <img v-else v-lazy="`assets/img/logo.png`" class="img-fluid mb-1 rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
+                              <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid rounded-sm" alt="avtar img holder">
+                              <img v-else v-lazy="`assets/img/logo.png`" class="img-fluid rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
                             </a>
                         </div>
                     </div>
@@ -92,25 +92,25 @@
             </div>
         </div>
       </div>
-      <div class="row p-0 pl-1">
+      <!-- <div class="row p-0 pl-1">
         <p style="font-size: 18px">Dựa trên phản hồi của nhân viên Việt Nam từ 1/1/19 đến 12/12/19</p>
-      </div>
+      </div> -->
     </section>
     <section class="list-company" style="background-color:#fff; padding: 15px">
       <div class="list-company-item" v-for="(companyInfo,index) in listAllCompany" :key="index">
         <div class="row" >
           <div class="col-12" v-if="companyInfo.nb_company != null">
-            <a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`"><h4>#{{companyInfo.id}} {{companyInfo.name}}.</h4>
+            <a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`"><h4> {{companyInfo.name}}.</h4>
             </a>
         
           </div> 
           <div class="col-12" v-else>
-            <a><h4>#{{companyInfo.id}} {{companyInfo.name}}.</h4>
+            <a><h4>{{companyInfo.name}}.</h4>
             </a>
           </div>  
         </div>
         <div class="row">
-          <div class="col-sm-3">
+          <div class="col-sm-3 mt-md-0 mt-1">
             <div class="content-box">
               <div v-if="companyInfo.nb_company != null" class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
                 <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" rel="nofollow" target="_blank">
@@ -127,24 +127,23 @@
             </div>
           </div>
           <div class="col-sm-9">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="star-rating">
+            <!-- <div class="row">
+                <div class="col-lg-12"> -->
+                  <div class="star-rating d-flex">
+                    <div>
+                      <h4 class="pt-md-1">Đánh giá: </h4>
+                    </div>
+                    <div>
                       <star-rating
                       :rating="companyInfo.rate"
                       :increment="0.1"
-                      :star-size="30"
+                      :star-size="25"
                       :read-only="true"
                       ></star-rating>
                     </div>
                   </div>
-                </div>
-              </div>  
-              
-            </div> 
-            <div class="row">
+                <!-- </div> 
+            </div>  -->
             <div class="review_headline">
               <p v-if="companyInfo.nb_company != null">
                 <i style="margin-right: 5px" class="fas fa-quote-left"></i>{{companyInfo.nb_company.company_about}}
@@ -153,7 +152,6 @@
                 <i style="margin-right: 5px" class="fas fa-quote-left"></i> Đang cập nhật
               </p>
             </div>
-            </div> 
             <div class="row text-right" v-if="companyInfo.nb_company != null">
               <p style="width:100%; padding-right: 30px; font-size: 18px">
                 <span class="action-link"><a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" class="btn btn-bg-edit">Xem chi tiết</a></span>
@@ -207,7 +205,7 @@ export default {
       this.listAllCompany = getAllCompany.data.data.data;
       let getVerifyCompany = await this.$axios.get('getListCompany?type=2&limit=5&perPage=0');
       this.listVerifyCompany = getVerifyCompany.data.data;
-      let getNewCompany = await this.$axios.get('getListCompany?type=1&limit=9&perPage=0');
+      let getNewCompany = await this.$axios.get('getListCompany?type=1&limit=10&perPage=0');
       this.listNewCompany = getNewCompany.data.data;
     },
     infiniteScroll($state) {
@@ -236,7 +234,7 @@ export default {
 img.img-fluid {
     width: 423px;
     height: 88px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     object-fit: contain;
 }
 .card-title {
@@ -297,7 +295,7 @@ a.carousel-control-next {
   margin-right: -101px;
 } */
 ol.carousel-indicators {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   margin-left: 43%;
   margin-right: 43%;
 }
@@ -366,7 +364,6 @@ ol.carousel-indicators {
     padding: 16px 14px;
     border-radius: 5px;
     box-shadow: 0 0 4px 0 rgba(0,0,0,0.25);
-    text-align: center;
 }
 .columns.is-vcentered {
     align-items: center;
@@ -468,7 +465,7 @@ ol.carousel-indicators {
     align-items: center;
 }
 .company-logo {
-    margin: 1em auto;
+    margin: 0.5rem auto;
     /* width: 168px; */
     /* height: 168px; */
     line-height: 152px;
@@ -479,16 +476,16 @@ ol.carousel-indicators {
 }
 .company-logo img {
     max-height: 152px;
-    max-width: 100%;
+    max-width: 152px;
 }
   .review_headline p {
     font-size: 16px;
     color: #7f7f7f;
     line-height: 30px;
-    height: 120px;
+    height: 90px;
     margin-top: 3px;
     margin-bottom: 0;
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis; */
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
@@ -532,12 +529,12 @@ ol.carousel-indicators {
 }
 .carousel-control-prev{
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 37%;
 }
 .carousel-control-next{
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 62%;
 }
 @media (max-width: 767px){
@@ -554,6 +551,16 @@ ol.carousel-indicators {
     margin: 0 auto;
     padding: 0;
   }
+  .company-logo {
+    line-height: 100px;
+  }
+  .company-logo img {
+    max-height: 100px;
+    max-width: 100px;
+  }
+  .star-rating h4{
+    padding-top: 0.5rem
+  }
 }
 @media (max-width: 575px){
   .spotlightBlock__wrapper{
@@ -561,16 +568,25 @@ ol.carousel-indicators {
   }
   .carousel-control-prev{
     left: 32%;
+    top: 15px
   }
   .carousel-control-next{
     left: 68%;
+    top: 15px
   }
-  .vue-star-rating{
-    margin: auto;
+  .star-rating{
+    /* margin: auto; */
     padding-top: 0.5rem;
+    padding-left: 1rem;
   }
   .review_headline{
     padding-left: 1rem;
+  }
+  .spotlightBlock__inner {
+    padding: 0;
+  }
+  ol.carousel-indicators {
+    margin-bottom: 0;
   }
 }
 </style>
