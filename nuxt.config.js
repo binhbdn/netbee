@@ -197,6 +197,7 @@ module.exports = {
     },
 
     build: {
+        extractCSS: true
         /*
          ** Run ESLint on save
          */
