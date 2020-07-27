@@ -43,7 +43,7 @@ h4:hover{
     position: absolute;
     bottom: 0;
 }
-@media(max-width: 767px){
+/* @media(max-width: 767px){
     .highlights-news{
         max-width: 150px;
     }
@@ -52,5 +52,5 @@ h4:hover{
     .highlights-news{
         max-width: 110px;
     }
-}
+} */
 </style>
