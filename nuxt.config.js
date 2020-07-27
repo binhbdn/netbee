@@ -181,7 +181,7 @@ module.exports = {
         '~/plugins/jsonld.js',
         '~/plugins/bus',             
         { src: '~/plugins/vue2-editor', ssr: false },
-        { src: '~/plugins/fb-chat', ssr: false },
+        //{ src: '~/plugins/fb-chat', ssr: false },
         { src: '~/plugins/full-calendar.js', ssr: false },
         { src: '~/plugins/infiniteloading', ssr: false },
         { src: '~/plugins/chart', ssr: false },
