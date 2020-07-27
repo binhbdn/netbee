@@ -366,14 +366,16 @@ class UserController extends Controller
     public function changeInfo(Request $request)
     {
         $rules = [
-            // 'birth_of_date' => 'required',
+            'birth_of_date' => 'required|before:today',
             'address_detail' => 'required',
-            'phone' => 'required|numeric',
+            'phone' => 'required|numeric|digits:10',
             'name' => 'required',
         ];
         $messages = [
             'required' => 'Không được để trống',
-            'numeric' => 'Số điện thoại không được chứa kí tự'
+            'numeric' => 'Số điện thoại không được chứa kí tự',
+            'digits' => 'Số điện thoại phải có 10 chữ số',
+            'before' => 'Ngày sinh không được lớn hơn ngày hiện tại'
         ];
         $update = [
             'birth_of_date' => $request->birth_of_date,
