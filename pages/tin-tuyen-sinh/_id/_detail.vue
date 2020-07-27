@@ -636,7 +636,8 @@ export default {
             address: '',
             listProfileUsers: [],
             countJob:'',
-            qr_Code: ''
+            qr_Code: '',
+            congty:[]
         }
     },
     async asyncData({$axios, route}) {
@@ -645,14 +646,12 @@ export default {
             let getTinTuyenDungXKLD = await $axios.$get(`getTinTuyenDungNew?limit=5&type=1`)
             let getTinTuyenDungDHS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=2`)
             let getTinTuyenDungTNS = await $axios.$get(`getTinTuyenDungNew?limit=5&type=3`)
-            let getCompany = await $axios.$get(`getDetailCompanyById/${detailRes.data.nb_company.username}`) 
             return {
                 tintuyendung: detailRes.data,
                 arrayJobHot: getTinTuyenDungHot.data.tintuyendung,
                 arrayJobXKLD: getTinTuyenDungXKLD.data.tintuyendung,
                 arrayJobDHS: getTinTuyenDungDHS.data.tintuyendung,
-                arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung,
-                congty: getCompany.data
+                arrayJobTNS: getTinTuyenDungTNS.data.tintuyendung
             }
     },
     head() {
@@ -837,8 +836,10 @@ export default {
         }
     },
     mounted() {
-        
         if(this.tintuyendung != null){
+            this.$axios.$get(`getDetailCompanyById/${this.tintuyendung.nb_company.username}`).then((response)=>{
+                this.congty = response.data
+            });
             this.$axios.$get(`getTinTuyenDungNew?limit=5&type=`+this.tintuyendung.type).then((response)=>{
                 this.arrayForCompany = response.data.tintuyendung
             });
