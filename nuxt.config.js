@@ -69,7 +69,7 @@ module.exports = {
 
         ],
         script: [
-            { hid: 'stripe', src: '/app-assets/vendors/js/vendors.min.js', defer: true },
+            //{ hid: 'stripe', src: '/app-assets/vendors/js/vendors.min.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/core/app-menu.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/core/app.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/scripts/components.js', defer: true },
@@ -90,7 +90,8 @@ module.exports = {
         }],
         ['@nuxtjs/component-cache', { maxAge: 1000 * 60 * 60 }],
         ["nuxt-compress", { gzip: { cache: true }, brotli: { threshold: 10240 } }],
-        '@nuxtjs/robots'
+        '@nuxtjs/robots',
+        ['@nuxtjs/pwa', { meta: false, icon: false, manifest: false }]
     ],
     robots: {   
         UserAgent: '*',
