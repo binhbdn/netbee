@@ -69,7 +69,7 @@ module.exports = {
 
         ],
         script: [
-            //{ hid: 'stripe', src: '/app-assets/vendors/js/vendors.min.js', defer: true },
+            { hid: 'stripe', src: '/app-assets/vendors/js/vendors.min.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/core/app-menu.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/core/app.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/scripts/components.js', defer: true },
@@ -180,7 +180,7 @@ module.exports = {
         '~/plugins/jsonld.js',
         '~/plugins/bus',             
         { src: '~/plugins/vue2-editor', ssr: false },
-        //{ src: '~/plugins/fb-chat', ssr: false },
+        { src: '~/plugins/fb-chat', ssr: false },
         { src: '~/plugins/full-calendar.js', ssr: false },
         { src: '~/plugins/infiniteloading', ssr: false },
         { src: '~/plugins/chart', ssr: false },
