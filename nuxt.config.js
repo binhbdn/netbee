@@ -90,7 +90,9 @@ module.exports = {
         }],
         ['@nuxtjs/component-cache', { maxAge: 1000 * 60 * 60 }],
         ["nuxt-compress", { gzip: { cache: true }, brotli: { threshold: 10240 } }],
-        '@nuxtjs/robots'
+        '@nuxtjs/robots',
+        //['@nuxtjs/pwa', { meta: false, icon: false, manifest: false }],
+        //['@nuxtjs/html-minifier', { log: 'once', logHtml: true }]
     ],
     robots: {   
         UserAgent: '*',
@@ -196,6 +198,7 @@ module.exports = {
     },
 
     build: {
+        //extractCSS: true
         /*
          ** Run ESLint on save
          */
