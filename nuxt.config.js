@@ -50,22 +50,22 @@ module.exports = {
             // { rel: 'stylesheet', href: '/app-assets/vendors/css/vendors.min.css' , defer: true},
             // { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether-theme-arrows.css' },
             // { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether.min.css' },
-            { rel: 'stylesheet', href: '/app-assets/css/bootstrap.css', async: true },
-            { rel: 'stylesheet', href: '/app-assets/css/bootstrap-extended.css', async: true },
+            { rel: 'stylesheet', href: '/app-assets/css/bootstrap.css', defer: true },
+            { rel: 'stylesheet', href: '/app-assets/css/bootstrap-extended.css', defer: true },
             // { rel: 'stylesheet', href: '/app-assets/css/colors.css', defer: true },
-            { rel: 'stylesheet', href: '/app-assets/css/components.css', async: true },
+            { rel: 'stylesheet', href: '/app-assets/css/components.css', defer: true },
             // { rel: 'stylesheet', href: '/app-assets/css/themes/dark-layout.css' , defer: true},
             // { rel: 'stylesheet', href: '/app-assets/css/core/menu/menu-types/vertical-menu.css', defer: true },
             // { rel: 'stylesheet', href: '/app-assets/css/core/colors/palette-gradient.css', defer: true },
             // { rel: 'stylesheet', href: '/app-assets/css/plugins/forms/validation/form-validation.css', defer: true },
-            { rel: 'stylesheet', href: '/assets/css/style.css', async: true },
-            { rel: 'stylesheet', href: '/assets/css/custom-client.css', async: true },
-            { rel: 'stylesheet', href: '/assets/css/bootstrap-custom.css', async: true },
-            { rel: 'stylesheet', href: '/assets/css/header.css', async: true },
+            { rel: 'stylesheet', href: '/assets/css/style.css', defer: true },
+            { rel: 'stylesheet', href: '/assets/css/custom-client.css', defer: true },
+            { rel: 'stylesheet', href: '/assets/css/bootstrap-custom.css', defer: true },
+            { rel: 'stylesheet', href: '/assets/css/header.css', defer: true },
             // { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' , defer: true},
             // { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
-            { rel: 'stylesheet', href: '/assets/fontawesome-pro/css/all.css', async: true },
-            { rel: 'stylesheet', href: '/app-assets/fonts/font-awesome/css/font-awesome.min.css', async: true },
+            { rel: 'stylesheet', href: '/assets/fontawesome-pro/css/all.css', defer: true },
+            { rel: 'stylesheet', href: '/app-assets/fonts/font-awesome/css/font-awesome.min.css', defer: true },
 
         ],
         script: [
@@ -198,7 +198,7 @@ module.exports = {
     },
 
     build: {
-        //extractCSS: true
+        extractCSS: true
         /*
          ** Run ESLint on save
          */
