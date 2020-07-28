@@ -45,6 +45,38 @@ module.exports = {
             { hid: 'fb:app_id', name: 'fb:app_id', content: '1459241224260897' },
             { hid: 'og:image', name: 'og:image', content: 'https://netbee.vn/assets/img/logo-share.jpg'},
         ],
+        link: [
+            { rel: 'icon', type: 'image/x-icon', href: '/assets/img/logo.png' },
+            // { rel: 'stylesheet', href: '/app-assets/vendors/css/vendors.min.css' , defer: true},
+            // { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether-theme-arrows.css' },
+            // { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether.min.css' },
+            { rel: 'stylesheet', href: '/app-assets/css/bootstrap.css', defer: true },
+            { rel: 'stylesheet', href: '/app-assets/css/bootstrap-extended.css', defer: true },
+            // { rel: 'stylesheet', href: '/app-assets/css/colors.css', defer: true },
+            { rel: 'stylesheet', href: '/app-assets/css/components.css', defer: true },
+            // { rel: 'stylesheet', href: '/app-assets/css/themes/dark-layout.css' , defer: true},
+            // { rel: 'stylesheet', href: '/app-assets/css/core/menu/menu-types/vertical-menu.css', defer: true },
+            // { rel: 'stylesheet', href: '/app-assets/css/core/colors/palette-gradient.css', defer: true },
+            // { rel: 'stylesheet', href: '/app-assets/css/plugins/forms/validation/form-validation.css', defer: true },
+            { rel: 'stylesheet', href: '/assets/css/style.css', defer: true },
+            { rel: 'stylesheet', href: '/assets/css/custom-client.css', defer: true },
+            { rel: 'stylesheet', href: '/assets/css/bootstrap-custom.css', defer: true },
+            { rel: 'stylesheet', href: '/assets/css/header.css', defer: true },
+            // { rel: 'stylesheet', href: '/app-assets/css/pages/dashboard-analytics.css' , defer: true},
+            // { rel: 'stylesheet', href: '/app-assets/css/pages/card-analytics.css' },
+            { rel: 'stylesheet', href: '/assets/fontawesome-pro/css/all.css', defer: true },
+            { rel: 'stylesheet', href: '/app-assets/fonts/font-awesome/css/font-awesome.min.css', defer: true },
+
+        ],
+        script: [
+            { hid: 'stripe', src: '/app-assets/vendors/js/vendors.min.js', defer: true },
+            { hid: 'stripe', src: '/app-assets/js/core/app-menu.js', defer: true },
+            { hid: 'stripe', src: '/app-assets/js/core/app.js', defer: true },
+            { hid: 'stripe', src: '/app-assets/js/scripts/components.js', defer: true },
+            // { src: '/app-assets/vendors/js/forms/select/select2.full.min.js', },
+            // { src: '/app-assets/js/scripts/forms/select/form-select2.js', },
+
+        ]
     },
     loading: { color: '#3B8070' },
     modules: [
