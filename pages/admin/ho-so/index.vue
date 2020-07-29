@@ -30,14 +30,14 @@
                                             <tbody v-if="listProfileUser.length > 0">                                               
                                                 <tr v-for="(item,key) in listProfileUser" :key="key">
                                                     <td>{{item.id}}</td>
-                                                    <td>{{item.fullname_profile}}</td>
+                                                    <td class="text-left">{{item.fullname_profile}}</td>
                                                     <td>{{ConvertDate(item.birthday_profile)}}</td>                                                    
-                                                    <td>{{item.email_profile}}</td>                                                   
+                                                    <td class="text-left">{{item.email_profile}}</td>                                                   
                                                     <td v-if="item.status == 0">
-                                                        <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
+                                                        <div class="chip-text"><i style="font-size: 18px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
                                                     <td v-if="item.status == 1">
-                                                        <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
+                                                        <div class="chip-text"><i style="font-size: 18px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
                                                     </td>
                                                     <td>{{ConvertDate(item.created_at)}}</td>
                                                     <td>
@@ -193,5 +193,11 @@
     }
     .modal .modal-footer {
         border-color: rgb(179, 229, 252) !important;
+    }
+    .table{
+        color:#000;
+    }
+    .table td{
+        padding: 0.5rem 1rem;
     }
 </style>
