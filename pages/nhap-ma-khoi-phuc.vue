@@ -68,7 +68,7 @@
               </div>
             <div class="col-6 d-flex justify-content-end">
                 <div class="float-md-right d-block mb-1 mr-1">
-                        <button  @click="recoverPassword" class="btn btn-primary btn-block px-75" :class="{'not-allowed': ((emailRecoverPassword != '') ? flase : true)}" >Tiếp tục</button>
+                        <button  @click="recoverPassword" class="btn btn-primary btn-block px-75 hover-black-white" :class="{'not-allowed': ((emailRecoverPassword != '') ? flase : true)}" >Tiếp tục</button>
                       </div>
                 <div class="float-md-left d-block mb-1">
                 <a style="background-color: #f5f6f7; border-color: #ccd0d5; color: #4b4f56;"
@@ -199,5 +199,11 @@ ul li span{
 }
 .app-content.content {
     margin: unset;
+}
+.hover-black-white{
+  color:#000 !important;
+}
+.hover-black-white:hover{
+  color:#fff !important;
 }
 </style>
