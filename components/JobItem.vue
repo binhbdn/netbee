@@ -5,11 +5,14 @@
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
-                <p class="delivery-date mb-0 cate-bottom-avt" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng">
+                <a class="delivery-date mb-0 badge border-netbee badge-sm" :class="job.highlight_job ? 'bg-netbee' : ''" style="width: 100px" :href="job.type == 1 ? `/tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
+                    {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
+                </a>
+                <!-- <p class="delivery-date mb-0 cate-bottom-avt" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng">
                     <span class="badge border-netbee badge-sm" style="width: 100px" :class="job.highlight_job ? 'bg-netbee' : ''">
                         {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                     </span>
-                </p>
+                </p> -->
             </div>
             <div class="remove-border-right" style="margin: auto; width: 100%;">
                 <div class="hot" v-if="job.highlight_job == 2"><img data-toggle="tooltip" data-placement="top" title="Được tài trợ" src="/assets/img/hot.png"></div>
