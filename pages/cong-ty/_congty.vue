@@ -9,10 +9,10 @@
               <div class="card-content collapse show">
                 <div class="card-body" v-if="detailCompany != null">
                     <div class="row p-1">
-                        <div class="col-lg-2 d-flex align-items-center avt-company">
+                        <div class="d-flex align-items-center avt-company">
                             <img v-lazy="`/uploads/users/avatars/${detailCompany.avatar}`" :alt="`${detailCompany.avatar}`" width="100%">
                         </div>
-                        <div class="col-lg-8 d-flex align-items-center">
+                        <div class="col-md-8 d-flex align-items-center name-company">
                             <div class="company-job-title">
                                 <h2 class="font-weight-bold text-uppercase"><span style="font-size: 16px;" class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${detailCompany.name}`"> {{ detailCompany.name }} </span></h2>
                                 <p><span class="font-weight-400"><i class="fad fa-map-marked-alt"></i> <span class="font-weight-600">Địa chỉ:</span> {{ detailCompany.address_detail ? detailCompany.address_detail: 'Đang cập nhật' }}</span></p>
@@ -36,13 +36,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-2 d-flex align-items-center verify-img">
+                        <div class="col-md-2 d-flex align-items-center verify-img">
                             <img v-if="detailCompany.nb_company.company_verify" v-lazy="`/assets/img/verify.png`" data-toggle="tooltip" data-placement="top" :title="'Đã xác thực'">
                             <img v-else v-lazy="`/assets/img/nonverify.png`"  data-toggle="tooltip" data-placement="top" :title="'Xác thực ngay'" @click="verifyModal()">
                         </div>
-                        <div class="col-lg-2 ">
+                        <div class="col-md-2 ">
                             <div class="count-job" style="margin-top: 6px;">
-                                <h1 style="font-size: 70px;color: #ffb701;">{{ countJob.length ? countJob.length : '0' }}</h1>
+                                <h1 style="color: #ffb701;">{{ countJob.length ? countJob.length : '0' }}</h1>
                                 <h2>Tin</h2>
                             </div>
                             <div class="count-job" style="margin-top: 18px;">
@@ -65,14 +65,14 @@
       </section>
       <section v-if="detailCompany != null">
         <div class="row">
-          <div class="col-lg-8 col-12">
+          <div class="col-md-8 col-12">
             <div class="card">
               <div class="card-content collapse show">
                 <div class="card-body">
                     <div class="row p-t-10">
                         <div class="col-12">
-                            <div class="col-4 p-l-0">
-                                <h5 class="font-weight-600 line-title">GIỚI THIỆU CÔNG TY</h5>
+                            <div class="p-l-0">
+                                <h5 class="font-weight-600 line-title" style="max-width: 175px">GIỚI THIỆU CÔNG TY</h5>
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
@@ -199,7 +199,7 @@
             </div>
           </div>
           <template v-if="!$auth.loggedIn">
-              <div class="col-lg-4 col-12" v-if="detailCompany != null">
+              <div class="col-md-4 col-12" v-if="detailCompany != null">
                 <div class="card card-comment p-1">
                     <div class="card-header pl-0 d-flex justify-content-center">
                         <h5>
@@ -211,7 +211,7 @@
                     </div>
                     <br>
                     <div class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
-                        <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
+                        <a style="font-size:16px" class="btn bg-netbee w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'">Viết phản hồi</a>
                     </div>
                 </div>
               </div>
@@ -298,12 +298,12 @@
                                 <span>Hoặc</span>
                             </div>
                             <div class="lopgin-c" style="position:relative">
-                                <i class="fab fa-facebook" style="position: absolute; left: 106px; top: 10px; color: white; font-size: 18px; z-index:5"></i>
+                                <i class="fab fa-facebook"></i>
                                 <a @click="loginfb()" class="btn btn-outline-info fb" style="padding: 10px!important" >Đăng nhập bằng
                                     Facebook</a> &nbsp;&nbsp;
                             </div>
                             <div class="lopgin-c" style="position:relative">
-                                <img src="/assets/img/logo-google.png" style="height:15px;position: absolute; left: 106px; top: 11px; color: blue; font-size: 18px;">
+                                <img src="/assets/img/logo-google.png" class="fa-google">
                                 <a @click="logingg()" class="btn btn-outline-info gg" style="padding: 10px!important">Đăng nhập bằng Google</a>
                             </div>
                         </div>
@@ -925,6 +925,9 @@ export default {
     justify-content: center;
     border-radius: 5px;
 }
+.count-job h1{
+    font-size: 70px
+}
 .btn-verify {
     color: #4267b2 !important;
     padding: 5px;
@@ -990,6 +993,7 @@ export default {
     border: 1px solid #c1c1c1;
     width: 150px;
     height: 150px;
+    margin-left: 1rem;
 }
 .verify-img img{
     width: 100%;
@@ -1137,11 +1141,41 @@ export default {
 .sub-text span{
     font-weight: 700;
 }
+.name-company{
+    padding-top: 10px;
+}
+.fa-facebook{
+    position: absolute; 
+    left: 160px; 
+    top: 8px; 
+    color: white; 
+    font-size: 18px; 
+    z-index:5
+}
+.fa-google{
+    height:15px;
+    position: absolute; 
+    left: 160px; 
+    top: 8px; 
+    color: blue; 
+    font-size: 18px;
+}
+@media (max-width: 1199px){
+    .name-company{
+        padding-top: 40px
+    }
+    .count-job h1{
+        font-size: 50px;
+    }
+    .count-job h2{
+        font-size: 1.5rem;
+    }
+}
 
-
-@media screen and (max-width: 480px) {
+@media (max-width: 767px) {
     .avt-company {
         position: unset;
+        margin-top: 1rem;
     }
     .verify-img {
         position: absolute;
@@ -1150,7 +1184,26 @@ export default {
         align-items: center;
     }
     .verify-img img {
-        width: 100px;
+        width: 120px;
+        padding-top: 35px;
+    }
+    .name-company{
+        padding-top: 10px;
+    }
+    .count-job{
+        display: flex;
+    }
+    .count-job h1{
+        margin-bottom: 0;
+    }
+    .formlogin{
+        height: auto;
+    }
+    .fa-facebook, .fa-google{
+        left: 8% !important;
+    }
+    .bk-auto{
+        height: 100px;
     }
 }
 </style>
