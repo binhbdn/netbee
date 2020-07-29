@@ -147,7 +147,7 @@
                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                <JobsList1Col :DataList="arrayForCompany"></JobsList1Col>
+                                <JobsList1Col :DataList="arrayForCompany" type=""></JobsList1Col>
                                 <infinite-loading
                                     v-if="arrayForCompany.length"
                                     spinner="bubbles"    
