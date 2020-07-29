@@ -97,20 +97,13 @@
       </div> -->
     </section>
     <section class="list-company" style="background-color:#fff; padding: 15px">
+      <h2 style="text-transform: uppercase">Danh sách công ty</h2>
       <div class="list-company-item" v-for="(companyInfo,index) in listAllCompany" :key="index">
-        <div class="row" >
-          <div class="col-12" v-if="companyInfo.nb_company != null">
-            <a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`"><h4> {{companyInfo.name}}.</h4>
-            </a>
-        
-          </div> 
-          <div class="col-12" v-else>
-            <a><h4>{{companyInfo.name}}.</h4>
-            </a>
-          </div>  
-        </div>
+        <!-- <div class="row" >
+            
+        </div> -->
         <div class="row">
-          <div class="col-sm-3 mt-md-0 mt-1">
+          <div class="col-sm-3 mt-auto mb-auto p-0 align-items-center">
             <div class="content-box">
               <div v-if="companyInfo.nb_company != null" class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
                 <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" rel="nofollow" target="_blank">
@@ -126,35 +119,39 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-9">
-            <!-- <div class="row">
-                <div class="col-lg-12"> -->
-                  <div class="star-rating d-flex">
-                    <div>
-                      <h4 class="pt-md-1">Đánh giá: </h4>
-                    </div>
-                    <div>
-                      <star-rating
-                      :rating="companyInfo.rate"
-                      :increment="0.1"
-                      :star-size="25"
-                      :read-only="true"
-                      ></star-rating>
-                    </div>
-                  </div>
-                <!-- </div> 
-            </div>  -->
+          <div class="col-sm-9 pl-sm-0 pl-50">
+            <div class="col-12 p-0" v-if="companyInfo.nb_company != null">
+              <a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`"><h4 style="text-transform: uppercase"> {{companyInfo.name}}.</h4>
+              </a>
+            </div> 
+            <div class="col-12 p-0" v-else>
+              <a><h4 style="text-transform: uppercase">{{companyInfo.name}}.</h4>
+              </a>
+            </div>
+            <div class="star-rating d-flex">
+              <div>
+                <h4 class="pt-md-1" style="font-size: 16px; ">Đánh giá: </h4>
+              </div>
+              <div>
+                <star-rating
+                :rating="companyInfo.rate"
+                :increment="0.1"
+                :star-size="22"
+                :read-only="true"
+                ></star-rating>
+              </div>
+            </div>
             <div class="review_headline">
-              <p v-if="companyInfo.nb_company != null">
+              <p v-if="companyInfo.nb_company != null" style="font-size: 15px">
                 <i style="margin-right: 5px" class="fas fa-quote-left"></i>{{companyInfo.nb_company.company_about}}
               </p>
-              <p v-else>
+              <p v-else style="font-size: 15px">
                 <i style="margin-right: 5px" class="fas fa-quote-left"></i> Đang cập nhật
               </p>
             </div>
-            <div class="row text-right" v-if="companyInfo.nb_company != null">
+            <div class="row text-right" v-if="companyInfo.nb_company != null" style="height: 30px">
               <p style="width:100%; padding-right: 30px; font-size: 18px">
-                <span class="action-link"><a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" class="btn btn-bg-edit">Xem chi tiết</a></span>
+                <span class="action-link"><a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" class="btn btn-bg-edit p-50">Xem chi tiết</a></span>
               </p>
             </div>
             
@@ -265,12 +262,11 @@ span.carousel-control-prev-icon {
 }
 .col-12 h4{
     font-weight: 500;
-    margin-left: 15px;
     color: #353535;
     line-height: 35.2px;
-    font-size: 22px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    font-size: 20px;
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
     font-family: "Roboto", sans-serif;
 }
 .col-md-8 {
@@ -475,14 +471,14 @@ ol.carousel-indicators {
     border: 1px solid #d2d2d2;
 }
 .company-logo img {
-    max-height: 152px;
-    max-width: 152px;
+    height: 152px;
+    width: 152px;
 }
   .review_headline p {
     font-size: 16px;
     color: #7f7f7f;
     line-height: 30px;
-    height: 90px;
+    height: 60px;
     margin-top: 3px;
     margin-bottom: 0;
     /* text-overflow: ellipsis; */
@@ -563,6 +559,10 @@ ol.carousel-indicators {
   }
 }
 @media (max-width: 575px){
+   h4{
+    font-size: 16px !important;
+    
+  }
   .spotlightBlock__wrapper{
     width: 100%;
   }
@@ -575,12 +575,7 @@ ol.carousel-indicators {
     top: 15px
   }
   .star-rating{
-    /* margin: auto; */
     padding-top: 0.5rem;
-    padding-left: 1rem;
-  }
-  .review_headline{
-    padding-left: 1rem;
   }
   .spotlightBlock__inner {
     padding: 0;

@@ -450,29 +450,31 @@
                                             <div class="card-header card-profile">
                                                 <p class="card-header-title is-uppercase">Vai trò trên trang</p>
                                             </div>
-                                            <div class="col-md-12">
-                                                <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 row pr-0 mg">
-                                                    <div v-if="emailCompany.length < 5" class="row" style="width: 100%;">
-                                                        <div class="col-md-6" style="padding-right: 0;">
+                                            <div class="col-md-12 p-md-1 p-0">
+                                                <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 row pr-0">
+                                                    <div v-if="emailCompany.length < 5" class="row role">
+                                                        <div class="col-sm-6" style="padding-right: 0;">
                                                             <span>
                                                                 <div class="for-label pb-50">
                                                                     <label for="account-company">Email</label>
                                                                 </div> 
                                                             </span>
-                                                            <input class="form-control" type="email" id="email" placeholder="Nhập email" v-model="email_company">
+                                                            <div>
+                                                                <input class="form-control" type="email" id="email" placeholder="Nhập email" v-model="email_company">
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-6" style="padding-right: 0;">
+                                                        <div class="col-sm-6" style="padding-right: 0;">
                                                             <span>
                                                                 <div class="for-label pb-50">
                                                                     <label for="account-company">Phân quyền</label>
                                                                 </div> 
                                                             </span>
                                                             <div class="row">
-                                                                <div class="col-md-8">
+                                                                <div class="col-sm-8">
                                                                     <multiselect :options="levelEmail" v-model="status" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Phân quyền"></multiselect>
                                                                 </div>
-                                                                <div class="col-md-4" style="padding: 0;">
-                                                                    <button class="btn bg-netbee col-md-12" @click="updateEmailCompany()">Thêm</button>
+                                                                <div class="col-sm-4 p-sm-0 pt-1">
+                                                                    <button class="btn bg-netbee col-md-12 pl-1 pr-1" @click="updateEmailCompany()">Thêm</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1461,6 +1463,11 @@ export default {
 }
 .number-phone, .website-company{
     padding-top: 18px
+}
+@media (min-width: 576px){
+    .role{
+        width: 100%;
+    }
 }
 @media (max-width: 991px){
 
