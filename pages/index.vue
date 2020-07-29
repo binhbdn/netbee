@@ -60,7 +60,7 @@
                 <section id="carousel-options">
                     <div class="row match-height">
                         <div class="col-md-12 col-sm-12">
-                            <div class="card">
+                            <div class="card mb-0">
                                 <div class="card-header">
                                   <h2 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_hot')}}</h2>
                                   <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>                                  
@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="main-bottom">
+                                <div class="main-bottom mb-1">
                                   <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn border-netbee aa">{{$t('see_more')}}</a>
                                 </div>
                             </div>
