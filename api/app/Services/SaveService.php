@@ -125,11 +125,15 @@ class SaveService extends BaseService {
             $query->where($conditions);
         }
         if ($search != '') {
-            $query->where(function ($q) use ($search) {
-                $q->where('title', 'LIKE', '%'.$search.'%')
-                ->orwhere('id', 'LIKE', '%'.$search.'%');
-                // ->orwhere('user.name', 'LIKE', '%'.$search.'%');
+            $like = '%'.$search.'%';
+            $query->where(function ($q) use ($like) {
+                $q->where('title', 'LIKE', $like)
+                ->orwhere('nb_joblists.id', 'LIKE', $like)
+                ->orWhereHas('user', function($qU) use ($like) {
+                    $qU->where('name', 'LIKE', $like);
+                });
             });
+
         }
 
         return $query->paginate($perPage);
