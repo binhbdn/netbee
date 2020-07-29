@@ -31,7 +31,7 @@
                                             </td>
                                             <td>{{item.user.name}}</td>
                                             <td>
-                                                <p v-if="item.status == 1">Chờ admin xác thực</p>
+                                                <p v-if="item.status == 1" data-toggle="tooltip" data-placement="top" title="Chờ admin xác thực" class="tag-p-center"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p>
                                                 <p v-else-if="item.status == 2">Chưa hoàn tất giấy tờ</p>
                                                 <p v-else-if="item.status == 2 && item.nb_paper != null">Chờ admin xác thực giấy tờ</p>
                                                 <p v-else-if="item.status == 5">Chờ công ty duyệt</p>
@@ -40,7 +40,7 @@
                                             <td>
                                                 <div class="action-btns">
                                                     <div>
-                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-edit-fix-huy py-75 waves-effect waves-light" style="width: 100%;">
+                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-edit-fix-huy py-75 waves-effect waves-light" style="width: 60%;">
                                                         Hủy
                                                         </a>
                                                     </div>   
@@ -206,5 +206,12 @@ export default {
         color: #fff !important;
         background: #E42728;
         border: 1px solid #E42728;
+    }
+    .fa-exclamation-circle{
+        font-size: 20px;
+        color: #ffb701;
+    }
+    .tag-p-center{
+        text-align: center;
     }
 </style>

@@ -57,7 +57,7 @@
                         >Chuyển sang Login</a>
                       </div>
                       <div class="float-md-right d-block mb-1">
-                        <button  @click="recoverPassword" class="btn btn-primary btn-block px-75" :class="{'not-allowed': ((emailRecoverPassword != '') ? flase : true)}" >Gửi Email</button>
+                        <button  @click="recoverPassword" class="btn btn-primary btn-block px-75 hover-black-white" :class="{'not-allowed': ((emailRecoverPassword != '') ? flase : true)}" >Gửi Email</button>
                       </div>
                     </div>
                     </ValidationObserver>
@@ -177,5 +177,11 @@ ul li span{
 }
 .app-content.content {
     margin: unset;
+}
+.hover-black-white{
+  color:#000 !important;
+}
+.hover-black-white:hover{
+  color:#fff !important;
 }
 </style>
