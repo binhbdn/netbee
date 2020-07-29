@@ -7,9 +7,9 @@
                     <!-- <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a> -->
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
-                            <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
-                            <li><a data-action=""><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
-                            <li><a @click="closeSearch()"><i class="feather icon-x" style="font-size: 18px"></i></a></li>
+                            <li><a data-action="collapse"><i class="fa fa-chevron-down"></i></a></li>
+                            <li><a data-action=""><i class=" fa fa-repeat users-data-filter"></i></a></li>
+                            <!-- <li><a @click="closeSearch()"><i class="feather icon-x" style="font-size: 18px"></i></a></li> -->
                         </ul>
                     </div>
                 </div>
