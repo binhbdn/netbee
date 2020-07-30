@@ -14,7 +14,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-7">
-                                            <div class="company-job-title">
+                                            <div class="company-job-title resp-text">
                                                 <h1 class="" style="font-size: 20px">{{ tintuyendung.title }}</h1>
                                                 <a :href="`/cong-ty/${tintuyendung.nb_company.username}`"><h4 class=" text-uppercase" style="font-size: 17px"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
                                                 <p><span class="font-weight-600">Loại tin: </span><span class="badge border-netbee badge-md">{{ tintuyendung.type == 3 ? 'Tu nghiệp sinh' : tintuyendung.type == 2 ? 'Du học' : 'Xuất khẩu lao động' }}</span></p>
@@ -23,7 +23,7 @@
                                         
                                             </div>
                                         </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-3 resp-btn" style="height:100%;">
                                             <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row m-l-0 m-r-0" style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 6Danh sách hồ sơ ứng tuyển0%">
                                                 <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                                     <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
@@ -52,7 +52,7 @@
                                                     <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                                 </div>
                                             </div>
-                                            <div class="row m-t-10" id="send-hoso" style="border-radius: 3px;height: 40%">
+                                            <div class="row m-t-10" id="send-hoso" style="border-radius: 3px;">
                                                 <div v-if="!$auth.loggedIn" class="col-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
                                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                                 </div> 
@@ -1032,12 +1032,28 @@ export default {
 }
 </script>
 <style scoped>
+@media (min-width: 1920px) {
+    .resp-btn{
+        margin-top: 15px;
+    }
+    .resp-text{
+        margin-top: 19px !important;
+    }
+}
+@media (min-width: 992px){
+    .resp-btn{
+        margin-top: 15px;
+    }
+    .resp-text{
+        margin-top: 15px;
+    }
+}
 .card{
     border-radius: 3px;
 }
-.card:first-child{
+/* .card:first-child{
     padding-bottom: 45px;
-}
+} */
 .line-title {
     /* border-bottom: 2px solid #ffb701; */
     padding-bottom: 0px;
