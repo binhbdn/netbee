@@ -54,7 +54,7 @@
                                     </div>
                                     <!-- Chia se? -->
                                     <div class="chiase">
-                                        <a class="btn" style="background-color: #3578E5;color:#fff;" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/&amp;src=sdkpreparse"  data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook">Chia sẻ Facebook</a>
+                                        <a class="btn fb-share" style="background-color: #3578E5;color:#000;" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/&amp;src=sdkpreparse"  data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook">Chia sẻ Facebook</a>
                                         <!-- <a class="btn bg-netbee">Chia sẻ Twitter</a>
                                         <a class="btn bg-netbee">Chia sẻ Gmail</a> -->
                                     </div>                                    
@@ -138,6 +138,9 @@
     };
 </script>
 <style scoped>
+a.fb-share:hover {
+    color: #fff !important;
+}
     .pagination .page-item.active .page-link{
         background-color: #ffb701 !important;
     }
