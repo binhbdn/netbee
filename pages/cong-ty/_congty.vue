@@ -46,11 +46,11 @@
                                 <h2>Tin</h2>
                             </div>
                             <div class="count-job" style="margin-top: 18px;">
-                                <a v-if="!$auth.loggedIn"  data-toggle="modal" data-target="#loginModal" style="text-align: center;padding: 10px;">
+                                <a class="bg-netbee" v-if="!$auth.loggedIn"  data-toggle="modal" data-target="#loginModal" style="text-align: center;padding: 10px; width: 100%; border-radius: 5px">
                                     <!-- <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p> -->
                                     Theo dõi
                                 </a>
-                                <a v-else @click="followCompany()" style="text-align: center;padding: 10px;">
+                                <a class="bg-netbee" v-else @click="followCompany()" style="text-align: center;padding: 10px; width: 100%; border-radius: 5px">
                                     <!-- <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p> -->
                                     {{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}}
                                 </a>
