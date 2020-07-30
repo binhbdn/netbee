@@ -222,7 +222,7 @@
                     <li>
                       <div>
                         <h5 class="content-text">Khách hàng đa dạng</h5>
-                        <p class="content-2">Netbee.vn là đối tác tin cậy của hơn 100 công ty Du học,XKLD trên toàn quốc có giấy phép uy tion của bộ thương binh và xã hội.</p>
+                        <p class="content-2">Netbee.vn là đối tác tin cậy của hơn 100 công ty Du học,XKLD trên toàn quốc có giấy phép uy tín của bộ thương binh và xã hội.</p>
                       </div>
                     </li>
                     <li>
@@ -314,7 +314,7 @@
                     <li>
                       <div>
                         <h5 class="content-text">Nhanh chóng</h5>
-                        <p class="content-2">Khi ứng viên pv thành công có COE , bạn có thể yêu cầu khách hàng xác nhận đơn hàng , và bạn sẽ được thanh toán ngay lập tức.</p>
+                        <p class="content-2">Khi ứng viên phỏng vấn thành công có COE , bạn có thể yêu cầu khách hàng xác nhận đơn hàng , và bạn sẽ được thanh toán ngay lập tức.</p>
                       </div>
                     </li>
                     <li>
