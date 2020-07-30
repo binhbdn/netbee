@@ -2,7 +2,7 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" style="background-color: #2f3b4c;" data-scroll-to-active="true">
         <div class="navbar-header d-flex" style="height: 90px">
             <ul class="nav navbar-nav" style="padding-top: 22px">
-                <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon feather icon-menu fa-2x" style="color: #fff"></i></a></li>
+                <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="far fa-bars fa-2x" style="color: #fff"></i></a></li>
             </ul>
             <ul class="nav navbar-nav" style="padding-left: 15px">
                 <li class="nav-item mr-auto"  style="margin: auto; margin-top: -10px;">
@@ -15,23 +15,23 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" style="background-color: #2f3b4c;color: #fff;">
-                <li :class="[{'active' : $route.name == 'admin/'}, 'nav-item']"><a @click="$router.push('/admin')"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Trang chủ</span></a>
+                <li :class="[{'active' : $route.name == 'admin/'}, 'nav-item']"><a @click="$router.push('/admin')"><i class="fa fa-home"></i><span class="menu-title" data-i18n="Dashboard">Trang chủ</span></a>
                 </li>
                 <!-- <li class=" navigation-header"><span style="color: #fff;">Apps</span>
                 </li> -->
                 <li :class="[{'active' : ($route.name == 'admin-news') || ($route.name == 'admin-news-create')}, 'nav-item']" v-if="$auth.user.role == 4"><a href="#"><i class="far fa-copy"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
                     <ul class="menu-content">
-                        <li><a href="/admin/news"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
+                        <li><a href="/admin/news"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
                         </li>
-                        <li><a href="/admin/news/create"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Tạo bài viết mới</span></a>
+                        <li><a href="/admin/news/create"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tạo bài viết mới</span></a>
                         </li>
                     </ul>
                 </li>
                 <li :class="[{'active' : ($route.name == 'admin-tin-tuyen-dung-danh-sach') || ($route.name == 'admin-tin-tuyen-dung-tao')}, 'nav-item']" v-if="$auth.user.role == 2 || $auth.user.role == 4"><a href="#"><i class="fas fa-briefcase"></i><span class="menu-title" data-i18n="Ecommerce">Tin tuyển dụng</span></a>
                     <ul class="menu-content">
-                        <li><a href="/admin/tin-tuyen-dung"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
+                        <li><a href="/admin/tin-tuyen-dung"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
                         </li>
-                        <li><a href="/admin/tin-tuyen-dung/tao"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Tạo tin tuyển dụng</span></a>
+                        <li><a href="/admin/tin-tuyen-dung/tao"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tạo tin tuyển dụng</span></a>
                         </li>
                     </ul>
                 </li> 
@@ -52,21 +52,21 @@
                 </li>
                 <li :class="[{'active' : $route.name == 'friends'}, 'nav-item']"><a @click="$router.push('/admin/friends')" v-if="$auth.user.role == 3"><i class="fa fa-users"></i><span class="menu-title" data-i18n="User">Giới thiệu bạn bè</span></a>                
                 </li>
-                <li :class="[{'active' : $route.name == 'admin-thong-tin-tai-khoan'}, 'nav-item']"><a @click="$router.push('/admin/thong-tin-tai-khoan')"><i class="feather icon-user" ></i><span class="menu-title" data-i18n="User">Thông tin tài khoản</span></a>
+                <li :class="[{'active' : $route.name == 'admin-thong-tin-tai-khoan'}, 'nav-item']"><a @click="$router.push('/admin/thong-tin-tai-khoan')"><i class="fa fa-user" ></i><span class="menu-title" data-i18n="User">Thông tin tài khoản</span></a>
                 </li>
                 <li :class="[{'active' : ($route.name == 'admin-tai-khoan-danh-sach')}, 'nav-item']" v-if="$auth.user.role == 4"><a href="#"><i class="fas fa-briefcase"></i><span class="menu-title" data-i18n="Ecommerce">Quản lý tài khoản</span></a>
                     <ul class="menu-content">
-                        <li><a href="/admin/quan-ly-tai-khoan?role=2"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="User">Tài khoản NTD</span></a>
+                        <li><a href="/admin/quan-ly-tai-khoan?role=2"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="User">Tài khoản NTD</span></a>
                         </li>
-                        <li><a href="/admin/quan-ly-tai-khoan?role=3"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Hr</span></a>
+                        <li><a href="/admin/quan-ly-tai-khoan?role=3"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Hr</span></a>
                         </li>
-                        <li><a href="/admin/quan-ly-tai-khoan?role=1"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Ứng viên</span></a>
+                        <li><a href="/admin/quan-ly-tai-khoan?role=1"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Ứng viên</span></a>
                         </li>
                     </ul>
                 </li>
                 <li :class="[{'active' : $route.name == 'bonus'}, 'nav-item']"><a @click="$router.push('/admin/cai-dat/bonus')" v-if="$auth.user.role == 4"><i class="fa fa-cogs"></i><span class="menu-title" data-i18n="User">Cài đặt bonus</span></a>                
                 </li>
-                <li :class="[{'active' : $route.name == 'notification'}, 'nav-item']"><a @click="$router.push('/admin/thong-bao')"><i class="ficon feather icon-bell"></i><span class="menu-title" data-i18n="User">Thông báo</span></a>                
+                <li :class="[{'active' : $route.name == 'notification'}, 'nav-item']"><a @click="$router.push('/admin/thong-bao')"><i class="fa fa-bell"></i><span class="menu-title" data-i18n="User">Thông báo</span></a>                
                 </li>
             </ul>
         </div>
