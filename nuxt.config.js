@@ -32,6 +32,7 @@ function ChangeToSlug(slugs) {
     return slug;
 }
 module.exports = {
+    mode: 'universal',
     head: {
         title: 'NetBee - Mạng lưới du học duy nhất tại Việt Nam',
         meta: [

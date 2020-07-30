@@ -327,10 +327,54 @@
         }
     },
     components: {
-      JobsList2Col,
-      NewsList,
-      JobsList1Col,
-      TagList
+      "JobsList2Col": () => ({
+            component: new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve(
+                        import('~/components/Jobs/JobsList2Col')
+                    )
+                }, 2000)
+            }),
+            delay: 1000,
+            timeout: 1000
+        }),
+      "TagList": () => ({
+            component: new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve(
+                        import('~/components/TagList')
+                    )
+                }, 2000)
+            }),
+            delay: 1000,
+            timeout: 1000
+        }),
+      "JobsList1Col": () => ({
+            component: new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve(
+                        import('~/components/Jobs/JobsList1Col')
+                    )
+                }, 2000)
+            }),
+            delay: 1000,
+            timeout: 1000
+        }),
+      "NewsList": () => ({
+            component: new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve(
+                        import('~/components/News/NewsList')
+                    )
+                }, 2000)
+            }),
+            delay: 1000,
+            timeout: 1000
+        }),
+      //JobsList2Col,
+      //NewsList,
+      //JobsList1Col,
+      //TagList
     },
     methods: {
       fetch() {
