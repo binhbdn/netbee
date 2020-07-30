@@ -331,9 +331,9 @@
             component: new Promise(function (resolve, reject) {
                 setTimeout(function () {
                     resolve(
-                        import('~/components/Jobs/JobsList2Col')
+                      JobsList2Col
                     )
-                }, 2000)
+                }, 1000)
             }),
             delay: 1000,
             timeout: 1000
@@ -342,9 +342,9 @@
             component: new Promise(function (resolve, reject) {
                 setTimeout(function () {
                     resolve(
-                        import('~/components/TagList')
+                      TagList
                     )
-                }, 2000)
+                }, 1000)
             }),
             delay: 1000,
             timeout: 1000
@@ -353,9 +353,9 @@
             component: new Promise(function (resolve, reject) {
                 setTimeout(function () {
                     resolve(
-                        import('~/components/Jobs/JobsList1Col')
+                      JobsList1Col
                     )
-                }, 2000)
+                }, 1000)
             }),
             delay: 1000,
             timeout: 1000
@@ -364,9 +364,9 @@
             component: new Promise(function (resolve, reject) {
                 setTimeout(function () {
                     resolve(
-                        import('~/components/News/NewsList')
+                      NewsList
                     )
-                }, 2000)
+                }, 1000)
             }),
             delay: 1000,
             timeout: 1000
