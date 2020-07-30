@@ -96,7 +96,7 @@ export default {
     background: darkgray;
 }
 .main-menu.menu-light .navigation > li.active > a {
-    background: darkgray !important;
-    box-shadow: 0 0 0px 0px darkgray !important;
+    background: #ffb701 !important;
+    box-shadow: 0 0 0px 0px #ffb701 !important;
 }
 </style>
