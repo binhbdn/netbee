@@ -32,7 +32,7 @@
                                                                 </div>
                                                             </center>
                                                         </div>
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-8 pl-md-1 p-50">
                                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                                 <fieldset class="form-group">
                                                                     <label class="title-label" for="basicInput">Họ và tên <span style="color: red; font-size: 20px;">*</span></label>
