@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label class="title-label" style="margin-top: 7px;">Số điện thoại</label>
+                                                    <label class="title-label">Số điện thoại</label>
                                                     <input v-model="info_frofile_user.phone_profile" class="form-control"/> 
                                                 </div>
                                                 <div class="col-md-6">
@@ -107,7 +107,6 @@
                                                 <div class="col-md-6">
                                                     <label class="title-label">Hình thức</label>
                                                     <select class="form-control" v-model="info_frofile_user.type">
-                                                        <option disabled value="null">Chọn Hình thức</option>
                                                         <option value="1">Xuất khẩu lao động</option>
                                                         <option value="2">Du học</option>
                                                         <option value="3">Tu nghiệp sinh</option>
