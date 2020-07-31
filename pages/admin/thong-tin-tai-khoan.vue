@@ -20,7 +20,7 @@
                                                 <form method="post">
                                                     <ValidationObserver ref="InfoUser" v-slot="{ valid }">
                                                         <div class="row">
-                                                            <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 row pr-0 mg">
+                                                            <div class="col-xl-8 col-lg-10 row pr-0 mg ml-lg-0">
                                                                 <div class=" col-sm-4 media">
                                                                     <a href="javascript: void(0);" style="position: relative" class="avatar-custom">
                                                                         <img v-lazy="images[0]" class="rounded" alt="profile image" style="object-fit: cover; width: 150px; height: 150px;border: 1px solid; border-radius: 50% !important" v-if="images.length > 0">
@@ -88,7 +88,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0.5rem">
+                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
                                                                 <div class="for-label pb-50">
                                                                     <label for="account-company">Email</label>
                                                                 </div>
@@ -98,7 +98,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0.5rem">
+                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
                                                                 <ValidationProvider rules="required" v-slot="{ errors }">
                                                                     <div class="for-label pb-50">
                                                                         <label for="account-company">Địa chỉ</label>
@@ -114,7 +114,7 @@
                                                                 </ValidationProvider>
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+                                                        <div class="col-xl-8 col-lg-10">
                                                             <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="actionInfoUser()">Cập nhật</button>
                                                         </div>
                                                     </ValidationObserver>
@@ -138,7 +138,7 @@
                                                     <form method="POST" v-on:keyup.enter = "changeBankHr">
                                                         <ValidationObserver ref="ChangeInfoBank" v-slot="{ inval }">
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0rem !important;">
+                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
                                                                     <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
@@ -157,7 +157,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0rem !important;">
+                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
                                                                     <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
@@ -176,7 +176,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0rem !important;">
+                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
                                                                     <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
@@ -195,7 +195,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0rem !important;">
+                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
                                                                     <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
@@ -213,7 +213,7 @@
                                                                     </ValidationProvider>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+                                                            <div class="col-xl-8 col-lg-10">
                                                                 <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" v-bind:disabled="inval" v-on:click ="changeBankHr">Cập nhật</button>
                                                             </div>
                                                             <!-- <div class="col-10 d-flex justify-content-end">
@@ -249,7 +249,7 @@
                                                     <form method="POST" v-on:keyup.enter = "changeInfoCompany">
                                                         <ValidationObserver ref="observerChangeInfoCompany" v-slot="{ valid }">
                                                             <div class="row">
-                                                                <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 row pr-0 mg">
+                                                                <div class="col-xl-8 col-lg-10 row pr-0 mg ml-lg-0">
                                                                     <div class=" col-sm-4 media">
                                                                         <a href="javascript: void(0);" style="position: relative" class="avatar-custom">
                                                                             <img v-lazy="imagesCover[0]" class="rounded" alt="profile image" style="object-fit: cover; width: 150px; height: 150px;border: 1px solid; border-radius: 50% !important" v-if="imagesCover.length > 0">
@@ -315,7 +315,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0.5rem">
+                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
                                                                     <ValidationProvider name="username" ref="username" rules="required|customUsername" v-slot="{ errors }">
                                                                         <div class="for-label pb-50">
                                                                             <label for="accountTextarea1">Username</label>
@@ -336,7 +336,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0.5rem">
+                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
                                                                     <ValidationProvider name="companyAbout" ref="companyAbout" rules="required" v-slot="{ errors }">
                                                                         <div class="for-label pb-50">
                                                                             <label for="accountTextarea1">Giới thiệu</label>
@@ -353,7 +353,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0.5rem">
+                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
                                                                     <div class="for-label pb-50">
                                                                         <label for="account-website">Facebook công ty:</label>
                                                                     </div>
@@ -362,7 +362,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 pt-1">
+                                                            <div class="col-xl-8 col-lg-10 pt-1">
                                                                 <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="changeInfoCompany()">Cập nhật</button>
                                                             </div>
                                                             <!-- <div class="col-12">
@@ -451,7 +451,7 @@
                                                 <p class="card-header-title is-uppercase">Vai trò trên trang</p>
                                             </div>
                                             <div class="col-md-12 p-md-1 p-0">
-                                                <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 row pr-0">
+                                                <div class="col-xl-8 col-lg-10 row pr-0 pl-sm-0 ml-sm-0 pl-1">
                                                     <div v-if="emailCompany.length < 5" class="row role">
                                                         <div class="col-sm-6" style="padding-right: 0;">
                                                             <span>
@@ -576,7 +576,7 @@
                                                 <form method="POST" v-on:keyup.enter="changePassword">
                                                     <ValidationObserver ref="observer" v-slot="{ valid }">
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0rem !important;">
+                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
                                                                 <ValidationProvider name="oldPassword" ref="oldPassword" rules="required" v-slot="{ errors }">
                                                                     <div class="controls">
                                                                         <div class="for-label pb-50">
@@ -596,7 +596,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0rem !important;">
+                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
                                                                 <ValidationProvider name="newPassword" ref="newPassword" rules="required|customPassword|min:8" v-slot="{ errors }">
                                                                         <div class="controls">
                                                                             <div class="for-label pb-50">
@@ -616,7 +616,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 offset-xl-2 col-lg-10 offset-lg-1" style="margin-bottom: 0rem !important;">
+                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
                                                                 <ValidationProvider name="retypePassword" ref="retypePassword" rules="required|retypePassword:@newPassword" v-slot="{ errors }">
                                                                         <div class="controls">
                                                                             <div class="for-label pb-50">
@@ -634,7 +634,7 @@
                                                                 </ValidationProvider>
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+                                                        <div class="col-xl-8 col-lg-10">
                                                             <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="changePassword()">Cập nhật</button>
                                                         </div>
                                                     <!-- <div class="row"> -->
