@@ -10,7 +10,7 @@
                 <h2 class="NB_title text-black el-3 font-weight-600 p-t-5" style="margin-bottom: 7px;line-height: 1.4;">{{ title }}</h2>
             </a>
             <p class="el-3" style="line-height: 1.5;margin-bottom: 5px;" v-if="type == 1 || type == 2">{{ short_content }}</p>
-            <div style="margin-top:15px;">
+            <div style="position: absolute;bottom: 0;">
                 <i class="fad fa-calendar-star"></i><span class="ml-1">{{ ConvertDate(created_at) }}</span>  
             </div>
         </div>
