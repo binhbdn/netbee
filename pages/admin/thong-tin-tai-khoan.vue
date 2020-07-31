@@ -610,10 +610,10 @@
                                                                                 Mật khẩu mới</label>
                                                                             </div>
                                                                             <div>
-                                                                                <input  class="form-control" id="account-new-password" :type="show ? 'text' : 'password'" name="newPassword" v-model="changePasswordForm.newPassword" placeholder="Nhập vào mật khẩu mới" >
+                                                                                <input  class="form-control" id="account-new-password" :type="show1 ? 'text' : 'password'" name="newPassword" v-model="changePasswordForm.newPassword" placeholder="Nhập vào mật khẩu mới" >
                                                                                     <div style="text-align: right;">
                                                                                         <i class="showpass1">
-                                                                                        <i @click="showPassword1()" :class="show ?'fas fa-eye-slash ':'fad fa-eye'"></i>
+                                                                                        <i @click="showPassword1()" :class="show1 ?'fas fa-eye-slash ':'fad fa-eye'"></i>
                                                                                         </i>
                                                                                     </div>
                                                                                     <ul style="color:red" class="overline text-left">
@@ -634,10 +634,10 @@
                                                                                 <label for="account-retype-new-password" >Nhập lại mật khẩu</label>
                                                                             </div>
                                                                             <div>
-                                                                                <input  class="form-control" name="retypePassword" :type="show ? 'text' : 'password'" id="account-retype-new-password" v-model="changePasswordForm.retypePassword" placeholder="Nhập lại mật khẩu mới">
+                                                                                <input  class="form-control" name="retypePassword" :type="show2 ? 'text' : 'password'" id="account-retype-new-password" v-model="changePasswordForm.retypePassword" placeholder="Nhập lại mật khẩu mới">
                                                                                 <div style="text-align: right;">
                                                                                     <i class="showpass1">
-                                                                                    <i @click="showPassword2()" :class="show ?'fas fa-eye-slash ':'fad fa-eye'"></i>
+                                                                                    <i @click="showPassword2()" :class="show2 ?'fas fa-eye-slash ':'fad fa-eye'"></i>
                                                                                     </i>
                                                                                 </div>
                                                                                 <ul style="color:red" class="overline text-left">
@@ -831,6 +831,8 @@ export default {
             return {
                 password: '',
                 show: false,
+                show1: false,
+                show2: false,
                 changePasswordForm: {
                     oldPassword: "",
                     newPassword: "",
@@ -888,10 +890,10 @@ export default {
         this.show = !this.show
         },
         showPassword1() {
-            this.show = !this.show
+            this.show1 = !this.show1
         },
         showPassword2() {
-            this.show = !this.show
+            this.show2 = !this.show2
         },
         //update avatar
         onInputChange(e){
