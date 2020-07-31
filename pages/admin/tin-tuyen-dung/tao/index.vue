@@ -1,4 +1,4 @@
-<template>
+z<template>
     <div class="app-content content">
         <div class="content-wrapper container" style="padding-top:19px">
             <div class="content-body content-on">
@@ -10,7 +10,7 @@
                                     <div class="card-body p-2 pb-3">
                                         <div class="avatar bg-rgba-warning p-50 m-0 mb-1">
                                             <div class="avatar-content">
-                                                <i class="feather icon-message-square text-warning font-medium-5"></i>
+                                                <i class="fa fa-comments text-warning font-medium-5"></i>
                                             </div>
                                         </div>
                                         <h2>Chọn loại tin</h2>
@@ -25,7 +25,7 @@
                                     <div class="card-body p-2 pb-3">
                                         <div class="avatar bg-rgba-info p-50 m-0 mb-1">
                                             <div class="avatar-content">
-                                                <i class="feather icon-heart text-info font-medium-5"></i>
+                                                <i class="fa fa-heart text-info font-medium-5"></i>
                                             </div>
                                         </div>
                                         <h2>Cập nhật thông tin</h2>
@@ -40,7 +40,7 @@
                                     <div class="card-body p-2">
                                         <div class="avatar bg-rgba-success p-50 m-0 mb-1">
                                             <div class="avatar-content">
-                                                <i class="feather icon-award text-success font-medium-5"></i>
+                                                <i class="fa fa-registered text-success font-medium-5"></i>
                                             </div>
                                         </div>
                                         <h2>Đăng và nhận ứng viên</h2>

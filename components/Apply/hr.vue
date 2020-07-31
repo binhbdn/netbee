@@ -7,7 +7,7 @@
                     <div class="col-12">
                         <div class="card ">
                             <div class="card-content">
-                                <table class="table table-hover mb-0 zero-configuration">
+                                <table v-if="AllApply.length > 0" class="table table-hover mb-0 zero-configuration">
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">ID</th>
@@ -25,6 +25,7 @@
                                             <td v-if="item.job">
                                                 <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.job.id}/${ChangeToSlug(item.job.title)}`" target="_blank">{{item.job.title}} 
                                                 </a>
+                                            </td>
                                             <td>{{item.name}}</td>
                                             <td v-if="$auth.user.role == 3">
                                                 <span style="color: #fc205c">{{item.bonus}}{{ item.job.currency }}</span>
@@ -40,7 +41,7 @@
                                             <td>
                                                 <div class="action-btns">
                                                     <div>
-                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-edit-fix-huy py-75 waves-effect waves-light" style="width: 60%;">
+                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-edit-fix-huy py-75 waves-effect waves-light">
                                                         Hủy
                                                         </a>
                                                     </div>   
@@ -52,6 +53,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p v-else style="text-align : center;margin-top: 15px !important;">Không có hồ sơ ứng tuyển nào</p>
                             </div>
                         </div>
                     </div>
@@ -126,6 +128,7 @@ export default {
         fetch() {
             this.$axios.$get('apply/getAllApply').then((response)=>{
                 this.AllApply=response.data;
+                console.log(this.AllApply)
 	        });
         },
         RefuseApply(){

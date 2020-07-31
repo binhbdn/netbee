@@ -8,7 +8,7 @@
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
                             <li><a data-action="collapse"><i class="fa fa-chevron-down"></i></a></li>
-                            <li><a data-action=""><i class=" fa fa-repeat users-data-filter"></i></a></li>
+                            <li><a  v-on:click="restData()"><i class=" fa fa-repeat users-data-filter"></i></a></li>
                             <!-- <li><a @click="closeSearch()"><i class="feather icon-x" style="font-size: 18px"></i></a></li> -->
                         </ul>
                     </div>
@@ -83,7 +83,8 @@ export default {
                 search: "",
                 // searchStatus: "",
                 searchAdress: null,
-                searchCategory: null
+                searchCategory: null,
+                searchAddress: null
             },
             categories: [
                 {id: 1, name: 'Xuất khẩu lao động'},
@@ -115,6 +116,12 @@ export default {
     },
 
     methods:{
+        restData: function() {
+            this.cardSearch.search = ""
+            this.cardSearch.searchCategory = null
+            this.cardSearch.searchAddress = null
+            this.fetch()
+        },
         async fetch(){
             let getTin = await this.$axios.$get('/tintuyendung/searchTinTuyenDung')
             this.tinTuyenDung = getTin.data

@@ -110,15 +110,28 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="firstName3">Chiều cao (cm)</label>
-                                                            <input type="number" class="form-control" v-model="data.height">
+                                                            <div class="container-fluid">
+                                                                <div class="row">
+                                                                    <div class="col-6" style="padding-left: 0px;">
+                                                                        <label for="firstName3">Chiều cao (cm)</label>
+                                                                        <input type="number" class="form-control" v-model="data.height">
+                                                                    </div>
+                                                                    <div class="col-6" style="padding-right: 0px;">
+                                                                        <label for="firstName3">Cân nặng (kg)</label>
+                                                                        <input type="number" class="form-control" v-model="data.weight">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Cân nặng (kg)</label>
-                                                            <input type="number" class="form-control" v-model="data.weight">
-                                                        </div>
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Số lượng tuyển</label>
+                                                                <input type="number" class="form-control" v-model="data.quantity">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
                                                     </div>
                                                     
                                                     
@@ -139,22 +152,13 @@
                                                     </div>
                                                     
                                     
-                                                    <div class="col-sm-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Số lượng tuyển</label>
-                                                                <input type="number" class="form-control" v-model="data.quantity">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-sm-4 pl-sm-0">  
+                                                    <div class="col-sm-6">  
                                                         <div class="form-group">
                                                             <label for="firstName3">Chứng minh thu nhập</label>
                                                             <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>                                     
                                                     </div>
-                                                    <div class="col-sm-4 pl-sm-0">
+                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Thời hạn hợp đồng(năm)</label>
                                                             <input type="text" class="form-control required" v-model="data.time_contract">
@@ -315,8 +319,8 @@
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content title="Tiền thưởng">
-                                            <ValidationObserver ref="step4" v-slot="{ valid4 }">
+                                        <tab-content title="Tiền thưởng" :before-change="checkValidateStep4">
+                                            <ValidationObserver ref="step4" >
                                                 <div class="row">
                                                     <!-- <div class="col-12">
                                                         <fieldset>
@@ -347,9 +351,7 @@
                                                                 <label for="firstName3">Tiền thưởng</label>
                                                                 <div class="input-group">
                                                                     <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
-                                                                    <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
-                                                                        <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
-                                                                    </div>
+                            
                                                                 </div>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -556,6 +558,7 @@ export default {
         return {
             options: [],
             data: {
+                company: {id: null, name: ''},
                 title: '',
                 address: '',
                 nation: {id: null, name: ''},
@@ -691,6 +694,18 @@ export default {
                 }, 100)
             })
         },
+        async checkValidateStep4(){
+            let isValid = await this.$refs.step4.validate();
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if(isValid){
+                        resolve(true)
+                    } else {
+                        reject()
+                    }
+                }, 100)
+            })
+        },
 
         async onComplete() {
             let isValid = await this.$refs.step5.validate();
@@ -812,8 +827,16 @@ export default {
     font-size: 24px;
 }
 
+button.wizard-btn:hover {
+    color: #fff !important;
+}
+
 .wizard-header{
     display: none;
+}
+
+.wizard-btn {
+    font-weight: 500;
 }
 
 .vdatetime-popup__header{
@@ -863,6 +886,12 @@ export default {
     height: 1.5rem;
     top: -1px;
     left: -24px;
+}
+
+input[type=radio]:checked{
+    background: #ffb701;
+    border-radius: 15px;
+    border: 4px solid #ffb701;
 }
 
 .vue-form-wizard .wizard-nav-pills>li.active>a .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:focus .wizard-icon, .vue-form-wizard .wizard-nav-pills>li.active>a:hover .wizard-icon{
