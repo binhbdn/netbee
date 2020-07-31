@@ -8,7 +8,7 @@
               <section id="page-account-settings">
                   <div class="row">
                       <!-- right content section -->
-                        <div class="col-md-12">
+                        <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body p-t-15 p-b-15">
@@ -20,9 +20,9 @@
                                                 <form method="post">
                                                     <ValidationObserver ref="InfoUser" v-slot="{ valid }">
                                                         <div class="row">
-                                                            <div class="col-xl-8 col-lg-10 row pr-0 mg ml-lg-0">
-                                                                <div class=" col-sm-4 media">
-                                                                    <a href="javascript: void(0);" style="position: relative" class="avatar-custom">
+                                                            <div class="col-12 row p-0 mg mx-0">
+                                                                <div class="col-lg-4 offset-lg-0 mb-lg-0 mx-lg-0 col-md-6 mx-md-auto mb-md-1 col-sm-4 media">
+                                                                    <a href="javascript: void(0);" style="position: relative" class="avatar-custom mx-auto">
                                                                         <img v-lazy="images[0]" class="rounded" alt="profile image" style="object-fit: cover; width: 150px; height: 150px;border: 1px solid; border-radius: 50% !important" v-if="images.length > 0">
                                                                         <img v-lazy="changeInfoUser.avatar != null && changeInfoUser.avatar.startsWith('https') ? changeInfoUser.avatar : `/uploads/users/avatars/${changeInfoUser.avatar}`" class="rounded" alt="profile image" style="object-fit: cover; height: 150px; width: 150px; border: 1px solid; border-radius: 50% !important" v-else>
                                                                         <div class="btn-change-avatar" style="position: absolute; bottom: 0; padding: 0; width: 100%">
@@ -31,7 +31,7 @@
                                                                         </div>
                                                                     </a>
                                                                 </div>
-                                                                <div class="col-sm-8 pr-0 row">
+                                                                <div class="col-lg-8 col-md-12 col-sm-8 pr-0 row">
                                                                     <div class="col-12">
                                                                         <ValidationProvider rules="required" ref="name" name="name" v-slot="{ errors }">
                                                                             <div class="form-group" style="margin-bottom: 0rem !important;">
@@ -40,7 +40,7 @@
                                                                                         <label v-if="$auth.user.role != 2" for="account-username">Họ tên</label>
                                                                                         <label v-if="$auth.user.role == 2" for="account-username">Tên công ty</label>
                                                                                     </div>
-                                                                                    <div class="col-sm-8 pr-0">
+                                                                                    <div class="col-sm-8 pr-0 pl-50">
                                                                                         <input type="text" class="form-control" name="name" v-model="changeInfoUser.name">
                                                                                         <ul style="color:red" class="overline text-left">
                                                                                             <li v-for="(error, index) in errors" :key="index">
@@ -59,7 +59,7 @@
                                                                                     <label v-if="$auth.user.role != 2" for="account-name">Ngày sinh</label>
                                                                                     <label v-if="$auth.user.role == 2" for="account-name">Ngày thành lập</label>
                                                                                 </div>
-                                                                                <div class="col-sm-8 pr-0">
+                                                                                <div class="col-sm-8 pr-0 pl-50">
                                                                                     <input type="date" class="form-control" v-model="changeInfoUser.birth">
                                                                                 </div>
                                                                             </div>
@@ -72,7 +72,7 @@
                                                                                     <div class="col-sm-4 for-label pr-0">
                                                                                         <label for="account-e-mail">Số điện thoại</label>
                                                                                     </div>
-                                                                                    <div class="col-sm-8 pr-0">
+                                                                                    <div class="col-sm-8 pr-0 pl-50">
                                                                                         <input type="number" class="form-control" v-model="changeInfoUser.phone">
                                                                                         <ul style="color:red" class="overline text-left">
                                                                                             <li v-for="(error, index) in errors" :key="index">
@@ -88,7 +88,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
+                                                            <div class="form-group col-12" style="margin-bottom: 0.5rem">
                                                                 <div class="for-label pb-50">
                                                                     <label for="account-company">Email</label>
                                                                 </div>
@@ -98,7 +98,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
+                                                            <div class="form-group col-12" style="margin-bottom: 0.5rem">
                                                                 <ValidationProvider rules="required" v-slot="{ errors }">
                                                                     <div class="for-label pb-50">
                                                                         <label for="account-company">Địa chỉ</label>
@@ -114,7 +114,7 @@
                                                                 </ValidationProvider>
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-8 col-lg-10">
+                                                        <div class="col-12">
                                                             <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="actionInfoUser()">Cập nhật</button>
                                                         </div>
                                                     </ValidationObserver>
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                         <div class="col-md-12" v-if="$auth.user.role == 3">
+                         <div class="col-lg-8" v-if="$auth.user.role == 3">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body p-t-15 p-b-15">
@@ -138,7 +138,7 @@
                                                     <form method="POST" v-on:keyup.enter = "changeBankHr">
                                                         <ValidationObserver ref="ChangeInfoBank" v-slot="{ inval }">
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
+                                                                <div class="form-group col-12" style="margin-bottom: 0rem !important;">
                                                                     <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
@@ -157,7 +157,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
+                                                                <div class="form-group col-12" style="margin-bottom: 0rem !important;">
                                                                     <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
@@ -176,7 +176,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
+                                                                <div class="form-group col-12" style="margin-bottom: 0rem !important;">
                                                                     <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
@@ -195,7 +195,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
+                                                                <div class="form-group col-12" style="margin-bottom: 0rem !important;">
                                                                     <ValidationProvider rules="required"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
@@ -213,7 +213,7 @@
                                                                     </ValidationProvider>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-8 col-lg-10">
+                                                            <div class="col-12">
                                                                 <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" v-bind:disabled="inval" v-on:click ="changeBankHr">Cập nhật</button>
                                                             </div>
                                                             <!-- <div class="col-10 d-flex justify-content-end">
@@ -236,7 +236,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12" v-if="$auth.user.role == 2">
+                        <div class="col-lg-8" v-if="$auth.user.role == 2">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body p-t-15 p-b-15">
@@ -249,9 +249,9 @@
                                                     <form method="POST" v-on:keyup.enter = "changeInfoCompany">
                                                         <ValidationObserver ref="observerChangeInfoCompany" v-slot="{ valid }">
                                                             <div class="row">
-                                                                <div class="col-xl-8 col-lg-10 row pr-0 mg ml-lg-0">
-                                                                    <div class=" col-sm-4 media">
-                                                                        <a href="javascript: void(0);" style="position: relative" class="avatar-custom">
+                                                                <div class="col-12 row p-0 mg mx-0">
+                                                                    <div class="col-lg-4 offset-lg-0 mb-lg-0 mx-lg-0 col-md-6 mx-md-auto mb-md-1 col-sm-4 media">
+                                                                        <a href="javascript: void(0);" style="position: relative" class="avatar-custom mx-auto">
                                                                             <img v-lazy="imagesCover[0]" class="rounded" alt="profile image" style="object-fit: cover; width: 150px; height: 150px;border: 1px solid; border-radius: 50% !important" v-if="imagesCover.length > 0">
                                                                             <img v-lazy="changeInfoCompanyForm.imageCover != null && changeInfoCompanyForm.imageCover.startsWith('https') ? changeInfoCompanyForm.imageCover : `/uploads/users/covers/${changeInfoCompanyForm.imageCover}`" class="rounded" alt="profile image" style="object-fit: cover; height: 150px; width: 150px; border: 1px solid; border-radius: 50% !important" v-else>
                                                                             <div class="btn-change-avatar" style="position: absolute; bottom: 0; padding: 0; width: 100%">
@@ -260,7 +260,7 @@
                                                                             </div>
                                                                         </a>
                                                                     </div>
-                                                                    <div class="col-sm-8 pr-0 row">
+                                                                    <div class="col-lg-8 col-md-12 col-sm-8 pr-0 row">
                                                                         <div class="col-12">
                                                                             <ValidationProvider name="account-phone" ref="account-phone" rules="numeric" v-slot="{ errors }">
                                                                                 <div class="form-group" style="margin-bottom: 0rem !important;">
@@ -268,7 +268,7 @@
                                                                                         <div class="col-sm-4 for-label pr-0">
                                                                                             <label for="account-phone">Đường dây nóng</label>
                                                                                         </div>
-                                                                                        <div class="col-sm-8 pr-0">
+                                                                                        <div class="col-sm-8 pr-0 pl-50">
                                                                                             <input type="text" class="form-control" name="name" v-model="changeInfoCompanyForm.companyHotline">
                                                                                             <ul style="color:red" class="overline text-left">
                                                                                                 <li v-for="(error, index) in errors" :key="index">
@@ -286,7 +286,7 @@
                                                                                     <div class="col-sm-4 for-label pr-0">
                                                                                         <label for="account-phone">Mã số thuế</label>
                                                                                     </div>
-                                                                                    <div class="col-sm-8 pr-0">
+                                                                                    <div class="col-sm-8 pr-0 pl-50">
                                                                                         <input type="text" class="form-control" id="account-phone" name="companyTax" v-model="changeInfoCompanyForm.companyTax" required placeholder="Tax">
                                                                                     </div>
                                                                                 </div>
@@ -299,7 +299,7 @@
                                                                                         <div class="col-sm-4 for-label pr-0">
                                                                                             <label for="account-website">Website chính thức</label>
                                                                                         </div>
-                                                                                        <div class="col-sm-8 pr-0">
+                                                                                        <div class="col-sm-8 pr-0 pl-50">
                                                                                             <input type="text" class="form-control" id="account-website" name="companyLink" v-model="changeInfoCompanyForm.companyLink" placeholder="Địa chỉ website của công ty">
                                                                                         <ul style="color:red" class="overline text-left">
                                                                                             <li v-for="(error, index) in errors" :key="index">
@@ -315,7 +315,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
+                                                                <div class="form-group col-12" style="margin-bottom: 0.5rem">
                                                                     <ValidationProvider name="username" ref="username" rules="required|customUsername" v-slot="{ errors }">
                                                                         <div class="for-label pb-50">
                                                                             <label for="accountTextarea1">Username</label>
@@ -336,7 +336,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
+                                                                <div class="form-group col-12" style="margin-bottom: 0.5rem">
                                                                     <ValidationProvider name="companyAbout" ref="companyAbout" rules="required" v-slot="{ errors }">
                                                                         <div class="for-label pb-50">
                                                                             <label for="accountTextarea1">Giới thiệu</label>
@@ -353,7 +353,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0.5rem">
+                                                                <div class="form-group col-12" style="margin-bottom: 0.5rem">
                                                                     <div class="for-label pb-50">
                                                                         <label for="account-website">Facebook công ty:</label>
                                                                     </div>
@@ -362,7 +362,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-xl-8 col-lg-10 pt-1">
+                                                            <div class="col-12 mt-50">
                                                                 <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="changeInfoCompany()">Cập nhật</button>
                                                             </div>
                                                             <!-- <div class="col-12">
@@ -442,7 +442,7 @@
                             </div>
                         </div>
                         <!-- Vai trò trên trang -->
-                        <div class="col-md-12" v-if="$auth.user.role == 2">
+                        <div class="col-lg-8" v-if="$auth.user.role == 2">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body p-t-15 p-b-15">
@@ -450,10 +450,10 @@
                                             <div class="card-header card-profile">
                                                 <p class="card-header-title is-uppercase">Vai trò trên trang</p>
                                             </div>
-                                            <div class="col-md-12 p-md-1 p-0">
-                                                <div class="col-xl-8 col-lg-10 row pr-0 pl-sm-0 ml-sm-0 pl-1">
+                                            <div class="col-12 p-0">
+                                                <div class="col-12 p-0">
                                                     <div v-if="emailCompany.length < 5" class="row role">
-                                                        <div class="col-sm-6" style="padding-right: 0;">
+                                                        <div class="col-sm-5 pr-sm-0">
                                                             <span>
                                                                 <div class="for-label pb-50">
                                                                     <label for="account-company">Email</label>
@@ -463,7 +463,7 @@
                                                                 <input class="form-control" type="email" id="email" placeholder="Nhập email" v-model="email_company">
                                                             </div>
                                                         </div>
-                                                        <div class="col-sm-6" style="padding-right: 0;">
+                                                        <div class="col-sm-7 pr-sm-0">
                                                             <span>
                                                                 <div class="for-label pb-50">
                                                                     <label for="account-company">Phân quyền</label>
@@ -488,7 +488,7 @@
                                                         <table class="table table-hover mb-0 zero-configuration">
                                                             <thead class="custom-header">
                                                                 <tr>
-                                                                    <th>STT</th>
+                                                                    <th class="sx-none">STT</th>
                                                                     <th>Email</th>
                                                                     <th>Vai trò</th>
                                                                     <th>Thao tác</th>                               
@@ -496,28 +496,28 @@
                                                             </thead>
                                                             <tbody >                                               
                                                                 <tr v-for="(item, index) in emailCompany">
-                                                                    <td>{{index + 1}}</td>
-                                                                    <td>{{item.email_company}}</td>
-                                                                    <td>
+                                                                    <td class="p-50 sx-none">{{index + 1}}</td>
+                                                                    <td class="p-50 sm-email">{{item.email_company}}</td>
+                                                                    <td class="p-50">
                                                                         <div class="action-btns">
                                                                             <div class="btn-dropdown ">
                                                                                 <div class="btn-group dropdown actions-dropodown">
-                                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                    <button type="button" class="btn btn-white px-1 py-75 dropdown-toggle waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                                         <span v-if="item.status == 0" class="text-none">Chưa phân quyền</span>
-                                                                                        <span v-if="item.status == 1" class="text-none"><i class="fa fa-check"></i> Quản trị viên</span>
-                                                                                        <span v-if="item.status == 2" class="text-none"><i class="fa fa-check"></i> Biên tập viên</span>
+                                                                                        <span v-if="item.status == 1" class="text-none"><i class="fa fa-check"></i> QTV</span>
+                                                                                        <span v-if="item.status == 2" class="text-none"><i class="fa fa-check"></i> BTV</span>
                                                                                     </button>
                                                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                                                        <a v-if="item.status != 1" @click="updateStatus1(item.id)" class="dropdown-item"><i class="far fa-check-circle"></i> Quản trị viên</a>
-                                                                                        <a v-if="item.status != 2" @click="updateStatus2(item.id)" class="dropdown-item"><i class="far fa-check-circle"></i> Biên tập viên</a> 
+                                                                                        <a v-if="item.status != 1" @click="updateStatus1(item.id)" class="dropdown-item"><i class="far fa-check-circle"></i> QTV</a>
+                                                                                        <a v-if="item.status != 2" @click="updateStatus2(item.id)" class="dropdown-item"><i class="far fa-check-circle"></i> BTV</a> 
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </td>
-                                                                    <td>
-                                                                        <button class="btn btn-danger btn-sm" @click="deletedEmailCompany(item.id)">Xóa</button>
-                                                                        <button class="btn bg-netbee btn-sm" @click="suaEmailCompanyModal(item.id)">Chỉnh sửa</button>
+                                                                    <td class="p-50">
+                                                                        <button title="Xóa" class="btn btn-danger btn-sm p-1" @click="deletedEmailCompany(item.id)"><i class="fa fa-trash"></i></button>
+                                                                        <button title="Chỉnh sửa" id="edit" class="btn bg-netbee btn-sm p-1" @click="suaEmailCompanyModal(item.id)"><i class="fa fa-edit text-white"></i></button>
                                                                         <div id="refuse_modal" class="modal fade" role="dialog">
                                                                             <div class="modal-dialog" role="document">
                                                                                 <div class="modal-content">
@@ -553,8 +553,8 @@
                                                                 <label for="account-company">Ghi chú:</label>
                                                             </div> 
                                                         </span>
-                                                         - Quản trị viên: có quyền đăng nhập như tài khoản công ty.<br>
-                                                         - Biên tập viên: có quyền nhận thông báo từ hệ thống.<br>
+                                                         - Quản trị viên (QTV): có quyền đăng nhập như tài khoản công ty.<br>
+                                                         - Biên tập viên (BTV): có quyền nhận thông báo từ hệ thống.<br>
                                                     </div>
                                                 </div>
                                             </div>
@@ -564,7 +564,7 @@
                             </div>
                         </div>
                         <!-- End vai trò trên trang -->
-                        <div class="col-md-12">
+                        <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-content">
                                     <div class="card-body p-t-15 p-b-15">
@@ -576,7 +576,7 @@
                                                 <form method="POST" v-on:keyup.enter="changePassword">
                                                     <ValidationObserver ref="observer" v-slot="{ valid }">
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
+                                                            <div class="form-group col-12" style="margin-bottom: 0rem !important;">
                                                                 <ValidationProvider name="oldPassword" ref="oldPassword" rules="required" v-slot="{ errors }">
                                                                     <div class="controls">
                                                                         <div class="for-label pb-50">
@@ -602,7 +602,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
+                                                            <div class="form-group col-12" style="margin-bottom: 0rem !important;">
                                                                 <ValidationProvider name="newPassword" ref="newPassword" rules="required|customPassword|min:8" v-slot="{ errors }">
                                                                         <div class="controls">
                                                                             <div class="for-label pb-50">
@@ -627,7 +627,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="form-group col-xl-8 col-lg-10" style="margin-bottom: 0rem !important;">
+                                                            <div class="form-group col-12" style="margin-bottom: 0rem !important;">
                                                                 <ValidationProvider name="retypePassword" ref="retypePassword" rules="required|retypePassword:@newPassword" v-slot="{ errors }">
                                                                         <div class="controls">
                                                                             <div class="for-label pb-50">
@@ -650,7 +650,7 @@
                                                                 </ValidationProvider>
                                                             </div>
                                                         </div>
-                                                        <div class="col-xl-8 col-lg-10">
+                                                        <div class="col-12">
                                                             <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="changePassword()">Cập nhật</button>
                                                         </div>
                                                     <!-- <div class="row"> -->
@@ -1493,6 +1493,11 @@ export default {
 .number-phone, .website-company{
     padding-top: 18px
 }
+@media (max-width: 1199px){
+    .table th{
+        padding: 0.5rem
+    }
+}
 @media (min-width: 576px){
     .role{
         width: 100%;
@@ -1528,6 +1533,12 @@ export default {
     /* .for-label{
         padding: 10px 14px;
     } */
+    .sx-none{
+        display: none;
+    }
+    .sm-email{
+        max-width: 120px;
+    }
 }
 .showpass1 {
   width: 30px !important;
