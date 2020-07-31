@@ -12,7 +12,7 @@
             <hr>
             <p class="px-2 mb-2">Tạo mật khẩu mới có tối thiểu 8 ký tự. Mật khẩu mạnh là mật khẩu được kết hợp từ các ký tự, số và dấu câu.</p>
             <div class="row m-0">
-              <div class="col-lg-8 d-lg-block d-none text-left align-self-center">
+              <div class="col-lg-12 d-lg-block d-none text-left align-self-center">
                 <div class="card rounded-0 mb-0" style="margin-bottom: 8px">
                   
                   <div class="card-content">
@@ -34,12 +34,18 @@
                             placeholder="Mật khẩu mới"
                             v-model="password"
                           />
+                          <div style="text-align: right;">
+                            <i class="showpass">
+                               <i @click="showPassword()" :class="show ?'fas fa-eye-slash ':'fad fa-eye'"></i>
+                            </i>
+                          </div>
                           <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
                             </li>
                         </ul>
                         </ValidationProvider>
+      
                         </div>
                       </form>
                     </div>
@@ -47,17 +53,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-3 d-lg-block d-none text-left align-self-center">
-                <div class="card rounded-0 mb-0">
-                  <div class="float-md-left d-block mb-1">
-                <a style="background-color: rgb(228, 228, 228); border-color: #ccd0d5; color: #4b4f56;"
-                    @click="showPassword()"
-                    class="btn btn-outline-primary btn-block px-75"
-                    ><i style="padding-right: 5px" :class="show ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{(show ? 'Ẩn' : 'Hiển thị')}}</a>
-                </div>
-                </div>
-              </div>
-              
             </div> 
             <hr>
             <div class="row">
@@ -158,6 +153,14 @@ export default {
 };
 </script>
 <style>
+.showpass {
+  width: 30px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: #000;
+  z-index: 9;
+}
 .app-content.content {
   margin: -80px -333px 47px 250px;
 }

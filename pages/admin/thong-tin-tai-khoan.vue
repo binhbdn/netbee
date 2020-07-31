@@ -584,13 +584,19 @@
                                                                             Mật khẩu cũ</label>
                                                                         </div>
                                                                         <div>
-                                                                            <input type="password" class="form-control" id="oldPassword" name="oldPassword" v-model="changePasswordForm.oldPassword" placeholder="Nhập vào mật khẩu cũ">
+                                                                            <input  class="form-control" id="oldPassword" name="oldPassword"  :type="show ? 'text' : 'password'" v-model="changePasswordForm.oldPassword" placeholder="Nhập vào mật khẩu cũ">
+                                                                             <div style="text-align: right;">
+                                                                                <i class="showpass1">
+                                                                                <i @click="showPassword()" :class="show ?'fas fa-eye-slash ':'fad fa-eye'"></i>
+                                                                                </i>
+                                                                            </div>
                                                                             <ul style="color:red" class="overline text-left">
                                                                                 <li v-for="(error, index) in errors" :key="index">
                                                                                 <span>{{ error }}</span>
                                                                                 </li>
                                                                             </ul>
                                                                         </div>
+                                                                        
                                                                     </div>
                                                                 </ValidationProvider>
                                                             </div>
@@ -600,11 +606,16 @@
                                                                 <ValidationProvider name="newPassword" ref="newPassword" rules="required|customPassword|min:8" v-slot="{ errors }">
                                                                         <div class="controls">
                                                                             <div class="for-label pb-50">
-                                                                                <label for="account-new-password">
+                                                                                <label for="account-new-password" >
                                                                                 Mật khẩu mới</label>
                                                                             </div>
                                                                             <div>
-                                                                                <input type="password" class="form-control" id="account-new-password" name="newPassword" v-model="changePasswordForm.newPassword" placeholder="Nhập vào mật khẩu mới" >
+                                                                                <input  class="form-control" id="account-new-password" :type="show1 ? 'text' : 'password'" name="newPassword" v-model="changePasswordForm.newPassword" placeholder="Nhập vào mật khẩu mới" >
+                                                                                    <div style="text-align: right;">
+                                                                                        <i class="showpass1">
+                                                                                        <i @click="showPassword1()" :class="show1 ?'fas fa-eye-slash ':'fad fa-eye'"></i>
+                                                                                        </i>
+                                                                                    </div>
                                                                                     <ul style="color:red" class="overline text-left">
                                                                                         <li v-for="(error, index) in errors" :key="index">
                                                                                         <span>{{ error }}</span>
@@ -620,10 +631,15 @@
                                                                 <ValidationProvider name="retypePassword" ref="retypePassword" rules="required|retypePassword:@newPassword" v-slot="{ errors }">
                                                                         <div class="controls">
                                                                             <div class="for-label pb-50">
-                                                                                <label for="account-retype-new-password">Nhập lại mật khẩu</label>
+                                                                                <label for="account-retype-new-password" >Nhập lại mật khẩu</label>
                                                                             </div>
                                                                             <div>
-                                                                                <input type="password" class="form-control" name="retypePassword"  id="account-retype-new-password" v-model="changePasswordForm.retypePassword" placeholder="Nhập lại mật khẩu mới">
+                                                                                <input  class="form-control" name="retypePassword" :type="show2 ? 'text' : 'password'" id="account-retype-new-password" v-model="changePasswordForm.retypePassword" placeholder="Nhập lại mật khẩu mới">
+                                                                                <div style="text-align: right;">
+                                                                                    <i class="showpass1">
+                                                                                    <i @click="showPassword2()" :class="show2 ?'fas fa-eye-slash ':'fad fa-eye'"></i>
+                                                                                    </i>
+                                                                                </div>
                                                                                 <ul style="color:red" class="overline text-left">
                                                                                     <li v-for="(error, index) in errors" :key="index">
                                                                                     <span>{{ error }}</span>
@@ -769,7 +785,7 @@ extend("customPassword", {
   message: field =>"Mật khẩu" + errorMessage,
   validate: value => {
     var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+    var mustContainTheseChars = /^.{8,}$/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
     if (containsRequiredChars && !containsForbiddenChars) {
@@ -780,7 +796,7 @@ extend("customPassword", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       } else {
         errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+          " phải chứa ít nhất 8 ký tự.";
       }
       return false;
     }
@@ -813,6 +829,10 @@ export default {
     },
     data() {
             return {
+                password: '',
+                show: false,
+                show1: false,
+                show2: false,
                 changePasswordForm: {
                     oldPassword: "",
                     newPassword: "",
@@ -865,6 +885,15 @@ export default {
     methods: {
         nameWithLang ({ id, name }) {
             return `${name}`
+        },
+        showPassword() {
+        this.show = !this.show
+        },
+        showPassword1() {
+            this.show1 = !this.show1
+        },
+        showPassword2() {
+            this.show2 = !this.show2
         },
         //update avatar
         onInputChange(e){
@@ -1499,6 +1528,14 @@ export default {
     /* .for-label{
         padding: 10px 14px;
     } */
+}
+.showpass1 {
+  width: 30px !important;
+  position: absolute !important;
+  top: 50px !important;
+  right: 25px !important;
+  color: #000 !important;
+  z-index: 9 !important;
 }
 </style>>
 
