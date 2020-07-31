@@ -7,7 +7,7 @@
       <a class="navbar-brandd" href="/">
         <div>
           <img
-            v-lazy="`/assets/img/logo-full-2.png`"
+            v-lazy="`/assets/img/logo-full-2.jpg`"
             alt="logo netbee"
             height="50"
             width="130"
