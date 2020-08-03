@@ -213,6 +213,9 @@ export default {
     top: 10px;
     right: 100px;
 }
+.form-control {
+    font-size: 14px !important;
+}
 .list-inline{
     display: block;
 }
