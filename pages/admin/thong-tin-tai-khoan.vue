@@ -486,15 +486,15 @@
                                                             </div> 
                                                         </span>
                                                         <table class="table table-hover mb-0 zero-configuration">
-                                                            <thead class="custom-header">
+                                                            <thead class="custom-header" style="text-align: center;">
                                                                 <tr>
                                                                     <th class="sx-none">STT</th>
-                                                                    <th>Email</th>
+                                                                    <th class="sm-email">Email</th>
                                                                     <th>Vai trò</th>
                                                                     <th>Thao tác</th>                               
                                                                 </tr>
                                                             </thead>
-                                                            <tbody >                                               
+                                                            <tbody style="text-align: center;">                                               
                                                                 <tr v-for="(item, index) in emailCompany">
                                                                     <td class="p-50 sx-none">{{index + 1}}</td>
                                                                     <td class="p-50 sm-email">{{item.email_company}}</td>
@@ -502,10 +502,11 @@
                                                                         <div class="action-btns">
                                                                             <div class="btn-dropdown ">
                                                                                 <div class="btn-group dropdown actions-dropodown">
-                                                                                    <button type="button" class="btn btn-white px-1 py-75 dropdown-toggle waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                    <button type="button" class="btn btn-white px-1 py-75 waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                                         <span v-if="item.status == 0" class="text-none">Chưa phân quyền</span>
                                                                                         <span v-if="item.status == 1" class="text-none"><i class="fa fa-check"></i> QTV</span>
                                                                                         <span v-if="item.status == 2" class="text-none"><i class="fa fa-check"></i> BTV</span>
+                                                                                        <i class="fa fa-angle-down" style="margin-right:0px !important"></i>
                                                                                     </button>
                                                                                     <div class="dropdown-menu" style="left: -25px!important;">
                                                                                         <a v-if="item.status != 1" @click="updateStatus1(item.id)" class="dropdown-item"><i class="far fa-check-circle"></i> QTV</a>
@@ -516,8 +517,8 @@
                                                                         </div>
                                                                     </td>
                                                                     <td class="p-50">
-                                                                        <button title="Xóa" class="btn btn-danger btn-sm p-1" @click="deletedEmailCompany(item.id)"><i class="fa fa-trash"></i></button>
-                                                                        <button title="Chỉnh sửa" id="edit" class="btn bg-netbee btn-sm p-1" @click="suaEmailCompanyModal(item.id)"><i class="fa fa-edit text-white"></i></button>
+                                                                        <button class="btn btn-sm p-1 btn-hover-del" @click="deletedEmailCompany(item.id)" data-toggle="tooltip" data-placement="top" title="Xóa" style="border: 1px solid;background: #e4e4e4;"><i class="fa fa-trash btn-hover-del"></i></button>
+                                                                        <button id="edit" class="btn btn-sm p-1 btn-hover-edit" @click="suaEmailCompanyModal(item.id)" data-toggle="tooltip" data-placement="top" title="Chỉnh sửa" style="border: 1px solid;background: #e4e4e4;"><i class="fa fa-edit btn-hover-edit"></i></button>
                                                                         <div id="refuse_modal" class="modal fade" role="dialog">
                                                                             <div class="modal-dialog" role="document">
                                                                                 <div class="modal-content">
@@ -1378,7 +1379,7 @@ export default {
     position: relative;
     border-bottom: 1px solid #eaeaea;
     padding-left: 0px !important;
-    margin-left: 13px;
+    /* margin-left: 13px; */
 }
 .card-header-title:before {
     position: absolute;
@@ -1534,10 +1535,12 @@ export default {
         padding: 10px 14px;
     } */
     .sx-none{
-        display: none;
+        max-width: 43px;
+        padding-left: 0px !important;
     }
     .sm-email{
-        max-width: 120px;
+        max-width: 70px;
+        padding-left: 0px !important;
     }
 }
 .showpass1 {
@@ -1547,6 +1550,18 @@ export default {
   right: 25px !important;
   color: #000 !important;
   z-index: 9 !important;
+}
+.fa-hover-i{
+    color:#000 !important;
+}
+.btn-hover-del:hover{
+    background-color: red !important;
+    color: #fff !important;
+}
+.btn-hover-edit:hover{
+    background-color: #ffb701 !important;
+    color: #fff !important;
+    border-color: #ffb701 !important;
 }
 </style>>
 

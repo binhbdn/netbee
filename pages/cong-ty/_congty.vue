@@ -76,7 +76,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p v-html="detailCompany.nb_company.company_about"></p>
+                                    <p style="text-align: justify;" v-html="detailCompany.nb_company.company_about"></p>
                                 </div>
                             </div>
                         </div>

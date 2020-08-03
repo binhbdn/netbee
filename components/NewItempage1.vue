@@ -1,9 +1,9 @@
 <template>
     <div class="row">
         <div class="col-md-12 col-5 text-center d-flex align-items-center highlights-news">
-            <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" style="margin: auto;height: 129px;width: 153px;">
+            <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`" style="margin: auto;">
                 <!-- <div class="text-center" :style="type == 1 ? 'height: 150px' : 'height: 110px'"> -->
-                    <img style="object-fit: fill;max-width: 100%;max-height: 100%;" :alt="`${thuml}`" v-lazy="`/uploads/news/${thuml}`" v-if="type == 1" />
+                    <img style="object-fit: fill;max-width: 100%;" :alt="`${thuml}`" v-lazy="`/uploads/news/${thuml}`" v-if="type == 1" />
                     <img alt="img" v-lazy="`/uploads/news/${thuml}`" style="object-fit: fill;max-width: 100%;max-height: 100%;" v-if="type != 1" />
                 <!-- </div> -->
             </a>
