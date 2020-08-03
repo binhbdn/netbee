@@ -41,7 +41,7 @@
                             </span>
                         </p>
                         <div v-if="$route.name != 'admin-tin-tuyen-sinh-id-detail'">
-                            <a v-if="$route.name == 'tin-tuyen-sinh' || 'tin-tuyen-sinh-id-detail'" class="delivery-date mb-0 badge border-netbee badge-sm" :class="job.highlight_job ? 'bg-netbee' : ''" style="width: 100px" :href="job.type == 1 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
+                            <a v-if="$route.name == 'tin-tuyen-sinh' || 'tin-tuyen-sinh-id-detail'" class="delivery-date mb-0 badge border-netbee badge-sm" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng" :class="job.highlight_job ? 'bg-netbee' : ''" style="width: 100px" :href="job.type == 1 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/${type}tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
                                 {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                             </a>
                         </div>
@@ -72,7 +72,8 @@ export default {
     max-width: 95% !important;
     font-size: 13px;
     overflow: hidden;
-    white-space: unset;
+    white-space: nowrap;
+    text-transform: uppercase;
 }
 p {
     font-size: 13px;
@@ -134,7 +135,8 @@ p {
 }
 .remove-border-right {
     padding: 10px 10px 10px 0px;
-    max-width: 100%;
+    max-width: 89%;
+
 }
 .cate-bottom-avt {
     display: none;

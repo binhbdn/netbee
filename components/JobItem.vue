@@ -5,7 +5,7 @@
                 <a :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`">
                     <img v-lazy="job.user.avatar != null && job.user.avatar.startsWith('https') ? job.user.avatar : `/uploads/users/avatars/${job.user.avatar}`" height="100%" :alt="`${job.user.avatar}`">
                 </a>
-                <a class="delivery-date mb-0 badge border-netbee badge-sm" :class="job.highlight_job ? 'bg-netbee' : ''" style="width: 100px" :href="job.type == 1 ? `/tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
+                <a class="delivery-date mb-0 badge border-netbee badge-sm" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng" :class="job.highlight_job ? 'bg-netbee' : ''" style="width: 100px" :href="job.type == 1 ? `/tin-tuyen-sinh/tim-kiem?keyword=&type=1` : job.type == 2 ? `/tin-tuyen-sinh/tim-kiem?keyword=&type=2` : `/tin-tuyen-sinh/tim-kiem?keyword=&type=3`">
                     {{ job.type == 1 ? 'Xuất khẩu lao động' : job.type == 2 ? 'Du học' : 'Tu nghiệp sinh' }}
                 </a>
                 <!-- <p class="delivery-date mb-0 cate-bottom-avt" data-toggle="tooltip" data-placement="top" title="Loại hình tuyển dụng">
@@ -60,6 +60,7 @@ export default {
 .item-vip-a{
     max-width: 350px;
     font-size: 13px;
+    text-transform: uppercase;
 }
 p {
     font-size: 13px;
