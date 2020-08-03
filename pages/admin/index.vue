@@ -14,7 +14,7 @@
                                         <div class="card-header d-flex flex-column align-items-start pb-0">
                                             <div class="avatar bg-rgba-primary p-50 m-0">
                                                 <div class="avatar-content">
-                                                    <i class="feather icon-users text-primary font-medium-5"></i>
+                                                    <i class="fa fa-user text-primary font-medium-5"></i>
                                                 </div>
                                             </div>
                                             <h2 class="text-bold-700 mt-1">{{CountCompany.length}}</h2>
@@ -28,7 +28,7 @@
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-success p-50 m-0">
                                             <div class="avatar-content">
-                                                <i class="feather icon-credit-card text-success font-medium-5"></i>
+                                                <i class="fa fa-credit-card text-success font-medium-5"></i>
                                             </div>
                                         </div>
                                         <h2 class="text-bold-700 mt-1">{{sumview}}</h2>
@@ -42,7 +42,7 @@
                                         <div class="card-header d-flex flex-column align-items-start pb-0">
                                             <div class="avatar bg-rgba-danger p-50 m-0">
                                                 <div class="avatar-content">
-                                                    <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
+                                                    <i class="fa fa-shopping-cart text-danger font-medium-5"></i>
                                                 </div>
                                             </div>
                                             <h2 class="text-bold-700 mt-1">{{sumapp}}</h2>
@@ -57,7 +57,7 @@
                                         <div class="card-header d-flex flex-column align-items-start pb-0">
                                             <div class="avatar bg-rgba-warning p-50 m-0">
                                                 <div class="avatar-content">
-                                                    <i class="feather icon-package text-warning font-medium-5"></i>
+                                                    <i class="fa fa-internet-explorer text-warning font-medium-5"></i>
                                                 </div>
                                             </div>
                                             <h2 class="text-bold-700 mt-1">{{CountCall}}</h2>

@@ -238,7 +238,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content title="Tiền thưởng">
+                                        <tab-content title="Tiền thưởng" :before-change="checkValidateStep4">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
                                                     <!-- <div class="col-12">
@@ -469,6 +469,7 @@ export default {
         return {
             nations: [],
             data: {
+                company: {id: null, name: ''},
                 title: '',
                 school_name: '',
                 company_name: '',
@@ -596,6 +597,18 @@ export default {
                 }, 100)
             })
         },
+        async checkValidateStep4(){
+            let isValid = await this.$refs.step4.validate();
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if(isValid){
+                        resolve(true)
+                    } else {
+                        reject()
+                    }
+                }, 100)
+            })
+        },
 
         async onComplete() {
             console.log(this.data.salary_status.id)
@@ -690,6 +703,21 @@ export default {
 input::placeholder ,  textarea::placeholder{
   color: #d0d2d6 !important;
 }
+
+input[type=radio]:checked{
+    background: #ffb701;
+    border-radius: 15px;
+    border: 4px solid #ffb701;
+}
+
+.wizard-btn {
+    font-weight: 500;
+}
+
+button.wizard-btn:hover {
+    color: #fff !important;
+}
+
 #goi1 .border-netbee:hover ,#goi2 .border-netbee:hover,#goi3 .border-netbee:hover{
     box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.1) !important;;
     background-color: #fff !important;
