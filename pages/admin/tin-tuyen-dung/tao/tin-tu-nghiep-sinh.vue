@@ -328,7 +328,7 @@
                                             </ValidationObserver>
                                         </tab-content>
                                         
-                                        <tab-content title="Tiền thưởng">
+                                        <tab-content title="Tiền thưởng" :before-change="checkValidateStep4">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
                                                     <!-- <div class="col-12">
@@ -563,6 +563,7 @@ export default {
         return {
             options: [],
             data: {
+                company: {id: null, name: ''},
                 title: '',
                 address: '',
                 nation: {id: null, name: ''},
@@ -696,6 +697,18 @@ export default {
                 }, 100)
             })
         },
+         async checkValidateStep4(){
+            let isValid = await this.$refs.step4.validate();
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if(isValid){
+                        resolve(true)
+                    } else {
+                        reject()
+                    }
+                }, 100)
+            })
+        },
 
         async onComplete() {
             let isValid = await this.$refs.step5.validate();
@@ -818,6 +831,10 @@ export default {
     background: #ffb701;
 }
 
+button.wizard-btn:hover {
+    color: #fff !important;
+}
+
 .vdatetime-calendar__month__day--selected > span > span, .vdatetime-calendar__month__day--selected:hover > span > span{
     background: #ffb701;
 }
@@ -842,6 +859,16 @@ export default {
 
 .vs-checkbox-con .vs-checkbox{
     border-width: 1px;
+}
+
+input[type=radio]:checked{
+    background: #ffb701;
+    border-radius: 15px;
+    border: 4px solid #ffb701;
+}
+
+.wizard-btn {
+    font-weight: 500;
 }
 
 .option:hover {

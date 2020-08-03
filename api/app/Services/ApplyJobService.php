@@ -235,12 +235,15 @@ class ApplyJobService extends BaseService {
                             ->with('nbPaper')
                             ->with(['job' => function ($q) {
                                 $q->select('currency', 'title','id');
-                                $q->where([
+                            }])
+                            ->whereHas('job', function ($query) {
+                                $query->where([
                                     'deleted' => self::UN_DELETE,
                                     'status' => self::ACTIVE,
                                     'isPublic' =>self::ACTIVE
                                 ]);
-                            }])
+                                
+                            })
                             ->orderBy('id', 'DESC');
     }
 

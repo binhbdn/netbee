@@ -370,7 +370,7 @@
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
-                                        <tab-content title="Tiền thưởng">
+                                        <tab-content title="Tiền thưởng" :before-change="checkValidateStep4">
                                             <ValidationObserver ref="step4" v-slot="{ valid4 }">
                                                 <div class="row">
                                                     <!-- <div class="col-12">
@@ -847,6 +847,18 @@ export default {
                 }, 100)
             })
         },
+        async checkValidateStep4(){
+            let isValid = await this.$refs.step4.validate();
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if(isValid){
+                        resolve(true)
+                    } else {
+                        reject()
+                    }
+                }, 100)
+            })
+        },
 
         async onComplete() {
             console.log(this.data.startTimeLabor)
@@ -953,6 +965,12 @@ input[type=radio]:checked{
     width: 20px;
     height: 20px;
     background-color: #000;
+}
+button.wizard-btn:hover {
+    color: #fff !important;
+}
+.wizard-btn {
+    font-weight: 500 !important;
 }
 .p-main{
     text-align: left;
