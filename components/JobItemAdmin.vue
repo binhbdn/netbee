@@ -28,7 +28,7 @@
                 <a class="item-vip-a" :href="`/admin/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="left" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                 <div class="item-quantity row" id="company" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 3">
                     <div class="col-lg-5 col-sm-5">
-                        <a :href="`/cong-ty/${job.user ? job.user.name : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company.username }}</span></a>
+                        <a :href="`/cong-ty/${job.user ? job.nb_company.username : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company.username }}</span></a>
                     </div>
                     <div class="col-lg-4 col-sm-3 mb-block">
                         <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="Số lượng tuyển" ><i class="fad fa-user-friends"></i> {{job.quantity}}</p>
