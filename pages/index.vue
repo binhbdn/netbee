@@ -174,6 +174,7 @@
     </section>
     <div class="container">
       <!-- tin mới -->
+          <adsbygoogle />
       <section>
         <div class="row">
           <div class="col-lg-8 col-12 p-r-0" id="fullwidth">
