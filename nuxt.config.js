@@ -189,6 +189,7 @@ module.exports = {
         { src: '~/plugins/hchs-vue-charts', ssr: false },
         { src: '~/plugins/i18n.js', ssr: true },
         { src: '~/plugins/vue-particles.js', ssr: false },
+        { src: '~/plugins/vue-avatar-cropper.js', ssr: false },
     ],
     vue: {
         config: {

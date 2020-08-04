@@ -36,13 +36,13 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12 make-it-slow" v-for="(item, index) in tintucs" :key="index">
-                                            <NewItempage2 :id="item.id" :title="item.title" :created_at="item.updated_at" :short_content="item.short_content" :thuml="item.thuml" :type="2"></NewItempage2>
+                                            <NewItempage2 :id="item.id" :title="item.title" :thuml="item.thuml" :type="2"></NewItempage2>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        <!-- <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title"><i class="fad fa-bullhorn"></i> Gợi ý việc làm  </h4>
                                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
@@ -57,7 +57,7 @@
                                     <JobsList1ColNotCate :DataList="arrayJobNew"></JobsList1ColNotCate>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="card introduce">
                             <div class="card-header">
                             </div>
@@ -93,7 +93,7 @@
 <script>
 import NewListPage1 from '~/components/News/NewListPage1';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
-import NewItempage2 from '~/components/NewItempage2';
+import NewItempage2 from '~/components/NewItempage2nodate';
 import NewsList from '~/components/News/NewsList'
 
 export default {

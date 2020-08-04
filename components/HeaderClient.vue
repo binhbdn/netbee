@@ -398,6 +398,13 @@ export default {
   .dropdown .dropdown-menu::before {
     left: 12.2rem;
   }
+  .dropdown .dropdown-menu .dropdown-item{
+    padding: 0.714rem 0 1.428rem 0;
+    overflow: auto;
+    white-space: pre-wrap;
+  }
 }
-
+.ftco-navbar-light {
+  z-index: 10 !important;
+}
 </style>

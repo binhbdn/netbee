@@ -1,6 +1,6 @@
 <template>
 <div class="row ecommerce-application">
-    <div class="col-lg-12 col-12 list-view" v-for="(item, index) in DataList" :key="index">
+    <div class="col-lg-12 col-12" v-for="(item, index) in DataList" :key="index">
         <CompanyItem :company="item" />
     </div>
 </div>
