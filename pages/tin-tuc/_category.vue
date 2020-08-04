@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="ftco-section bg-white" style="background-color: #f6f6f6!important; padding-top: 15px;">
+        <section class="ftco-section bg-white" style="background-color: #f6f6f6!important; padding-top: 0;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
