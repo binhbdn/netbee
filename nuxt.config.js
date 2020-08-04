@@ -74,6 +74,7 @@ module.exports = {
             { hid: 'stripe', src: '/app-assets/js/core/app-menu.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/core/app.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/scripts/components.js', defer: true },
+            { hid: 'stripe', src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', defer: true },
             // { src: '/app-assets/vendors/js/forms/select/select2.full.min.js', },
             // { src: '/app-assets/js/scripts/forms/select/form-select2.js', },
 
@@ -94,6 +95,7 @@ module.exports = {
         '@nuxtjs/robots',
         //['@nuxtjs/pwa', { meta: false, icon: false, manifest: false }],
         //['@nuxtjs/html-minifier', { log: 'once', logHtml: true }]
+        ['@nuxtjs/google-adsense', {id: 'ca-pub-6641991576360133'}],
     ],
     robots: {   
         UserAgent: '*',
