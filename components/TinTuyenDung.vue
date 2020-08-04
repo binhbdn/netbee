@@ -650,7 +650,6 @@ export default {
             }
         },
         async deleteMultipleTinTuyenDung(){
-            console.log(this.selected)
             if(JSON.stringify(this.selected).length == 2){
                 this.$swal({
                     title: 'Lỗi',
