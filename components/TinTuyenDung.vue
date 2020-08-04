@@ -560,8 +560,9 @@ export default {
                     }).then(async (result) => {
                     if(result.value) {
                         let response = await this.$axios.post('tintuyendung/deleteTinTuyenDung',{id: id});
+                        // console.log(response)
                         if(response.data.status == 200) {
-                            this.tinTuyenDung = this.tinTuyenDung.filter((e)=>e.id !== id )
+                            this.tinTuyenDung = this.tinTuyenDung.filter((e)=>e.id != id )
                             this.$swal('Thành công', response.data.message, 'success');
                         }
                         else {
@@ -649,6 +650,7 @@ export default {
             }
         },
         async deleteMultipleTinTuyenDung(){
+            console.log(this.selected)
             if(JSON.stringify(this.selected).length == 2){
                 this.$swal({
                     title: 'Lỗi',
