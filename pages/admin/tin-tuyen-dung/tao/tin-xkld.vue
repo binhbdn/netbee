@@ -711,7 +711,7 @@ export default {
             let isValid = await this.$refs.step5.validate();
             var form = new FormData();
             if(isValid){
-                if(this.data.company != null)
+                if(this.data.company != null && this.$auth.user.role == 4)
                 {
                     form.append('id_created' , this.data.company.id)
                 }
