@@ -33,11 +33,20 @@
                                                             </center>
                                                         </div>
                                                         <div class="col-md-8 pl-md-1 p-50">
-                                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <ValidationProvider 
+                                                           name="Họ và tên"
+                                                            ref="name"
+                                                            rules="required|min:5"
+                                                            v-slot="{ errors }"
+                                                            >
                                                                 <fieldset class="form-group">
                                                                     <label class="title-label" for="basicInput">Họ và tên <span style="color: red; font-size: 20px;">*</span></label>
-                                                                    <input type="text" class="form-control" v-model="info_frofile_user.fullname_profile">
-                                                                    <span style="color: red">{{ errors[0] }}</span>
+                                                                    <input type="text" class="form-control" name="name" v-model="info_frofile_user.fullname_profile">
+                                                                    <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
+                                                                        <li v-for="(error, index) in errors" :key="index">
+                                                                        <span>{{ error }}</span>
+                                                                        </li>
+                                                                    </ul>
                                                                 </fieldset> 
                                                             </ValidationProvider>
                                                             <div class="row">
@@ -66,23 +75,60 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <label class="title-label" for="basicInput">Số điện thoại</label>
-                                                    <input v-model="info_frofile_user.phone_profile" class="form-control"/> 
+                                                     <ValidationProvider
+                                                        rules="required|integer|length:10"
+                                                        ref="phone"
+                                                        name="Số điện thoại"
+                                                        v-slot="{ errors }"
+                                                    >
+                                                    <fieldset class="form-group">
+                                                        <label class="title-label" for="basicInput">Số điện thoại</label>
+                                                        <input type="number" v-model="info_frofile_user.phone_profile" name="phone" class="form-control"> 
+                                                        <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
+                                                            <li v-for="(error, index) in errors" :key="index">
+                                                            <span>{{ error }}</span>
+                                                            </li>
+                                                        </ul>
+                                                    </fieldset>
+                                                     </ValidationProvider>
                                                 </div>
+                                                 
                                                 <div class="col-md-6">
+                                                    <ValidationProvider
+                                                   name="Email"
+                                                    ref="email"
+                                                    rules="required|email"
+                                                    v-slot="{ errors }"
+                                                    >
                                                     <fieldset class="form-group">
                                                         <label class="title-label" for="basicInput">Email</label>
-                                                        <input type="text" class="form-control" v-model="info_frofile_user.email_profile">
+                                                        <input type="email" name="email" class="form-control" v-model="info_frofile_user.email_profile">
+                                                       <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
+                                                            <li v-for="(error, index) in errors" :key="index">
+                                                            <span>{{ error }}</span>
+                                                            </li>
+                                                        </ul>
                                                     </fieldset> 
+                                                    </ValidationProvider>
                                                 </div>
+                                                
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                    <ValidationProvider 
+                                                    rules="required|min:5"
+                                                    name="Địa chỉ"
+                                                    ref="add"
+                                                    v-slot="{ errors }"
+                                                    >
                                                         <fieldset class="form-group">
                                                             <label class="title-label" for="basicInput">Địa chỉ <span style="color: red; font-size: 20px;">*</span></label>
-                                                            <textarea v-model="info_frofile_user.address_profile" class="form-control" style="overflow:hidden;" rows="2"></textarea>
-                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                            <textarea v-model="info_frofile_user.address_profile" name="add" class="form-control" style="overflow:hidden;" rows="2"></textarea>
+                                                             <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
+                                                            <li v-for="(error, index) in errors" :key="index">
+                                                            <span>{{ error }}</span>
+                                                            </li>
+                                                        </ul>
                                                         </fieldset> 
                                                     </ValidationProvider> 
                                                 </div>
@@ -135,7 +181,27 @@
     import Multiselect from 'vue-multiselect'
     import 'vue-multiselect/dist/vue-multiselect.min.css'
     import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
-    import {ValidationProvider, extend} from "vee-validate/dist/vee-validate.full";                 
+    import {ValidationProvider, extend} from "vee-validate/dist/vee-validate.full";   
+    // can customize default error messages
+    extend("required", {
+    message: (field, values) => "Dữ liệu nhập vào không được để trống.",
+    });
+    extend("email", {
+    message: (field, values) => "Email không đúng định dạng"
+    });
+    extend("integer", {
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ số"
+    });
+    extend("min", {
+    message: (field, values) => "Dữ liệu nhập vào ít nhất 5 ký tự"
+    });
+    extend("alpha", {
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ."
+    });
+     extend("length", {
+    message: (field, values) => "Số điện thoại phải có 10 chữ số."
+    });
+
     export default {        
         name: 'Teamplate1',
         layout: 'admin',

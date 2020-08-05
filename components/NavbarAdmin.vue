@@ -44,12 +44,13 @@
                 <li :class="[{'active' : $route.name == 'quan-ly-ung-tuyen'}, 'nav-item']"><a @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fad fa-id-card-alt"></i><span class="menu-title" data-i18n="User"> Hồ sơ đã nộp</span></a>
                 </li>
 
-                <li :class="[{'active' : ($route.name == 'admin-quan-ly-viec-lam') || ($route.name == 'admin-quan-ly-viec-lam-viec-lam-da-luu')}, 'nav-item']"><a href="#" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fas fa-briefcase"></i><span class="menu-title" data-i18n="Ecommerce">Quản lý việc làm</span></a>
+                <!-- <li :class="[{'active' : ($route.name == 'admin-quan-ly-viec-lam') || ($route.name == 'admin-quan-ly-viec-lam-viec-lam-da-luu')}, 'nav-item']"><a href="#" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fas fa-briefcase"></i><span class="menu-title" data-i18n="Ecommerce">Quản lý việc làm</span></a>
                     <ul class="menu-content">
                         <li><a href="/admin/quan-ly-viec-lam/viec-lam-da-luu"><i class="fad fa-save"></i><span class="menu-item" data-i18n="Details">Việc làm đã lưu</span></a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
+                <li :class="[{'active' : $route.name == 'admin-viec-lam-da-luu'}, 'nav-item']"><a href="/admin/quan-ly-viec-lam/viec-lam-da-luu" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fad fa-save"></i><span class="menu-title" data-i18n="Details">Việc làm đã lưu</span></a>
                 <li :class="[{'active' : $route.name == 'friends'}, 'nav-item']"><a @click="$router.push('/admin/friends')" v-if="$auth.user.role == 3"><i class="fa fa-users"></i><span class="menu-title" data-i18n="User">Giới thiệu bạn bè</span></a>                
                 </li>
                 <li :class="[{'active' : $route.name == 'admin-thong-tin-tai-khoan'}, 'nav-item']"><a @click="$router.push('/admin/thong-tin-tai-khoan')"><i class="fa fa-user" ></i><span class="menu-title" data-i18n="User">Thông tin tài khoản</span></a>
