@@ -12,10 +12,10 @@
 								<h1 class="in-hoa" style="margin-top: 5px;"><i class="fab fa-get-pocket"></i> Cơ chế giải quyết tranh chấp</h1>
 								<div class="col-md-12"><p class="line1a"></p></div>
 							</div>
+							<br>
 						</div>
 					</div>
-					<br>
-		            <p style="text-indent: 30px;">
+		            <p class="top-content" style="text-indent: 30px;">
 		                Khi phát sinh tranh chấp, Netbee.vn đề cao giải pháp thương lượng, hòa giải giữa các bên nhằm duy trì sự tin cậy của thành viên vào chất lượng dịch vụ của Công ty và thực hiện theo các bước sau:</p>
 	                <p>
 	                	Bước 1: Thành viên phản ánh về dịch vụ Website cung cấp, các thông tin đăng tải về việc làm không chính xác qua email.</p>
@@ -110,6 +110,14 @@
 		}
 		.boder-muc {
 		    padding: 5px 15px 5px 5px;
+		}
+	}
+	@media(max-width: 525px){
+		.in-hoa{
+			font-size: 24px;
+		}
+		.top-content{
+			margin-top: 30px;
 		}
 	}
 </style>
