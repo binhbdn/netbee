@@ -211,7 +211,7 @@
                             response.data.message,
                             'success'
                             ).then( function (){
-                             window.location.reload();
+                             window.location.href = "/admin/ho-so";
                             } )
                     }else{
                         this.$swal(
