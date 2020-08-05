@@ -6,6 +6,7 @@
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-header">
+                                <h4 v-if="$route.path == '/tin-tuc/tin-moi'"><i class="fad fa-newspaper"></i> TIN MỚI</h4>
                                 <h4 v-if="$route.path == '/tin-tuc/xuat-khau-lao-dong'"><i class="fad fa-newspaper"></i> Xuất khẩu lao động</h4>
                                 <h4 v-if="$route.path == '/tin-tuc/du-hoc'"><i class="fad fa-newspaper"></i> Du học</h4>
                                 <h4 v-if="$route.path == '/tin-tuc/cam-nang'"><i class="fad fa-newspaper"></i> Cẩm nang</h4>
@@ -32,7 +33,7 @@
                     <div class="col-lg-4 p-lg-0">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Danh mục</h4>
+                                <h4>DANH MỤC</h4>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">

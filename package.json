@@ -39,6 +39,7 @@
         "sweetalert": "^2.1.2",
         "v-viewer": "^1.5.1",
         "vee-validate": "^3.2.5",
+        "vue-avatar-cropper": "^1.0.6",
         "vue-datetime": "^1.0.0-beta.11",
         "vue-fb-customer-chat": "^0.2.0",
         "vue-form-wizard": "^0.8.4",

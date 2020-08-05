@@ -114,4 +114,7 @@
 .fc-unthemed td.fc-today {
     background: beige !important;
 }
+.fc-left{
+    text-transform: uppercase !important;
+}
 </style>

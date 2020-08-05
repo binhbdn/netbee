@@ -52,7 +52,7 @@
                     <div class="col-lg-4 pl-lg-1 p-0">
                         <div class="card">
                             <div class="card-header">
-                                <h2 class="card-title">Danh mục</h2>
+                                <h2 class="card-title" style="text-transform:uppercase;">Danh mục</h2>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        <!-- <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title"><i class="fad fa-bullhorn"></i> Gợi ý việc làm  </h4>
                                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
@@ -83,6 +83,15 @@
                             <div class="card-content collapse show">
                                 <div class="card-body">
                                     <JobsList1ColNotCate :DataList="arrayJobNew" />
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="card introduce">
+                            <div class="card-header">
+                            </div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                   <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnetbee.vn%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1459241224260897" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                                 </div>
                             </div>
                         </div>
