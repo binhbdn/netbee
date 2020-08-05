@@ -430,7 +430,7 @@
           this.$axios.get(`listAdvertisement`)
           .then(response => {                                                          
               this.listAdver = response.data.data
-              console.log(this.listAdver)
+              // console.log(this.listAdver)
           })
           .catch(error => {
               console.log(error.response)

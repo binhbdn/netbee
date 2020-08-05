@@ -108,36 +108,46 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
+                                                            <div class="container-fluid">
+                                                                <div class="row">
+                                                                    <div class="col-6" style="padding-left: 0px;">
+                                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                        <div class="form-group">
+                                                                            <label for="firstName3">Số lượng tuyển</label>
+                                                                            <input type="number" class="form-control" v-model="data.quantity">
+                                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                                        </div>
+                                                                    </ValidationProvider>
+                                                                </div>
+                                                                <div class="col-6" style="padding-right: 0px;">
+                                                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                                                        <div class="form-group">
+                                                                            <label for="firstName3">Thời gian du học (năm)</label>
+                                                                            <input type="text" class="form-control required" v-model="data.time_contract">
+                                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                                        </div>
+                                                                    </ValidationProvider>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
                                                             <label for="firstName3">Trình độ học vấn</label>
                                                             <multiselect :options="levelEx" v-model="data.academicLevel" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
                                                         </div>
                                                     </div>
                                                    
                                                     
-                                                    <div class="col-sm-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Số lượng tuyển</label>
-                                                                <input type="number" class="form-control" v-model="data.quantity">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-sm-4 pl-sm-0">  
+                                                    
+                                                    <div class="col-sm-6">  
                                                         <div class="form-group">
                                                             <label for="firstName3">Chứng minh thu nhập</label>
                                                             <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>                                     
                                                     </div>
-                                                    <div class="col-sm-4 pl-sm-0">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Thời gian du học (năm)</label>
-                                                                <input type="text" class="form-control required" v-model="data.time_contract">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
+                                                    
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Yêu cầu thêm</label>
