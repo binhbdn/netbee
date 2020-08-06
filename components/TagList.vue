@@ -4,7 +4,7 @@
       <div class="card-content collapse show">
         <div class="card-body" style="text-align: center; padding: 10px">
           	<h5 style="margin:10px 0;"><i class="fa fa-key"></i> TOP TỪ KHÓA</h5>
-          	<a href="/tin-tuyen-sinh/tim-kiem?keyword=&type=1">
+          	<a href="/tin-tuyen-sinh/tim-kiem?keyword=&type=1" style="margin:0 2px;">
 	          <span class="badge border-netbee badge-sm" style="width: 100px">
 	            Xuất khẩu lao động
 	          </span>
@@ -14,7 +14,7 @@
 	            Du học
 	          </span>
 	        </a>
-	        <a href="/tin-tuyen-sinh/tim-kiem?keyword=&type=3">
+	        <a href="/tin-tuyen-sinh/tim-kiem?keyword=&type=3" style="margin:0 2px;">
 	          <span class="badge border-netbee badge-sm" style="width: 100px">
 	            Tu nghiệp sinh
 	          </span>
