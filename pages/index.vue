@@ -196,7 +196,7 @@
             <ul class="nav nav-tabs nav-fill" style="margin: 0;" id="myTab" role="tablist">
               <li class="nav-item">
                 <a class="nav-link active" id="home-tab-fill" data-toggle="tab" href="#home-fill"
-                    role="tab" aria-controls="home-fill" aria-selected="true" ><i class="fad fa-clipboard-list"></i> {{$t('home.field')}}</a>
+                    role="tab" aria-controls="home-fill" aria-selected="true" ><i class="fa fa-empire"></i> {{$t('home.field')}}</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"

@@ -8,9 +8,9 @@
                     <!-- <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a> -->
                     <div class="heading-elements">
                         <ul class="list-inline mb-0">
-                            <li><a data-action="collapse"><i class="feather icon-chevron-down"></i></a></li>
-                            <li><a data-action=""><i class="feather icon-rotate-cw users-data-filter"></i></a></li>
-                            <li><a @click="closeSearch()"><i class="feather icon-x"></i></a></li>
+                            <li><a data-action="collapse"><i class="fa fa-chevron-down"></i></a></li>
+                            <li><a  v-on:click="restData()"><i class=" fa fa-repeat users-data-filter"></i></a></li>
+                            <li><a @click="closeSearch()" class="show-mb" style="font-size: 18px">x</a></li>
                         </ul>
                     </div>
                 </div>
@@ -20,13 +20,16 @@
                             <form>
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-lg-4">
-                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0 input_placehoder" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0 input_placehoder" v-model="cardSearch.search" id="filter-text-box" placeholder="Từ khóa...." />
                                     </div>
-                                    <div class="col-12 col-sm-6 col-lg-4 pt-sm-0 pt-2">
+                                    <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
                                             <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
+                                    <!-- <div class="col-12 col-sm-6 col-lg-4">
+                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Nhập tiêu đề..." />
+                                    </div> -->
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
                                             <multiselect @input="search()" v-model="cardSearch.searchAddress" :options="address" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn địa điểm"  style="font-size:14px"></multiselect>
@@ -149,6 +152,7 @@
 </template>
 
 <script>
+
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 
@@ -184,6 +188,9 @@ export default {
     components:{
         Multiselect,
     },
+    mounted () {
+        this.fetch()
+    },
     created(){
         this.getJob();
         this.$bus.$on('showSearch', () => {
@@ -198,6 +205,16 @@ export default {
                 })
     },
     methods:{
+        restData: function() {
+            this.cardSearch.search = ""
+            this.cardSearch.searchCategory = null
+            this.cardSearch.searchAddress = null
+            this.fetch()
+        },
+        async fetch(){
+            let getTin = await this.$axios.$get('/tintuyendung/searchTinTuyenDung')
+            this.tinTuyenDung = getTin.data
+        },
         getJob(){
             this.$axios.get("/quanlyvieclam/getSaveBySaver")
             .then(response => {
@@ -282,6 +299,36 @@ export default {
 </script>
 
 <style scoped>
+@media (max-width: 575px){
+    #filter-text-box{
+        margin-bottom: 20px;
+    }
+    .content-wrapper{
+        padding: 0 0 15px 0!important;
+    }
+}
+.list-inline{
+    display: block;
+}
+.show-mb{
+    display: none;
+}
+@media (max-width: 767px){
+    .card{
+        display: none;
+    }
+    .show-mb{
+        display: block;
+    }
+}
+.showSearch{
+    position: fixed;
+    top: 10px;
+    right: 100px;
+}
+.collapse:not(.show) {
+    display: none !important;
+}
 .fa, .fas {
     font-family: 'Font Awesome 5 Pro';
     font-weight: 900;
@@ -453,8 +500,8 @@ p {
     #date-deline {
         display: none;
     }
-    .hot img{
+    /* .hot img{
         right: 14px;
-    }
+    } */
 }
 </style>

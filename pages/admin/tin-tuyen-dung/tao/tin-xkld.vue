@@ -45,7 +45,7 @@
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Quốc gia</label>
-                                                                <multiselect :options="options" v-model="data.nation" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
+                                                                <multiselect :options="options" v-model="data.nation" :custom-label="nameWithLang" :searchable="true" :allow-empty="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
@@ -105,7 +105,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Trình độ học vấn</label>
-                                                            <multiselect :options="levelEx" v-model="data.academicLevel" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
+                                                            <multiselect :options="levelEx" v-model="data.academicLevel" :custom-label="nameWithLang" :searchable="true" :allow-empty="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></multiselect>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
@@ -138,7 +138,7 @@
                                                      <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Ngành nghề xin visa</label>
-                                                            <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa"></multiselect>                   
+                                                            <multiselect :options="optionsVisa" v-model="data.visa" :custom-label="nameWithVisa" :searchable="true" :allow-empty="false" :show-labels="false" placeholder="Chọn ngành nghê xin visa"></multiselect>                   
                                                         </div>
                                                     </div>
                                                      <div class="col-sm-6">
@@ -350,7 +350,7 @@
                                                             <div class="form-group">
                                                                 <label for="firstName3">Tiền thưởng</label>
                                                                 <div class="input-group">
-                                                                    <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                    <input type="txt" class="form-control" v-model="data.bonus" :disabled="!checked">
                             
                                                                 </div>
                                                                 <span style="color: red">{{ errors[0] }}</span>
@@ -774,6 +774,7 @@ export default {
                             response.data.message,
                             'success'
                         ).then( function (){
+                            window.$(".wizard-btn").hide(0);
                             window.location.href = '/admin/tin-tuyen-dung';
                         } )
                     }else{
