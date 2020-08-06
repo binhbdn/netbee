@@ -56,8 +56,9 @@
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
                                             <div class="btn-group dropdown actions-dropodown">
-                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Sắp xếp
+                                                    <i class="fa fa-caret-down mr-0 ml-1"></i>
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
                                                     <a class="dropdown-item" @click="sortAscendingID()"><i class="feather icon-trash-2"></i>ID tăng dần</a>
@@ -69,8 +70,9 @@
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
                                             <div class="btn-group dropdown actions-dropodown">
-                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Hành động
+                                                    <i class="fa fa-caret-down mr-0 ml-1"></i>
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
                                                     <a class="dropdown-item" @click="deleteMultipleTinTuc()"><i class="feather icon-trash-2"></i>Xóa</a>
