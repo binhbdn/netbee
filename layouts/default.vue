@@ -10,6 +10,7 @@
     <GroupIcon />
   </div>
 </template>
+<script data-ad-client="ca-pub-5263650588670533" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
 import HeaderClient from "~/components/HeaderClient";
 import Follow from "~/components/Follow";
@@ -60,3 +61,4 @@ export default {
   }
 };
 </script>
+
