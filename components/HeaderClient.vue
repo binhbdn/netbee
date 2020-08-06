@@ -144,7 +144,7 @@
                 <i class="fas fa-caret-down"></i>
               </div>
             </a>
-            <div class="dropdown-menu" style="top: 102%!important;top: 102%!important;border-radius: 9px;box-shadow: none;" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" style="top: 102%!important;top: 102%!important;border-radius: 9px;box-shadow: none;width: max-content;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
               <a class="dropdown-item" href="/dang-ky/ung-vien">{{ $t('nav.become_partner.user') }}</a>
               <a class="dropdown-item" href="/dang-ky/nha-tuyen-dung">{{ $t('nav.become_partner.company') }}</a>
@@ -161,7 +161,7 @@
                 {{ $t('account') }} <i class="fas fa-caret-down" style="padding-left:2px"></i>
               </div>
             </a>
-            <div class="dropdown-menu" style="top: 102%!important;" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" style="top: 102%!important; width: max-content;" aria-labelledby="navbarDropdown">
               <div id="login-up"></div>
               <a class="dropdown-item overflow" href="/admin" v-if="this.$auth.user.nb_company">{{ this.$auth.user.nb_company.username }}</a>
               <a class="dropdown-item overflow" href="/admin" v-else>{{ this.$auth.user.name }}</a>
@@ -399,9 +399,10 @@ export default {
     left: 12.2rem;
   }
   .dropdown .dropdown-menu .dropdown-item{
-    padding: 0.714rem 0 1.428rem 0;
+    padding: 0.714rem 1.428rem;
     overflow: auto;
     white-space: pre-wrap;
+    width: 170px;
   }
 }
 .ftco-navbar-light {

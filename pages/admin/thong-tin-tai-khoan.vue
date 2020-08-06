@@ -22,7 +22,13 @@
                                                         <div class="row">
                                                             <div class="col-12 row p-0 mg mx-0">
                                                                 <div class="col-lg-4 offset-lg-0 mb-lg-0 mx-lg-0 col-md-6 mx-md-auto mb-md-1 col-sm-4 media">
-                                                                    <a href="javascript: void(0);" style="position: relative" class="avatar-custom mx-auto">
+                                                                        <!-- <avatar-cropper
+                                                                        @uploaded="handleUploaded"
+                                                                        :labels="{submit:'Cắt & Upload',cancel:'Hủy'}"
+                                                                        output-options="{width: 150, height: 150}"
+                                                                        trigger="#account-upload"
+                                                                        upload-url="/uploads/users/avatars/" /> -->
+                                                                        <a href="javascript: void(0);" style="position: relative" class="avatar-custom mx-auto">
                                                                         <img v-lazy="images[0]" class="rounded" alt="profile image" style="object-fit: cover; width: 150px; height: 150px;border: 1px solid; border-radius: 50% !important" v-if="images.length > 0">
                                                                         <img v-lazy="changeInfoUser.avatar != null && changeInfoUser.avatar.startsWith('https') ? changeInfoUser.avatar : `/uploads/users/avatars/${changeInfoUser.avatar}`" class="rounded" alt="profile image" style="object-fit: cover; height: 150px; width: 150px; border: 1px solid; border-radius: 50% !important" v-else>
                                                                         <div class="btn-change-avatar" style="position: absolute; bottom: 0; padding: 0; width: 100%">
@@ -38,10 +44,11 @@
                                                                                 <div class="controls row">
                                                                                     <div class="col-sm-4 for-label pr-0">
                                                                                         <label v-if="$auth.user.role != 2" for="account-username">Họ tên</label>
-                                                                                        <label v-if="$auth.user.role == 2" for="account-username">Tên công ty</label>
+                                                                                        <label v-if="$auth.user.role == 2" for="account-company">Email</label>
                                                                                     </div>
                                                                                     <div class="col-sm-8 pr-0 pl-50">
-                                                                                        <input type="text" class="form-control" name="name" v-model="changeInfoUser.name">
+                                                                                        <input v-if="$auth.user.role == 2" type="text" class="form-control" v-model="changeInfoUser.email" readonly>
+                                                                                        <input  v-if="$auth.user.role != 2" type="text" class="form-control" name="name" v-model="changeInfoUser.name">
                                                                                         <ul style="color:red" class="overline text-left">
                                                                                             <li v-for="(error, index) in errors" :key="index">
                                                                                             <span>{{ error }}</span>
@@ -90,10 +97,12 @@
                                                         <div class="row">
                                                             <div class="form-group col-12" style="margin-bottom: 0.5rem">
                                                                 <div class="for-label pb-50">
-                                                                    <label for="account-company">Email</label>
+                                                                    <label v-if="$auth.user.role == 2" for="account-username">Tên công ty</label>
+                                                                    <label v-if="$auth.user.role != 2" for="account-company">Email</label>
                                                                 </div>
                                                                 <div>
-                                                                    <input type="text" class="form-control" v-model="changeInfoUser.email" readonly>
+                                                                    <input v-if="$auth.user.role == 2" type="text" class="form-control" name="name" v-model="changeInfoUser.name">
+                                                                    <input v-if="$auth.user.role != 2" type="text" class="form-control" v-model="changeInfoUser.email" readonly>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -884,6 +893,9 @@ export default {
             };
         },
     methods: {
+        // handleUploaded(resp) {
+       
+        // },
         nameWithLang ({ id, name }) {
             return `${name}`
         },
