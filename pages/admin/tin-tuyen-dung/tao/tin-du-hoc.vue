@@ -7,7 +7,7 @@
                         <div class="col-lg-9 col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form-wizard color="#ffb701" error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất" style="padding-top: 7px;">
+                                    <form-wizard color="#ffb701"  error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất" style="padding-top: 7px;">
                                         <tab-content :before-change="checkValidateStep1" title="Tổng quan">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
@@ -283,7 +283,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                                     Tiền thưởng
                                                                 </label>
                                                                 <div class="input-group">
-                                                                    <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                    <input type="txt"  class="form-control" v-model="data.bonus" :disabled="!checked">
                                                                     <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                         <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                     </div>
@@ -621,7 +621,7 @@ export default {
         },
 
         async onComplete() {
-            console.log(this.data.salary_status.id)
+            // console.log(this.data.salary_status.id)
             let isValid = await this.$refs.step5.validate();
             var form = new FormData();
             if(isValid){
@@ -686,6 +686,7 @@ export default {
                             response.data.message,
                             'success'
                         ).then( function (){
+                            window.$(".wizard-btn").hide(0);
                             window.location.href = '/admin/tin-tuyen-dung';
                         } )
                     }else{

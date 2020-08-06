@@ -402,7 +402,7 @@
                                                                     Tiền thưởng
                                                                 </label>
                                                                 <div class="input-group">
-                                                                    <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                    <input type="txt"  class="form-control" v-model="data.bonus" :disabled="!checked">
                                                                     <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                         <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                     </div>
@@ -861,7 +861,7 @@ export default {
         },
 
         async onComplete() {
-            console.log(this.data.startTimeLabor)
+            // console.log(this.data.startTimeLabor)
             let isValid = await this.$refs.step5.validate();
             var form = new FormData();
             if(isValid){

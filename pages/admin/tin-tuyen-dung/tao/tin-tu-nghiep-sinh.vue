@@ -361,7 +361,7 @@
                                                             <div class="form-group">
                                                                 <label for="firstName3">Tiền thưởng</label>
                                                                 <div class="input-group">
-                                                                    <input type="txt" @input="data.bonus = FormatPrice(data.bonus)" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                    <input type="txt"  class="form-control" v-model="data.bonus" :disabled="!checked">
                                                                     <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                         <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                     </div>
@@ -779,6 +779,7 @@ export default {
                             response.data.message,
                             'success'
                         ).then( function (){
+                            window.$(".wizard-btn").hide(0);
                             window.location.href = '/admin/tin-tuyen-dung';
                         } )
                     }else{
