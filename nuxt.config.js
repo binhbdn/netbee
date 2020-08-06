@@ -95,7 +95,7 @@ module.exports = {
         '@nuxtjs/robots',
         //['@nuxtjs/pwa', { meta: false, icon: false, manifest: false }],
         //['@nuxtjs/html-minifier', { log: 'once', logHtml: true }]
-        ['@nuxtjs/google-adsense', {id: 'ca-pub-6641991576360133'}],
+        ['@nuxtjs/google-adsense', {id:'ca-pub-5263650588670533'}],
     ],
     robots: {   
         UserAgent: '*',
