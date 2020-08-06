@@ -43,9 +43,9 @@
                             
                         </div>
                         <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-                            <li class="ftco-animate"><a href="#"><span class="fab fa-twitter"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.facebook.com/NetBeevn-107178937322342/"><span class="fab fa-facebook-f"></span></a></li>
-                            <li class="ftco-animate"><a href="https://www.instagram.com/accounts/login/?next=/netbee.vn/"><span class="fab fa-instagram"></span></a></li>
+                            <li class="ftco-animate" data-toggle="tooltip" data-placement="top" title="Twitter"><a href="#"><span class="fab fa-twitter"></span></a></li>
+                            <li class="ftco-animate" data-toggle="tooltip" data-placement="top" title="Facebook"><a href="https://www.facebook.com/NetBeevn-107178937322342/"><span class="fab fa-facebook-f"></span></a></li>
+                            <li class="ftco-animate" data-toggle="tooltip" data-placement="top" title="Instagram"><a href="https://www.instagram.com/accounts/login/?next=/netbee.vn/"><span class="fab fa-instagram"></span></a></li>
                         </ul>
                     </div>
                 </div>

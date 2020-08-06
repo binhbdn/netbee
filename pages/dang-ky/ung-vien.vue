@@ -112,6 +112,13 @@
                         <button type="button" @click="signIn()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Đăng ký ngay</button>
                     </div>
                     </ValidationObserver>
+                    <hr>
+                        <a @click="loginfb()" class="btn btn-outline-info fb col-md-12 mt-1" >
+                            <i class="fab fa-facebook login-gg-fa"></i> Đăng nhập bằng Facebook
+                        </a>
+                        <a @click="logingg()" class="btn btn-outline-info gg col-md-12 mb-1" style="margin-top: 15px;">
+                            <img class="login-gg-fa" src="/assets/img/logo-google.png"> Đăng nhập bằng Google
+                        </a>
                     <span>Nếu đã có tài khoản, xin vui lòng đăng nhập <a href="../dang-nhap"><b>Tại đây</b></a></span>
                 </form>
               </div>                           
@@ -226,6 +233,12 @@ export default {
       $('#introduce').modal()
       $("#introduce").modal('show')
     },
+     loginfb() {
+        this.$auth.loginWith('facebook')
+    },
+    logingg() {
+        this.$auth.loginWith('google')
+    },
     showPassword(){
       this.show = !this.show
     },
@@ -294,6 +307,21 @@ export default {
 }
 </script>
 <style scoped>
+.login-gg-fa{
+    width: 15px;
+    height: 15px;
+    margin-right: -26px;
+    margin-left: 8px;
+    margin-top: 2px;
+    float: left;
+    font-size: 16.5px;
+}
+.gg {
+    padding: 12px !important;
+}
+.fb {
+    padding: 12px !important;
+}
 .style-backrou{
   border-radius: 7px;
     background: hsla(0,0%,100%,.52157);

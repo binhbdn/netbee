@@ -114,15 +114,28 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="firstName3">Chiều cao (cm)</label>
-                                                            <input type="number" class="form-control" v-model="data.height">
+                                                            <div class="container-fluid">
+                                                                <div class="row">
+                                                                    <div class="col-6" style="padding-left: 0px;">
+                                                                        <label for="firstName3">Chiều cao (cm)</label>
+                                                                        <input type="number" class="form-control" v-model="data.height">
+                                                                    </div>
+                                                                    <div class="col-6" style="padding-right: 0px;">
+                                                                        <label for="firstName3">Cân nặng (kg)</label>
+                                                                        <input type="number" class="form-control" v-model="data.weight">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Cân nặng (kg)</label>
-                                                            <input type="number" class="form-control" v-model="data.weight">
-                                                        </div>
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Số lượng tuyển</label>
+                                                                <input type="number" class="form-control" v-model="data.quantity">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
@@ -139,25 +152,14 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    
-                                                    
-                                                    
-                                                    <div class="col-sm-4">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">Số lượng tuyển</label>
-                                                                <input type="number" class="form-control" v-model="data.quantity">
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
-                                                    </div>
-                                                    <div class="col-sm-4 pl-sm-0">  
+                                                
+                                                    <div class="col-sm-6">  
                                                         <div class="form-group">
                                                             <label for="firstName3">Chứng minh thu nhập</label>
                                                             <multiselect :options="cmndEx" v-model="data.request_cmnd" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                         </div>                                     
                                                     </div>
-                                                    <div class="col-sm-4 pl-sm-0">
+                                                    <div class="col-sm-6">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Thời hạn hợp đồng(năm)</label>
