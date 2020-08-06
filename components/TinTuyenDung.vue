@@ -71,8 +71,9 @@
                                         <div class="action-btns col-6">
                                             <div class="btn-dropdown btn-dropdown-left" style="float: right">
                                                 <div class="btn-group dropdown actions-dropodown">
-                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         Sắp xếp
+                                                        <i class="fa fa-caret-down mr-0 ml-1"></i>
                                                     </button>
                                                     <div class="dropdown-menu" style="left: -25px!important;">
                                                         <a class="dropdown-item" @click="sortAscendingID()"><i class="feather icon-trash-2"></i>ID tăng dần</a>
@@ -84,8 +85,9 @@
                                         <div class="action-btns col-6">
                                             <div class="btn-dropdown" style="float: right">
                                                 <div class="btn-group dropdown actions-dropodown">
-                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         Hành động
+                                                        <i class="fa fa-caret-down mr-0 ml-1"></i>
                                                     </button>
                                                     <div class="dropdown-menu" style="left: -25px!important;">
                                                         <a class="dropdown-item" @click="deleteMultipleTinTuyenDung()"><i class="feather icon-trash-2"></i>Xóa</a>
@@ -191,8 +193,10 @@
                                                                 <div class="action-btns">
                                                                     <div class="btn-dropdown ">
                                                                         <div class="btn-group dropdown actions-dropodown">
-                                                                            <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                <span class="text-none">Chọn thao tác</span>
+                                                                            <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                                <span class="text-none">
+                                                                                    <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i>
+                                                                                </span>
                                                                             </button>
                                                                             <div class="dropdown-menu" style="left: -25px!important;">
                                                                                 <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
@@ -793,6 +797,9 @@ export default {
 }
 </script>
 <style scoped>
+i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
+        color: #ffb701 !important;
+}
 .nav.nav-tabs {
     margin-bottom: 0px;
     margin-left: 10px;

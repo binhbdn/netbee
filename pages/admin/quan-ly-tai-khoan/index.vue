@@ -145,11 +145,11 @@
                         <div class="btn-group dropdown actions-dropodown">
                           <button
                             type="button"
-                            class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light"
+                            class="btn btn-white px-2 py-75  waves-effect waves-light"
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
-                          >Sắp xếp</button>
+                          >Sắp xếp <i class="fa fa-caret-down mr-0 ml-1"></i></button>
                           <div class="dropdown-menu" style="left: -25px!important;">
                             <a class="dropdown-item" @click="sortAscendingID()">
                               <i class="feather icon-trash-2"></i>ID tăng dần
@@ -166,11 +166,11 @@
                         <div class="btn-group dropdown actions-dropodown">
                           <button
                             type="button"
-                            class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light"
+                            class="btn btn-white px-2 py-75  waves-effect waves-light"
                             data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
-                          >Hành động</button>
+                          >Hành động <i class="fa fa-caret-down mr-0 ml-1"></i></button>
                           <div class="dropdown-menu" style="left: -25px!important;">
                             <a class="dropdown-item" @click="blockMultipleUser()">
                               <i class="far fa-lock"></i>Block
@@ -310,11 +310,12 @@
                                 <div class="btn-group dropdown actions-dropodown">
                                   <button
                                     type="button"
-                                    class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light"
+                                    class="btn btn-white px-2 py-75  waves-effect waves-light"
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="false"
-                                  >Chọn thao tác</button>
+                                  >
+                                  <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i></button>
                                   <div class="dropdown-menu" style="left: -25px!important;">
                                     <a
                                       v-if="$auth.user.role == 4"
@@ -1188,6 +1189,9 @@ export default {
 };
 </script>
 <style scoped>
+i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
+        color: #ffb701 !important;
+}
 .pagination .page-item.active .page-link {
   background-color: #ffb701 !important;
 }

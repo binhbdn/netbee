@@ -111,8 +111,8 @@
                                                             <div class="action-btns">
                                                                 <div class="btn-dropdown ">
                                                                     <div class="btn-group dropdown actions-dropodown">
-                                                                        <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            Chọn thao tác
+                                                                        <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i>
                                                                         </button>
                                                                         <div class="dropdown-menu" style="left: -25px!important;">
                                                                             <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 1"><i class="far fa-check-circle"></i> Duyệt</a>
@@ -516,6 +516,9 @@ export default {
 }
 </script>
 <style scoped>
+    i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
+            color: #ffb701 !important;
+        }
     .nav.nav-tabs {
     margin-bottom: 0px;
     margin-left: 10px;

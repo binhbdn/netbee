@@ -29,37 +29,37 @@
                             </a>
                         </li>
                         <li class="dropdown dropdown-language nav-item">
-                            <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  :title="$t('nav.languages')" data-placement="top">
                                 <img v-if="$i18n.locale == 'vi'"  src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="25px" alt="netbee việt nam"/>
                                 <img v-else-if="$i18n.locale == 'en'"  src="/assets/img/iconfinder_United-Kingdom.png" width="25px" alt="netbee united kingdom"/>
                                 <img v-else-if="$i18n.locale == 'jp'"  src="/assets/img/iconfinder_Japan_92149.png" width="25px" alt="netbee japan"/>
                                 <img v-else  src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="25px" alt="netbee việt nam"/>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+                            <div class="dropdown-menu text-center" aria-labelledby="dropdown-flag" data-toggle="tooltip" title="Việt Nam" data-placement="top">
                                 <a class="dropdown-item" @click="changeLang('vi')">
                                     <img
                                     src="/assets/img/iconfinder_Vietnam_flat_92420.png"
                                     width="25px"
                                     alt="netbee việt nam"
-                                    /> Việt Nam
+                                    />
                                 </a>
-                                <a class="dropdown-item" @click="changeLang('en')">
+                                <a class="dropdown-item text-center" @click="changeLang('en')" data-toggle="tooltip" title="English" data-placement="top">
                                     <img
                                     src="/assets/img/iconfinder_United-Kingdom.png"
                                     width="25px"
                                     alt="netbee united kingdom" 
-                                    /> English
+                                    />
                                 </a>
-                                <a class="dropdown-item" @click="changeLang('jp')">
+                                <a class="dropdown-item text-center" @click="changeLang('jp')" data-toggle="tooltip" title="Japan" data-placement="top">
                                     <img
                                     src="/assets/img/iconfinder_Japan_92149.png"
                                     width="25px"
                                     alt="netbee japan"
-                                    /> Japan
+                                    />
                                 </a>
                             </div>
                       </li>
-                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="fa fa-bell"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
+                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown" title="Thông báo" data-placement="top"><i class="fa fa-bell"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
                                     <div class="dropdown-header m-0">

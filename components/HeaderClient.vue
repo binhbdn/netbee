@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item " style="padding-top:3px" :class="{active : this.$route.path == '/'}">
-            <a href="/" class="nav-link header-nav-link">
+            <a href="/" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.home')">
               <div class="nav-icon">
                 <i class="fad fa-home"></i>
               </div>
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuyen-sinh'}">
-            <a href="/tin-tuyen-sinh" class="nav-link header-nav-link">
+            <a href="/tin-tuyen-sinh" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.admission')">
               <div class="nav-icon">
                 <i class="fad fa-server"></i>
               </div>
@@ -37,7 +37,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/cong-ty'}">
-            <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center">
+            <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center" data-toggle="tooltip" data-placement="top" :title=" $t('nav.company')">
               <div class="nav-icon">
                 <i class="fad fa-building"></i>
               </div>
@@ -57,7 +57,7 @@
             </a>
           </li> -->
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
-            <a href="/tin-tuc" class="nav-link header-nav-link" >
+            <a href="/tin-tuc" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.news')" >
               <div class="nav-icon">
                 <i class="fad fa-table"></i>
               </div>
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ve-netbee'} " >
-            <a href="/ve-netbee" class="nav-link header-nav-link">
+            <a href="/ve-netbee" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.about')" >
               <div class="nav-icon">
                 <i class="fad fa-id-card"></i>
               </div>
@@ -77,7 +77,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/lien-he'} " >
-            <a href="/lien-he" class="nav-link header-nav-link">
+            <a href="/lien-he" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.contact')">
               <div class="nav-icon">
                 <i class="fad fa-phone-office"></i>
               </div>
@@ -93,7 +93,7 @@
             </a>
           </li> -->
           <li class="nav-item cta dropdown">
-            <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" :title="$t('nav.languages')" data-placement="top" >
               <div class="nav-icon">
                 <img v-if="$i18n.locale == 'vi'" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
                 <img v-else-if="$i18n.locale == 'en'" src="/assets/img/iconfinder_United-Kingdom.png" width="22px" alt="netbee united kingdom"/>
@@ -110,21 +110,21 @@
               aria-labelledby="navbarDropdown"
             >
               <div id="login-up"></div>
-              <a class="dropdown-item" @click="changeLang('vi')">
+              <a class="dropdown-item" @click="changeLang('vi')"  data-toggle="tooltip" title="Việt Nam" data-placement="top">
                 <img
                   src="/assets/img/iconfinder_Vietnam_flat_92420.png"
                   width="25px"
                   alt="netbee việt nam"
                 />
               </a>
-              <a class="dropdown-item" @click="changeLang('en')">
+              <a class="dropdown-item" @click="changeLang('en')" data-toggle="tooltip" title="English" data-placement="top">
                 <img
                   src="/assets/img/iconfinder_United-Kingdom.png"
                   width="25px"
                   alt="netbee united kingdom"
                 />
               </a>
-              <a class="dropdown-item" @click="changeLang('jp')">
+              <a class="dropdown-item" @click="changeLang('jp')" data-toggle="tooltip" title="Japan" data-placement="top">
                 <img
                   src="/assets/img/iconfinder_Japan_92149.png"
                   width="25px"
@@ -170,11 +170,11 @@
           </li>
           
           <li class="dropdown dropdown-notification nav-item" v-if="$auth.loggedIn">
-            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" style="width: 25px; margin:auto; margin-top: 20px;">
+            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" style="width: 25px; margin:auto; margin-top: 20px;" title="Thông báo" data-placement="top">
               <i class="fa fa-bell" style="color:#000 !important;font-size: 17px;padding:0px;margin-right:0px;"></i>
               <span class="badge badge-pill badge-danger badge-up" style="background-color: #EA5455;right: -0.3rem;top: -0.7rem;" v-if="countNoti>0">{{ countNoti }}</span>
             </a>
-              <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+              <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" >
                     <li class="dropdown-menu-header">
                         <div class="dropdown-header m-0">
                             <h3 class="h3-size">{{ countNoti }}</h3><span class="notification-title">Thông báo mới</span>
