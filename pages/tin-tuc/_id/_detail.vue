@@ -89,7 +89,7 @@
         </section>
     </div>
 </template>
-<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v8.0&appId=1459241224260897&autoLogAppEvents=1" nonce="ZKQOY7f8"></script>
 <script>
 import NewListPage1 from '~/components/News/NewListPage1';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
