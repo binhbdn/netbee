@@ -191,28 +191,35 @@ class UserService extends BaseService {
             $update = $this->user->whereId($userId)->update([
                 'password' => Hash::make($data->password_new)
             ]);
-            if ($update) {
-                $dataEmail = [
-                    'name' => $user->name,
-                    'title' => 'Đổi mật khẩu Netbee',
-                    'content' => 'Mật khẩu của bạn đã được thay đổi vào lúc '. $user->updated_at . '<br style="padding-top: 10px"> <b>Nếu bạn đã làm điều này,</b> bạn có thể bỏ qua email này một cách an toàn.
-                                 <br><b>Nếu bạn đã không làm điều này, </b> vui lòng bảo vệ tài khoản của bạn. <br>',
-                    'textButton' => 'Đăng nhập Netbee',
-                    'url' => 'https://netbee.vn/dang-nhap'
-                ];
-                $sendEmail = new SendMailJobQueue($user->email, $dataEmail);
-                dispatch($sendEmail);
+            if ($data->password_old != $data->password_new) {
+                if ($update) {
+                    $dataEmail = [
+                        'name' => $user->name,
+                        'title' => 'Đổi mật khẩu Netbee',
+                        'content' => 'Mật khẩu của bạn đã được thay đổi vào lúc '. $user->updated_at . '<br style="padding-top: 10px"> <b>Nếu bạn đã làm điều này,</b> bạn có thể bỏ qua email này một cách an toàn.
+                                    <br><b>Nếu bạn đã không làm điều này, </b> vui lòng bảo vệ tài khoản của bạn. <br>',
+                        'textButton' => 'Đăng nhập Netbee',
+                        'url' => 'https://netbee.vn/dang-nhap'
+                    ];
+                    $sendEmail = new SendMailJobQueue($user->email, $dataEmail);
+                    dispatch($sendEmail);
+                    return [
+                        'status' => 200,
+                        'message' => 'Cập nhật mật khẩu thành công',
+                        'data' => null
+                    ];
+                }
                 return [
-                    'status' => 200,
-                    'message' => 'Cập nhật mật khẩu thành công',
+                    'status' => 400,
+                    'message' => 'Có lỗi xảy ra',
                     'data' => null
                 ];
-            }
+            } 
             return [
-                'status' => 400,
-                'message' => 'Có lỗi xảy ra',
+                'status'=> 400,
+                'message' => 'Mật khẩu mới phải khác mật khẩu cũ',
                 'data' => null
-            ];
+            ];  
         }
         return [
             'status'=> 400,

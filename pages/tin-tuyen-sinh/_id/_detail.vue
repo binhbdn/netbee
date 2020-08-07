@@ -275,9 +275,9 @@
                         <p style="margin-top: 26px;margin-bottom: 5px;font-weight: 500;text-align: center;">Hotline: <a href="tel:+842462900388" >+842462900388</a></p>
                         <p style="margin-top: 0px;font-weight: 500;text-align: center;">Email: <a href="mailto:contact@netbee.vn">contact@netbee.vn</a></p>
                         <ul class="ftco-footer-social float-lft" style="margin-right:10px;">
-                            <li class="ftco-animate  ftco-animate-fb"><a href="#"><span class="fab fa-twitter"></span></a></li>
-                            <li class="ftco-animate ftco-animate-tw"><a href="https://www.facebook.com/NetBeevn-107178937322342/"><span class="fab fa-facebook-f"></span></a></li>
-                            <li class="ftco-animate ftco-animate-in"><a href="https://www.instagram.com/accounts/login/?next=/netbee.vn/"><span class="fab fa-instagram"></span></a></li>
+                            <li class="ftco-animate  ftco-animate-fb" title="Twitter"><a href="#" ><span class="fab fa-twitter"></span></a></li>
+                            <li class="ftco-animate ftco-animate-tw" title="Facebook"><a href="https://www.facebook.com/NetBeevn-107178937322342/"><span class="fab fa-facebook-f"></span></a></li>
+                            <li class="ftco-animate ftco-animate-in" title="Instagram"><a href="https://www.instagram.com/accounts/login/?next=/netbee.vn/"><span class="fab fa-instagram"></span></a></li>
                         </ul>
                     </div> 
                 </div>
