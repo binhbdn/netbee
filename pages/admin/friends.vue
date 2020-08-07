@@ -72,6 +72,7 @@
                                         </div>                                    
                                     </div>
                                     <br><br>
+                                    <div class="friend-text">
                                     <p><b>Điều Khoản Sử Dụng cho chương trình Giới Thiệu Bạn Bè</b></p>
                                     <p>- Netbee tặng bạn 15.000đ cho mỗi thành viên mới đủ điều kiện mà bạn giới thiệu. Để đủ điều kiện, người được bạn giới thiệu phải đăng ký tài khoản Netbee thông qua (i) liên kết giới thiệu duy nhất của người giới thiệu hoặc trên Netbee, (ii) các phương thức giới thiệu được kể đến trên trang này. Người được bạn giới thiệu phải tiến hành gửi hồ sơ lên hệ thống & được khách hàng duyệt trạng thái “Hồ sơ đạt”.</p>
                                     <p>- Nếu được giới thiệu qua email, bạn của bạn phải nhập mã CTV được giới thiệu khi đăng ký trên Netbee. Bất kỳ hồ sơ nào không được ghi nhận sẽ không được tính .</p>
@@ -79,6 +80,7 @@
                                     <p>(i) Gian lận</p>
                                     <p>(ii) Đấu giá từ khóa cho mục đích tạo lưu lượng truy cập đến các trang có chứa liên kết giới thiệu của bạn.</p>
                                     <p>(iii) Mọi hoạt động tương tự xác định bởi Netbee và Netbee có quyền quyết định khi hoạt động này không phù hợp với mục đích của Chương trình Giới thiệu Bạn bè của Netbee. Netbee có quyền thay đổi các điều khoản và điều kiện của chương trình khuyến mãi này. Bất kỳ sự vi phạm các điều khoản và điều kiện trên sẽ dẫn đến việc mất tất cả các khoản thưởng. Vi phạm nhiều lần sẽ dẫn đến việc đóng tài khoản Netbee của bạn.</p>
+                                    </div>
                                 </div>
                                 <br>
                             </div>
@@ -138,6 +140,9 @@
     };
 </script>
 <style scoped>
+.friend-text {
+    text-align: justify;
+}
 a.fb-share:hover {
     color: #fff !important;
 }

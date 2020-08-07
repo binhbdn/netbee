@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item " style="padding-top:3px" :class="{active : this.$route.path == '/'}">
-            <a href="/" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.home')">
+            <a href="/" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.home')">
               <div class="nav-icon">
                 <i class="fad fa-home"></i>
               </div>
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuyen-sinh'}">
-            <a href="/tin-tuyen-sinh" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.admission')">
+            <a href="/tin-tuyen-sinh" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.admission')">
               <div class="nav-icon">
                 <i class="fad fa-server"></i>
               </div>
@@ -37,7 +37,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/cong-ty'}">
-            <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center" data-toggle="tooltip" data-placement="top" :title=" $t('nav.company')">
+            <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center"  data-placement="top" :title=" $t('nav.company')">
               <div class="nav-icon">
                 <i class="fad fa-building"></i>
               </div>
@@ -57,7 +57,7 @@
             </a>
           </li> -->
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
-            <a href="/tin-tuc" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.news')" >
+            <a href="/tin-tuc" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.news')" >
               <div class="nav-icon">
                 <i class="fad fa-table"></i>
               </div>
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ve-netbee'} " >
-            <a href="/ve-netbee" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.about')" >
+            <a href="/ve-netbee" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.about')" >
               <div class="nav-icon">
                 <i class="fad fa-id-card"></i>
               </div>
@@ -77,7 +77,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/lien-he'} " >
-            <a href="/lien-he" class="nav-link header-nav-link" data-toggle="tooltip" data-placement="top" :title=" $t('nav.contact')">
+            <a href="/lien-he" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.contact')">
               <div class="nav-icon">
                 <i class="fad fa-phone-office"></i>
               </div>
@@ -110,21 +110,21 @@
               aria-labelledby="navbarDropdown"
             >
               <div id="login-up"></div>
-              <a class="dropdown-item" @click="changeLang('vi')"  data-toggle="tooltip" title="Việt Nam" data-placement="top">
+              <a class="dropdown-item" @click="changeLang('vi')"  title="Việt Nam" data-placement="top">
                 <img
                   src="/assets/img/iconfinder_Vietnam_flat_92420.png"
                   width="25px"
                   alt="netbee việt nam"
                 />
               </a>
-              <a class="dropdown-item" @click="changeLang('en')" data-toggle="tooltip" title="English" data-placement="top">
+              <a class="dropdown-item" @click="changeLang('en')"  title="English" data-placement="top">
                 <img
                   src="/assets/img/iconfinder_United-Kingdom.png"
                   width="25px"
                   alt="netbee united kingdom"
                 />
               </a>
-              <a class="dropdown-item" @click="changeLang('jp')" data-toggle="tooltip" title="Japan" data-placement="top">
+              <a class="dropdown-item" @click="changeLang('jp')"  title="Japan" data-placement="top">
                 <img
                   src="/assets/img/iconfinder_Japan_92149.png"
                   width="25px"
@@ -285,6 +285,9 @@ export default {
   }
 </style>
 <style scoped>
+.ftco-navbar-light .navbar-nav>.nav-item>.nav-link-label:hover {
+  border-bottom: 4px solid #fff !important;
+}
 .dropdown-menu-footer {
   background-color: #ABB2B9;
   color: #000 !important;
@@ -408,4 +411,5 @@ export default {
 .ftco-navbar-light {
   z-index: 10 !important;
 }
+
 </style>

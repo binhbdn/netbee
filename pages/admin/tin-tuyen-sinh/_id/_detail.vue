@@ -60,10 +60,10 @@
                                                     <a  class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>                                                                                                                                          
                                                 </div>     -->
                                                 <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#ApplyModal">
-                                                    <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px; padding: 5px 0;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
+                                                    <a class="btn-netbee"  data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px; padding: 5px 0;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                                 </div> 
                                                 <div class="col-12 d-flex justify-content-center align-items-center" >
-                                                    <a v-if="$auth.loggedIn && $auth.user.role != 2" class="btn-netbee" style="border-radius: 3px; padding: 5px 0;" data-toggle="modal" data-target=".bd-example-modal-xl"><i class="fad fa-arrow-alt-to-bottom fa-2x p-10"></i> <b>Tải đơn hàng</b></a>
+                                                    <a v-if="$auth.loggedIn && $auth.user.role != 2" class="btn-netbee" style="border-radius: 3px; padding: 5px 0;" data-toggle="modal" data-placement="top" title="Tải đơn hàng" data-target=".bd-example-modal-xl"><i class="fad fa-arrow-alt-to-bottom fa-2x p-10"></i> <b>Tải đơn hàng</b></a>
                                                 </div> 
                                                 
                                                 <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
