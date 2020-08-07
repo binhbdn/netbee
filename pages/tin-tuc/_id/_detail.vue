@@ -16,7 +16,7 @@
                                 <div class="card-body">
                                     <img v-lazy="`/uploads/news/${tintuc.thuml}`" width="100%" class="m-b-15" :alt="`${tintuc.thuml}`">
                                     <p style="text-align:justify" v-html="tintuc.content"></p>
-                                    <iframe v-lazy="`https://www.facebook.com/plugins/share_button.php?href=https://netbee.vn${this.$route.path}&layout=button&size=small&appId=1459241224260897&width=76&height=20`" width="76" height="30" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                                    <iframe :src="`https://www.facebook.com/plugins/share_button.php?href=https://netbee.vn${this.$route.path}&layout=button&size=small&appId=1459241224260897&width=76&height=20`" width="76" height="30" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div id="fb-root"></div>
-                                <div class="fb-comments" data-numposts="5" data-colorscheme="light" data-width="280px"></div>
+                               <div class="fb-comments" :data-href="`https://netbee.vn${this.$route.path}`" data-numposts="5" data-width=""></div>
                             </div>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
         </section>
     </div>
 </template>
-<script async defer src="https://connect.facebook.net/en_US/all.js"></script>
+<script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
 <script>
 import NewListPage1 from '~/components/News/NewListPage1';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
