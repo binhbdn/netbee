@@ -75,6 +75,7 @@ module.exports = {
             { hid: 'stripe', src: '/app-assets/js/core/app.js', defer: true },
             { hid: 'stripe', src: '/app-assets/js/scripts/components.js', defer: true },
             { hid: 'stripe', src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', defer: true },
+            { src: '/assets/js/fb-sdk.js' }
             // { src: '/app-assets/vendors/js/forms/select/select2.full.min.js', },
             // { src: '/app-assets/js/scripts/forms/select/form-select2.js', },
 
@@ -184,7 +185,7 @@ module.exports = {
         '~/plugins/jsonld.js',
         '~/plugins/bus',             
         { src: '~/plugins/vue2-editor', ssr: false },
-        //{ src: '~/plugins/fb-chat', ssr: false },
+        { src: '~/plugins/fb-chat', ssr: false },
         { src: '~/plugins/full-calendar.js', ssr: false },
         { src: '~/plugins/infiniteloading', ssr: false },
         { src: '~/plugins/chart', ssr: false },

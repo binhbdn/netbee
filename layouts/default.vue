@@ -65,6 +65,7 @@ export default {
           xfbml      : true,
           version    : 'v3.3'
       })
+      FB.XFBML.parse()
     }
   }
 };
