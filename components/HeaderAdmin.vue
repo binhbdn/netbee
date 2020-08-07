@@ -35,7 +35,7 @@
                                 <img v-else-if="$i18n.locale == 'jp'"  src="/assets/img/iconfinder_Japan_92149.png" width="25px" alt="netbee japan"/>
                                 <img v-else  src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="25px" alt="netbee việt nam"/>
                             </a>
-                            <div class="dropdown-menu text-center" aria-labelledby="dropdown-flag" data-toggle="tooltip" title="Việt Nam" data-placement="top">
+                            <div class="dropdown-menu text-center" aria-labelledby="dropdown-flag"  title="Việt Nam" data-placement="top">
                                 <a class="dropdown-item" @click="changeLang('vi')">
                                     <img
                                     src="/assets/img/iconfinder_Vietnam_flat_92420.png"
@@ -43,14 +43,14 @@
                                     alt="netbee việt nam"
                                     />
                                 </a>
-                                <a class="dropdown-item text-center" @click="changeLang('en')" data-toggle="tooltip" title="English" data-placement="top">
+                                <a class="dropdown-item text-center" @click="changeLang('en')"  title="English" data-placement="top">
                                     <img
                                     src="/assets/img/iconfinder_United-Kingdom.png"
                                     width="25px"
                                     alt="netbee united kingdom" 
                                     />
                                 </a>
-                                <a class="dropdown-item text-center" @click="changeLang('jp')" data-toggle="tooltip" title="Japan" data-placement="top">
+                                <a class="dropdown-item text-center" @click="changeLang('jp')"  title="Japan" data-placement="top">
                                     <img
                                     src="/assets/img/iconfinder_Japan_92149.png"
                                     width="25px"
