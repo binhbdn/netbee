@@ -890,6 +890,9 @@ export default {
 }
 </script>
 <style scoped>
+a.btn.btn-warning.w-100:hover {
+    color: #fff !important;
+}
 .line-title {
     border-bottom: 2px solid #ffb701;
     padding-bottom: 5px;

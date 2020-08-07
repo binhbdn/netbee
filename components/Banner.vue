@@ -578,4 +578,7 @@ export default {
   font-size: 14px;
   color: #adadad !important;
 }
+.search-job .form-group .form-control.btn.btn-primary:hover {
+  color: #fff !important;
+}
 </style>
