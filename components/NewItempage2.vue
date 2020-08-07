@@ -7,10 +7,10 @@
         </div>
         <div class="col-7 d-flex flex-column">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
-                <h2 class="NB_title text-black el-3 font-weight-600 p-t-5" style="margin-bottom: 7px;line-height: 1.4;">{{ title }}</h2>
+                <h2 class="NB_title text-black el-3 font-weight-600" style="margin-bottom: 7px;line-height: 1.4;">{{ title }}</h2>
             </a>
-            <p class="el-3" style="line-height: 1.5;margin-bottom: 5px;" v-if="type == 1 || type == 2">{{ short_content }}</p>
-            <div style="position: absolute;bottom: 0;">
+            <p class="el-3 mb-hide-div" style="line-height: 1.5;margin-bottom: 5px;" v-if="type == 1 || type == 2">{{ short_content }}</p>
+            <div class="small-news-time" style="position: absolute;bottom: 0;">
                 <i class="fad fa-calendar-star"></i><span class="ml-1">{{ ConvertDate(created_at) }}</span>  
             </div>
         </div>
@@ -34,5 +34,13 @@ export default {
 h4:hover{
     color: #ffb701;
 }
-
+@media(max-width: 575px){
+    .pdt-none{
+        margin-top: 0 !important;
+    }
+   
+    .mb-hide-div{
+        display: none;
+    }
+}
 </style>

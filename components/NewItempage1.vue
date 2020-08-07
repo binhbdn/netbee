@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-12 col-7 small-news">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`"><h2 class="NB_title text-black pt-1 el-3 font-weight-600" style="line-height: 1.4;">{{ title }}</h2></a>
-            <p style="line-height: 1.5;margin-bottom: 5px;" class="el-3" v-if="type == 1">{{ short_content }}</p>
+            <p style="line-height: 1.5;margin-bottom: 5px;" class="el-3 mb-hide-div" v-if="type == 1">{{ short_content }}</p>
             <div class="small-news-time">
                 <i class="fad fa-calendar-star"></i><span class="ml-1">{{ ConvertDate(created_at) }}</span>  
             </div> 
@@ -53,4 +53,9 @@ h4:hover{
         max-width: 110px;
     }
 } */
+@media(max-width: 575px){
+    .mb-hide-div{
+        display: none;
+    }
+}
 </style>

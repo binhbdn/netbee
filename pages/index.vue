@@ -63,7 +63,7 @@
                             <div class="card mb-0">
                                 <div class="card-header">
                                   <h2 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_hot')}}</h2>
-                                  <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>                                  
+                                  <!-- <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>                                   -->
                                 </div>
                                 <div class="card-content" style="position:relative">
                                     <div class="card-body">
@@ -180,7 +180,7 @@
             <div class="card">
               <div class="card-header">
                 <h2 class="card-title"><i class="fad fa-business-time"></i> {{$t('home.title.jobs_new')}}</h2>
-                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>                
+                <!-- <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>                 -->
               </div>
               <div class="card-content collapse show" style="padding: 13px;padding-bottom: 0px !important;">
                 <div>
