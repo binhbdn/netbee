@@ -110,7 +110,7 @@
                                                         <td>
                                                             <div class="action-btns">
                                                                 <div class="btn-dropdown ">
-                                                                    <div class="btn-group dropdown actions-dropodown">
+                                                                    <div class="btn-group dropdown actions-dropodown text-center">
                                                                         <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                             <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i>
                                                                         </button>
@@ -516,6 +516,12 @@ export default {
 }
 </script>
 <style scoped>
+.btn.btn-white {
+    border-radius: 5px !important;
+}
+.actions-dropodown {
+    box-shadow: none !important;
+}
     i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
             color: #ffb701 !important;
         }

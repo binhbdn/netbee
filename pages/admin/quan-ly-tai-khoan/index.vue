@@ -1189,6 +1189,12 @@ export default {
 };
 </script>
 <style scoped>
+.btn.btn-white {
+    border-radius: 5px !important;
+}
+.actions-dropodown {
+    box-shadow: none !important;
+}
 i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
         color: #ffb701 !important;
 }
