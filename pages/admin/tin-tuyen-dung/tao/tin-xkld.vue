@@ -346,7 +346,7 @@
                                                             
                                                     </div>
                                                     <div class="col-sm-6"  v-if="checked">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
+                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">Tiền thưởng</label>
                                                                 <div class="input-group">
@@ -489,7 +489,9 @@ import moment from 'moment'
 
 Vue.use(VueFormWizard)
 Vue.use(Datetime)
-
+extend("numeric", {
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ số"
+    });
 extend("ssdate", {
     message: field => "Ngày dự kiến phải lớn hơn ngày hiện tại",
     validate: value => {

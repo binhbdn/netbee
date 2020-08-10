@@ -277,7 +277,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-sm-6" v-if="checked">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
+                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
                                                                     Tiền thưởng
@@ -433,6 +433,9 @@ extend("ssdate", {
         }
     }
 })
+  extend("numeric", {
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ số"
+    });
 
 extend("ssdate_start", {
     params: ['target'],

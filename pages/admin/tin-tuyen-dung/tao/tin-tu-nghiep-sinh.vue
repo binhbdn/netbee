@@ -357,7 +357,7 @@
                                                             </ValidationProvider>
                                                     </div>
                                                     <div class="col-sm-6" v-if="checked">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
+                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">Tiền thưởng</label>
                                                                 <div class="input-group">
@@ -509,6 +509,9 @@ extend("ssdate", {
         }
     }
 })
+extend("numeric", {
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ số"
+    });
 
 extend("ssdate_start", {
     params: ['target'],
