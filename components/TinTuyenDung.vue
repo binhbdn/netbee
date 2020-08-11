@@ -68,7 +68,7 @@
                                         </nav>
                                     </div>
                                     <div class="row col-xl-4 col-lg-5 col-md-7 col-sm-8 col-12 button-dropdown">
-                                        <div class="action-btns col-6">
+                                        <div class="action-btns col-6 p-0">
                                             <div class="btn-dropdown btn-dropdown-left" style="float: right">
                                                 <div class="btn-group dropdown actions-dropodown">
                                                     <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -82,7 +82,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="action-btns col-6">
+                                        <div class="action-btns col-6 p-0">
                                             <div class="btn-dropdown" style="float: right">
                                                 <div class="btn-group dropdown actions-dropodown">
                                                     <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -192,7 +192,7 @@
                                                             <td>
                                                                 <div class="action-btns">
                                                                     <div class="btn-dropdown ">
-                                                                        <div class="btn-group dropdown actions-dropodown">
+                                                                        <div class="btn-group dropdown actions-dropodown text-center">
                                                                             <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                                 <span class="text-none">
                                                                                     <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i>
@@ -799,6 +799,12 @@ export default {
 <style scoped>
 i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
         color: #ffb701 !important;
+}
+.btn.btn-white {
+    border-radius: 5px !important;
+}
+.actions-dropodown {
+    box-shadow: none !important;
 }
 .nav.nav-tabs {
     margin-bottom: 0px;

@@ -203,4 +203,10 @@
     .table td{
         padding: 0.5rem 1rem;
     }
+    .btn.btn-white {
+        border-radius: 5px !important;
+    }
+    .actions-dropodown {
+        box-shadow: none !important;
+    }
 </style>

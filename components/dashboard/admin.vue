@@ -9,7 +9,7 @@
                                 <div class="card-header d-flex flex-column align-items-start pb-0">
                                     <div class="avatar bg-rgba-primary p-50 m-0">
                                         <div class="avatar-content">
-                                            <i class="feather icon-users text-primary font-medium-5"></i>
+                                            <i class="fa fa-user-circle-o text-primary font-medium-5"></i>
                                         </div>
                                     </div>
                                     <h2 class="text-bold-700 mt-1">{{ countPageView }}</h2>
@@ -23,7 +23,7 @@
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-success p-50 m-0">
                                             <div class="avatar-content">
-                                                <i class="feather icon-credit-card text-success font-medium-5"></i>
+                                                <i class="fa fa-credit-card-alt text-success font-medium-5"></i>
                                             </div>
                                         </div>
                                         <h2 class="text-bold-700 mt-1">{{ countUserHr }}</h2>
@@ -38,7 +38,7 @@
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-danger p-50 m-0">
                                             <div class="avatar-content">
-                                                <i class="feather icon-shopping-cart text-danger font-medium-5"></i>
+                                                <i class="fa fa-shopping-cart text-danger font-medium-5"></i>
                                             </div>
                                         </div>
                                         <h2 class="text-bold-700 mt-1">{{ countUserCompany }}</h2>
@@ -53,7 +53,7 @@
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-warning p-50 m-0">
                                             <div class="avatar-content">
-                                                <i class="feather icon-package text-warning font-medium-5"></i>
+                                                <i class="fa fa-users text-warning font-medium-5"></i>
                                             </div>
                                         </div>
                                         <h2 class="text-bold-700 mt-1">{{ countUserUser }}</h2>
@@ -71,8 +71,9 @@
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">
                                             <div class="btn-group dropdown actions-dropodown">
-                                                <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <button type="button" class="btn btn-white px-2 py-75 waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Lọc
+                                                    <i class="fa fa-caret-down mr-0 ml-1"></i>
                                                 </button>
                                                 <div class="dropdown-menu" style="left: -25px!important;">
                                                     <a class="dropdown-item" @click="sortChartLine(7)"><i class="feather icon-clipboard"></i> 1 tuần trước </a>

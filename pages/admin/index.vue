@@ -63,7 +63,7 @@
                                                 </div>
                                             </div>
                                             <h2 class="text-bold-700 mt-1">{{CountCall}}</h2>
-                                            <p class="mb-0">lịch phỏng vấn</p>
+                                            <p class="mb-0">Lịch phỏng vấn</p>
                                         </div>
                                     </div>
                                 </a>
