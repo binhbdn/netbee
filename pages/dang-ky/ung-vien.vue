@@ -10,6 +10,13 @@
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nhận bản tin công việc phù hợp định kỳ</li>
                     <li style="font-size: 15px;color:black;"><i class="fad fa-check-circle"></i> Nâng cao cơ hội tìm việc với chương trình ứng viên năng động</li>
                 </ul>
+                <div class="col-md-9" style="padding: 0">
+                      <div class="hotline">
+                        <a href="tel:02462900388">
+                              Hotline hỗ trợ (024) 629 00 388
+                        </a>
+                      </div>
+                    </div>
             </div>      
                         <div class="col-md-5 col-sm-12 content-right" style="padding:0px 15px;">
               <div class="style-backrou">
@@ -307,6 +314,15 @@ export default {
 }
 </script>
 <style scoped>
+.hotline{
+  border: 1px solid #1e1e1e;
+  border-radius: 3px;
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  background: hsla(0,0%,100%,.72157);
+  margin-top: 15px;
+}
 .login-gg-fa{
     width: 15px;
     height: 15px;

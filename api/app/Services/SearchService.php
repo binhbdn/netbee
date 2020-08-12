@@ -187,6 +187,7 @@ class SearchService extends BaseService {
                     'status' => self::ACTIVE
                 ]);
             })
+            ->leftJoin('nb_companies_info','nb_companies_info.company_id','=','nb_joblists.id_created')
             ->where('deleted',self::INACTIVE)
             ->where('status',self::ACTIVE)
             ->where('isPublic',self::ACTIVE)

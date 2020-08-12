@@ -3,6 +3,7 @@ namespace App\Services;
 
 use App\Models\NbJobSave;
 use App\Models\NbJoblist;
+use App\Models\NbCompanyInfo;
 use Carbon\Carbon;
 use Auth;
 use Illuminate\Support\Facades\DB;
@@ -10,11 +11,14 @@ use Illuminate\Support\Facades\DB;
 class SaveService extends BaseService {
 
     protected $nbJobSave;
+    protected $nbJoblist;
+    protected $nbCompanyInfo;
 
-    public function __construct(NbJobSave $nbJobSave, NbJoblist $nbJoblist)
+    public function __construct(NbJobSave $nbJobSave, NbJoblist $nbJoblist, NbCompanyInfo $nbCompanyInfo)
     {
         $this->nbJobSave = $nbJobSave;
         $this->nbJoblist = $nbJoblist;
+        $this->nbCompanyInfo =$nbCompanyInfo;
     }
 
     public function getSaveByJobId($jobId)
@@ -113,13 +117,14 @@ class SaveService extends BaseService {
         }
 
         $query = $this->nbJoblist
-        ->join('nb_job_saves','nb_job_saves.id_job','=','nb_joblists.id')
-        ->where('id_saver', Auth::user()->id)
-        ->select('nb_joblists.*')
-        ->orderBy('nb_job_saves.id', 'DESC')
-        ->with('nbJobSave')
         ->with('user')
-        ->with('nation');
+        ->with('nbJobSave')
+        ->with('nation')
+        ->join('nb_job_saves','nb_job_saves.id_job','=','nb_joblists.id')
+        ->leftJoin('nb_companies_info','nb_companies_info.company_id','=','nb_joblists.id_created')
+        ->where('id_saver', Auth::user()->id)
+        ->select('nb_joblists.*', 'username')
+        ->orderBy('nb_job_saves.id', 'DESC');
 
         if (!empty($conditions)) {
             $query->where($conditions);
