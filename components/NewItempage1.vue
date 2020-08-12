@@ -57,5 +57,8 @@ h4:hover{
     .mb-hide-div{
         display: none;
     }
+    h2.NB_title.text-black.el-3.font-weight-600 {
+        margin-bottom: 2.5rem !important;
+    }
 }
 </style>
