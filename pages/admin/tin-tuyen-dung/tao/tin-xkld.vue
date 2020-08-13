@@ -270,7 +270,7 @@
                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <div class="col-8">
+                                                                <div class="col-4">
                                                                     <label for="firstName3">Bảo hiểm lao động</label>
                                                                 </div>
                                                                 <div class="col-4">
