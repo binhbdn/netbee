@@ -7,7 +7,7 @@
       <div class="content-body">
         <div class="col-xl-7 col-md-9 col-10 d-flex justify-content-center px-0" style="margin: 20px auto">
           <div class="card bg-authentication rounded-0 mb-0">
-            <div class="row m-0">
+            <div class="row m-0 p-4">
               <div class="col-lg-6 d-lg-block d-none text-center align-self-center">
                 <img src="/app-assets/images/pages/forgot-password.png" alt="branding logo" />
               </div>
@@ -53,8 +53,8 @@
                       <div class="float-md-left d-block mb-1">
                         <a
                           href="/dang-nhap"
-                          class="btn btn-outline-primary btn-block px-75"
-                        >Chuyển sang Login</a>
+                          class="btn-login px-75"
+                        >Chuyển sang trang Login</a>
                       </div>
                       <div class="float-md-right d-block mb-1">
                         <button  @click="recoverPassword" class="btn btn-primary btn-block px-75 hover-black-white" :class="{'not-allowed': ((emailRecoverPassword != '') ? flase : true)}" >Gửi Email</button>
@@ -113,6 +113,9 @@ export default {
 };
 </script>
 <style>
+.btn-login:hover {
+  color: #ffb701 !important;
+}
 .app-content.content {
   margin: -80px -333px 47px 250px;
 }
@@ -183,5 +186,8 @@ ul li span{
 }
 .hover-black-white:hover{
   color:#fff !important;
+}
+.content-wrapper {
+  margin-bottom: 20px;;
 }
 </style>
