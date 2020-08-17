@@ -1010,7 +1010,7 @@ export default {
                                 var width = pdf.internal.pageSize.getWidth()
                                 var height = pdf.internal.pageSize.getHeight()                                        
                                 pdf.addImage(img, 'JPEG', 0, 0,width, height) 
-                                pdf.save('Xuatpdf.pdf')
+                                pdf.save(this.tintuyendung.title +'.pdf')
                                 document.getElementById('pdf').innerHTML = ''
                         })      
                     }
