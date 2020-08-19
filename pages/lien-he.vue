@@ -25,7 +25,7 @@
                   <div class="col-md-12">
                     <p>
                       <span class="font-weight-600">Email:</span>
-                      <a href="mailto:info@yoursite.com" class="lh" style="color: black;">info@netbee.vn</a>
+                      <a href="mailto:info@yoursite.com" class="lh" style="color: black;">contact@netbee.vn</a>
                     </p>
                   </div>
                 </div>

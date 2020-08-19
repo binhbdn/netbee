@@ -82,7 +82,7 @@
                                                         v-slot="{ errors }"
                                                     >
                                                     <fieldset class="form-group">
-                                                        <label class="title-label" for="basicInput">Số điện thoại</label>
+                                                        <label class="title-label" for="basicInput">Số điện thoại <span style="color: red; font-size: 20px;">*</span></label>
                                                         <input type="number" v-model="info_frofile_user.phone_profile" name="phone" class="form-control"> 
                                                         <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                                                             <li v-for="(error, index) in errors" :key="index">
@@ -101,7 +101,7 @@
                                                     v-slot="{ errors }"
                                                     >
                                                     <fieldset class="form-group">
-                                                        <label class="title-label" for="basicInput">Email</label>
+                                                        <label class="title-label" for="basicInput">Email <span style="color: red; font-size: 20px;">*</span></label>
                                                         <input type="email" name="email" class="form-control" v-model="info_frofile_user.email_profile">
                                                        <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                                                             <li v-for="(error, index) in errors" :key="index">
