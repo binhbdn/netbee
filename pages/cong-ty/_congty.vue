@@ -162,7 +162,11 @@
                         </div>
                     </div>
                     <div class="tab-pane fade pl-1 pr-1" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                        <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
+                       <div v-if="detailCompany.company_feedback.length == 0">
+                           <p> Chưa có ý kiến đánh giá </p>
+                        </div>
+                        <div v-else>
+                             <div v-for="(item,index) in detailCompany.company_feedback" :key="index">
                             <div class="title-rating d-flex justify-content-between">
                                 <div class="name-rating">{{item.name_feed}}</div>
                                 <div class="date-rating">{{ (item.created_at) }}</div>
@@ -193,7 +197,8 @@
                                 </div>
                             </div>
                             <hr>
-                        </div>                                       
+                        </div>  
+                        </div>                                     
                     </div>
                 </div>
             </div>

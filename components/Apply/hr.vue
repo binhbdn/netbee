@@ -63,41 +63,58 @@
         <!-- Modal -->
         <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="editTodoTask" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm" role="document">
-                <div class="modal-content">
-                    <section class="todo-form">
-                        <form id="form-edit-todo" class="todo-input">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editTodoTask">Từ chối</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body"> 
-                                <fieldset class="form-group">
-                                    <textarea class="edit-todo-item-desc form-control" v-model="reason_for_rejection" rows="3" placeholder="Nội dung..."></textarea>
-                                </fieldset>
-                            </div>
-                            <div class="modal-footer">
-                                <fieldset class="form-group position-relative has-icon-left mb-0">
-                                    <button type="button" @click="RefuseApply()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
-                                        <span class="d-none d-lg-block">Gửi</span></button>
-                                </fieldset>
-                                <fieldset class="form-group position-relative has-icon-left mb-0">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
-                                        <span class="d-none d-lg-block">Cancel</span></button>
-                                </fieldset>
-                            </div>
-                        </form>
-                    </section>
-                </div>
+               
+                    <div class="modal-content">
+                        <section class="todo-form">
+                            <form id="form-edit-todo" class="todo-input">
+                                 <ValidationObserver v-slot="{ invalid }">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editTodoTask">Từ chối</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body"> 
+                                    <ValidationProvider rules="required" v-slot="{ errors }">
+                                        <fieldset class="form-group">
+                                            <textarea class="edit-todo-item-desc form-control" v-model="reason_for_rejection" rows="3" placeholder="Nội dung..."></textarea>
+                                            <span style="color: red">{{ errors[0] }}</span>
+                                        </fieldset>
+                                    </ValidationProvider>
+                                </div>
+                                <div class="modal-footer">
+                                    <fieldset class="form-group position-relative has-icon-left mb-0">
+                                        <button type="button" @click="RefuseApply()" :disabled="invalid" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
+                                            <span class="d-none d-lg-block">Gửi</span></button>
+                                    </fieldset>
+                                    <fieldset class="form-group position-relative has-icon-left mb-0">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
+                                            <span class="d-none d-lg-block">Cancel</span></button>
+                                    </fieldset>
+                                </div>
+                                </ValidationObserver>
+                            </form>
+                        </section>
+                    </div>
+                
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { ValidationProvider, extend } from 'vee-validate/dist/vee-validate.full';
+import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+
+extend("required", {
+  message: (field, values) => "Dữ liệu nhập vào không được để trống.",
+});
 
 export default {
+   components: {
+        ValidationProvider,
+        ValidationObserver
+    },
     data() {
         return {
             reason_for_rejection: '',
