@@ -583,7 +583,7 @@ extend("email", {
   message: (field, values) => "Email không đúng định dạng"
 });
 var errorMessage =
-  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+  " phải chứa ít nhất 8 ký tự";
 // create custom rule
 extend("customPassword", {
   message: field =>"Mật khẩu" + errorMessage,
