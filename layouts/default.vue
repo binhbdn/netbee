@@ -46,15 +46,15 @@ export default {
               resolve(
                 HeaderClient
               )
-          }, 1000)
+          }, 1)
       }),
-      delay: 1000,
-      timeout: 1000
+      delay: 1,
+      timeout: 1
     }),
-    //HeaderClient,
-    //Follow,
+    HeaderClient,
+    Follow,
     FooterClient,
-    //GroupIcon
+    GroupIcon
   },
   mounted() {
     this.$i18n.locale = window.localStorage.getItem('lang');
