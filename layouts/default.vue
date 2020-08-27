@@ -18,39 +18,39 @@ import FooterClient from "~/components/FooterClient";
 import GroupIcon from "~/components/GroupIcon";
 export default {
   components: {
-    // "Follow": () => ({
-    //   component: new Promise(function (resolve, reject) {
-    //       setTimeout(function () {
-    //           resolve(
-    //             Follow
-    //           )
-    //       }, 1000)
-    //   }),
-    //   delay: 1000,
-    //   timeout: 1000
-    // }),
-    // "GroupIcon": () => ({
-    //   component: new Promise(function (resolve, reject) {
-    //       setTimeout(function () {
-    //           resolve(
-    //             GroupIcon
-    //           )
-    //       }, 1000)
-    //   }),
-    //   delay: 1000,
-    //   timeout: 1000
-    // }),
-    // "HeaderClient": () => ({
-    //   component: new Promise(function (resolve, reject) {
-    //       setTimeout(function () {
-    //           resolve(
-    //             HeaderClient
-    //           )
-    //       }, 100)
-    //   }),
-    //   delay: 100,
-    //   timeout: 100
-    // }),
+    "Follow": () => ({
+      component: new Promise(function (resolve, reject) {
+          setTimeout(function () {
+              resolve(
+                Follow
+              )
+          }, 1000)
+      }),
+      delay: 1000,
+      timeout: 1000
+    }),
+    "GroupIcon": () => ({
+      component: new Promise(function (resolve, reject) {
+          setTimeout(function () {
+              resolve(
+                GroupIcon
+              )
+          }, 1000)
+      }),
+      delay: 1000,
+      timeout: 1000
+    }),
+    "HeaderClient": () => ({
+      component: new Promise(function (resolve, reject) {
+          setTimeout(function () {
+              resolve(
+                HeaderClient
+              )
+          }, 1)
+      }),
+      delay: 1,
+      timeout: 1
+    }),
     HeaderClient,
     Follow,
     FooterClient,
