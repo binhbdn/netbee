@@ -327,10 +327,10 @@
                                                     <div class="col-6" v-if="data.type != 2">
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <div class="col-md-8">
+                                                                <div class="col-md-6">
                                                                     <label for="firstName3">Trang phục lao động</label>
                                                                 </div>
-                                                                <div class="col-md-4">
+                                                                <div class="col-md-6">
                                                                      <input class="form-check-input" type="checkbox" v-model="data.skin">
                                                                 </div>
                                                             </div>

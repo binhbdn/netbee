@@ -270,10 +270,10 @@
                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <div class="col-4">
+                                                                <div class="col-6">
                                                                     <label for="firstName3">Bảo hiểm lao động</label>
                                                                 </div>
-                                                                <div class="col-4">
+                                                                <div class="col-6">
                                                                     <input class="form-check-input" type="checkbox" v-model="data.insurrance">
                                                                 </div>
                                                             </div>
@@ -282,10 +282,10 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <div class="col-8">
+                                                                <div class="col-6">
                                                                     <label for="firstName3">Trang phục lao động</label>
                                                                 </div>
-                                                                <div class="col-4">
+                                                                <div class="col-6">
                                                                      <input class="form-check-input" type="checkbox" v-model="data.skin">
                                                                 </div>
                                                             </div>
