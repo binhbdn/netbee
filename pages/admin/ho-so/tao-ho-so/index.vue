@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="col-md-12">
-                                    <ValidationObserver v-slot="{ inval }">
+                                    <ValidationObserver v-slot="{ invalid }">
                                         <div style="padding: 15 5px; margin: 15px 5px 5px;border-radius: 3px;">
                                             <div class="row" style="padding: 10px;">
                                                 <div class="col-md-12 h4_title">
@@ -162,7 +162,7 @@
                                         </div>
                                         <!-- hết -->
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button class="btn btn-add bg-netbee" style="margin-top: 15px" v-bind:disabled="inval" v-on:click="insert">Tạo hồ sơ</button>
+                                            <button class="btn btn-add bg-netbee" style="margin-top: 15px" :disabled="invalid"  v-on:click="insert">Tạo hồ sơ</button>
                                         </div>
                                     </ValidationObserver>
                                     <br>

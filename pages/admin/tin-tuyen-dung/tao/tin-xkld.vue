@@ -346,11 +346,11 @@
                                                             
                                                     </div>
                                                     <div class="col-sm-6"  v-if="checked">
-                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }" >
+                                                        <ValidationProvider rules="required|customBonus" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">Tiền thưởng</label>
                                                                 <div class="input-group">
-                                                                    <input type="txt" class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                    <input type="txt" class="form-control" @input="data.bonus = FormatPrice(data.bonus)" v-model="data.bonus" :disabled="!checked">
                             
                                                                 </div>
                                                                 <span style="color: red">{{ errors[0] }}</span>
@@ -489,7 +489,7 @@ import moment from 'moment'
 
 Vue.use(VueFormWizard)
 Vue.use(Datetime)
-extend("numeric", {
+extend("integer", {
     message: (field, values) => "Dữ liệu nhập vào phải là chữ số"
     });
 extend("ssdate", {
@@ -532,6 +532,20 @@ extend("ssdigit", {
     }
 })
 
+extend("customBonus", {
+  message: field =>"Dữ liệu nhập vào phải là chữ số",
+  validate: value => {
+    var notTheseChars = /["'?&/<>\s]/;
+    var mustContainTheseChars = /^(?=.*?[0-9])/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    if (!containsForbiddenChars) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+})
+
 var errorMessage
 extend('checkSelect', {
     message: field => errorMessage,
@@ -543,6 +557,7 @@ extend('checkSelect', {
         } else return true
     }
 })
+
 
 export default {
     name: 'CreateIndexJob',
@@ -577,7 +592,7 @@ export default {
                 expected_date: '',
                 time_bonus: {id: 3, name: 'Ngay sau khi cọc'},
                 bonus: null,
-                highlight_job: 0,
+                highlight_job: 2,
                 visa: {id: null, profession: ''},
                 work_form: {id: 1, name: 'Toàn thời gian'},
                 school_name: this.$auth.user.name,
@@ -735,7 +750,7 @@ export default {
                 form.append('time_contract' , this.data.time_contract)
                 if(this.checked){
                     form.append('time_bonus' , this.data.time_bonus.id)
-                    form.append('bonus' , this.data.bonus)
+                    form.append('bonus' , this.data.bonus.split(',').join(''))
                 }else{
                     form.append('time_bonus' , 0)
                     form.append('bonus' , 0)
