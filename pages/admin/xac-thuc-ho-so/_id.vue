@@ -51,15 +51,12 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }" >
-                                                            <div class="form-group">
-                                                                <label for="firstName3">
-                                                                    <h3>Hộ chiếu</h3>
-                                                                </label>
-                                                                <ImgUploaderPaper :files="data.passport" v-model="data.passport" :type="4"></ImgUploaderPaper>
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
+                                                        <div class="form-group">
+                                                            <label for="firstName3">
+                                                                <h3>Hộ chiếu</h3>
+                                                            </label>
+                                                            <ImgUploaderPaper :files="data.passport" v-model="data.passport" :type="4"></ImgUploaderPaper>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </ValidationObserver>
@@ -79,15 +76,12 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">
-                                                                    <h3>Sơ yếu lý lịch</h3>
-                                                                </label>
-                                                                <ImgUploaderPaper :files="data.curriculum_vitae" v-model="data.curriculum_vitae" :type="6"></ImgUploaderPaper>
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
+                                                        <div class="form-group">
+                                                            <label for="firstName3">
+                                                                <h3>Sơ yếu lý lịch</h3>
+                                                            </label>
+                                                            <ImgUploaderPaper :files="data.curriculum_vitae" v-model="data.curriculum_vitae" :type="6"></ImgUploaderPaper>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </ValidationObserver>
@@ -107,15 +101,12 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
-                                                            <div class="form-group">
-                                                                <label for="firstName3">
-                                                                    <h3>Bằng tốt nghiệp</h3>
-                                                                </label>
-                                                                <ImgUploaderPaper :files="data.high_school_diploma" v-model="data.high_school_diploma" :type="8"></ImgUploaderPaper>
-                                                                <span style="color: red">{{ errors[0] }}</span>
-                                                            </div>
-                                                        </ValidationProvider>
+                                                        <div class="form-group">
+                                                            <label for="firstName3">
+                                                                <h3>Bằng tốt nghiệp</h3>
+                                                            </label>
+                                                            <ImgUploaderPaper :files="data.high_school_diploma" v-model="data.high_school_diploma" :type="8"></ImgUploaderPaper>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </ValidationObserver>

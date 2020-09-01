@@ -608,7 +608,7 @@
               </div>
               <div class="modal-body" id="modal_body">
                 <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
-                  <ValidationObserver ref="observer" v-slot="{ valid }">
+                  <ValidationObserver ref="observer" v-slot="{ invalid }">
                     <ValidationProvider
                       name="name"
                       ref="name"
@@ -690,7 +690,7 @@
                       </div>
                     </ValidationProvider>
                     <div class="form-submit text-center" style="padding-bottom: 10px; margin-top:10px">
-                        <button type="button" @click="createUser()" class="btn bg-netbee" style="font-weight: bold;width: 100%">Tạo</button>
+                        <button type="button" @click="createUser()" :disabled="invalid" class="btn bg-netbee" style="font-weight: bold;width: 100%">Tạo</button>
                     </div>
                   </ValidationObserver>
               </form>
@@ -742,7 +742,7 @@ extend("customPassword", {
   message: field =>"Mật khẩu" + errorMessage,
   validate: value => {
     var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+    var mustContainTheseChars = /^.{8,}$/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
     if (containsRequiredChars && !containsForbiddenChars) {
@@ -753,7 +753,7 @@ extend("customPassword", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       } else {
         errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+          " phải chứa ít nhất 8 ký tự";
       }
       return false;
     }
@@ -779,7 +779,7 @@ export default {
       images: [],
       elementUpdate: this.defaultValue(),
       userDetail: [],
-      userRole: 0,
+      userRole: 3,
       users: [],
       cardSearch: {
         search: "",
@@ -795,7 +795,7 @@ export default {
         phone: "",
         password: "",
         password_confirmation: "",
-        role: ""
+        role: 3
       },
       block: [
         { id: 0, name: "Đang hoạt động" },
@@ -856,9 +856,7 @@ export default {
       this.actionUpdate();
     },
     async createUser() {
-      const isValid = await this.$refs.observer.validate();
-      if (isValid) {
-        try {
+      
           let response = await this.$axios.post("user/" + this.userRole + "/create", {
             email: this.userForm.email,
             password: this.userForm.password,
@@ -884,14 +882,7 @@ export default {
               'error'
             )
           }
-        } catch (error) {
-          'Lỗi',
-          'Error'
-        }
-        requestAnimationFrame(() => {
-          this.$refs.observer.reset();
-        });
-      }
+       
     },
 
     actionUpdate() {

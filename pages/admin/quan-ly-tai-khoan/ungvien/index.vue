@@ -742,7 +742,7 @@ extend("customPassword", {
   message: field =>"Mật khẩu" + errorMessage,
   validate: value => {
     var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+    var mustContainTheseChars = /^.{8,}$/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
     if (containsRequiredChars && !containsForbiddenChars) {
@@ -753,7 +753,7 @@ extend("customPassword", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       } else {
         errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+          " phải chứa ít nhất 8 ký tự";
       }
       return false;
     }
@@ -779,7 +779,7 @@ export default {
       images: [],
       elementUpdate: this.defaultValue(),
       userDetail: [],
-      userRole: 0,
+      userRole: 1,
       users: [],
       cardSearch: {
         search: "",
@@ -795,7 +795,7 @@ export default {
         phone: "",
         password: "",
         password_confirmation: "",
-        role: ""
+        role: 1
       },
       block: [
         { id: 0, name: "Đang hoạt động" },
@@ -856,9 +856,6 @@ export default {
       this.actionUpdate();
     },
     async createUser() {
-      const isValid = await this.$refs.observer.validate();
-      if (isValid) {
-        try {
           let response = await this.$axios.post("user/" + this.userRole + "/create", {
             email: this.userForm.email,
             password: this.userForm.password,
@@ -884,14 +881,6 @@ export default {
               'error'
             )
           }
-        } catch (error) {
-          'Lỗi',
-          'Error'
-        }
-        requestAnimationFrame(() => {
-          this.$refs.observer.reset();
-        });
-      }
     },
 
     actionUpdate() {

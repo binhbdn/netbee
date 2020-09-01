@@ -402,7 +402,7 @@
                                                                     Tiền thưởng
                                                                 </label>
                                                                 <div class="input-group">
-                                                                    <input type="txt"  class="form-control" v-model="data.bonus" :disabled="!checked">
+                                                                    <input type="txt"  class="form-control"  @input="data.bonus = FormatPrice(data.bonus)" v-model="data.bonus" :disabled="!checked">
                                                                     <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                         <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                     </div>
@@ -624,7 +624,7 @@ export default {
                 expected_date: '',
                 time_bonus: {id: 3, name: 'Ngay sau khi cọc'},
                 bonus: null,
-                highlight_job: 0,
+                highlight_job: 2,
                 visa: '',
                 work_form: '',
                 type: '',
@@ -882,7 +882,7 @@ export default {
                 form.append('expected_date' , this.data.expected_date)
                 if(this.checked){
                     form.append('time_bonus' , this.data.time_bonus.id)
-                    form.append('bonus' , this.data.bonus)
+                    form.append('bonus' , this.data.bonus.split(',').join(''))
                 }else{
                     form.append('time_bonus' , 0)
                     form.append('bonus' , 0)

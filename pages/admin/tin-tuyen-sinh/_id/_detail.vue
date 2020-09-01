@@ -584,7 +584,7 @@
                         <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                             <li class="nav-item">
                                 <a @click="changeStateTab(true)" class="nav-link active" id="v-pills-1-tab" data-toggle="tab" href="#v-pills-1"
-                                role="tab" aria-controls="v-pills-1" aria-selected="true">Hồ sơ đính kèm</a>
+                                role="tab" aria-controls="v-pills-1" aria-selected="true">Ứng tuyển nhanh</a>
                             </li>
                             <li class="nav-item" @click="getListProfileUser()">
                                 <a class="nav-link" @click="changeStateTab(false)" id="v-pills-2-tab" data-toggle="tab" href="#v-pills-2"
@@ -668,8 +668,8 @@
                                         <ValidationProvider
                                             rules="required"
                                             v-slot="{ errors }">
-                                            <fieldset v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
-                                                <div class="vs-radio-con vs-radio-success">
+                                            <fieldset  v-if="listProfileUser.status == 1" v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
+                                                <div class="vs-radio-con vs-radio-success" >
                                                     <input type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
                                                     <span class="vs-radio">
                                                         <span class="vs-radio--border"></span>
@@ -685,11 +685,10 @@
                                         <ValidationProvider
                                         rules="required"
                                         v-slot="{ errors }">
-                                            <div class="form-group">
+                                            <div class="form-group mt-1">
                                                 <div class="form-field">
                                                     <label for="name">Họ tên</label>
                                                     <input type="text" id="name" class="form-control" v-model="nameCv">
-                                                    <span style="color: red">{{errors[0]}}</span>
                                                 </div>
                                             </div>
                                         </ValidationProvider>   
@@ -961,6 +960,7 @@ export default {
                 data.append('name', this.nameCv);
                 let isValid = this.$refs.applyJobCv.validate()
                 if(isValid) {
+                    
                     this.toApiApplyJob(data)
                 }
             }                                                

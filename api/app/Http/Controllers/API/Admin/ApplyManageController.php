@@ -105,7 +105,7 @@ class ApplyManageController extends Controller
             $url = 'https://netbee.vn/';
             $this->notificationService->store($content, $detail->user_id, $url);
 //            NotificationController::postNotification($content, $detail->user_id, $url);
-            $data = ['status' => 200, 'message' => 'thành công', 'data' => null];
+            $data = ['status' => 200, 'message' => 'Hủy thành công', 'data' => null];
         }else {
             $data = ['status' => 400, 'message' => 'thất bại', 'data' => null];
         }

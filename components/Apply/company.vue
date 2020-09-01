@@ -162,7 +162,7 @@
                         <h4 class="text-uppercase">Giấy tờ đính kèm</h4>
                     </div>
                     <div class="hide-data-sidebar" @click="closeShowFile()">
-                        <i class="feather icon-x"></i>
+                        <i class="fa fa-times"></i>
                     </div>
                 </div>
                 <div class="data-items pb-3">
