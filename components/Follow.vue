@@ -14,7 +14,7 @@
                       <ValidationProvider name="Họ và tên" ref="name" rules="required" v-slot="{ errors }"> 
                         <div class="col-md-12 form-group" style="padding-left: 0;">
                           <input type="text" class="form-control"  :placeholder="$t('follow.name')"  name="name" v-model="dataForm.name">
-                          <ul style="color:#FFC107;padding-left:15px;" class="overline">
+                          <ul style="color:red;padding-left:15px;" class="overline">
                             <li v-for="(error, index) in errors" :key="index">
                               <span>{{ error }}</span>
                             </li>
@@ -24,7 +24,7 @@
                       <ValidationProvider rules="required|integer" ref="phone" name="Số điện thoại" v-slot="{ errors }">
                         <div class="col-md-12 form-group" style="padding-left: 0;">                                     
                           <input type="text" class="form-control" :placeholder="$t('follow.phone')"  name="phone" v-model="dataForm.phone">
-                          <ul style="color:#FFC107;padding-left:15px;" class="overline text-left">
+                          <ul style="color:red;padding-left:15px;" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                               <span>{{ error }}</span>
                             </li>
@@ -34,7 +34,7 @@
                       <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
                         <div class="col-md-12 form-group" style="padding-left: 0;">
                           <input type="email" class="form-control" :placeholder="$t('follow.email')"  name="email" v-model="dataForm.email">
-                            <ul style="color:#FFC107;padding-left:15px;" class="overline text-left">
+                            <ul style="color:red;padding-left:15px;" class="overline text-left">
                               <li v-for="(error, index) in errors" :key="index">
                                 <span>{{ error }}</span>
                               </li>
@@ -116,27 +116,25 @@ export default {
       const isValid = await this.$refs.observer.validate();
       if (isValid) {
         try {
-            let response = await this.$axios.post('/saveEmail',{ 
-                name: this.dataForm.name,
-                phone: this.dataForm.phone,
-                email: this.dataForm.email,
-             });
-            if(response.data.status == 200) {
-              this.$swal({
-                title: 'Gửi thành công',
-                text: response.data.message,
-                icon: 'success',
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'OK'
-              }).then( async (result) => {
-              })
-            }else {
-              this.$swal(
-                'Lỗi!',
-                response.data.message,
-                'error'
-              )
-            }
+          let response = await this.$axios.post('/saveEmail',{ 
+              name: this.dataForm.name,
+              phone: this.dataForm.phone,
+              email: this.dataForm.email,
+            });
+          if(response.data.status == 200) {
+            this.$swal(
+              'Gửi thành công!',
+              response.data.message,
+              'success'
+            )
+            window.location.reload();
+          }else {
+            this.$swal(
+              'Lỗi!',
+              response.data.message,
+              'error'
+            )
+          }
         } catch (err) {
           this.$swal(
             'Lỗi!',
@@ -144,7 +142,6 @@ export default {
             'error'
           )
         }
-       
         requestAnimationFrame(() => {
           this.$refs.observer.reset();
         });

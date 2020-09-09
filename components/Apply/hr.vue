@@ -13,9 +13,9 @@
                                             <th style="width:5%;">ID</th>
                                             <th style="width:25%;">Tên công việc</th>
                                             <th style="width:15%;">Tên ứng viên</th>
-                                            <th style="width:10%;" v-if="$auth.user.role == 3">Bonus</th>
+                                            <th style="width:15%;" v-if="$auth.user.role == 3">Bonus</th>
                                             <th style="width:15%;">Nhà tuyển dụng</th>
-                                            <th style="width:15%;">Trạng thái</th>
+                                            <th style="width:10%;">Trạng thái</th>
                                             <th style="width:15%;">Hành động</th>
                                         </tr>
                                     </thead>
@@ -28,11 +28,11 @@
                                             </td>
                                             <td>{{item.name}}</td>
                                             <td v-if="$auth.user.role == 3">
-                                                <span style="color: #fc205c">{{item.bonus}}{{ item.job.currency }}</span>
+                                                <p style="color: #fc205c; margin-bottom: 0 !important;">{{item.bonus}} {{ item.job.currency }}</p>
                                             </td>
                                             <td>{{item.user.name}}</td>
                                             <td>
-                                                <p v-if="item.status == 1" data-toggle="tooltip" data-placement="top" title="Chờ admin xác thực" class="tag-p-center"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p>
+                                                <p v-if="item.status == 1" data-toggle="tooltip" data-placement="top" title="Chờ admin xác thực" class="tag-p-center" style="margin-bottom: 0 !important;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p>
                                                 <p v-else-if="item.status == 2">Chưa hoàn tất giấy tờ</p>
                                                 <p v-else-if="item.status == 2 && item.nb_paper != null">Chờ admin xác thực giấy tờ</p>
                                                 <p v-else-if="item.status == 5">Chờ công ty duyệt</p>
@@ -69,7 +69,7 @@
                             <form id="form-edit-todo" class="todo-input">
                                  <ValidationObserver v-slot="{ invalid }">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="editTodoTask">Từ chối</h5>
+                                    <h5 class="modal-title" id="editTodoTask">Lý do hủy</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

@@ -90,7 +90,7 @@
                                                         <td>
                                                             <span v-if="item.bonus == null || item.bonus == 0">Không bonus</span>
                                                             <span v-else  style="color: #fc205c">
-                                                                {{FormatPrice(item.bonus)}}{{ item.job.currency }}
+                                                                {{FormatPrice(item.bonus)}} {{ item.job.currency }}
                                                             </span>
                                                             <!-- <span v-else  style="color: #fc205c">
                                                                 {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
