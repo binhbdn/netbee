@@ -114,7 +114,7 @@ export default {
    methods: {
     async sendForm() {
       const isValid = await this.$refs.observer.validate();
-      if (isValid) {
+      if (isValid == true) {
         try {
           let response = await this.$axios.post('/saveEmail',{ 
               name: this.dataForm.name,
@@ -134,6 +134,7 @@ export default {
               response.data.message,
               'error'
             )
+            window.location.reload();
           }
         } catch (err) {
           this.$swal(
@@ -141,7 +142,18 @@ export default {
             'Gửi thất bại!',
             'error'
           )
+          window.location.reload();
         }
+        requestAnimationFrame(() => {
+          this.$refs.observer.reset();
+        });
+      }else{
+        this.$swal(
+          'Lỗi!',
+          'Bạn chưa nhập đủ thông tin nhận tư vấn!',
+          'error'
+        )
+        window.location.reload();
         requestAnimationFrame(() => {
           this.$refs.observer.reset();
         });
