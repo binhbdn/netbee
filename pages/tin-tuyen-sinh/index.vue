@@ -15,6 +15,15 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
+                      <div class="form-field">
+                        <div class="select-wrap">
+                          <input name="title" v-model="title" type="text" class="form-control input_placaholder" placeholder="Từ khóa....">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
                       <Multiselect :options="money" v-model="currency" placeholder="Chọn loại tiền" :show-labels="false" :searchable="false" name="money"></Multiselect>
                     </div>
                   </div>
@@ -48,8 +57,22 @@
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
+                      <Multiselect :options="academicLevel" v-model="chooseLevel" :custom-label="nameWithLevel" :searchable="false" :show-labels="false" placeholder="Chọn trình độ học vấn"></Multiselect>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
                       <div class="form-field">
-                        <input type="button" value="Tìm ngay" class="form-control col-md-12 btn bg-netbee" @click="search">
+                        <div class="select-wrap">
+                          <input name="subsidy" v-model="subsidy" type="text" class="form-control input_placaholder" placeholder="Chi phí">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <div class="form-field">
+                        <input type="button" value="Tìm ngay" class="form-control col-md-12 btn bg-netbee bg-black" @click="search">
                       </div>
                     </div>
                   </div>
@@ -109,12 +132,22 @@ export default {
       chooseVisa: '',
       salary_start: '',
       salary_end: '',
-
+      subsidy: '',
+      title: '',
       money: ['$', 'VND', '€', '¥', '₩'],
       work_form: [
         {id: 1, name: 'Toàn thời gian'},
         {id: 2, name: 'Bán thời gian'},
         {id: 3, name: 'Vừa học vừa làm'}
+      ],
+      chooseLevel: '',
+      academicLevel: [
+        {id: 1, name: 'Trung học phổ thông'},
+        {id: 2, name: 'Cao đẳng'},
+        {id: 3, name: 'Đại học'},
+        {id: 4, name: 'Trên đại học'},
+        {id: 5, name: 'Sau đại học'},
+        {id: 6, name: 'Không yêu cầu'}
       ],
       // page: 1
     }
@@ -179,13 +212,19 @@ export default {
     nameWithLang1 ({ profession, id }) {
             return `${profession}`
         },
+    nameWithLevel ({ name, id }) {
+            return `${name}`
+        },
     async search() {
       this.arrayJobNew = []   
-      let getTinTuyenDungNew = await this.$axios.$get('searchJobs?currency='+(this.currency == '' || this.currency == null ? '' : this.currency)
-                                                  +(this.chooseWork != '' && this.chooseWork != null ? '&work_form='+this.chooseWork.id : '')
-                                                  +(this.salary_start != '' ? '&salary_start='+this.salary_start : '')
-                                                  +(this.salary_end != '' ? '&salary_end='+this.salary_end : '')
-                                                  +(this.chooseVisa != '' && this.chooseVisa != null ? '&id_visa='+this.chooseVisa.id : ''))
+      let getTinTuyenDungNew = await this.$axios.$get('searchJobs?currency='
+      +(this.currency == '' || this.currency == null ? '' : this.currency)
+      +(this.chooseWork != '' && this.chooseWork != null ? '&work_form='+this.chooseWork.id : '')
+      +(this.salary_end != '' ? '&salary_end='+this.salary_end : '')
+      +(this.subsidy != '' ? '&subsidy='+this.subsidy : '')
+      +(this.title != '' ? '&title='+this.title : '')
+      +(this.chooseVisa != '' && this.chooseVisa != null ? '&id_visa='+this.chooseVisa.id : '')
+      +(this.chooseLevel != '' && this.chooseLevel != null ? '&academicLevel='+this.chooseLevel.id : ''))  
       this.arrayJobNew = getTinTuyenDungNew.data
       this.countJob = getTinTuyenDungNew.data.length
     },
@@ -193,6 +232,10 @@ export default {
 };
 </script>
 <style >
+.bg-black:hover{
+  background: #000 !important;
+  border-color: #000 !important;
+}
 .banner-tt {
   background-color: white;
   height: 64px;

@@ -39,7 +39,7 @@
                                                 </td>
                                                 <td>
                                                     <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
-                                                        {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                        {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}} {{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
                                                     </span>
                                                     <span v-else>Không bonus</span>
                                                 </td>                                                
@@ -86,7 +86,7 @@
                     <section class="todo-form">
                         <form id="form-edit-todo" class="todo-input">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="editTodoTask">Từ chối</h5>
+                                <h5 class="modal-title" id="editTodoTask">Lý do hủy</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

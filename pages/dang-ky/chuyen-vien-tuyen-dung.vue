@@ -25,7 +25,7 @@
                         <span style="color:#000; font-weight: bold;">ĐĂNG KÝ CHUYÊN VIÊN TUYỂN SINH</span>
                     </div>
                     <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
-                        <ValidationObserver ref="observer" v-slot="{ valid }">
+                        <ValidationObserver ref="observer">
                         <ValidationProvider
                             name="name"
                             ref="name"
@@ -595,9 +595,9 @@ ul{
 ul li span{
   font-style: italic;
 }
-.intro-code input {
-  /* width: 50%; */
-}
+/* .intro-code input {
+  width: 50%;
+} */
 
 section{
   padding-top: 70px

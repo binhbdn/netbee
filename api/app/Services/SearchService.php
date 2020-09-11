@@ -139,6 +139,9 @@ class SearchService extends BaseService {
         $currency = $request->currency;
         $workForm = $request->work_form;
         $idVisa = $request->id_visa;
+        $subsidy = $request->subsidy;
+        $title = $request->title;
+        $academicLevel = $request->academicLevel;
 
         $conditions = [];
 
@@ -173,6 +176,18 @@ class SearchService extends BaseService {
         if ($currency != '' || $salaryStart != '' || $salaryEnd != '') {
             $typeCurrency = $currency != '' ? $currency : 'VND';
             $conditions[] = ['currency', '=', $typeCurrency];
+        }
+
+        if ($subsidy != '') {
+            $conditions[] = ['subsidy', '=', $subsidy];
+        }
+
+        if ($title != '') {
+            $conditions[] = ['title', 'like', '%'.$title.'%'];
+        }
+
+        if ($academicLevel != '') {
+            $conditions[] = ['academicLevel', '=', $academicLevel];
         }
 
         $search = $this->nbJobList->with(['user' => function ($q) {

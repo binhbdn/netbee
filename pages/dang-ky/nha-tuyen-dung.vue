@@ -40,7 +40,7 @@
                     <span style="color:#000; font-weight: bold;">ĐĂNG KÝ NHÀ TUYỂN DỤNG</span>
                     </div>
                 <form method="POST" class="appointment-form" id="appointment-form-2" style="margin-top:10px;" v-on:keyup.enter="signIn">
-                        <ValidationObserver ref="observer" v-slot="{ valid }">
+                        <ValidationObserver ref="observer">
                         <ValidationProvider
                             name="name"
                             ref="name"
