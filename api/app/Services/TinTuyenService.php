@@ -785,10 +785,10 @@ class TinTuyenService extends BaseService {
         }
 
         if ($userRole == self::ROLE_COMPANY) {
-            $perPage = 10;
+            $perPage = 20;
             $query = $this->getJobByRoleCompanySearch();
         } else {
-            $perPage = 6;
+            $perPage = 20;
             $query = $this->getJobValid()
                     ->orderBy('highlight_job', 'DESC')
                     ->orderBy('id', 'DESC');
