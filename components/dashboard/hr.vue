@@ -63,10 +63,11 @@
         <infinite-loading
                 v-if="tinTuyenDung.length"
                 spinner="bubbles"
+                ref="infiniteLoading" 
                 @infinite="infiniteScroll" style="padding:20px; width:100%"
             >
-            <div slot="no-more" style="font-size:15px; font-style: italic">Hết tin</div>
-            <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+            <div slot="no-more" style="font-size:15px; font-style: italic"></div>
+            <div slot="no-results" style="font-size:15px; font-style: italic"></div>
         </infinite-loading>
     </div>
 </template>
@@ -135,7 +136,6 @@ export default {
             + '&searchAddress='+ ((this.cardSearch.searchAddress != null && this.cardSearch.searchAddress.id != null)?this.cardSearch.searchAddress.id:'')
             ).then((response)=>{
                  this.tinTuyenDung=response.data;
-                 this.page = 1;
 	        });
         },
         nameWithLang ({ name, id }) {

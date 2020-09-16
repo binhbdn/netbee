@@ -2,7 +2,7 @@
     <div>      
         <div class="content-wrapper" style="margin-top: 0px;padding-top: 0px;">    
             <!-- News filter start -->
-            <div class="card" v-if="$auth.user.role == 4">
+            <div class="card" v-if="$auth.user.role == 4 || $auth.user.role == 2">
                 <div class="card-header">
                     <h4 class="card-title">Tìm kiếm</h4>
                     <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
@@ -20,7 +20,7 @@
                             <form>
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-lg-3">
-                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                        <input type="text" @keyup="search()" class="form-group ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                     </div>
                                     <!-- <div class="col-12 col-sm-6 col-lg-3">
                                         <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
@@ -441,10 +441,9 @@ export default {
             this.search()
         },
         listconpany(){
-            this.$axios.$get(
-            'tintuyendung/listcompany').then((response)=>{            
+            this.$axios.$get('tintuyendung/listcompany').then((response)=>{            
                 this.companylist=response;                                           
-        });
+            });
         },
         payWithMomo() {
             this.$axios.$post('/pricing_momo',{code: this.discount,idJob: this.selectPay.id}).then((response)=>{
