@@ -232,10 +232,6 @@ export default {
 };
 </script>
 <style >
-.bg-black:hover{
-  background: #000 !important;
-  border-color: #000 !important;
-}
 .banner-tt {
   background-color: white;
   height: 64px;
