@@ -86,13 +86,13 @@
                                                             <div class="container-fluid">
                                                                 <div class="row">
                                                                     <div class="col-6" style="padding-left:0px">
-                                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmDigit">
+                                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }" name="confirmDigit">
                                                                             <input type="number" class="form-control" v-model="data.age_start" placeholder="Từ">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px">
-                                                                        <ValidationProvider rules="required|ssdigit:@confirmDigit" v-slot="{ errors }">
+                                                                        <ValidationProvider rules="required|ssdigit:@confirmDigit|numeric" v-slot="{ errors }">
                                                                             <input type="number" class="form-control" v-model="data.age_late" placeholder="Đến">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
@@ -125,7 +125,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Số lượng tuyển</label>
                                                                 <input type="number" class="form-control" v-model="data.quantity">
@@ -490,7 +490,10 @@ import moment from 'moment'
 Vue.use(VueFormWizard)
 Vue.use(Datetime)
 extend("integer", {
-    message: (field, values) => "Dữ liệu nhập vào phải là chữ số"
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên"
+    });
+    extend("numeric", {
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
     });
 extend("ssdate", {
     message: field => "Ngày dự kiến phải lớn hơn ngày hiện tại",
