@@ -149,7 +149,7 @@ export default {
                 + ((this.cardSearch.searchCategory != null && this.cardSearch.searchCategory.id != null)? '&searchCategory='+this.cardSearch.searchCategory.id:'') 
                 // + ((this.cardSearch.searchStatus != null && this.cardSearch.searchStatus.id !=null)? '&searchStatus='+this.cardSearch.searchStatus.id:'') 
                 + ((this.cardSearch.search)? '&search='+ this.cardSearch.search:'')
-                + '&searchAdress='+((this.cardSearch.searchAdress != null && this.cardSearch.searchAdress.id != null)?this.cardSearch.searchAdress.id:'')
+                + '&searchAddress='+((this.cardSearch.searchAddress != null && this.cardSearch.searchAddress.id != null)?this.cardSearch.searchAddress.id:'')
                 )
                 .then((response) => {
                     if (response.data.data.length > 1) {

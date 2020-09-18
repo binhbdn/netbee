@@ -134,7 +134,6 @@ export default {
               response.data.message,
               'error'
             )
-            window.location.reload();
           }
         } catch (err) {
           this.$swal(
@@ -142,7 +141,6 @@ export default {
             'Gửi thất bại!',
             'error'
           )
-          window.location.reload();
         }
         requestAnimationFrame(() => {
           this.$refs.observer.reset();
@@ -153,7 +151,6 @@ export default {
           'Bạn chưa nhập đủ thông tin nhận tư vấn!',
           'error'
         )
-        window.location.reload();
         requestAnimationFrame(() => {
           this.$refs.observer.reset();
         });

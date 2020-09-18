@@ -785,20 +785,22 @@ class TinTuyenService extends BaseService {
         }
 
         if ($userRole == self::ROLE_COMPANY) {
-            $perPage = 20;
+            $perPage = 6;
             $query = $this->getJobByRoleCompanySearch();
         } else {
-            $perPage = 20;
+            $perPage = 6;
             $query = $this->getJobValid()
                     ->orderBy('highlight_job', 'DESC')
                     ->orderBy('id', 'DESC');
         }
 
         if (!empty($conditions)) {
+            $perPage = 6;
             $query->where($conditions);
         }
 
         if ($search != '') {
+            $perPage = 6;
             $query->where(function($q) use ($search){
                 $q->where('title', 'LIKE', '%'.$search.'%')
                     ->orwhere('id','LIKE', '%'.$search.'%');
