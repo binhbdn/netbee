@@ -90,13 +90,13 @@
                                                             <div class="container-fluid">
                                                                 <div class="row">
                                                                     <div class="col-6" style="padding-left:0px">
-                                                                        <ValidationProvider rules="required" v-slot="{ errors }" name="confirmDigit">
+                                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }" name="confirmDigit">
                                                                             <input type="number" class="form-control" v-model="data.age_start" placeholder="Từ">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px">
-                                                                        <ValidationProvider rules="required|ssdigit:@confirmDigit" v-slot="{ errors }">
+                                                                        <ValidationProvider rules="required|numeric|ssdigit:@confirmDigit" v-slot="{ errors }">
                                                                             <input type="number" class="form-control" v-model="data.age_late" placeholder="Đến">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
@@ -117,19 +117,25 @@
                                                             <div class="container-fluid">
                                                                 <div class="row">
                                                                     <div class="col-6" style="padding-left: 0px;">
+                                                                        <ValidationProvider rules="required|customSoam" v-slot="{ errors }">
                                                                         <label for="firstName3">Chiều cao (cm)</label>
                                                                         <input type="number" class="form-control" v-model="data.height">
+                                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                                        </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px;">
+                                                                        <ValidationProvider rules="required|customSoam" v-slot="{ errors }">
                                                                         <label for="firstName3">Cân nặng (kg)</label>
                                                                         <input type="number" class="form-control" v-model="data.weight">
+                                                                            <span style="color: red">{{ errors[0] }}</span>
+                                                                        </ValidationProvider>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Số lượng tuyển</label>
                                                                 <input type="number" class="form-control" v-model="data.quantity">
@@ -509,7 +515,22 @@ extend("ssdate", {
         }
     }
 })
-
+extend("numeric", {
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
+    });
+extend("customSoam", {
+  message: field =>"Dữ liệu nhập vào phải là chữ số dương",
+  validate: value => {
+    var notTheseChars = /["'?&/<>-\s]/;
+    var mustContainTheseChars = /^(?=.*?[0-9])/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    if (!containsForbiddenChars) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+})
 extend("customBonus", {
   message: field =>"Dữ liệu nhập vào phải là chữ số",
   validate: value => {
