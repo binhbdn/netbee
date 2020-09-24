@@ -157,11 +157,7 @@ class TinTuyenService extends BaseService {
         }
         $data = $this->getOnlyRequest($request);
         
-        if(Auth::user()->role == 4) {
-            $data['id_created'] = $this->getUserIdByJobId($request->id);
-        }
-
-        $id_created = $this->getUserIdByJobId($request->id);
+        $id_created = $request->has('id_created') ? $request->id_created : Auth::user()->id;
         $user = $this->user->whereId($id_created)->first();
         try {
             $this->getJobById($request->id)->update($data);

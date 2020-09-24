@@ -8,7 +8,7 @@
                 <div class="row d-flex mb-5 contact-info">
                   <div class="col-md-12">
                     <p>
-                      Cám ơn bạn đã vào thăm trang Netbee.vn của chúng tôi, website tuyển dụng xuất khẩu lao động lớn nhất tại Việt Nam hiện nay. Bạn có thể liên hệ với chúng tôi theo một trong những cách sau:
+                      Cảm ơn bạn đã vào thăm trang Netbee.vn của chúng tôi, website tuyển dụng xuất khẩu lao động lớn nhất tại Việt Nam hiện nay. Bạn có thể liên hệ với chúng tôi theo một trong những cách sau:
                     </p>
                   </div>
                   <div class="col-md-12">
