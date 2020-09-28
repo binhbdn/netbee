@@ -16,8 +16,8 @@ class DashboardService extends BaseService {
     }
     public function fetchTotalVisitorsAndPageViews(int $day)
     {
-        $startDate = Carbon::now()->subDays($day);
-        $endDate = Carbon::now();
+        $startDate = Carbon::now()->subDays($day)->format('d/m/Y');
+        $endDate = Carbon::now()->format('d/m/Y');
         return Analytics::fetchTotalVisitorsAndPageViews(Period::create($startDate, $endDate));
     }
     public function fetchTopBrowsers()
