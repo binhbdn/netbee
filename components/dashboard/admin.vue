@@ -62,6 +62,36 @@
                                 </div>
                             </a>
                         </div>
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <a href="/admin/quan-ly-tai-khoan?role=1">
+                                <div class="card">
+                                    <div class="card-header d-flex flex-column align-items-start pb-0">
+                                        <div class="avatar bg-rgba-warning p-50 m-0">
+                                            <div class="avatar-content">
+                                                <i class="fa fa-newspaper-o text-success font-medium-5"></i>
+                                            </div>
+                                        </div>
+                                        <h2 class="text-bold-700 mt-1">{{ countJob }}</h2>
+                                        <p class="mb-0">Số lượng tin</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 col-12">
+                            <a href="/admin/quan-ly-tai-khoan?role=1">
+                                <div class="card">
+                                    <div class="card-header d-flex flex-column align-items-start pb-0">
+                                        <div class="avatar bg-rgba-warning p-50 m-0">
+                                            <div class="avatar-content">
+                                                <i class="fa fa-sign-in text-info font-medium-5"></i>
+                                            </div>
+                                        </div>
+                                        <h2 class="text-bold-700 mt-1">{{ countUserUT }}</h2>
+                                        <p class="mb-0">Số lượng ứng tuyển</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-xl-8 col-12">
@@ -158,6 +188,8 @@ export default {
             countUserHr: '',
             countUserCompany: '',
             countUserUser: '',
+            countJob: '',
+            countUserUT: '',
             browsers: [],
             fetchTopReferrers: [],
             option: {},
@@ -212,6 +244,8 @@ export default {
             this.countUserHr = res.countUserHr.data
             this.countUserCompany = res.countUserCompany.data
             this.countUserUser = res.countUserUser.data
+            this.countJob = res.countJob.data
+            this.countUserUT = res.countUserUT.data
         })
     }
 }

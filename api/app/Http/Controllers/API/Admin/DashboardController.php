@@ -30,6 +30,8 @@ class DashboardController extends Controller
         $data['countUserHr'] = $this->userService->countUser(3);
         $data['countUserCompany'] = $this->userService->countUser(2);
         $data['countUserUser'] = $this->userService->countUser(1);
+        $data['countJob'] = $this->dashboardService->countJob();
+        $data['countUserUT'] = $this->dashboardService->countUserUT();
         return response()->json($data);
     }
 

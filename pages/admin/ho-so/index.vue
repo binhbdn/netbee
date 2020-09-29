@@ -9,9 +9,8 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
-                                    <form class="col-9" action="/admin/ho-so/tao-ho-so" method="">
-                                        <button class="btn-add btn bg-netbee text-dark "><i class="far fa-folder-plus"></i> Tạo hồ sơ ứng tuyển</button>
-                                    </form>                                  
+                                    <h2><i class="fa fa-list" aria-hidden="true"></i> <strong>Danh sách hồ sơ</strong></h2>
+                                    <small style="color:red;">Tổng số hồ sơ: {{ listProfileUser.length }}</small>                                  
                                 </div>
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive list-data">

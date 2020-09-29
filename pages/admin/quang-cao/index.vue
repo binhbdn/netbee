@@ -42,8 +42,8 @@
                                                         <div class="action-btns">
                                                             <div class="btn-dropdown ">
                                                                 <div class="btn-group dropdown actions-dropodown">
-                                                                    <button type="button" class="btn btn-white px-2 py-75 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        Chọn thao tác
+                                                                    <button type="button" class="btn btn-white px-2 py-75 waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                        <i class="fa fa-ellipsis-h" aria-hidden="true" style="margin:0 !important;"></i>
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
                                                                         <a v-on:click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>

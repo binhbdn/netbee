@@ -797,9 +797,12 @@ class TinTuyenService extends BaseService {
 
         if ($search != '') {
             $perPage = 6;
-            $query->where(function($q) use ($search){
+            $query->leftJoin('nb_companies_info','nb_companies_info.company_id','=','nb_joblists.id_created')
+            ->select('nb_joblists.*','username')
+            ->where(function($q) use ($search){
                 $q->where('title', 'LIKE', '%'.$search.'%')
-                    ->orwhere('id','LIKE', '%'.$search.'%');
+                    ->orwhere('username','LIKE', '%'.$search.'%')
+                    ->orwhere('nb_joblists.id','LIKE', '%'.$search.'%');
                     // ->orwhere('id_created','LIKE', '%'.$search.'%');
             });
         }
