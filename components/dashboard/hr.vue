@@ -145,14 +145,18 @@ export default {
             setTimeout(() => {
                 this.page++
                 this.$axios
-                .get('/tintuyendung/searchTinTuyenDung?page='+ this.page
-                + ((this.cardSearch.searchCategory != null && this.cardSearch.searchCategory.id != null)? '&searchCategory='+this.cardSearch.searchCategory.id:'') 
-                // + ((this.cardSearch.searchStatus != null && this.cardSearch.searchStatus.id !=null)? '&searchStatus='+this.cardSearch.searchStatus.id:'') 
-                + ((this.cardSearch.search)? '&search='+ this.cardSearch.search:'')
-                + '&searchAddress='+((this.cardSearch.searchAddress != null && this.cardSearch.searchAddress.id != null)?this.cardSearch.searchAddress.id:'')
-                )
+                .get(
+            'tintuyendung/searchTinTuyenDung?searchCategory=' 
+            + ((this.cardSearch.searchCategory.id)?this.cardSearch.searchCategory.id:'') 
+            + '&searchStatus='+ ((this.cardSearch.searchStatus.id !=null)?this.cardSearch.searchStatus.id:'') 
+            + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
+            + '&searchCompany='+ ((this.cardSearch.searchCompany.id !=null)?this.cardSearch.searchCompany.id:'')
+            + '&status='+this.statusTabs
+            + '&page='+this.page
+            )
                 .then((response) => {
-                    if (response.data.data.length > 1) {
+                    console.log(response)
+                    if (response.data.data.length >= 1) {
                         response.data.data.forEach((item) => this.tinTuyenDung.push(item))
                         $state.loaded()
                     } else {
@@ -160,6 +164,7 @@ export default {
                     }
                 })
                 .catch((err) => {
+                    console.log(err)
                 })
             }, 500)
         },

@@ -5,8 +5,23 @@ use JWTAuth;
 use Analytics;
 use Spatie\Analytics\Period;
 use Carbon\Carbon;
+use App\Models\NbJoblist;
+use App\Models\ProfileUser;
 
 class DashboardService extends BaseService {
+
+    protected $nbJobList;
+    protected $profileUser; 
+
+    const
+        ACTION = 0,
+        NOACTION = 1;
+
+    public function __construct(NbJoblist $nbJobList, ProfileUser $profileUser)
+    {
+        $this->nbJobList = $nbJobList;
+        $this->profileUser = $profileUser; 
+    }
 
     public function fetchTopReferrers()
     {
@@ -16,8 +31,8 @@ class DashboardService extends BaseService {
     }
     public function fetchTotalVisitorsAndPageViews(int $day)
     {
-        $startDate = Carbon::now()->subDays($day);
-        $endDate = Carbon::now();
+        $startDate = Carbon::now()->subDays($day)->format('d/m/Y');
+        $endDate = Carbon::now()->format('d/m/Y');
         return Analytics::fetchTotalVisitorsAndPageViews(Period::create($startDate, $endDate));
     }
     public function fetchTopBrowsers()
@@ -37,5 +52,25 @@ class DashboardService extends BaseService {
         $startDate = Carbon::now()->subYear(10);
         $endDate = Carbon::now();
         return Analytics::performQuery(Period::create($startDate, $endDate),'ga:pageviews');
+    }
+
+    public function countJob()
+    {
+        $data = $this->nbJobList->where('deleted', self::ACTION)->count();
+        return [
+            'status' => 200,
+            'message' => 'Thành công',
+            'data' => $data
+        ];
+    }
+
+    public function countUserUT()
+    {
+        $data = $this->profileUser->where('deleted','=',self::ACTION)->count();
+        return [
+            'status' => 200,
+            'message' => 'Thành công',
+            'data' => $data
+        ];
     }
 }
