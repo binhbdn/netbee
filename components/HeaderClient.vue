@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item " style="padding-top:3px" :class="{active : this.$route.path == '/'}">
-            <a href="/" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.home')">
+            <a href="/" class="nav-link header-nav-link"  data-placement="top">
               <div class="nav-icon">
                 <i class="fad fa-home"></i>
               </div>
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuyen-sinh'}">
-            <a href="/tin-tuyen-sinh" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.admission')">
+            <a href="/tin-tuyen-sinh" class="nav-link header-nav-link"  data-placement="top">
               <div class="nav-icon">
                 <i class="fad fa-server"></i>
               </div>
@@ -37,7 +37,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/cong-ty'}">
-            <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center"  data-placement="top" :title=" $t('nav.company')">
+            <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center"  data-placement="top">
               <div class="nav-icon">
                 <i class="fad fa-building"></i>
               </div>
@@ -57,7 +57,7 @@
             </a>
           </li> -->
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
-            <a href="/tin-tuc" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.news')" >
+            <a href="/tin-tuc" class="nav-link header-nav-link"  data-placement="top">
               <div class="nav-icon">
                 <i class="fad fa-table"></i>
               </div>
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ve-netbee'} " >
-            <a href="/ve-netbee" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.about')" >
+            <a href="/ve-netbee" class="nav-link header-nav-link"  data-placement="top">
               <div class="nav-icon">
                 <i class="fad fa-id-card"></i>
               </div>
@@ -77,7 +77,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/lien-he'} " >
-            <a href="/lien-he" class="nav-link header-nav-link"  data-placement="top" :title=" $t('nav.contact')">
+            <a href="/lien-he" class="nav-link header-nav-link"  data-placement="top">
               <div class="nav-icon">
                 <i class="fad fa-phone-office"></i>
               </div>
@@ -93,7 +93,7 @@
             </a>
           </li> -->
           <li class="nav-item cta dropdown">
-            <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" :title="$t('nav.languages')" data-placement="top" >
+            <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="top" >
               <div class="nav-icon">
                 <img v-if="$i18n.locale == 'vi'" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
                 <img v-else-if="$i18n.locale == 'en'" src="/assets/img/iconfinder_United-Kingdom.png" width="22px" alt="netbee united kingdom"/>
