@@ -45,7 +45,17 @@
   background-image: url('/assets/img/contact-page-banner.png');
   background-size: 230px 230px;
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: right 14px;
+}
+@media (max-width: 1199px) and (min-width: 992px){
+  .form-lienhe {
+    background-position: right 14px bottom;
+  }
+}
+@media (min-width: 1200px){
+  .form-lienhe {
+    background-position: right 14px bottom 25%;
+  }
 }
 @media (max-width: 767px){
   .col-md-7{
