@@ -552,13 +552,13 @@ extend("email", {
   message: (field, values) => "Email không đúng định dạng"
 });
 var errorMessage =
-  " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+  " phải chứa ít nhất 8 ký tự";
 // create custom rule
 extend("customPassword", {
   message: field =>"Mật khẩu" + errorMessage,
   validate: value => {
     var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9]).{8,}$/;
+    var mustContainTheseChars = /^.{8,}$/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
     if (containsRequiredChars && !containsForbiddenChars) {
@@ -569,7 +569,7 @@ extend("customPassword", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       } else {
         errorMessage =
-          " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
+          " phải chứa ít nhất 8 ký tự";
       }
       return false;
     }
