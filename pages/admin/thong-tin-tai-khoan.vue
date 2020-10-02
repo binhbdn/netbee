@@ -24,10 +24,10 @@
                                                                 <div class="col-lg-4 offset-lg-0 mb-lg-0 mx-lg-0 col-md-6 mx-md-auto mb-md-1 col-sm-4 media">
                                                                         <!-- <avatar-cropper
                                                                         @uploaded="handleUploaded"
-                                                                        :labels="{submit:'Cắt & Upload',cancel:'Hủy'}"
+                                                                        :labels="{submit:'Cắt',cancel:'Hủy'}"
                                                                         output-options="{width: 150, height: 150}"
                                                                         trigger="#account-upload"
-                                                                        upload-url="/uploads/users/avatars/" /> -->
+                                                                        upload-url="http://127.0.0.1:8000/api/changeInfo" /> -->
                                                                         <a href="javascript: void(0);" style="position: relative" class="avatar-custom mx-auto">
                                                                         <img v-lazy="images[0]" class="rounded" alt="profile image" style="object-fit: cover; width: 150px; height: 150px;border: 1px solid; border-radius: 50% !important" v-if="images.length > 0">
                                                                         <img v-lazy="changeInfoUser.avatar != null && changeInfoUser.avatar.startsWith('https') ? changeInfoUser.avatar : `/uploads/users/avatars/${changeInfoUser.avatar}`" class="rounded" alt="profile image" style="object-fit: cover; height: 150px; width: 150px; border: 1px solid; border-radius: 50% !important" v-else>
@@ -148,7 +148,7 @@
                                                         <ValidationObserver ref="ChangeInfoBank" v-slot="{ inval }">
                                                             <div class="row">
                                                                 <div class="form-group col-12" style="margin-bottom: 0rem !important;">
-                                                                    <ValidationProvider rules="required"  v-slot="{ errors }">
+                                                                    <ValidationProvider rules="required|min:6"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
                                                                                     <label>Tên tài khoản</label>
@@ -167,7 +167,7 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-12" style="margin-bottom: 0rem !important;">
-                                                                    <ValidationProvider rules="required"  v-slot="{ errors }">
+                                                                    <ValidationProvider rules="required|numeric"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
                                                                                     <label>Số tài khoản</label>
@@ -186,7 +186,7 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-12" style="margin-bottom: 0rem !important;">
-                                                                    <ValidationProvider rules="required"  v-slot="{ errors }">
+                                                                    <ValidationProvider rules="required|min:6"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
                                                                                     <label>Chi nhánh</label>
@@ -205,7 +205,7 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="form-group col-12" style="margin-bottom: 0rem !important;">
-                                                                    <ValidationProvider rules="required"  v-slot="{ errors }">
+                                                                    <ValidationProvider rules="required|min:6"  v-slot="{ errors }">
                                                                             <div class="controls">
                                                                                 <div class="for-label pb-50">
                                                                                     <label>Ngân hàng</label>
@@ -788,6 +788,9 @@ extend("numeric", {
 extend("integer", {
   message: (field, values) => "Dữ liệu nhập vào phải là số"
 });
+extend("min", {
+  message: (field, values) => "Dữ liệu nhập vào ít nhất 6 ký tự",
+});
 var errorMessage =
   " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 ký tự in hoa, 1 số và 1 ký tự đặc biệt(#!@$%^*-)";
 // create custom rule
@@ -894,7 +897,7 @@ export default {
         },
     methods: {
         // handleUploaded(resp) {
-       
+        //     this.changeInfoUser.avatar = resp.relative_url;
         // },
         nameWithLang ({ id, name }) {
             return `${name}`

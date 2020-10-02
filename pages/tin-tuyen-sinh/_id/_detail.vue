@@ -447,7 +447,7 @@
                         </ul>
                         <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
                             <div class="tab-pane active" v-if="stateTab == true" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-11-tab">
-                                <ValidationObserver  ref="applyJobFile" v-slot="{ valid }">
+                                <ValidationObserver  ref="applyJobFile" v-slot="{ invalid }">
                                     <div class="row">
                                         <!-- <div class="col-12">
                                             <ValidationProvider
@@ -476,7 +476,7 @@
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
-                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                            <ValidationProvider rules="required|birthdate" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="birth_day">Ngày sinh</label>
@@ -485,7 +485,7 @@
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
-                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                            <ValidationProvider rules="required|numeric|min:10|max:11" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="phone">Số điện thoại</label>
@@ -494,7 +494,7 @@
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
-                                            <ValidationProvider rules="" v-slot="{ errors }">
+                                            <ValidationProvider rules="required|email" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="email">Email</label>
@@ -513,11 +513,15 @@
                                                 </div>
                                             </ValidationProvider>
                                         </div>
+                                        <div class="text-right mt-1 col-12">
+                                            <button type="button" class="btn btn-warning" @click="resetData">Reset</button>
+                                            <button type="button" class="btn btn-warning" v-bind:disabled="invalid" v-on:click="applyJob">Ứng tuyển</button>
+                                        </div>
                                     </div>
                                 </ValidationObserver>
                             </div>
                             <div class="tab-pane" id="v-pills-2" v-if="stateTab == false" role="tabpanel" aria-labelledby="v-pills-22-tab">
-                                <ValidationObserver ref="applyJobCv" v-slot="{ valid }">
+                                <ValidationObserver ref="applyJobCv" v-slot="{ invalid }">
                                     <div class="col-12">
                                         <ValidationProvider
                                             rules="required"
@@ -548,12 +552,12 @@
                                             </div>
                                         </ValidationProvider>   
                                     </div>
+                                    <div class="text-right mt-1 col-12">
+                                        <button type="button" class="btn btn-warning" @click="resetData">Reset</button>
+                                        <button type="button" class="btn btn-warning" v-bind:disabled="invalid" v-on:click="applyJob">Ứng tuyển</button>
+                                    </div>
                                 </ValidationObserver>
                             </div>
-                        </div>
-                        <div class="text-right mt-1">
-                            <button type="button" class="btn btn-warning" @click="resetData">Reset</button>
-                            <button type="button" class="btn btn-warning" @click="applyJob">Ứng tuyển</button>
                         </div>
                     </div>
                 </div>
@@ -575,6 +579,7 @@ import {
   extend
 } from "vee-validate/dist/vee-validate.full";
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+import moment from 'moment'
 
 extend("required", {
   message: (field, values) => "Dữ liệu nhập vào không được để trống.",
@@ -582,6 +587,26 @@ extend("required", {
 extend("email", {
   message: (field, values) => "Email không đúng định dạng"
 });
+extend("numeric", {
+  message: (field, values) => "Số điện thoại không đúng định dạng",
+});
+extend("min", {
+  message: (field, values) => "Số điện thoại ít nhất 10 chữ số",
+});
+extend("max", {
+  message: (field, values) => "Số điện thoại nhiều nhất 11 chữ số",
+});
+extend("birthdate", {
+    message: field => "Ngày sinh phải nhỏ hơn ngày hiện tại",
+    validate: value => {
+        var date = moment(value)
+        if(moment(Date.now()).isBefore(date)){
+            return false
+        }else{
+            return true
+        }
+    }
+})
 var errorMessage =
   " phải chứa ít nhất 8 ký tự";
 // create custom rule
@@ -600,7 +625,7 @@ extend("customPassword", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > hoặc khoảng trắng";
       } else {
         errorMessage =
-          " Phải chứa ít nhất 8 ký tự";
+          " phải chứa ít nhất 8 ký tự";
       }
       return false;
     }

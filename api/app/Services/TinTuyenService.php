@@ -775,7 +775,7 @@ class TinTuyenService extends BaseService {
                     $query->where('nb_joblists.isPublic',self::ACTIVE);
                 }
             } else {
-                $query = $this->getJobByRoleOther();
+                $query = $this->getJobByRoleOther()->where('deleted',self::INACTIVE);
             }
             return $query->paginate($perPage);
         }
