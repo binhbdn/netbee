@@ -43,7 +43,7 @@
                                                                         <div style="text-align: left" id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
                                                                       </div>
                                                                   </div>
-                                                                  <div class="spotlightBlock__cta pb-1"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" class="button button_secondary is-outlined">Xem thêm</a></div>
+                                                                  <div class="spotlightBlock__cta pb-1"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" class="btn border-netbee">Xem thêm</a></div>
                                                                 </div>
                                                             </div>
                                                           </div>
