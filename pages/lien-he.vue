@@ -28,6 +28,18 @@
                       <a href="mailto:info@yoursite.com" class="lh" style="color: black;">contact@netbee.vn</a>
                     </p>
                   </div>
+                  <div class="col-md-12">
+                    <p>
+                      <span class="font-weight-600">Facebook:</span>
+                      <a href="https://www.facebook.com/netbee.vn/" class="lh" style="color: black;">https://www.facebook.com/netbee.vn/</a>
+                    </p>
+                  </div>
+                  <div class="col-md-12">
+                    <p>
+                      <span class="font-weight-600">Instagram:</span>
+                      <a href="https://www.instagram.com/netbee.vn/" class="lh" style="color: black;">https://www.instagram.com/netbee.vn/</a>
+                    </p>
+                  </div>
                 </div>
             </div>
             <div class="col-md-5">
