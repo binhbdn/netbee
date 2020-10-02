@@ -88,7 +88,7 @@
                 <i class="fad fa-business-time"></i> DANH SÁCH ĐƠN HÀNG
               </h4>
               <span v-if="countJob" style="color: red;">Có {{countJob}} kết quả tìm kiếm</span>
-              <span v-else style="color: red;">Không có kết quả phù hợp</span>
+              <span class="font-italic" v-else style="color: red;">Không có kết quả phù hợp</span>
             </div>
             <div class="card-content collapse show">
               <div class="card-body">
