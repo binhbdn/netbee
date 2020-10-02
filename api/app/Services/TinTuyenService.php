@@ -92,7 +92,7 @@ class TinTuyenService extends BaseService {
     {
         return $this->user
             ->where("role",self::ROLE_COMPANY)
-            ->where("id",Auth::user()->id)
+            // ->where("id",Auth::user()->id)
             ->select('users.*')
             ->get();
     }

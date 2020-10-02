@@ -368,6 +368,11 @@
                         this.listAdvertisement = response.data.data
                     })
                     .catch(error => {
+                        this.$swal(
+                            'Cảnh báo!',
+                            'Vui lòng tắt chặn quảng cáo để sử dụng website!',
+                            'warning'
+                        )
                         console.log(error.response)
                     });
                 }
