@@ -233,5 +233,6 @@ export default {
 .pd-notification {
     padding-right: 15px !important;
     padding-left: 7px !important;
+    font-size: 18px;
 }
 </style>
