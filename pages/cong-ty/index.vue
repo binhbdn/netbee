@@ -40,7 +40,7 @@
                                                                   <!-- <div class="spotlightBlock__message ellipsis">#ThriveOnChange #DigitalTransformation</div> -->
                                                                   <div class="spotlightBlock__content">
                                                                       <div class="clamp-lines ">
-                                                                        <div style="text-align: left" id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
+                                                                        <div style="text-align: justify" id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
                                                                       </div>
                                                                   </div>
                                                                   <div class="spotlightBlock__cta pb-1"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" class="btn border-netbee">Xem thêm</a></div>
@@ -508,6 +508,7 @@ ol.carousel-indicators {
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    text-align: right;
 }
 .list-company-item h4{
   margin-top: 0;
