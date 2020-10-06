@@ -184,7 +184,7 @@
                                                             </td>
                                                             <td class="date-none">
                                                                 {{ConvertDate(item.created_at)}}<br>
-                                                                <span v-if="item.bonus && item.bonus != 0" style="color: red;">{{ FormatPrice(item.bonus) }} {{ item.currency }}</span>
+                                                                <span v-if="item.bonus && item.bonus != 0" style="color: red;" title="Số tiền">{{ FormatPrice(item.bonus) }} {{ item.currency }}</span>
                                                             </td>
                                                             <td v-if="item.status == 0" class="status-none">
                                                                 <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i></div>
@@ -226,7 +226,7 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
+                                                <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0" style="color: red;">Không có dữ liệu nào.</p>
                                             </div>
                                             <infinite-loading
                                                 v-if="tinTuyenDung.length"

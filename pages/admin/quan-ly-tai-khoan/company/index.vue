@@ -579,7 +579,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <p class="mb-0 text-center p-1 font-italic" v-if="users.length == 0" >Không có dữ liệu nào.</p>
+                    <p class="mb-0 text-center p-1 font-italic" v-if="users.length == 0" style="color: red;">Không có dữ liệu nào.</p>
                   </div>
                 </div>
               </div>

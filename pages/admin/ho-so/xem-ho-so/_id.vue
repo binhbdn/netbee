@@ -115,8 +115,8 @@
                                             </div>
                                         </div>
                                         <!-- hết -->
-                                        <div class="col-md-12" style="text-align: right;">
-                                            <button  class="btn btn-add bg-netbee" style="margin-top: 15px" v-bind:disabled="inval"  @click="update">Cập nhật</button>                               
+                                        <div class="col-md-12" style="text-align:center;">
+                                            <button  class="btn btn-add bg-netbee" style="margin-top: 15px;padding: 10px 20px !important;" v-bind:disabled="inval"  @click="update">Cập nhật</button>                               
                                         </div>
                                     </ValidationObserver>
                                     <br>
@@ -486,7 +486,7 @@
     .img-cv .imgg img {
         /*width: 238px;
         height: 238px;  */
-        width: 40%;     
+        width: 65%;     
         border-radius: 50%;
     }    
     .briday-cv ,.gioitinh-cv, .Cmnd-cv,.address-cv, .phone-cv, .email-cv, .note-cv {

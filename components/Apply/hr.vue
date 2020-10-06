@@ -53,7 +53,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <p v-else style="text-align : center;margin-top: 15px !important;">Không có hồ sơ ứng tuyển nào</p>
+                                <p class="font-italic" v-else style="color: red;text-align: center;margin-top: 15px !important;">Không có hồ sơ ứng tuyển nào</p>
                             </div>
                         </div>
                     </div>

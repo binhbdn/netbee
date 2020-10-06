@@ -23,7 +23,7 @@
                                                     <div class="col-12">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
-                                                                <label for="title">Tiêu đề</label>
+                                                                <label for="title"><span class="text-danger">(*)</span>Tiêu đề</label>
                                                                 <input type="text" class="form-control" v-model="data.title">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -50,7 +50,7 @@
                                                     <div class="col-12">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }">
                                                             <div class="form-group">
-                                                                <label for="firstName3">Quốc gia</label>
+                                                                <label for="firstName3"><span class="text-danger">(*)</span>Quốc gia</label>
                                                                 <multiselect :options="options" v-model="data.nation" :allow-empty="false" :custom-label="nameWithLang" :searchable="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -398,7 +398,7 @@
                                                                             <div class="divider-text trial">Tin thường</div>
                                                                         </div>
                                                                         <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box tin mới</p>
-                                                                        <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p>
+                                                                        <!-- <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p> -->
                                                                         <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có icon nổi bật</p>
                                                                         <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có chuyên viên hỗ trợ hotline</p>
                                                                         <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Miễn phí tin đăng</p>
