@@ -34,6 +34,9 @@ export default {
 h4:hover{
     color: #ffb701;
 }
+.flex-column{
+    height:180px;
+}
 @media(max-width: 575px){
     .pdt-none{
         margin-top: 0 !important;
