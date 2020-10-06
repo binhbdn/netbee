@@ -129,7 +129,7 @@
                                                     </tr>
                                                 </tbody>                                                
                                             </table>
-                                            <Center style="padding: 10px;" v-if="AllApply.length == 0"><i>Không có hồ sơ ứng tuyển</i></Center>
+                                            <Center style="padding: 10px;color: red;" v-if="AllApply.length == 0"><i>Không có hồ sơ ứng tuyển</i></Center>
                                             <!-- <infinite-loading
                                                 v-if="AllApply.length"
                                                 spinner="bubbles"

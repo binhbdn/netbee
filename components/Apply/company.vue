@@ -62,7 +62,7 @@
                                         </tbody>                                        
                                     </table>
                                     <div v-if="AllApply.length == 0">
-                                        <p style="padding-top:10px;text-align: center;font-style: italic;">Không có hồ sơ ứng tuyển.</p>
+                                        <p style="padding-top: 10px;text-align: center;font-style: italic;color: red;">Không có hồ sơ ứng tuyển.</p>
                                     </div>                                    
                                     <!-- <infinite-loading
                                         v-if="ApplyWait.length"
