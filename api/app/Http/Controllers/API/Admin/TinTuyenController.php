@@ -122,7 +122,7 @@ class TinTuyenController extends Controller
         $response = $this->tinTuyenService->updateJob($request);
         if($response['status'] == 200) {
             $notification = [
-                'content' => 'Hệ thống đã cập nhập lại tin tuyển dụng của bạn ['.$id.']',
+                'content' => 'Tin ['.$id.'] mới sửa cần được kích hoạt.',
                 'ids' => $this->userService->getIdAdmin()->pluck('id'),
                 'url' => 'https://netbee.vn/admin/tin-tuyen-dung'
             ];

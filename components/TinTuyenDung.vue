@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="users-list-filter">
                             <form>
-                                <div class="row">
+                                <div class="row" v-if="$auth.user.role != 2">
                                     <div class="col-12 col-sm-6 col-lg-3">
                                         <input type="text" @keyup="search()" class="form-group ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                     </div>
@@ -36,6 +36,21 @@
                                         </fieldset>
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-3">
+                                        <fieldset class="form-group">
+                                            <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="row" v-else>
+                                    <div class="col-12 col-sm-6 col-lg-4">
+                                        <input type="text" @keyup="search()" class="form-group ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-lg-4">
+                                        <fieldset class="form-group">
+                                            <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
                                             <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
                                         </fieldset>

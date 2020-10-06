@@ -818,15 +818,15 @@ extend("customPassword", {
 extend("customUsername", {
   message: field =>"Username" + errorMessage,
   validate: value => {
-    var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[a-z])(?=.*?[0-9])/;
+    var notTheseChars = /["'?&/<>\s`;:á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ|é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ|í|ì|ỉ|ĩ|ị|ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ|ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự|ý|ỳ|ỷ|ỹ|ỵ|đ]/;
+    var mustContainTheseChars = /^([a-z])([0-9])/;
     var containsForbiddenChars = notTheseChars.test(value);
     if (!containsForbiddenChars) {
       return true;
     } else {
       if (containsForbiddenChars) {
         errorMessage =
-          ' không được chứa các ký tự đặc biệt: " ' + " ' ? & / < > hoặc khoảng trắng";
+          ' không được chứa các ký tự đặc biệt hoặc khoảng trắng';
       }
       return false;
     }
