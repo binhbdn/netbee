@@ -229,6 +229,7 @@
                     <li>
                       <div>
                         <h5 class="content-text">Khách hàng đa dạng</h5>
+                        <!-- node -->
                         <p class="content-2">Netbee.vn là đối tác tin cậy của hơn 100 công ty Du học,XKLD trên toàn quốc có giấy phép uy tín của bộ thương binh và xã hội.</p>
                       </div>
                     </li>
@@ -817,5 +818,8 @@ h2{
   section:last-child{
     padding-bottom: 50px;
   }
+}
+.content-2{
+  text-align: justify;
 }
 </style>
