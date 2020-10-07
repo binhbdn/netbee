@@ -130,7 +130,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="mb-0 text-center p-1 font-italic" v-if="jobs_saver.length == 0" style="color: red;">Không có dữ liệu nào.</p>
+                                        <p class="mb-0 text-center p-1 font-italic" v-if="jobs_saver.length == 0" style="color: red;">Không có kết quả phù hợp.</p>
                                     </div>
                                 </div>
                             </div>
