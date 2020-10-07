@@ -115,7 +115,7 @@
                                             </div>
                                         </div>
                                         <!-- hết -->
-                                        <div class="col-md-12" style="text-align:center;">
+                                        <div class="col-md-12" style="text-align:right;">
                                             <button  class="btn btn-add bg-netbee" style="margin-top: 15px;padding: 10px 20px !important;" v-bind:disabled="inval"  @click="update">Cập nhật</button>                               
                                         </div>
                                     </ValidationObserver>
