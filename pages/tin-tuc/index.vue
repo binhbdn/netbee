@@ -52,7 +52,7 @@
                     <div class="col-lg-4 pl-lg-1 p-0">
                         <div class="card">
                             <div class="card-header">
-                                <h2 class="card-title" style="text-transform:uppercase;">DANH MỤC</h2>
+                                <h2 class="card-title" style="text-transform:uppercase; padding-top:10px;">DANH MỤC</h2>
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body">

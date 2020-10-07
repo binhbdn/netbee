@@ -324,11 +324,11 @@
                             <div class="modal-footer">
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
                                     <button type="button" @click="reportJob()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
-                                        <span class="d-none d-lg-block">Gửi</span></button>
+                                        <span>Gửi</span></button>
                                 </fieldset>
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
-                                        <span class="d-none d-lg-block">Cancel</span></button>
+                                        <span>Hủy</span></button>
                                 </fieldset>
                             </div>
                         </form>

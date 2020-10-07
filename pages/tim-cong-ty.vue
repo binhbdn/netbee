@@ -2,7 +2,7 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-8">
+                <div class="col-12 col-md-8">
                     <div class="card">
                         <div class="card-header">
                             <h6>KẾT QUẢ TÌM KIẾM</h6>
@@ -12,7 +12,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <div class="card">
                         <div class="card-header">
                             <h6>CÔNG TY HÀNG ĐẦU</h6>
