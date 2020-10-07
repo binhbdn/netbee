@@ -71,9 +71,9 @@
                                                     <div class="modal-content" style="padding: 15px;">
                                                         <div class="modal-header" style="background-color: #e8e8e8;">
                                                             <div class="col-md-12" style="text-align: center;">
-                                                                Bạn có chắc chắn muốn tải đơn hàng này ?
-                                                                <button class="btn btn-primary" @click="downloadWithCSS()">Tải đơn hàng</button>
-                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                Bạn có chắc chắn muốn tải đơn hàng này ?<br>
+                                                                <button class="btn btn-primary mt-1" @click="downloadWithCSS()">Tải đơn hàng</button>
+                                                                <button type="button" class="btn btn-danger mt-1" data-dismiss="modal">Close</button><br>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                                 </button>
