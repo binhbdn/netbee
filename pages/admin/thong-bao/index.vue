@@ -21,7 +21,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <p class="notification-text" style="padding: 15px;padding-bottom: 3px;margin-bottom: 0px;">{{ notification.content }}</p>
-                                                        <p style="padding-left: 15px;font-size: 13px;">{{notification.created_at}}</p>
+                                                        <p style="padding-left: 15px;font-size: 13px;">{{formatDate(notification.created_at)}}</p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -61,6 +61,9 @@
             
         },
         methods: {
+             formatDate: function(date){
+                return moment(String(date)).format('MM-DD-YYYY hh:mm:ss');
+             },
             revertTime(time) {
                 return moment(time).fromNow(true);
             },
