@@ -35,7 +35,7 @@
                                                         <div class="col-md-8">
                                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                                 <fieldset class="form-group">
-                                                                    <label class="title-label" for="basicInput">Họ và tên <span style="color: red; font-size: 20px;">*</span></label>
+                                                                    <label class="title-label" for="basicInput">Họ và tên (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                                     <input type="text" class="form-control" v-model="info_frofile_user.fullname_profile">
                                                                     <span style="color: red">{{ errors[0] }}</span>
                                                                 </fieldset> 
@@ -44,7 +44,7 @@
                                                                 <div class="col-md-6">
                                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                                         <fieldset class="form-group">
-                                                                            <label class="title-label" for="basicInput">Ngày sinh <span style="color: red; font-size: 20px;">*</span></label>
+                                                                            <label class="title-label" for="basicInput">Ngày sinh (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                                             <input type="date" class="form-control" v-model="info_frofile_user.birthday_profile"/>
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </fieldset> 
@@ -81,7 +81,7 @@
                                                 <div class="col-md-12">
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
-                                                            <label class="title-label" for="basicInput">Địa chỉ <span style="color: red; font-size: 20px;">*</span></label>
+                                                            <label class="title-label" for="basicInput">Địa chỉ (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                             <textarea v-model="info_frofile_user.address_profile" class="form-control" style="overflow:hidden;" rows="2"></textarea>
                                                             <span style="color: red">{{ errors[0] }}</span>
                                                         </fieldset> 
@@ -92,7 +92,7 @@
                                                 <div class="col-md-12">
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
-                                                            <label class="title-label" for="basicInput">Học vấn <span style="color: red; font-size: 20px;">*</span></label>
+                                                            <label class="title-label" for="basicInput">Học vấn (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                             <multiselect :options="educationEx" v-model="name_education" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                             <span style="color: red">{{ errors[0] }}</span>
                                                         </fieldset> 

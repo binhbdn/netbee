@@ -23,7 +23,7 @@
                                                     <div class="col-12">
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
-                                                                <label for="title"><span class="text-danger">(*)</span>Tiêu đề</label>
+                                                                <label for="title">Tiêu đề (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                                 <input type="text" class="form-control" v-model="data.title">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -50,7 +50,7 @@
                                                     <div class="col-12">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }">
                                                             <div class="form-group">
-                                                                <label for="firstName3"><span class="text-danger">(*)</span>Quốc gia</label>
+                                                                <label for="firstName3">Quốc gia (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                                 <multiselect :options="options" v-model="data.nation" :allow-empty="false" :custom-label="nameWithLang" :searchable="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
