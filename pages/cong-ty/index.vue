@@ -121,7 +121,7 @@
           </div>
           <div class="col-sm-9 pl-sm-0 pl-50">
             <div class="col-12 p-0" v-if="companyInfo.nb_company != null">
-              <a :href="`/cong-ty/${ChangeToSlug(companyInfo.nb_company.username ? companyInfo.nb_company.username : '#')}`"><h4 style="text-transform: uppercase"> {{companyInfo.name}}.</h4>
+              <a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`"><h4 style="text-transform: uppercase"> {{companyInfo.name}}.</h4>
               </a>
             </div> 
             <div class="col-12 p-0" v-else>
