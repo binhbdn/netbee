@@ -75,7 +75,7 @@
                                         </div>
                                         <div class="media-body">
                                             <p style="font-size: 13px;color: #626262;margin-bottom: 0px;" >{{ notification.content }}</p>
-                                            <p style="font-size: 13px;color: #626262;margin-bottom: 0px;">{{notification.created_at}}</p>
+                                            <p style="font-size: 13px;color: #626262;margin-bottom: 0px;">{{formatDate(notification.created_at)}}</p>
                                         </div>
                                         
                                       </div>
@@ -129,6 +129,9 @@ export default {
     }
   },
   methods:  {
+        formatDate: function(date){
+                return moment(String(date)).format('MM-DD-YYYY hh:mm:ss');
+             },
         changeLang(lang) {
             this.$localStorage.set("lang", lang)
             this.$store.commit('SET_LANG', lang)
