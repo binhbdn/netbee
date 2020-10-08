@@ -613,16 +613,16 @@
                                         </div> -->
                                         
                                         <div class="col-12">
-                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                            <ValidationProvider rules="required|customName" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="name">Họ tên</label>
-                                                        <input type="text" id="name" class="form-control" v-model="nameCv">
+                                                        <input type="text" id="name" class="form-control" placeholder="Họ tên" v-model="nameCv">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
-                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                            <ValidationProvider rules="required|birthdate" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="birth_day">Ngày sinh</label>
@@ -631,7 +631,7 @@
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
-                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                            <ValidationProvider rules="required|numeric|min:10|max:11" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="phone">Số điện thoại</label>
@@ -640,7 +640,7 @@
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
-                                            <ValidationProvider rules="" v-slot="{ errors }">
+                                            <ValidationProvider rules="email" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="email">Email</label>
@@ -649,11 +649,11 @@
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
-                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                            <ValidationProvider rules="required|customAddress" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="address">Địa chỉ</label>
-                                                        <input type="text" id="address" class="form-control" v-model="address">
+                                                        <input type="text" id="address" class="form-control" placeholder="Địa chỉ" v-model="address">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
@@ -727,6 +727,7 @@ if (process.browser) {
     html2canvas = require('html2canvas')   
     JsPDF = require('jspdf')
 }
+import moment from 'moment'
 
 
 extend("required", {
@@ -734,6 +735,69 @@ extend("required", {
 });
 extend("email", {
   message: (field, values) => "Email không đúng định dạng"
+});
+extend("numeric", {
+  message: (field, values) => "Số điện thoại không đúng định dạng",
+});
+extend("min", {
+  message: (field, values) => "Số điện thoại ít nhất 10 chữ số",
+});
+extend("max", {
+  message: (field, values) => "Số điện thoại nhiều nhất 11 chữ số",
+});
+extend("birthdate", {
+    message: field => "Ngày sinh phải nhỏ hơn ngày hiện tại",
+    validate: value => {
+        var date = moment(value)
+        if(moment(Date.now()).isBefore(date)){
+            return false
+        }else{
+            return true
+        }
+    }
+});
+var errorMessageinformation =
+  " phải lớn hơn 6 ký tự";
+// create custom rule
+extend("customAddress", {
+  message: field =>"Địa chỉ" + errorMessageinformation,
+  validate: value => {
+    var mustContainTheseChars = /^.{7,}$/
+    var containsRequiredChars = mustContainTheseChars.test(value);
+    if (containsRequiredChars) {
+      return true;
+    } else {
+      if (containsRequiredChars) {
+        errorMessageinformation =
+          " phải lớn hơn 6 ký tự";
+      }
+      return false;
+    }
+  }
+});
+var errorMessageinformation =
+  " phải chứa ít nhất 6 ký tự";
+// create custom rule
+extend("customName", {
+  message: field =>"Họ tên" + errorMessageinformation,
+  validate: value => {
+    var notTheseChars = /["'?&/<>@#$%^*()|]/;
+    var mustContainTheseChars = /^.{6,}$/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    var containsRequiredChars = mustContainTheseChars.test(value);
+    if (containsRequiredChars && !containsForbiddenChars) {
+      return true;
+    } else {
+      if (containsForbiddenChars) {
+        errorMessageinformation =
+          ' không được chứa các ký tự: " ' + " ' ? & / < > @ # $ % ^ * ( ) | ";
+      } else {
+        errorMessageinformation =
+          " phải chứa ít nhất 6 ký tự";
+      }
+      return false;
+    }
+  }
 });
 var errorMessage =
   " phải chứa ít nhất 8 ký tự, 1 ký tự in thường, 1 số.";
