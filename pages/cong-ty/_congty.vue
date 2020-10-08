@@ -50,10 +50,8 @@
                                     <!-- <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p> -->
                                     Theo dõi
                                 </a>
-                                <a class="bg-netbee" v-else @click="followCompany()" style="text-align: center;padding: 10px; width: 100%; border-radius: 5px">
-                                    <!-- <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p> -->
-                                    {{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}}
-                                </a>
+                                <a class="bg-netbee" v-else-if="isFollow" @click="followCompany()" style="text-align: center;padding: 10px; width: 100%; border-radius: 5px" title="Bỏ theo dõi">Đang theo dõi</a>
+                                <a class="bg-netbee" v-else @click="followCompany()" style="text-align: center;padding: 10px; width: 100%; border-radius: 5px" title="Theo dõi">Theo dõi</a>
                             </div>
                         </div>
                     </div>
