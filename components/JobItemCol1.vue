@@ -179,14 +179,14 @@ p {
     .hot img {
         right: 0;
     }
-    .ecommerce-card {
+    /* .ecommerce-card {
         margin-bottom: 0 !important;
         border-radius: 0 !important;
-    }
-    .border-job-item {
+    } */
+    /* .border-job-item {
         border: none;
         border-bottom: 1px solid #ececec !important;
-    }
+    } */
     .sm-none{
         display: none;
     }

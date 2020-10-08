@@ -55,9 +55,9 @@ export default {
     border-left: 4px solid #ffb701 !important;
 }
 
-.border-job-item:hover{
-    /* background-color: #ffb7012b; */
-}
+/* .border-job-item:hover{
+    background-color: #ffb7012b;
+} */
 
 .ecommerce-application .list-view .ecommerce-card .card-content {
     display: grid !important;

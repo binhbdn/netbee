@@ -71,9 +71,9 @@
                                                     <div class="modal-content" style="padding: 15px;">
                                                         <div class="modal-header" style="background-color: #e8e8e8;">
                                                             <div class="col-md-12" style="text-align: center;">
-                                                                Bạn có chắc chắn muốn tải đơn hàng này ?
-                                                                <button class="btn btn-primary" @click="downloadWithCSS()">Tải đơn hàng</button>
-                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                Bạn có chắc chắn muốn tải đơn hàng này ?<br>
+                                                                <button class="btn btn-primary mt-1" @click="downloadWithCSS()">Tải đơn hàng</button>
+                                                                <button type="button" class="btn btn-danger mt-1" data-dismiss="modal">Close</button><br>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                                 </button>
@@ -616,7 +616,7 @@
                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="name">Họ tên</label>
+                                                        <label for="name">Họ tên (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                         <input type="text" id="name" class="form-control" v-model="nameCv">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -625,7 +625,7 @@
                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="birth_day">Ngày sinh</label>
+                                                        <label for="birth_day">Ngày sinh (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                         <input type="date" id="birth_day" class="form-control" v-model="birth_day">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -634,7 +634,7 @@
                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="phone">Số điện thoại</label>
+                                                        <label for="phone">Số điện thoại (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                         <input type="text" id="phone" class="form-control" v-model="phone">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -652,7 +652,7 @@
                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="address">Địa chỉ</label>
+                                                        <label for="address">Địa chỉ (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                         <input type="text" id="address" class="form-control" v-model="address">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
