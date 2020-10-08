@@ -19,7 +19,7 @@ z<template>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-12">
+                        <div class="col-lg-4 col-sm-6 col-12 pl-0">
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2 pb-3">
@@ -34,7 +34,7 @@ z<template>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-12 pr-0">
+                        <div class="col-lg-4 col-sm-6 col-12 pl-0">
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2">
