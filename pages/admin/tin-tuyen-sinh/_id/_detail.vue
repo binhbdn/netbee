@@ -681,7 +681,7 @@
                                             <span style="color: red">{{errors[0]}}</span>
                                         </ValidationProvider>
                                     </div>
-                                    <div class="col-12">
+                                    <!-- <div class="col-12">
                                         <ValidationProvider
                                         rules="required"
                                         v-slot="{ errors }">
@@ -692,12 +692,12 @@
                                                 </div>
                                             </div>
                                         </ValidationProvider>   
-                                    </div>
+                                    </div> -->
                                 </ValidationObserver>
                             </div>
                         </div>
                         <div class="text-right mt-1">
-                            <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="resetData">Reset</button>
+                            <!-- <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="resetData">Reset</button> -->
                             <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="applyJob">Ứng tuyển</button>
                         </div>
                     </div>
