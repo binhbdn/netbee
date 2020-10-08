@@ -71,9 +71,9 @@
                                                     <div class="modal-content" style="padding: 15px;">
                                                         <div class="modal-header" style="background-color: #e8e8e8;">
                                                             <div class="col-md-12" style="text-align: center;">
-                                                                Bạn có chắc chắn muốn tải đơn hàng này ?
-                                                                <button class="btn btn-primary" @click="downloadWithCSS()">Tải đơn hàng</button>
-                                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                Bạn có chắc chắn muốn tải đơn hàng này ?<br>
+                                                                <button class="btn btn-primary mt-1" @click="downloadWithCSS()">Tải đơn hàng</button>
+                                                                <button type="button" class="btn btn-danger mt-1" data-dismiss="modal">Close</button><br>
                                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                                 </button>
@@ -477,11 +477,11 @@
                             <div class="modal-footer">
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
                                     <button type="button" @click="reportJob()" class="btn bg-netbee update-todo-item" data-dismiss="modal"><i class="feather icon-edit d-block d-lg-none"></i>
-                                        <span class="d-none d-lg-block">Gửi</span></button>
+                                        <span>Gửi</span></button>
                                 </fieldset>
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="feather icon-x d-block d-lg-none"></i>
-                                        <span class="d-none d-lg-block">Cancel</span></button>
+                                        <span>Hủy</span></button>
                                 </fieldset>
                             </div>
                         </form>
@@ -618,6 +618,8 @@
                                                     <div class="form-field">
                                                         <label for="name">Họ tên</label>
                                                         <input type="text" id="name" class="form-control" placeholder="Họ tên" v-model="nameCv">
+                                                        <label for="name">Họ tên (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <input type="text" id="name" class="form-control" v-model="nameCv">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
@@ -625,7 +627,7 @@
                                             <ValidationProvider rules="required|birthdate" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="birth_day">Ngày sinh</label>
+                                                        <label for="birth_day">Ngày sinh (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                         <input type="date" id="birth_day" class="form-control" v-model="birth_day">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -634,7 +636,7 @@
                                             <ValidationProvider rules="required|numeric|min:10|max:11" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="phone">Số điện thoại</label>
+                                                        <label for="phone">Số điện thoại (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                         <input type="text" id="phone" class="form-control" v-model="phone">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -654,6 +656,9 @@
                                                     <div class="form-field">
                                                         <label for="address">Địa chỉ</label>
                                                         <input type="text" id="address" class="form-control" placeholder="Địa chỉ" v-model="address">
+                                                        <label for="address">Địa chỉ (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <input type="text" id="address" class="form-control" v-model="address">
+
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>

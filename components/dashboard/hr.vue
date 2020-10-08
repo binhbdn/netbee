@@ -50,7 +50,7 @@
                                     <div class="table-responsive list-data">
                                         <JobsList3Col :DataList="tinTuyenDung"></JobsList3Col>
                                         <!-- <JobsList3Col :DataList="tinTuyenDung" :DataBonus="settingBonus"></JobsList3Col> -->
-                                        <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
+                                        <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0" style="color: red;">Không có kết quả phù hợp.</p>
                                     </div>
                                 </div>
                             </div>

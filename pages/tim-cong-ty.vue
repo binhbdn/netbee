@@ -2,7 +2,7 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-8">
+                <div class="col-12 col-md-8">
                     <div class="card">
                         <div class="card-header">
                             <h6>KẾT QUẢ TÌM KIẾM</h6>
@@ -12,19 +12,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <div class="card">
                         <div class="card-header">
                             <h6>CÔNG TY HÀNG ĐẦU</h6>
                         </div>
                         <div class="card-body">
                             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height: 300px">
-                                <ol class="carousel-indicators">
+                                <ol class="carousel-indicators pb-2">
                                     <li data-target="#carousel-example-generic" v-for="(companyHot, indexCompanyHot) in arrayCompanyHot" :key="indexCompanyHot" :data-slide-to="indexCompanyHot" :class="{'active' : indexCompanyHot == 0}"></li>
                                 </ol>
                                 <div class="carousel-inner" role="listbox">
                                     <div class="carousel-item text-center" :class="{'active' : indexCompanyHot == 0}" v-for="(companyHot, indexCompanyHot) in arrayCompanyHot" :key="indexCompanyHot">
-                                        <img class="img-fluid" v-lazy="`/uploads/users/avatars/${companyHot.avatar}`" :alt="`${companyHot.avatar}`" style="object-fit: cover" />
+                                        <img class="img-fluid" v-lazy="`/uploads/users/avatars/${companyHot.avatar}`" :alt="`${companyHot.avatar}`" style="height: 200px;" />
                                         <div class="remove-border-rightt">
                                             <div class="item-name">
                                                 <a :href="`/cong-ty/${companyHot.username ? companyHot.username : '#'}`" class="item-company mb-0"> 

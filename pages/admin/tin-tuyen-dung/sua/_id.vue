@@ -16,7 +16,7 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="title">
-                                                                    Tiêu đề
+                                                                    Tiêu đề (<span style="color: red; font-size: 20px;">*</span>)
                                                                 </label>
                                                                 <input type="text" class="form-control" v-model="data.title">
                                                                 <span style="color: red">{{ errors[0] }}</span>
@@ -27,7 +27,7 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
-                                                                    Tên trường
+                                                                    Tên trường (<span style="color: red; font-size: 20px;">*</span>)
                                                                 </label>
                                                                 <input type="text" class="form-control" v-model="data.school_name">
                                                                 <span style="color: red">{{ errors[0] }}</span>
@@ -46,7 +46,7 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">
-                                                                    Quốc gia
+                                                                    Quốc gia (<span style="color: red; font-size: 20px;">*</span>)
                                                                 </label>
                                                                 <multiselect :options="options" v-model="data.nation" :custom-label="nameWithLang" :allow-empty="false" :searchable="false" :show-labels="false" placeholder="Chọn quốc gia" label="id"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
@@ -435,7 +435,7 @@
                                                                         </div>
                                                                         <div>
                                                                             <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị ở box tin mới</p>
-                                                                            <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p>
+                                                                            <!-- <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Hiển thị thứ tự sau Tin VIP và tin nổi bật</p> -->
                                                                             <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có icon nổi bật</p>
                                                                             <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có chuyên viên hỗ trợ hotline</p>
                                                                             <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Miễn phí tin đăng</p>

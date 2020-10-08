@@ -64,7 +64,7 @@
                                                             </p>
                                                         </div>
                                                         <div class="remove-border-right" style="padding: 0.5rem">
-                                                            <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png"></div>
+                                                            <div class="hot" v-if="job.highlight_job == 2"><img src="/assets/img/hot.png" title="Được tài trợ"></div>
                                                             <a class="item-vip-a" :href="`/admin/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
                                                             <div class="item-quantity row" id="company" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 3">
                                                                 <div class="col-lg-5 col-sm-5">
@@ -130,7 +130,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="mb-0 text-center p-1 font-italic" v-if="jobs_saver.length == 0">Không có dữ liệu nào.</p>
+                                        <p class="mb-0 text-center p-1 font-italic" v-if="jobs_saver.length == 0" style="color: red;">Không có kết quả phù hợp.</p>
                                     </div>
                                 </div>
                             </div>

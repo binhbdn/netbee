@@ -5,7 +5,7 @@
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2 line1">NETBEE</h2>
-                        <p style="line-height: 28px; color: #fff;">{{$t('footer.title')}}</p>
+                        <p class="py-1" style="line-height: 5px; color: #fff;">{{$t('footer.title')}}</p>
                         <img v-lazy = "`/assets/img/QR.png`" alt="Smiley face" height="200" width="auto">
                     </div>
                 </div>
@@ -13,7 +13,7 @@
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2 line2">{{$t('footer.link.title')}} </h2>
                         <ul class="list-unstyled" style="line-height: 5px;"> 
-                            <li><a href="/tin-tuc" target="_blank" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.news')}}</a></li>
+                            <li><a href="/tin-tuc" target="_blank" class="pt-1 pb-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.news')}}</a></li>
                             <li><a href="/lien-he" target="_blank" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.contact')}}</a></li>
                             <li><a href="/quy-dinh-bao-mat" target="_blank" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.regulations')}}</a></li>
                             <li><a href="/ve-netbee" target="_blank" class="py-2 d-block a_footer" style="color: #fff;">{{$t('footer.link.faq')}}</a></li>
@@ -24,7 +24,7 @@
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4 ">
                         <h2 class="ftco-heading-2 line3">Google Map </h2>  
-                        <div class="block-23 mb-3">  
+                        <div class="block-23 mb-3 pt-1">  
                             <a  href="https://www.google.com/maps/place/Hachinet/@21.052892,105.780003,15z/data=!4m5!3m4!1s0x0:0xdc6d73d2030fac0d!8m2!3d21.0528918!4d105.7800033?hl=vi" target="_blank">
                                 <img v-lazy = "`/assets/img/mapimg.png`" alt="Smiley face" height="100%"  width="100%">                        
                             </a>
@@ -34,7 +34,7 @@
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
                         <h2 class="ftco-heading-2 line4">{{$t('footer.contact_info.title')}}</h2>
-                        <div class="block-23 ">
+                        <div class="block-23 pt-1">
                             <ul>
                                 <li><span class="fa fa-map-marker" style="color: #fff;"></span><span class="text pl-2" style="color: #fff;">{{$t('footer.contact_info.address')}}</span></li>
                                 <li><a href="tel:+842462900388" class="a_footer"><span class="fa fa-phone"></span><span class="pl-2 text">+842462900388</span></a></li>

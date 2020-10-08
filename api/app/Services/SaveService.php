@@ -50,7 +50,7 @@ class SaveService extends BaseService {
         if(in_array(Auth::user()->role, [self::ROLE_ADMIN, self::ROLE_COMPANY])) {
             return [
                 'status'=> 400,
-                'message' => 'Chức năng này chỉ dành cho ứng viên',
+                'message' => 'Chức năng chỉ dành cho ứng viên và chuyên viên tuyển sinh',
                 'data' => null
             ];
         }

@@ -59,7 +59,23 @@
                                 </a>
                             </div>
                       </li>
-                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown" title="Thông báo" data-placement="top"><i class="fa fa-bell"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
+                      <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+                            <div class="user-nav d-sm-flex d-none">
+                                <span class="user-name text-bold-600" v-if="$auth.user.nb_company">{{ $auth.user.nb_company.username }}</span>
+                                <span class="user-name text-bold-600" v-else>{{ $auth.user.name }}</span>
+                                <span class="user-status">
+                                    {{ $auth.user.role == 4 ? 'Admin' : $auth.user.role == 1 ? 'Ứng viên' : $auth.user.role == 2 ? 'Nhà tuyển dụng' : 'Chuyên viên tuyển sinh'}}
+                                </span>
+                            </div>
+                            <span>
+                                <img class="round" v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`" alt="avatar" height="40" width="40" style="object-fit: cover;">
+                            </span>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="/admin/thong-tin-tai-khoan"><i class="far fa-user"></i> Trang cá nhân</a>
+                              <div class="dropdown-divider"></div><a class="dropdown-item" @click="logout()"><i class="far fa-sign-out-alt"></i> Đăng xuất</a>
+                          </div>
+                      </li>
+                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label pd-notification" href="#" data-toggle="dropdown" title="Thông báo" data-placement="top"><i class="fa fa-bell"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
                                     <div class="dropdown-header m-0">
@@ -92,23 +108,6 @@
                                 
                                 <li class="dropdown-menu-footer" @click="updateStatusAll()"><a class="dropdown-item p-1 text-center">Xem tất cả</a></li>
                           </ul>
-                          
-                      </li>
-                      <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
-                            <div class="user-nav d-sm-flex d-none">
-                                <span class="user-name text-bold-600" v-if="$auth.user.nb_company">{{ $auth.user.nb_company.username }}</span>
-                                <span class="user-name text-bold-600" v-else>{{ $auth.user.name }}</span>
-                                <span class="user-status">
-                                    {{ $auth.user.role == 4 ? 'Admin' : $auth.user.role == 1 ? 'Ứng viên' : $auth.user.role == 2 ? 'Nhà tuyển dụng' : 'Chuyên viên tuyển sinh'}}
-                                </span>
-                            </div>
-                            <span>
-                                <img class="round" v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`" alt="avatar" height="40" width="40" style="object-fit: cover;">
-                            </span>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="/admin/thong-tin-tai-khoan"><i class="far fa-user"></i> Trang cá nhân</a>
-                              <div class="dropdown-divider"></div><a class="dropdown-item" @click="logout()"><i class="far fa-sign-out-alt"></i> Đăng xuất</a>
-                          </div>
                       </li>
                   </ul>
               </div>
@@ -233,5 +232,10 @@ export default {
     .dropdown-notification{
         display: none;
     }
+}
+.pd-notification {
+    padding-right: 15px !important;
+    padding-left: 7px !important;
+    font-size: 18px;
 }
 </style>

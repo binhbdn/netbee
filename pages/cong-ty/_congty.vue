@@ -216,7 +216,7 @@
                     </div>
                     <br>
                     <div class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
-                        <a style="font-size:16px" class="btn bg-netbee w-100" data-toggle="tooltip" data-placement="top" :title="'Thêm đánh giá'">Thêm đánh giá</a>
+                        <a style="font-size:16px" class="btn bg-netbee w-100" data-toggle="tooltip" data-placement="top">Thêm đánh giá</a>
                     </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@
                     </div>
                     <br>
                     <div class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
-                        <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Thêm đánh giá'">Thêm đánh giá</a>
+                        <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top">Thêm đánh giá</a>
                     </div>
                 </div>
               </div>

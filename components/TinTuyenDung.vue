@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="users-list-filter">
                             <form>
-                                <div class="row">
+                                <div class="row" v-if="$auth.user.role != 2">
                                     <div class="col-12 col-sm-6 col-lg-3">
                                         <input type="text" @keyup="search()" class="form-group ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
                                     </div>
@@ -36,6 +36,21 @@
                                         </fieldset>
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-3">
+                                        <fieldset class="form-group">
+                                            <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="row" v-else>
+                                    <div class="col-12 col-sm-6 col-lg-4">
+                                        <input type="text" @keyup="search()" class="form-group ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-lg-4">
+                                        <fieldset class="form-group">
+                                            <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
                                             <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
                                         </fieldset>
@@ -169,7 +184,7 @@
                                                             </td>
                                                             <td class="date-none">
                                                                 {{ConvertDate(item.created_at)}}<br>
-                                                                <span v-if="item.bonus && item.bonus != 0" style="color: red;">{{ FormatPrice(item.bonus) }} {{ item.currency }}</span>
+                                                                <span v-if="item.bonus && item.bonus != 0" style="color: red;cursor:pointer;" title="Số tiền">{{ FormatPrice(item.bonus) }} {{ item.currency }}</span>
                                                             </td>
                                                             <td v-if="item.status == 0" class="status-none">
                                                                 <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i></div>
@@ -193,7 +208,7 @@
                                                                 <div class="action-btns">
                                                                     <div class="btn-dropdown ">
                                                                         <div class="btn-group dropdown actions-dropodown text-center">
-                                                                            <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Chọn thao tác">
                                                                                 <span class="text-none">
                                                                                     <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i>
                                                                                 </span>
@@ -211,7 +226,7 @@
                                                         </tr>
                                                     </tbody>
                                                 </table>
-                                                <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0">Không có dữ liệu nào.</p>
+                                                <p class="mb-0 text-center p-1 font-italic" v-if="tinTuyenDung.length == 0" style="color: red;">Không có kết quả phù hợp.</p>
                                             </div>
                                             <infinite-loading
                                                 v-if="tinTuyenDung.length"
