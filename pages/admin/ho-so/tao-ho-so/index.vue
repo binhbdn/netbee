@@ -162,7 +162,7 @@
                                         </div>
                                         <!-- hết -->
                                         <div class="col-md-12" style="text-align: right;">
-                                            <button class="btn btn-add bg-netbee" style="margin-top: 15px" :disabled="invalid"  v-on:click="insert">Tạo hồ sơ</button>
+                                            <button class="btn btn-add bg-netbee" style="margin-top: 15px" :disabled="invalid"  v-on:click="insert" title="Tạo hồ sơ">Tạo hồ sơ</button>
                                         </div>
                                     </ValidationObserver>
                                     <br>

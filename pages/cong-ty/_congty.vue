@@ -356,7 +356,7 @@
                         <hr>
                         </div>
                         <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
-                            <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" data-dismiss="modal">Viết phản hồi</a>
+                            <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'" data-dismiss="modal">Viết phản hồi</a>
                         </div>
                         <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
                             <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" data-dismiss="modal" >Viết phản hồi</a>
