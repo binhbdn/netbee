@@ -21,14 +21,14 @@
                                                         <div class="col-md-4">
                                                             <center>
                                                                 <div style="background-color: #fff;" class="img-cv">   
-                                                                    Hình ảnh đại diện 
-                                                                    <div class="imgg">
+                                                                    <p>Hình ảnh đại diện</p>
                                                                         <label for="files">
+                                                                        <div class="imgg">
                                                                             <img v-lazy="images[0]"  v-if="images.length > 0">
                                                                             <img v-lazy="`/uploads/users/avatars/${info_frofile_user.avatar_profile}`" v-else>
+                                                                        </div>
                                                                         </label>
                                                                         <input type="file" id="files" class="hidden"  @change="previewFiles" multiple>                                          
-                                                                    </div>  
                                                                 </div>                        
                                                             </center>     
                                                         </div>
@@ -480,14 +480,21 @@
        outline-offset: 0px !important;
         outline: none !important;
     } 
-    .img-cv {
+    /* .img-cv {
         padding: 30px;
+    } */
+    .img-cv .imgg {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
     }
     .img-cv .imgg img {
-        /*width: 238px;
-        height: 238px;  */
-        width: 65%;     
-        border-radius: 50%;
+        width:140px; /* 130+2*5 */
+        height:140px; /* 130+2*5 */
+        margin-top: -5px;
+        margin-left: -5px;
+        object-fit: cover;
     }    
     .briday-cv ,.gioitinh-cv, .Cmnd-cv,.address-cv, .phone-cv, .email-cv, .note-cv {
         color: #fff;

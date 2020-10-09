@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item " style="padding-top:3px" :class="{active : this.$route.path == '/'}">
-            <a href="/" class="nav-link header-nav-link"  data-placement="top">
+            <a href="/" class="nav-link header-nav-link"  data-placement="top" :title="$t('nav.home')">
               <div class="nav-icon">
                 <i class="fad fa-home"></i>
               </div>
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuyen-sinh'}">
-            <a href="/tin-tuyen-sinh" class="nav-link header-nav-link"  data-placement="top">
+            <a href="/tin-tuyen-sinh" class="nav-link header-nav-link"  data-placement="top" :title="$t('nav.admission')">
               <div class="nav-icon">
                 <i class="fad fa-server"></i>
               </div>
@@ -37,7 +37,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/cong-ty'}">
-            <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center"  data-placement="top">
+            <a href="/cong-ty" class="nav-link header-nav-link" style="text-align: center"  data-placement="top" :title="$t('nav.company')">
               <div class="nav-icon">
                 <i class="fad fa-building"></i>
               </div>
@@ -57,7 +57,7 @@
             </a>
           </li> -->
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/tin-tuc'}">
-            <a href="/tin-tuc" class="nav-link header-nav-link"  data-placement="top">
+            <a href="/tin-tuc" class="nav-link header-nav-link"  data-placement="top" :title="$t('nav.news')">
               <div class="nav-icon">
                 <i class="fad fa-table"></i>
               </div>
@@ -67,7 +67,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/ve-netbee'} " >
-            <a href="/ve-netbee" class="nav-link header-nav-link"  data-placement="top">
+            <a href="/ve-netbee" class="nav-link header-nav-link"  data-placement="top" :title="$t('nav.about')">
               <div class="nav-icon">
                 <i class="fad fa-id-card"></i>
               </div>
@@ -77,7 +77,7 @@
             </a>
           </li>
           <li class="nav-item" style="padding-top:3px" :class="{active : this.$route.path == '/lien-he'} " >
-            <a href="/lien-he" class="nav-link header-nav-link"  data-placement="top">
+            <a href="/lien-he" class="nav-link header-nav-link"  data-placement="top" :title="$t('nav.contact')">
               <div class="nav-icon">
                 <i class="fad fa-phone-office"></i>
               </div>
@@ -93,7 +93,7 @@
             </a>
           </li> -->
           <li class="nav-item cta dropdown">
-            <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="top" >
+            <a href="#" class="nav-link header-nav-link" style="padding-bottom: 0px; height: 100%; border:unset!important;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-placement="top" :title="$t('nav.languages')">
               <div class="nav-icon">
                 <img v-if="$i18n.locale == 'vi'" src="/assets/img/iconfinder_Vietnam_flat_92420.png" width="22px" alt="netbee việt nam"/>
                 <img v-else-if="$i18n.locale == 'en'" src="/assets/img/iconfinder_United-Kingdom.png" width="22px" alt="netbee united kingdom"/>
@@ -135,7 +135,7 @@
             </div>
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-if="!$auth.loggedIn">
-            <a href="#" class="nav-link header-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"  >
+            <a href="#" class="nav-link header-nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" :title="$t('nav.become_partner.title')">
               <div class="nav-icon">
                 <i class="fa fa-user-circle"></i>
               </div>
@@ -153,7 +153,7 @@
             </div>
           </li>
           <li class="nav-item cta mr-md-2 dropdown" v-else>
-            <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" :title="$t('account')">
               <div class="nav-icon">
                 <img :alt="this.$auth.user.avatar" v-lazy="this.$auth.user.avatar != null && this.$auth.user.avatar.startsWith('https') ? this.$auth.user.avatar : `/uploads/users/avatars/${this.$auth.user.avatar}`">
               </div>
@@ -169,8 +169,8 @@
             </div>
           </li>
           
-          <li class="dropdown dropdown-notification nav-item" v-if="$auth.loggedIn">
-            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" style="width: 25px; margin:auto; margin-top: 20px;" title="Thông báo" data-placement="top">
+          <li class="dropdown dropdown-notification nav-item" v-if="$auth.loggedIn"  :title="$t('account')">
+            <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" style="width: 25px; margin:auto; margin-top: 20px;" data-placement="top" :title="$t('notification')">
               <i class="fa fa-bell" style="color:#000 !important;font-size: 17px;padding:0px;margin-right:0px;"></i>
               <span class="badge badge-pill badge-danger badge-up" style="background-color: #EA5455;right: -0.3rem;top: -0.7rem;" v-if="countNoti>0">{{ countNoti }}</span>
             </a>

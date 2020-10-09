@@ -539,7 +539,7 @@
                                             <span style="color: red">{{errors[0]}}</span>
                                         </ValidationProvider>
                                     </div>
-                                    <div class="col-12">
+                                    <!-- <div class="col-12">
                                         <ValidationProvider
                                         rules="required"
                                         v-slot="{ errors }">
@@ -551,9 +551,9 @@
                                                 </div>
                                             </div>
                                         </ValidationProvider>   
-                                    </div>
+                                    </div> -->
                                     <div class="text-right mt-1 col-12">
-                                        <button type="button" class="btn btn-warning" @click="resetData">Reset</button>
+                                        <!-- <button type="button" class="btn btn-warning" @click="resetData">Reset</button> -->
                                         <button type="button" class="btn btn-warning" v-bind:disabled="invalid" v-on:click="applyJob">Ứng tuyển</button>
                                     </div>
                                 </ValidationObserver>
