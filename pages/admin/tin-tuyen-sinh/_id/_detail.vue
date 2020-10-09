@@ -616,10 +616,8 @@
                                             <ValidationProvider rules="required|customName" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="name">Họ tên</label>
-                                                        <input type="text" id="name" class="form-control" placeholder="Họ tên" v-model="nameCv">
                                                         <label for="name">Họ tên (<span style="color: red; font-size: 20px;">*</span>)</label>
-                                                        <input type="text" id="name" class="form-control" v-model="nameCv">
+                                                        <input type="text" id="name" class="form-control" placeholder="Họ tên" v-model="nameCv">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
@@ -654,10 +652,8 @@
                                             <ValidationProvider rules="required|customAddress" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="address">Địa chỉ</label>
-                                                        <input type="text" id="address" class="form-control" placeholder="Địa chỉ" v-model="address">
                                                         <label for="address">Địa chỉ (<span style="color: red; font-size: 20px;">*</span>)</label>
-                                                        <input type="text" id="address" class="form-control" v-model="address">
+                                                        <input type="text" id="address" class="form-control" placeholder="Địa chỉ" v-model="address">
 
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
