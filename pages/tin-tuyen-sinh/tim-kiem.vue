@@ -69,7 +69,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <div class="form-field">
-                        <input type="button" value="Tìm ngay" class="form-control col-md-12 btn bg-netbee" @click="search">
+                        <input type="button" :value="$t('banner.search')" class="form-control col-md-12 btn bg-netbee" @click="search">
                       </div>
                     </div>
                   </div>

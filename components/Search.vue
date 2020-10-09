@@ -52,7 +52,7 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <div class="form-field">
-                        <input type="submit" value="Tìm ngay" class="form-control btn btn-primary">
+                        <input type="submit" :value="$t('banner.search')" class="form-control btn btn-primary">
                       </div>
                     </div>
                   </div>
@@ -169,7 +169,7 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <div class="form-field">
-                        <input type="submit" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
+                        <input type="submit" :value="$t('banner.search')" class="form-control btn btn-primary" style="width: 95%;">
                       </div>
                     </div>
                   </div>
@@ -288,7 +288,7 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <div class="form-field">
-                        <input type="submit" value="Tìm ngay" class="form-control btn btn-primary" style="width: 95%;">
+                        <input type="submit" :value="$t('banner.search')" class="form-control btn btn-primary" style="width: 95%;">
                       </div>
                     </div>
                   </div>
