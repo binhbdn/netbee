@@ -37,7 +37,7 @@ z<template>
                         <div class="col-lg-4 col-sm-6 col-12 pl-0">
                             <div class="card text-center">
                                 <div class="card-content">
-                                    <div class="card-body p-2">
+                                    <div class="card-body p-2 pb-3">
                                         <div class="avatar bg-rgba-success p-50 m-0 mb-1">
                                             <div class="avatar-content">
                                                 <i class="fa fa-registered text-success font-medium-5"></i>
@@ -45,7 +45,6 @@ z<template>
                                         </div>
                                         <h2>Đăng và nhận ứng viên</h2>
                                         <p class="mb-0 line-ellipsis">Cập nhât thông tin ứng tuyển thường xuyên qua email, sms ...</p>
-                                        <br/>
                                     </div>
                                 </div>
                             </div>
