@@ -1,7 +1,7 @@
 <template>
   <div class="ftco-section-parallax">
     <div id="follow"></div>
-    <div class="d-flex" v-lazy:background-image="`/assets/img/hands-ncd.jpg`">
+    <div class="d-flex" id="footer-follow" v-lazy:background-image="`/assets/img/hands-ncd.jpg`">
       <div style="background-color: #242222c9; width: 100%;">
         <div class="container">
           <div class="row align-items-center">
@@ -167,10 +167,10 @@ export default {
     position: absolute;
      top: -50px;
 }
-.d-flex{
+#footer-follow{
     background-position: center center;
     background-size: cover;
-    background-color: #1e1e1e;
+    background-color: black;
     height: auto;
 }
 
