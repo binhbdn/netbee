@@ -100,11 +100,18 @@
         }
     }
 </script>
-<style src="../node_modules/@fullcalendar/core/main.css">    
+<style src="../node_modules/@fullcalendar/core/main.css">
+
 </style>
 <style src="../node_modules/@fullcalendar/list/main.css">    
 </style>
 <style>
+@media screen and (max-width: 1000px) {
+  .fc-toolbar > * > :not(:first-child) {
+  margin-left: 0.13em !important;
+  padding-top:0.6rem;
+}
+}
 .fc-content{
     color: #fff !important;
 }
