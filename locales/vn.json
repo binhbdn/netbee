@@ -3,6 +3,7 @@
     "logout": "Đăng xuất",
     "account": "Tài khoản",
     "see_more": "Xem thêm",
+    "notification": "Thông báo",
     "nav": {
         "home": "Trang chủ",
         "company": "Công ty",
@@ -46,6 +47,7 @@
         },
         "banner": {
             "registration": "Đăng ký",
+            "acc_registration": "Đăng ký tài khoản",
             "up_job": "Đăng tuyển du học miễn phí",
             "introduce": "Giới thiệu ứng viên",
             "decs": "Có ứng viên là có thưởng"
