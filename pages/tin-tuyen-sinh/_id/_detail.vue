@@ -258,8 +258,23 @@
                                 <img v-lazy="`/uploads/users/avatars/${congty.avatar}`" :alt="`${congty.avatar}`" width="100%">
                             </div>
                             <div class="text-show">
-                                <p><span class="font-weight-400"><i class="fad fa-map-marked-alt"></i> <span class="font-weight-600">Địa chỉ:</span> {{ congty.address_detail ? congty.address_detail: 'Đang cập nhật' }}</span></p>
-                                <p><span class="font-weight-400"><i class="fa fa-users"></i> <span class="font-weight-600">Số lượng tin:</span> {{ countJob.length ? countJob.length : '0' }}</span></p>
+                                <!-- <p><span class="font-weight-400"><i class="fad fa-map-marked-alt"></i> <span class="font-weight-600">Địa chỉ:</span> {{ congty.address_detail ? congty.address_detail: 'Đang cập nhật' }}</span></p> -->
+                                <p><span class="font-weight-400"><i class="fad fa-building"></i> <span class="font-weight-600">{{ $t('nav.company') }}:</span> <span class="text-uppercase">{{ tintuyendung.user.name }}</span></span></p>
+                                <!-- <p><span class="font-weight-400"><i class="fa fa-users"></i> <span class="font-weight-600">Số lượng tin:</span> {{ countJob.length ? countJob.length : '0' }}</span></p> -->
+                                <p class="rating d-flex justify-content-start font-weight-400">
+                                    <span class="font-weight-600">Đánh giá:</span>
+                                    <span class="pl-1" v-if="rate_score">
+                                        <span class="fa fa-star" :class="rate_score > 0 ? 'checked' : ''"></span>
+                                        <span class="fa fa-star" :class="rate_score > 1 ? 'checked' : ''"></span>
+                                        <span class="fa fa-star" :class="rate_score > 2 ? 'checked' : ''"></span>
+                                        <span class="fa fa-star" :class="rate_score > 3 ? 'checked' : ''"></span>
+                                        <span class="fa fa-star" :class="rate_score > 4 ? 'checked' : ''"></span>
+                                        <span> ({{rate_score}}/5 sao)</span>
+                                    </span>
+                                    <span class="pl-1" v-else>
+                                        Chưa có đánh giá
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </div> 
@@ -539,7 +554,7 @@
                                             <span style="color: red">{{errors[0]}}</span>
                                         </ValidationProvider>
                                     </div>
-                                    <div class="col-12">
+                                    <!-- <div class="col-12">
                                         <ValidationProvider
                                         rules="required"
                                         v-slot="{ errors }">
@@ -551,9 +566,9 @@
                                                 </div>
                                             </div>
                                         </ValidationProvider>   
-                                    </div>
+                                    </div> -->
                                     <div class="text-right mt-1 col-12">
-                                        <button type="button" class="btn btn-warning" @click="resetData">Reset</button>
+                                        <!-- <button type="button" class="btn btn-warning" @click="resetData">Reset</button> -->
                                         <button type="button" class="btn btn-warning" v-bind:disabled="invalid" v-on:click="applyJob">Ứng tuyển</button>
                                     </div>
                                 </ValidationObserver>
@@ -662,7 +677,8 @@ export default {
             listProfileUsers: [],
             countJob:'',
             qr_Code: '',
-            congty:[]
+            congty:[],
+            rate_score: 3
         }
     },
     async asyncData({$axios, route}) {
@@ -865,6 +881,9 @@ export default {
             this.$axios.$get(`getDetailCompanyById/${this.tintuyendung.nb_company.username}`).then((response)=>{
                 this.congty = response.data
             });
+            this.$axios.$get(`getRating/${this.tintuyendung.nb_company.company_id}`).then((response)=>{
+                this.rate_score = response.total_score
+            });
             this.$axios.$get(`getTinTuyenDungNew?limit=5&type=`+this.tintuyendung.type).then((response)=>{
                 this.arrayForCompany = response.data.tintuyendung
             });
@@ -883,7 +902,6 @@ export default {
         } else {
             window.location.href = '/tin-tuyen-sinh'
         }
-        
     }
 }
 </script>
@@ -922,6 +940,13 @@ export default {
     border: 1px solid #c1c1c1;
     width: 100px;
     height: 100px;
+}
+.avt-company>img {
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .card{
     border-radius: 3px;
@@ -1102,6 +1127,9 @@ export default {
 }
 .input-login{
     padding: 0 20px 20px 20px;
+}
+.rating .checked {
+  color: orange;
 }
 @media (max-width: 767px){
     .formlogin{

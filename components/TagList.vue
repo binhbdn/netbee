@@ -19,7 +19,7 @@
 	            Tu nghiệp sinh
 	          </span>
 	        </a>
-	        <a v-for="(item, key) in DataList" :key="key" :href="`/tin-tuyen-sinh/tim-kiem?keyword=${item.tag_name}`" style="margin:0 3px;">
+	        <a v-for="(item, key) in DataList" :key="key" :href="`/tin-tuyen-sinh/tim-kiem?keyword=${ChangeToSlug(item.tag_name).replace(/\-/gi, '%20')}`" style="margin:0 3px;">
               <span class="badge border-netbee badge-sm" style="width: 100px">
                 {{item.tag_name}}
               </span>

@@ -11,10 +11,10 @@
                             <div class="card-content">
                                 <div class="col-md-12">
                                     <ValidationObserver v-slot="{ invalid }">
-                                        <div style="padding: 15 5px; margin: 15px 5px 5px;border-radius: 3px;">
-                                            <div class="row" style="padding: 10px;">
-                                                <div class="col-md-12 h4_title">
-                                                    <h4>TẠO HỒ SƠ ỨNG TUYỂN</h4>
+                                        <div style="margin: 15px 5px 5px">
+                                            <div class="row" style="padding-top: 10px;">
+                                                <div class="col-md-12">
+                                                    <h4 class="h4_title">TẠO HỒ SƠ ỨNG TUYỂN</h4>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="row">
@@ -32,7 +32,7 @@
                                                                 </div>
                                                             </center>
                                                         </div>
-                                                        <div class="col-md-8 pl-md-1 p-50">
+                                                        <div class="col-md-8">
                                                             <ValidationProvider 
                                                            name="Họ và tên"
                                                             ref="name"
@@ -159,10 +159,11 @@
                                                     </select>    
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- hết -->
-                                        <div class="col-md-12" style="text-align: right;">
-                                            <button class="btn btn-add bg-netbee" style="margin-top: 15px" :disabled="invalid"  v-on:click="insert">Tạo hồ sơ</button>
+                                            <div class="row">
+                                                <div class="col-md-12" style="text-align: right;">
+                                                    <button class="btn btn-add bg-netbee" style="margin-top: 23px" :disabled="invalid"  v-on:click="insert">Tạo hồ sơ</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </ValidationObserver>
                                     <br>
@@ -336,11 +337,7 @@
     .h4_title {
         position: relative;
         border-bottom: 1px solid #eaeaea;
-        padding-left: 0px !important;
-        margin-left: 13px;
-       
         margin-bottom: 17px;
-       padding-right: 0px;
     }
     .h4_title:before {
         position: absolute;
@@ -654,4 +651,7 @@
     input:focus{              
         border: #4B6A78 1px dotted !important;
     }         
+    .btn.btn-add.bg-netbee:disabled {
+    opacity: 1;
+    }
 </style>

@@ -5,7 +5,7 @@
     <section class="ftco-section services-section card" style="background: #fff" v-if="!$auth.loggedIn">
       <div class="container">
         <div class="row">
-          <a class="col-md-2 align-self-stretch ftco-animate pd-r-0" href="dang-ky" title="Đăng ký tài khoản">
+          <a class="col-md-2 align-self-stretch ftco-animate pd-r-0" href="dang-ky" :title="$t('home.banner.acc_registration')">
             <div class="d_item v_block hover-ncd">
                 <div class="icon text-center SB_bn_1">
                   <i class="fa fa-user-plus"></i>
@@ -15,7 +15,7 @@
                 </div>
             </div>
           </a>
-          <a class="col-md-2 align-self-stretch ftco-animate pd-r-0" href="dang-nhap" title="Đăng nhập">
+          <a class="col-md-2 align-self-stretch ftco-animate pd-r-0" href="dang-nhap" :title="$t('login')">
             <div class="d_item v_block hover-ncd">
               <div class="icon text-center SB_bn_1">
                 <i class="fa fa-lock"></i>
@@ -25,7 +25,7 @@
               </div>
             </div>
           </a>
-          <a class="col-md-5 align-self-stretch ftco-animate" href="/dang-ky/nha-tuyen-dung">
+          <a class="col-md-5 align-self-stretch ftco-animate" href="/dang-ky/nha-tuyen-dung" :title="$t('home.banner.up_job')">
             <div class="d_item v_block hover-ncd">
               <div class="icon text-center SB_bn_1">
                 <i class="fa fa-handshake"></i>
@@ -35,7 +35,7 @@
               </div>
             </div>
           </a>
-          <a class="col-md-3  align-self-stretch ftco-animate pd-l-0" href="/dang-ky/chuyen-vien-tuyen-dung">
+          <a class="col-md-3  align-self-stretch ftco-animate pd-l-0" href="/dang-ky/chuyen-vien-tuyen-dung" :title="$t('home.banner.introduce')+'\n'+$t('home.banner.decs')">
             <div class="d_item v_block hover-ncd">
               <div class="icon text-center SB_bn_1">
                 <i class="fa fa-comments"></i>

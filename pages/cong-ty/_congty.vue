@@ -50,10 +50,8 @@
                                     <!-- <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p> -->
                                     Theo dõi
                                 </a>
-                                <a class="bg-netbee" v-else @click="followCompany()" style="text-align: center;padding: 10px; width: 100%; border-radius: 5px">
-                                    <!-- <p style="font-size: 15px;color: #ffb701;margin-top: 5px;margin-bottom: 3px;">{{followers}}</p> -->
-                                    {{ isFollow  ? 'Đang theo dõi' : 'Theo dõi'}}
-                                </a>
+                                <a class="bg-netbee" v-else-if="isFollow" @click="followCompany()" style="text-align: center;padding: 10px; width: 100%; border-radius: 5px" title="Bỏ theo dõi">Đang theo dõi</a>
+                                <a class="bg-netbee" v-else @click="followCompany()" style="text-align: center;padding: 10px; width: 100%; border-radius: 5px" title="Theo dõi">Theo dõi</a>
                             </div>
                         </div>
                     </div>
@@ -358,7 +356,7 @@
                         <hr>
                         </div>
                         <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#loginModal">
-                            <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" data-dismiss="modal">Viết phản hồi</a>
+                            <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" :title="'Viết phản hồi'" data-dismiss="modal">Viết phản hồi</a>
                         </div>
                         <div v-else class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#feedbackModal">
                             <a style="font-size:16px" class="btn btn-warning w-100" data-toggle="tooltip" data-placement="top" data-dismiss="modal" >Viết phản hồi</a>
