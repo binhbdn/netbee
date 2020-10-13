@@ -21,7 +21,7 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-12">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|max:150" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="title">Tiêu đề (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                                 <input type="text" class="form-control" v-model="data.title">
@@ -517,6 +517,9 @@ extend("ssdate", {
 })
 extend("numeric", {
     message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
+    });
+extend("max", {
+    message: (field, values) => "Dữ liệu nhập vào không được quá 150 kí tự"
     });
 extend("customSoam", {
   message: field =>"Dữ liệu nhập vào phải là chữ số dương",

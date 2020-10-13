@@ -208,9 +208,10 @@ export default {
                 searchCategory: ""
             },
             categories: [
-                {id: 1, name: 'Xuất khẩu lao động'},
-                {id: 2, name: 'Du học'},
-                {id: 3, name: 'Tu nghiệp sinh'}
+                
+                {id: 1, name: 'Cẩm nang'},
+                {id: 2, name: 'Xuất khẩu lao động'},
+                {id: 3, name: 'Du học'}
             ],
             status: [
                 {id: 1, name: 'Đã kích hoạt'},
