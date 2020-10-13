@@ -166,6 +166,16 @@ p {
     .exam-jobs-user .hot img {
         width: 6%;
     }
+    .item-vip-a{
+        overflow: hidden;
+        white-space: unset;
+        font-size: 13px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+    }
 }
 @media (max-width: 600px){
     .mb-block{
@@ -177,7 +187,7 @@ p {
         max-width: 100% !important;
     } */
     .hot img {
-        right: 0;
+        right: 15px;
     }
     /* .ecommerce-card {
         margin-bottom: 0 !important;
