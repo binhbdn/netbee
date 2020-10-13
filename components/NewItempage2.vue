@@ -5,12 +5,12 @@
                 <img v-lazy="`/uploads/news/${thuml}`" :style="type != 1 ? 'max-height: 117px' : 'max-height: 190px'" style="max-width: 100%;object-fit: fill;">
             </a>
         </div>
-        <div class="col-7 d-flex flex-column">
+        <div class="col-7 d-flex flex-column newpage">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
                 <h2 class="NB_title text-black el-3 font-weight-600" style="margin-bottom: 7px;line-height: 1.4;">{{ title }}</h2>
             </a>
             <p class="el-3 mb-hide-div" style="line-height: 1.5;margin-bottom: 5px;" v-if="type == 1 || type == 2">{{ short_content }}</p>
-            <div class="small-news-time" style="position: absolute;bottom: 0;">
+            <div class="small-news-time" style="position: absolute;bottom: 12px;">
                 <i class="fad fa-calendar-star"></i><span class="ml-1">{{ ConvertDate(created_at) }}</span>  
             </div>
         </div>
@@ -22,6 +22,9 @@ export default {
 }
 </script>
 <style >
+.newpage{
+    top: 5px;
+}
 .block-20 {
     overflow: hidden;
     background-size: cover;
