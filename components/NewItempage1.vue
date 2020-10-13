@@ -54,11 +54,8 @@ h4:hover{
     }
 } */
 @media(max-width: 575px){
-    .mb-hide-div{
-        display: none;
-    }
     h2.NB_title.text-black.el-3.font-weight-600 {
-        margin-bottom: 2.5rem !important;
+        margin-bottom: 1.5rem !important;
     }
 }
 </style>

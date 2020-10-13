@@ -41,9 +41,5 @@ h4:hover{
     .pdt-none{
         margin-top: 0 !important;
     }
-   
-    .mb-hide-div{
-        display: none;
-    }
 }
 </style>
