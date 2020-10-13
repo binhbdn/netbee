@@ -113,7 +113,7 @@
                                                                     <div class="col-6" style="padding-left: 0px;">
                                                                     <ValidationProvider rules="required|numeric" v-slot="{ errors }">
                                                                         <div class="form-group">
-                                                                            <label for="firstName3">Số lượng tuyển</label>
+                                                                            <label for="firstName3">Số lượng tuyển (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                                             <input type="number" class="form-control" v-model="data.quantity">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </div>
@@ -280,7 +280,7 @@ Có xác nhận thời gian công tác : công ty và bảo hiểm."></textarea>
                                                         <ValidationProvider rules="required|customBonus" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="firstName3">
-                                                                    Tiền thưởng
+                                                                    Tiền thưởng (<span style="color: red; font-size: 20px;">*</span>)
                                                                 </label>
                                                                 <div class="input-group">
                                                                     <input type="txt"  class="form-control" @input="data.bonus = FormatPrice(data.bonus)" v-model="data.bonus" :disabled="!checked">

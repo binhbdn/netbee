@@ -71,12 +71,12 @@
                                                     <div class="modal-content" style="padding: 15px;">
                                                         <div class="modal-header" style="background-color: #e8e8e8;">
                                                             <div class="col-md-12" style="text-align: center;">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                                 Bạn có chắc chắn muốn tải đơn hàng này ?<br>
                                                                 <button class="btn btn-primary mt-1" @click="downloadWithCSS()">Tải đơn hàng</button>
                                                                 <button type="button" class="btn btn-danger mt-1" data-dismiss="modal">Close</button><br>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                                </button>
                                                             </div> 
                                                         </div>
                                                         <div class="col-md-12">
@@ -654,7 +654,6 @@
                                                     <div class="form-field">
                                                         <label for="address">Địa chỉ (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                         <input type="text" id="address" class="form-control" placeholder="Địa chỉ" v-model="address">
-
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
@@ -682,7 +681,7 @@
                                             <span style="color: red">{{errors[0]}}</span>
                                         </ValidationProvider>
                                     </div>
-                                    <div class="col-12">
+                                    <!-- <div class="col-12">
                                         <ValidationProvider
                                         rules="required"
                                         v-slot="{ errors }">
@@ -693,12 +692,12 @@
                                                 </div>
                                             </div>
                                         </ValidationProvider>   
-                                    </div>
+                                    </div> -->
                                 </ValidationObserver>
                             </div>
                         </div>
                         <div class="text-right mt-1">
-                            <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="resetData">Reset</button>
+                            <!-- <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="resetData">Reset</button> -->
                             <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="applyJob">Ứng tuyển</button>
                         </div>
                     </div>
@@ -1274,6 +1273,9 @@ export default {
     border-radius: 0px;
     border-top-left-radius: 0.42rem;
     border-top-right-radius: 0.42rem;
+}
+.modal .modal-header .close {
+    margin-top: -6px;
 }
 .modal .modal-header .close span {
     color: #000;

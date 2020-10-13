@@ -3,6 +3,7 @@
     "logout": "ログアウト",
     "account": "アカウント",
     "see_more": "もっと見る",
+    "notification": "Notification",
     "nav": {
         "home": "ホーム",
         "company": "会社",
@@ -21,6 +22,7 @@
     },
     "banner": {
         "nation": "国家",
+        "search": "Search",
         "jobs": {
             "tab": "仕事を見つける",
             "key": "仕事のテーマ, 職名, 勤務地",
@@ -33,6 +35,7 @@
         "candidates": {
             "tab": "応募者を探す",
             "key": "キーワード",
+            "level": "All levels",
             "address": "全場所"
         }
     },
@@ -41,10 +44,10 @@
             "jobs_hot": "トプニュース",
             "jobs_new": "ニュース",
             "news": "ニュース"
-
         },
         "banner": {
             "registration": "登録",
+            "acc_registration": "Account registration",
             "up_job": "無料で採用",
             "introduce": "学生の紹介",
             "decs": "学生の募集するとボーナスがある"

@@ -69,7 +69,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <div class="form-field">
-                        <input type="button" value="Tìm ngay" class="form-control btn btn-warning text-dark" style="background-color: #ffb701 !important; border-color: #ffb701 !important" @click="search">
+                        <input type="button" :value="$t('banner.search')" class="form-control btn btn-warning text-dark" style="background-color: #ffb701 !important; border-color: #ffb701 !important" @click="search">
                       </div>
                     </div>
                   </div>
