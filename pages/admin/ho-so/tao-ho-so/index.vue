@@ -40,7 +40,7 @@
                                                             v-slot="{ errors }"
                                                             >
                                                                 <fieldset class="form-group">
-                                                                    <label class="title-label" for="basicInput">Họ và tên (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                                    <label class="title-label" for="basicInput">Họ và tên (<span style="color: red;">*</span>)</label>
                                                                     <input type="text" class="form-control" name="name" v-model="info_frofile_user.fullname_profile">
                                                                     <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                                                                         <li v-for="(error, index) in errors" :key="index">
@@ -53,7 +53,7 @@
                                                                 <div class="col-md-6">
                                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                                         <fieldset class="form-group">
-                                                                            <label class="title-label" for="basicInput">Ngày sinh (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                                            <label class="title-label" for="basicInput">Ngày sinh (<span style="color: red;">*</span>)</label>
                                                                             <input type="date" class="form-control" v-model="info_frofile_user.birthday_profile"/>
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </fieldset> 
@@ -82,7 +82,7 @@
                                                         v-slot="{ errors }"
                                                     >
                                                     <fieldset class="form-group">
-                                                        <label class="title-label" for="basicInput">Số điện thoại (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label class="title-label" for="basicInput">Số điện thoại (<span style="color: red;">*</span>)</label>
                                                         <input type="number" v-model="info_frofile_user.phone_profile" name="phone" class="form-control"> 
                                                         <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                                                             <li v-for="(error, index) in errors" :key="index">
@@ -101,7 +101,7 @@
                                                     v-slot="{ errors }"
                                                     >
                                                     <fieldset class="form-group">
-                                                        <label class="title-label" for="basicInput">Email (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label class="title-label" for="basicInput">Email (<span style="color: red;">*</span>)</label>
                                                         <input type="email" name="email" class="form-control" v-model="info_frofile_user.email_profile">
                                                        <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                                                             <li v-for="(error, index) in errors" :key="index">
@@ -122,7 +122,7 @@
                                                     v-slot="{ errors }"
                                                     >
                                                         <fieldset class="form-group">
-                                                            <label class="title-label" for="basicInput">Địa chỉ (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                            <label class="title-label" for="basicInput">Địa chỉ (<span style="color: red;">*</span>)</label>
                                                             <textarea v-model="info_frofile_user.address_profile" name="add" class="form-control" style="overflow:hidden;" rows="2"></textarea>
                                                              <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                                                             <li v-for="(error, index) in errors" :key="index">
@@ -137,7 +137,7 @@
                                                 <div class="col-md-12">
                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                         <fieldset class="form-group">
-                                                            <label class="title-label" for="basicInput">Học vấn (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                            <label class="title-label" for="basicInput">Học vấn (<span style="color: red;">*</span>)</label>
                                                             <multiselect :options="educationEx" v-model="name_education" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                             <span style="color: red">{{ errors[0] }}</span>
                                                         </fieldset> 

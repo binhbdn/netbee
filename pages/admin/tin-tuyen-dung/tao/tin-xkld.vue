@@ -20,7 +20,7 @@
                                                     <div class="col-12">
                                                         <ValidationProvider rules="required|max:150" v-slot="{ errors }">
                                                             <div class="form-group">
-                                                                <label for="title">Tiêu đề (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                                <label for="title">Tiêu đề (<span style="color: red;">*</span>)</label>
                                                                 <input type="text" class="form-control" v-model="data.title">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -44,7 +44,7 @@
                                                     <div class="col-12">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }">
                                                             <div class="form-group">
-                                                                <label for="firstName3">Quốc gia (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                                <label for="firstName3">Quốc gia (<span style="color: red;">*</span>)</label>
                                                                 <multiselect :options="options" v-model="data.nation" :custom-label="nameWithLang" :searchable="true" :allow-empty="false" :show-labels="false" placeholder="Chọn quốc gia"></multiselect>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -114,14 +114,14 @@
                                                                 <div class="row">
                                                                     <div class="col-6" style="padding-left: 0px;">
                                                                         <ValidationProvider rules="required|customSoam" v-slot="{ errors }">
-                                                                        <label for="firstName3">Chiều cao [cm] (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                                        <label for="firstName3">Chiều cao [cm] (<span style="color: red;">*</span>)</label>
                                                                         <input type="number" class="form-control" v-model="data.height">
                                                                         <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-6" style="padding-right: 0px;">
                                                                         <ValidationProvider rules="required|customSoam" v-slot="{ errors }">
-                                                                        <label for="firstName3">Cân nặng [kg] (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                                        <label for="firstName3">Cân nặng [kg] (<span style="color: red;">*</span>)</label>
                                                                         <input type="number" class="form-control" v-model="data.weight">
                                                                         <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
@@ -133,7 +133,7 @@
                                                     <div class="col-sm-6">
                                                         <ValidationProvider rules="required|numeric" v-slot="{ errors }">
                                                             <div class="form-group">
-                                                                <label for="firstName3">Số lượng tuyển (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                                <label for="firstName3">Số lượng tuyển (<span style="color: red;">*</span>)</label>
                                                                 <input type="number" class="form-control" v-model="data.quantity">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -227,7 +227,7 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label for="firstName3">Thu nhập hàng tháng (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                            <label for="firstName3">Thu nhập hàng tháng (<span style="color: red;">*</span>)</label>
                                                             <div class="container-fluid">
                                                                 <div class="row">
                                                                     <div class="col-sm-6 pl-sm-0">
@@ -354,7 +354,7 @@
                                                     <div class="col-sm-6"  v-if="checked">
                                                         <ValidationProvider rules="required|customBonus" v-slot="{ errors }" >
                                                             <div class="form-group">
-                                                                <label for="firstName3">Tiền thưởng (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                                <label for="firstName3">Tiền thưởng (<span style="color: red;">*</span>)</label>
                                                                 <div class="input-group">
                                                                     <input type="txt" class="form-control" @input="data.bonus = FormatPrice(data.bonus)" v-model="data.bonus" :disabled="!checked">
                             

@@ -620,7 +620,7 @@
                                             <ValidationProvider rules="required|customName" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="name">Họ tên (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label for="name">Họ tên (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="name" class="form-control" placeholder="Họ tên" v-model="nameCv">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -629,7 +629,7 @@
                                             <ValidationProvider rules="required|birthdate" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="birth_day">Ngày sinh (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label for="birth_day">Ngày sinh (<span style="color: red;">*</span>)</label>
                                                         <input type="date" id="birth_day" class="form-control" v-model="birth_day">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -638,7 +638,7 @@
                                             <ValidationProvider rules="required|numeric|min:10|max:11" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="phone">Số điện thoại (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label for="phone">Số điện thoại (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="phone" class="form-control" v-model="phone">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -656,7 +656,7 @@
                                             <ValidationProvider rules="required|customAddress" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="address">Địa chỉ (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label for="address">Địa chỉ (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="address" class="form-control" placeholder="Địa chỉ" v-model="address">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
