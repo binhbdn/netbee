@@ -529,7 +529,7 @@
                                             </ValidationProvider>
                                         </div>
                                         <div class="text-right mt-1 col-12">
-                                            <button type="button" class="btn btn-warning" @click="resetData">Reset</button>
+                                            <!-- <button type="button" class="btn btn-warning" @click="resetData">Reset</button> -->
                                             <button type="button" class="btn btn-warning" v-bind:disabled="invalid" v-on:click="applyJob">Ứng tuyển</button>
                                         </div>
                                     </div>
@@ -906,6 +906,14 @@ export default {
 }
 </script>
 <style scoped>
+.text-right .btn-warning{
+    opacity: 1 !important;
+
+}
+.text-right .btn-warning:hover{
+    color: #fff;
+    background-color: #ffb701;
+}
 .ftco-animate :hover{
     background-color: rgb(255, 183, 1);
 }

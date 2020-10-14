@@ -698,7 +698,7 @@
                         </div>
                         <div class="text-right mt-1">
                             <!-- <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="resetData">Reset</button> -->
-                            <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="applyJob">Ứng tuyển</button>
+                            <button type="button" class="btn btn-warning" @click="applyJob">Ứng tuyển</button>
                         </div>
                     </div>
                 </div>
@@ -1096,6 +1096,15 @@ export default {
 }
 </script>
 <style scoped>
+.text-right .btn-warning{
+    background-color: #ffb701 !important;
+    color: #000;
+
+}
+.text-right .btn-warning:hover{
+    color: #fff;
+    background-color: #ffb701;
+}
 @media (min-width: 1920px) {
     .resp-btn{
         margin-top: 15px;
