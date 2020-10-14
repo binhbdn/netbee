@@ -485,7 +485,7 @@
                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="name">Họ tên</label>
+                                                        <label for="name">Họ tên (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="name" class="form-control" v-model="nameCv">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -494,7 +494,7 @@
                                             <ValidationProvider rules="required|birthdate" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="birth_day">Ngày sinh</label>
+                                                        <label for="birth_day">Ngày sinh (<span style="color: red;">*</span>)</label>
                                                         <input type="date" id="birth_day" class="form-control" v-model="birth_day">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -503,7 +503,7 @@
                                             <ValidationProvider rules="required|numeric|min:10|max:11" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="phone">Số điện thoại</label>
+                                                        <label for="phone">Số điện thoại (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="phone" class="form-control" v-model="phone">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -512,7 +512,7 @@
                                             <ValidationProvider rules="required|email" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="email">Email</label>
+                                                        <label for="email">Email (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="email" class="form-control" v-model="email">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -521,7 +521,7 @@
                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="address">Địa chỉ</label>
+                                                        <label for="address">Địa chỉ (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="address" class="form-control" v-model="address">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -529,8 +529,8 @@
                                             </ValidationProvider>
                                         </div>
                                         <div class="text-right mt-1 col-12">
-                                            <button type="button" class="btn btn-warning" @click="resetData">Reset</button>
-                                            <button type="button" class="btn btn-warning" v-bind:disabled="invalid" v-on:click="applyJob">Ứng tuyển</button>
+                                            <!-- <button type="button" class="btn btn-warning" @click="resetData">Reset</button> -->
+                                            <button type="button" class="btn bg-netbee" @click="applyJob">Ứng tuyển</button>
                                         </div>
                                     </div>
                                 </ValidationObserver>
@@ -539,20 +539,24 @@
                                 <ValidationObserver ref="applyJobCv" v-slot="{ invalid }">
                                     <div class="col-12">
                                         <ValidationProvider
+                                            v-if="listProfileUsers.length!=0"
                                             rules="required"
                                             v-slot="{ errors }">
                                             <fieldset v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
                                                 <div class="vs-radio-con vs-radio-success">
-                                                    <input type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
+                                                    <input v-if="listProfileUser.status == 1" type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
+                                                    <input v-else type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv" disabled>
                                                     <span class="vs-radio">
                                                         <span class="vs-radio--border"></span>
                                                         <span class="vs-radio--circle"></span>
                                                     </span>
-                                                    <span class="">{{ listProfileUser.fullname_profile }}</span>
+                                                    <span v-if="listProfileUser.status == 1">{{ listProfileUser.fullname_profile }}</span>
+                                                    <span v-else style="opacity:0.5;">{{ listProfileUser.fullname_profile }} <span style="color:red;">(Hồ sơ đang chờ kích hoạt)</span></span>
                                                 </div>
                                             </fieldset>
                                             <span style="color: red">{{errors[0]}}</span>
                                         </ValidationProvider>
+                                        <p v-else>Bạn chưa có hồ sơ nào. Bạn vui lòng tạo hồ sơ trước khi nộp ứng tuyển </p>
                                     </div>
                                     <!-- <div class="col-12">
                                         <ValidationProvider
@@ -568,8 +572,9 @@
                                         </ValidationProvider>   
                                     </div> -->
                                     <div class="text-right mt-1 col-12">
+                                        <a v-if="listProfileUsers.length==0" class="btn bg-netbee" href="/admin/ho-so/tao-ho-so">Tạo hồ sơ</a>
                                         <!-- <button type="button" class="btn btn-warning" @click="resetData">Reset</button> -->
-                                        <button type="button" class="btn btn-warning" v-bind:disabled="invalid" v-on:click="applyJob">Ứng tuyển</button>
+                                        <button type="button" class="btn bg-netbee" @click="applyJob">Ứng tuyển</button>
                                     </div>
                                 </ValidationObserver>
                             </div>
@@ -1106,6 +1111,10 @@ export default {
     border-radius: 0px;
     border-top-left-radius: 0.42rem;
     border-top-right-radius: 0.42rem;
+}
+.modal .modal-header .close {
+    margin-top: -3px;
+    margin-right: 3px;
 }
 .modal .modal-header .close span {
     color: #000;

@@ -75,7 +75,7 @@
                                                     <div class="modal-content" style="padding: 15px;">
                                                         <div class="modal-header" style="background-color: #e8e8e8;">
                                                             <div class="col-md-12" style="text-align: center;">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-right: -10px;">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                                 Bạn có chắc chắn muốn tải đơn hàng này ?<br>
@@ -670,20 +670,24 @@
                                 <ValidationObserver ref="applyJobCv" v-slot="{ valid }">
                                     <div class="col-12">
                                         <ValidationProvider
+                                            v-if="listProfileUsers.length != 0"
                                             rules="required"
                                             v-slot="{ errors }">
-                                            <fieldset  v-if="listProfileUser.status == 1" v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
-                                                <div class="vs-radio-con vs-radio-success" >
-                                                    <input type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
+                                            <fieldset v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
+                                                <div class="vs-radio-con vs-radio-success">
+                                                    <input v-if="listProfileUser.status == 1" type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
+                                                    <input v-else type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv" disabled>
                                                     <span class="vs-radio">
                                                         <span class="vs-radio--border"></span>
                                                         <span class="vs-radio--circle"></span>
                                                     </span>
-                                                    <span class="">{{ listProfileUser.fullname_profile }}</span>
+                                                    <span v-if="listProfileUser.status == 1">{{ listProfileUser.fullname_profile }}</span>
+                                                    <span v-else style="opacity:0.5;">{{ listProfileUser.fullname_profile }} <span style="color:red;">(Hồ sơ đang chờ kích hoạt)</span></span>
                                                 </div>
                                             </fieldset>
                                             <span style="color: red">{{errors[0]}}</span>
                                         </ValidationProvider>
+                                        <p v-else>Bạn chưa có hồ sơ nào. Bạn vui lòng tạo hồ sơ trước khi nộp ứng tuyển </p>
                                     </div>
                                     <!-- <div class="col-12">
                                         <ValidationProvider
@@ -702,7 +706,8 @@
                         </div>
                         <div class="text-right mt-1">
                             <!-- <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="resetData">Reset</button> -->
-                            <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="applyJob">Ứng tuyển</button>
+                            <a v-if="listProfileUsers.length == 0" class="btn bg-netbee" href="/admin/ho-so/tao-ho-so">Tạo hồ sơ</a>
+                            <button type="button" class="btn bg-netbee" @click="applyJob">Ứng tuyển</button>
                         </div>
                     </div>
                 </div>
@@ -1283,7 +1288,8 @@ export default {
     border-top-right-radius: 0.42rem;
 }
 .modal .modal-header .close {
-    margin-top: -6px;
+    margin-top: -3px;
+    margin-right: 3px;
 }
 .modal .modal-header .close span {
     color: #000;
