@@ -5,7 +5,7 @@
                 <img v-lazy="`/uploads/news/${thuml}`" :style="type != 1 ? 'max-height: 117px' : 'max-height: 190px'" style="max-width: 100%;object-fit: fill;">
             </a>
         </div> -->
-        <div class="col-10 d-flex flex-column" style="margin:auto;border-top: 1px solid rgb(221, 221, 221);border-bottom: 1px solid rgb(221, 221, 221);">
+        <div class="col-10 d-flex flex-column new-item-right" style="margin:auto;border-top: 1px solid rgb(221, 221, 221);border-bottom: 1px solid rgb(221, 221, 221);">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
                 <h2 class="NB_title text-black el-3 font-weight-600 p-t-5" style="margin-bottom: 7px;line-height: 1.4;">{{ title }}</h2>
             </a>
@@ -18,6 +18,9 @@ export default {
 }
 </script>
 <style >
+.new-item-right{
+    height: 90px !important;
+}
 .block-20 {
     overflow: hidden;
     background-size: cover;

@@ -14,7 +14,7 @@
                                             <h3>Thông báo</h3>
                                         </div>
                                         <div class="list-data">
-                                            <a :style="notification.status_notification ? '' : 'background: #E5E7E9'" class="d-flex justify-content-between" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
+                                            <a :style="notification.status_notification ? '' : 'background: #E5E7E9'" class="d-flex justify-content-between border-bot" @click="updateStatus(notification.id_notification)" :href="`${notification.url}`" v-for="(notification,indexNotification) in notifications" :key="indexNotification">
                                                 <div class="media d-flex align-items-start data-notification">
                                                     <div class="media-left">
                                                         <img src="/assets/img/logo.png" width="70">
@@ -114,18 +114,15 @@
     };
 </script>
 <style scoped>
-    .border-botom {
-        border-bottom: 1px solid #d8d8d8;
+    .border-bot {
+        border: none;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.192);
     }
     .data-notification {
         padding: 10px;
     }
     .main-body {
         padding: 15px;
-    }
-    .list-data {
-         background-color: #F2F3F4;
-         box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.25)
     }
     .title-main {
         margin-bottom: 15px;

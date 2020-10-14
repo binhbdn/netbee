@@ -141,6 +141,12 @@ p {
         max-width: 400px;
         overflow: hidden;
         white-space: unset;
+        font-size: 13px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
     }
     .p-r-0 .hot img{
         right: 15px;
