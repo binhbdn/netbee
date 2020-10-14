@@ -24,7 +24,25 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-3 resp-btn" style="height:100%;">
-                                            <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row m-l-0 m-r-0" style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 6Danh sách hồ sơ ứng tuyển0%">
+                                            <!-- <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row m-l-0 m-r-0" style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 6Danh sách hồ sơ ứng tuyển0%">
+                                                <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                                    <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                                </div>
+                                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
+                                                    <a class="btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                                </div> -->
+                                            <div id="social" class="row m-l-0 m-r-0" style="border-radius: 3px;margin-top: 60px;border:1px solid #dee2e6;height: 60%">
+                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                                    <a class="btn-save" @click="saveJob()" :title="save ? 'Bỏ lưu việc làm' : 'Lưu việc làm'"><i :class="save ? 'fad fa-heart fa-2x p-10' : 'fad fa-heart-broken fa-2x p-10'"></i></a>
+                                                </div>
+                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                                    <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/${slicePath}`" class="btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
+                                                </div>
+                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
+                                                    <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
+                                                </div>
+                                            </div>
+                                            <!-- <div id="social" v-else class="row m-l-0 m-r-0" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 60%">
                                                 <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                                     <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                                 </div>
@@ -37,21 +55,7 @@
                                                 <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
                                                     <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                                 </div>
-                                            </div>
-                                            <div id="social" v-else class="row m-l-0 m-r-0" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 60%">
-                                                <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
-                                                    <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
-                                                </div>
-                                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
-                                                    <a class="btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
-                                                </div>
-                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
-                                                    <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/${slicePath}`" class="btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
-                                                </div>
-                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
-                                                    <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
-                                                </div>
-                                            </div>
+                                            </div> -->
                                             <div class="row m-t-10" id="send-hoso" style="border-radius: 3px;">
                                                 <div v-if="!$auth.loggedIn" class="col-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
                                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
@@ -894,6 +898,10 @@ export default {
             this.resetData()
         },
         saveJob() {
+            this.$axios.$post(`tintuyendung/getSave`,{id_job: this.tintuyendung.id}).then((response)=>{
+                this.save = response.data
+            });
+            this.save = !this.save;
             this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuyendung.id}).then((response)=>{
                 if(response.status == 200) {
                     this.$swal(
