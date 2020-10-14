@@ -63,7 +63,7 @@
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
-                            <a href="/admin/quan-ly-tai-khoan?role=1">
+                            <a href="/admin/tin-tuyen-dung">
                                 <div class="card">
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-warning p-50 m-0">
@@ -78,7 +78,7 @@
                             </a>
                         </div>
                         <div class="col-lg-3 col-sm-6 col-12">
-                            <a href="/admin/quan-ly-tai-khoan?role=1">
+                            <a href="/admin/ho-so">
                                 <div class="card">
                                     <div class="card-header d-flex flex-column align-items-start pb-0">
                                         <div class="avatar bg-rgba-warning p-50 m-0">

@@ -29,6 +29,11 @@
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
+                      <Multiselect :options="categories" v-model="searchCategory" :custom-label="nameWithLang3" placeholder="Chọn danh mục" :show-labels="false" :searchable="false"></Multiselect>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
                       <div class="form-field">
                         <div class="select-wrap">
                           <input name="salary_start" v-model="salary_start" type="text" class="form-control input_placaholder" placeholder="Mức lương tối thiểu....">
@@ -125,7 +130,13 @@ export default {
     ]
   },
     data() {
-    return{    
+    return{   
+      searchCategory: '',
+      categories: [
+          {id: 1, name: 'Xuất khẩu lao động'},
+          {id: 2, name: 'Du học'},
+          {id: 3, name: 'Tu nghiệp sinh'}
+      ], 
       loading: true,  
       currency: '',
       chooseWork: '',
@@ -215,16 +226,20 @@ export default {
     nameWithLevel ({ name, id }) {
             return `${name}`
         },
+    nameWithLang3 ({ name, id }) {
+            return `${name}`
+        },
     async search() {
       this.arrayJobNew = []   
       let getTinTuyenDungNew = await this.$axios.$get('searchJobs?currency='
       +(this.currency == '' || this.currency == null ? '' : this.currency)
       +(this.chooseWork != '' && this.chooseWork != null ? '&work_form='+this.chooseWork.id : '')
+      +(this.searchCategory != '' && this.searchCategory != null ? '&categories='+this.searchCategory.id : '')
       +(this.salary_end != '' ? '&salary_end='+this.salary_end : '')
       +(this.subsidy != '' ? '&subsidy='+this.subsidy : '')
       +(this.title != '' ? '&title='+this.title : '')
       +(this.chooseVisa != '' && this.chooseVisa != null ? '&id_visa='+this.chooseVisa.id : '')
-      +(this.chooseLevel != '' && this.chooseLevel != null ? '&academicLevel='+this.chooseLevel.id : ''))  
+      +(this.chooseLevel != '' && this.chooseLevel != null ? '&academicLevel='+this.chooseLevel.id : ''))
       this.arrayJobNew = getTinTuyenDungNew.data
       this.countJob = getTinTuyenDungNew.data.length
     },
