@@ -135,7 +135,11 @@
                                         <span class="">{{ calendarSuggest.value }}</span>
                                     </div>
                                 </fieldset>
-                                <datetime v-model="chooseCalendar" type="datetime" input-class="form-control" :minute-step="15" :phrases="{ok: 'Tiếp tục', cancel: 'Thoát'}"></datetime> 
+                                <!-- <fieldset class="form-group position-relative has-icon-left mb-0 mt-1 mb-1">
+                                    <span>Đổi lịch phỏng vấn: </span>
+                                    <datetime v-model="chooseCalendar" type="datetime" format="DD MM YYYY hh:mm:ss" input-class="form-control" :minute-step="15" :phrases="{ok: 'Tiếp tục', cancel: 'Thoát'}"></datetime> 
+                                </fieldset> -->
+                               
                             </div>
                             <div class="modal-footer">                                
                                 <fieldset class="form-group position-relative has-icon-left mb-0">
@@ -379,14 +383,13 @@ export default {
             // } else {
             //     a = this.chooseCalendar
             // }
+            // console.log(b);
+            // console.log(c);
 
-
-            console.log(c)
-
-            // this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: c}).then((response) =>{
-            //     this.$swal('Thành công', response.message, 'success');
-            //     //location.reload()
-            // })
+            this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: c}).then((response) =>{
+                this.$swal('Thành công', response.message, 'success');
+                window.location.reload();
+            })
         },
         showFile(id) {
             var a = document.querySelector('.overlay-bg');

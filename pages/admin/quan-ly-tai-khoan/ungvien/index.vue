@@ -856,7 +856,7 @@ export default {
       this.actionUpdate();
     },
     async createUser() {
-          let response = await this.$axios.post("user/" + this.userRole + "/create", {
+          let response = await this.$axios.post("user/" + this.userRole + "/createUv", {
             email: this.userForm.email,
             password: this.userForm.password,
             name: this.userForm.name,
