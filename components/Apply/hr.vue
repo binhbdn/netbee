@@ -28,7 +28,7 @@
                                             </td>
                                             <td>{{item.name}}</td>
                                             <td v-if="$auth.user.role == 3">
-                                                <p style="color: #fc205c; margin-bottom: 0 !important;">{{item.bonus}} {{ item.job.currency }}</p>
+                                                <p style="color: #fc205c; margin-bottom: 0 !important;">{{item.bonus - (item.bonus* settingBonus.percent_bonus /100)}} {{ item.job.currency }}</p>
                                             </td>
                                             <td>{{item.user.name}}</td>
                                             <td>
@@ -133,7 +133,17 @@ export default {
             id: null,
             pageAll: 1,
             active: 1,
+            settingBonus: []
         }
+    },
+    mounted () {
+        this.$axios
+                .$get('/tintuyendung/getSettingBonus')
+                .then((response) => {
+                    this.settingBonus = response
+                })
+                .catch((err) => {
+                })
     },
     created() {
         this.fetch();
