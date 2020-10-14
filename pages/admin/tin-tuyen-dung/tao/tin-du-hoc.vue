@@ -12,7 +12,7 @@
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|max:150" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="title">Tiêu đề (<span style="color: red; font-size: 20px;">*</span>)</label>
                                                                 <input type="text" class="form-control" v-model="data.title" placeholder="Tuyển du học trường Tokyo kỳ bay tháng 10/2020">
@@ -433,8 +433,11 @@ extend("ssdate", {
         }
     }
 })
-  extend("numeric", {
+extend("numeric", {
     message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
+    });
+extend("max", {
+    message: (field, values) => "Dữ liệu nhập vào không được quá 150 kí tự"
     });
 
 extend("ssdate_start", {

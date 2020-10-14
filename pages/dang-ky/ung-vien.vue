@@ -58,14 +58,14 @@
                     </div>
                     </ValidationProvider>
                     <ValidationProvider
-                        rules="required|integer"
+                        rules="required|integer|length:10"
                         ref="phone"
                         name="Số điện thoại"
                         v-slot="{ errors }"
                     >
                         <div class="form-group" style="margin-bottom:0px;">
                             <label for="exampleInputEmail1" style="margin-bottom: 5px;" class="text-register">Số điện thoại (<span style="color: red; font-size: 20px;">*</span>)</label>
-                            <input type="number" class="form-control" name="phone" v-model="userForm.phone">
+                            <input type="text" class="form-control" name="phone" v-model="userForm.phone">
                             <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
                             <span>{{ error }}</span>
@@ -170,6 +170,9 @@ extend("email", {
 });
 extend("integer", {
   message: (field, values) => "Dữ liệu nhập vào phải là số"
+});
+extend("length", {
+  message: (field, values) => "Sai định dạng số điện thoại"
 });
 extend("min", {
   message: (field, values) => "Dữ liệu nhập vào ít nhất" + `${values}`
