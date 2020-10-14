@@ -19,7 +19,7 @@ z<template>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-12 pl-0">
+                        <div class="col-lg-4 col-sm-6 col-12 pdleft">
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2 pb-3">
@@ -34,7 +34,7 @@ z<template>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6 col-12 pl-0">
+                        <div class="col-lg-4 col-sm-6 col-12 pr-0">
                             <div class="card text-center">
                                 <div class="card-content">
                                     <div class="card-body p-2 pb-3">
@@ -170,6 +170,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+.pdleft{
+    padding-right: 7px ;
+    padding-left: 7px;
+}
 .bg-gradient-success{
     background: #ec36d6;
     background-image: -webkit-linear-gradient(60deg, #28C76F, rgba(40, 199, 111, 0.5));
