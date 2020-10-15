@@ -135,10 +135,10 @@
                                         <span class="">{{ calendarSuggest.value }}</span>
                                     </div>
                                 </fieldset>
-                                <!-- <fieldset class="form-group position-relative has-icon-left mb-0 mt-1 mb-1">
+                                <fieldset class="form-group position-relative has-icon-left mb-0 mt-1 mb-1">
                                     <span>Đổi lịch phỏng vấn: </span>
-                                    <datetime v-model="chooseCalendar" type="datetime" format="DD MM YYYY hh:mm:ss" input-class="form-control" :minute-step="15" :phrases="{ok: 'Tiếp tục', cancel: 'Thoát'}"></datetime> 
-                                </fieldset> -->
+                                    <datetime class="mt-1" v-model="chooseCalendar" type="datetime" input-class="form-control"  :minute-step="15" :phrases="{ok: 'Tiếp tục', cancel: 'Thoát'}"></datetime> 
+                                </fieldset>
                                
                             </div>
                             <div class="modal-footer">                                
@@ -375,16 +375,19 @@ export default {
         },
         addCalendar() {
             console.log(this.idRefuse)
-            let a =''
+            let c =''
             let b = (this.chooseCalendar).split(" ");
-            let c = new Date(b[2]+'-'+b[1]+'-'+b[0]+' '+b[3]);
+            if(b.length > 2){
+                c = new Date(b[2]+'-'+b[1]+'-'+b[0]+' '+b[3]);
+            }
+            else {
+                 c = new Date(this.chooseCalendar); 
+            }
             // if(b.isValid()){
             //     a = moment(this.chooseCalendar).locale("vi").format('llll')
             // } else {
             //     a = this.chooseCalendar
             // }
-            // console.log(b);
-            // console.log(c);
 
             this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: c}).then((response) =>{
                 this.$swal('Thành công', response.message, 'success');
