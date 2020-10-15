@@ -453,7 +453,7 @@
                         <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                             <li class="nav-item">
                                 <a @click="changeStateTab(true)" class="nav-link active" id="v-pills-1-tab" data-toggle="tab" href="#v-pills-1"
-                                role="tab" aria-controls="v-pills-1" aria-selected="true">Hồ sơ đính kèm</a>
+                                role="tab" aria-controls="v-pills-1" aria-selected="true">Ứng tuyển nhanh</a>
                             </li>
                             <li class="nav-item" @click="getListProfileUser()">
                                 <a class="nav-link" @click="changeStateTab(false)" id="v-pills-2-tab" data-toggle="tab" href="#v-pills-2"
