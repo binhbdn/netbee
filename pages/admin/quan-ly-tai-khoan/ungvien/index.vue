@@ -344,7 +344,7 @@
                                 <div class="modal-content">
                                   <div class="modal-header bg-netbee">
                                     <h4 class="modal-title text-dark">Chi tiết thông tin tài khoản</h4>
-                                    <button type="button" class="close ma-0" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true" class="text-dark">&times;</span>
                                     </button>
                                   </div>
@@ -480,7 +480,7 @@
                                 <div class="modal-content">
                                   <div class="modal-header bg-netbee">
                                     <h4 class="modal-title text-dark">Tạo tài khoản</h4>
-                                    <button type="button" class="close ma-0" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true" class="text-dark">&times;</span>
                                     </button>
                                   </div>
@@ -602,7 +602,7 @@
             <div class="modal-content">
               <div class="modal-header bg-netbee">
                 <h4 class="modal-title text-dark">Tạo tài khoản</h4>
-                <button type="button" class="close ma-0" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true" class="text-dark">&times;</span>
                 </button>
               </div>

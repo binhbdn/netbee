@@ -359,7 +359,7 @@
                     <div class="col-md-12 col-lg-12 formlogin form-control" >
                         <div class="modal-header">
                             <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP ỨNG VIÊN</h2>
-                            <button type="button" class="close ma-0" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" class="text-dark">&times;</span>
                             </button>
                         </div>
