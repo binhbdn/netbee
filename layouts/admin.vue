@@ -21,6 +21,7 @@
         { rel: 'stylesheet', href: '/app-assets/vendors/css/vendors.min.css'},
         { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether-theme-arrows.css' },
         { rel: 'stylesheet', href: '/app-assets/vendors/css/extensions/tether.min.css' },
+        // Binh Bui: colors.css này có lẽ là không dùng đến
         { rel: 'stylesheet', href: '/app-assets/css/colors.css'},
         { rel: 'stylesheet', href: '/app-assets/css/themes/dark-layout.css'},
         { rel: 'stylesheet', href: '/app-assets/css/core/menu/menu-types/vertical-menu.css'},

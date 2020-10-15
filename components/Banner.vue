@@ -34,13 +34,13 @@
                     <!-- Tab panes -->
                     <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;padding-left: 15px !important;padding-right: 15px !important;">
                       <div v-bind:class="{'active': $route.name != 'cong-ty' && $route.name != 'tim-cong-ty' && $route.name != 'ung-vien' && $route.name != 'tim-ung-vien' && $route.name != 'tim-viec-lam'}" class="tab-pane">
-                        <form action="#" class="search-job">
+                        <form action="#" class="search-job" onsubmit="return false;">
                           <div class="row">
                             <div class="col-md-4">
                               <div class="form-group" style="height: 74%;margin-bottom: 15px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important; top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input style="height: 100%;" type="text" class="form-control input_placehoder" :placeholder="$t('banner.jobs.key')" name="keyword" v-model="keyJobs">
+                                  <input style="height: 100%;" type="text" class="form-control input_placehoder" :placeholder="$t('banner.jobs.key')" name="keyword" v-model="keyJobs" @change="searchJobs">
                                 </div>
                               </div>
                             </div>
@@ -111,13 +111,13 @@
                         </form>
                       </div>
                       <div v-bind:class="{active : this.$route.path == '/cong-ty' || this.$route.path == '/tim-cong-ty'}" class="tab-pane">
-                        <form action="" class="search-job">
+                        <form action="" class="search-job" onsubmit="return false;">
                           <div class="row">
                             <div class="col-md-5">
                               <div class="form-group" style="height: 74%;margin-bottom: 15px;">
                                 <div class="form-field" style="height: 100%;">
                                   <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input style="height: 100%;" type="text" class="form-control input_placehoder" :placeholder="$t('banner.company.key')" name="keyword" value="" v-model="keysearch">
+                                  <input style="height: 100%;" type="text" class="form-control input_placehoder" :placeholder="$t('banner.company.key')" name="keyword" value="" v-model="keysearch" @change="searchCompany">
                                 </div>
                               </div>
                             </div>
@@ -255,11 +255,10 @@ export default {
       },
       searchJobs(){
         window.location.href = '/tin-tuyen-sinh/tim-kiem?keyword='
-        +(this.keyJobs != '' ? this.ChangeToSlug(this.keyJobs) : "")
+        +(this.keyJobs != '' ? this.ChangeToSlug(this.keyJobs).replace(/\-/gi, '%20') : "")
         +(this.type_job != '' ? '&type='+this.type_job.id : '')
         +(this.chooseNation != '' ? '&nation_id='+this.chooseNation.id : '')
       },
-
       searchCvs(){
         window.location.href = '/ung-vien?keyword='
         +(this.keyCvs != '' ? this.ChangeToSlug(this.keyCvs) : "")
