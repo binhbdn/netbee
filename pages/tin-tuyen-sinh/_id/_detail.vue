@@ -481,7 +481,7 @@
                                             </ValidationProvider>
                                         </div> -->
                                         
-                                        <div class="col-12">
+                                        <div class="col-12 bg-submit rounded">
                                             <ValidationProvider rules="required" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
@@ -528,7 +528,7 @@
                                                 </div>
                                             </ValidationProvider>
                                         </div>
-                                        <div class="text-right mt-1 col-12">
+                                        <div class="w-100 text-right mt-1">
                                             <!-- <button type="button" class="btn btn-warning" @click="resetData">Reset</button> -->
                                             <button type="button" class="btn bg-netbee" @click="applyJob">Ứng tuyển</button>
                                         </div>
@@ -537,7 +537,8 @@
                             </div>
                             <div class="tab-pane" id="v-pills-2" v-if="stateTab == false" role="tabpanel" aria-labelledby="v-pills-22-tab">
                                 <ValidationObserver ref="applyJobCv" v-slot="{ invalid }">
-                                    <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12 bg-submit rounded pb-10px">
                                         <ValidationProvider
                                             v-if="listProfileUsers.length!=0"
                                             rules="required"
@@ -571,11 +572,12 @@
                                             </div>
                                         </ValidationProvider>   
                                     </div> -->
-                                    <div class="text-right mt-1 col-12">
+                                    <div class="w-100 text-right mt-1">
                                         <a v-if="listProfileUsers.length==0" class="btn bg-netbee" href="/admin/ho-so/tao-ho-so">Tạo hồ sơ</a>
                                         <!-- <button type="button" class="btn btn-warning" @click="resetData">Reset</button> -->
                                         <button type="button" class="btn bg-netbee" @click="applyJob">Ứng tuyển</button>
                                     </div>
+                                </div>
                                 </ValidationObserver>
                             </div>
                         </div>
@@ -1139,6 +1141,14 @@ export default {
 }
 .rating .checked {
   color: orange;
+}
+.tab-pane .bg-submit {
+    background-color: #f5f5f5;
+    border: 1px solid #e8e8e8;
+    padding-top: 10px;
+}
+.tab-pane .bg-submit.pb-10px {
+    padding-bottom: 10px;
 }
 @media (max-width: 767px){
     .formlogin{
