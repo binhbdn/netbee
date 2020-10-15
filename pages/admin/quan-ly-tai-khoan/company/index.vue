@@ -494,7 +494,7 @@
                                           v-slot="{ errors }"
                                         >   
                                           <div class="form-group">
-                                              <label for="exampleInputEmail1" class="text-register">Họ & Tên (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                              <label for="exampleInputEmail1" class="text-register">Họ & Tên (<span style="color: red;">*</span>)</label>
                                               <input type="text" class="form-control" name="name" v-model="userForm.name">
                                               <ul style="color:red" class="overline text-left">
                                                 <li v-for="(error, index) in errors" :key="index">
@@ -510,7 +510,7 @@
                                           v-slot="{ errors }"
                                         >
                                           <div class="form-group">
-                                              <label for="exampleInputEmail1" class="text-register">Email (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                              <label for="exampleInputEmail1" class="text-register">Email (<span style="color: red;">*</span>)</label>
                                               <input type="email" class="form-control" name="email" v-model="userForm.email">
                                               <ul style="color:red" class="overline text-left">
                                                 <li v-for="(error, index) in errors" :key="index">
@@ -526,7 +526,7 @@
                                           v-slot="{ errors }"
                                         >
                                           <div class="form-group">
-                                            <label for="exampleInputEmail1" class="text-register">Số điện thoại (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                            <label for="exampleInputEmail1" class="text-register">Số điện thoại (<span style="color: red;">*</span>)</label>
                                             <input type="text" class="form-control" name="phone" v-model="userForm.phone">
                                             <ul style="color:red" class="overline text-left">
                                               <li v-for="(error, index) in errors" :key="index">
@@ -542,7 +542,7 @@
                                           v-slot="{ errors }"
                                         >
                                           <div class="form-group">
-                                              <label for="exampleInputEmail1" class="text-register">Mật khẩu (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                              <label for="exampleInputEmail1" class="text-register">Mật khẩu (<span style="color: red;">*</span>)</label>
                                               <input type="password" class="form-control" name="password" v-model="userForm.password">
                                               <ul style="color:red" class="overline text-left">
                                                 <li v-for="(error, index) in errors" :key="index">
@@ -558,7 +558,7 @@
                                           v-slot="{ errors }"
                                         >
                                           <div class="form-group">
-                                              <label for="exampleInputEmail1" class="text-register">Nhập lại mật khẩu (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                              <label for="exampleInputEmail1" class="text-register">Nhập lại mật khẩu (<span style="color: red;">*</span>)</label>
                                               <input type="password" class="form-control" name="password_confirmation" v-model="userForm.password_confirmation" data-vv-as="password">
                                               <ul style="color:red" class="overline text-left">
                                                   <li v-for="(error, index) in errors" :key="index">
@@ -616,7 +616,7 @@
                       v-slot="{ errors }"
                     >   
                       <div class="form-group">
-                          <label for="exampleInputEmail1" class="text-register">Họ & Tên (<span style="color: red; font-size: 20px;">*</span>)</label>
+                          <label for="exampleInputEmail1" class="text-register">Họ & Tên (<span style="color: red;">*</span>)</label>
                           <input type="text" class="form-control" name="name" v-model="userForm.name">
                           <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
@@ -632,7 +632,7 @@
                       v-slot="{ errors }"
                     >
                       <div class="form-group">
-                          <label for="exampleInputEmail1" class="text-register">Email (<span style="color: red; font-size: 20px;">*</span>)</label>
+                          <label for="exampleInputEmail1" class="text-register">Email (<span style="color: red;">*</span>)</label>
                           <input type="email" class="form-control" name="email" v-model="userForm.email">
                           <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
@@ -648,7 +648,7 @@
                       v-slot="{ errors }"
                     >
                       <div class="form-group">
-                        <label for="exampleInputEmail1" class="text-register">Số điện thoại (<span style="color: red; font-size: 20px;">*</span>)</label>
+                        <label for="exampleInputEmail1" class="text-register">Số điện thoại (<span style="color: red;">*</span>)</label>
                         <input type="text" class="form-control" name="phone" v-model="userForm.phone">
                         <ul style="color:red" class="overline text-left">
                           <li v-for="(error, index) in errors" :key="index">
@@ -664,7 +664,7 @@
                       v-slot="{ errors }"
                     >
                       <div class="form-group">
-                          <label for="exampleInputEmail1" class="text-register">Mật khẩu (<span style="color: red; font-size: 20px;">*</span>)</label>
+                          <label for="exampleInputEmail1" class="text-register">Mật khẩu (<span style="color: red;">*</span>)</label>
                           <input type="password" class="form-control" name="password" v-model="userForm.password">
                           <ul style="color:red" class="overline text-left">
                             <li v-for="(error, index) in errors" :key="index">
@@ -680,7 +680,7 @@
                       v-slot="{ errors }"
                     >
                       <div class="form-group">
-                          <label for="exampleInputEmail1" class="text-register">Nhập lại mật khẩu (<span style="color: red; font-size: 20px;">*</span>)</label>
+                          <label for="exampleInputEmail1" class="text-register">Nhập lại mật khẩu (<span style="color: red;">*</span>)</label>
                           <input type="password" class="form-control" name="password_confirmation" v-model="userForm.password_confirmation" data-vv-as="password">
                           <ul style="color:red" class="overline text-left">
                               <li v-for="(error, index) in errors" :key="index">
@@ -856,7 +856,7 @@ export default {
       this.actionUpdate();
     },
     async createUser() {
-          let response = await this.$axios.post("user/" + this.userRole + "/create", {
+          let response = await this.$axios.post("user/" + this.userRole + "/createCompany", {
             email: this.userForm.email,
             password: this.userForm.password,
             name: this.userForm.name,

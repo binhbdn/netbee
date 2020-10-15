@@ -437,6 +437,10 @@ extend("customPassword", {
   }
 });
 export default {
+  async asyncData({ params }) {
+    const introduce = params.introduce
+    return { introduce }
+  },
     middleware: 'guest',
     layout: 'no_banner',
     components: {
@@ -451,11 +455,12 @@ export default {
         phone: "",
         password: "",
         password_confirmation: "",
-        intro_code: "",
-        role: 3
+        // intro_code: "",
+        role: 1,
      },
      show: true,
-     statust: 0
+     statust: 1,
+     introduceOk:''
     };
   },
   computed: {},
@@ -480,7 +485,8 @@ export default {
             name: this.userForm.name,
             phone: this.userForm.phone,
             role: this.userForm.role,
-            statust: this.statust
+            statust: this.statust,
+            introduceOk: this.introduceOk
           });
           if(response.data.status == 200){
             this.$swal({
@@ -518,6 +524,9 @@ export default {
     async checkbox(){
       this.checkbox = !this.checkbox;
     }
+  },
+  mounted() {   
+    this.introduceOk = this.$route.params.introduce       
   }
 }
 </script>

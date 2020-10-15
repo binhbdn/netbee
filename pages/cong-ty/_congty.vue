@@ -1082,6 +1082,10 @@ a.btn.btn-warning.w-100:hover {
     color: #000;
     text-transform: uppercase;
     font-size: 12px;
+    width: 100px;
+}
+.btn-area .btn:hover{
+    color: #fff;
 }
 .rating .checked {
   color: orange;

@@ -126,7 +126,7 @@
                 this.$axios.get('introduce/getidintroduce')
                 .then(response => {                                                          
                     this.usersfirst = response.data
-                    this.linkdangky = window.location.host +"/dang-ky/chuyen-vien-tuyen-dung/" + this.usersfirst.introduce_code
+                    this.linkdangky = window.location.host +"/dang-ky/chuyen_vien_tuyen_dung/" + this.usersfirst.introduce_code
                     console.log(this.usersfirst)
                  })
                  .catch(error => {

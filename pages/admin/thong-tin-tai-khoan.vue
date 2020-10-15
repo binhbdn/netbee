@@ -441,7 +441,6 @@
                                                                 </ValidationProvider>
                                                             </div> -->
                                                         </ValidationObserver>
-                                                        
                                                     </form>
                                                 </div>
                                             </div>
@@ -461,6 +460,7 @@
                                             </div>
                                             <div class="col-12 p-0">
                                                 <div class="col-12 p-0">
+                                                <ValidationObserver ref="observerupdateEmailCompany">
                                                     <div v-if="emailCompany.length < 5" class="row role">
                                                         <div class="col-sm-5 pr-sm-0">
                                                             <span>
@@ -468,9 +468,16 @@
                                                                     <label for="account-company">Email</label>
                                                                 </div> 
                                                             </span>
+                                                            <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
                                                             <div>
                                                                 <input class="form-control" type="email" id="email" placeholder="Nhập email" v-model="email_company">
+                                                                <ul style="color:red" class="overline text-left">
+                                                                    <li v-for="(error, index) in errors" :key="index">
+                                                                    <span>{{ error }}</span>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
+                                                            </ValidationProvider>
                                                         </div>
                                                         <div class="col-sm-7 pr-sm-0">
                                                             <span>
@@ -480,7 +487,10 @@
                                                             </span>
                                                             <div class="row">
                                                                 <div class="col-sm-8">
+                                                                <ValidationProvider rules="required" v-slot="{ errors }">
                                                                     <multiselect :options="levelEmail" v-model="status" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" placeholder="Phân quyền"></multiselect>
+                                                                    <span style="color: red">{{ errors[0] }}</span>
+                                                                </ValidationProvider>
                                                                 </div>
                                                                 <div class="col-sm-4 p-sm-0 pt-1">
                                                                     <button class="btn bg-netbee col-md-12 pl-1 pr-1" @click="updateEmailCompany()">Thêm</button>
@@ -488,6 +498,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </ValidationObserver>
                                                     <template v-if="emailCompany.length != 0">
                                                         <span>
                                                             <div class="for-label pb-50">
@@ -1196,8 +1207,7 @@ export default {
                                 'error'
                                 )
                         })
-                    }
-                    else{
+                    }else{
                         this.$swal(
                         'Lỗi!',
                         response.data.message,
@@ -1207,7 +1217,11 @@ export default {
                 })
             }
         },
-        updateEmailCompany(){
+        async updateEmailCompany() {
+        const isValid = await this.$refs.observerupdateEmailCompany.validate();
+        if(isValid){
+            try {
+            /*
             var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             if(!filter.test(this.email_company)){
                 this.$swal(
@@ -1216,6 +1230,7 @@ export default {
                     'error'
                 )
             }else{
+            */
                 var form = new FormData();
                 form.append('email_company',this.email_company);
                 form.append('status',this.status.id);
@@ -1236,8 +1251,15 @@ export default {
                         )
                     }
                 })
+            } catch (error) {
+                'Lỗi',
+                'Thêm email thất bại',
+                'Error'
             }
-            
+            requestAnimationFrame(() => {
+            this.$refs.observerupdateEmailCompany.reset();
+            });
+            }
         },
         suaEmailCompanyModal(id){
             this.id_email = id;

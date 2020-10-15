@@ -142,6 +142,7 @@ class SearchService extends BaseService {
         $subsidy = $request->subsidy;
         $title = $request->title;
         $academicLevel = $request->academicLevel;
+        $categories = $request->categories;
 
         $conditions = [];
 
@@ -188,6 +189,10 @@ class SearchService extends BaseService {
 
         if ($academicLevel != '') {
             $conditions[] = ['academicLevel', '=', $academicLevel];
+        }
+
+        if ($categories != '') {
+            $conditions[] = ['type', '=', $categories];
         }
 
         $search = $this->nbJobList->with(['user' => function ($q) {

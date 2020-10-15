@@ -24,7 +24,25 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-3 resp-btn" style="height:100%;">
-                                            <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row m-l-0 m-r-0" style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 6Danh sách hồ sơ ứng tuyển0%">
+                                            <!-- <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row m-l-0 m-r-0" style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 6Danh sách hồ sơ ứng tuyển0%">
+                                                <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                                    <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                                </div>
+                                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
+                                                    <a class="btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                                </div> -->
+                                            <div id="social" class="row m-l-0 m-r-0" style="border-radius: 3px;margin-top: 60px;border:1px solid #dee2e6;height: 60%">
+                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                                    <a class="btn-save" @click="saveJob()" :title="save ? 'Bỏ lưu việc làm' : 'Lưu việc làm'"><i :class="save ? 'fad fa-heart fa-2x p-10' : 'fad fa-heart-broken fa-2x p-10'"></i></a>
+                                                </div>
+                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                                    <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/${slicePath}`" class="btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
+                                                </div>
+                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
+                                                    <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
+                                                </div>
+                                            </div>
+                                            <!-- <div id="social" v-else class="row m-l-0 m-r-0" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 60%">
                                                 <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                                     <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                                 </div>
@@ -37,21 +55,7 @@
                                                 <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
                                                     <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                                 </div>
-                                            </div>
-                                            <div id="social" v-else class="row m-l-0 m-r-0" style="border-radius: 3px;border:#dee2e6 solid 1px;height: 60%">
-                                                <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
-                                                    <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
-                                                </div>
-                                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
-                                                    <a class="btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
-                                                </div>
-                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
-                                                    <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/${slicePath}`" class="btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
-                                                </div>
-                                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
-                                                    <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
-                                                </div>
-                                            </div>
+                                            </div> -->
                                             <div class="row m-t-10" id="send-hoso" style="border-radius: 3px;">
                                                 <div v-if="!$auth.loggedIn" class="col-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
                                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
@@ -71,7 +75,7 @@
                                                     <div class="modal-content" style="padding: 15px;">
                                                         <div class="modal-header" style="background-color: #e8e8e8;">
                                                             <div class="col-md-12" style="text-align: center;">
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-right: -10px;">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                                 Bạn có chắc chắn muốn tải đơn hàng này ?<br>
@@ -611,12 +615,11 @@
                                                 </div>
                                             </ValidationProvider>
                                         </div> -->
-                                        
-                                        <div class="col-12">
+                                        <div class="col-12 bg-submit rounded">
                                             <ValidationProvider rules="required|customName" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="name">Họ tên (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label for="name">Họ tên (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="name" class="form-control" placeholder="Họ tên" v-model="nameCv">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -625,7 +628,7 @@
                                             <ValidationProvider rules="required|birthdate" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="birth_day">Ngày sinh (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label for="birth_day">Ngày sinh (<span style="color: red;">*</span>)</label>
                                                         <input type="date" id="birth_day" class="form-control" v-model="birth_day">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -634,7 +637,7 @@
                                             <ValidationProvider rules="required|numeric|min:10|max:11" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="phone">Số điện thoại (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label for="phone">Số điện thoại (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="phone" class="form-control" v-model="phone">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
@@ -652,34 +655,42 @@
                                             <ValidationProvider rules="required|customAddress" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="address">Địa chỉ (<span style="color: red; font-size: 20px;">*</span>)</label>
+                                                        <label for="address">Địa chỉ (<span style="color: red;">*</span>)</label>
                                                         <input type="text" id="address" class="form-control" placeholder="Địa chỉ" v-model="address">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
                                         </div>
+                                        <div class="w-100 text-right mt-1">
+                                            <button type="button" class="btn bg-netbee" @click="applyJob">Ứng tuyển</button>
+                                        </div>
                                     </div>
                                 </ValidationObserver>
                             </div>
                             <div class="tab-pane" id="v-pills-2" v-if="stateTab == false" role="tabpanel" aria-labelledby="v-pills-22-tab">
                                 <ValidationObserver ref="applyJobCv" v-slot="{ valid }">
-                                    <div class="col-12">
+                                <div class="row">
+                                    <div class="col-12 bg-submit rounded pb-1">
                                         <ValidationProvider
+                                            v-if="listProfileUsers.length != 0"
                                             rules="required"
                                             v-slot="{ errors }">
-                                            <fieldset  v-if="listProfileUser.status == 1" v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
-                                                <div class="vs-radio-con vs-radio-success" >
-                                                    <input type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
+                                            <fieldset v-for="listProfileUser in listProfileUsers" :key="listProfileUser.id">
+                                                <div class="vs-radio-con vs-radio-success">
+                                                    <input v-if="listProfileUser.status == 1" type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv">
+                                                    <input v-else type="radio" name="radiocolor" :value="listProfileUser.id" v-model="id_cv" disabled>
                                                     <span class="vs-radio">
                                                         <span class="vs-radio--border"></span>
                                                         <span class="vs-radio--circle"></span>
                                                     </span>
-                                                    <span class="">{{ listProfileUser.fullname_profile }}</span>
+                                                    <span v-if="listProfileUser.status == 1">{{ listProfileUser.fullname_profile }}</span>
+                                                    <span v-else style="opacity:0.5;">{{ listProfileUser.fullname_profile }} <span style="color:red;">(Hồ sơ đang chờ kích hoạt)</span></span>
                                                 </div>
                                             </fieldset>
                                             <span style="color: red">{{errors[0]}}</span>
                                         </ValidationProvider>
+                                        <p v-else>Bạn chưa có hồ sơ nào. Bạn vui lòng tạo hồ sơ trước khi nộp ứng tuyển </p>
                                     </div>
                                     <!-- <div class="col-12">
                                         <ValidationProvider
@@ -693,12 +704,13 @@
                                             </div>
                                         </ValidationProvider>   
                                     </div> -->
+                                    <div class="w-100 text-right mt-1">
+                                        <a v-if="listProfileUsers.length == 0" class="btn bg-netbee" href="/admin/ho-so/tao-ho-so">Tạo hồ sơ</a>
+                                        <button v-else type="button" class="btn bg-netbee" @click="applyJob">Ứng tuyển</button>
+                                    </div>
+                                </div>
                                 </ValidationObserver>
                             </div>
-                        </div>
-                        <div class="text-right mt-1">
-                            <!-- <button type="button" class="btn" style="background-color: #ffB701; color: #000" @click="resetData">Reset</button> -->
-                            <button type="button" class="btn btn-warning" @click="applyJob">Ứng tuyển</button>
                         </div>
                     </div>
                 </div>
@@ -894,6 +906,10 @@ export default {
             this.resetData()
         },
         saveJob() {
+            this.$axios.$post(`tintuyendung/getSave`,{id_job: this.tintuyendung.id}).then((response)=>{
+                this.save = response.data
+            });
+            this.save = !this.save;
             this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuyendung.id}).then((response)=>{
                 if(response.status == 200) {
                     this.$swal(
@@ -1284,7 +1300,8 @@ export default {
     border-top-right-radius: 0.42rem;
 }
 .modal .modal-header .close {
-    margin-top: -6px;
+    margin-top: -3px;
+    margin-right: 3px;
 }
 .modal .modal-header .close span {
     color: #000;
@@ -1292,7 +1309,11 @@ export default {
 .company-job-title p{
     line-height: 1rem;
 }
-
+.tab-pane .bg-submit {
+    background-color: #f5f5f5;
+    border: 1px solid #e8e8e8;
+    padding-top: 16px;
+}
 @media only screen and (max-width: 600px) {
     #social {
         height: 33% !important;

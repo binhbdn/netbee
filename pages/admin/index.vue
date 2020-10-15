@@ -196,5 +196,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
+    #fb-root.fb_reset {
+        display:none;
+    }
 </style>
