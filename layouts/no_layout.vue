@@ -1,5 +1,5 @@
 <template>
-  <div class="" style="width: 100%;" >
+  <div style="width: 100%;" >
     <nuxt />
   </div>
 </template>

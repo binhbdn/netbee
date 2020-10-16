@@ -1,7 +1,7 @@
 <template>
   <div>
     <HeaderClient />
-    <div class="" style="width: 100%;" >
+    <div style="width: 100%;" >
       <nuxt />
     </div>
     <Follow/>
