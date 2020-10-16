@@ -33,7 +33,7 @@
                                                     <td class="txdate">{{ConvertDate(item.birthday_profile)}}</td>                                                    
                                                     <td class="emai-text-left" id="">{{item.email_profile}}</td>                                                   
                                                     <td v-if="item.status == 0">
-                                                        <div class=""><i style="font-size: 18px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
+                                                        <div class=""><i style="font-size: 21px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
                                                     <td v-if="item.status == 1">
                                                         <div class="chip-text"><i style="font-size: 18px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>

@@ -913,6 +913,14 @@ export default {
 }
 </script>
 <style scoped>
+.text-right .btn-warning{
+    opacity: 1 !important;
+
+}
+.text-right .btn-warning:hover{
+    color: #fff;
+    background-color: #ffb701;
+}
 .ftco-animate :hover{
     background-color: rgb(255, 183, 1);
 }

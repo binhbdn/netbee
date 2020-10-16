@@ -1112,6 +1112,15 @@ export default {
 }
 </script>
 <style scoped>
+.text-right .btn-warning{
+    background-color: #ffb701 !important;
+    color: #000;
+
+}
+.text-right .btn-warning:hover{
+    color: #fff;
+    background-color: #ffb701;
+}
 @media (min-width: 1920px) {
     .resp-btn{
         margin-top: 15px;
