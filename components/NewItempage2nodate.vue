@@ -7,7 +7,7 @@
         </div> -->
         <div class="col-10 d-flex flex-column new-item-right" style="margin:auto;border-top: 1px solid rgb(221, 221, 221);border-bottom: 1px solid rgb(221, 221, 221);">
             <a :href="`/tin-tuc/${id}/${ChangeToSlug(title)}`">
-                <h2 class="NB_title text-black el-3 font-weight-600 p-t-5" style="margin-bottom: 7px;line-height: 1.4;">{{ title }}</h2>
+                <h2 class="NB_title text-black el-3 font-weight-600 pt-1" style="margin-bottom: 7px;line-height: 1.4;">{{ title }}</h2>
             </a>
         </div>
     </div>
