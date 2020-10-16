@@ -359,7 +359,7 @@
                     <div class="col-md-12 col-lg-12 formlogin form-control" >
                         <div class="modal-header">
                             <h2 class="text-center mt-1" style="margin-bottom:15px">ĐĂNG NHẬP ỨNG VIÊN</h2>
-                            <button type="button" class="close ma-0" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true" class="text-dark">&times;</span>
                             </button>
                         </div>
@@ -453,7 +453,7 @@
                         <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                             <li class="nav-item">
                                 <a @click="changeStateTab(true)" class="nav-link active" id="v-pills-1-tab" data-toggle="tab" href="#v-pills-1"
-                                role="tab" aria-controls="v-pills-1" aria-selected="true">Hồ sơ đính kèm</a>
+                                role="tab" aria-controls="v-pills-1" aria-selected="true">Ứng tuyển nhanh</a>
                             </li>
                             <li class="nav-item" @click="getListProfileUser()">
                                 <a class="nav-link" @click="changeStateTab(false)" id="v-pills-2-tab" data-toggle="tab" href="#v-pills-2"
