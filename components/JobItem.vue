@@ -30,7 +30,10 @@
                     <p class="delivery-date mb-0 col-sm-5" data-toggle="tooltip" data-placement="left" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="mb-block">                  
-                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="left" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span><span class="item-price"> {{ FormatPrice(job.subsidy) }} {{ job.currency }} </span></p>                                                                                 
+                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="left" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span>
+                    <span  v-if="job.subsidy != null " class="item-price"> {{ FormatPrice(job.subsidy) }} {{ job.currency }} </span>
+                    <span v-else class="item-price"> {{ FormatPrice(job.subsidy) }}</span>
+                    </p> 
                 </div>        
             </div>
             <!-- <div class="item-options text-center mt-1 mb-1" >
