@@ -187,7 +187,7 @@
                                                                 <span v-if="item.bonus && item.bonus != 0" style="color: red;cursor:pointer;" title="Số tiền">{{ FormatPrice(item.bonus) }} {{ item.currency }}</span>
                                                             </td>
                                                             <td v-if="item.status == 0" class="status-none">
-                                                                <div class="chip-text"><i style="font-size: 20px;" class="fa fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i></div>
+                                                                <div class="chip-text"><i style="font-size: 20px;" class="far fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i></div>
                                                             </td>
                                                             <td v-if="item.status == 1" class="status-none">
                                                                 <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>

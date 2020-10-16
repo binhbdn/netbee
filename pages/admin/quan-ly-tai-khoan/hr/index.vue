@@ -278,7 +278,7 @@
                             <div class="chip-text">
                               <i
                                 style="font-size: 20px;"
-                                class="fa fa-clock danger"
+                                class="far fa-clock danger"
                                 data-toggle="tooltip"
                                 data-placement="top"
                                 :title="`Chưa kích hoạt`"
