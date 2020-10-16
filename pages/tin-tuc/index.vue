@@ -107,6 +107,7 @@ import NewListPage2 from '~/components/News/NewListPage2';
 import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
 
 export default {
+    layout: 'news',
     head: {
         title: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học',
         meta: [

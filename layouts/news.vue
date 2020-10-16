@@ -1,8 +1,9 @@
+// giống layout default nhưng thay <Banner /> bằng <BannerForNews />
 <template>
   <div>
     <HeaderClient />
-    <div style="width: 100%;">
-      <Banner />
+    <div class="w-100">
+      <BannerForNews />
       <nuxt />
     </div>
     <Follow />
