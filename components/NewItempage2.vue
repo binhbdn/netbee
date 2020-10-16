@@ -44,5 +44,12 @@ h4:hover{
     .pdt-none{
         margin-top: 0 !important;
     }
+    .mb-hide-div{
+        display: -webkit-box;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
 }
 </style>
