@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="col-lg-3 pl-lg-0">
-            <div class="card">
+            <div class="card pb-2 card-right ">
                 <div class="card-header">
                     <h2 class="card-title" style="text-transform: uppercase">Công ty mới</h2>
                 </div>
@@ -228,6 +228,9 @@ export default {
 };
 </script>
 <style>
+ .card-right{
+  margin-bottom: 0 !important;
+}
 img.img-fluid {
     width: 423px;
     height: 88px;
