@@ -106,11 +106,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="title-label">Hình thức</label>
-                                                    <select class="form-control" v-model="info_frofile_user.type">
-                                                        <option value="1">Xuất khẩu lao động</option>
-                                                        <option value="2">Du học</option>
-                                                        <option value="3">Tu nghiệp sinh</option>
-                                                    </select>    
+                                                    <multiselect :options="formEx" v-model="name_form" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>    
                                                 </div>
                                             </div>
                                         </div>
@@ -154,11 +150,18 @@
                         phone_profile:'',
                         email_profile:'',
                         link_facebook:'',
-                        name_education:''
+                        name_education:'',
+                        name_form:''
                     },    
+                    name_form:{id: 1, name: 'Xuất khẩu lao động'},
                     name_education:{id: 1, name: 'Trung học phổ thông'},      
                     fileImg:[], 
-                    images: [],                 
+                    images: [], 
+                    formEx: [
+                        {id: 1, name: 'Xuất khẩu lao động'},
+                        {id: 2, name: 'Du học'},
+                        {id: 3, name: 'Tu nghiệp sinh'}
+                    ],                
                     educationEx: [
                         {id: 1, name: 'Trung học phổ thông'},
                         {id: 2, name: 'Cao đẳng'},
@@ -201,7 +204,8 @@
                 if(this.info_frofile_user.link_facebook != null) {
                     form.append('link_facebook' , this.info_frofile_user.link_facebook)
                 }                            
-                form.append('name_education' , this.name_education.id)           
+                form.append('name_education' , this.name_education.id) 
+                form.append('name_form' , this.name_form.id)          
                 this.$axios.post('hoso/updateProfileUser',form)
                 .then(response => {   
                     console.log(response);                                     
@@ -290,6 +294,16 @@
                         this.name_education = {id: 4, name: 'Trên đại học'}
                     } 
                  })
+                   .then(response => {                    
+                    this.info_frofile_user = response.data;
+                    if(response.data.name_form == 1) {
+                        this.name_form = {id: 1, name: 'Xuất khẩu lao động'}
+                    } else if(response.data.name_form == 2) {
+                        this.name_form = {id: 2, name: 'Du học'}
+                    } else if(response.data.name_form == 3) {
+                        this.name_form = {id: 3, name: 'Tu nghiệp sinh'}
+                    } 
+                 })
                  .catch(error => {
                     console.log(error.response);
                 });
@@ -306,6 +320,9 @@
     };
 </script>
 <style scoped>
+.form-control{
+    font-size: 1rem !important;
+}
     .h4_title {
         position: relative;
         border-bottom: 1px solid #eaeaea;
@@ -336,6 +353,12 @@
     }
 </style>
 <style> 
+.form-group, 
+.multiselect,
+.multiselect__input, 
+.multiselect__single {
+    font-size: 1rem !important;
+}
     .heg {
         height: 500px;
     }
