@@ -151,12 +151,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label class="title-label" for="basicInput">Hình thức</label>
-                                                    <select class="form-control" v-model="info_frofile_user.type">
-                                                        <option value="" disabled selected  style="display: none;">Chọn hình thức</option>
-                                                        <option value="1">Xuất khẩu lao động</option>
-                                                        <option value="2">Du học</option>
-                                                        <option value="3">Tu nghiệp sinh</option>
-                                                    </select>    
+                                                    <multiselect :options="formEx" v-model="name_form" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect> 
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -220,12 +215,19 @@
                         phone_profile:'',
                         email_profile:'',
                         link_facebook:'',
-                        name_education:''
+                        name_education:'',
+                        name_form:''
                     },  
                     img:'https://www.topcv.vn/upload/images/avatars/no_avatar.jpg', 
                     fileImg:[], 
                     images: [],  
                     name_education:{id: 1, name: 'Trung học phổ thông'},
+                    name_form:{id: 1, style:'opacity:0.4;',name: 'Chọn hình thức'},
+                    formEx: [
+                        {id: 1, name: 'Xuất khẩu lao động'},
+                        {id: 2, name: 'Du học'},
+                        {id: 3, name: 'Tu nghiệp sinh'}
+                    ], 
                     educationEx: [
                         {id: 1, name: 'Trung học phổ thông'},
                         {id: 2, name: 'Cao đẳng'},
@@ -295,7 +297,8 @@
                 form.append('address_profile' , this.info_frofile_user.address_profile)
                 form.append('phone_profile' , this.info_frofile_user.phone_profile)
                 form.append('email_profile' , this.info_frofile_user.email_profile)
-                form.append('link_facebook' , this.info_frofile_user.link_facebook)                   
+                form.append('link_facebook' , this.info_frofile_user.link_facebook)
+                form.append('name_form' , this.name_form.id)                    
                 form.append('name_education' , this.name_education.id)             
                 this.$axios.post('hoso/insertProfileUser',form)
                 .then(response => {                                                           
@@ -334,6 +337,15 @@
     };
 </script>
 <style>
+.form-control{
+    font-size: 1rem !important;
+}
+.form-group, 
+.multiselect,
+.multiselect__input, 
+.multiselect__single {
+    font-size: 1rem !important;
+}
     .h4_title {
         position: relative;
         border-bottom: 1px solid #eaeaea;

@@ -32,7 +32,10 @@
                 </div>
                 <div class="row mb-block">
                     <div class="col-sm-7 mb-block">
-                        <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="chi phí"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
+                    <p class="delivery-date mg-b" data-toggle="tooltip" data-placement="left" title="chi phí" :style="[job.highlight_job ? {'color': '#fc205c'} : '']"><i class="fad fa-dollar-sign" style="color: #000"></i><span class="title"> Chi phí: </span>
+                    <span  v-if="job.subsidy != null " class="item-price"> {{ FormatPrice(job.subsidy) }} {{ job.currency }} </span>
+                    <span v-else class="item-price"> {{ FormatPrice(job.subsidy) }}</span>
+                    </p> 
                     </div>
                     <div class="col-sm-5 mb-none">
                         <p v-if="$route.name == 'admin-tin-tuyen-sinh-id-detail'" class="delivery-date mb-0" data-toggle="tooltip" data-placement="left" title="Loại hình tuyển dụng">
