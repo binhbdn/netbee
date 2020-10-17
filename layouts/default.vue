@@ -61,3 +61,8 @@ export default {
   }
 };
 </script>
+<style>
+  /* #fb-root {
+    display: none !important;
+  } */
+</style>

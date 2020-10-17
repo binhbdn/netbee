@@ -37,11 +37,12 @@
     },
   }
 </script>
-
-<style>
+<style scoped>
   #fb-root {
     display: none !important;
   }
+</style>
+<style>
   html {
     font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   } 
