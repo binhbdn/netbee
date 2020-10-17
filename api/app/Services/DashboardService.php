@@ -56,11 +56,11 @@ class DashboardService extends BaseService {
 
     public function countJob()
     {
-        return $this->nbJobList->where('deleted', self::INACTIVE)->count();
+        return $this->nbJobList->where('deleted', self::ACTION)->count();
     }
 
     public function countUserUT()
     {
-        return $this->profileUser->where('deleted', self::INACTIVE)->count();
+        return $this->profileUser->where('deleted', self::ACTION)->count();
     }
 }
