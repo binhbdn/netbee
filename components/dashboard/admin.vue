@@ -180,7 +180,7 @@
         </div>
 </template>
 <script>
-
+import moment from 'moment'
 export default {
     data() {
         return {
@@ -239,7 +239,7 @@ export default {
             this.labelsfetchTopCountry = res.fetchTopCountry.rows.map(item => item[0])
             this.fetchTopReferrers = res.fetchTopReferrers
             this.data.week = res.fetchTotalVisitorsAndPageViews.map(item => item.pageViews)
-            this.labels.week = res.fetchTotalVisitorsAndPageViews.map(item => item.date.date)
+            this.labels.week = res.fetchTotalVisitorsAndPageViews.map(item => moment(String(item.date.date)).format('DD/MM/YYYY'))
             this.countPageView = res.countPageView.rows[0][0]
             this.countUserHr = res.countUserHr.data
             this.countUserCompany = res.countUserCompany.data
