@@ -39,6 +39,9 @@
 </script>
 
 <style>
+  #fb-root {
+    display: none !important;
+  }
   html {
     font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   } 
