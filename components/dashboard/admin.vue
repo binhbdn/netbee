@@ -244,8 +244,8 @@ export default {
             this.countUserHr = res.countUserHr.data
             this.countUserCompany = res.countUserCompany.data
             this.countUserUser = res.countUserUser.data
-            this.countJob = res.countJob.data
-            this.countUserUT = res.countUserUT.data
+            this.countJob = res.countJob
+            this.countUserUT = res.countUserUT
         })
     }
 }
