@@ -62,7 +62,7 @@ export default {
 };
 </script>
 <style>
-  /* #fb-root {
-    display: none !important;
-  } */
+  #fb-root {
+    display: contents !important;
+  }
 </style>

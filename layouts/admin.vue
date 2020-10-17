@@ -37,11 +37,6 @@
     },
   }
 </script>
-<style scoped>
-  #fb-root {
-    display: none !important;
-  }
-</style>
 <style>
   html {
     font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
@@ -51,5 +46,8 @@
   }
   #__layout{
     height: 100% !important;
+  }
+  #fb-root {
+    display: none !important;
   }
 </style>
