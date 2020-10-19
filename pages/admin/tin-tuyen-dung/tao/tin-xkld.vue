@@ -261,10 +261,10 @@
                                                    <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <div class="col-6">
+                                                                <div class="col-sm-6">
                                                                     <label for="firstName3">Bảo hiểm lao động</label>
                                                                 </div>
-                                                                <div class="col-6">
+                                                                <div class="col-sm-6">
                                                                     <input class="form-check-input" type="checkbox" v-model="data.insurrance">
                                                                 </div>
                                                             </div>
@@ -273,10 +273,10 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <div class="col-6">
+                                                                <div class="col-sm-6">
                                                                     <label for="firstName3">Trang phục lao động</label>
                                                                 </div>
-                                                                <div class="col-6">
+                                                                <div class="col-sm-6">
                                                                      <input class="form-check-input" type="checkbox" v-model="data.skin">
                                                                 </div>
                                                             </div>
@@ -348,7 +348,7 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="firstName3">Mã khuyễn mãi (Nếu có)</label>
+                                                            <label for="firstName3">Mã khuyễn mãi [Nếu có]</label>
                                                             <input type="text" class="form-control" v-model="data.promotion_code">
                                                         </div>
                                                     </div>
