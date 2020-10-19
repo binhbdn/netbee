@@ -56,7 +56,6 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                
                                                 </div>
                                             </ValidationObserver>   
                                         </tab-content>
@@ -84,33 +83,28 @@
                                                             </div>                                                             
                                                         </div>                        
                                                     </div>
-                                                    <div class="col-sm-6">
+                                                    <div class="col-sm-12">
                                                         <div class="form-group">
-                                                            <label for="firstName3">Tuổi</label>
-                                                            <div class="container-fluid">
+                                                            <label for="firstName3">Tuổi (<span style="color: red;">*</span>)</label>
                                                                 <div class="row">
-                                                                    <div class="col-6" style="padding-left:0px">
+                                                                    <div class="col-6">
                                                                         <ValidationProvider rules="required|numeric" v-slot="{ errors }" name="confirmDigit">
                                                                             <input type="number" class="form-control" v-model="data.age_start" placeholder="Từ">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
-                                                                    <div class="col-6" style="padding-right: 0px">
+                                                                    <div class="col-6">
                                                                         <ValidationProvider rules="required|numeric|ssdigit:@confirmDigit" v-slot="{ errors }">
                                                                             <input type="number" class="form-control" v-model="data.age_late" placeholder="Đến">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
-                                                                    
                                                                 </div>
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <div class="container-fluid">
-                                                                <div class="row">
-                                                                    <div class="col-6" style="padding-left: 0px;">
+                                                    <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-12 col-sm-6">
                                                                     <ValidationProvider rules="required|numeric" v-slot="{ errors }">
                                                                         <div class="form-group">
                                                                             <label for="firstName3">Số lượng tuyển (<span style="color: red;">*</span>)</label>
@@ -119,18 +113,16 @@
                                                                         </div>
                                                                     </ValidationProvider>
                                                                 </div>
-                                                                <div class="col-6" style="padding-right: 0px;">
+                                                                <div class="col-12 col-sm-6">
                                                                     <ValidationProvider rules="required" v-slot="{ errors }">
                                                                         <div class="form-group">
-                                                                            <label for="firstName3">Thời gian du học (năm)</label>
+                                                                            <label for="firstName3">Thời gian du học [năm] (<span style="color: red;">*</span>)</label>
                                                                             <input type="text" class="form-control required" v-model="data.time_contract">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </div>
                                                                     </ValidationProvider>
                                                                 </div>
-                                                                </div>
                                                             </div>
-                                                        </div>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
