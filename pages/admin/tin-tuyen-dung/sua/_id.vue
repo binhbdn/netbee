@@ -154,7 +154,7 @@
                                                         <ValidationProvider rules="required" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3" v-if="data.type == 2">Thời gian du học [năm] (<span style="color: red;">*</span>)</label>
-                                                                <label for="firstName3" v-if="data.type != 2">Thời hạn hợp đồng [năm] (<span style="color: red;">*</span>)</label>
+                                                                <label for="firstName3" v-else>Thời hạn hợp đồng [năm] (<span style="color: red;">*</span>)</label>
                                                                 <input type="text" class="form-control required" v-model="data.time_contract">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
@@ -266,7 +266,7 @@
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
-                                                                    <div class="col-sm-6" v-if="data.type != 2">
+                                                                    <div class="col-sm-6 pt-1" v-if="data.type != 2">
                                                                         <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
                                                                             <div class="input-group">
                                                                                 <input type="txt" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
@@ -295,10 +295,10 @@
                                                         <div class="form-group">
                                                             <label for="firstName3">Thời gian lao động</label>
                                                                 <div class="row">
-                                                                    <div class="col-6">
+                                                                    <div class="col-sm-6">
                                                                         <input class="form-control" type="time" v-model="data.startTimeLabor"  min="01:00" max="23:00">
                                                                     </div>
-                                                                    <div class="col-6">
+                                                                    <div class="col-sm-6 pt-1">
                                                                         <input class="form-control" type="time" v-model="data.endTimeLabor"  min="01:00" max="23:00">
                                                                     </div>
                                                                 </div>
@@ -307,10 +307,10 @@
                                                    <div class="col-sm-6" v-if="data.type != 2">
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <div class="col-6">
+                                                                <div class="col-sm-6">
                                                                     <label for="firstName3">Bảo hiểm lao động</label>
                                                                 </div>
-                                                                <div class="col-6">
+                                                                <div class="col-sm-6">
                                                                     <input class="form-check-input" type="checkbox" v-model="data.insurrance">
                                                                 </div>
                                                             </div>
@@ -319,10 +319,10 @@
                                                     <div class="col-sm-6" v-if="data.type != 2">
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <div class="col-6">
+                                                                <div class="col-sm-6">
                                                                     <label for="firstName3">Trang phục lao động</label>
                                                                 </div>
-                                                                <div class="col-6">
+                                                                <div class="col-sm-6">
                                                                      <input class="form-check-input" type="checkbox" v-model="data.skin">
                                                                 </div>
                                                             </div>
@@ -421,7 +421,6 @@
                                                                 <div class="card-body p-t-30">
                                                                     <label for="defaultGroupExample1">
                                                                         <label class="btn bg-netbee" for="defaultGroupExample1">Miễn phí</label>
-                                                                   
                                                                         <div class="divider divider-warning">
                                                                             <div class="divider-text trial">Tin thường</div>
                                                                         </div>
@@ -432,11 +431,9 @@
                                                                             <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Không có chuyên viên hỗ trợ hotline</p>
                                                                             <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> Miễn phí tin đăng</p>
                                                                         </div>
-                                                                        
                                                                         <input type="radio" class="form-check-input bot"
                                                                         id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
                                                                     </label>
-                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -470,8 +467,6 @@
                                                                 <div class="card-body p-t-30">
                                                                     <label for="defaultGroupExample2">
                                                                         <label for="defaultGroupExample2" class="btn bg-netbee">1,500,000 VND</label>
-                                                                    
-                                                                   
                                                                         <div class="divider divider-danger">
                                                                             <div class="divider-text trial">Tin vip</div>
                                                                         </div>
@@ -485,7 +480,6 @@
                                                                         <input type="radio" class="form-check-input bot"
                                                                         id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
                                                                     </label>
-                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -497,7 +491,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6 col-12" style="padding-left: 2px;">
+                        <div class="col-lg-3 col-12 pl-lg-0">
                             <div class="card text-center">
                                 <div class="card-content" style="background-color: #FFB701 !important;">
                                     <div class="card-body p-2">
