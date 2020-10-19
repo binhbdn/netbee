@@ -39,13 +39,10 @@
                                                         </ValidationProvider>
                                                     </div>
                                                     <div class="col-12">
-                                                        <ValidationProvider v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="firstName3">Địa điểm</label>
                                                                 <input type="text" class="form-control" v-model="data.address" placeholder="Tokyo">
-                                                                <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
-                                                        </ValidationProvider>
                                                     </div>
                                                     <div class="col-12">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }">
@@ -273,7 +270,7 @@
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label for="firstName3">Mã khuyễn mãi (Nếu có)</label>
+                                                            <label for="firstName3">Mã khuyễn mãi [Nếu có]</label>
                                                             <input type="text" class="form-control" v-model="data.promotion_code">
                                                         </div>
                                                     </div>
