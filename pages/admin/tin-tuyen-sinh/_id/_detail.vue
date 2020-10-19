@@ -1100,7 +1100,7 @@ export default {
 
         },
     mounted() {
-        this.$axios.$get(`getTinTuyenDungNew?limit=5&type=`+this.tintuyendung.type).then((response)=>{
+        this.$axios.$get(`getTinTuyenDungHot?limit=5&type=`+this.tintuyendung.type).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
         });
         if(this.$auth.loggedIn) {
