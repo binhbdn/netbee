@@ -50,7 +50,6 @@
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-                                                    
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
@@ -139,10 +138,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <div class="form-group">
-                                                            <label for="firstName3">Thời hạn hợp đồng [năm]</label>
-                                                            <input type="text" class="form-control required" v-model="data.time_contract">
-                                                        </div>
+                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                            <div class="form-group">
+                                                                <label for="firstName3">Thời hạn hợp đồng [năm] (<span style="color: red;">*</span>)</label>
+                                                                <input type="text" class="form-control required" v-model="data.time_contract">
+                                                                <span style="color: red">{{ errors[0] }}</span>
+                                                            </div>
+                                                        </ValidationProvider>
                                                     </div>
                                                     <div class="col-sm-6">
                                                         <ValidationProvider rules="checkSelect" v-slot="{ errors }">
@@ -217,9 +219,8 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Thu nhập hàng tháng (<span style="color: red;">*</span>)</label>
-                                                            <div class="container-fluid">
                                                                 <div class="row">
-                                                                    <div class="col-sm-6 pl-sm-0">
+                                                                    <div class="col-sm-6">
                                                                         <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
                                                                             <div class="input-group">
                                                                                 <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
@@ -230,7 +231,7 @@
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
-                                                                    <div class="col-sm-6 pr-sm-0 pt-sm-0 pt-1">
+                                                                    <div class="col-sm-6 pt-1">
                                                                         <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
                                                                             <div class="input-group">
                                                                                 <input type="txt" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
@@ -242,24 +243,19 @@
                                                                         </ValidationProvider>
                                                                     </div>
                                                                 </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Thời gian lao động</label>
-                                                            <div class="container-fluid">
                                                                 <div class="row">
-                                                                    <div class="col-sm-6 pl-sm-0">
+                                                                    <div class="col-sm-6">
                                                                         <input class="form-control" type="time" v-model="data.startTimeLabor"  min="01:00" max="23:00">
-                                                                                                                    
                                                                     </div>
-                                                                    <div class="col-sm-6 pr-sm-0 pt-sm-0 pt-1">
+                                                                    <div class="col-sm-6 pt-1">
                                                                         <input class="form-control" type="time" v-model="data.endTimeLabor"  min="01:00" max="23:00">
                                                                     </div>
-
                                                                 </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                    <div class="col-sm-6">
@@ -286,7 +282,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Ký túc xá</label>
@@ -331,14 +326,11 @@
                                                         </fieldset>
                                                     </div> -->
                                                     <div class="col-sm-6" v-if="checked">
-                                                        
                                                                 <div class="form-group">
                                                                     <label for="firstName3">Thời gian thanh toán phí</label>
                                                                     <multiselect :options="guarantee" v-model="data.time_bonus" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :preselect-first="true"
                                                                         :show-labels="false" placeholder="Thời gian thanh toán phí" :disabled="!checked"></multiselect>
-                                                                   
                                                                 </div>
-                                                            
                                                     </div>
                                                     <div class="col-sm-6"  v-if="checked">
                                                         <ValidationProvider rules="required|customBonus" v-slot="{ errors }" >
@@ -346,20 +338,20 @@
                                                                 <label for="firstName3">Tiền thưởng (<span style="color: red;">*</span>)</label>
                                                                 <div class="input-group">
                                                                     <input type="txt" class="form-control" @input="data.bonus = FormatPrice(data.bonus)" v-model="data.bonus" :disabled="!checked">
-                            
+                                                                    <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
+                                                                        <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
+                                                                    </div>
                                                                 </div>
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
                                                     </div>
-
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label for="firstName3">Mã khuyễn mãi (Nếu có)</label>
                                                             <input type="text" class="form-control" v-model="data.promotion_code">
                                                         </div>
                                                     </div>
-                                                   
                                                 </div>
                                             </ValidationObserver>
                                         </tab-content>
@@ -383,7 +375,6 @@
                                                                         <input type="radio" class="form-check-input bot"
                                                                         id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
                                                                     </label>
-                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -405,12 +396,10 @@
                                                                         <input type="radio" class="form-check-input bot"
                                                                         id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
                                                                     </label>
-                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    
                                                     <div class="col-lg-4 col-md-6 col-sm-12" id="goi3">
                                                         <div class="card border-netbee text-center bg-transparent brilliant" style="height: 100%;border: 1px solid #ffc108 !important;">
                                                             <div class="card-content">
@@ -430,7 +419,6 @@
                                                                         <input type="radio" class="form-check-input bot"
                                                                         id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
                                                                     </label>
-                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
