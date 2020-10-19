@@ -147,7 +147,7 @@ class SearchService extends BaseService {
         $conditions = [];
 
         $conditions[] = $keyword == 'tin-noi-bat' ?
-            ['highlight_job', '=', self::ACTIVE] :
+            ['highlight_job', '!=', self::INACTIVE] :
             ['title', 'like', '%'.$keyword.'%'];
 
         if ($type != '') {
