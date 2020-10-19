@@ -192,7 +192,7 @@
                                                         <div class="form-group">
                                                             <label for="firstName3">Học phí</label>
                                                                 <div class="row">
-                                                                    <div class="col-6">                
+                                                                    <div class="col-sm-6">                
                                                                         <div class="input-group">
                                                                             <input type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start">
                                                                             <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
@@ -200,21 +200,18 @@
                                                                             </div>
                                                                         </div>                                                                                   
                                                                     </div>
-                                                                    <div class="col-6">                                       
+                                                                    <div class="col-sm-6">                                       
                                                                         <multiselect :options="salaryEx" v-model="data.salary_status" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false"></multiselect>
                                                                     </div>
-                                                                    
                                                                 </div>
                                                         </div>
                                                     </div>
-                                                    
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Ký túc xá</label>
                                                             <multiselect :options="valueEx" v-model="data.dormitory" :custom-label="nameWithLang" :searchable="false" :allow-empty="false" :show-labels="false" ></multiselect>
                                                         </div>
                                                     </div>
-                    
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="firstName3">Phụ cấp ngoài</label>
