@@ -419,7 +419,6 @@
                                                         <div class="card border-netbee text-center bg-transparent border-hove" style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-30">
-                                                                    <label for="defaultGroupExample1">
                                                                         <label class="btn bg-netbee" for="defaultGroupExample1">Miễn phí</label>
                                                                         <div class="divider divider-warning">
                                                                             <div class="divider-text trial">Tin thường</div>
@@ -433,7 +432,6 @@
                                                                         </div>
                                                                         <input type="radio" class="form-check-input bot"
                                                                         id="defaultGroupExample1" value="0" v-model="data.highlight_job" :checked="data.highlight_job == 0">
-                                                                    </label>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -442,7 +440,6 @@
                                                         <div class="card border-netbee text-center bg-transparent border-hove"  style="height: 100%">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-30">
-                                                                    <label for="defaultGroupExample0">
                                                                         <label for="defaultGroupExample0" class="btn bg-netbee">1,000,000 VND</label>
                                                                         <div class="divider divider-default">
                                                                             <div class="divider-text trial">Tin nổi bật</div>
@@ -454,8 +451,6 @@
                                                                         <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,000,000 VND/ Tin</p>
                                                                         <input type="radio" class="form-check-input bot"
                                                                         id="defaultGroupExample0" value="1" v-model="data.highlight_job" :checked="data.highlight_job == 1">
-                                                                    </label>
-                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -465,7 +460,6 @@
                                                         <div class="card border-netbee text-center bg-transparent brilliant" style="height: 100%;border: 1px solid #ffc108 !important;">
                                                             <div class="card-content">
                                                                 <div class="card-body p-t-30">
-                                                                    <label for="defaultGroupExample2">
                                                                         <label for="defaultGroupExample2" class="btn bg-netbee">1,500,000 VND</label>
                                                                         <div class="divider divider-danger">
                                                                             <div class="divider-text trial">Tin vip</div>
@@ -479,7 +473,6 @@
                                                                         <p class="p-main"><i class="fas fa-check" style="font-size: 12px;"></i> 1,500,000 VND/ Tin</p>
                                                                         <input type="radio" class="form-check-input bot"
                                                                         id="defaultGroupExample2" value="2" v-model="data.highlight_job" :checked="data.highlight_job == 2">
-                                                                    </label>
                                                                 </div>
                                                             </div>
                                                         </div>
