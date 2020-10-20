@@ -172,7 +172,7 @@
           <li class="dropdown dropdown-notification nav-item" v-if="$auth.loggedIn"  :title="$t('account')">
             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" style="width: 25px; margin:auto; margin-top: 20px;" data-placement="top" :title="$t('notification')">
               <i class="fa fa-bell" style="color:#000 !important;font-size: 17px;padding:0px;margin-right:0px;"></i>
-              <span class="badge badge-pill badge-danger badge-up" style="background-color: #EA5455;right: -0.3rem;top: -0.7rem;" v-if="countNoti>0">{{ countNoti }}</span>
+              <span class="badge badge-pill badge-danger badge-up" style="background-color: #EA5455;right: -0.1rem;top: -0.7rem;" v-if="countNoti>0">{{ countNoti }}</span>
             </a>
               <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" >
                     <li class="dropdown-menu-header">
