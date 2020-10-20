@@ -516,6 +516,26 @@ extend("customBonus", {
   }
 })
 
+extend("numeric", {
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
+});
+extend("max", {
+    message: (field, values) => "Dữ liệu nhập vào không được quá 150 kí tự"
+});
+extend("customSoam", {
+  message: field =>"Dữ liệu nhập vào phải là chữ số dương",
+  validate: value => {
+    var notTheseChars = /["'?&/<>-\s]/;
+    var mustContainTheseChars = /^(?=.*?[0-9])/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    if (!containsForbiddenChars) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+})
+
 extend("ssdate_start", {
     params: ['target'],
     message: field => "Phải lớn hơn ngày nhận hồ sơ",

@@ -533,6 +533,39 @@ import moment from 'moment'
 Vue.use(VueFormWizard)
 Vue.use(Datetime)
 
+extend("numeric", {
+    message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
+});
+extend("max", {
+    message: (field, values) => "Dữ liệu nhập vào không được quá 150 kí tự"
+});
+extend("customSoam", {
+  message: field =>"Dữ liệu nhập vào phải là chữ số dương",
+  validate: value => {
+    var notTheseChars = /["'?&/<>-\s]/;
+    var mustContainTheseChars = /^(?=.*?[0-9])/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    if (!containsForbiddenChars) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+})
+extend("customBonus", {
+  message: field =>"Dữ liệu nhập vào phải là chữ số",
+  validate: value => {
+    var notTheseChars = /["'?&/<>\s]/;
+    var mustContainTheseChars = /^(?=.*?[0-9])/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    if (!containsForbiddenChars) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+})
+
 extend("ssdate", {
     message: field => "Ngày dự kiến phải lớn hơn ngày hiện tại",
     validate: value => {

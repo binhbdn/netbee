@@ -472,15 +472,15 @@ import moment from 'moment'
 Vue.use(VueFormWizard)
 Vue.use(Datetime)
 
-extend("integer", {
-    message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên"
-    });
+// extend("integer", {
+//     message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên"
+//     });
 extend("numeric", {
     message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
-    });
+});
 extend("max", {
     message: (field, values) => "Dữ liệu nhập vào không được quá 150 kí tự"
-    });
+});
 extend("customSoam", {
   message: field =>"Dữ liệu nhập vào phải là chữ số dương",
   validate: value => {

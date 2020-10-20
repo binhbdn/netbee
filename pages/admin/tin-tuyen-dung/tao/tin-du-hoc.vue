@@ -408,10 +408,10 @@ extend("ssdate", {
 })
 extend("numeric", {
     message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
-    });
+});
 extend("max", {
     message: (field, values) => "Dữ liệu nhập vào không được quá 150 kí tự"
-    });
+});
 
 extend("ssdate_start", {
     params: ['target'],
