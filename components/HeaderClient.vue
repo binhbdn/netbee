@@ -192,6 +192,10 @@
                           </div>
                         </div>
                       </a>
+                     <infinite-loanging v-if="notifications.length" spinner="bubbles" @infinite="infiniteScroll" style=" width:100%" >
+                        <div slot="no-more" style="font-size:15px; font-style: italic;display: none;"></div>    
+                        <div slot="no-results" style="font-size:15px; font-style: italic"></div>
+                     </infinite-loanging>
                   </li>
                   <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" :class="[{'active' : $route.name == 'notification'}, 'nav-item']" @click="$router.push('/admin/thong-bao')">Xem tất cả</a></li>
               </ul>
