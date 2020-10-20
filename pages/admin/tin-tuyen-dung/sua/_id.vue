@@ -266,7 +266,7 @@
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
-                                                                    <div class="col-sm-6 pt-1" v-if="data.type != 2">
+                                                                    <div class="col-sm-6 pt-xs-1" v-if="data.type != 2">
                                                                         <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
                                                                             <div class="input-group">
                                                                                 <input type="txt" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
@@ -298,7 +298,7 @@
                                                                     <div class="col-sm-6">
                                                                         <input id="id-startTimeLabor" class="form-control" type="time" v-model="data.startTimeLabor"  min="01:00" max="23:00">
                                                                     </div>
-                                                                    <div class="col-sm-6 pt-1">
+                                                                    <div class="col-sm-6 pt-xs-1">
                                                                         <input class="form-control" type="time" v-model="data.endTimeLabor"  min="01:00" max="23:00">
                                                                     </div>
                                                                 </div>
