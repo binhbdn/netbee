@@ -193,7 +193,7 @@
                         </div>
                       </a>
                   </li>
-                  <li class="dropdown-menu-footer" @click="updateStatusAll()"><a class="dropdown-item p-1 text-center">Xem tất cả</a></li>
+                  <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" :class="[{'active' : $route.name == 'notification'}, 'nav-item']" @click="$router.push('/admin/thong-bao')">Xem tất cả</a></li>
               </ul>
           </li>
          
@@ -234,12 +234,6 @@ export default {
       } else {
         document.getElementById("ftco-nav").style.display = " none"
       }
-    },
-    updateStatusAll: function() {
-        this.$axios.$post('readNotificationAll').then((response) => {
-            this.countNoti = 0;
-            window.location.href = '/admin/thong-bao'
-        })
     },
     revertTime: function(time) {
         return moment(time).fromNow(true);
