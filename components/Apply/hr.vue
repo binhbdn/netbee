@@ -47,7 +47,7 @@
                                                         </a>
                                                     </div>   
                                                     <div>
-                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn btn-edit-fix-add" style="width: 100%;margin-top: 10px;">Thêm giấy tờ</a>
+                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn btn-edit-fix-add" style="width: 67%;margin-top: 10px;">Thêm giấy tờ</a>
                                                     </div>                                                                                                     
                                                 </div>
                                             </td>
