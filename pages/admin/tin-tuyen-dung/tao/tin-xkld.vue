@@ -82,13 +82,13 @@
                                                             <label for="id-age-start">Tuổi (<span style="color: red;">*</span>)</label>
                                                                 <div class="row">
                                                                     <div class="col-6">
-                                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }" name="confirmDigit">
+                                                                        <ValidationProvider rules="required|customSoam" v-slot="{ errors }" name="confirmDigit">
                                                                             <input id="id-age-start" type="number" class="form-control" v-model="data.age_start" placeholder="Từ">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-6">
-                                                                        <ValidationProvider rules="required|ssdigit:@confirmDigit|numeric" v-slot="{ errors }">
+                                                                        <ValidationProvider rules="required|ssdigit:@confirmDigit|customSoam" v-slot="{ errors }">
                                                                             <input type="number" class="form-control" v-model="data.age_late" placeholder="Đến">
                                                                             <span style="color: red">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
@@ -103,7 +103,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <ValidationProvider rules="required|numeric" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|customSoam" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="id-quantity">Số lượng tuyển (<span style="color: red;">*</span>)</label>
                                                                 <input id="id-quantity" type="number" class="form-control" v-model="data.quantity">
@@ -333,7 +333,7 @@
                                                                 </div>
                                                     </div>
                                                     <div class="col-sm-6"  v-if="checked">
-                                                        <ValidationProvider rules="required|customBonus" v-slot="{ errors }" >
+                                                        <ValidationProvider rules="required|customSoam" v-slot="{ errors }" >
                                                             <div class="form-group">
                                                                 <label for="id-bonus">Tiền thưởng (<span style="color: red;">*</span>)</label>
                                                                 <div class="input-group">
@@ -469,19 +469,20 @@ Vue.use(Datetime)
 // extend("integer", {
 //     message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên"
 //     });
-extend("numeric", {
-    message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
-});
+// extend("numeric", {
+//     message: (field, values) => "Dữ liệu nhập vào phải là chữ số nguyên dương"
+// });
 extend("max", {
     message: (field, values) => "Dữ liệu nhập vào không được quá 150 kí tự"
 });
 extend("customSoam", {
-  message: field =>"Dữ liệu nhập vào phải là chữ số dương",
+  message: field =>"Dữ liệu nhập vào phải là chữ số nguyên dương",
   validate: value => {
     var notTheseChars = /["'?&/<>-\s]/;
     var mustContainTheseChars = /^(?=.*?[0-9])/;
     var containsForbiddenChars = notTheseChars.test(value);
     if (!containsForbiddenChars) {
+      if(parseInt(value)==0) {return false};
       return true;
     } else {
       return false;
@@ -526,20 +527,6 @@ extend("ssdigit", {
             return false
         }
     }
-})
-
-extend("customBonus", {
-  message: field =>"Dữ liệu nhập vào phải là chữ số",
-  validate: value => {
-    var notTheseChars = /["'?&/<>\s]/;
-    var mustContainTheseChars = /^(?=.*?[0-9])/;
-    var containsForbiddenChars = notTheseChars.test(value);
-    if (!containsForbiddenChars) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 })
 
 var errorMessage
