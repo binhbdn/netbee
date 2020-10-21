@@ -59,7 +59,7 @@
                         </div>
                         </ValidationProvider>
                         <ValidationProvider
-                            rules="required|integer"
+                            rules="required|integer|length:10"
                             ref="phone"
                             name="phone"
                             v-slot="{ errors }"
@@ -393,6 +393,9 @@ extend("required", {
 });
 extend("email", {
   message: (field, values) => "Email không đúng định dạng"
+});
+extend("length", {
+  message: (field, values) => "Sai định dạng số điện thoại"
 });
 extend("integer", {
   message: (field, values) => "Dữ liệu nhập vào phải là số"

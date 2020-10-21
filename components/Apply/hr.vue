@@ -35,6 +35,7 @@
                                                 <p v-if="item.status == 1" data-toggle="tooltip" data-placement="top" title="Chờ admin xác thực" class="tag-p-center" style="margin-bottom: 0 !important;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p>
                                                 <p v-else-if="item.status == 2">Chưa hoàn tất giấy tờ</p>
                                                 <p v-else-if="item.status == 2 && item.nb_paper != null">Chờ admin xác thực giấy tờ</p>
+                                                <p v-else-if="item.status== 4">Admin đã từ chối hồ sơ<br> Lý do: {{item.reason_for_rejection}}</p>
                                                 <p v-else-if="item.status == 5">Chờ công ty duyệt</p>
                                                 <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                             </td>
@@ -46,7 +47,7 @@
                                                         </a>
                                                     </div>   
                                                     <div>
-                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn btn-edit-fix-add" style="width: 100%;margin-top: 10px;">Thêm giấy tờ</a>
+                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" class="btn btn-edit-fix-add" style="width: 67%;margin-top: 10px;">Thêm giấy tờ</a>
                                                     </div>                                                                                                     
                                                 </div>
                                             </td>
@@ -155,7 +156,6 @@ export default {
         fetch() {
             this.$axios.$get('apply/getAllApply').then((response)=>{
                 this.AllApply=response.data;
-                console.log(this.AllApply)
 	        });
         },
         RefuseApply(){

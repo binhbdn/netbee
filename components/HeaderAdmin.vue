@@ -75,7 +75,7 @@
                               <div class="dropdown-divider"></div><a class="dropdown-item" @click="logout()"><i class="far fa-sign-out-alt"></i> Đăng xuất</a>
                           </div>
                       </li>
-                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label pd-notification" href="#" data-toggle="dropdown" title="Thông báo" data-placement="top"><i class="fa fa-bell"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
+                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label pd-notification" href="#" data-toggle="dropdown" title="Thông báo" data-placement="top"><i class="fa fa-bell" style="color:#000"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
                                     <div class="dropdown-header m-0">
@@ -106,7 +106,7 @@
                                     </infinite-loading>
                                 </li>
                                 
-                                <li class="dropdown-menu-footer" @click="updateStatusAll()"><a class="dropdown-item p-1 text-center">Xem tất cả</a></li>
+                                <li class="dropdown-menu-footer " ><a class="dropdown-item p-1 text-center" :class="[{'active' : $route.name == 'notification'}, 'nav-item']" @click="$router.push('/admin/thong-bao')">Xem tất cả</a></li>
                           </ul>
                       </li>
                   </ul>
@@ -147,12 +147,7 @@ export default {
             this.$axios.$post('readNotification',{id_notification: id}).then((response) => {
             })
         },
-        updateStatusAll() {
-            this.$axios.$post('readNotificationAll').then((response) => {
-                this.countNoti = 0;
-                window.location.href = '/admin/thong-bao'
-            })
-        },
+
         infiniteScroll: function($state) {
             setTimeout(() => {
                 this.page++
