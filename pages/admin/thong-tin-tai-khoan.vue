@@ -1104,13 +1104,11 @@ export default {
                 }
                 this.$axios.post('changeInfoCompany',form).then((response) => {
                     if(response.data.status == 200){
-                        this.$swal({
-                        titile: 'Thành công',
-                        text: response.data.message,
-                        icon: 'success',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK',
-                        }).then( async (result) => {
+                        this.$swal(
+                       'Thành công',
+                            response.data.message,
+                            'success',
+                        ).then( async (result) => {
                             if (result.value) {
                                 window.location.href = "/admin";
                             }

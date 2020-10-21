@@ -16,7 +16,7 @@
             </div>
             <div class="remove-border-right" style="margin: auto; width: 100%;">
                 <div class="hot" v-if="job.highlight_job == 2"><img data-toggle="tooltip" data-placement="top" title="Được tài trợ" src="/assets/img/hot.png"></div>
-                <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="left" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
+                <a class="item-vip-a" :href="`/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" ><span style="width:200px" data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</span></a>
                 <div class="item-name row mb-none">
                     <div class="col-sm-7">
                         <a :href="`/cong-ty/${job.nb_company ? job.nb_company.username : '#'}`" class="item-company item-vip-a mb-0" style="font-weight: 400 !important;font-size: 14px !important;"><i class="fa fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company ? job.nb_company.username : job.user.name }}</span></a>
@@ -128,6 +128,14 @@ p {
 @media (max-width: 1199px) and (min-width: 992px){
     .item-vip-a{
         max-width: 285px;
+        overflow: hidden;
+        white-space: unset;
+        font-size: 13px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
     }
 }
 

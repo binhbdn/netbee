@@ -172,7 +172,7 @@
           <li class="dropdown dropdown-notification nav-item" v-if="$auth.loggedIn"  :title="$t('account')">
             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown" style="width: 25px; margin:auto; margin-top: 20px;" data-placement="top" :title="$t('notification')">
               <i class="fa fa-bell" style="color:#000 !important;font-size: 17px;padding:0px;margin-right:0px;"></i>
-              <span class="badge badge-pill badge-danger badge-up" style="background-color: #EA5455;right: -0.3rem;top: -0.7rem;" v-if="countNoti>0">{{ countNoti }}</span>
+              <span class="badge badge-pill badge-danger badge-up" style="background-color: #EA5455;right: -0.1rem;top: -0.7rem;" v-if="countNoti>0">{{ countNoti }}</span>
             </a>
               <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right" >
                     <li class="dropdown-menu-header">
@@ -192,8 +192,12 @@
                           </div>
                         </div>
                       </a>
+                     <infinite-loanging v-if="notifications.length" spinner="bubbles" @infinite="infiniteScroll" style=" width:100%" >
+                        <div slot="no-more" style="font-size:15px; font-style: italic;display: none;"></div>    
+                        <div slot="no-results" style="font-size:15px; font-style: italic"></div>
+                     </infinite-loanging>
                   </li>
-                  <li class="dropdown-menu-footer" @click="updateStatusAll()"><a class="dropdown-item p-1 text-center">Xem tất cả</a></li>
+                  <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" :class="[{'active' : $route.name == 'notification'}, 'nav-item']" @click="$router.push('/admin/thong-bao')">Xem tất cả</a></li>
               </ul>
           </li>
          
@@ -234,12 +238,6 @@ export default {
       } else {
         document.getElementById("ftco-nav").style.display = " none"
       }
-    },
-    updateStatusAll: function() {
-        this.$axios.$post('readNotificationAll').then((response) => {
-            this.countNoti = 0;
-            window.location.href = '/admin/thong-bao'
-        })
     },
     revertTime: function(time) {
         return moment(time).fromNow(true);

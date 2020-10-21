@@ -137,7 +137,7 @@
                                                                     </fieldset>
                                                                 </li>
                                                                 ID</th>
-                                                            <th class="title-style" style="width:40%;">Tiêu đề</th>
+                                                            <th class="title-style" style="width:40%;">Tên công việc</th>
                                                             <th class="statistical-none" style="width:20%;">Thống kê</th>
                                                             <th class="date-none" style="width:17%">Ngày tạo</th>
                                                             <th class="status-none" style="width:15%;">Trạng thái</th>
@@ -187,10 +187,24 @@
                                                                 <span v-if="item.bonus && item.bonus != 0" style="color: red;cursor:pointer;" title="Số tiền">{{ FormatPrice(item.bonus) }} {{ item.currency }}</span>
                                                             </td>
                                                             <td v-if="item.status == 0" class="status-none">
-                                                                <div class="chip-text"><i style="font-size: 20px;" class="far fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i></div>
+                                                                <div class="highlight-text" style="font-size:12px; text-align:center;margin-bottom:3px;">
+                                                                    <span v-if="item.highlight_job == 1">Tin Nổi Bật</span>
+                                                                    <span v-if="item.highlight_job == 2">Tin Vip</span>
+                                                                    <span v-if="item.highlight_job == 0">Tin Thường</span>
+                                                                </div>
+                                                                <div class="chip-text">
+                                                                    <i style="font-size: 20px;" class="far fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i>
+                                                                </div>
                                                             </td>
                                                             <td v-if="item.status == 1" class="status-none">
-                                                                <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
+                                                                <div class="highlight-text" style="font-size:12px; text-align:center;margin-bottom:3px;">
+                                                                    <span v-if="item.highlight_job == 1">Tin Nổi Bật</span>
+                                                                    <span v-if="item.highlight_job == 2">Tin Vip</span>
+                                                                    <span v-if="item.highlight_job == 0">Tin Thường</span>
+                                                                </div>
+                                                                <div class="chip-text">
+                                                                    <i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i>
+                                                                </div>
                                                             </td>
                                                             <!-- <td style="white-space: nowrap;">
                                                                 <span v-if="item.type == 1">Xuất khẩu lao động</span>
@@ -912,6 +926,7 @@ i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
     .status-none, .text-none{
         display: none;
     }
+
     .title-style{
         width: 0 !important;
     }

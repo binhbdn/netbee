@@ -25,7 +25,7 @@
             </div>
             <div class="remove-border-right" style="padding: 0.5rem">
                 <div class="hot" v-if="job.highlight_job == 2"><img data-toggle="tooltip" data-placement="top" title="Được tài trợ" src="/assets/img/hot.png"></div>
-                <a class="item-vip-a" :href="`/admin/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" data-toggle="tooltip" data-placement="left" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</a>
+                <a class="item-vip-a" :href="`/admin/tin-tuyen-sinh/${job.id}/${ChangeToSlug(job.title)}`" ><span data-toggle="tooltip" data-placement="top" :title="`${job.title}`">[{{job.id}}] {{ job.title }}</span></a>
                 <div class="item-quantity row" id="company" v-if="job.bonus != 0 && job.bonus != null && $auth.user.role != 3">
                     <div class="col-lg-5 col-sm-5">
                         <a :href="`/cong-ty/${job.user ? job.nb_company.username : job.id_created}`" class="item-company mb-0"><i class="fad fa-building"></i> <span class="company-name" data-toggle="tooltip" data-placement="top" :title="`${job.user.name}`"> {{ job.nb_company.username }}</span></a>
