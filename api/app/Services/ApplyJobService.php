@@ -210,7 +210,7 @@ class ApplyJobService extends BaseService {
         return $this->getApplyValid()
                     ->where($condition)
                     ->where('user_id_submit' ,Auth::user()->id)
-                    ->where('status','!=',4)
+                    // ->where('status','!=',4)
                     ->get();
     }
     public function getApplyCompany()
