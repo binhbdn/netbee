@@ -575,9 +575,9 @@ extend("ssdigit", {
     params: ['target'],
     message: (field) => `Không được nhỏ hơn`,
     validate: (value, { target }) => {
-        var max = JSON.stringify(value).split(',').join('')
-        let min = JSON.stringify(target).split(',').join('')
-        if(max > min){
+        var max = parseInt(JSON.stringify(value).replace(/,|"/gi, ''))
+        let min = parseInt(JSON.stringify(target).replace(/,|"/gi, ''))
+        if(max >= min){
             return true
         }else{
             return false
