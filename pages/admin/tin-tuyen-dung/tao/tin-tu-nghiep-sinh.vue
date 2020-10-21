@@ -138,7 +138,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <ValidationProvider rules="required" v-slot="{ errors }">
+                                                        <ValidationProvider rules="required|customSoam" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="id-time-contract">Thời hạn hợp đồng [năm] (<span style="color: red;">*</span>)</label>
                                                                 <input id="id-time-contract" type="text" class="form-control required" v-model="data.time_contract">
