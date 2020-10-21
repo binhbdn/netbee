@@ -26,11 +26,11 @@
                                                 <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.job.id}/${ChangeToSlug(item.job.title)}`" target="_blank">{{item.job.title}} 
                                                 </a>
                                             </td>
-                                            <td>{{item.name}}</td>
+                                            <td><p>{{item.name}}</p></td>
                                             <td v-if="$auth.user.role == 3">
                                                 <p style="color: #fc205c; margin-bottom: 0 !important;">{{item.bonus - (item.bonus* settingBonus.percent_bonus /100)}} {{ item.job.currency }}</p>
                                             </td>
-                                            <td>{{item.user.name}}</td>
+                                            <td><p class="repon">{{item.user.name}}</p></td>
                                             <td>
                                                 <p v-if="item.status == 1" data-toggle="tooltip" data-placement="top" title="Chờ admin xác thực" class="tag-p-center" style="margin-bottom: 0 !important;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p>
                                                 <p v-else-if="item.status == 2">Chưa hoàn tất giấy tờ</p>
@@ -41,7 +41,7 @@
                                             <td>
                                                 <div class="action-btns">
                                                     <div>
-                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-edit-fix-huy py-75 waves-effect waves-light">
+                                                        <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn-repon btn btn-edit-fix-huy py-75 waves-effect waves-light">
                                                         Hủy
                                                         </a>
                                                     </div>   
@@ -227,10 +227,12 @@ export default {
     .btn-edit-fix-add, .btn-edit-fix-huy{
         border: 1px solid rgb(255, 183, 1);
         color: #000;
+        
     }
 
     .btn-edit-fix-add:hover{
         background:  rgb(255, 183, 1);
+        
     }
     .btn-edit-fix-huy:hover{
         color: #fff !important;
@@ -243,5 +245,24 @@ export default {
     }
     .tag-p-center{
         text-align: center;
+    }   
+    @media (max-width: 600px) {
+    .table th {
+        font-size: 13px;
+        padding-left: 0.4rem;
+        padding-right: 0;
+    }
+    .table td{
+        padding: 1rem;
+        padding-left: 0.4rem;
+        padding-right: 0;
+    }
+    .tab-table p, a {
+    word-break:break-all;
+    }
+      .btn-repon{
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+      }     
     }
 </style>
