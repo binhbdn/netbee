@@ -15,7 +15,7 @@
                                                         <ValidationProvider rules="required|max:150" v-slot="{ errors }">
                                                             <div class="form-group">
                                                                 <label for="title">Tiêu đề (<span style="color: red;">*</span>)</label>
-                                                                <input type="text" class="form-control" v-model="data.title" placeholder="Tuyển du học trường Tokyo kỳ bay tháng 10/2020">
+                                                                <input type="text" maxlength="150" class="form-control" v-model="data.title" placeholder="Tuyển du học trường Tokyo kỳ bay tháng 10/2020">
                                                                 <span style="color: red">{{ errors[0] }}</span>
                                                             </div>
                                                         </ValidationProvider>
