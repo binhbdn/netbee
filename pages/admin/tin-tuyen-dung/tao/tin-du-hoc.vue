@@ -437,8 +437,8 @@ extend("ssdigit", {
 extend("customSoam", {
   message: field =>"Dữ liệu nhập vào phải là chữ số nguyên dương",
   validate: value => {
-    var notTheseChars = /["'?&/<>-\s]/;
-    var mustContainTheseChars = /^(?=.*?[0-9])/;
+    var notTheseChars = /[\."'?&/<>-\s]/;
+    // var mustContainTheseChars = /^(?=.*?[0-9])/;
     var containsForbiddenChars = notTheseChars.test(value);
     if (!containsForbiddenChars) {
       if(parseInt(value)==0) {return false};
