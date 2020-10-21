@@ -70,7 +70,7 @@
                                                         <div class="form-group">
                                                             <label for="id-subsidy">Phí xuất cảnh</label>
                                                             <div class="input-group">
-                                                                <input id="id-subsidy" type="txt" class="form-control required" v-model="data.subsidy" @input="data.subsidy = FormatPrice(data.subsidy)">
+                                                                <input id="id-subsidy" type="text" class="form-control required" v-model="data.subsidy" @input="data.subsidy = FormatPrice(data.subsidy)">
                                                                 <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                     <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                 </div>
@@ -223,7 +223,7 @@
                                                                     <div class="col-sm-6">
                                                                         <ValidationProvider rules="required" v-slot="{ errors }" name="confirmSalary">
                                                                             <div class="input-group">
-                                                                                <input id="id-salary-start" type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
+                                                                                <input id="id-salary-start" type="text" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start" placeholder="Từ">
                                                                                 <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                                     <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                                 </div>
@@ -234,7 +234,7 @@
                                                                     <div class="col-sm-6 pt-xs-1">
                                                                         <ValidationProvider rules="required|ssdigit:@confirmSalary" v-slot="{ errors }">
                                                                             <div class="input-group">
-                                                                                <input type="txt" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
+                                                                                <input type="text" class="form-control" @input="data.salary_end = FormatPrice(data.salary_end)" v-model="data.salary_end" placeholder="Đến">
                                                                                 <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                                     <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                                 </div>
@@ -337,7 +337,7 @@
                                                             <div class="form-group">
                                                                 <label for="id-bonus">Tiền thưởng (<span style="color: red;">*</span>)</label>
                                                                 <div class="input-group">
-                                                                    <input id="id-bonus" type="txt" class="form-control" @input="data.bonus = FormatPrice(data.bonus)" v-model="data.bonus" :disabled="!checked">
+                                                                    <input id="id-bonus" type="text" class="form-control" @input="data.bonus = FormatPrice(data.bonus)" v-model="data.bonus" :disabled="!checked">
                                                                     <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                         <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                     </div>

@@ -73,7 +73,7 @@
                                                         <div class="form-group">
                                                             <label for="id-subsidy">Phí xuất cảnh</label>
                                                             <div class="input-group">
-                                                                <input id="id-subsidy" type="txt" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">
+                                                                <input id="id-subsidy" type="text" class="form-control required" @input="data.subsidy = FormatPrice(data.subsidy)" v-model="data.subsidy">
                                                                 <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                     <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                 </div>
@@ -191,7 +191,7 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6">                
                                                                         <div class="input-group">
-                                                                            <input id="id-salary-start" type="txt" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start">
+                                                                            <input id="id-salary-start" type="text" class="form-control" @input="data.salary_start = FormatPrice(data.salary_start)" v-model="data.salary_start">
                                                                             <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                                 <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                             </div>
@@ -259,7 +259,7 @@
                                                                     Tiền thưởng (<span style="color: red;">*</span>)
                                                                 </label>
                                                                 <div class="input-group">
-                                                                    <input id="id-bonus" type="txt"  class="form-control" @input="data.bonus = FormatPrice(data.bonus)" v-model="data.bonus" :disabled="!checked">
+                                                                    <input id="id-bonus" type="text"  class="form-control" @input="data.bonus = FormatPrice(data.bonus)" v-model="data.bonus" :disabled="!checked">
                                                                     <div class="input-group-addon" style="padding: 9px;border-top-right-radius: 5px;border-bottom-right-radius: 5px;">
                                                                         <p  aria-hidden="true" style="margin: 0px;">{{data.currency}}</p>
                                                                     </div>
