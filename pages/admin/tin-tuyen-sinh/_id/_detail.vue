@@ -436,6 +436,7 @@
                             </div>
                             <div class="card-content collapse show">
                                 <div class="card-body pl-lg-0 pr-lg-0">
+                                    <JobsList1ColNotCate :DataList="arrayJobVip" type="admin/"></JobsList1ColNotCate>
                                     <JobsList1ColNotCate :DataList="arrayForCompany" type="admin/"></JobsList1ColNotCate>
                                 </div>
                             </div>
@@ -725,7 +726,7 @@
 </template>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=1459241224260897&autoLogAppEvents=1"></script>
 <script>
-import JobsList1ColNotCate from '~/components/Jobs/JobsList2ColNotCate'
+import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate'
 import JobsList1Col from '~/components/Jobs/JobsList1Col'
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
@@ -848,6 +849,7 @@ export default {
     data() {
         return {
             stateTab: true,
+            arrayJobVip: [],
             arrayForCompany: [],
             save: '',
             report: '',
@@ -1096,7 +1098,10 @@ export default {
 
         },
     mounted() {
-        this.$axios.$get(`getTinTuyenDungHot?limit=5&type=`+this.tintuyendung.type).then((response)=>{
+        this.$axios.$get(`tintuyendung/searchTinTuyenDung?&type=`+this.tintuyendung.type).then((response)=>{
+            this.arrayJobVip = response.data
+        });
+        this.$axios.$get(`getTinTuyenDungHot?limit=3&type=`+this.tintuyendung.type).then((response)=>{
             this.arrayForCompany = response.data.tintuyendung
         });
         if(this.$auth.loggedIn) {
