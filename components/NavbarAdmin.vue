@@ -551,6 +551,22 @@ export default {
                 transform:rotate(0) scale(1) skew(1deg)
     }
 }
+.main-menu-content{
+    overflow:auto;
+}
+.main-menu-content::-webkit-scrollbar {
+    width: 12px;
+    background: rgb(47, 59, 76);
+}
+.main-menu-content::-webkit-scrollbar-track {
+background: rgb(47, 59, 76);
+}
+.main-menu-content::-webkit-scrollbar-thumb {
+    background: rgb(47, 59, 76);
+}
+.main-menu-content::-webkit-scrollbar-thumb:hover {
+    background: rgb(47, 59, 76);
+}
 .main-menu.menu-light .navigation li a{
     color: #fff !important;
 }
@@ -560,15 +576,18 @@ export default {
 .main-menu.menu-light .navigation > li.open > a{
     background: rgb(47, 59, 76);
 }
+.main-menu.menu-light .navigation > li.open > a, .main-menu.menu-light .navigation > li.sidebar-group-active > a {
+  transition : transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s;
+}
 .main-menu.menu-light .navigation > li.active > a {
     background: rgb(47, 59, 76);
-    border-bottom: 2px solid #ffb701 !important;
+    border-left: 3px solid #ffb701 !important;
     box-shadow: none !important;
     border-radius: 0 !important;
 }
 .main-menu.menu-light .navigation > li .active {
      background: rgb(47, 59, 76);
-    border-bottom:2px solid  #ffb701 !important;
+    border-left:3px solid  #ffb701 !important;
     box-shadow: none !important;
     border-radius: 0 !important;
 }
