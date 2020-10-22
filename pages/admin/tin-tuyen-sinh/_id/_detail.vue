@@ -849,7 +849,7 @@ export default {
         return {
             stateTab: true,
             arrayForCompany: [],
-            save: false,
+            save: '',
             report: '',
             userForm: {
                 email: '',
@@ -907,10 +907,6 @@ export default {
             this.resetData()
         },
         saveJob() {
-            this.$axios.$post(`tintuyendung/getSave`,{id_job: this.tintuyendung.id}).then((response)=>{
-                this.save = response.data
-            });
-            this.save = !this.save;
             this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuyendung.id}).then((response)=>{
                 if(response.status == 200) {
                     this.$swal(
