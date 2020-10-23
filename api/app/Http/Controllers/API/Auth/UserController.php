@@ -502,6 +502,7 @@ class UserController extends Controller
             'status' => '0',
             'role' => '2'
         ];
+        dd($users);
         $store = $this->userService->store($users);
 
         if ($store) {
