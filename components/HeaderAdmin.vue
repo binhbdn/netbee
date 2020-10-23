@@ -75,7 +75,7 @@
                               <div class="dropdown-divider"></div><a class="dropdown-item" @click="logout()"><i class="far fa-sign-out-alt"></i> Đăng xuất</a>
                           </div>
                       </li>
-                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label pd-notification" href="#" data-toggle="dropdown" title="Thông báo" data-placement="top"><i class="fa fa-bell"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
+                      <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label pd-notification" href="#" data-toggle="dropdown" title="Thông báo" data-placement="top"><i class="fa fa-bell" style="color:#000"></i><span class="badge badge-pill badge-danger badge-up" v-if="countNoti>0">{{ countNoti }}</span></a>
                           <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                                 <li class="dropdown-menu-header">
                                     <div class="dropdown-header m-0">
