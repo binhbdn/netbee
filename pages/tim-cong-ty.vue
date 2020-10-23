@@ -5,7 +5,11 @@
                 <div class="col-12 col-md-8">
                     <div class="card">
                         <div class="card-header">
-                            <h6>KẾT QUẢ TÌM KIẾM</h6>
+                        <h6 class="card-title">
+                            <i class="fad fa-bullhorn"></i> DANH SÁCH CÔNG TY
+                        </h6>
+                        <span v-if="countCompany!=0" style="color: red;">Có {{countCompany}} kết quả tìm kiếm</span>
+                        <span class="font-italic" v-else style="color: red;">Không có kết quả phù hợp.</span>
                         </div>
                         <div class="card-body">
                             <CompanyList1 :DataList="arrayCompanyNew"></CompanyList1>
@@ -15,7 +19,7 @@
                 <div class="col-12 col-md-4">
                     <div class="card">
                         <div class="card-header">
-                            <h6>CÔNG TY HÀNG ĐẦU</h6>
+                            <h6 class="card-title">CÔNG TY HÀNG ĐẦU</h6>
                         </div>
                         <div class="card-body">
                             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height: 300px">
@@ -51,6 +55,7 @@ export default {
     },
     data () {
         return{
+            countCompany: 0,
             arrayCompanyNew: []
         }
     },
@@ -65,7 +70,8 @@ export default {
             this.$axios.$get('searchCompany?keyword='+this.$route.query.keyword + '&nation=' + this.$route.query.nation)
             .then(response => {
                 this.arrayCompanyNew = response.data
-                console.log(this.arrayCompanyNew);
+                this.countCompany = response.data.length
+                // console.log(this.arrayCompanyNew);
             })
         }
     },
