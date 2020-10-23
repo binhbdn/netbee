@@ -61,8 +61,3 @@ export default {
   }
 };
 </script>
-<style>
-  #fb-root {
-    display: contents !important;
-  }
-</style>
