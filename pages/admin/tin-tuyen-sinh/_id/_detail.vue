@@ -770,7 +770,7 @@ extend("birthdate", {
     }
 });
 var errorMessageinformation =
-  " phải lớn hơn 6 ký tự";
+  " phải chứa nhiều hơn 6 ký tự";
 // create custom rule
 extend("customAddress", {
   message: field =>"Địa chỉ" + errorMessageinformation,
@@ -782,14 +782,14 @@ extend("customAddress", {
     } else {
       if (containsRequiredChars) {
         errorMessageinformation =
-          " phải lớn hơn 6 ký tự";
+          " phải chứa nhiều hơn 6 ký tự";
       }
       return false;
     }
   }
 });
 var errorMessageinformation =
-  " phải chứa ít nhất 6 ký tự";
+  " phải chứa nhiều hơn 6 ký tự";
 // create custom rule
 extend("customName", {
   message: field =>"Họ tên" + errorMessageinformation,
@@ -806,7 +806,7 @@ extend("customName", {
           ' không được chứa các ký tự: " ' + " ' ? & / < > @ # $ % ^ * ( ) | ";
       } else {
         errorMessageinformation =
-          " phải chứa ít nhất 6 ký tự";
+          " phải chứa nhiều hơn 6 ký tự";
       }
       return false;
     }
