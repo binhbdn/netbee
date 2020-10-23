@@ -30,9 +30,11 @@
                                                     <td>{{settingBonus.created_at}}</td>
                                                     <td>{{settingBonus.updated_at}}</td>
                                                     <td>
+                                                        <div data-toggle="tooltip"  data-placement="top" :title="`Cập nhật bonus`">
                                                     	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
 														  	Cập nhật bonus
 														</button>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -58,7 +60,7 @@
 					      </div>
 					      <div class="modal-footer">
 					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-					        <button class="btn bg-netbee" @click="updateBonus()">Cập nhật</button>
+					        <button class="btn bg-netbee" data-toggle="tooltip"  data-placement="top" :title="`Cập nhật`" @click="updateBonus()">Cập nhật</button>
 					      </div>
 					    </div>
 					  </div>
@@ -121,5 +123,12 @@
     };
 </script>
 <style scoped>
-    
+    .btn-primary {
+    border-color: #ffb701 !important;
+    background-color: #ffb701 !important;
+    color: #000 !important;
+    }
+    .btn-secondary:hover{
+    background-color: #ffb701 !important;
+    }
 </style>

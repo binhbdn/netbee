@@ -51,7 +51,7 @@
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
                                     <form class="col-9" action="/admin/news/create" method="">
-                                        <button class="btn-add btn bg-netbee text-dark "><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
+                                        <button class="btn-add btn bg-netbee text-dark " data-toggle="tooltip"  data-placement="top" :title="`Tạo bài viết mới`"><i class="far fa-folder-plus"></i> Tạo bài viết mới</button>
                                     </form>
                                     <div class="action-btns">
                                         <div class="btn-dropdown ">

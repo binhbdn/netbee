@@ -124,7 +124,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
-                                                            <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="actionInfoUser()">Cập nhật</button>
+                                                            <button type="button" data-toggle="tooltip"  data-placement="top" :title="`Cập nhật`" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="actionInfoUser()">Cập nhật</button>
                                                         </div>
                                                     </ValidationObserver>
                                                 </form>
@@ -223,7 +223,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-12">
-                                                                <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" v-bind:disabled="inval" v-on:click ="changeBankHr">Cập nhật</button>
+                                                                <button type="button" data-toggle="tooltip"  data-placement="top" :title="`Cập nhật`" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" v-bind:disabled="inval" v-on:click ="changeBankHr">Cập nhật</button>
                                                             </div>
                                                             <!-- <div class="col-10 d-flex justify-content-end">
                                                                 <div class="field is-horizontal">
@@ -372,7 +372,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-12 mt-50">
-                                                                <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="changeInfoCompany()">Cập nhật</button>
+                                                                <button type="button" data-toggle="tooltip"  data-placement="top" :title="`Cập nhật`" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="changeInfoCompany()">Cập nhật</button>
                                                             </div>
                                                             <!-- <div class="col-12">
                                                                 <ValidationProvider
@@ -493,7 +493,7 @@
                                                                 </ValidationProvider>
                                                                 </div>
                                                                 <div class="col-sm-4 p-sm-0 pt-1">
-                                                                    <button class="btn bg-netbee col-md-12 pl-1 pr-1" @click="updateEmailCompany()">Thêm</button>
+                                                                    <button class="btn bg-netbee col-md-12 pl-1 pr-1" data-toggle="tooltip" data-placement="top" title="Thêm" @click="updateEmailCompany()">Thêm</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -672,7 +672,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
-                                                            <button type="button" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="changePassword()">Cập nhật</button>
+                                                            <button type="button" data-toggle="tooltip"  data-placement="top" :title="`Cập nhật`" class="btn bg-netbee float-right mb-1" style="margin-right: -12px" @click="changePassword()">Cập nhật</button>
                                                         </div>
                                                     <!-- <div class="row"> -->
                                                         <!-- <div class="col-12">

@@ -58,7 +58,7 @@
                                                     </ValidationProvider>
                                                 </div>
                                                 <div class="col-12 text-right">
-                                                    <button type="submit" class="btn btn-warning" :disabled="invalid" @click="upload">Tạo tin</button>
+                                                    <button type="submit" class="btn btn-warning" data-toggle="tooltip"  data-placement="top" :title="`Tạo tin`"  @click="upload">Tạo tin</button>
                                                     
                                                 </div>
                                             </div>
@@ -213,6 +213,10 @@ export default {
 }
 </script>
 <style scoped>
+.btn-warning {
+    background-color: #ffb701 !important;
+    opacity: 1;
+}
 .dropbox {
     outline: 2px dashed grey; /* the dash box */
     outline-offset: -10px;
