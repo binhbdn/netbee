@@ -1,5 +1,5 @@
 <template>
-    <div class="app-content content">
+    <div  v-if="$auth.loggedIn" class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div v-if="$auth.user.role == 2" >
