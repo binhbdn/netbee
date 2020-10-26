@@ -28,7 +28,24 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                            <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row " style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 40%">
+                            <!-- <div id="social" v-if="$auth.loggedIn && $auth.user.role == 2" class="row " style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 40%">
+                                <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                    <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
+                                </div>
+                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
+                                    <a class="btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a> -->
+                            <div id="social" class="row " style="border-radius: 3px;margin-top: 60px;border:#dee2e6 solid 1px;height: 40%">
+                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                    <a class="btn-save" @click="saveJob()" :title="save ? 'Bỏ lưu việc làm' : 'Lưu việc làm'"><i :class="save ? 'fad fa-heart fa-2x p-10' : 'fad fa-heart-broken fa-2x p-10'"></i></a>
+                                </div>
+                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
+                                    <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn${$route.fullPath}`" class="btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
+                                </div>
+                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
+                                    <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
+                                </div>
+                            </div>
+                            <!-- <div id="social" v-else class="row " style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
                                 <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
                                     <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
                                 </div>
@@ -41,21 +58,7 @@
                                 <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
                                     <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
                                 </div>
-                            </div>
-                            <div id="social" v-else class="row " style="border-radius: 3px;border:#dee2e6 solid 1px;height: 40%">
-                                <div v-if="$auth.loggedIn" class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
-                                    <a class="btn-save" @click="saveJob()" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
-                                </div>
-                                <div v-else class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px" data-toggle="modal" data-target="#loginModal">
-                                    <a class="btn-save" data-toggle="tooltip" data-placement="top" :title="!save ? 'Lưu việc làm' : 'Bỏ việc làm'"><i :class="{'fad fa-heart fa-2x p-10' : !save, 'fad fa-heart-broken fa-2x p-10' : save}"></i></a>
-                                </div>
-                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" style="border-right:#dee2e6 solid 1px">
-                                    <a target="_blank" :href="`https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn${$route.fullPath}`" class="btn-fb" data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook"><i class="fab fa-facebook fa-2x p-10"></i></a>
-                                </div>
-                                <div class="col-sm-4 col-xl-4 d-flex justify-content-center align-items-center" data-toggle="modal" data-target="#reportModal" >
-                                    <a class="btn-report" data-toggle="tooltip" data-placement="top" title="Thông báo lỗi"><i class="fad fa-exclamation-triangle fa-2x p-10"></i></a>
-                                </div>
-                            </div>
+                            </div> -->
                             <div class="row m-t-10" id="send-hoso" style="border-radius: 3px;height: 40%">
                                 <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
@@ -669,7 +672,7 @@ export default {
         return {
             stateTab: true,
             arrayForCompany: [],
-            save: false,
+            save: '',
             report: '',
             userForm: {
                 email: '',
