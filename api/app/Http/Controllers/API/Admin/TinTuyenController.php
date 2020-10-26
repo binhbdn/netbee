@@ -136,8 +136,8 @@ class TinTuyenController extends Controller
         $status = $response['status_notification'];
         $baseUrl = 'https://netbee.vn/tin-tuyen-sinh/';
         $content = $status ? 
-            'Tin tuyển dụng của bạn đã được duyệt ['.$id.']' :
-            'Tin tuyển dụng của bạn đã bị hủy ['.$id.']';
+            'Tin tuyển dụng ['.$id.'] của bạn đã được duyệt' :
+            'Tin tuyển dụng ['.$id.'] của bạn đã bị hủy';
 
         $url = $status ? $baseUrl.$id : $baseUrl;
 
