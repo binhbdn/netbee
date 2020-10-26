@@ -267,7 +267,21 @@ export default {
       }
     },
     mounted(){
+      if (localStorage.keysearch) {
+        this.keysearch = localStorage.keysearch;
+      }
+      if (localStorage.keyJobs) {
+        this.keyJobs = localStorage.keyJobs;
+      }
       this.fetch()
+    },
+    watch: {
+      keysearch(newName) {
+        localStorage.keysearch = newName;
+      },
+      keyJobs(newName) {
+        localStorage.keyJobs = newName;
+      },
     }
 }
 </script>
