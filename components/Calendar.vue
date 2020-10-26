@@ -1,5 +1,5 @@
 <template>    
-    <FullCalendar :locale="viLocale" :header="calHeader" @eventClick="eventClick"  defaultView="dayGridMonth"
+    <FullCalendar :locale="viLocale" :header="calHeader" @eventClick="eventClick" @eventRender="eventRender" defaultView="dayGridMonth"
    :plugins="calendarPlugins" :events="events" :height="630"/>    
 </template>
 
@@ -27,7 +27,10 @@
                 }
             }
         },
-        methods: {      
+        methods: {  
+            eventRender: function (info) {
+                $(info.el).tooltip({ title: info.event.title });
+                },
             eventClick(infomation) {                
                 let info = {};
                 let exinfo = infomation.event.extendedProps;
