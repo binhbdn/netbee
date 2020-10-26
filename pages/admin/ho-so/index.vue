@@ -77,7 +77,9 @@
     export default {
         name: 'CvIndex',
         layout: 'admin',
-       
+        head: {
+            title: 'Quản lý hồ sơ',
+        },
         data(){
             return {
                 listProfileUser:[],
