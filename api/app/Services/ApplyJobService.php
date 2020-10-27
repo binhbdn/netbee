@@ -233,6 +233,9 @@ class ApplyJobService extends BaseService {
                                     'block' =>self::UN_BLOCK
                                 ]);
                             }])
+                            ->with(['users' => function ($q) {
+                                $q->select('id', 'name', 'role');
+                            }])
                             ->with('nbPaper')
                             ->with(['job' => function ($q) {
                                 $q->select('currency', 'title','id');
