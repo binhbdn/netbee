@@ -67,7 +67,7 @@
                                                                                     <label v-if="$auth.user.role == 2" for="account-name">Ngày thành lập</label>
                                                                                 </div>
                                                                                 <div class="col-sm-8 pr-0 pl-50">
-                                                                                    <input type="date" class="form-control" v-model="changeInfoUser.birth">
+                                                                                    <datetime v-model="changeInfoUser.birth" input-class="form-control"></datetime>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -776,6 +776,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import {
   ValidationProvider,
   extend
@@ -783,6 +784,10 @@ import {
 import Multiselect from 'vue-multiselect'
 import 'vue-multiselect/dist/vue-multiselect.min.css'
 import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
+import { Datetime } from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
+
+Vue.use(Datetime)
 extend('retypePassword', {
   params: ['target'],
   validate(value,{target}) {
@@ -849,7 +854,8 @@ export default {
     components: {
         Multiselect,
         ValidationProvider,
-        ValidationObserver
+        ValidationObserver,
+        Datetime
     },
     data() {
             return {
