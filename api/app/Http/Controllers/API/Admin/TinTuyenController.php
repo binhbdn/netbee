@@ -107,8 +107,9 @@ class TinTuyenController extends Controller
     {
         $response = $this->tinTuyenService->store($request);
         if($response['status'] == 200) {
+            $content = 'Có tin tuyển dụng mới';
             $notification = [
-                'content' => 'Có tin tuyển dụng mới',
+                'content' => $content,
                 'ids' => $this->userService->getIdAdmin()->pluck('id'),
                 'url' => 'https://netbee.vn/admin/tin-tuyen-dung'
             ];

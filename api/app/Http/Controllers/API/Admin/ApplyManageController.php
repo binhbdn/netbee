@@ -70,9 +70,8 @@ class ApplyManageController extends Controller
     public function ApproveApply(Request $request){
         $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::ADMIN_DUYET_CV);
         $detail = $this->applyJobService->getDetailApply($request->id);
-        $all = $this->applyJobService->getAllApply($request->id);
         if($approve){
-            $content = 'Hồ sơ ['.$all->id.'] của bạn đã được duyệt! Vui lòng hoàn tất giấy tờ liên quan';
+            $content = 'Hồ sơ ['.$detail->id.'] của bạn đã được duyệt! Vui lòng hoàn tất giấy tờ liên quan';
             $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
             $this->notificationService->store($content, $detail->user_id_submit, $url);
 //            NotificationController::postNotification($content, $detail->user_id_submit, $url);
@@ -136,9 +135,8 @@ class ApplyManageController extends Controller
     public function ChooseCalendar(Request $request){
         $check = $this->applyJobService->ChooseCalendar($request->interview_schedules, $request->id);
         $detail = $this->applyJobService->getDetailApply($request->id);
-        $all = $this->applyJobService->getAllApply($request->id);
         if($check){
-            $content = 'Hồ sơ ['.$all->id.'] của bạn đã được  sắp lịch phỏng vấn công việc ['.$detail->job_id.'].';
+            $content = 'Hồ sơ ['.$detail->id.'] của bạn đã được  sắp lịch phỏng vấn công việc ['.$detail->job_id.'].';
             $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
             $this->notificationService->store($content, $detail->user_id_submit, $url);
 //            NotificationController::postNotification($content, $detail->user_id_submit, $url);
