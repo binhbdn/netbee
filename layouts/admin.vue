@@ -47,7 +47,4 @@
   #__layout{
     height: 100% !important;
   }
-  #fb-root {
-    display: none !important;
-  }
 </style>

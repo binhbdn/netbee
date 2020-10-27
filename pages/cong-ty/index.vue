@@ -171,7 +171,7 @@
   </div>
 </template>
 <script>
-import CompanyList1 from "~/components/Company/CompanyList1";
+// import CompanyList1 from "~/components/Company/CompanyList1";
 import StarRating from 'vue-star-rating'
 import JobsList1Col from '~/components/Jobs/JobsList1Col'
 import JobsList2Col from '~/components/Jobs/JobsList2Col'
@@ -188,7 +188,8 @@ export default {
     }
   },
   components: {
-    CompanyList1,StarRating,
+    // CompanyList1,
+    StarRating,
     JobsList2Col,
       NewsList,
       JobsList1Col
