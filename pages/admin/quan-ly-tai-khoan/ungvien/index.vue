@@ -106,7 +106,7 @@
               <div class="card">
                 <div class="card-header d-flex">
                   <div class="flex-grow-2 pr-2">
-                      <button class="btn-add btn bg-netbee text-dark " @click="openModalCreate()"><i class="far fa-folder-plus"></i> Tạo tài khoản</button>
+                      <button class="btn-add btn bg-netbee text-dark " data-toggle="tooltip"  data-placement="top" :title="`Tạo tài khoản`" @click="openModalCreate()"><i class="far fa-folder-plus"></i> Tạo tài khoản</button>
                   </div>
                   <div class="flex-grow-1 row input_date">
                     <div class="input-group col-md-4">
@@ -134,7 +134,7 @@
                       />
                     </div>
                     <div class="col-md-4">
-                      <button @click="searchDate()" class="btn-add btn bg-netbee text-dark">
+                      <button data-toggle="tooltip"  data-placement="top" :title="`Lọc`" @click="searchDate()" class="btn-add btn bg-netbee text-dark">
                         <i class="far fa-filter"></i> Lọc
                       </button>
                     </div>

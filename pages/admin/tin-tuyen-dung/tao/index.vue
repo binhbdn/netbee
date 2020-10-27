@@ -67,7 +67,7 @@ z<template>
                                                 <div class="card-content">
                                                     <div class="card-body p-3">
                                                         <h2>Tin Du Học</h2>
-                                                        <a href="/admin/tin-tuyen-dung/tao/tin-du-hoc" class="btn waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
+                                                        <a href="/admin/tin-tuyen-dung/tao/tin-du-hoc" data-toggle="tooltip"  data-placement="top" :title="`ĐĂNG TUYỂN NGAY`" class="btn waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -77,7 +77,7 @@ z<template>
                                                 <div class="card-content">
                                                     <div class="card-body p-3">
                                                         <h2>Tin Xuất Khẩu</h2>
-                                                        <a href="/admin/tin-tuyen-dung/tao/tin-xkld" class="btn waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
+                                                        <a href="/admin/tin-tuyen-dung/tao/tin-xkld" data-toggle="tooltip"  data-placement="top" :title="`ĐĂNG TUYỂN NGAY`" class="btn waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -87,7 +87,7 @@ z<template>
                                                 <div class="card-content">
                                                     <div class="card-body p-3">
                                                         <h2>Tu Nghiệp Sinh</h2>
-                                                        <a href="/admin/tin-tuyen-dung/tao/tin-tu-nghiep-sinh" class="btn waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
+                                                        <a href="/admin/tin-tuyen-dung/tao/tin-tu-nghiep-sinh" data-toggle="tooltip"  data-placement="top" :title="`ĐĂNG TUYỂN NGAY`" class="btn waves-effect waves-light">ĐĂNG TUYỂN NGAY</a>
                                                     </div>
                                                 </div>
                                             </div>

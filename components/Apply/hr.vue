@@ -41,7 +41,7 @@
                                             </td>
                                             <td>
                                                 <div class="action-btns">
-                                                    <div>
+                                                    <div data-toggle="tooltip"  data-placement="top" :title="`Hủy`">
                                                         <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn-repon btn btn-edit-fix-huy py-75 waves-effect waves-light">
                                                         Hủy
                                                         </a>

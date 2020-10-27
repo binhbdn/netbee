@@ -46,7 +46,7 @@
                                     <h2><b>Cách 1: Chia sẻ liên kết giới thiệu của bạn</b></h2> 
                                     <div class="input-group">                                
                                         <input type="text" class="form-control" id="link" v-model="linkdangky">
-                                        <div class="input-group-addon bg-netbee" style="padding: 10px;">
+                                        <div class="input-group-addon bg-netbee" >
                                             <a @click="copyLink()" data-toggle="tooltip" data-placement="top" title="Sao chép liên kết">
                                                 Sao chép liên kết 
                                             </a>
@@ -54,7 +54,7 @@
                                     </div>
                                     <!-- Chia se? -->
                                     <div class="chiase">
-                                        <a class="btn fb-share" style="background-color: #3578E5;color:#000;" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/&amp;src=sdkpreparse"  data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook">Chia sẻ Facebook</a>
+                                        <a class="btn fb-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://netbee.vn/&amp;src=sdkpreparse"  data-toggle="tooltip" data-placement="top" title="Chia sẻ lên Facebook">Chia sẻ Facebook</a>
                                         <!-- <a class="btn bg-netbee">Chia sẻ Twitter</a>
                                         <a class="btn bg-netbee">Chia sẻ Gmail</a> -->
                                     </div>                                    
@@ -65,7 +65,7 @@
                                     <span><i>Bạn gửi mã CTV của mình cho bạn bè và yêu cầu nhập khi đăng ký tài khoản !</i></span>
                                     <div class="input-group">                                
                                         <input type="text" class="form-control" id="mactv" v-model="usersfirst.introduce_code">
-                                        <div class="input-group-addon bg-netbee" style="padding: 10px;">
+                                        <div class="input-group-addon bg-netbee" >
                                             <a @click="copyMactv()" data-toggle="tooltip" data-placement="top" title="Sao chép mã CTV">
                                                 Sao chép mã CTV                                  
                                             </a>
@@ -140,6 +140,10 @@
     };
 </script>
 <style scoped>
+.chiase a{
+    background-color: #ffb701;
+    color:#000;
+}
 .friend-text {
     text-align: justify;
 }
@@ -191,5 +195,9 @@ a.fb-share:hover {
     }    
     .chiase{
         margin: 23px 0px;
+    }
+    .input-group .bg-netbee{
+        padding: 10px !important;
+        width: 137px;
     }
 </style>

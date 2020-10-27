@@ -156,7 +156,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-12" style="text-align: right;">
-                                                    <button class="btn btn-add bg-netbee" style="margin-top: 23px" :disabled="invalid"  v-on:click="insert">Tạo hồ sơ</button>
+                                                    <button class="btn btn-add bg-netbee" data-toggle="tooltip"  data-placement="top" :title="`Tạo hồ sơ`" style="margin-top: 23px"   v-on:click="insert">Tạo hồ sơ</button>
                                                 </div>
                                             </div>
                                         </div>

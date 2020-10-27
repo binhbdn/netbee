@@ -70,8 +70,9 @@ class ApplyManageController extends Controller
     public function ApproveApply(Request $request){
         $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::ADMIN_DUYET_CV);
         $detail = $this->applyJobService->getDetailApply($request->id);
+        $all = $this->applyJobService->getAllApply($request->id);
         if($approve){
-            $content = 'Hồ sơ của bạn đã được duyệt! Vui lòng hoàn tất giấy tờ liên quan';
+            $content = 'Hồ sơ ['.$all->id.'] của bạn đã được duyệt! Vui lòng hoàn tất giấy tờ liên quan';
             $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
             $this->notificationService->store($content, $detail->user_id_submit, $url);
 //            NotificationController::postNotification($content, $detail->user_id_submit, $url);
@@ -86,7 +87,7 @@ class ApplyManageController extends Controller
         $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::ADMIN_DUYET_HO_SO);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($approve){
-            $content = 'Việc làm của bạn có lượt ứng tuyển mới';
+            $content = 'Việc làm ['.$detail->job_id.'] của bạn có lượt ứng tuyển mới';
             $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
             $this->notificationService->store($content, $detail->user_id_recever, $url);
 //            NotificationController::postNotification($content, $detail->user_id_recever, $url);
@@ -101,7 +102,7 @@ class ApplyManageController extends Controller
         $approve = $this->applyJobService->refuse($request->id, $this->applyJobService::TU_CHOI, $request->reason_for_rejection);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($approve){
-            $content = 'Yêu cầu ứng tuyển công việc'.$detail->job_id.' đã bị từ chối';
+            $content = 'Yêu cầu ứng tuyển công việc['.$detail->job_id.'] đã bị từ chối';
             $url = 'https://netbee.vn/';
             $this->notificationService->store($content, $detail->user_id, $url);
 //            NotificationController::postNotification($content, $detail->user_id, $url);
@@ -135,8 +136,9 @@ class ApplyManageController extends Controller
     public function ChooseCalendar(Request $request){
         $check = $this->applyJobService->ChooseCalendar($request->interview_schedules, $request->id);
         $detail = $this->applyJobService->getDetailApply($request->id);
+        $all = $this->applyJobService->getAllApply($request->id);
         if($check){
-            $content = 'Bạn đã được sắp lịch phỏng vấn công việc'.$detail->job_id.'.';
+            $content = 'Hồ sơ ['.$all->id.'] của bạn đã được  sắp lịch phỏng vấn công việc ['.$detail->job_id.'].';
             $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
             $this->notificationService->store($content, $detail->user_id_submit, $url);
 //            NotificationController::postNotification($content, $detail->user_id_submit, $url);

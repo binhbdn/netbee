@@ -551,21 +551,22 @@ export default {
                 transform:rotate(0) scale(1) skew(1deg)
     }
 }
+/* width */
 .main-menu-content{
-    overflow:auto;
+  overflow: auto;
 }
 .main-menu-content::-webkit-scrollbar {
-    width: 12px;
-    background: rgb(47, 59, 76);
-}
-.main-menu-content::-webkit-scrollbar-track {
-background: rgb(47, 59, 76);
+    width: 6px;
+    background: rgb(47, 59, 76)
 }
 .main-menu-content::-webkit-scrollbar-thumb {
-    background: rgb(47, 59, 76);
+    background: rgb(47, 59, 76)
 }
-.main-menu-content::-webkit-scrollbar-thumb:hover {
-    background: rgb(47, 59, 76);
+.main-menu-content::-webkit-scrollbar-track {
+    background: rgb(47, 59, 76)
+}
+.main-menu-content::-webkit-scrollbar-piece {
+    background: rgb(47, 59, 76)
 }
 .main-menu.menu-light .navigation li a{
     color: #fff !important;
@@ -575,9 +576,6 @@ background: rgb(47, 59, 76);
 }
 .main-menu.menu-light .navigation > li.open > a{
     background: rgb(47, 59, 76);
-}
-.main-menu.menu-light .navigation > li.open > a, .main-menu.menu-light .navigation > li.sidebar-group-active > a {
-  transition : transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s;
 }
 .main-menu.menu-light .navigation > li.active > a {
     background: rgb(47, 59, 76);

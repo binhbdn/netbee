@@ -9,7 +9,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header col-12" style="padding-left:15px;">
-                                    <button class="btn-add btn bg-netbee text-dark " v-on:click="openModalCreate()"><i class="far fa-folder-plus"></i> Tạo quảng cáo</button>                                 
+                                    <button class="btn-add btn bg-netbee text-dark " data-toggle="tooltip"  data-placement="top" :title="`Tạo Quảng cáo`" v-on:click="openModalCreate()"><i class="far fa-folder-plus"></i> Tạo quảng cáo</button>                                 
                                 </div>
                                 <div class="card-body card-dashboard">
                                     <div class="table-responsive list-data">
