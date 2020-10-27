@@ -3,42 +3,49 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-8">
+                <div class="col-lg-8 p-0">
                     <div class="card">
                         <div class="card-header">
                             <h6 class="card-title">
                                 <i class="fad fa-bullhorn"></i> DANH SÁCH TIN TỨC
                             </h6>
-                            <span v-if="countNews" style="color: red;">Có {{countNews}} kết quả tìm kiếm</span>
+                            <span v-if="countNews!=0" style="color: red;">Có {{countNews}} kết quả tìm kiếm</span>
                             <span class="font-italic" v-else style="color: red;">Không có kết quả phù hợp.</span>
                         </div>
                         <div class="card-body">
-                            <CompanyList1 :DataList="arrayCompanyNew"></CompanyList1>
+                            <!-- <CompanyList1 :DataList="arrayFoundNews"></CompanyList1> -->
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4">
+                <div class="col-lg-4 pl-lg-1 p-0">
                     <div class="card">
                         <div class="card-header">
-                            <h6><i class="fad fa-newspaper"></i> TIN MỚI</h6>
+                            <h6 class="card-title">
+                                <i class="fad fa-newspaper"></i> DANH MỤC
+                            </h6>
                         </div>
-                        <div class="card-body">
-                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="height: 300px">
-                                <ol class="carousel-indicators pb-2">
-                                    <li data-target="#carousel-example-generic" v-for="(companyHot, indexCompanyHot) in arrayCompanyHot" :key="indexCompanyHot" :data-slide-to="indexCompanyHot" :class="{'active' : indexCompanyHot == 0}"></li>
-                                </ol>
-                                <div class="carousel-inner" role="listbox">
-                                    <div class="carousel-item text-center" :class="{'active' : indexCompanyHot == 0}" v-for="(companyHot, indexCompanyHot) in arrayCompanyHot" :key="indexCompanyHot">
-                                        <img class="img-fluid" v-lazy="`/uploads/users/avatars/${companyHot.avatar}`" :alt="`${companyHot.avatar}`" style="height: 200px;" />
-                                        <div class="remove-border-rightt">
-                                            <div class="item-name">
-                                                <a :href="`/cong-ty/${companyHot.username ? companyHot.username : '#'}`" class="item-company mb-0"> 
-                                                    <h3> {{ companyHot.name }}</h3>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div  class=" p-2 bg-white col-12" id="cate-1" style="border-bottom: 1px solid #ddd;" v-for="(danhmuc, indexDanhMuc) in getDanhMucTinTuc" :key="indexDanhMuc">
+                                        <div class="col-12">
+                                            <div class="job-post-item-header d-flex align-items-center">
+                                                <a :href="`/tin-tuc/${ChangeToSlug(danhmuc.name)}`">
+                                                    <h2 class="text-black h6 NB_title" style="margin: 0 !important;"><i class="fa fa-arrow-right"></i> {{ danhmuc.name }}</h2>
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card introduce">
+                        <div class="card-header">
+                        </div>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fnetbee.vn%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=1459241224260897" width="100%" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                             </div>
                         </div>
                     </div>
@@ -52,26 +59,46 @@ import CompanyList1 from "~/components/Company/CompanyList1";
 
 export default {
     layout: 'news',
+    head: {
+        title: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học',
+        meta: [
+            { hid: 'description', name: 'description', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học' },
+            { hid: 'keywords', name: 'keywords', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,cẩm nang du học'.replace(/ /g, ",")},
+            { hid: 'og:url', name: 'og:url', content: 'https://netbee.vn/tin-tuc'},
+            { hid: 'og:title', name: 'og:title', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học'},
+            { hid: 'og:description', name: 'og:description', content: 'Tin tức du học,Tuyển du học sinh,tin du học,tin xuất khẩu lao động,Tin tu nghiệp sinh,cẩm nang du học'},
+        ]
+    },
     components: {
         CompanyList1
     },
     data () {
         return{
-            arrayCompanyNew: []
-        }
-    },
-    async asyncData({$axios, route}) {
-        let getCompanyHot = await $axios.$get(`getCompanyHot`)
-        return {
-            arrayCompanyHot: getCompanyHot.data,
+            newsSearch: {
+            Keyword: '',
+            Title: '',
+            Category: ''
+            },
+            countNews: 0,
+            getDanhMucTinTuc: [
+                { id: 1, name: 'Xuất khẩu lao động'},
+                { id: 2, name: 'Du học'},
+                { id: 3, name: 'Cẩm nang'},
+            ],
+            arrayFoundNews: []
         }
     },
     methods:{
         fetch(){
-            this.$axios.$get('searchCompany?keyword='+this.$route.query.keyword + '&nation=' + this.$route.query.nation)
-            .then(response => {
-                this.arrayCompanyNew = response.data
-                console.log(this.arrayCompanyNew);
+            this.$axios.$get('tintuc/searchTinTuc?searchCategory='
+            + ((this.newsSearch.Category.id) ? this.newsSearch.Category.id : '')
+            + '&searchStatus=1'
+            + '&search='+ ((this.newsSearch.Keyword) ? this.ChangeToSlug(this.newsSearch.Keyword).replace(/\-/gi, '%20') : '')
+            + '&searchTitle='+ ((this.newsSearch.Title) ? this.ChangeToSlug(this.newsSearch.Title).replace(/\-/gi, '%20') : '')
+            ).then((response)=>{
+                this.arrayFoundNews = response.data
+                this.countNews = response.data.length
+                // console.log(this.arrayFoundNews);
             })
         }
     },
@@ -80,13 +107,3 @@ export default {
     }
 }
 </script>
-<style>
-.carousel-indicators .active{
-    background-color: #ffb701;
-}
-
-.carousel-indicators li{
-    background-color: #d8cccc;
-}
-</style>
-
