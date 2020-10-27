@@ -196,6 +196,11 @@ export default {
     }
 }
 </script>
+<style>
+  .particles-js-canvas-el{
+  height: 300px !important;
+}
+</style>
 <style scoped>
   .search-footer {
     margin-top: -10px;

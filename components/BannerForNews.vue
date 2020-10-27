@@ -108,6 +108,11 @@ export default {
   }
 }
 </script>
+<style>
+  .particles-js-canvas-el{
+  height: 300px !important;
+}
+</style>
 <style scoped>/* binhbdn: Copy từ Banner.vue. Ngày 27/10/20 đã lọc và xóa các class không dùng đến */
   .parti{
         max-height: 0px;
