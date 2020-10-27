@@ -25,7 +25,10 @@
         "search": "Search",
         "news": {
             "tab": "Tìm tin tức",
-            "key": "Từ khóa"
+            "key": "Từ khóa ...",
+            "title": "Tên tiêu đề ...",
+            "category": "Chọn danh mục",
+            "status": "Chọn trạng thái"
         },
         "jobs": {
             "tab": "仕事を見つける",

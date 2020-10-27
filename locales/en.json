@@ -25,7 +25,10 @@
         "search": "Search",
         "news": {
             "tab": "News search",
-            "key": "News title"
+            "key": "News keyword ...",
+            "title": "News title ...",
+            "category": "Choose a category",
+            "status": "Choose a status"
         },
         "jobs": {
             "tab": "Jobs search",
