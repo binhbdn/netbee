@@ -43,7 +43,7 @@
                         </li>
                     </ul>
                 </li> 
-                <li ><a :class="[{'active' : $route.name == 'ho-so'}, 'nav-item']" @click="$router.push('/admin/ho-so')" v-if="$auth.user.role == 4 || $auth.user.role == 1 || $auth.user.role == 3"><i class="fad fa-folder-open fa-fw"></i><span class="menu-title" data-i18n="User">Hồ sơ ứng tuyển</span></a>
+                <li ><a :class="[{'active' : $route.name == 'ho-so'}, 'nav-item']" @click="$router.push('/admin/ho-so')" v-if="$auth.user.role == 4 || $auth.user.role == 1 || $auth.user.role == 3"><i class="fad fa-folder-open fa-fw"></i><span class="menu-title" data-i18n="User">Quản lý hồ sơ</span></a>
                 <li ><a :class="[{'active' : $route.name == 'quan-ly-ung-tuyen'}, 'nav-item']" @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 4 || $auth.user.role == 2"><i class="fas fa-satellite-dish fa-fw"></i><span class="menu-title" data-i18n="User">Quản lý ứng tuyển</span></a>                
                 </li>
                 <li ><a :class="[{'active' : $route.name == 'calendar'}, 'nav-item']" @click="$router.push('/admin/calendar')" ><i class="fa fa-calendar fa-fw"></i><span class="menu-title" data-i18n="User">Lịch phỏng vấn</span></a>
