@@ -306,7 +306,7 @@ export default {
             + '&search='+ ((this.cardSearch.search)?this.cardSearch.search:'')
             + '&searchTitle='+ ((this.cardSearch.searchTitle)?this.cardSearch.searchTitle:'')
             ).then((response)=>{
-	             this.tinTuc=response.data;
+                 this.tinTuc=response.data;
 	        });
         },
         async changeMultipleStatusTinTuc(statusTinTuc){

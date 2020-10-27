@@ -12,6 +12,7 @@ class Document extends Model
         'title',
         'content',
         'status',
+        'file_upload',
         'link_document',
         'count_download',
         'thumbnail',
@@ -20,6 +21,6 @@ class Document extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\User', 'id_user');
     }
 }
