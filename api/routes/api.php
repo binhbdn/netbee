@@ -19,6 +19,7 @@ Route::namespace('API')->group(function () {
   Route::get('getTinTucNew', 'TinTucController@getTinTucNew');
   Route::get('getTinTucSiteMap', 'TinTucController@getTinTucNew');
   Route::get('getTinTucCate', 'TinTucController@getTinTucNew');
+  Route::get('searchTinTuc', 'TinTucController@searchTinTuc');
 
   Route::get('getDetailTinTuc/{id}', 'TinTucController@getDetailTinTuc');
   Route::get('getNationHome', 'HomeController@getNationHome');
