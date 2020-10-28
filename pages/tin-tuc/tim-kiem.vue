@@ -13,7 +13,7 @@
                             <span class="font-italic" v-else style="color: red;">Không có kết quả phù hợp.</span>
                         </div>
                         <div class="card-body">
-                            <!-- <CompanyList1 :DataList="arrayFoundNews"></CompanyList1> -->
+                            <SearchedNewsList :DataList="arrayFoundNews"></SearchedNewsList>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
     </section>
 </template>
 <script>
-import CompanyList1 from "~/components/Company/CompanyList1";
+import SearchedNewsList from "~/components/News/SearchedNewsList";
 
 export default {
     layout: 'news',
@@ -70,7 +70,7 @@ export default {
         ]
     },
     components: {
-        CompanyList1
+        SearchedNewsList
     },
     data () {
         return{
