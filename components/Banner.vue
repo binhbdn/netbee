@@ -24,9 +24,6 @@
                         <a class="nav-link" :class="{'active': $route.name == 'tin-tuyen-sinh'}" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
                            role="tab" aria-controls="profile-fill" aria-selected="false" style="font-weight: 400 !important;">Săn học bổng</a>
                       </li>
-                      <!-- <li class="nav-item">
-                        <a class="nav-link" href="/ung-vien" :class="{'active': $route.name == 'ung-vien' || $route.name == 'tim-ung-vien'}" id="v-pills-22-tab" style="font-weight: 400 !important;">{{$t('banner.candidates.tab')}}</a>
-                      </li> -->
                       <li class="nav-item">
                         <a class="nav-link" href="/cong-ty" :class="{'active': $route.name == 'cong-ty' || $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" style="font-weight: 400 !important;">{{$t('banner.company.tab')}}</a>
                       </li>
@@ -63,50 +60,6 @@
                                 </div>
                               </div>
                             </div>
-                            <!-- <div class="col-md-12 advanced_search_box" id="advanced_search_box">
-                              <a href="javascript:void();" id="advanced_search" @click="show = !show"> <b>Tìm kiếm nâng cao</b> </a>
-                            </div>
-                            <transition>
-                              <div class="col-md-12" id="detail_search" style="padding-left: 15px; padding-top: 10px;" v-if="show">
-                                <div class="row">
-                                  <div class="col-md-2">
-                                    <div class="form-group">
-                                      <Multiselect :options="money" v-model="currency" placeholder="Chọn loại tiền" :show-labels="false" :searchable="false" name="money"></Multiselect>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-5">
-                                    <div class="form-group">
-                                      <div class="form-field">
-                                        <div class="select-wrap">
-                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
-                                          <input name="salary_start" v-model="salary_start" type="text" class="form-control" placeholder="Mức lương tối thiểu....">
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-5">
-                                    <div class="form-group">
-                                      <div class="form-field">
-                                        <div class="select-wrap">
-                                          <div class="icon" style="left:10px !important"><i class="far fa-dollar-sign"></i></div>
-                                          <input name="salary_end" v-model="salary_end" type="text" class="form-control" placeholder="Mức lương tối đa....">
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <Multiselect :options="visa" v-model="chooseVisa" placeholder="Chọn lĩnh vực" :show-labels="false" :searchable="false" :custom-label="nameWithLang1"></Multiselect>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <Multiselect :options="work_form" v-model="chooseWork" :custom-label="nameWithLang" placeholder="Hình thức làm việc" :show-labels="false" :searchable="false"></Multiselect>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </transition> -->
                           </div>
                         </form>
                       </div>
@@ -137,48 +90,6 @@
                           </div>
                         </form>
                       </div>
-                      <!-- <div v-bind:class="{active : this.$route.path == '/ung-vien'}" class="tab-pane" >
-                        <form action="" class="search-job">
-                          <div class="row">
-                            <div class="col-md-3">
-                              <div class="form-group" style="height: 74%;margin-bottom: 15px;">
-                                <div class="form-field" style="height: 100%;">
-                                  <div class="icon" style="left:23px !important;top: 19px!important;"><i class="fas fa-briefcase"></i></div>
-                                  <input style="height: 100%;" type="text" class="form-control" :placeholder="$t('banner.candidates.key')" name="keyword" value="" v-model="keyCvs">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-3 bb">
-                              <div class="form-group" style="margin-bottom: 15px;">
-                                <Multiselect v-model="searchLevel" :options="level" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.candidates.level')" ></Multiselect>
-                              </div>
-                            </div>
-                            <div class="col-md-3 cc">
-                              <div class="form-group" style="margin-bottom: 15px;">
-                                <Multiselect v-model="searchAddress" :options="address" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.candidates.address')" ></Multiselect>
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <div class="form-group" style="margin-bottom: 15px;">
-                                <div class="form-field">
-                                  <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchCvs">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </form>
-                      </div> -->
-                      <!-- <div class="search-footer d-flex justify-content-between">
-                        <div>
-                          <p class="title-p-main">Dành cho du học sinh và các trung tâm du học...</p>
-                        </div>
-                        <div class="advanced-search">
-                          <label class="text-advance-search" data-toggle="collapse" data-target="#advanced" style="text-align: right">
-                            <i class="fa fa-angle-down" id="icon_advanced"></i> Tìm kiếm nâng cao
-                          </label>
-                          <div id="advanced" class="collapse"></div>
-                        </div>
-                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -298,40 +209,9 @@ export default {
     cursor: pointer;
     color: white;
   }
-  .title-p-main{
-    font-size: 15.5px;
-    color: white !important;
-    margin-bottom: 5px;
-    padding-bottom: 6px;
-    font-weight: bold;
-  }
   .parti{
         max-height: 0px;
         position: relative;
-  }
-  .ftco-search .nav-pills .nav-link.active, .ftco-search .nav-pills .nav-link:hover {
-    color: #ffb701!important;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
-  }
-  .ftco-search .nav-pills .nav-link {
-    padding: 10px 30px !important;
-    margin-bottom: 0;
-    color: #000!important;
-    border-radius: 0;
-    font-size: 16px;
-    font-weight: 400;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-    border: 1px solid transparent;
-    background: #ffb701;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
   }
   #v-pills-tabContent {
     background: rgba(255, 255, 255, 0.1);
@@ -354,18 +234,6 @@ export default {
   .p-4 {
     padding: 1.5rem !important;
   }
-  .nav.nav-pills {
-    margin-bottom: 0;
-  }
-  .ftco-search .nav-pills .nav-link {
-    padding: 10px 15px!important;
-  }
-  .mr-md-1, .mx-md-1 {
-    margin-right: 0.25rem !important;
-  }
-  .search-job .form-group .form-control.btn.btn-primary {
-    background: #ffb701 !important;
-  }
   .search-job .form-group .form-control.btn {
     padding: 0 !important;
     font-size: 16px;
@@ -374,14 +242,6 @@ export default {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-  }
-  .btn.btn-primary {
-    background: #ffb701 !important;
-    border: 1px solid #ffb701 !important;
-    color: #fff !important;
-  }
-  .search-job .form-group .select-wrap {
-    position: relative;
   }
   .search-job .form-group .icon {
     position: absolute;
@@ -406,15 +266,6 @@ export default {
   }
   .ftco-search .search-job .form-group .form-control {
     background: #fff !important;
-  }
-  .advanced_search_box {
-    margin-top: 7px;
-    text-align: right;
-    color: white!important;
-    margin-bottom: 10px;
-  }
-  .advanced_search_box a{
-    color: white!important;
   }
   .search ul{
     margin-bottom: 0;
@@ -441,9 +292,6 @@ export default {
   .search ul li a:hover{
     color: #ffb701!important;
   }
-  .advanced_search_box a{
-    color: white!important;
-  }
   .ftco-search .tab-ct2 {
     background: hsla(0, 0%, 3%, 0.28)!important;
     border-radius: 3px;
@@ -468,11 +316,6 @@ export default {
     margin-left: 0;
     height: 300px !important;
   }
-  .hero-wrap, .img, .blog-img, .user-img {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
   .section-intro:before {
     content: "";
     left: 0;
@@ -483,16 +326,6 @@ export default {
     position: absolute;
     opacity: 0.6;
   }
-  .ftco-search .nav-pills .nav-link.active, .ftco-search .nav-pills .nav-link:hover {
-    color: #ffb701;
-    -moz-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-    -ms-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
-  }
-
   .section-intro-active{
     height: 450px;
     transition: opacity .75s;
@@ -502,53 +335,9 @@ export default {
     padding-left: 2px;
     padding-right: 2px;
   }
-
-  .slide-fade-enter-active {
-    transition: all .3s ease;
-  }
-
-  .slide-fade-leave-active {
-      transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-  }
-
-  .slide-fade-enter, .slide-fade-leave-to
-  /* .slide-fade-leave-active below version 2.1.8 */ {
-      transform: translateX(10px);
-      opacity: 0;
-  }
-
-  .multiselect__option--highlight {
-    background: #ffb701;
-    color: #000;
-}
-
-
-.multiselect,
-.multiselect__input,
-.multiselect__single {
-    font-size: 12px !important;
-}
-
-.multiselect__select:before {
-    top: 54%;
-}
-.bb{
-  padding-left: 2px;
-  padding-right: 2px;
-}
-.cc{
-  padding-right: 2px;
-}
 @media(max-width: 320px) {
   .aa {
     padding-left: 13px;
-    padding-right: 13px;
-  }
-  .bb{
-  padding-left: 13px;
-  padding-right: 13px;
-  }
-  .cc{
     padding-right: 13px;
   }
 }
@@ -557,15 +346,7 @@ export default {
     padding-left: 13px;
     padding-right: 13px;
   }
-  .bb{
-  padding-left: 13px;
-  padding-right: 13px;
-  }
-  .cc{
-    padding-right: 13px;
-  }
   .nav-item{
-    /* width: 50%; */
     padding: 1px;
   }
   .nav-item a{
@@ -583,15 +364,9 @@ export default {
   .nav-fill{
     width: 100%;
   }
-  .title-p-main{
-    font-size: 14px
-  }
 }
 .input_placehoder::placeholder{
   font-size: 14px;
   color: #adadad !important;
-}
-.search-job .form-group .form-control.btn.btn-primary:hover {
-  color: #fff !important;
 }
 </style>
