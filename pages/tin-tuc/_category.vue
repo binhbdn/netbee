@@ -79,6 +79,7 @@
 import NewItempage2 from '~/components/NewItempage2';
 
 export default {
+    layout: 'news',
     components:{
         // NewListPage1,
         // JobsList1ColNotCate,
