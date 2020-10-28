@@ -66,7 +66,6 @@
                                                         <th>Tên công việc</th>
                                                         <th>Tên ứng viên</th>
                                                         <th>Nhà tuyển dụng</th>
-                                                        <th>Bonus</th>
                                                         <th>Thời gian nộp</th>
                                                         <th>Trạng thái</th>
                                                         <th>Hành động</th>
@@ -74,12 +73,25 @@
                                                 </thead>                                                
                                                 <tbody v-if="AllApply.length > 0" class="tab-table">                                                                                                        
                                                     <tr v-for="(item, index) in AllApply" :key="index">
-                                                        <td>{{item.id}}</td>
+                                                        <td>
+                                                            <p>{{item.id}}</p>
+                                                            <p v-if="item.users.role == 3"> CVTS</p>
+                                                            <p v-if="item.users.role == 1"> UV</p>
+                                                        </td>
                                                         <td>                                                            
                                                             <p v-if="item.job" style="margin-bottom: 0px;">
                                                                 <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.job.id}/${ChangeToSlug(item.job.title)}`" target="_blank">{{item.job.title}} 
                                                                 </a>
                                                             </p>
+                                                            <div v-if="item.users.role == 3">
+                                                            <span v-if="item.bonus == null || item.bonus == 0">Không bonus</span>
+                                                            <span v-else  style="color: #fc205c">
+                                                                {{FormatPrice(item.bonus)}} {{ item.job.currency }}
+                                                            </span>
+                                                            </div>
+                                                            <div >
+                                                                <span> </span>
+                                                            </div>
                                                             <span style="font-size: 12px;" v-if="item.cv_id != null"><i>Hồ sơ online</i></span>
                                                             <span style="font-size: 12px;" v-if="item.cv_file != null"><i>Hồ sơ đính kèm</i></span>
                                                         </td>
@@ -87,20 +99,11 @@
                                                         <td>{{item.name}}</td>                                                        
                                         
                                                         <td>{{item.user.name}}</td>
-                                                        <td>
-                                                            <span v-if="item.bonus == null || item.bonus == 0">Không bonus</span>
-                                                            <span v-else  style="color: #fc205c">
-                                                                {{FormatPrice(item.bonus)}} {{ item.job.currency }}
-                                                            </span>
-                                                            <!-- <span v-else  style="color: #fc205c">
-                                                                {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}}{{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
-                                                            </span> -->
-                                                        </td>
-                                                        <td>{{ConvertDate(item.created_at)}}</td>
+                                                        <td>{{formatDate(item.created_at)}}</td>
                                                         <td>
                                                             <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" class="btn btn-status">Xem hồ sơ</a>
                                                             <a v-if="item.nb_paper != null" @click="showFile(item.id)" class="btn btn-status">Xem giấy tờ đính kèm</a>
-                                                            <p v-if="item.status == 1">Chưa duyệt</p>
+                                                            <p v-if="item.status == 1" ><span data-toggle="tooltip"  data-placement="top" :title="`Chưa duyệt`"><i style="font-size: 20px;" class="far fa-clock danger" ></i></span></p>
                                                             <p v-else-if="item.status == 2 && item.nb_paper == null">Đã duyệt hồ sơ</p>
                                                             <p v-else-if="item.status == 3">Đã tuyển hồ sơ</p>
                                                             <p v-else-if="item.status == 4">Đã từ chối hồ sơ</p>
@@ -337,6 +340,9 @@ export default {
         this.getAllApply();
     },
     methods: {
+         formatDate: function(date){
+                return moment(String(date)).format('DD-MM-YYYY hh:mm');
+             },
         StatusChange: function(status){
             this.statusTabs = status
             this.AllApply = []
