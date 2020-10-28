@@ -83,8 +83,10 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-3 col-6 user-latest-img" v-for="(companyInfo,index) in listNewCompany" :key="index">
                             <a :href="`cong-ty/${companyInfo.username}`">
-                              <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid rounded-sm" alt="avtar img holder">
+                              <span data-toggle="tooltip" data-placement="top" :title="`${companyInfo.user.name}`">
+                              <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid rounded-sm" alt="avtar img holder" >
                               <img v-else v-lazy="`assets/img/logo.png`" class="img-fluid rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
+                              </span>
                             </a>
                         </div>
                     </div>
