@@ -74,14 +74,14 @@
     </div>
 </template>
 <script>
-import NewListPage1 from '~/components/News/NewListPage1';
-import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
+// import NewListPage1 from '~/components/News/NewListPage1';
+// import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
 import NewItempage2 from '~/components/NewItempage2';
 
 export default {
     components:{
-        NewListPage1,
-        JobsList1ColNotCate,
+        // NewListPage1,
+        // JobsList1ColNotCate,
         NewItempage2
     },
     data() {
