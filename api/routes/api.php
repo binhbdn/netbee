@@ -20,6 +20,11 @@ Route::namespace('API')->group(function () {
   Route::get('getTinTucSiteMap', 'TinTucController@getTinTucNew');
   Route::get('getTinTucCate', 'TinTucController@getTinTucNew');
 
+  Route::get('getDocumentNew', 'TaiLieuController@getDocumentNew');
+  Route::get('getDetailDocument/{id}', 'TaiLieuController@getDetailDocument');
+  Route::post('createUserdlf', 'DownloadFileController@store');
+
+
   Route::get('getDetailTinTuc/{id}', 'TinTucController@getDetailTinTuc');
   Route::get('getNationHome', 'HomeController@getNationHome');
   Route::get('getCategoriesJobHome', 'HomeController@getCategoriesJobHome');
@@ -143,7 +148,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
         Route::post('updateTinTuyen', 'Admin\TinTuyenController@updateTinTuyen');
         Route::post('postView', 'Admin\ViewController@postView');
         Route::post('postSave', 'Admin\SaveController@postSave');
-        Route::get('getSave', 'Admin\SaveController@getSave');
+        Route::post('getSave', 'Admin\SaveController@getSave');
         Route::post('report', 'Admin\ReportController@report');
         Route::get('listcompany', 'Admin\TinTuyenController@listcompany');
       });
@@ -203,11 +208,15 @@ Route::group(['middleware' => 'jwt.auth'], function () {
       });
       Route::prefix('document')->group(function () {
         Route::get('getDocuments', 'Admin\DocumentController@getDocuments');
-        Route::get('getDocument/{id}', 'Admin\DocumentController@getDocumentById');
         Route::post('changeStatusDocument', 'Admin\DocumentController@changeStatusDocument');
         Route::post('deleteDocument', 'Admin\DocumentController@deleteDocument');
         Route::post('createDocument', 'Admin\DocumentController@createDocument');
         Route::post('updateDocument', 'Admin\DocumentController@updateDocument');
+        Route::get('searchDocument', 'Admin\DocumentController@searchDocument');
+        Route::post('changeMultipleStatusDocument', 'Admin\DocumentController@changeMultipleStatusDocument');
+        Route::post('deleteMultipleDocument', 'Admin\DocumentController@deleteMultipleDocument');
+        Route::post('createDocumentImg', 'Admin\DocumentController@createDocumentImg');
+
       });
   });
 });

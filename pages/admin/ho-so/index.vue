@@ -13,8 +13,19 @@
                                     <small style="color:red;">Tổng số hồ sơ: {{ listProfileUser.length }}</small>                                  
                                 </div>
                                 <div class="card-body card-dashboard">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <nav style="margin-bottom: 20px;font-size: 16px;">
+                                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                    <a class="nav-item nav-link" @click="ChangeTab(1)" data-toggle="tab" href="#dapheduyet" role="tab" aria-selected="false">Đã phê duyệt</a>
+                                                    <a class="nav-item nav-link active" @click="ChangeTab(0)" data-toggle="tab" href="#chuapheduyet" role="tab" aria-selected="false">Chờ phê duyệt</a>
+                                                    <a class="nav-item nav-link" @click="ChangeTab(2)" data-toggle="tab" href="#all" role="tab" aria-selected="true">Tất cả</a>
+                                                </div>
+                                            </nav>
+                                        </div>
+                                    </div>
                                     <div class="table-responsive list-data">
-                                        <table class="table table-hover mb-0 zero-configuration">
+                                        <table v-if="listProfileUser.length > 0" class="table table-hover mb-0 zero-configuration">
                                             <thead class="custom-header">
                                                 <tr>
                                                     <th>ID</th>
@@ -26,8 +37,8 @@
                                                     <th>Hành động</th>                                               
                                                 </tr>
                                             </thead>
-                                            <tbody v-if="listProfileUser.length > 0">                                               
-                                                <tr v-for="(item,key) in listProfileUser" :key="key">
+                                            <tbody v-for="(item,key) in listProfileUser" :key="key">                                               
+                                                <tr v-if="(activeTab == 2)|(item.status == activeTab)">
                                                     <td>{{item.id}}</td>
                                                     <td class="text-left">{{item.fullname_profile}}</td>
                                                     <td class="txdate">{{ConvertDate(item.birthday_profile)}}</td>                                                    
@@ -35,7 +46,7 @@
                                                     <td v-if="item.status == 0">
                                                         <div class=""><i style="font-size: 18px;" class="far fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
                                                     </td>
-                                                    <td v-if="item.status == 1">
+                                                    <td v-else>
                                                         <div class="chip-text"><i style="font-size: 18px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
                                                     </td>
                                                     <td>{{ConvertDate(item.created_at)}}</td>
@@ -58,7 +69,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <p class="mb-0 text-center p-1 font-italic" v-if="listProfileUser.length == 0" style="color: red;">Không có kết quả phù hợp.</p>
+                                        <p v-else class="mb-0 text-center p-1 font-italic" style="color: red;">Không có kết quả phù hợp.</p>
                                         <br>
                                     </div>
                                 </div>
@@ -77,10 +88,13 @@
     export default {
         name: 'CvIndex',
         layout: 'admin',
-       
+        head: {
+            title: 'Quản lý hồ sơ',
+        },
         data(){
             return {
                 listProfileUser:[],
+                activeTab: 0,
             }
         },        
         components:{
@@ -88,6 +102,9 @@
         },
         
         methods: {
+            ChangeTab: function(newTabOrder){
+                this.activeTab = newTabOrder
+            },
             async changeStatus(index){
                 try {
                         let response = await this.$axios.post('hoso/changeStatus',{
@@ -173,6 +190,22 @@
 <style scoped>
     i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
         color: #ffb701 !important;
+    }
+    .nav-tabs {
+        border-bottom: 1px solid #DAE1E7 !important;
+    }
+    .nav-tabs .nav-link:hover {
+        border-color: #fff !important;
+        border-bottom-color: #DAE1E7 !important;
+    }
+    .nav-tabs .nav-link {
+        border-radius: 0;
+        padding: 10px;
+    }
+    .nav-tabs .nav-link.active{
+        background-color: #fff;
+        border-color: #DAE1E7 #DAE1E7 #F8F8F8 !important;
+        border-top: 2px solid #ffb701 !important;
     }
     .pagination .page-item.active .page-link{
         background-color: #ffb701 !important;

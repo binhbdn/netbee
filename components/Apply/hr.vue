@@ -35,7 +35,7 @@
                                                 <p v-if="item.status == 1" data-toggle="tooltip" data-placement="top" title="Chờ admin xác thực" class="tag-p-center" style="margin-bottom: 0 !important;"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p>
                                                 <p v-else-if="item.status == 2">Chưa hoàn tất giấy tờ</p>
                                                 <p v-else-if="item.status == 2 && item.nb_paper != null">Chờ admin xác thực giấy tờ</p>
-                                                <p v-else-if="item.status== 4">Admin đã từ chối hồ sơ<br> Lý do: {{item.reason_for_rejection}}</p>
+                                                <p v-else-if="item.status== 4">Nhà tuyển dụng đã tư chối hồ sơ<br> Lý do: {{item.reason_for_rejection}}</p>
                                                 <p v-else-if="item.status == 5">Chờ công ty duyệt</p>
                                                 <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                             </td>

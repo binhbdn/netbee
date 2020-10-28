@@ -40,6 +40,12 @@ class DocumentController extends Controller
         return response()->json($response);
     }
 
+    public function createDocumentImg(Request $request)
+    {
+        $response = $this->newsService->createimg($request);
+        return response()->json($response);
+    }
+
     public function deleteDocument(Request $request)
     {
         $response = $this->documentService->destroy($request->id);
@@ -49,6 +55,23 @@ class DocumentController extends Controller
     public function changeStatusDocument(Request $request)
     {
         $response = $this->documentService->changeStatus($request->id);
+        return response()->json($response);
+    }
+
+    public function searchDocument(Request $request)
+    {   
+        $response = $this->documentService->searchDocument($request);
+        return response()->json($response);
+    }
+    public function changeMultipleStatusDocument(Request $request)
+    {
+        $response = $this->documentService->changeMultiStatus($request->id);
+        return response()->json($response);
+    }
+
+    public function deleteMultipleDocument(Request $request)
+    {
+        $response = $this->documentService->multiDestroy($request->id);
         return response()->json($response);
     }
 }
