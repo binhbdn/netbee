@@ -103,8 +103,8 @@
 </template>
 <script>
 import NewListPage1 from '~/components/News/NewListPage1';
-import NewListPage2 from '~/components/News/NewListPage2';
-import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
+// import NewListPage2 from '~/components/News/NewListPage2';
+// import JobsList1ColNotCate from '~/components/Jobs/JobsList1ColNotCate';
 
 export default {
     layout: 'news',
@@ -120,8 +120,8 @@ export default {
     },
     components:{
         NewListPage1,
-        NewListPage2,
-        JobsList1ColNotCate
+        // NewListPage2,
+        // JobsList1ColNotCate
     },
     data() {
         return {
