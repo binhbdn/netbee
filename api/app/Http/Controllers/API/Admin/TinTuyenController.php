@@ -91,9 +91,9 @@ class TinTuyenController extends Controller
         $response = $this->tinTuyenService->postSettingBonus($request);
         return response()->json($response);
     }
-    public function listcompany()
+    public function listcompany(Request $request)
     {
-        $response = $this->tinTuyenService->listcompany();
+        $response = $this->tinTuyenService->listcompany($request->id);
         return response()->json($response);
     }
 
@@ -107,7 +107,7 @@ class TinTuyenController extends Controller
     {
         $response = $this->tinTuyenService->store($request);
         if($response['status'] == 200) {
-            $content = 'Có tin tuyển dụng mới';
+            $content = 'Có tin tuyển dụng mới '.$this->tinTuyenService->listcompany($request->id)->pluck('id').'';
             $notification = [
                 'content' => $content,
                 'ids' => $this->userService->getIdAdmin()->pluck('id'),

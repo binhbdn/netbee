@@ -88,11 +88,11 @@ class TinTuyenService extends BaseService {
     {
         return $this->getJobById($id)->update($data);
     }
-    public function listcompany()
+    public function listcompany($request)
     {
         return $this->user
             ->where("role",self::ROLE_COMPANY)
-            // ->where("id",Auth::user()->id)
+            ->where("id",Auth::user()->id)
             ->select('users.*')
             ->get();
     }
