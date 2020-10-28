@@ -12,8 +12,10 @@
                             <span v-if="countNews!=0" style="color: red;">Có {{countNews}} kết quả tìm kiếm</span>
                             <span class="font-italic" v-else style="color: red;">Không có kết quả phù hợp.</span>
                         </div>
-                        <div class="card-body">
-                            <SearchedNewsList :DataList="arrayFoundNews"></SearchedNewsList>
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <SearchedNewsList :DataList="arrayFoundNews"></SearchedNewsList>
+                            </div>
                         </div>
                     </div>
                 </div>
