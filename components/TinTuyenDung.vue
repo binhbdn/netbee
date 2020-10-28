@@ -183,8 +183,8 @@
                                                                 </div>
                                                             </td>
                                                             <td class="date-none">
-                                                                {{ConvertDate(item.created_at)}}<br>
-                                                                <span v-if="item.bonus && item.bonus != 0" style="color: red;cursor:pointer;" title="Số tiền">{{ FormatPrice(item.bonus) }} {{ item.currency }}</span>
+                                                                {{formatDate(item.created_at)}}<br>
+                                                                <span v-if="item.bonus && item.bonus != 0" style="color: red;cursor:pointer;">{{ FormatPrice(item.bonus) }}/ Người</span>
                                                             </td>
                                                             <td v-if="item.status == 0" class="status-none">
                                                                 <div class="highlight-text" style="font-size:12px; text-align:center;margin-bottom:3px;">
@@ -454,6 +454,9 @@ export default {
         }                        
     },
     methods: {
+         formatDate: function(date){
+                return moment(String(date)).format('DD-MM-YYYY hh:mm');
+             },
         StatusChange: function(status){
             this.statusTabs = status
             this.tinTuyenDung = []
