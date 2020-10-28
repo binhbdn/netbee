@@ -97,6 +97,7 @@ import NewItempage2 from '~/components/NewItempage2nodate';
 // import NewsList from '~/components/News/NewsList'
 
 export default {
+    layout: 'news',
     components:{
         // NewListPage1,
         // JobsList1ColNotCate,
