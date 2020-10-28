@@ -90,7 +90,7 @@ export default {
     },
     methods:{
         fetch(){
-            this.$axios.$get('tintuc/searchTinTuc?searchCategory='
+            this.$axios.$get('searchTinTuc?searchCategory='
             + ((this.newsSearch.Category.id) ? this.newsSearch.Category.id : '')
             // + '&searchStatus=1'
             + '&search='+ ((this.newsSearch.Keyword) ? this.ChangeToSlug(this.newsSearch.Keyword).replace(/\-/gi, '%20') : '')
