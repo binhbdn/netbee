@@ -163,7 +163,7 @@
                                                                 </li>
                                                                 {{item.id}}</td>
                                                             <td class="text-left">
-                                                                <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}} 
+                                                                <a style="font-size: 17px" data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.id}/${ChangeToSlug(item.title)}`" target="_blank">{{item.title}} 
                                                                 </a>
                                                                 <p style="font-size: 12px" v-if="item.username != null">
                                                                     <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết công ty`" :href="`/cong-ty/${item.username}`" target="_blank"><i>{{item.namecompany}}</i></a>
@@ -173,11 +173,11 @@
                                                             <td class="statistical-none">
                                                                 <div class="row">
                                                                     <div class="col-6 pr-0 pl-0">
-                                                                        <h3 class="text-center">{{(item.viewers)}}</h3>
+                                                                        <h4 class="text-center">{{(item.viewers)}}</h4>
                                                                         <p style="font-size:12px; text-align:center">Lượt xem</p>
                                                                     </div>
                                                                     <div class="col-6 pr-0 pl-0">
-                                                                        <h3 class="text-center">{{(item.applyers)}}</h3>
+                                                                        <h4 class="text-center">{{(item.applyers)}}</h4>
                                                                         <p style="font-size:12px; text-align:center">Ứng tuyển</p>
                                                                     </div>
                                                                 </div>
