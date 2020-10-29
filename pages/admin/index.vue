@@ -77,7 +77,7 @@
         <DashboardHr v-else-if="$auth.user.role == 3 || $auth.user.role == 1"/>
         <DashboardAdmin v-else/>
         <!-- Test for hide facebook messenger: -->
-        <div id="fb-root-container"><div id="fb-root"></div></div>
+        <!-- <div id="fb-root-container"><div id="fb-root"></div></div> -->
     </div>
 </template>
 
@@ -200,15 +200,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
     /* Test for hide facebook messenger: */
-    #fb-root-container {
+    /* #fb-root-container {
         display: none !important;
     }
     div#fb-root-container > div#fb-root {
         display: none !important;
         visibility: hidden !important;
-    }
+    } */
     /* Making sure hidden frames are hidden: */
-    #fb-root-container iframe {
+    /* #fb-root-container iframe {
         display: none !important;
         visibility: hidden !important;
         height: 0 !important;
@@ -225,5 +225,5 @@ export default {
         height:0 !important;
         width:0 !important;
         border: none !important;
-    }
+    } */
 </style>
