@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="main-bottom mb-1">
-                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" class="btn border-netbee aa">{{$t('see_more')}}</a>
+                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" data-toggle="tooltip" data-placement="top" title="Xem thêm" class="btn border-netbee aa">{{$t('see_more')}}</a>
                                 </div>
                             </div>
                         </div>
@@ -188,10 +188,10 @@
                 </div>              
               </div>
               <div class="main-bottom" style="padding: 15px 15px;">
-                <a href="/tin-tuyen-sinh" class="btn border-netbee aa">{{$t('see_more')}}</a>
+                <a href="/tin-tuyen-sinh" data-toggle="tooltip" data-placement="top" title="Xem thêm" class="btn border-netbee aa">{{$t('see_more')}}</a>
               </div>
             </div>
-          </div>
+          </div> 
           <div class="col-lg-4 col-12">
             <ul class="nav nav-tabs nav-fill" style="margin: 0;" id="myTab" role="tablist">
               <li class="nav-item">
@@ -293,7 +293,7 @@
                 </div>
               </div>
               <div class="main-bottom m-r-bt-15">
-                <a href="/tin-tuc" class="btn border-netbee">{{$t('see_more')}}</a>
+                <a href="/tin-tuc" data-toggle="tooltip" data-placement="top" title="Xem thêm" class="btn border-netbee">{{$t('see_more')}}</a>
               </div>
             </div>
           </div>

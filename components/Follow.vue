@@ -44,7 +44,7 @@
                       </ValidationProvider>
                       <div class="col-md-12 text-center form-group" style="padding-left: 0;">
                         <div class="form-submit text-center">
-                          <button @click="sendForm()" class="btn bg-netbee" style="width: 100%;">Gửi ngay</button>
+                          <button @click="sendForm()" data-toggle="tooltip" data-placement="top" title="Gửi ngay" class="btn bg-netbee" style="width: 100%;">Gửi ngay</button>
                         </div>
                       </div>
                     </div>

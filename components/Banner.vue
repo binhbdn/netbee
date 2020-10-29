@@ -56,7 +56,7 @@
                             <div class="col-md-2" style="padding-left: 2px;" id="pd15">
                               <div class="form-group" style="margin-bottom: 15px;">
                                 <div class="form-field">
-                                  <input type="button" :value="$t('banner.search')" class="col-md-12 btn bg-netbee" @click="searchJobs">
+                                  <input type="button" :value="$t('banner.search')" data-toggle="tooltip" data-placement="top" title="Tìm Ngay" class="col-md-12 btn bg-netbee" @click="searchJobs">
                                 </div>
                               </div>
                             </div>
