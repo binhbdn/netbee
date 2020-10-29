@@ -133,6 +133,10 @@ export default {
     JobsList1ColNotCate,
     Multiselect
   },
+  async asyncData({ params }) {
+    const tim_kiem = params.tim_kiem // When calling /xuat-khau-lao-dong the tim_kiem will be "xuat-khau-lao-dong"
+    return { tim_kiem }
+  },
   async asyncData({$axios, route}) {
     let getTinTuyenDungNew = await $axios.$get('searchJobs?keyword='
                                                 +(route.query.keyword != null ? route.query.keyword : '')
