@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="main-bottom mb-1">
-                                  <a href="/tin-tuyen-sinh/tim-kiem?keyword=tin-noi-bat" data-toggle="tooltip" data-placement="top" title="Xem thêm" class="btn border-netbee aa">{{$t('see_more')}}</a>
+                                  <a href="/tin-tuyen-sinh/tin-noi-bat?keyword=tin-noi-bat" class="btn border-netbee aa">{{$t('see_more')}}</a>
                                 </div>
                             </div>
                         </div>
@@ -219,13 +219,13 @@
                                 <div class="tab-pane active list-item" id="home-fill" role="tabpanel"
                                       aria-labelledby="home-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item item" v-for="(item, index) in linhvuc" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?id_visa=${item.id}`"><i class="fa fa-hand-point-right"></i> {{item.profession}}</a></li>
+                                    <li class="nav-item item" v-for="(item, index) in linhvuc" :key="index"><a :href="`tin-tuyen-sinh/${ChangeToSlug(item.profession)}?id_visa=${item.id}`"><i class="fa fa-hand-point-right"></i> {{item.profession}}</a></li>
                                   </ul>
                                 </div>
                                 <div class="tab-pane" id="profile-fill" role="tabpanel"
                                       aria-labelledby="profile-tab-fill">
                                   <ul class="nav flex-column">
-                                    <li class="nav-item item" v-for="(item, index) in quocgia" :key="index"><a :href="`tin-tuyen-sinh/tim-kiem?nation_id=${item.id}`"><i class="fa fa-hand-point-right"></i> {{item.name}}</a></li>
+                                    <li class="nav-item item" v-for="(item, index) in quocgia" :key="index"><a :href="`tin-tuyen-sinh/${ChangeToSlug(item.name)}?nation_id=${item.id}`"><i class="fa fa-hand-point-right"></i> {{item.name}}</a></li>
                                   </ul>
                                 </div>
                               </div>
