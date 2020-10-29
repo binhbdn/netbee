@@ -173,9 +173,9 @@
 <script>
 // import CompanyList1 from "~/components/Company/CompanyList1";
 import StarRating from 'vue-star-rating'
-import JobsList1Col from '~/components/Jobs/JobsList1Col'
-import JobsList2Col from '~/components/Jobs/JobsList2Col'
-import NewsList from '~/components/News/NewsList'
+// import JobsList1Col from '~/components/Jobs/JobsList1Col'
+// import JobsList2Col from '~/components/Jobs/JobsList2Col'
+// import NewsList from '~/components/News/NewsList'
 export default {
   data() {
     return {
@@ -190,9 +190,9 @@ export default {
   components: {
     // CompanyList1,
     StarRating,
-    JobsList2Col,
-      NewsList,
-      JobsList1Col
+    // JobsList2Col,
+      // NewsList,
+      // JobsList1Col
   },
   created() {
     this.fetch();

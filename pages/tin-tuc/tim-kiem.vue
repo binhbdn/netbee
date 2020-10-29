@@ -12,8 +12,10 @@
                             <span v-if="countNews!=0" style="color: red;">Có {{countNews}} kết quả tìm kiếm</span>
                             <span class="font-italic" v-else style="color: red;">Không có kết quả phù hợp.</span>
                         </div>
-                        <div class="card-body">
-                            <!-- <CompanyList1 :DataList="arrayFoundNews"></CompanyList1> -->
+                        <div class="card-content collapse show">
+                            <div class="card-body">
+                                <SearchedNewsList :DataList="arrayFoundNews"></SearchedNewsList>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -55,7 +57,7 @@
     </section>
 </template>
 <script>
-import CompanyList1 from "~/components/Company/CompanyList1";
+import SearchedNewsList from "~/components/News/SearchedNewsList";
 
 export default {
     layout: 'news',
@@ -70,7 +72,7 @@ export default {
         ]
     },
     components: {
-        CompanyList1
+        SearchedNewsList
     },
     data () {
         return{
@@ -90,9 +92,9 @@ export default {
     },
     methods:{
         fetch(){
-            this.$axios.$get('tintuc/searchTinTuc?searchCategory='
+            this.$axios.$get('searchTinTuc?searchCategory='
             + ((this.newsSearch.Category.id) ? this.newsSearch.Category.id : '')
-            + '&searchStatus=1'
+            // + '&searchStatus=1'
             + '&search='+ ((this.newsSearch.Keyword) ? this.ChangeToSlug(this.newsSearch.Keyword).replace(/\-/gi, '%20') : '')
             + '&searchTitle='+ ((this.newsSearch.Title) ? this.ChangeToSlug(this.newsSearch.Title).replace(/\-/gi, '%20') : '')
             ).then((response)=>{

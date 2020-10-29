@@ -348,6 +348,51 @@ class NewsService extends BaseService{
         return $query->orderBy('id', 'DESC')->paginate($perPage);
     }
 
+    // Copy from "public function searchNews" & modify
+    public function userSearchNews($request)
+    {
+        $perPage = 6;
+        $search = $request->search;
+        $searchTitle = $request->searchTitle;
+        $searchCategory = $request->searchCategory;
+        // $searchStatus = $request->searchStatus;
+        // $conditions = [];
+        $conditions[] = [
+            'status', '=', '1'
+        ];
+        if($searchTitle != ''){
+            $conditions[] = [
+                'title',
+                'LIKE',
+                '%'.$searchTitle.'%'
+            ];
+        }
+        // if($searchStatus != ''){
+        //     $conditions[] = [
+        //         'status', '=', '1'
+        //     ];
+        // }
+        if($searchCategory != ''){
+            $conditions[] = [
+                'id_category', '=', $searchCategory
+            ];
+        }
+        $query = $this->news->whereDeleted(self::INACTIVE);
+        // if (Auth::user()->role != self::ROLE_ADMIN) {
+        //     $query->whereUserCreated(Auth::user()->id);
+        // }
+        if (!empty($conditions)) {
+            $query->where($conditions);
+        }
+        if ($search != '') {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'LIKE', '%'.$search.'%')
+                    ->orWhere('id','LIKE', '%'.$search.'%');
+            });
+        }
+        return $query->orderBy('id', 'DESC')->paginate($perPage);
+    }
+
     public function getNewsClient($request, $paginate = false)
     {
         $query = $this->news->whereStatus(self::ACTIVE)

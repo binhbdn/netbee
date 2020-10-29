@@ -101,7 +101,7 @@ export default {
     searchNews(){
       window.location.href = '/tin-tuc/tim-kiem?searchCategory='
       + ((this.newsSearch.Category.id) ? this.newsSearch.Category.id : '')
-      + '&searchStatus=1'
+      // + '&searchStatus=1'
       + '&search='+ ((this.newsSearch.Keyword) ? this.ChangeToSlug(this.newsSearch.Keyword).replace(/\-/gi, '%20') : '')
       + '&searchTitle='+ ((this.newsSearch.Title) ? this.ChangeToSlug(this.newsSearch.Title).replace(/\-/gi, '%20') : '')
     }

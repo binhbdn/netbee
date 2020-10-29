@@ -33,4 +33,10 @@ class TinTucController extends Controller
         $response = $this->newsService->getNewsDetailClient($request->id);
         return response()->json($response);
     }
+    // Copy from "~/Admin/TinTucController.php" & change "searchNews" to "userSearchNews"
+    public function searchTinTuc(Request $request)
+    {
+        $response = $this->newsService->userSearchNews($request);
+        return response()->json($response);
+    }
 }
