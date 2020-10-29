@@ -33,7 +33,7 @@
                                                 <td>
                                                     <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" class="btn btn-status">Xem hồ sơ</a>
                                                     <a v-if="item.cv_file != null" target="_blank" @click="dowloadfile(item.cv_file)" class="btn btn-status">Xem hồ sơ</a>
-                                                    <a v-if="item.nb_paper != null" @click="showFile(item.id)" class="btn btn-status" >Xem giấy tờ đính kèm</a>
+                                                    <a v-if="item.nb_paper != null" @click="showFile(item.id)" class="btn btn-status" data-toggle="tooltip"  data-placement="top" :title ="'Xem giấy tờ đính kèm'">Xem giấy tờ đính kèm</a>
                                                     <p v-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                                     <p v-else-if="item.status == 5 && item.nb_paper == null">Đợi giấy tờ đính kèm</p>
                                                 </td>
@@ -551,5 +551,8 @@ export default {
         transition: all 0.3s ease;
         opacity: 0;
         z-index: 1032;
+    }
+    .table th, .table td{
+        text-align: center;
     }
 </style>
