@@ -20,7 +20,7 @@
                             <form>
                                 <div class="row" v-if="$auth.user.role != 2">
                                     <div class="col-12 col-sm-6 col-lg-3">
-                                        <input type="text" @keyup="search()" class="form-group ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                        <input type="text" @keyup="search()" class="form-group ag-grid-filter form-control mr-1 mb-sm-0 input_placehoder" v-model="cardSearch.search" id="filter-text-box" :placeholder="$t('banner.news.key')" style="font-size:14px" />
                                     </div>
                                     <!-- <div class="col-12 col-sm-6 col-lg-3">
                                         <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.searchTitle" id="filter-text-box" placeholder="Tên tiêu đề..." />
@@ -32,27 +32,27 @@
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-3">
                                         <fieldset class="form-group">
-                                            <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
+                                            <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.news.category')" style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-3">
                                         <fieldset class="form-group">
-                                            <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
+                                            <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.news.status')"  style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
                                 </div>
                                 <div class="row" v-else>
                                     <div class="col-12 col-sm-6 col-lg-4">
-                                        <input type="text" @keyup="search()" class="form-group ag-grid-filter form-control mr-1 mb-sm-0" v-model="cardSearch.search" id="filter-text-box" placeholder="Tìm kiếm...." />
+                                        <input type="text" @keyup="search()" class="form-group ag-grid-filter form-control mr-1 mb-sm-0 input_placehoder" v-model="cardSearch.search" id="filter-text-box" :placeholder="$t('banner.news.key')" style="font-size:14px" />
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
-                                            <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
+                                            <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.news.category')" style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
-                                            <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn trạng thái"  style="font-size:14px"></multiselect>
+                                            <multiselect @input="search()" v-model="cardSearch.searchStatus" :options="status" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.news.status')"  style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
                                 </div>
@@ -907,6 +907,11 @@ i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
 }
 .modal .modal-footer {
     border-color: #ffb701 !important;
+}
+
+.input_placehoder::placeholder{
+    font-size: 14px;
+    color: #adadad !important;
 }
 
 @media (max-width: 991px){

@@ -19,11 +19,11 @@
                             <form>
                                 <div class="row">
                                     <div class="col-12 col-sm-6 col-lg-4">
-                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0 input_placehoder" v-model="cardSearch.search" id="filter-text-box" placeholder="Từ khóa...." />
+                                        <input type="text" @keyup="search()" class="ag-grid-filter form-control mr-1 mb-sm-0 input_placehoder" v-model="cardSearch.search" id="filter-text-box" :placeholder="$t('banner.news.key')" />
                                     </div>
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <fieldset class="form-group">
-                                            <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" placeholder="Chọn danh mục" style="font-size:14px"></multiselect>
+                                            <multiselect @input="search()" v-model="cardSearch.searchCategory" :options="categories" :custom-label="nameWithLang" :searchable="false" :close-on-select="true" :show-labels="false" :placeholder="$t('banner.news.category')" style="font-size:14px"></multiselect>
                                         </fieldset>
                                     </div>
                                     <!-- <div class="col-12 col-sm-6 col-lg-4">
