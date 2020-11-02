@@ -98,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="main-bottom mb-1">
-                                  <a href="/tin-tuyen-sinh/tin-noi-bat?keyword=tin-noi-bat" class="btn border-netbee aa">{{$t('see_more')}}</a>
+                                  <a href="/tin-tuyen-sinh/tin-noi-bat?keyword=tin-noi-bat" data-toggle="tooltip" data-placement="top" title="Xem thêm" class="btn border-netbee aa">{{$t('see_more')}}</a>
                                 </div>
                             </div>
                         </div>
