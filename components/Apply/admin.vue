@@ -100,7 +100,7 @@
                                         
                                                         <td>{{item.user.name}}</td>
                                                         <td>{{formatDate(item.created_at)}}</td>
-                                                        <td>
+                                                        <td class="btn-center">
                                                             <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" class="btn btn-status">Xem hồ sơ</a>
                                                             <a v-if="item.nb_paper != null" @click="showFile(item.id)" class="btn btn-status" data-toggle="tooltip"  data-placement="top" :title ="'Xem giấy tờ đính kèm'" >Xem giấy tờ đính kèm</a>
                                                             <p v-if="item.status == 1" ><span data-toggle="tooltip"  data-placement="top" :title="`Chưa duyệt`"><i style="font-size: 20px;" class="far fa-clock danger" ></i></span></p>
@@ -522,6 +522,9 @@ export default {
 }
 </script>
 <style scoped>
+.btn-center{
+    text-align: center !important;
+    }
 .btn.btn-white {
     border-radius: 5px !important;
 }
