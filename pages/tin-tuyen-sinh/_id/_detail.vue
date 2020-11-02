@@ -502,7 +502,7 @@
                                                     </div>
                                                 </div>
                                             </ValidationProvider>
-                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                            <ValidationProvider rules="required|customAddress" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
                                                         <label for="address">Địa chỉ (<span style="color: red;">*</span>)</label>
@@ -612,7 +612,26 @@ extend("birthdate", {
             return true
         }
     }
-})
+});
+var errorMessageinformation =
+  " phải chứa nhiều hơn 6 ký tự";
+// create custom rule
+extend("customAddress", {
+  message: field =>"Địa chỉ" + errorMessageinformation,
+  validate: value => {
+    var mustContainTheseChars = /^.{7,}$/
+    var containsRequiredChars = mustContainTheseChars.test(value);
+    if (containsRequiredChars) {
+      return true;
+    } else {
+      if (containsRequiredChars) {
+        errorMessageinformation =
+          " phải chứa nhiều hơn 6 ký tự";
+      }
+      return false;
+    }
+  }
+});
 var errorMessage =
   " phải chứa ít nhất 8 ký tự";
 // create custom rule

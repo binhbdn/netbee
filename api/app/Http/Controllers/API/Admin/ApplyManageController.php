@@ -167,10 +167,11 @@ class ApplyManageController extends Controller
 
     public function PostPaperApply(Request $request)
     {
+        $id = $request->apply_id;
         $data = $this->applyJobService->postPaperApply($request);
         if($data['status'] == 200) {
             $notification = [
-                'content' => 'Ứng viên đã cập nhập hồ sơ đính kèm, chờ xét duyệt',
+                'content' => 'Ứng viên đã cập nhập hồ sơ đính kèm '.$id.', chờ xét duyệt',
                 'ids' => $this->userService->getIdAdmin()->pluck('id'),
                 'url' => 'https://netbee.vn/admin/quan-ly-ung-tuyen'
             ];

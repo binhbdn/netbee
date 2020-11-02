@@ -59,7 +59,7 @@
 					        <input class="form-control" type="number" id="percent_bonus" placeholder="Nhập % bonus" v-model="percent_bonus" min="1" max="2">
 					      </div>
 					      <div class="modal-footer">
-					        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+					        <button type="button" data-toggle="tooltip"  data-placement="top" :title="`Đóng`" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
 					        <button class="btn bg-netbee" data-toggle="tooltip"  data-placement="top" :title="`Cập nhật`" @click="updateBonus()">Cập nhật</button>
 					      </div>
 					    </div>
@@ -127,6 +127,9 @@
     border-color: #ffb701 !important;
     background-color: #ffb701 !important;
     color: #000 !important;
+    }
+    .btn-secondary {
+    background-color: #e00707 !important;
     }
     .btn-secondary:hover{
     background-color: #ffb701 !important;

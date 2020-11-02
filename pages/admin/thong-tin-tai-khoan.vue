@@ -493,7 +493,7 @@
                                                                 </ValidationProvider>
                                                                 </div>
                                                                 <div class="col-sm-4 p-sm-0 pt-1">
-                                                                    <button class="btn bg-netbee col-md-12 pl-1 pr-1" data-toggle="tooltip" data-placement="top" title="Thêm" @click="updateEmailCompany()">Thêm</button>
+                                                                    <button class="btn bg-netbee float-right mb-1" data-toggle="tooltip" data-placement="top" title="Thêm" @click="updateEmailCompany()">Thêm</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1415,7 +1415,9 @@ export default {
 /* .form-group{
     margin-bottom: 0.5rem;
 } */
-
+.float-right{
+    width: 113px !important;
+}
 .card-header-title, .card-header-title1 {
     position: relative;
     border-bottom: 1px solid #eaeaea;
