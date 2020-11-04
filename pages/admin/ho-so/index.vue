@@ -244,6 +244,14 @@
      .emai-text-left{
          text-align: left;
      }
+    @media (max-width: 1199.98px){
+        .table-responsive {
+            overflow-x: scroll;
+        }
+        .table-responsive .table {
+            width: 865px ;
+        }
+    }
     @media (min-width: 376px)and (max-width: 440px ){
          .emai-text-left{
              

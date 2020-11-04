@@ -35,11 +35,11 @@
                                                 <p v-if="item.status == 1" data-toggle="tooltip" data-placement="top" title="Chờ admin xác thực" class="mb-0" style="padding-left: 28px"><i class="fa fa-exclamation-circle" aria-hidden="true"></i></p>
                                                 <p v-else-if="item.status == 2 && item.nb_paper == null">Chưa hoàn tất giấy tờ</p>
                                                 <p v-else-if="item.nb_paper != null && item.status != 4 && item.status != 5 && item.status != 6">Đã hoàn tất giấy tờ ,Chờ admin xác thực giấy tờ</p>
-                                                <p v-else-if="item.status== 4">Nhà tuyển dụng đã tư chối hồ sơ<br> Lý do: {{item.reason_for_rejection}}</p>
+                                                <p v-else-if="item.status== 4">Admin đã từ chối hồ sơ.<br> Lý do: {{item.reason_for_rejection}}</p>
                                                 <p v-else-if="item.status == 5">Chờ công ty duyệt</p>
                                                 <p v-else-if="item.status == 6">Thời gian phỏng vấn<br> {{ item.interview_schedules }}</p>
                                             </td>
-                                            <td>
+                                            <td v-if="item.status != 4">
                                                 <div class="action-btns">
                                                     <div data-toggle="tooltip"  data-placement="top" :title="`Hủy`">
                                                         <a type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn-repon btn btn-edit-fix-huy py-75 waves-effect waves-light">
