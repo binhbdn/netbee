@@ -137,13 +137,13 @@
                                                                     </fieldset>
                                                                 </li>
                                                                 ID</th>
-                                                            <th class="title-style" style="width:40%;">Tên công việc</th>
+                                                            <th class="title-style" style="width:37%;">Tên công việc</th>
                                                             <th class="statistical-none" style="width:20%;">Thống kê</th>
                                                             <th class="date-none" style="width:17%">Ngày tạo</th>
-                                                            <th class="status-none" style="width:15%;">Trạng thái</th>
+                                                            <th class="status-none" style="width:13%;">Trạng thái</th>
                                                             <!-- <th style="width:10%;">Thể loại</th>
                                                             <th style="width:10%;">Loại tin</th> -->
-                                                            <th class="manipulation-style" style="width:8%;">Thao tác</th>
+                                                            <th class="manipulation-style" style="width:13%;">Thao tác</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody v-if="tinTuyenDung.length > 0">
@@ -230,7 +230,8 @@
                                                                             <div class="dropdown-menu" style="left: -25px!important;">
                                                                                 <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
                                                                                 <a  @click="changePublic(item.id)" class="dropdown-item"><i :class="item.isPublic == 1 ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{ item.isPublic == 1 ? 'Ẩn tin' : 'Hiện tin' }}</a>
-                                                                                <a :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
+                                                                                 <a v-on:click="deleteNews(item.id)"  v-if="$auth.user.role == 4" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
+                                                                                 <a :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
                                                                                 <nav v-if="item.status == 0">
                                                                                     <a v-on:click="deleteNews(item.id)"  v-if="$auth.user.role == 2" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
                                                                                 </nav>
