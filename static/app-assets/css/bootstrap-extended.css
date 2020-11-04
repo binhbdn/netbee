@@ -2011,8 +2011,8 @@ html [type='button'],
 
 .header-navbar .navbar-container ul.nav li .badge.badge-up {
     position: absolute;
-    top: 12px;
-    right: -2px;
+    top: 9px;
+    right: 2px;
 }
 
 .header-navbar .navbar-container ul.nav li.dropdown-language>a.nav-link {
