@@ -165,7 +165,7 @@ extend("email", {
   message: (field, values) => "Email không đúng định dạng"
 });
 extend("length", {
-  message: (field, values) => "Sai định dạng số điện thoại"
+  message: (field, values) => "Số điện thoại phải gồm 10 chữ số"
 });
 extend("integer", {
   message: (field, values) => "Dữ liệu nhập vào phải là số"
