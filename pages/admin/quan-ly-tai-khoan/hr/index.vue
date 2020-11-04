@@ -1196,6 +1196,9 @@ i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
   /* max-height: 34px; */
   padding: 5px;
 }
+.input-group-prepend{
+  width: 45px;
+}
 .close{
   margin: -0.5rem 0;
 }
