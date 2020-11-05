@@ -15,15 +15,15 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" style="background-color: #2f3b4c;color: #fff;">
-                <li><a  :class="[{'active' : $route.name == 'admin/'}, 'nav-item']" @click="$router.push('/admin')"><i class="fa fa-home fa-fw"></i><span class="menu-title" data-i18n="Dashboard">Trang chủ</span></a>
+                <li><a  :class="[{'active' : $route.name == 'admin'}, 'nav-item']" @click="navigation('admin')"><i class="fa fa-home fa-fw"></i><span class="menu-title" data-i18n="Dashboard">Trang chủ</span></a>
                 </li>
                 <!-- <li class=" navigation-header"><span style="color: #fff;">Apps</span>
                 </li> -->
                 <li  v-if="$auth.user.role == 4"><a  href="#"><i class="far fa-copy fa-fw"></i><span class="menu-title" data-i18n="Ecommerce">Bài viết</span></a>
                     <ul class="menu-content">
-                        <li :class="[{'active' : ($route.name == 'admin-news')}, 'nav-item']"><a @click="$router.push('/admin/news')"  ><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
+                        <li :class="[{'active' : ($route.name == 'admin-news')}, 'nav-item']"><a @click="navigation('admin/news')"  ><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
                         </li>
-                        <li :class="[{'active' : ($route.name == 'admin-news-create')}, 'nav-item']"><a @click="$router.push('/admin/news/create')" ><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tạo bài viết mới</span></a>
+                        <li :class="[{'active' : ($route.name == 'admin-news-create')}, 'nav-item']"><a @click="navigation('admin/news/create')" ><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tạo bài viết mới</span></a>
                         </li>
                     </ul>
                 </li>
@@ -37,19 +37,19 @@
                 </li> -->
                 <li  v-if="$auth.user.role == 2 || $auth.user.role == 4"><a  href="#"><i class="fas fa-briefcase fa-fw"></i><span class="menu-title" data-i18n="Ecommerce">Tin tuyển dụng</span></a>
                     <ul class="menu-content">
-                        <li :class="[{'active' : ($route.name == 'admin-tin-tuyen-dung')}, 'nav-item']"><a @click="$router.push('/admin/tin-tuyen-dung')" ><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
+                        <li :class="[{'active' : ($route.name == 'admin-tin-tuyen-dung')}, 'nav-item']"><a @click="navigation('admin/tin-tuyen-dung')" ><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Shop">Danh sách</span></a>
                         </li>
-                        <li :class="[{'active' : ($route.name == 'admin-tin-tuyen-dung-tao')}, 'nav-item']"><a @click="$router.push('/admin/tin-tuyen-dung/tao')" ><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tạo tin tuyển dụng</span></a>
+                        <li :class="[{'active' : ($route.name == 'admin-tin-tuyen-dung-tao')}, 'nav-item']"><a @click="navigation('admin/tin-tuyen-dung/tao')" ><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tạo tin tuyển dụng</span></a>
                         </li>
                     </ul>
                 </li> 
-                <li ><a :class="[{'active' : $route.name == 'ho-so'}, 'nav-item']" @click="$router.push('/admin/ho-so')" v-if="$auth.user.role == 4 || $auth.user.role == 1 || $auth.user.role == 3"><i class="fad fa-folder-open fa-fw"></i><span class="menu-title" data-i18n="User">Quản lý hồ sơ</span></a>
-                <li ><a :class="[{'active' : $route.name == 'quan-ly-ung-tuyen'}, 'nav-item']" @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 4 || $auth.user.role == 2"><i class="fas fa-satellite-dish fa-fw"></i><span class="menu-title" data-i18n="User">Quản lý ứng tuyển</span></a>                
+                <li ><a :class="[{'active' : $route.name == 'admin-ho-so'}, 'nav-item']" @click="navigation('admin/ho-so')" v-if="$auth.user.role == 4 || $auth.user.role == 1 || $auth.user.role == 3"><i class="fad fa-folder-open fa-fw"></i><span class="menu-title" data-i18n="User">Quản lý hồ sơ</span></a>
+                <li ><a :class="[{'active' : $route.name == 'admin-quan-ly-ung-tuyen'}, 'nav-item']" @click="navigation('admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 4 || $auth.user.role == 2"><i class="fas fa-satellite-dish fa-fw"></i><span class="menu-title" data-i18n="User">Quản lý ứng tuyển</span></a>                
                 </li>
-                <li ><a :class="[{'active' : $route.name == 'calendar'}, 'nav-item']" @click="$router.push('/admin/calendar')" ><i class="fa fa-calendar fa-fw"></i><span class="menu-title" data-i18n="User">Lịch phỏng vấn</span></a>
+                <li ><a :class="[{'active' : $route.name == 'admin-calendar'}, 'nav-item']" @click="navigation('admin/calendar')" ><i class="fa fa-calendar fa-fw"></i><span class="menu-title" data-i18n="User">Lịch phỏng vấn</span></a>
                 <!-- <li :class="[{'active' : $route.name == 'call'}, 'nav-item']"><a @click="$router.push('/admin/call')" ><i class="fa fa-phone-square"></i><span class="menu-title" data-i18n="User">Phỏng vấn trực tuyến</span></a> -->
-                <li  v-if="$auth.user.role == 4"><a :class="[{'active' : $route.name == 'quang-cao'}, 'nav-item']" @click="$router.push('/admin/quang-cao')" ><i class="fa fa-camera-retro fa-fw"></i><span class="menu-title" data-i18n="User">Quảng cáo</span></a>
-                <li ><a :class="[{'active' : $route.name == 'quan-ly-ung-tuyen'}, 'nav-item']" @click="$router.push('/admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fad fa-id-card-alt fa-fw"></i><span class="menu-title" data-i18n="User">Hồ sơ đã nộp</span></a>
+                <li  v-if="$auth.user.role == 4"><a :class="[{'active' : $route.name == 'admin-quang-cao'}, 'nav-item']" @click="navigation('admin/quang-cao')" ><i class="fa fa-camera-retro fa-fw"></i><span class="menu-title" data-i18n="User">Quảng cáo</span></a>
+                <li ><a :class="[{'active' : $route.name == 'admin-quan-ly-ung-tuyen'}, 'nav-item']" @click="navigation('admin/quan-ly-ung-tuyen')" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fad fa-id-card-alt fa-fw"></i><span class="menu-title" data-i18n="User">Hồ sơ đã nộp</span></a>
                 </li>
 
                 <!-- <li :class="[{'active' : ($route.name == 'admin-quan-ly-viec-lam') || ($route.name == 'admin-quan-ly-viec-lam-viec-lam-da-luu')}, 'nav-item']"><a href="#" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fas fa-briefcase"></i><span class="menu-title" data-i18n="Ecommerce">Quản lý việc làm</span></a>
@@ -58,24 +58,24 @@
                         </li>
                     </ul>
                 </li> -->
-                <li ><a :class="[{'active' : $route.name == 'admin-viec-lam-da-luu'}, 'nav-item']" @click="$router.push('/admin/quan-ly-viec-lam/viec-lam-da-luu')" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fad fa-save fa-fw"></i><span class="menu-title" data-i18n="Details">Việc làm đã lưu</span></a>
-                <li ><a :class="[{'active' : $route.name == 'friends'}, 'nav-item']" @click="$router.push('/admin/friends')" v-if="$auth.user.role == 3"><i class="fa fa-users fa-fw"></i><span class="menu-title" data-i18n="User">Giới thiệu bạn bè</span></a>                
+                <li ><a :class="[{'active' : $route.name == 'admin-quan-ly-viec-lam-viec-lam-da-luu'}, 'nav-item']" @click="navigation('admin/quan-ly-viec-lam/viec-lam-da-luu')" v-if="$auth.user.role == 3 || $auth.user.role == 1"><i class="fad fa-save fa-fw"></i><span class="menu-title" data-i18n="Details">Việc làm đã lưu</span></a>
+                <li ><a :class="[{'active' : $route.name == 'admin-friends'}, 'nav-item']" @click="navigation('admin/friends')" v-if="$auth.user.role == 3"><i class="fa fa-users fa-fw"></i><span class="menu-title" data-i18n="User">Giới thiệu bạn bè</span></a>                
                 </li>
-                <li ><a :class="[{'active' : $route.name == 'thong-tin-tai-khoan'}, 'nav-item']" @click="$router.push('/admin/thong-tin-tai-khoan')"><i class="fa fa-user fa-fw" ></i><span class="menu-title" data-i18n="User">Thông tin tài khoản</span></a>
+                <li ><a :class="[{'active' : $route.name == 'admin-thong-tin-tai-khoan'}, 'nav-item']" @click="navigation('admin/thong-tin-tai-khoan')"><i class="fa fa-user fa-fw" ></i><span class="menu-title" data-i18n="User">Thông tin tài khoản</span></a>
                 </li>
                 <li  v-if="$auth.user.role == 4"><a><i class="fas fa-briefcase fa-fw"></i><span class="menu-title" data-i18n="Ecommerce">Quản lý tài khoản</span></a>
                     <ul class="menu-content">
-                        <li><a  @click="$router.push('/admin/quan-ly-tai-khoan/company')" :class="[{'active' : ($route.name == 'admin-quan-ly-tai-khoan-company')}, 'nav-item']"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="User">Tài khoản NTD</span></a>
+                        <li><a  @click="navigation('admin/quan-ly-tai-khoan/company')" :class="[{'active' : ($route.name == 'admin-quan-ly-tai-khoan-company')}, 'nav-item']"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="User">Tài khoản NTD</span></a>
                         </li>
-                        <li><a   @click="$router.push('/admin/quan-ly-tai-khoan/hr')" :class="[{'active' : ($route.name == 'admin-quan-ly-tai-khoan-hr')}, 'nav-item']"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Hr</span></a>
+                        <li><a   @click="navigation('admin/quan-ly-tai-khoan/hr')" :class="[{'active' : ($route.name == 'admin-quan-ly-tai-khoan-hr')}, 'nav-item']"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Hr</span></a>
                         </li>
-                        <li><a  @click="$router.push('/admin/quan-ly-tai-khoan/ungvien')"  :class="[{'active' : ($route.name == 'admin-quan-ly-tai-khoan-ungvien')}, 'nav-item']"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Ứng viên</span></a>
+                        <li><a  @click="navigation('admin/quan-ly-tai-khoan/ungvien')"  :class="[{'active' : ($route.name == 'admin-quan-ly-tai-khoan-ungvien')}, 'nav-item']"><i class="fa fa-circle"></i><span class="menu-item" data-i18n="Details">Tài khoản Ứng viên</span></a>
                         </li>
                     </ul>
                 </li>
-                <li ><a :class="[{'active' : $route.name == 'bonus'}, 'nav-item']" @click="$router.push('/admin/cai-dat/bonus')" v-if="$auth.user.role == 4"><i class="fa fa-cogs fa-fw"></i><span class="menu-title" data-i18n="User">Cài đặt bonus</span></a>                
+                <li ><a :class="[{'active' : $route.name == 'admin-cai-dat-bonus'}, 'nav-item']" @click="navigation('admin/cai-dat/bonus')" v-if="$auth.user.role == 4"><i class="fa fa-cogs fa-fw"></i><span class="menu-title" data-i18n="User">Cài đặt bonus</span></a>                
                 </li>
-                <li ><a :class="[{'active' : $route.name == 'notification'}, 'nav-item']" @click="$router.push('/admin/thong-bao')"><i class="fa fa-bell fa-fw"></i><span class="menu-title" data-i18n="User">Thông báo</span></a>                
+                <li ><a :class="[{'active' : $route.name == 'admin-thong-bao'}, 'nav-item']" @click="navigation('admin/thong-bao')"><i class="fa fa-bell fa-fw"></i><span class="menu-title" data-i18n="User">Thông báo</span></a>                
                 </li>
             </ul>
         </div>
@@ -102,6 +102,17 @@ export default {
 
     }
   },
+    methods: {
+        navigation: function(str){
+            if (this.$route.name == str.replace(/\//g, '-')) {
+                // alert('Reloading');
+                window.location.reload();
+            } else {
+                // alert('Navigation');
+                this.$router.push('/'+str);
+            }
+        }
+    },
   mounted() {
       
   }
