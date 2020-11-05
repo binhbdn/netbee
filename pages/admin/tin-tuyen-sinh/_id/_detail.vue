@@ -505,7 +505,7 @@
                     <p class="text-center" style="margin-bottom:20px; font-size: 16px; "><a class="hover" :href="`../../dang-ky/ung-vien`">Đăng ký tài khoản mới!</a>
                     </p>
                     <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative; padding-bottom:20px;padding-left: 20px;padding-right: 20px;">
-                        <ValidationObserver ref="observer" v-slot="{ valid }">
+                        <ValidationObserver ref="observer">
                             <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
                                 <div class="__email">
                                     <fieldset class="form-label-group form-group position-relative has-icon-left mb-0" style="max-height: 60px;">
@@ -599,7 +599,7 @@
                         </ul>
                         <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
                             <div class="tab-pane active" v-if="stateTab == true" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-11-tab">
-                                <ValidationObserver  ref="applyJobFile" v-slot="{ valid }">
+                                <ValidationObserver  ref="applyJobFile">
                                     <div class="row">
                                         <!-- <div class="col-12">
                                             <ValidationProvider
@@ -621,8 +621,8 @@
                                             <ValidationProvider rules="required|customName" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="name">Họ tên (<span style="color: red;">*</span>)</label>
-                                                        <input type="text" id="name" class="form-control" placeholder="Họ tên" v-model="nameCv">
+                                                        <label for="name">Họ và tên (<span style="color: red;">*</span>)</label>
+                                                        <input type="text" id="name" class="form-control" placeholder="Họ và tên" v-model.trim="nameCv">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
@@ -671,7 +671,7 @@
                                 </ValidationObserver>
                             </div>
                             <div class="tab-pane" id="v-pills-2" v-if="stateTab == false" role="tabpanel" aria-labelledby="v-pills-22-tab">
-                                <ValidationObserver ref="applyJobCv" v-slot="{ valid }">
+                                <ValidationObserver ref="applyJobCv">
                                 <div class="row">
                                     <div class="col-12 bg-submit rounded pb-1">
                                         <ValidationProvider
@@ -790,13 +790,15 @@ extend("customAddress", {
   }
 });
 var errorMessageinformation =
-  " phải chứa nhiều hơn 6 ký tự";
+  " phải chứa ít nhất 5 ký tự.";
 // create custom rule
 extend("customName", {
-  message: field =>"Họ tên" + errorMessageinformation,
+  message: field =>"Họ và tên" + errorMessageinformation,
   validate: value => {
-    var notTheseChars = /["'?&/<>@#$%^*()|]/;
-    var mustContainTheseChars = /^.{6,}$/;
+    // var notTheseChars = /["'?&/<>@#$%^*()|]/;
+    var notTheseChars = /[\d"'`~?!@#$%&.,;:_+*/^=<>(){}|\[\\\]-]/;
+    // var mustContainTheseChars = /^.{6,}$/;
+    var mustContainTheseChars = /^.{5,}$/;
     var containsForbiddenChars = notTheseChars.test(value);
     var containsRequiredChars = mustContainTheseChars.test(value);
     if (containsRequiredChars && !containsForbiddenChars) {
@@ -804,10 +806,12 @@ extend("customName", {
     } else {
       if (containsForbiddenChars) {
         errorMessageinformation =
-          ' không được chứa các ký tự: " ' + " ' ? & / < > @ # $ % ^ * ( ) | ";
+        //   ' không được chứa các ký tự: " ' + " ' ? & / < > @ # $ % ^ * ( ) | ";
+        " không được chứa số và các ký tự đặc biệt.";
       } else {
         errorMessageinformation =
-          " phải chứa nhiều hơn 6 ký tự";
+        //   " phải chứa nhiều hơn 6 ký tự";
+          " phải chứa ít nhất 5 ký tự.";
       }
       return false;
     }

@@ -10,7 +10,7 @@
                         <div class="card">
                             <div class="card-content">
                                 <div class="col-md-12">
-                                    <ValidationObserver v-slot="{ invalid }">
+                                    <ValidationObserver>
                                         <div style="margin: 15px 5px 5px">
                                             <div class="row" style="padding-top: 10px;">
                                                 <div class="col-md-12">
@@ -36,12 +36,12 @@
                                                             <ValidationProvider 
                                                            name="Họ và tên"
                                                             ref="name"
-                                                            rules="required|min:5"
+                                                            rules="required|alphavn|min:5"
                                                             v-slot="{ errors }"
                                                             >
                                                                 <fieldset class="form-group">
                                                                     <label class="title-label" for="basicInput">Họ và tên (<span style="color: red;">*</span>)</label>
-                                                                    <input type="text" class="form-control" name="name" v-model="info_frofile_user.fullname_profile">
+                                                                    <input type="text" class="form-control" name="name" v-model.trim="info_frofile_user.fullname_profile">
                                                                     <ul style="color:red;margin-bottom: 3px;" class="overline text-left">
                                                                         <li v-for="(error, index) in errors" :key="index">
                                                                         <span>{{ error }}</span>
@@ -194,10 +194,36 @@
     extend("alpha", {
     message: (field, values) => "Dữ liệu nhập vào phải là chữ."
     });
+    extend("alphavn", { // chữ Tiếng Việt + space
+        message: field =>"Không được nhập số và kí tự đặc biệt.",
+        validate: value => {
+            // nếu dùng regexvn thì xóa regex và function removeAscent ()
+            // var regexvn = /^[a-zA-Z\sÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$/g
+             var regex = /^[a-zA-Z\s]+$/g
+            // var isValid = regexvn.test(value)
+            var isValid = regex.test(removeAscent(value))
+            if (isValid) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    })
      extend("length", {
     message: (field, values) => "Số điện thoại phải có 10 chữ số."
     });
-
+function removeAscent (str) {
+  if (str === null || str === undefined) return str;
+  str = str.toLowerCase();
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+  str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+  str = str.replace(/đ/g, "d");
+  return str;
+}
     export default {        
         name: 'Teamplate1',
         layout: 'admin',
