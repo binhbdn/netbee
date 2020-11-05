@@ -352,7 +352,7 @@
                                 <a class="hover" :href="`../../dang-ky/ung-vien`">Đăng ký tài khoản mới!</a>
                             </p>
                             <div class="form-group-1 input-login" v-on:keyup.enter="login" style="position:relative;">
-                                <ValidationObserver ref="observer" v-slot="{ valid }">
+                                <ValidationObserver ref="observer">
                                     <ValidationProvider name="Email" ref="email" rules="required|email" v-slot="{ errors }">
                                         <div class="__email">
                                             <fieldset class="form-label-group form-group position-relative has-icon-left mb-0" style="max-height: 60px;">
@@ -446,7 +446,7 @@
                         </ul>
                         <div class="tab-content pt-1 tab-ct2 pl-2 pr-2" style="clear:both;">
                             <div class="tab-pane active" v-if="stateTab == true" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-11-tab">
-                                <ValidationObserver  ref="applyJobFile" v-slot="{ invalid }">
+                                <ValidationObserver  ref="applyJobFile">
                                     <div class="row">
                                         <!-- <div class="col-12">
                                             <ValidationProvider
@@ -466,11 +466,11 @@
                                         </div> -->
                                         
                                         <div class="col-12 bg-submit rounded">
-                                            <ValidationProvider rules="required" v-slot="{ errors }">
+                                            <ValidationProvider rules="required|customName" v-slot="{ errors }">
                                                 <div class="form-group">
                                                     <div class="form-field">
-                                                        <label for="name">Họ tên (<span style="color: red;">*</span>)</label>
-                                                        <input type="text" id="name" class="form-control" v-model="nameCv">
+                                                        <label for="name">Họ và tên (<span style="color: red;">*</span>)</label>
+                                                        <input type="text" id="name" class="form-control" placeholder="Họ và tên" v-model.trim="nameCv">
                                                         <span style="color: red">{{errors[0]}}</span>
                                                     </div>
                                                 </div>
@@ -520,7 +520,7 @@
                                 </ValidationObserver>
                             </div>
                             <div class="tab-pane" id="v-pills-2" v-if="stateTab == false" role="tabpanel" aria-labelledby="v-pills-22-tab">
-                                <ValidationObserver ref="applyJobCv" v-slot="{ invalid }">
+                                <ValidationObserver ref="applyJobCv">
                                 <div class="row">
                                     <div class="col-12 bg-submit rounded pb-10px">
                                         <ValidationProvider
@@ -651,6 +651,26 @@ extend("customPassword", {
       } else {
         errorMessage =
           " phải chứa ít nhất 8 ký tự";
+      }
+      return false;
+    }
+  }
+});
+var errorMessageinformation = " phải chứa ít nhất 5 ký tự.";
+extend("customName", {
+  message: field =>"Họ và tên" + errorMessageinformation,
+  validate: value => {
+    var notTheseChars = /[\d"'`~?!@#$%&.,;:_+*/^=<>(){}|\[\\\]-]/;
+    var mustContainTheseChars = /^.{5,}$/;
+    var containsForbiddenChars = notTheseChars.test(value);
+    var containsRequiredChars = mustContainTheseChars.test(value);
+    if (containsRequiredChars && !containsForbiddenChars) {
+      return true;
+    } else {
+      if (containsForbiddenChars) {
+        errorMessageinformation = " không được chứa số và các ký tự đặc biệt.";
+      } else {
+        errorMessageinformation = " phải chứa ít nhất 5 ký tự.";
       }
       return false;
     }
