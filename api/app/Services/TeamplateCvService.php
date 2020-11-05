@@ -4,12 +4,14 @@ namespace App\Services;
 use App\Models\ProfileUser;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Services\NotificationService;
+use App\Services\UserService;
 use Auth;
 
 class TeamplateCvService {
           
 
-    protected $profileUser; 
+    protected $profileUser;
     const
         ADMIN = 4,
         HR = 3,
@@ -19,9 +21,11 @@ class TeamplateCvService {
         ACTION = 0,
         NOACTION = 1;
 
-    public function __construct(ProfileUser $profileUser)
+    public function __construct(ProfileUser $profileUser, NotificationService $notificationService,UserService $userService)
     {
-        $this->profileUser = $profileUser;      
+        $this->profileUser = $profileUser;   
+        $this->notificationService = $notificationService;
+        $this->userService = $userService;
     }
 
     public function getProfileById($id)
@@ -110,6 +114,14 @@ class TeamplateCvService {
                         'status' => self::NOACTION,
                         'updated_at' => Carbon::now()
                     ];
+                    //Notification Begin
+                    $notification = [
+                        'content' => 'Hồ sơ ['.$id.'] của bạn đã được duyệt! Vui lòng hoàn tất giấy tờ liên quan',
+                        'ids' => $job->id_user,
+                        'url' => 'https://netbee.vn/admin/ho-so'
+                    ];
+                    $response = $this->notificationService->store($notification['content'], $notification['ids'], $notification['url']);
+                    //Notification End
                 }else if($job->status == 1){
                     $data = [
                         'status' => self::ACTION,

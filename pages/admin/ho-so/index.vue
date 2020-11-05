@@ -175,7 +175,7 @@
                  this.$axios.get('hoso/listProfileUser')
                 .then(response => {                                                          
                     this.listProfileUser = response.data;
-                    console.log(this.listProfileUser);  
+                    // console.log(this.listProfileUser);  
                  })
                  .catch(error => {
                     console.log(error.response);

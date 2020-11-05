@@ -42,7 +42,7 @@
                                 <div v-if="!$auth.loggedIn" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                 </div> 
-                                <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding-left: 0px;padding-right: 0px;"  data-target="#ApplyModal">
+                                <div v-if="$auth.loggedIn && $auth.user.role != 2 && $auth.user.status == 1" class="col-sm-12 col-xl-12 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding-left: 0px;padding-right: 0px;"  data-target="#ApplyModal">
                                     <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                 </div>                                                              
                             </div>
@@ -217,7 +217,7 @@
                                         <div v-if="!$auth.loggedIn" class="col-sm-3 col-xl-3 d-flex justify-content-center align-items-center" data-toggle="modal"  data-target="#loginModal" style="padding-left: 0px;padding-right: 0px;">
                                             <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                         </div> 
-                                        <div v-if="$auth.loggedIn && $auth.user.role != 2" class="col-sm-3 col-xl-3 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding-left: 0px;padding-right: 0px;"  data-target="#ApplyModal">
+                                        <div v-if="$auth.loggedIn && $auth.user.role != 2 && $auth.user.status == 1" class="col-sm-3 col-xl-3 d-flex justify-content-center align-items-center" data-toggle="modal" style="padding-left: 0px;padding-right: 0px;"  data-target="#ApplyModal">
                                             <a class="btn-netbee" data-toggle="tooltip" data-placement="top" title="Nộp hồ sơ" style="border-radius: 3px;"><i class="fad fa-paper-plane fa-2x p-10"></i> <b>Nộp hồ sơ</b></a>
                                         </div>
                                     </center>
