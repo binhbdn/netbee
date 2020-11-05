@@ -38,8 +38,8 @@
                                                     <p v-else-if="item.status == 5 && item.nb_paper == null">Đợi giấy tờ đính kèm</p>
                                                 </td>
                                                 <td>
-                                                    <span v-if="item.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
-                                                        {{item.time_bonus == 1 ? item.bonus : item.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}} {{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
+                                                    <span v-if="item.job.time_bonus != null && item.bonus != null && item.bonus > 0" style="color: #fc205c">
+                                                        {{item.job.time_bonus == 1 ? item.bonus : item.job.time_bonus == 2 ? item.bonus * 1.5 : item.bonus * 2}} {{ item.currency }} / <i class="fad fa-user-friends" title="1 người"></i>
                                                     </span>
                                                     <span v-else>Không bonus</span>
                                                 </td>                                                
@@ -374,25 +374,29 @@ export default {
             }
         },
         addCalendar() {
-            console.log(this.idRefuse)
             let c =''
             let b = (this.chooseCalendar).split(" ");
             if(b.length > 2){
-                c = new Date(b[2]+'-'+b[1]+'-'+b[0]+' '+b[3]);
+                c = new Date(b[2]+'-'+b[1]+'-'+b[0]+' '+b[-1]);
             }
             else {
                  c = new Date(this.chooseCalendar); 
             }
+            
             // if(b.isValid()){
             //     a = moment(this.chooseCalendar).locale("vi").format('llll')
             // } else {
             //     a = this.chooseCalendar
             // }
-
+            
             this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: c}).then((response) =>{
                 this.$swal('Thành công', response.message, 'success');
-                window.location.reload();
+                // window.location.reload();
             })
+            console.log(b)
+            console.log(c)
+            console.log(this.chooseCalendar)
+            console.log(b[2]+'-'+b[1]+'-'+b[0]+' '+b[3])
         },
         showFile(id) {
             var a = document.querySelector('.overlay-bg');

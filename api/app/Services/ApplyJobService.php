@@ -238,7 +238,7 @@ class ApplyJobService extends BaseService {
                             }])
                             ->with('nbPaper')
                             ->with(['job' => function ($q) {
-                                $q->select('currency', 'title','id');
+                                $q->select('currency', 'title','id','time_bonus');
                             }])
                             ->whereHas('job', function ($query) {
                                 $query->where([
