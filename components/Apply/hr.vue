@@ -25,6 +25,7 @@
                                             <td v-if="item.job">
                                                 <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết tin`" :href="`/tin-tuyen-sinh/${item.job.id}/${ChangeToSlug(item.job.title)}`" target="_blank">{{item.job.title}} 
                                                 </a>
+                                                <p>{{item.job_id}}</p>
                                             </td>
                                             <td><p>{{item.name}}</p></td>
                                             <td v-if="$auth.user.role == 3">
