@@ -109,7 +109,7 @@
                       <button class="btn-add btn bg-netbee text-dark " data-toggle="tooltip"  data-placement="top" :title="`Tạo tài khoản`" @click="openModalCreate()"><i class="far fa-folder-plus"></i> Tạo tài khoản</button>
                   </div>
                   <div class="flex-grow-1 row input_date">
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                       <div class="input-group-prepend">
                         <span class="input-group-text p-0 pl-1 pr-1">Từ</span>
                       </div>
@@ -121,7 +121,7 @@
                         placeholder
                       />
                     </div>
-                    <div class="input-group col-md-4">
+                    <div class="input-group col-md-5">
                       <div class="input-group-prepend">
                         <span class="input-group-text p-0 pl-1 pr-1">Đến</span>
                       </div>
@@ -133,7 +133,7 @@
                         placeholder
                       />
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                       <button data-toggle="tooltip"  data-placement="top" :title="`Lọc`" @click="searchDate()" class="btn-add btn bg-netbee text-dark">
                         <i class="far fa-filter"></i> Lọc
                       </button>
@@ -1180,6 +1180,13 @@ export default {
 };
 </script>
 <style scoped>
+.col-md-5{
+  padding-right: 0;
+  padding-left: 6px;
+}
+.col-md-2{
+  padding-left: 8px;
+}
 .btn.btn-white {
     border-radius: 5px !important;
 }
@@ -1195,6 +1202,9 @@ i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
 .input_date input {
   /* max-height: 34px; */
   padding: 5px;
+}
+.input-group-prepend{
+  width: 45px;
 }
 .close{
   margin: -0.5rem 0;

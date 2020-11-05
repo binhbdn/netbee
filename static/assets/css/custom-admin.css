@@ -118,8 +118,8 @@ tbody .vs-checkbox-con .vs-checkbox {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3) !important;
 }
 
-/* Test for hide facebook messenger: */
-#__nuxt #__layout div#fb-root {
+/* Retest for hide facebook messenger: fix css selector */
+div#fb-root {
     display: none !important;
     visibility: hidden !important;
 }
