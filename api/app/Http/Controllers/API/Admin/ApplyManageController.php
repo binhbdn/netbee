@@ -86,7 +86,7 @@ class ApplyManageController extends Controller
         $approve = $this->applyJobService->changeStatusApply($request->id, $this->applyJobService::ADMIN_DUYET_HO_SO);
         $detail = $this->applyJobService->getDetailApply($request->id);
         if($approve){
-            $content = 'Việc làm ['.$detail->job_id.'] của bạn có lượt ứng tuyển mới';
+            $content = 'Tin tuyển dụng ['.$detail->job_id.'] của bạn có lượt ứng tuyển mới';
             $url = 'https://netbee.vn/admin/quan-ly-ung-tuyen';
             $this->notificationService->store($content, $detail->user_id_recever, $url);
 //            NotificationController::postNotification($content, $detail->user_id_recever, $url);
