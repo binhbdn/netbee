@@ -770,11 +770,11 @@ extend("birthdate", {
         }
     }
 });
-var errorMessageinformation =
+var errorMessageAddress =
   " phải chứa nhiều hơn 6 ký tự";
 // create custom rule
 extend("customAddress", {
-  message: field =>"Địa chỉ" + errorMessageinformation,
+  message: field =>"Địa chỉ" + errorMessageAddress,
   validate: value => {
     var mustContainTheseChars = /^.{7,}$/
     var containsRequiredChars = mustContainTheseChars.test(value);
@@ -782,7 +782,7 @@ extend("customAddress", {
       return true;
     } else {
       if (containsRequiredChars) {
-        errorMessageinformation =
+        errorMessageAddress =
           " phải chứa nhiều hơn 6 ký tự";
       }
       return false;
