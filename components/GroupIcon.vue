@@ -1,17 +1,17 @@
 <template>
   <div class="group_icon">
-    <div class="" style="margin-top: 2px;">
+    <div data-toggle="tooltip" data-placement="left" title="Lên đầu trang" class="" style="margin-top: 2px;">
       <a class="i" href="#" style="color: #fff;">
         <i class="fa fa-angle-up"></i>
       </a>
     </div>
     <div class="icon-f" style="position: absolute;top: 35%;margin-left: 4px;">
-      <a class="btn btn-warningg" href="https://www.facebook.com/NetBeevn-107178937322342/" target="_blank" style="border-radius: 20%; font-size: 22px; padding: 0; margin: inherit;">
+      <a data-toggle="tooltip" data-placement="left" title="Facebook" class="btn btn-warningg" href="https://www.facebook.com/NetBeevn-107178937322342/" target="_blank" style="border-radius: 20%; font-size: 22px; padding: 0; margin: inherit;">
         <i class="fab fa-facebook-f" style="color: #fff;"></i>
       </a>
     </div>
     <div class="icon-m" id="#follow" style="position: absolute; top: 67%;margin-left: 6px; ">
-      <a href="#follow" class="btn btn-warningg"  id="mail_contact"  style="border-radius: 20%; font-size: 22px; padding: 0; margin: inherit;">
+      <a href="#follow" data-toggle="tooltip" data-placement="left" title="Tư vấn" class="btn btn-warningg"  id="mail_contact"  style="border-radius: 20%; font-size: 22px; padding: 0; margin: inherit;">
         <i class="fa fa-envelope" style="margin-left: -5px; color: #fff;"></i>
       </a>
     </div>

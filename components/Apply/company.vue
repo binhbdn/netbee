@@ -47,12 +47,12 @@
                                                 <td>{{ConvertDate(item.created_at)}}</td>
                                                 <td>
                                                     <div class="action-btns">
-                                                        <div>
+                                                        <div data-toggle="tooltip"  data-placement="top" :title ="'Hủy'">
                                                             <button type="button" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" class="btn btn-deleted py-75 waves-effect waves-light"  style="width: 100%;">
                                                             Hủy
                                                             </button>
                                                         </div>  
-                                                        <div>
+                                                        <div data-toggle="tooltip"  data-placement="top" :title ="'Phỏng vấn'">
                                                             <button type="button" data-toggle="modal" data-target="#chooseCalendarModal" @click="idRefuse = item.id" class="btn btn-phongvan py-75 waves-effect waves-light" v-if="item.status == 5 && item.nb_paper != null" style="width: 100%;margin-top: 5px;">
                                                             Phỏng vấn
                                                             </button>
@@ -392,12 +392,8 @@ export default {
             
             this.$axios.$post(`apply/ChooseCalendar/${this.idRefuse}`,{interview_schedules: c}).then((response) =>{
                 this.$swal('Thành công', response.message, 'success');
-                // window.location.reload();
+                window.location.reload();
             })
-            console.log(b)
-            console.log(c)
-            console.log(this.chooseCalendar)
-            console.log(b[2]+'-'+b[1]+'-'+b[0]+' '+b[3])
         },
         showFile(id) {
             var a = document.querySelector('.overlay-bg');
@@ -476,6 +472,7 @@ export default {
     }
     .btn-status:hover{
         border: 1px solid rgb(255, 183, 1);
+        background-color: rgb(255, 183, 1);
     }
     .btn-phongvan, .btn-deleted {
         background-color: #fff;

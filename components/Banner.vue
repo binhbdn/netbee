@@ -18,14 +18,14 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist" style="float:left;">
                       <li class="nav-item">
-                        <a class="nav-link" href="/" :class="{'active': $route.name != 'cong-ty' && $route.name != 'tim-cong-ty' && $route.name != 'ung-vien' && $route.name != 'tin-tuyen-sinh' && $route.name != 'tim-viec-lam'}" id="v-pills-33-tab" style="font-weight: 400 !important;">{{ $t('banner.jobs.tab') }}</a>
+                        <a data-toggle="tooltip"  data-placement="top" :title="`Tìm đơn hàng`" class="nav-link" href="/" :class="{'active': $route.name != 'cong-ty' && $route.name != 'tim-cong-ty' && $route.name != 'ung-vien' && $route.name != 'tin-tuyen-sinh' && $route.name != 'tim-viec-lam'}" id="v-pills-33-tab" style="font-weight: 400 !important;">{{ $t('banner.jobs.tab') }}</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item" data-toggle="tooltip"  data-placement="top" :title="`Săn học bổng`">
                         <a class="nav-link" :class="{'active': $route.name == 'tin-tuyen-sinh'}" id="profile-tab-fill" data-toggle="tab" href="#profile-fill"
                            role="tab" aria-controls="profile-fill" aria-selected="false" style="font-weight: 400 !important;">Săn học bổng</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="/cong-ty" :class="{'active': $route.name == 'cong-ty' || $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" style="font-weight: 400 !important;">{{$t('banner.company.tab')}}</a>
+                        <a data-toggle="tooltip"  data-placement="top" :title="`Tìm công ty`" class="nav-link" href="/cong-ty" :class="{'active': $route.name == 'cong-ty' || $route.name == 'tim-cong-ty'}" id="v-pills-11-tab" style="font-weight: 400 !important;">{{$t('banner.company.tab')}}</a>
                       </li>
                     </ul>
                     <!-- Tab panes -->
@@ -83,7 +83,7 @@
                             <div class="col-md-3">
                               <div class="form-group" style="margin-bottom: 15px;">
                                 <div class="form-field">
-                                  <input type="button" :value="$t('banner.search')" class="form-control btn btn-primary" @click="searchCompany">
+                                  <input type="button" :value="$t('banner.search')" data-toggle="tooltip" data-placement="top" title="Tìm Ngay" class="col-md-12 btn bg-netbee" @click="searchCompany">
                                 </div>
                               </div>
                             </div>

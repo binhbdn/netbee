@@ -58,9 +58,9 @@
                                                                         <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i>
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
-                                                                        <a :href="`/admin/ho-so/xem-ho-so/${item.id}`" class="dropdown-item"> <i class="far fa-edit"></i>Xem chi tiết</a>
-                                                                        <a @click="deleted(item.id)" class="dropdown-item" > <i class="far fa-times-circle"></i>Xóa</a>
+                                                                        <a data-toggle="tooltip"  data-placement="left" :title="item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt'" v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
+                                                                        <a data-toggle="tooltip"  data-placement="left" :title="`Xem chi tiết`" :href="`/admin/ho-so/xem-ho-so/${item.id}`" class="dropdown-item"> <i class="far fa-edit"></i>Xem chi tiết</a>
+                                                                        <a data-toggle="tooltip"  data-placement="left" :title="`Xóa`" @click="deleted(item.id)" class="dropdown-item" > <i class="far fa-times-circle"></i>Xóa</a>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -118,12 +118,12 @@
                                                                             <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i>
                                                                         </button>
                                                                         <div class="dropdown-menu" style="left: -25px!important;">
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 1"><i class="far fa-check-circle"></i> Duyệt</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" v-if="item.status != 4"><i class="far fa-times-circle"></i> Từ chối</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.status == 2 && item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.status == 2 && item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApplyHoSo(item.id)" v-if="item.status == 2 && item.nb_paper != null"><i class="fad fa-eye"></i> Duyệt hồ sơ đính kèm</a>
-                                                                            <a class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 4"><i class="far fa-check-circle"></i> Duyệt lại</a>
+                                                                            <a data-toggle="tooltip"  data-placement="left" :title="`Duyệt`" class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 1"><i class="far fa-check-circle"></i> Duyệt</a>
+                                                                            <div  data-toggle="tooltip"  data-placement="left" :title="`Từ chối`"><a class="dropdown-item" style="margin-top:5px" data-toggle="modal" data-target="#reportModal" @click="idRefuse = item.id" v-if="item.status != 4"><i class="far fa-times-circle"></i> Từ chối</a></div>
+                                                                            <a data-toggle="tooltip"  data-placement="left" :title="`Ẩn`" class="dropdown-item" style="margin-top:5px" @click="HideApply(item.id)" v-if="item.status == 2 && item.isPublic == 1"><i class="fad fa-eye-slash"></i> Ẩn</a>
+                                                                            <a data-toggle="tooltip"  data-placement="left" :title="`Hiện`" class="dropdown-item" style="margin-top:5px" @click="ShowApply(item.id)" v-if="item.status == 2 && item.isPublic == 0"><i class="fad fa-eye"></i> Hiện</a>
+                                                                            <a data-toggle="tooltip"  data-placement="left" :title="`Duyệt hồ sơ đính kèm`" class="dropdown-item" style="margin-top:5px" @click="ApprovedApplyHoSo(item.id)" v-if="item.status == 2 && item.nb_paper != null"><i class="fad fa-eye"></i> Duyệt hồ sơ đính kèm</a>
+                                                                            <a data-toggle="tooltip"  data-placement="left" :title="`Duyệt lại`" class="dropdown-item" style="margin-top:5px" @click="ApprovedApply(item.id)" v-if="item.status == 4"><i class="far fa-check-circle"></i> Duyệt lại</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -597,6 +597,7 @@ export default {
     }
     .btn-status:hover{
         border: 1px solid rgb(255, 183, 1);
+        background-color: rgb(255, 183, 1);
     }
     .tab-table{
         height: 630px;

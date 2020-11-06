@@ -91,8 +91,8 @@
                                                         <i class="fa fa-caret-down mr-0 ml-1"></i>
                                                     </button>
                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                        <a class="dropdown-item" @click="sortAscendingID()"><i class="feather icon-trash-2"></i>ID tăng dần</a>
-                                                        <a class="dropdown-item" @click="sortDecreaseID()"><i class="feather icon-clipboard"></i>ID giảm dần</a>
+                                                        <a data-toggle="tooltip"  data-placement="left" :title="`ID tăng dần`" class="dropdown-item" @click="sortAscendingID()"><i class="feather icon-trash-2"></i>ID tăng dần</a>
+                                                        <a data-toggle="tooltip"  data-placement="left" :title="`ID giảm dần`" class="dropdown-item" @click="sortDecreaseID()"><i class="feather icon-clipboard"></i>ID giảm dần</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,9 +105,9 @@
                                                         <i class="fa fa-caret-down mr-0 ml-1"></i>
                                                     </button>
                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                        <a class="dropdown-item" @click="deleteMultipleTinTuyenDung()"><i class="feather icon-trash-2"></i>Xóa</a>
-                                                        <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(1)"><i class="far fa-check-circle"></i>Kích hoạt</a>
-                                                        <a class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(0)"><i class="far fa-times-circle"></i>Bỏ kích hoạt</a>
+                                                        <a data-toggle="tooltip"  data-placement="left" :title="`Xóa`" class="dropdown-item" @click="deleteMultipleTinTuyenDung()"><i class="feather icon-trash-2"></i>Xóa</a>
+                                                        <a data-toggle="tooltip"  data-placement="left" :title="`Kích hoạt`" class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(1)"><i class="far fa-check-circle"></i>Kích hoạt</a>
+                                                        <a data-toggle="tooltip"  data-placement="left" :title="`Bỏ kích hoạt`" class="dropdown-item" @click="changeMultipleStatusTinTuyenDung(0)"><i class="far fa-times-circle"></i>Bỏ kích hoạt</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -228,12 +228,12 @@
                                                                                 </span>
                                                                             </button>
                                                                             <div class="dropdown-menu" style="left: -25px!important;">
-                                                                                <a v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
-                                                                                <a  @click="changePublic(item.id)" class="dropdown-item"><i :class="item.isPublic == 1 ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{ item.isPublic == 1 ? 'Ẩn tin' : 'Hiện tin' }}</a>
-                                                                                 <a v-on:click="deleteNews(item.id)"   v-if="$auth.user.role == 4" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
-                                                                                 <a :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
+                                                                                <a data-toggle="tooltip"  data-placement="left" :title="item.isPublic == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt'" v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
+                                                                                <a data-toggle="tooltip"  data-placement="left" :title="item.isPublic == 1 ? 'Ẩn tin' : 'Hiện tin'" @click="changePublic(item.id)" class="dropdown-item"><i :class="item.isPublic == 1 ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>{{ item.isPublic == 1 ? 'Ẩn tin' : 'Hiện tin' }}</a>
+                                                                                 <a data-toggle="tooltip"  data-placement="left" :title="`Xóa`" v-on:click="deleteNews(item.id)"   v-if="$auth.user.role == 4" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
+                                                                                 <a data-toggle="tooltip"  data-placement="left" :title="`Sửa`" :href="`/admin/tin-tuyen-dung/sua/${item.id}`" class="dropdown-item" style="margin-top:5px"><i class="far fa-edit"></i> Sửa</a>
                                                                                 <nav v-if="item.status == 0">
-                                                                                    <a v-on:click="deleteNews(item.id)"  v-if="$auth.user.role == 2" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
+                                                                                    <a data-toggle="tooltip"  data-placement="left" :title="`Xóa`" v-on:click="deleteNews(item.id)"  v-if="$auth.user.role == 2" class="dropdown-item" style="margin-top:5px"><i class="far fa-trash-alt"></i> Xóa</a>
                                                                                 </nav>
                                                                             </div>
                                                                         </div>

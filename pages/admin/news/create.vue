@@ -58,7 +58,7 @@
                                                     </ValidationProvider>
                                                 </div>
                                                 <div class="col-12 text-right">
-                                                    <button type="submit" class="btn btn-warning" data-toggle="tooltip"  data-placement="top" :title="`Tạo tin`"  @click="upload">Tạo tin</button>
+                                                    <button data-toggle="tooltip"  data-placement="top" :title="`Tạo tin`"  type="submit" class="btn bg-netbee" @click="upload"><span>Tạo tin</span></button>
                                                     
                                                 </div>
                                             </div>

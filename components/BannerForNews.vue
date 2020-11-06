@@ -51,7 +51,7 @@
                             <div class="col-md-3 col-lg-2">
                               <div class="form-group">
                                 <div class="h-100">
-                                  <input class="btn bg-netbee w-100 h-100" type="button" :value="$t('banner.search')"  @click="searchNews">
+                                  <input data-toggle="tooltip" data-placement="top" title="Tìm Ngay" class="btn bg-netbee w-100 h-100" type="button" :value="$t('banner.search')"  @click="searchNews">
                                 </div>
                               </div>
                             </div>

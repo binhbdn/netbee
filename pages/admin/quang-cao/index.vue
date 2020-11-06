@@ -46,9 +46,9 @@
                                                                         <i class="fa fa-ellipsis-h" aria-hidden="true" style="margin:0 !important;"></i>
                                                                     </button>
                                                                     <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a v-on:click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
-                                                                        <a v-on:click="updateId(item.id)" class="dropdown-item"> <i class="far fa-edit"></i>Sửa</a>
-                                                                        <a v-on:click="deleted(item.id)" class="dropdown-item" > <i class="far fa-times-circle"></i>Xóa</a>
+                                                                        <a data-toggle="tooltip"  data-placement="left" :title="item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt'" v-on:click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
+                                                                        <a data-toggle="tooltip"  data-placement="left" :title="`Sửa`" v-on:click="updateId(item.id)" class="dropdown-item"> <i class="far fa-edit"></i>Sửa</a>
+                                                                        <a data-toggle="tooltip"  data-placement="left" :title="`Xóa`" v-on:click="deleted(item.id)" class="dropdown-item" > <i class="far fa-times-circle"></i>Xóa</a>
                                                                     </div>
                                                                 </div>
                                                             </div>
