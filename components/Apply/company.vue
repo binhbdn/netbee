@@ -13,10 +13,10 @@
                                                 <th style="width:5%;">ID</th>
                                                 <th style="width:20%;">Tên công việc</th>
                                                 <th style="width:20%;">Tên ứng viên</th>
-                                                <th style="width:20%;">Trạng thái</th>
-                                                <th style="width:10%;">Bonus</th>                                            
-                                                <th style="width:10%;">Thời gian nộp</th>
-                                                <th style="width:15%;">Hành động</th>
+                                                <th style="width:16%;">Trạng thái</th>
+                                                <th style="width:13%;">Bonus</th>                                            
+                                                <th style="width:13%;">Thời gian nộp</th>
+                                                <th style="width:13%;">Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody class="tab-table" >
