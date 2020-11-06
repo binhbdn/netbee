@@ -119,7 +119,7 @@
                                             <div class="col-12" id="hegimg">
                                                 <fieldset class="form-group">
                                                     <label for="basicInput">Ảnh quảng cáo</label>
-                                                    <ImgUploader :files="filesUp" :thuml="updateAdvertisement.picture"></ImgUploader>
+                                                    <ImgUploader :files="files" :thuml="updateAdvertisement.picture"></ImgUploader>
                                                 </fieldset>
                                             </div>
                                             <div class="col-12" id="hegtitle">
@@ -289,8 +289,8 @@
                 try {
                     e.preventDefault()
                     var form = new FormData();
-                    if(this.filesUp[0]){
-                        form.append('picture' , this.filesUp[0])
+                    if(this.files[0]){
+                        form.append('picture' , this.files[0])
                     }
                     form.append('id' , this.updateAdvertisement.id)
                     form.append('name' , this.updateAdvertisement.name)
