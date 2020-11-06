@@ -11,12 +11,12 @@
                                     <thead>
                                         <tr>
                                             <th style="width:5%;">ID</th>
-                                            <th style="width:25%;">Tên công việc</th>
+                                            <th style="width:23%;">Tên công việc</th>
                                             <th style="width:15%;">Tên ứng viên</th>
-                                            <th style="width:15%;" v-if="$auth.user.role == 3">Bonus</th>
-                                            <th style="width:15%;">Nhà tuyển dụng</th>
-                                            <th style="width:10%;">Trạng thái</th>
-                                            <th style="width:15%;">Hành động</th>
+                                            <th style="width:14%;" v-if="$auth.user.role == 3">Bonus</th>
+                                            <th style="width:17%;">Nhà tuyển dụng</th>
+                                            <th style="width:13%;">Trạng thái</th>
+                                            <th style="width:13%;">Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody class="tab-table">
@@ -229,6 +229,11 @@ export default {
         border: 1px solid rgb(255, 183, 1);
         color: #000;
         
+    }
+    .btn-edit-fix-add{
+        padding: 10px;
+        margin-top: 5px;
+        color: #626262;
     }
 
     .btn-edit-fix-add:hover{
