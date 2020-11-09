@@ -1,394 +1,594 @@
-<template>    
-    <div class="app-content content">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper">
-            <div class="content-body">
-                <section id="News"> 
-                    <div class="row">
-                        <div class="col-12">
+<template>
+  <div class="container">
+    <section>
+        <!-- <h1 class="text-center" style="margin-bottom: 15px">Nhà tuyển dụng nổi bật</h1> -->
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="card">
+              <!-- Carousel Options start -->
+                <section id="carousel-options">
+                    <div class="row match-height">
+                        <div class="col-md-12 col-sm-12 pb-1">
                             <div class="card">
-                                <div class="card-header col-12" style="padding-left:15px;">
-                                    <button class="btn-add btn bg-netbee text-dark " data-toggle="tooltip"  data-placement="top" :title="`Tạo Quảng cáo`" v-on:click="openModalCreate()"><i class="far fa-folder-plus"></i> Tạo quảng cáo</button>                                 
+                                <div class="card-header mb-0">
+                                    <h2 class="card-title" style="text-transform: uppercase">công ty đã kiểm duyệt</h2>
                                 </div>
-                                <div class="card-body card-dashboard">
-                                    <div class="table-responsive list-data">
-                                        <table class="table table-hover mb-0 zero-configuration">
-                                            <thead class="custom-header">
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>Tên quảng cáo</th>
-                                                    <th>Hình ảnh</th>                                                    
-                                                    <th>Trạng thái</th>  
-                                                    <th>Ngày tạo</th>  
-                                                    <th>Hành động</th>                                               
-                                                </tr>
-                                            </thead>
-                                            <tbody v-if="listAdvertisement.length > 0">                                               
-                                                <tr v-for="(item,key) in listAdvertisement" :key="key">
-                                                    <td>{{item.id}}</td>
-                                                    <td>{{item.name}}</td>
-                                                    <td>
-                                                        <span><img v-lazy="item.thuml != null && item.thuml.startsWith('https') ? item.thuml : `/uploads/news/${item.thuml}`" :alt="`${item.thuml}`" style="object-fit: cover;" width="55" height="55"></span>
-                                                    </td>                                                  
-                                                    <td v-if="item.status == 0">
-                                                        <div class="chip-text"><i style="font-size: 20px;" class="far fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chưa kích hoạt`"></i></div>
-                                                    </td>
-                                                    <td v-if="item.status == 1">
-                                                        <div class="chip-text"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã kích hoạt`"></i></div>
-                                                    </td>
-                                                    <td>{{ConvertDate(item.created_at)}}</td>
-                                                    <td>
-                                                        <div class="action-btns">
-                                                            <div class="btn-dropdown ">
-                                                                <div class="btn-group dropdown actions-dropodown">
-                                                                    <button type="button" class="btn btn-white px-2 py-75 waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                        <i class="fa fa-ellipsis-h" aria-hidden="true" style="margin:0 !important;"></i>
-                                                                    </button>
-                                                                    <div class="dropdown-menu" style="left: -25px!important;">
-                                                                        <a data-toggle="tooltip"  data-placement="left" :title="item.status == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt'" v-on:click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
-                                                                        <a data-toggle="tooltip"  data-placement="left" :title="`Sửa`" v-on:click="updateId(item.id)" class="dropdown-item"> <i class="far fa-edit"></i>Sửa</a>
-                                                                        <a data-toggle="tooltip"  data-placement="left" :title="`Xóa`" v-on:click="deleted(item.id)" class="dropdown-item" > <i class="far fa-times-circle"></i>Xóa</a>
-                                                                    </div>
+                                <div class="card-content collapse show" style="padding: 13px;">
+                                  <div id="carousel-interval-new" class="carousel slide" data-ride="carousel" :data-interval="10000">
+                                      <ol class="carousel-indicators">
+                                          <li data-target="#carousel-interval-new" v-for="(companyInfo,index) in listVerifyCompany" :key="index" :data-slide-to="index" :class="{'active': index == 0}"></li>
+                                      </ol>
+                                      <div class="carousel-inner" role="listbox">
+                                          <div class="carousel-item" :class="{'active': index == 0}" v-for="(companyInfo,index) in listVerifyCompany" :key="index">
+                                              <div class="swiper-slide swiper-slide-next">
+                                                <div class="spotlightBlock">
+                                                    <div class="spotlightBlock__background" v-if="companyInfo.image_cover != null" role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/uploads/users/covers/${companyInfo.image_cover}` + ')' }"></div>
+                                                    <div class="spotlightBlock__background" v-else role="img" :aria-label="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`" :style="{ 'background-image': 'url(' + `/assets/img/cover-netbee.jpg` + ')' }"></div>
+                                                    <div class="spotlightBlock__wrapper">
+                                                      <div class="is-mobile is-centered">
+                                                          <div class="spotlightBlock__inner">
+                                                            <div class="columns spotlight-item is-vcentered">
+                                                                <div class="column is-3 spotlightBlock__logo">
+                                                                  <figure class="image is-inline-block">
+                                                                    <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" :alt="`${companyInfo.user.name} tuyển dụng - Tìm việc mới nhất, lương thưởng hấp dẫn.`">
+                                                                    <img v-else v-lazy = "`assets/img/logo.png`"></figure>
+                                                                </div>
+                                                                <div class="column is-9 spotlightBlock__content-wrapper">
+                                                                  <div class="spotlightBlock__title">
+                                                                      <h3>{{companyInfo.user.name}}</h3>
+                                                                  </div>
+                                                                  <!-- <div class="spotlightBlock__message ellipsis">#ThriveOnChange #DigitalTransformation</div> -->
+                                                                  <div class="spotlightBlock__content">
+                                                                      <div class="clamp-lines ">
+                                                                        <div style="text-align: justify" id="clamped-content-spotlight-description-4" aria-hidden="true">{{companyInfo.company_about}}</div>
+                                                                      </div>
+                                                                  </div>
+                                                                  <div class="spotlightBlock__cta pb-1"><a :href="`/cong-ty/${companyInfo.username}`" target="_blank" data-toggle="tooltip"  data-placement="top" :title ="'Xem thêm'" class="btn border-netbee">Xem thêm</a></div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <p class="mb-0 text-center p-1 font-italic" v-if="listAdvertisement.length == 0" style="color: red;">Không có kết quả phù hợp.</p>
-                                        <br>
-                                    </div>
+                                                          </div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <div class="carousel-control" style="position: relative">
+                                        <a class="carousel-control-prev" href="#carousel-interval-new" role="button" data-slide="prev">
+                                            <button class="el-carousel__arrow el-carousel__arrow--left">
+                                              <i class="fas fa-angle-left"></i>
+                                            </button>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carousel-interval-new" role="button" data-slide="next">
+                                            <button class="el-carousel__arrow el-carousel__arrow--right">
+                                              <i class="fas fa-angle-right"></i>
+                                            </button>
+                                        </a>
+                                      </div>
+                                  </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <div class="modal fade" id="create_insert" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header bg-netbee">
-                                <h4 class="modal-title text-dark">Tạo quảng cáo</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true" class="text-dark">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body" id="modal_body">
-                                <ValidationObserver v-slot="{ invalid }">
-                                    <form class="w-100 px-2" method="post">
-                                        <div class="row">
-                                            <div class="col-12" id="hegimg">
-                                                <fieldset class="form-group">
-                                                    <label for="basicInput">Ảnh quảng cáo</label>
-                                                    <ImgUploader :files="files"></ImgUploader>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12" id="hegtitle">
-                                                <ValidationProvider rules="required" v-slot="{ errors }">
-                                                    <fieldset class="form-group">
-                                                        <label for="basicInput">Tên quảng cáo</label>
-                                                        <input type="text" class="form-control" id="basicInput" placeholder="Tên quảng cáo" v-model="insertAdvertisement.name">
-                                                        <span style="color: red">{{ errors[0] }}</span>
-                                                    </fieldset>
-                                                </ValidationProvider>
-                                            </div>
-                                            <div class="col-12 text-right">
-                                                <button type="submit" class="btn btn-warning" v-bind:disabled="invalid" v-on:click="upload">Tạo</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </ValidationObserver>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Carousel Options end -->
+            </div>
+        </div>
+        <div class="col-lg-3 pl-lg-0">
+            <div class="card pb-2 card-right ">
+                <div class="card-header">
+                    <h2 class="card-title" style="text-transform: uppercase">Công ty mới</h2>
                 </div>
-                <div class="modal fade" id="create_update" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header bg-netbee">
-                                <h4 class="modal-title text-dark">Cập nhật quảng cáo</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true" class="text-dark">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body" id="modal_body">
-                                <ValidationObserver v-slot="{ inval }">
-                                    <form class="w-100 px-2" method="post">
-                                        <div class="row">
-                                            <div class="col-12" id="hegimg">
-                                                <fieldset class="form-group">
-                                                    <label for="basicInput">Ảnh quảng cáo</label>
-                                                    <ImgUploader :files="filesUp" :thuml="updateAdvertisement.picture"></ImgUploader>
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-12" id="hegtitle">
-                                                <ValidationProvider rules="required" v-slot="{ errors }">
-                                                    <fieldset class="form-group">
-                                                        <label for="basicInput">Tên quảng cáo</label>
-                                                        <input type="text" class="form-control" id="basicInput" placeholder="Tên quảng cáo" v-model="updateAdvertisement.name">
-                                                        <span style="color: red">{{ errors[0] }}</span>
-                                                    </fieldset>
-                                                </ValidationProvider>
-                                            </div>
-                                            <div class="col-12 text-right">
-                                                <button type="submit" class="btn btn-warning" v-bind:disabled="inval" v-on:click="uploadUp">Tạo</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </ValidationObserver>
-                            </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-3 col-6 user-latest-img" v-for="(companyInfo,index) in listNewCompany" :key="index">
+                            <a :href="`cong-ty/${companyInfo.username}`">
+                              <span data-toggle="tooltip" data-placement="top" :title="`${companyInfo.user.name}`">
+                              <img v-if="companyInfo.user.avatar != null" v-lazy="`/uploads/users/avatars/${companyInfo.user.avatar}`" class="img-fluid rounded-sm" alt="avtar img holder" >
+                              <img v-else v-lazy="`assets/img/logo.png`" class="img-fluid rounded-sm" :alt="`avatar - ${companyInfo.user.name}`">
+                              </span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>  
+      </div>
+      <!-- <div class="row p-0 pl-1">
+        <p style="font-size: 18px">Dựa trên phản hồi của nhân viên Việt Nam từ 1/1/19 đến 12/12/19</p>
+      </div> -->
+    </section>
+    <section class="list-company" style="background-color:#fff; padding: 15px">
+      <h2 style="text-transform: uppercase">Danh sách công ty</h2>
+      <div class="list-company-item" v-for="(companyInfo,index) in listAllCompany" :key="index">
+        <!-- <div class="row" >
+            
+        </div> -->
+        <div class="row">
+          <div class="col-sm-3 mt-auto mb-auto p-0 align-items-center">
+            <div class="content-box">
+              <div v-if="companyInfo.nb_company != null" class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
+                <a data-controller="utm-tracking" :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" rel="nofollow" target="_blank">
+                  <img v-if="companyInfo.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="companyInfo.avatar.startsWith('https') ? companyInfo.avatar :`/uploads/users/avatars/${companyInfo.avatar}`">
+                  <img v-else class=" ls-is-cached lazyloaded" v-lazy="`https://netbee.vn/_nuxt/img/377bc00.png`">
+                </a>
+              </div>
+              <div v-else class="company-logo text-center" title="" data-original-title="JOIN US ON MISSION INCREDIBLE">
+                <a data-controller="utm-tracking" rel="nofollow" target="_blank">
+                  <img v-if="companyInfo.avatar != null" class=" ls-is-cached lazyloaded" v-lazy="companyInfo.avatar.startsWith('https') ? companyInfo.avatar :`/uploads/users/avatars/${companyInfo.avatar}`">
+                  <img v-else class=" ls-is-cached lazyloaded" v-lazy="`https://netbee.vn/_nuxt/img/377bc00.png`">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9 pl-sm-0 pl-50">
+            <div class="col-12 p-0" v-if="companyInfo.nb_company != null">
+              <a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`"><h4 style="text-transform: uppercase"> {{companyInfo.name}}.</h4>
+              </a>
+            </div> 
+            <div class="col-12 p-0" v-else>
+              <a><h4 style="text-transform: uppercase">{{companyInfo.name}}.</h4>
+              </a>
+            </div>
+            <div class="star-rating d-flex">
+              <div>
+                <h4 class="pt-md-1" style="font-size: 16px; ">Đánh giá: </h4>
+              </div>
+              <div>
+                <star-rating
+                :rating="companyInfo.rate"
+                :increment="0.1"
+                :star-size="22"
+                :read-only="true"
+                ></star-rating>
+              </div>
+            </div>
+            <div class="review_headline">
+              <p v-if="companyInfo.nb_company != null" style="font-size: 15px">
+                <i style="margin-right: 5px" class="fas fa-quote-left"></i>{{companyInfo.nb_company.company_about}}
+              </p>
+              <p v-else style="font-size: 15px">
+                <i style="margin-right: 5px" class="fas fa-quote-left"></i> Đang cập nhật
+              </p>
+            </div>
+            <div class="row text-right" v-if="companyInfo.nb_company != null" style="height: 30px">
+              <p style="width:100%; padding-right: 30px; font-size: 18px">
+                <span class="action-link"><a :href="`/cong-ty/${companyInfo.nb_company.username ? companyInfo.nb_company.username : '#'}`" data-toggle="tooltip"  data-placement="top" :title ="'Xem chi tiết'" class="btn btn-bg-edit p-50">Xem chi tiết</a></span>
+              </p>
+            </div>
+            
+          </div>  
+      </div> 
+      </div>
+      <infinite-loading
+                v-if="listAllCompany.length"
+                spinner="bubbles"    
+                ref="infiniteLoading" 
+                @infinite="infiniteScroll" style="padding:20px; width:100%"
+            >        
+            <div slot="no-more" style="font-size:15px; font-style: italic;display: none;">Hết</div>    
+            <div slot="no-results" style="font-size:15px; font-style: italic">Không còn kết quả.</div>
+        </infinite-loading>
+    </section>
+  </div>
 </template>
-
-<script>           
-    var Vue = require('vue');
-    import ImgUploader from '~/components/ImgUploader';
-    import { ValidationObserver } from "vee-validate/dist/vee-validate.full";
-    import {ValidationProvider, extend} from "vee-validate/dist/vee-validate.full";
-    extend("required", {
-        message: (field, values) => "Dữ liệu nhập vào không được để trống.",
-    });
-    extend("image", {
-        message: (field, values) => "Định dạng ảnh không phù hợp.",
-    });
-    export default {
-        name: 'Advertisement',
-        layout: 'admin',
-       
-        data(){
-            return {
-                filesUp: [null],
-                files: [],
-                listAdvertisement:[],
-                insertAdvertisement:{
-                    id:'',
-                    name:'',
-                    picture: []
-                },
-                updateAdvertisement:{
-                    name:'',
-                    picture: ''
-                },
-            }
-        },        
-        components:{
-            ImgUploader,
-            ValidationObserver,
-            ValidationProvider
-        },
-        
-        methods: {
-            updateId :function(id) {
-                try {
-                    this.$axios.post('advertisement/getIdAdvertisement',{id :id})
-                    .then(response => {   
-                        if(response.data.status == 200) {                                                       
-                            this.updateAdvertisement = response.data.data
-                            $('#create_update').modal();
-                        } else {
-                            this.$swal(
-                                'Lỗi',
-                                response.data.message,
-                                'error'
-                            )
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error.response)
-                    });
-                } catch (error) {
-                    this.$swal(
-                        'Lỗi!',
-                        'Lỗi dữ liệu',
-                        'error'
-                    )
-                }
-            },
-            changeStatus :function(id){
-                try {
-                    this.$axios.post('advertisement/changeStatus',{id: id})
-                    .then( response => {
-                        if(response.data.status == 200) {
-                            this.$swal(
-                                'Thành công',
-                                response.data.message,
-                                'success'
-                            ).then( function (){
-                                window.location.reload()
-                            } )
-                        }else{
-                            this.$swal(
-                                'Lỗi',
-                                response.data.message,
-                                'error'
-                            )
-                        }
-                    }).catch(error => {
-                        console.log(error.response)
-                    });
-                }  
-                catch(error) {
-                    this.$swal(
-                        'lỗi!',
-                        'lỗi dữ liệu',
-                        'error'
-                    )
-                } 
-            },
-            deleted :function(id){
-                try {
-                    this.$swal({
-                    title: 'Bạn có chắc chắn?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Xóa!',
-                    cancelButtonText: 'Hủy!',
-                    showCloseButton: true,
-                    showLoaderOnConfirm: true
-                    }).then(async (result) => {
-                        if(result.value) {
-                            this.$axios.post('advertisement/deleted',{id: id})
-                            .then( response => {
-                                if(response.data.status == 200) {
-                                    this.$swal(
-                                        'Thành công',
-                                        response.data.message,
-                                        'success'
-                                    ).then( function (){
-                                        window.location.reload()
-                                    } )
-                                }else{
-                                    this.$swal(
-                                        'Lỗi',
-                                        response.data.message,
-                                        'error'
-                                    )
-                                }
-                            }).catch(error => {
-                                console.log(error.response)
-                            });
-                        } else {
-                            this.$swal('Hủy', 'Quảng cáo được giữ lại', 'info')
-                        }
-                    })
-                } catch(error) {
-                    this.$swal(
-                        'Lỗi',
-                        'Lỗi dữ liệu',
-                        'error'
-                    )
-                }
-            },
-            uploadUp :function(e){
-                try {
-                    e.preventDefault()
-                    var form = new FormData();
-                    if(this.filesUp[0]){
-                        form.append('picture' , this.filesUp[0])
+<script>
+// import CompanyList1 from "~/components/Company/CompanyList1";
+import StarRating from 'vue-star-rating'
+import JobsList1Col from '~/components/Jobs/JobsList1Col'
+import JobsList2Col from '~/components/Jobs/JobsList2Col'
+import NewsList from '~/components/News/NewsList'
+export default {
+  data() {
+    return {
+      rating:3,
+      listAllCompany: [],
+      listVerifyCompany: [],
+      listNewCompany: [],
+      page: 1
+      
+    }
+  },
+  components: {
+    // CompanyList1,
+    StarRating,
+    JobsList2Col,
+      NewsList,
+      JobsList1Col
+  },
+  created() {
+    this.fetch();
+  },
+  methods: {
+    fetch: async function(){
+      let getAllCompany = await this.$axios.get('getListCompanyUser?perPage=3');
+      this.listAllCompany = getAllCompany.data.data.data;
+      let getVerifyCompany = await this.$axios.get('getListCompany?type=2&limit=5&perPage=0');
+      this.listVerifyCompany = getVerifyCompany.data.data;
+      let getNewCompany = await this.$axios.get('getListCompany?type=1&limit=10&perPage=0');
+      this.listNewCompany = getNewCompany.data.data;
+    },
+    infiniteScroll($state) {
+            setTimeout(() => {
+                this.page++
+                this.$axios
+                .get('getListCompanyUser?perPage=3'+ '&page='+this.page)
+                 .then((response) => {
+                    if (response.data.data.data.length >= 1) {
+                        response.data.data.data.forEach((item) => this.listAllCompany.push(item))
+                        $state.loaded()
+                    } else {
+                        $state.complete()
                     }
-                    form.append('id' , this.updateAdvertisement.id)
-                    form.append('name' , this.updateAdvertisement.name)
-                                                    
-                    this.$axios.post('advertisement/updateAdvertisement',form)
-                    .then(response => {
-                        if(response.data.status == 200) {
-                            this.$swal(
-                                'Thành công',
-                                response.data.message,
-                                'success'
-                            ).then( function (){
-                                window.location.reload()
-                            } )
-                        }else{
-                            this.$swal(
-                                'Lỗi',
-                                response.data.message,
-                                'error'
-                            )
-                        }
-                    }).catch(error => {
-                        console.log(error.response)
-                    });
-                }
-                catch(error){
-                    this.$swal(
-                        'Lỗi!',
-                        'Lỗi dữ liệu!',
-                        'error')
-                }
-            },
-            upload :function(e){
-                try {
-                    e.preventDefault()
-                    var form = new FormData();
-                    form.append('picture' , this.files[0])
-                    form.append('name' , this.insertAdvertisement.name)
-                                                    
-                    this.$axios.post('advertisement/insertAdvertisement',form)
-                    .then(response => {
-                        if(response.data.status == 200) {
-                            this.$swal(
-                                'Thành công',
-                                response.data.message,
-                                'success'
-                            ).then( function (){
-                                window.location.reload()
-                            } )
-                        }else{
-                            this.$swal(
-                                'Lỗi',
-                                response.data.message,
-                                'error'
-                            )
-                        }
-                    }).catch(error => {
-                        console.log(error.response)
-                    });
-                }
-                catch(error){
-                    this.$swal(
-                        'Lỗi!',
-                        'Lỗi dữ liệu!',
-                        'error')
-                }
-            },
-            openModalCreate :function(){
-                $('#create_insert').modal();
-            },
-            fetchdata :function(){
-                try {
-                    this.$axios.get('advertisement/getAdvertisement')
-                    .then(response => {                                                          
-                        this.listAdvertisement = response.data.data
-                    })
-                    .catch(error => {
-                        this.$swal(
-                            'Cảnh báo!',
-                            'Vui lòng tắt chặn quảng cáo để sử dụng website!',
-                            'warning'
-                        )
-                        console.log(error.response)
-                    });
-                }
-                catch (error) {
-                    this.$swal(
-                        'Lỗi!',
-                        'Lỗi dữ liệu!',
-                        'error')
-                }            
-             }
-        },        
-        mounted() {             
-            this.fetchdata()
-        }
-    };
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+            }, 500)
+            }        
+                
+  },
+};
 </script>
-<style scoped>
+<style>
+ .card-right{
+  margin-bottom: 0 !important;
+}
+img.img-fluid {
+    width: 423px;
+    height: 88px;
+    margin-bottom: 12px;
+    object-fit: contain;
+}
+.card-title {
+  margin-bottom: 6px !important;
+  margin-top: 10px !important;
+}
+span.carousel-control-prev-icon {
+  margin-left: auto !important;
+  margin-top: 280px;
+}
+span.carousel-control-prev-icon :hover {
+  color: #ffc107;
+}
+
+/* a.carousel-control-next {
+  margin-right: 1px !important;
+  margin-top: 280px;
+} */
+span.carousel-control-prev-icon {
+  margin-left: auto !important;
+}
+.row.carousel-1 {
+  height: 490px;
+}
+
+.col-lg-8.col-12.p-r-0 {
+  margin-left: 232px;
+}
+.col-12 h4{
+    font-weight: 500;
+    color: #353535;
+    line-height: 35.2px;
+    font-size: 20px;
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
+    font-family: "Roboto", sans-serif;
+}
+.col-md-8 {
+  margin-left: 235px;
+}
+.remove-border-rightt {
+  position: initial;
+  display: inline-block;
+  margin-left: 90px;
+  margin-bottom: 13px;
+}
+.NB_main_titlee {
+  background-color: #ffc107;
+  padding: 5px;
+  border-radius: 3px;
+  margin-bottom: 17px;
+}
+/* span.carousel-control-prev-icon {
+  margin-left: -199px;
+}
+a.carousel-control-next {
+  margin-right: -101px;
+} */
+ol.carousel-indicators {
+  margin-bottom: 4px;
+  margin-left: 43%;
+  margin-right: 43%;
+}
+ tbody tr {
+    background-color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 4px 20px 0;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+}
+ tbody tr:hover {
+    -webkit-transform: translateY(-4px);
+    -ms-transform: translateY(-4px);
+    transform: translateY(-4px);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.action-link a {
+    /* border-bottom: 1px dotted #ea2635;
+    color: #EA2635; */
+    text-decoration: none;
+}
+.list-company .list-company-item:nth-child(odd) {
+    background: #f9f9f9;
+}
+.list-company .list-company-item:hover {
+    background: white;
+    border-color: transparent;
+    box-shadow: 0 0 5px 1px #bcbcbc;
+}
+.list-company .list-company-item {
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    padding: 10px;
+    margin-bottom: -2px;
+    position: relative;
+}
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+.spotlightBlock {
+    position: relative;
+    padding-bottom: 20px;
+}
+.spotlightBlock__background {
+    background-size: cover !important;
+    background-position: center !important;
+    width: auto;
+    height: 300px;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.25);
+}
+.spotlightBlock__wrapper {
+    width: 80%;
+    margin-top: -100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.spotlightBlock__inner {
+    background-color: white;
+    padding: 16px 14px;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.25);
+}
+.columns.is-vcentered {
+    align-items: center;
+}
+.columns:last-child {
+    margin-bottom: -.75rem;
+}
+.column.is-3, .column.is-3-tablet {
+    flex: none;
+    width: 25%;
+}
+.column {
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: .75rem;
+    min-width: 0;
+}
+.column.is-8, .column.is-8-tablet {
+    flex: none;
+    width: 66.66667%;
+}
+.columns:not(.is-desktop) {
+    display: flex;
+}
+.is-inline-block {
+    display: inline-block !important;
+}
+.spotlightBlock__logo .image img {
+    border-radius: 4px;
+    height: 70%;
+    width: 100%;
+    /* box-shadow: 0 0 4px 0 rgba(0,0,0,0.25); */
+}
+.image img {
+    display: block;
+    height: auto;
+    width: 100%;
+}
+.spotlightBlock__title {
+    opacity: 0.8;
+    color: #333333;
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 5px;
+}
+.spotlightBlock__message {
+    color: #00B9F2;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 21px;
+}
+.button.button_secondary:hover {
+    background-color: #FFB701;
+    color: white;
+}
+.spotlightBlock__content {
+    margin: 20px 0;
+    height: 5.25rem;
+    overflow: hidden;
+    color: #555555;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+}
+.spotlightBlock__cta {
+    text-align: right;
+}
+.spotlightBlock__cta a.button_secondary:hover {
+    background-color: #FFB701;
+}
+.spotlightBlock__cta a.button_secondary {
+    color: #ff9900;
+    background-color: #fff;
+    transition: background-color 0.3s;
+    padding: .5rem 2rem;
+}
+.button:active, .button.is-active {
+    border-color: #4a4a4a;
+    color: #363636;
+}
+/* img {
+    height: auto;
+    max-width: 100%;
+} */
+.button.button_secondary {
+    border: 1px solid #FFB701;
+    color: #FFB701;
+    border-radius: 4px;
+}
+.content-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.company-logo {
+    margin: 0.5rem auto;
+    /* width: 168px; */
+    /* height: 168px; */
+    line-height: 152px;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid #d2d2d2;
+}
+.company-logo img {
+    height: 152px;
+    width: 152px;
+}
+  .review_headline p {
+    font-size: 16px;
+    color: #7f7f7f;
+    line-height: 30px;
+    height: 60px;
+    margin-top: 3px;
+    margin-bottom: 0;
+    /* text-overflow: ellipsis; */
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.vue-star-rating-rating-text {
+    font-size: 25px;
+}
+.user-latest-img:hover {
+    -webkit-transform: translateY(-4px) scale(1.2);
+    -ms-transform: translateY(-4px) scale(1.2);
+    transform: translateY(-4px) scale(1.2);
+    z-index: auto;
+}
+.clamped-content-spotlight-description-4{
+  font-size: 16px;
+    color: #7f7f7f;
+    line-height: 30px;
+    height: 120px;
+    margin-top: 3px;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-align: right;
+}
+.list-company-item h4{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* .col-3 {
+    max-width: 21%;
+} */
+.btn-bg-edit {
+  color: #000;
+  border: 1px solid #ffc107;
+}
+.btn-bg-edit:hover {
+  background:#ffc107 ;
+}
+.carousel-control-prev{
+  position: absolute;
+  top: 10px;
+  left: 37%;
+}
+.carousel-control-next{
+  position: absolute;
+  top: 10px;
+  left: 62%;
+}
+@media (max-width: 767px){
+  h4{
+    font-size: 18px !important;
+  }
+  .review_headline p{
+    font-size: 14px !important;
+  }
+  .vue-star-rating-rating-text {
+    font-size: 14px;
+  }
+  .company-logo{
+    margin: 0 auto;
+    padding: 0;
+  }
+  .company-logo {
+    line-height: 100px;
+  }
+  .company-logo img {
+    max-height: 100px;
+    max-width: 100px;
+  }
+  .star-rating h4{
+    padding-top: 0.5rem
+  }
+}
+@media (max-width: 575px){
+   h4{
+    font-size: 16px !important;
     
+  }
+  .spotlightBlock__wrapper{
+    width: 100%;
+  }
+  .carousel-control-prev{
+    left: 32%;
+    top: 15px
+  }
+  .carousel-control-next{
+    left: 68%;
+    top: 15px
+  }
+  .star-rating{
+    padding-top: 0.5rem;
+  }
+  .spotlightBlock__inner {
+    padding: 0;
+  }
+  ol.carousel-indicators {
+    margin-bottom: 0;
+  }
+}
 </style>
