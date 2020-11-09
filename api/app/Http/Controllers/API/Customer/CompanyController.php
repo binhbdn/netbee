@@ -32,6 +32,11 @@ class CompanyController extends Controller
         $response = $this->nbCompanyInfoService->getDetailCompanyById($request->id);
         return response()->json($response);
     }
+    public function postVerifyByAdmin(Request $request)
+    {
+        $response = $this->nbCompanyInfoService->postVerifyByAdmin($request);
+        return response()->json($response);
+    }
 
     public function postCompanyFeedback(Request $request)
     {

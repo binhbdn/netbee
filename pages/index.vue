@@ -263,7 +263,7 @@
                             <div class="columns spotlight-item is-vcentered">
                                 <div class="column is-3 spotlightBlock__logo">
                                   <figure class="image is-inline-block">
-                                    <img v-lazy="`/assets/img/test-banner.jpg`" style="width: 100%">
+                                    <img v-lazy="`/assets/img/${item.picture}`" style="width: 100%" height="133px">
                                   </figure>
                                 </div>
                             </div>

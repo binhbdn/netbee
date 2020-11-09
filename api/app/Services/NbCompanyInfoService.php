@@ -140,6 +140,28 @@ class NbCompanyInfoService extends BaseService {
         ];
     }
 
+    public function postVerifyByAdmin($request){
+        $company_info = $this->nbCompanyInfo->where('company_id', $request['company_id'])->first();
+        $data = [
+            'company_verify' => self::COMPANY_VERIFIED,
+        ];
+        if($company_info->company_verify == 0){
+            $company_info->update($data);
+            return [
+                'status' => 200,
+                'message' => 'Kích hoạt công ty thành công!',
+                'data' =>null
+            ];
+        }
+        else{
+            return [
+                'status' => 400,
+                'message' => 'Lỗi kích hoạt!',
+                'data' =>null
+            ];
+        }
+    }
+
     public function postCompanyFeedback($request){
         if(Auth::check()){
             $user = Auth::user();
