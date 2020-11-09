@@ -67,7 +67,8 @@
                                                                                     <label v-if="$auth.user.role == 2" for="account-name">Ngày thành lập</label>
                                                                                 </div>
                                                                                 <div class="col-sm-8 pr-0 pl-50">
-                                                                                    <datetime v-model="changeInfoUser.birth" input-class="form-control"></datetime>
+                                                                                    <!-- <datetime v-model="changeInfoUser.birth" input-class="form-control"></datetime> -->
+                                                                                    <input type="date" class="form-control" v-model="changeInfoUser.birth">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
