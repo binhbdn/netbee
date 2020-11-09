@@ -16,7 +16,11 @@
                                         <div class="col-lg-7">
                                             <div class="company-job-title resp-text">
                                                 <h1 class="" style="font-size: 20px">{{ tintuyendung.title }}</h1>
-                                                <a :href="`/cong-ty/${tintuyendung.nb_company.username}`"><h4 class=" text-uppercase" style="font-size: 17px"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} <i data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify"></i></span></h4></a>
+                                                <a :href="`/cong-ty/${tintuyendung.nb_company.username}`"><h4 class=" text-uppercase" style="font-size: 17px"><i class="fad fa-building"></i> <span class="company-name"  data-toggle="tooltip" data-placement="right" :title="`${tintuyendung.user.name}`"> {{ tintuyendung.user.name }} 
+                                                    <i v-if="tintuyendung.nb_company.company_verify" data-toggle="tooltip" data-placement="top" title="Công ty đã xác thực" class="fad fa-check btn-verify">
+                                                    </i>
+                                                    <i v-else>
+                                                    </i></span></h4></a>
                                                 <p><span class="font-weight-600">Loại tin: </span><span class="badge border-netbee badge-md">{{ tintuyendung.type == 3 ? 'Tu nghiệp sinh' : tintuyendung.type == 2 ? 'Du học' : 'Xuất khẩu lao động' }}</span></p>
                                                 <p><span class="font-weight-600">Địa điểm tuyển dụng: </span>{{ tintuyendung.nation.name }}</p>
                                                 <p v-if="tintuyendung.subsidy != null "><span class="font-weight-600">Chi phí xuất cảnh:</span> {{ FormatPrice(tintuyendung.subsidy) }}{{ tintuyendung.currency }}</p>
