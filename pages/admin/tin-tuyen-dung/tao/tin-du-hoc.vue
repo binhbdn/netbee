@@ -7,6 +7,11 @@
                         <div class="col-lg-9 col-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <div id="loading_netbee">
+                                        <div class="loading">
+                                            <img src="/assets/img/loading_netbee.gif">
+                                        </div>
+                                    </div>
                                     <form-wizard color="#ffb701"  error-color="red" @on-complete="onComplete" back-button-text="Quay lại" next-button-text="Tiếp" finish-button-text="Hoàn tất" style="padding-top: 7px;">
                                         <tab-content :before-change="checkValidateStep1" title="Tổng quan">
                                             <ValidationObserver ref="step1" v-slot="{ valid1 }">
@@ -612,6 +617,7 @@ export default {
             let isValid = await this.$refs.step5.validate();
             var form = new FormData();
             if(isValid){
+                $('#loading_netbee').css('display','flex');
                 if(this.data.company != null  && this.$auth.user.role == 4)
                 {
                     form.append('id_created' , this.data.company.id)
@@ -668,6 +674,7 @@ export default {
                 this.$axios.post('tintuyendung/createTinTuyen',form)
                 .then(response => {
                     if(response.data.status == 200) {
+                        $('#loading_netbee').css('display','none');
                         this.$swal(
                             'Thành công',
                             response.data.message,
@@ -677,6 +684,7 @@ export default {
                             window.location.href = '/admin/tin-tuyen-dung';
                         } )
                     }else{
+                        $('#loading_netbee').css('display','none');
                         this.$swal(
                             'Lỗi',
                             response.data.message,
@@ -698,6 +706,47 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+/* Loading */
+
+#loading_netbee {
+    display: none;
+    box-sizing: border-box;
+    position: fixed;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.8);
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1900;
+    opacity: 1;
+}
+
+#loading_netbee>.loading {
+    order: 1;
+    box-sizing: border-box;
+    overflow: visible;
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*animation-name: loadingoverlay_animation__rotate_right;
+    animation-duration: 2000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;*/
+    width: 60px;
+    height: auto;
+}
+
+#loading_netbee>.loading>img {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* END Loading */
 input::placeholder ,  textarea::placeholder{
   color: #d0d2d6 !important;
 }

@@ -34,6 +34,7 @@ Route::namespace('API')->group(function () {
   Route::get('getListCompany','Customer\CompanyController@getListCompany');
   Route::get('getListCompanyUser','Customer\CompanyController@getListCompanyUser');
   Route::get('getDetailCompanyById/{id}','Customer\CompanyController@getDetailCompanyById');
+  Route::post('postVerifyByAdmin','Customer\CompanyController@postVerifyByAdmin');
   Route::get('countFollow','Customer\CompanyController@countFollow');
   Route::get('getRating/{company_id}', 'Customer\CompanyController@getRating');
   //Mail

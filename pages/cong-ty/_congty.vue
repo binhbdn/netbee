@@ -38,7 +38,10 @@
                         </div>
                         <div class="col-md-2 d-flex align-items-center verify-img">
                             <img v-if="detailCompany.nb_company.company_verify" v-lazy="`/assets/img/verify.png`" data-toggle="tooltip" data-placement="top" :title="'Đã xác thực'">
-                            <img v-else v-lazy="`/assets/img/nonverify.png`"  data-toggle="tooltip" data-placement="top" :title="'Xác thực ngay'" @click="verifyModal()">
+                            <div v-else>
+                                <img v-if="$auth.user.role == 4" v-lazy="`/assets/img/nonverify.png`"  data-toggle="tooltip" data-placement="top" :title="'Xác thực ngay'" @click="verifyAdmin()">
+                                <img v-else v-lazy="`/assets/img/nonverify.png`"  data-toggle="tooltip" data-placement="top" :title="'Xác thực ngay'" @click="verifyModal()">
+                            </div>
                         </div>
                         <div class="col-md-2 ">
                             <div class="count-job" style="margin-top: 6px;">
@@ -720,6 +723,41 @@ export default {
                 $('#verify').modal(); 
             }
         },
+        async verifyAdmin() {
+            this.$swal({
+                title: 'Bạn chắc chắn?',
+                text: "Kích hoạt công ty này!",
+                type: 'question',
+                showCancelButton: true,
+                reverseButtons: true,
+                confirmButtonText: `Đồng ý`,
+                cancelButtonText: 'Hủy',
+                }).then((result) => {
+                    if (result.value) {
+                        var form = new FormData();
+                        form.append('company_id',this.detailCompany.id);
+                        this.$axios.post('postVerifyByAdmin',form).then((response)=>{
+                            if(response.data.status == 200) {
+                                this.$swal(
+                                    'Thành công!',
+                                    response.data.message,
+                                    'success'
+                                ).then( function (){
+                                        window.location.reload();
+                                    } 
+                                )
+                            }else{
+                                this.$swal(
+                                    'Lỗi',
+                                    response.data.message,
+                                    'error'
+                                )
+                            }
+                        })
+                    }
+                }
+            );
+        },
         saveJob() {
             this.$axios.$post(`tintuyendung/postSave`,{id_job: this.tintuc.id}).then((response)=>{
                 if(response.status == 200) {
@@ -827,7 +865,6 @@ export default {
         async getRating() {
             const id_company = await this.$axios.$get(`getDetailCompanyById/${this.$route.params.congty}`).then((response)=>{
                 this.detailCompany = response.data;
-                console.log('Company info: ', this.detailCompany);
                 this.id_company = this.detailCompany.nb_company.company_id;
                 this.name_company = this.detailCompany.nb_company.username;
             });
