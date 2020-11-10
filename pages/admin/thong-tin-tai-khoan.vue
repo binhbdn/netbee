@@ -60,6 +60,7 @@
                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-12">
+                                                                        <ValidationProvider rules="required" v-slot="{ errors }">
                                                                         <div class="form-group" style="margin-bottom: 0rem !important;">
                                                                             <div class="controls row">
                                                                                 <div class="col-sm-4 for-label pr-0">
@@ -69,9 +70,15 @@
                                                                                 <div class="col-sm-8 pr-0 pl-50">
                                                                                     <!-- <datetime v-model="changeInfoUser.birth" input-class="form-control"></datetime> -->
                                                                                     <input type="date" class="form-control" v-model="changeInfoUser.birth">
+                                                                                    <ul style="color:red" class="overline text-left">
+                                                                                            <li v-for="(error, index) in errors" :key="index">
+                                                                                            <span>{{ error }}</span>
+                                                                                            </li>
+                                                                                    </ul>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
+                                                                         </ValidationProvider>
                                                                     </div>
                                                                     <div class="col-12 number-phone">
                                                                         <ValidationProvider rules="required" v-slot="{ errors }">
@@ -97,6 +104,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="form-group col-12" style="margin-bottom: 0.5rem">
+                                                                 <ValidationProvider rules="required" v-slot="{ errors }">
                                                                 <div class="for-label pb-50">
                                                                     <label v-if="$auth.user.role == 2" for="account-username">Tên công ty</label>
                                                                     <label v-if="$auth.user.role != 2" for="account-company">Email</label>
@@ -104,7 +112,13 @@
                                                                 <div>
                                                                     <input v-if="$auth.user.role == 2" type="text" class="form-control" name="name" v-model="changeInfoUser.name">
                                                                     <input v-if="$auth.user.role != 2" type="text" class="form-control" v-model="changeInfoUser.email" readonly>
+                                                                     <ul style="color:red" class="overline">
+                                                                            <li v-for="(error, index) in errors" :key="index">
+                                                                            <span>{{ error }}</span>
+                                                                            </li>
+                                                                        </ul>
                                                                 </div>
+                                                                 </ValidationProvider>
                                                             </div>
                                                         </div>
                                                         <div class="row">
