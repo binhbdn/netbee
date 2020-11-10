@@ -66,8 +66,8 @@
                                                         <th>Tên công việc</th>
                                                         <th>Tên ứng viên</th>
                                                         <th>Nhà tuyển dụng</th>
-                                                        <th>Thời gian nộp</th>
-                                                        <th>Trạng thái</th>
+                                                        <th class="date_time">Thời gian nộp</th>
+                                                        <th class="btn-center">Trạng thái</th>
                                                         <th>Hành động</th>
                                                     </tr>
                                                 </thead>                                                
@@ -104,7 +104,7 @@
                                                             <a v-if="item.cv_id != null" target="_blank" :href="`/admin/ho-so/xem-ho-so/${item.cv_id}`" class="btn btn-status">Xem hồ sơ</a>
                                                             <a v-if="item.nb_paper != null" @click="showFile(item.id)" class="btn btn-status" data-toggle="tooltip"  data-placement="top" :title ="'Xem giấy tờ đính kèm'" >Xem giấy tờ đính kèm</a>
                                                             <p v-if="item.status == 1" ><span data-toggle="tooltip"  data-placement="top" :title="`Chưa duyệt`"><i style="font-size: 20px;" class="far fa-clock danger" ></i></span></p>
-                                                            <p v-else-if="item.status == 2 && item.nb_paper == null">Đã duyệt hồ sơ</p>
+                                                            <p v-else-if="item.status == 2 && item.nb_paper == null"><i style="font-size: 20px" class="far fa-check-circle success" data-toggle="tooltip"  data-placement="top" :title="`Đã duyệt hồ sơ`"></i></p>
                                                             <p v-else-if="item.status == 3">Đã tuyển hồ sơ</p>
                                                             <p v-else-if="item.status == 4">Đã từ chối hồ sơ</p>
                                                             <p v-else-if="item.status == 5">Đã duyệt hồ sơ đính kèm</p>
@@ -522,6 +522,9 @@ export default {
 }
 </script>
 <style scoped>
+.date_time{
+    width: 130px;
+}
 .btn-center{
     text-align: center !important;
     }
@@ -664,5 +667,11 @@ export default {
         transition: all 0.3s ease;
         opacity: 0;
         z-index: 1032;
+    }
+    @media screen and (max-width: 1439px)  {
+    .date_time{
+        width: 98px;
+        display: -webkit-box;
+    }
     }
 </style>
