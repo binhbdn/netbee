@@ -1,6 +1,6 @@
 <template>
     <div>      
-        <div class="content-wrapper" style="margin-top: 0px;padding-top: 0px;">    
+        <div class="content-wrapper mt-0 pt-0">    
             <!-- News filter start -->
             <div class="card" v-if="$auth.user.role == 4 || $auth.user.role == 2">
                 <div class="card-header">
@@ -67,7 +67,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header col-12" style="padding-left:0px;padding-right: 0px;">
+                                <div class="card-header px-0">
                                     <div class="col-xl-8 col-lg-7 col-md-5 col-sm-4 col-12 btn-add">
                                         <!-- <form action="/admin/tin-tuyen-dung/tao" method="" class="form-add">
                                             <button class="btn-add btn bg-netbee text-dark mx-auto"><i class="far fa-folder-plus"></i> Tạo tin tuyển dụng</button>
@@ -123,7 +123,8 @@
                                                 <table class="table table-hover mb-0 zero-configuration">
                                                     <thead class="custom-header">
                                                         <tr>
-                                                            <th class="width-id d-flex" style="width:5%;">
+                                                            <!-- vì .width-id {width: 5%;} nên xóa style="width:5%;" -->
+                                                            <th class="width-id d-flex">
                                                                 <li class="d-inline-block mr-1">
                                                                     <fieldset>
                                                                         <div class="vs-checkbox-con vs-checkbox-primary">
@@ -137,12 +138,10 @@
                                                                     </fieldset>
                                                                 </li>
                                                                 ID</th>
-                                                            <th class="title-style" style="width:37%;">Tên công việc</th>
-                                                            <th class="statistical-none" style="width:20%;">Thống kê</th>
-                                                            <th class="date-none" style="width:17%">Ngày tạo</th>
-                                                            <th class="status-none" style="width:13%;">Trạng thái</th>
-                                                            <!-- <th style="width:10%;">Thể loại</th>
-                                                            <th style="width:10%;">Loại tin</th> -->
+                                                            <th style="width:35%;">Tên công việc</th>
+                                                            <th style="width:20%;">Thống kê</th>
+                                                            <th style="width:17%">Ngày tạo</th>
+                                                            <th style="width:15%;">Trạng thái</th>
                                                             <th class="manipulation-style" style="width:13%;">Thao tác</th>
                                                         </tr>
                                                     </thead>
@@ -168,9 +167,8 @@
                                                                 <p style="font-size: 12px" v-if="item.username != null">
                                                                     <a data-toggle="tooltip"  data-placement="top" :title="`Xem trước chi tiết công ty`" :href="`/cong-ty/${item.username}`" target="_blank"><i>{{item.namecompany}}</i></a>
                                                                 </p>
-                                                                <!-- <hr style="border-top: 1px dotted black;"><p class="text-center font-italic">{{item.name}}</p> -->
                                                             </td>
-                                                            <td class="statistical-none">
+                                                            <td>
                                                                 <div class="row">
                                                                     <div class="col-6 pr-0 pl-0">
                                                                         <h4 class="text-center">{{(item.viewers)}}</h4>
@@ -182,11 +180,11 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td class="date-none">
+                                                            <td>
                                                                 {{formatDate(item.created_at)}}<br>
                                                                 <span v-if="item.bonus && item.bonus != 0" style="color: red;cursor:pointer;">{{ FormatPrice(item.bonus) }}/ Người</span>
                                                             </td>
-                                                            <td v-if="item.status == 0" class="status-none">
+                                                            <td v-if="item.status == 0">
                                                                 <div class="highlight-text" style="font-size:12px; text-align:center;margin-bottom:3px;">
                                                                     <span v-if="item.highlight_job == 1">Tin Nổi Bật</span>
                                                                     <span v-if="item.highlight_job == 2">Tin Vip</span>
@@ -196,7 +194,7 @@
                                                                     <i style="font-size: 20px;" class="far fa-clock danger" data-toggle="tooltip"  data-placement="top" :title="`Chờ kích hoạt`"></i>
                                                                 </div>
                                                             </td>
-                                                            <td v-if="item.status == 1" class="status-none">
+                                                            <td v-if="item.status == 1">
                                                                 <div class="highlight-text" style="font-size:12px; text-align:center;margin-bottom:3px;">
                                                                     <span v-if="item.highlight_job == 1">Tin Nổi Bật</span>
                                                                     <span v-if="item.highlight_job == 2">Tin Vip</span>
@@ -223,9 +221,7 @@
                                                                     <div class="btn-dropdown ">
                                                                         <div class="btn-group dropdown actions-dropodown text-center">
                                                                             <button type="button" class="btn btn-white px-2 py-75  waves-effect waves-light action-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Chọn thao tác">
-                                                                                <span class="text-none">
-                                                                                    <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i>
-                                                                                </span>
+                                                                                <i class="fa fa-ellipsis-h mr-0 hover-yellow"></i>
                                                                             </button>
                                                                             <div class="dropdown-menu" style="left: -25px!important;">
                                                                                 <a data-toggle="tooltip"  data-placement="left" :title="item.isPublic == 1 ? 'Bỏ kích hoạt' : 'Kích hoạt'" v-if="$auth.user.role == 4"  @click="changeStatus(item.id)" class="dropdown-item"> <i :class="item.status == 1 ? 'far fa-times-circle' : 'far fa-check-circle'"></i>{{ item.status == 1 ? 'Bỏ kích hoạt' : "Kích hoạt" }}</a>
@@ -916,11 +912,14 @@ i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
 }
 
 @media (max-width: 991px){
-    .statistical-none, .date-none{
-        display: none;
-    }
     .mb-td{
         padding-top: 22px !important;
+    }
+    .table-responsive {
+         overflow-x: scroll;
+    }
+    .table-responsive .table {
+         min-width: 691px;
     }
 }
 
@@ -931,13 +930,6 @@ i.fa.fa-ellipsis-h.mr-0.hover-yellow:hover {
     }
     .form-add{
         text-align: center;
-    }
-    .status-none, .text-none{
-        display: none;
-    }
-
-    .title-style{
-        width: 0 !important;
     }
     .manipulation-style{
         vertical-align: top !important;
