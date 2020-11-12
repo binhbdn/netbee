@@ -24,7 +24,7 @@ class NotificationService extends BaseService {
     public function index()
     {
         $response['notifications'] = $this->notificationValid()
-            ->orderBy('status_notification', 'ASC')
+            // ->orderBy('status_notification', 'ASC')
             ->orderBy('created_at', 'DESC')
             ->paginate(7);
 
