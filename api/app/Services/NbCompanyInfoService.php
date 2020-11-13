@@ -149,7 +149,7 @@ class NbCompanyInfoService extends BaseService {
             $company_info->update($data);
             return [
                 'status' => 200,
-                'message' => 'Kích hoạt công ty thành công!',
+                'message' => 'Xác thực công ty thành công!',
                 'data' =>null
             ];
         }

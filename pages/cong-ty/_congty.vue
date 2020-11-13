@@ -726,7 +726,7 @@ export default {
         async verifyAdmin() {
             this.$swal({
                 title: 'Bạn chắc chắn?',
-                text: "Kích hoạt công ty này!",
+                text: "Xác thực công ty này!",
                 type: 'question',
                 showCancelButton: true,
                 reverseButtons: true,
