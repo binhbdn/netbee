@@ -15,8 +15,8 @@
                                             <th style="width:15%;">Tên ứng viên</th>
                                             <th style="width:14%;" v-if="$auth.user.role == 3">Bonus</th>
                                             <th style="width:17%;">Nhà tuyển dụng</th>
-                                            <th style="width:13%;">Trạng thái</th>
-                                            <th style="width:13%;">Hành động</th>
+                                            <th style="width:13%;white-space: nowrap;">Trạng thái</th>
+                                            <th style="width:13%;white-space: nowrap;">Hành động</th>
                                         </tr>
                                     </thead>
                                     <tbody class="tab-table">
@@ -48,7 +48,7 @@
                                                         </a>
                                                     </div>   
                                                     <div>
-                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" data-toggle="tooltip"  data-placement="top" :title="`Thêm giấy tờ`" class="btn btn-edit-fix-add">Thêm giấy tờ</a>
+                                                        <a :href="`/admin/xac-thuc-ho-so/${item.id}`" type="button" v-if="item.status == 2 && item.nb_paper == null" data-toggle="tooltip"  data-placement="top" :title="`Thêm giấy tờ`" class="btn btn-repon btn-edit-fix-add">Thêm giấy tờ</a>
                                                     </div>                                                                                                     
                                                 </div>
                                             </td>
@@ -249,6 +249,8 @@ export default {
         font-size: 20px;
         color: #ffb701;
     }  
+    
+
     @media (max-width: 600px) {
     .table th {
         font-size: 13px;
@@ -260,12 +262,13 @@ export default {
         padding-left: 0.4rem;
         padding-right: 0;
     }
-    .tab-table p, a {
-    word-break:break-all;
+    
+    .tab-table tr td p,a{
+       font-size: 0.9rem !important; 
     }
-      .btn-repon{
+    .btn-repon{
     padding: 0.5rem 1rem !important;
     font-size: 0.9rem !important;
-      }     
+      } 
     }
 </style>
