@@ -1,10 +1,16 @@
 <template>
-    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" style="background-color: #2f3b4c;" data-scroll-to-active="true">
+    <div id="dp_80" class="main-menu menu-fixed menu-light menu-accordion menu-shadow" style="background-color: #2f3b4c;" data-scroll-to-active="true">
         <div class="navbar-header d-flex" style="height: 90px">
             <ul class="nav navbar-nav" style="padding-top: 22px">
                 <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="far fa-bars fa-2x" style="color: #fff"></i></a></li>
             </ul>
-            <ul class="nav navbar-nav" style="padding-left: 15px">
+            <ul id="hide_nb" @click="closeNav()" class="nav navbar-nav" style="padding-top: 22px">
+                <li class="nav-item mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="far fa-bars fa-2x" style="color: #fff"></i></a></li>
+            </ul>
+            <ul id="show_nb" @click="showNav()" class="nav navbar-nav" style="padding-top: 22px; display:none;padding-left: 4px;">
+                <li class="nav-item mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i id="bg_000" class="far fa-bars fa-2x" style="color: #fff"></i></a></li>
+            </ul>
+            <ul id="img_none" class="nav navbar-nav" style="padding-left: 15px">
                 <li class="nav-item mr-auto"  style="margin: auto; margin-top: -10px;">
                     <a class="navbar-brand" href="/">
                         <img src="/assets/img/logo-netbee-2-ncd.png" alt="Smiley face" height="60" width="130">
@@ -80,7 +86,7 @@
             </ul>
         </div>
         <!--ring ring-->
-        <div class="phonering-alo-phone phonering-alo-green phonering-alo-show" id="phonering-alo-phoneIcon" style="left: -50px; bottom: 150px; position: fixed;">
+        <div class="phonering-alo-phone phonering-alo-green phonering-alo-show" id="phonering-alo-phoneIcon" style="left: -50px; bottom: 150px; position: fixed; display:none;">
             <div class="phonering-alo-ph-circle"></div>
             <div class="phonering-alo-ph-circle-fill"></div>
             <a href="tel:+842462900388"></a>
@@ -111,6 +117,32 @@ export default {
                 // alert('Navigation');
                 this.$router.push('/'+str);
             }
+        },
+        closeNav() {
+            document.getElementById("img_none").style.display = "none";
+            document.getElementById("dp_80").style.width = "80px";
+            document.getElementById("dp_80").style.height = "4.5rem";
+            document.getElementById("dp_80").style.backgroundColor = "#fff";
+            document.getElementById("dp_80").style.transition = "300ms ease all";
+            document.getElementById("bg_000").style.color = "#000";
+            document.getElementById("hide_nb").style.display = "none";
+            document.getElementById("show_nb").style.display = "block";
+            document.getElementById("show_nb").style.paddingTop = "12px";
+            document.getElementsByClassName("header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow")[0].style.paddingLeft = "80px";
+            document.getElementsByClassName("header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow")[0].style.width = "100%";
+            document.getElementsByClassName('content app-content')[0].style.marginLeft = "0px";
+        },
+        showNav() {
+            document.getElementById("img_none").style.display = "block";
+            document.getElementById("dp_80").style.width = "260px";
+            document.getElementById("dp_80").style.transition = "300ms ease all";
+            document.getElementById("dp_80").style.height = "100%";
+            document.getElementById("dp_80").style.backgroundColor = "#2f3b4c";
+            document.getElementById("show_nb").style.display = "none";
+            document.getElementById("hide_nb").style.display = "block";
+            document.getElementsByClassName("header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow")[0].style.paddingLeft = "0";
+            document.getElementsByClassName("header-navbar navbar-expand-lg navbar navbar-with-menu floating-nav navbar-light navbar-shadow")[0].style.width = "calc( 100vw - (100vw - 100%) - calc(2.2rem * 2) - 200px)";
+            document.getElementsByClassName('content app-content')[0].style.marginLeft = "260px";
         }
     },
   mounted() {
@@ -119,6 +151,26 @@ export default {
 }
 </script>
 <style scoped>
+@media(max-width: 767px) {
+    #hide_nb, #show_nb{
+        display:none;
+    }
+}
+@media (max-width: 600px){
+    #hide_nb, #show_nb{
+        display:none;
+    }
+}
+@media (max-width: 575px){
+    #hide_nb, #show_nb{
+        display:none;
+    }
+}
+@media(max-width: 320px) {
+  #hide_nb, #show_nb{
+        display:none;
+    }
+}
 .phonering-alo-phone.phonering-alo-static {
     opacity:.6
 }
