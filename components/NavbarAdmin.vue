@@ -638,6 +638,9 @@ export default {
 .main-menu.menu-light .navigation > li.open > a{
     background: rgb(47, 59, 76);
 }
+.main-menu.menu-light .navigation > li.open > a, .main-menu.menu-light .navigation > li.sidebar-group-active > a {
+    background: rgb(47, 59, 76) !important;
+}
 .main-menu.menu-light .navigation > li.active > a {
     background: rgb(47, 59, 76);
     border-left: 3px solid #ffb701 !important;
