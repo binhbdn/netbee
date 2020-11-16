@@ -1430,6 +1430,12 @@ export default {
 /* .form-group{
     margin-bottom: 0.5rem;
 } */
+input::placeholder {
+  font-size: 14px !important;
+}
+.form-control{
+    font-size: 14px !important;
+}
 .float-right{
     width: 113px !important;
 }
