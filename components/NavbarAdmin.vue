@@ -123,7 +123,6 @@ export default {
             document.getElementById("dp_80").style.width = "80px";
             document.getElementById("dp_80").style.height = "4.5rem";
             document.getElementById("dp_80").style.backgroundColor = "#fff";
-            document.getElementById("dp_80").style.transition = "300ms ease all";
             document.getElementById("bg_000").style.color = "#000";
             document.getElementById("hide_nb").style.display = "none";
             document.getElementById("show_nb").style.display = "block";
@@ -135,7 +134,6 @@ export default {
         showNav() {
             document.getElementById("img_none").style.display = "block";
             document.getElementById("dp_80").style.width = "260px";
-            document.getElementById("dp_80").style.transition = "300ms ease all";
             document.getElementById("dp_80").style.height = "100%";
             document.getElementById("dp_80").style.backgroundColor = "#2f3b4c";
             document.getElementById("show_nb").style.display = "none";
