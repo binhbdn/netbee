@@ -24,7 +24,8 @@
                     <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="hạn nộp hồ sơ"><i class="fad fa-clock"></i> {{ ConvertDate(job.expiration_date) }}</p>
                 </div>
                 <div class="d-flex justify-content-between" style="overflow: hidden">
-                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fad fa-dollar-sign" style="color: #000"></i><label class="title">Chi phí: </label> <span :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span></p>
+                    <p class="delivery-date mb-0" data-toggle="tooltip" data-placement="top" title="Chi phí" ><i class="fad fa-dollar-sign" style="color: #000"></i><label class="title">Chi phí: </label> <span v-if="job.subsidy != null " :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }} {{ job.currency }}</span>
+                    <span v-else :style="[job.highlight_job ? {'color': '#fc205c'} : '']" class="item-price">{{ FormatPrice(job.subsidy) }}</span></p>
                     <!-- <p class="delivery-date m-0" data-toggle="tooltip" data-placement="top" title="Số lượng tuyển"><i class="fad fa-user-friends"></i> {{job.quantity}}</p> -->
                 </div>
                 <div class="hot" v-if="job.highlight_job == 2"><img data-toggle="tooltip" data-placement="top" title="Được tài trợ" src="/assets/img/hot.png"></div>
@@ -44,6 +45,11 @@ export default {
 }
 </script>
 <style scoped>
+.delivery-date{
+        display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
 .item-vip-a{
     font-weight: 500;
     font-size: 14px;
