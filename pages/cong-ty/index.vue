@@ -127,7 +127,7 @@
               </a>
             </div> 
             <div class="col-12 p-0" v-else>
-              <a><h4 style="text-transform: uppercase">{{companyInfo.name}}.</h4>
+              <a><h4 style="text-transform: uppercase">{{companyInfo.name}}</h4>
               </a>
             </div>
             <div class="star-rating d-flex">

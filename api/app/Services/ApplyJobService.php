@@ -267,10 +267,10 @@ class ApplyJobService extends BaseService {
             'front_id_card' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'back_id_card' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'health_certification' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'high_school_diploma' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'passport' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'high_school_diploma' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'passport' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'birth_certificate' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-            'curriculum_vitae' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'curriculum_vitae' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'card_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ];
         $messages = [
@@ -290,10 +290,25 @@ class ApplyJobService extends BaseService {
             $front_id_card = $this->uploadFile($data->file('front_id_card'));
             $back_id_card = $this->uploadFile($data->file('back_id_card'));
             $health_certification = $this->uploadFile($data->file('health_certification'));
-            $high_school_diploma = $this->uploadFile($data->file('high_school_diploma'));
-            $passport = $this->uploadFile($data->file('passport'));
+            if($data->file('high_school_diploma') == NULL){
+                $high_school_diploma = 'image_null'; 
+            }
+            else{
+                $high_school_diploma = $this->uploadFile($data->file('high_school_diploma'));
+            }
+            if($data->file('passport') == NULL){
+                $passport = 'image_null'; 
+            }
+            else{
+                $passport = $this->uploadFile($data->file('passport'));
+            }
             $birth_certificate = $this->uploadFile($data->file('birth_certificate'));
-            $curriculum_vitae = $this->uploadFile($data->file('curriculum_vitae'));
+            if($data->file('curriculum_vitae') == NULL){
+                $curriculum_vitae = 'image_null'; 
+            }
+            else{
+                $curriculum_vitae = $this->uploadFile($data->file('curriculum_vitae'));
+            }
             $card_photo = $this->uploadFile($data->file('card_photo'));
         } catch (\Exception $e) {
             return [
