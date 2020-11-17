@@ -624,6 +624,8 @@ export default {
             this.tinTuyenDung.sort((a, b) => a.id < b.id ? 1 : -1);
         },
         search(){
+            this.tinTuyenDung = []
+             this.page = 1
             this.listconpany()  
             this.$axios.$get(
             'tintuyendung/searchTinTuyenDung?searchCategory=' 
